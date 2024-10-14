@@ -5,5 +5,4 @@ import javafx.scene.control.Button;
 
 public class TrangChu_GUI_Controller {
 
-
 }
