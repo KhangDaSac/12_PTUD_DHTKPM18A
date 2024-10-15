@@ -64,9 +64,6 @@ public class Main_Controller {
 
     public void chuyenTrangChu() throws IOException {
        chuyenTrang("/view/TrangChu_GUI.fxml");
-        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LeagueSpartan.ttf"), 10);
-        System.out.println(font);
-        lblTieuDeTrang.setFont(font);
     }
 
     private void chuyenTrang(String trangMoiPath) throws IOException {

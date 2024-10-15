@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 .menu-button:hover {
     -fx-background-color: #3200C0;
 }
@@ -5,11 +7,11 @@
 .menu-button{
     -fx-text-fill: #fff;
     -fx-background-radius: 0;
-    -fx-effect: 0;
     -fx-alignment: CENTER_LEFT;
     -fx-padding:  0 10 0 20;
     -fx-font-size: 16;
     -fx-background-color:  #1D006F;
+    -fx-font-family: 'League Spartan';
 }
 
 .header{
@@ -20,21 +22,24 @@
 .header .label{
     -fx-text-fill:  #fff;
     -fx-font-weight: bold;
+    -fx-font-family: 'League Spartan';
 }
 
 .informationLogin{
-        -fx-background-radius:  0 0 0 15;
-        -fx-background-color:  #1D006F;
+    -fx-background-radius:  0 0 0 15;
+    -fx-background-color:  #1D006F;
+
 }
 
 .informationLogin .label{
     -fx-text-fill:  #fff;
-    -fx-font-weight: bold;
+    -fx-font-family: 'League Spartan';
 }
 
 .informationLogin .button{
     -fx-background-color: transparent;
 }
+
 
 
 

@@ -240,7 +240,7 @@
       </AnchorPane>
       <AnchorPane layoutX="541.0" prefHeight="60.0" prefWidth="457.0" styleClass="header" stylesheets="@../css/KhungGiaoDien.css">
          <children>
-            <Label fx:id="lblTieuDeTrang" layoutX="158.0" layoutY="7.0" style="-fx-font-family: League Spartan Thin;" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="Trang chủ" textAlignment="CENTER">
+            <Label fx:id="lblTieuDeTrang" layoutX="158.0" layoutY="7.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="Trang chủ" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
