@@ -10,23 +10,24 @@ public class ConnectDB {
 	public static Connection con = null;
 	private static ConnectDB instance = new ConnectDB();
 	
-	public Connection connect() throws SQLException, ClassNotFoundException{
-		String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
-		String user = "sa";
-		String password = "3.141592653";
-		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		con = DriverManager.getConnection(url, user, password);
-		if (con != null) {
-			System.out.println("Kết nối thành công");
+	public ConnectDB(){
+		try{
+			String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
+			String user = "sa";
+			String password = "3.141592653";
+			con = DriverManager.getConnection(url, user, password);
+			if (con != null) {
+				System.out.println("Kết nối thành công");
+			}
+		}catch (SQLException e){
+			System.err.println(e.getMessage());
 		}
-		return con;
 	}
 	public void disconnect() {
 		if (con!= null) {
 			try {
 				con.close();
 			} catch (Exception e) {
-				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}
