@@ -203,7 +203,7 @@
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
-                                    <Image url="@../images/iconMenu/Thông%20tin%20ứng%20dụng.png" />
+                                    <Image url="@../images/iconMenu/ThongTinUngDung.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
