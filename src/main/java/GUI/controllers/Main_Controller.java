@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -63,6 +64,9 @@ public class Main_Controller {
 
     public void chuyenTrangChu() throws IOException {
        chuyenTrang("/view/TrangChu_GUI.fxml");
+        Font font = Font.loadFont(getClass().getResourceAsStream("/fonts/LeagueSpartan.ttf"), 10);
+        System.out.println(font);
+        lblTieuDeTrang.setFont(font);
     }
 
     private void chuyenTrang(String trangMoiPath) throws IOException {

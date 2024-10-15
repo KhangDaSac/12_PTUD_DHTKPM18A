@@ -5,7 +5,6 @@
 .menu-button{
     -fx-text-fill: #fff;
     -fx-background-radius: 0;
-    -fx-effect: 0;
     -fx-alignment: CENTER_LEFT;
     -fx-padding:  0 10 0 20;
     -fx-font-size: 16;
@@ -20,21 +19,22 @@
 .header .label{
     -fx-text-fill:  #fff;
     -fx-font-weight: bold;
+    -fx-font-family: 'LeagueSpartan';
 }
 
 .informationLogin{
-        -fx-background-radius:  0 0 0 15;
-        -fx-background-color:  #1D006F;
+    -fx-background-radius:  0 0 0 15;
+    -fx-background-color:  #1D006F;
 }
 
 .informationLogin .label{
     -fx-text-fill:  #fff;
-    -fx-font-weight: bold;
 }
 
 .informationLogin .button{
     -fx-background-color: transparent;
 }
+
 
 
 

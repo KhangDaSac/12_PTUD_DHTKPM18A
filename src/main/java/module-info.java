@@ -1,4 +1,4 @@
-module hellloooo.demo {
+module GUI.applications {
     requires javafx.controls;
     requires javafx.fxml;
 
