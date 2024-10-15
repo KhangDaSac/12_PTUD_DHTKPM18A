@@ -1,0 +1,19 @@
+/*@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');*/
+
+.group-input{
+    -fx-background-radius: 5;
+    -fx-background-color:  #8155FF;
+}
+
+.group-input .label{
+    -fx-text-fill:  #fff;
+    -fx-font-family: 'League Spartan';
+    -fx-font-size: 16;
+}
+
+.input{
+    -fx-background-radius: 5;
+    -fx-background-color:  #F4F6FF;
+    -fx-font-family: 'League Spartan';
+    -fx-font-size: 16;
+}
