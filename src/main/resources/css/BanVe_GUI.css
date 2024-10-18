@@ -1,0 +1,21 @@
+.nutTienTrinh{
+    -fx-background-radius: 50%;
+    -fx-background-color:  #1D006F;
+}
+
+.nutTienTrinh .label{
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-font-size: 16;
+}
+
+.group-nutTienTrinh > .label{
+    -fx-text-fill: #000;
+    -fx-alignment: center;
+    -fx-font-size: 16;
+}
+
+.duongNoiTienTrinh{
+    -fx-background-color:  #1D006F;
+    -fx-pref-height: 4;
+}

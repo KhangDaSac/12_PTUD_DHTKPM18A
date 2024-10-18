@@ -203,7 +203,7 @@
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
-                                    <Image url="@../images/iconMenu/Thông%20tin%20ứng%20dụng.png" />
+                                    <Image url="@../images/iconMenu/ThongTinUngDung.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -240,7 +240,7 @@
       </AnchorPane>
       <AnchorPane layoutX="541.0" prefHeight="60.0" prefWidth="457.0" styleClass="header" stylesheets="@../css/KhungGiaoDien.css">
          <children>
-            <Label fx:id="lblTieuDeTrang" layoutX="158.0" layoutY="7.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="Trang chủ" textAlignment="CENTER">
+            <Label fx:id="lblTieuDeTrang" layoutY="-1.0" prefHeight="68.0" prefWidth="458.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="TRANG CHỦ" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>

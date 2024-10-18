@@ -9,6 +9,8 @@ module GUI.applications {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafaker;
+    requires org.jsoup;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
