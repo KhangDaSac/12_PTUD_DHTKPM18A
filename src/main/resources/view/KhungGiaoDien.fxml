@@ -21,7 +21,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="60.0" prefWidth="300.0" styleClass="informationLogin" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0">
+      <AnchorPane prefHeight="60.0" prefWidth="300.0" styleClass="informationLogin" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lblMaNhanVienDangNhap" layoutX="65.0" layoutY="9.0" text="Mã nhân viên">
                <font>
@@ -38,7 +38,7 @@
                   <Image url="@../images/Login.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnThongTinTaiKhoan" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" stylesheets="@../css/KhungGiaoDien.css">
+            <Button fx:id="btnThongTinTaiKhoan" mnemonicParsing="false" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView>
                      <image>
@@ -71,7 +71,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="280.0">
                      <children>
-                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
+                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#chuyenBanVe" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
@@ -240,7 +240,7 @@
       </AnchorPane>
       <AnchorPane layoutX="541.0" prefHeight="60.0" prefWidth="457.0" styleClass="header" stylesheets="@../css/KhungGiaoDien.css">
          <children>
-            <Label fx:id="lblTieuDeTrang" layoutY="-1.0" prefHeight="68.0" prefWidth="458.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="TRANG CHỦ" textAlignment="CENTER">
+            <Label fx:id="lblTieuDeTrang" layoutY="-1.0" prefHeight="60.0" prefWidth="458.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="TRANG CHỦ" textAlignment="CENTER" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="30.0" />
                </font>

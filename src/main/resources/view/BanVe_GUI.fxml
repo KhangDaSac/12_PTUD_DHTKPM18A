@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVeGUI">
@@ -90,11 +94,75 @@
                   </JFXButton>
                </children>
             </FlowPane>
-            <FlowPane prefHeight="200.0" prefWidth="645.0" AnchorPane.topAnchor="80.0">
+            <AnchorPane prefHeight="220.0" prefWidth="645.0" AnchorPane.topAnchor="80.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="230.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="-5.0" layoutY="123.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.leftAnchor="30.0" />
+                     </children>
+                  </AnchorPane>
+                  <FlowPane prefHeight="200.0" prefWidth="515.0" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="220.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fitHeight="220.0" fitWidth="150.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="37.0" layoutY="4.0" text="SE02-181024">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
+                                 <children>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đi:" />
+                                          <Label text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đến:" />
+                                          <Label text="19/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã đặt" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã bán:" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Còn trống: " />
+                                          <Label text="10" AnchorPane.leftAnchor="65.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <FlowPane.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </FlowPane.margin>
+                        </AnchorPane>
+                     </children>
+                  </FlowPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="230.0" prefWidth="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ANGLE_RIGHT" layoutX="21.0" layoutY="115.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.rightAnchor="25.0" />
+                     </children>
+                  </AnchorPane>
                </children>
-            </FlowPane>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

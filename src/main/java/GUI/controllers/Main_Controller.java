@@ -75,4 +75,9 @@ public class Main_Controller {
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
+
+    public void chuyenBanVe() throws IOException {
+        chuyenTrang("/view/BanVe_GUI.fxml");
+    }
+
 }
