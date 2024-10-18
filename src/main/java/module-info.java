@@ -15,4 +15,5 @@ module GUI.applications {
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
     opens GUI.controllers to javafx.fxml;
+    exports DataGeneration;
 }
