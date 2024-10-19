@@ -9,7 +9,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -94,14 +98,9 @@
                   </JFXButton>
                </children>
             </FlowPane>
-            <AnchorPane prefHeight="220.0" prefWidth="645.0" AnchorPane.topAnchor="80.0">
+            <AnchorPane prefHeight="230.0" prefWidth="645.0" AnchorPane.topAnchor="80.0">
                <children>
-                  <AnchorPane prefHeight="230.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="-5.0" layoutY="123.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.leftAnchor="30.0" />
-                     </children>
-                  </AnchorPane>
-                  <FlowPane prefHeight="200.0" prefWidth="515.0" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="0.0">
+                  <HBox prefHeight="230.0" prefWidth="516.0" styleClass="h-box" stylesheets="@../css/BanVe_GUI.css" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane prefHeight="220.0" prefWidth="150.0">
                            <children>
@@ -150,12 +149,119 @@
                                  </children>
                               </VBox>
                            </children>
-                           <FlowPane.margin>
-                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
-                           </FlowPane.margin>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="220.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fitHeight="220.0" fitWidth="150.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="37.0" layoutY="4.0" text="SE02-181024">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
+                                 <children>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đi:" />
+                                          <Label text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đến:" />
+                                          <Label text="19/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã đặt" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã bán:" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Còn trống: " />
+                                          <Label text="10" AnchorPane.leftAnchor="65.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="220.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fitHeight="220.0" fitWidth="150.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="37.0" layoutY="4.0" text="SE02-181024">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
+                                 <children>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đi:" />
+                                          <Label text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đến:" />
+                                          <Label text="19/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã đặt" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã bán:" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Còn trống: " />
+                                          <Label text="10" AnchorPane.leftAnchor="65.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
                         </AnchorPane>
                      </children>
-                  </FlowPane>
+                  </HBox>
+                  <AnchorPane prefHeight="230.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="-5.0" layoutY="123.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.leftAnchor="30.0" />
+                     </children>
+                  </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="230.0" prefWidth="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="ANGLE_RIGHT" layoutX="21.0" layoutY="115.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.rightAnchor="25.0" />
@@ -163,6 +269,133 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
+            <AnchorPane prefHeight="60.0" prefWidth="645.0" AnchorPane.topAnchor="310.0">
+               <children>
+                  <AnchorPane prefHeight="60.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="9.0" layoutY="34.0" scaleX="5.0" scaleY="5.0" x="20.0" AnchorPane.leftAnchor="29.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="60.0" prefWidth="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <FontAwesomeIconView glyphName="ANGLE_RIGHT" layoutX="9.0" layoutY="32.0" scaleX="5.0" scaleY="5.0" wrappingWidth="4.285714149475098" x="20.0" AnchorPane.rightAnchor="32.3142858505249" />
+                     </children>
+                  </AnchorPane>
+                  <HBox prefHeight="60.0" prefWidth="550.0" styleClass="h-box" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0">
+                     <children>
+                        <AnchorPane prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="80.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="149.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="219.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="288.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="358.0" layoutY="10.0" prefHeight="60.0" prefWidth="66.0">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-car-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="29.0" layoutY="39.0" prefWidth="9.0" styleClass="text-bold" stylesheets="@../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="1.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <GridPane layoutY="379.0" prefHeight="214.0" prefWidth="646.0" AnchorPane.topAnchor="370.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
          </children>
       </AnchorPane>
    </children>

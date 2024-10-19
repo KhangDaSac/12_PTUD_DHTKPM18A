@@ -19,3 +19,8 @@
     -fx-background-color:  #1D006F;
     -fx-pref-height: 4;
 }
+
+.h-box {
+    -fx-alignment: center;
+}
+

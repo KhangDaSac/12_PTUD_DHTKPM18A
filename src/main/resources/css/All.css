@@ -72,4 +72,8 @@
     -fx-alignment: center; /* Căn chỉnh nội dung giữa */
 }
 
+.text-bold{
+    -fx-font-weight: 700;
+}
+
 
