@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVeGUI">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
    <children>
       <AnchorPane layoutX="379.0" layoutY="73.0" prefHeight="60.0" prefWidth="450.0" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="65.0">
          <children>
