@@ -24,3 +24,32 @@
     -fx-alignment: center;
 }
 
+.test{
+    -fx-background-color:  #1D006F;
+}
+
+
+
+.ve{
+    //-fx-background-color:  #D9D9D9;
+    -fx-height: 150px;
+}
+
+.ve > *{
+    -fx-background-color:  #F8F7F7;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, #444444, 10, 0, 2, 2);
+}
+
+.ve-left{
+    -fx-background-color: #4379F2;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.ve-right{
+    -fx-background-radius: 0 10 10 0;
+}
+
+.ve-header{
+    -fx-background-color: #e8e8e8;
+}
