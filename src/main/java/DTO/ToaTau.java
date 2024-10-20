@@ -1,4 +1,4 @@
-package ENTITY;
+package DTO;
 
 import java.util.Objects;
 
@@ -6,24 +6,17 @@ public class ToaTau {
 	private String maToaTau;
 	private int thuTuToa;
 	private int soLuongCho;
-	private int soLuongChoTrong;
-	private int soLuongChoDaDat;
-	private int soLuongChoDaMua;
 	private LoaiToaTau loaiToaTau;
 	private ChuyenTau chuyenTau;
 	public ToaTau() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, int soLuongChoTrong, int soLuongChoDaDat,
-			int soLuongChoDaMua, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau) {
+	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau) {
 		super();
 		this.maToaTau = maToaTau;
 		this.thuTuToa = thuTuToa;
 		this.soLuongCho = soLuongCho;
-		this.soLuongChoTrong = soLuongChoTrong;
-		this.soLuongChoDaDat = soLuongChoDaDat;
-		this.soLuongChoDaMua = soLuongChoDaMua;
 		this.loaiToaTau = loaiToaTau;
 		this.chuyenTau = chuyenTau;
 	}
@@ -48,24 +41,6 @@ public class ToaTau {
 	}
 	public void setSoLuongCho(int soLuongCho) {
 		this.soLuongCho = soLuongCho;
-	}
-	public int getSoLuongChoTrong() {
-		return soLuongChoTrong;
-	}
-	public void setSoLuongChoTrong(int soLuongChoTrong) {
-		this.soLuongChoTrong = soLuongChoTrong;
-	}
-	public int getSoLuongChoDaDat() {
-		return soLuongChoDaDat;
-	}
-	public void setSoLuongChoDaDat(int soLuongChoDaDat) {
-		this.soLuongChoDaDat = soLuongChoDaDat;
-	}
-	public int getSoLuongChoDaMua() {
-		return soLuongChoDaMua;
-	}
-	public void setSoLuongChoDaMua(int soLuongChoDaMua) {
-		this.soLuongChoDaMua = soLuongChoDaMua;
 	}
 	public LoaiToaTau getLoaiToaTau() {
 		return loaiToaTau;
@@ -94,11 +69,16 @@ public class ToaTau {
 		ToaTau other = (ToaTau) obj;
 		return Objects.equals(maToaTau, other.maToaTau);
 	}
+
+
 	@Override
 	public String toString() {
-		return "ToaTau [maToaTau=" + maToaTau + ", thuTuToa=" + thuTuToa + ", soLuongCho=" + soLuongCho
-				+ ", soLuongChoTrong=" + soLuongChoTrong + ", soLuongChoDaDat=" + soLuongChoDaDat + ", soLuongChoDaMua="
-				+ soLuongChoDaMua + ", loaiToaTau=" + loaiToaTau + ", chuyenTau=" + chuyenTau + "]";
+		return "ToaTau{" +
+				"maToaTau='" + maToaTau + '\'' +
+				", thuTuToa=" + thuTuToa +
+				", soLuongCho=" + soLuongCho +
+				", loaiToaTau=" + loaiToaTau +
+				", chuyenTau=" + chuyenTau +
+				'}';
 	}
-	
 }
