@@ -2,6 +2,11 @@
     -fx-background-color: #3200C0;
 }
 
+.menu{
+    -fx-background-color: #1D006F;
+    -fx-padding: 0;
+}
+
 .menu-button{
     -fx-text-fill: #fff;
     -fx-background-radius: 0;
