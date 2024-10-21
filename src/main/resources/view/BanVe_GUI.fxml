@@ -95,7 +95,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="dapNgayKhoiHanh" prefHeight="40.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                        <DatePicker fx:id="dapNgayKhoiHanh" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -862,31 +862,21 @@
                                                                   <Font name="System Bold" size="16.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label prefHeight="30.0" prefWidth="250.0">
+                                                            <Label prefHeight="28.0" prefWidth="134.0">
                                                                <font>
                                                                   <Font size="16.0" />
                                                                </font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">
+                                                      <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0">
                                                          <children>
-                                                            <Label prefHeight="30.0" prefWidth="60.0" stylesheets="@../css/All.css" text="Ga đi:">
+                                                            <Label prefHeight="28.0" prefWidth="141.0" stylesheets="@../css/All.css" text="Loại khách hàng">
                                                                <font>
                                                                   <Font name="System Bold" size="16.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
-                                                               <font>
-                                                                  <Font size="16.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="60.0" stylesheets="@../css/All.css" text="Ga đến:">
-                                                               <font>
-                                                                  <Font name="System Bold" size="16.0" />
-                                                               </font>
-                                                            </Label>
-                                                            <Label layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Hà Nội">
+                                                            <Label prefHeight="28.0" prefWidth="134.0">
                                                                <font>
                                                                   <Font size="16.0" />
                                                                </font>
