@@ -1,8 +1,6 @@
 package DTO;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class ChiTietChuyenTau {
@@ -26,7 +24,7 @@ public class ChiTietChuyenTau {
 		this.thuTuGa = thuTuGa;
 	}
 
-	public ChiTietChuyenTau() {
+	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
 	}
 
 	public ChuyenTau getChuyenTau() {
