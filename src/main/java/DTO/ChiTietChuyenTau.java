@@ -1,4 +1,4 @@
-package ENTITY;
+package DTO;
 
 import java.util.Date;
 
