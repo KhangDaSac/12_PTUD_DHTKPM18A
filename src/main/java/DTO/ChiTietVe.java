@@ -1,4 +1,4 @@
-package ENTITY;
+package DTO;
 
 public class ChiTietVe {
 	private double giaCho;

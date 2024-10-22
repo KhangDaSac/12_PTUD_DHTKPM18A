@@ -12,16 +12,16 @@
 
 <AnchorPane prefHeight="790.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.Main_Controller">
    <children>
-      <AnchorPane fx:id="anpNoiDungTrang" layoutX="250.0" prefHeight="790.0" prefWidth="1290.0">
+      <AnchorPane fx:id="anpNoiDungTrang" layoutX="250.0" prefHeight="790.0" prefWidth="1290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="790.0" fitWidth="1290.0">
+            <ImageView fitHeight="790.0" fitWidth="1290.0" layoutX="-1.0" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../images/TrangChu_GUI/Background.jpg" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="60.0" prefWidth="300.0" styleClass="informationLogin" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0">
+      <AnchorPane prefHeight="60.0" prefWidth="300.0" styleClass="informationLogin" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label fx:id="lblMaNhanVienDangNhap" layoutX="65.0" layoutY="9.0" text="Mã nhân viên">
                <font>
@@ -38,7 +38,7 @@
                   <Image url="@../images/Login.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnThongTinTaiKhoan" layoutX="230.0" layoutY="10.0" mnemonicParsing="false" stylesheets="@../css/KhungGiaoDien.css">
+            <Button fx:id="btnThongTinTaiKhoan" mnemonicParsing="false" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <graphic>
                   <ImageView>
                      <image>
@@ -49,9 +49,9 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="790.0" prefWidth="250.0" style="-fx-background-color: #1D006F;">
+      <AnchorPane styleClass="menu" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutY="156.0" prefHeight="601.0" prefWidth="250.0">
+            <VBox layoutY="156.0" prefHeight="602.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <HBox prefHeight="55.0" prefWidth="250.0">
                      <children>
@@ -71,7 +71,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="280.0">
                      <children>
-                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
+                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
@@ -183,7 +183,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="286.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnThongKe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Thống kê">
+                        <Button fx:id="btnThongKe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Báo cáo và thống kê">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
@@ -203,7 +203,7 @@
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
-                                    <Image url="@../images/iconMenu/Thông%20tin%20ứng%20dụng.png" />
+                                    <Image url="@../images/iconMenu/ThongTinUngDung.png" />
                                  </image>
                                  <viewport>
                                     <Rectangle2D />
@@ -238,11 +238,11 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="541.0" prefHeight="60.0" prefWidth="457.0" styleClass="header" stylesheets="@../css/KhungGiaoDien.css">
+      <AnchorPane styleClass="header" stylesheets="@../css/KhungGiaoDien.css" AnchorPane.leftAnchor="695.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lblTieuDeTrang" layoutX="158.0" layoutY="7.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="Trang chủ" textAlignment="CENTER">
+            <Label fx:id="lblTieuDeTrang" layoutY="-1.0" prefHeight="40.0" prefWidth="400.0" styleClass="header-content" stylesheets="@../css/KhungGiaoDien.css" text="TRANG CHỦ" textAlignment="CENTER" AnchorPane.topAnchor="0.0">
                <font>
-                  <Font size="30.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>
