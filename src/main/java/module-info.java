@@ -1,5 +1,4 @@
 module GUI.applications {
-    requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
@@ -11,6 +10,7 @@ module GUI.applications {
     requires java.sql;
     requires javafaker;
     requires org.jsoup;
+    requires com.jfoenix;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;

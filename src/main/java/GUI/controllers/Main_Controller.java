@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Main_Controller {
+
+    @FXML
+    private Button btnQuanLyVe;
 
     @FXML
     private AnchorPane anpNoiDungTrang;
@@ -39,9 +43,6 @@ public class Main_Controller {
     private Button btnQuanLyPhieuDatVe;
 
     @FXML
-    private Button btnQuanLyVe;
-
-    @FXML
     private Button btnThongKe;
 
     @FXML
@@ -62,9 +63,24 @@ public class Main_Controller {
     @FXML
     private Label lblTieuDeTrang;
 
-    public void chuyenTrangChu() throws IOException {
-       chuyenTrang("/view/TrangChu_GUI.fxml");
+    @FXML
+    void btnQuanLyVeOnAction(ActionEvent event) {
+        try {
+            chuyenTrang("/view/BanVe_GUI.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    @FXML
+    void chuyenTrangChu(ActionEvent event) {
+        try {
+            chuyenTrang("/view/TrangChu_GUI.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private void chuyenTrang(String trangMoiPath) throws IOException {
         Parent trangMoi = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(trangMoiPath)));
@@ -75,9 +91,4 @@ public class Main_Controller {
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
-
-    public void chuyenBanVe() throws IOException {
-        chuyenTrang("/view/BanVe_GUI.fxml");
-    }
-
 }

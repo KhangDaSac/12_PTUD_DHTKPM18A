@@ -5,6 +5,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import java.io.IOException;
@@ -57,17 +61,36 @@ public class LayDiaChiNhaHang {
         Faker faker = new Faker(new Locale("vi"));
         List<String> danhSachCCCD = generateUniqueCCCD(300);
         // Phát sinh dữ liệu
+
+
+
+
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (int i = 0; i < 300; i++) {
             String ten = faker.name().fullName();
             String diaChi = listDiaChi.get(i);
             String soDienThoai = faker.phoneNumber().phoneNumber();
+            LocalDate birthDate = faker.date().birthday(10, 65).toInstant()
+                    .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+            int tuoi = calculateAge(birthDate);
+            String maLoaiKH = null;
+            if(tuoi <= 10){
+                maLoaiKH = "TE";
+            }else if(tuoi <= 22){
+                maLoaiKH = "HS";
+            }else if (tuoi >= 60){
+
+            }
 
             // In dữ liệu
             System.out.println("CCCD: " + danhSachCCCD.get(i));
             System.out.println("Tên: " + ten);
             System.out.println("Địa chỉ: " + diaChi);
-            System.out.println("Số điện thoại: " + soDienThoai.substring(0, soDienThoai.length() - 1).replace(" ", ""));
+            System.out.println("Số điện thoại: " + soDienThoai.substring(0, 10).replace(" ", ""));
             System.out.println("----------------------");
+            System.out.println("insert into KhachHang values (" + ")");
         }
     }
     public static List<String> generateUniqueCCCD(int count) {
@@ -91,8 +114,20 @@ public class LayDiaChiNhaHang {
     }
 
     public static String generateGenderCode() {
-        // 0 - Nam thế kỷ XX, 1 - Nữ thế kỷ XX, 2 - Nam thế kỷ XXI, 3 - Nữ thế kỷ XXI
         int century = random.nextInt(2); // 0 - Thế kỷ XX, 1 - Thế kỷ XXI
         return (century == 0 ? (random.nextBoolean() ? "0" : "1") : (random.nextBoolean() ? "2" : "3"));
     }
+
+    public static int calculateAge(LocalDate birthDate) {
+        LocalDate today = LocalDate.now();
+        if (birthDate != null && (birthDate.isBefore(today) || birthDate.isEqual(today))) {
+            return Period.between(birthDate, today).getYears();
+        } else {
+            throw new IllegalArgumentException("Ngày sinh không hợp lệ");
+        }
+    }
+
+
 }
+
+

@@ -71,7 +71,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="280.0">
                      <children>
-                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#chuyenBanVe" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
+                        <Button fx:id="btnQuanLyVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
@@ -183,7 +183,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="286.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnThongKe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Thống kê">
+                        <Button fx:id="btnThongKe" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Báo cáo và thống kê">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
