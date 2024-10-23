@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.QuanLyNhanVien">
+   <children>
+      <Pane layoutX="24.0" layoutY="38.0" prefHeight="710.0" prefWidth="370.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <VBox layoutX="6.0" layoutY="10.0">
+               <children>
+                  <VBox fx:id="vbThongTinNhanVien1" prefHeight="157.0" prefWidth="359.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <AnchorPane fx:id="anpMaNhanVien">
+                           <children>
+                              <Label fx:id="lblMaNhanVien" prefHeight="30.0" prefWidth="325.0" style="-fx-background-color: #8155FF; -fx-background-radius: 5;" text="Mã nhân viên:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtMaNhanVien" layoutX="150.39999389648438" prefHeight="30.0" prefWidth="175.0" style="-fx-background-radius: 5;">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anpCCCD">
+                           <children>
+                              <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="325.0" style="-fx-background-radius: 5; -fx-background-color: #8155FF;" text="CCCD:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtCCCD" layoutX="150.39999389648438" prefHeight="30.0" prefWidth="175.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anpTenNhanVien">
+                           <children>
+                              <Label fx:id="lblTenNhanVien" prefHeight="30.0" prefWidth="325.0" style="-fx-background-radius: 5; -fx-background-color: #8155FF;" text="Tên nhân viên:" textFill="WHITE">
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtTenNhanVien" layoutX="150.39999389648438" prefHeight="30.0" prefWidth="175.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="160.0" prefWidth="358.0">
+                     <children>
+                        <AnchorPane fx:id="anpLoaiNhanVien">
+                           <children>
+                              <HBox fx:id="hbLoaiNhanVien">
+                                 <children>
+                                    <Label fx:id="lblLoaiNhanVien" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #000000; -fx-background-color: #8155FF;" text="Loại nhân viên:" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox fx:id="vbLoaiNhanVien" prefHeight="65.0" prefWidth="175.0">
+                                       <children>
+                                          <RadioButton fx:id="radQuanLy" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="Quản lý">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="loaiNhanVien" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="radBanVe" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" text="Bán vé" toggleGroup="$loaiNhanVien">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></RadioButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="29.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anpLoaiNhanVien1" layoutX="21.0" layoutY="21.0">
+                           <children>
+                              <HBox fx:id="hbLoaiNhanVien1">
+                                 <children>
+                                    <Label fx:id="lblTrangThai" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #000000; -fx-background-color: #8155FF;" text="Trạng thái:" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox fx:id="vbLoaiNhanVien1" prefHeight="65.0" prefWidth="175.0">
+                                       <children>
+                                          <RadioButton fx:id="radConLam" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="Còn làm">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="loaiNhanVien1" />
+                                             </toggleGroup>
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </RadioButton>
+                                          <RadioButton fx:id="radNghi" mnemonicParsing="false" prefHeight="30.0" prefWidth="146.0" text="Nghỉ" toggleGroup="$loaiNhanVien1">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font></RadioButton>
+                                       </children>
+                                       <padding>
+                                          <Insets left="29.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="5.0" right="5.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vbThongTinNhanVien2" layoutX="10.0" layoutY="210.0" prefHeight="79.0" prefWidth="359.0">
+                     <children>
+                        <AnchorPane fx:id="anpSoDienThoai">
+                           <children>
+                              <HBox fx:id="hpDiaChi" prefHeight="30.0" prefWidth="325.0">
+                                 <children>
+                                    <Label fx:id="lblSoDienThoai" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #000000; -fx-background-color: #8155FF;" text="Số điện thoại:" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtSoDienThoai" prefHeight="30.0" prefWidth="175.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font></TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane fx:id="anpDiaChi">
+                           <children>
+                              <HBox fx:id="hpDiaChi">
+                                 <children>
+                                    <Label fx:id="lblDiaChi" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #000000; -fx-background-color: #8155FF;" text="Địa chỉ:" textFill="WHITE">
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <TextArea layoutX="151.0" prefHeight="120.0" prefWidth="175.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></TextArea>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox layoutX="49.0" layoutY="606.0" prefHeight="60.0" prefWidth="265.0" spacing="20.0">
+               <children>
+                  <JFXButton prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #2E00B0; -fx-background-radius: 15;" text="SỬA" textFill="WHITE" />
+                  <JFXButton prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #2E00B0; -fx-background-radius: 15;" text="TÌM" textFill="WHITE" />
+                  <JFXButton prefHeight="60.0" prefWidth="75.0" style="-fx-background-color: #2E00B0; -fx-background-radius: 15;" text="THÊM" textFill="WHITE" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <AnchorPane layoutX="563.0" layoutY="226.0" />
+      <TableView fx:id="tbl_NhanVien" editable="true" layoutX="418.0" layoutY="64.0" prefHeight="676.0" prefWidth="848.0" style="-fx-background-radius: 5; -fx-background-color: #8155FF;" AnchorPane.leftAnchor="418.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="65.0">
+        <columns>
+          <TableColumn fx:id="tbh_STT" editable="false" prefWidth="71.4666748046875" text="STT" />
+          <TableColumn fx:id="tbh_MaNhanVien" editable="false" minWidth="3.7333984375" prefWidth="137.86676025390625" text="Mã nhân viên" />
+            <TableColumn fx:id="tbh_HoVaTen" editable="false" minWidth="3.7333984375" prefWidth="159.7332763671875" text="Họ và tên" />
+            <TableColumn fx:id="tbh_SoDienThoai" editable="false" minWidth="3.7333984375" prefWidth="133.33331298828125" resizable="false" text="Số điện thoại" />
+            <TableColumn fx:id="tbh_DiaChi" editable="false" minWidth="3.7333984375" prefWidth="137.86651611328125" text="Địa chỉ" />
+            <TableColumn id="tbh_TrangThai" fx:id="tbh_TrangThai" editable="false" minWidth="3.7333984375" prefWidth="114.1334228515625" text="Trạng thái" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>
