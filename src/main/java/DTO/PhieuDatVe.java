@@ -1,117 +1,159 @@
 package DTO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class PhieuDatVe {
 	private String maPhieuDatVe;
-	private double tongGiaVeDaDat;
-	private double tongTienDaDatCoc;
-	private Date ngayLayVe;
+	private double tongTienVe;
+	private double tongTienDatCoc;
+	private double giamGiaVeTapThe ;
+	private LocalDateTime ngayLayVe;
 	private TrangThaiPhieuDatVe trangThaiPhieuDatVe;
 	private LoaiPhieuDatVe loaiPhieuDatVe;
 	private HoaDon hoaDon;
 	private ChuyenTau chuyenTau;
-	private GaTau gaTau;
+	private GaTau gaTauDi;
+	private GaTau gaTauDen;
 	public PhieuDatVe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PhieuDatVe(String maPhieuDatVe, double tongGiaVeDaDat, double tongTienDaDatCoc, Date ngayLayVe,
-			TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe, HoaDon hoaDon, ChuyenTau chuyenTau,
-			GaTau gaTau) {
-		super();
+
+	public PhieuDatVe(String maPhieuDatVe) {
 		this.maPhieuDatVe = maPhieuDatVe;
-		this.tongGiaVeDaDat = tongGiaVeDaDat;
-		this.tongTienDaDatCoc = tongTienDaDatCoc;
+	}
+
+	public PhieuDatVe(String maPhieuDatVe, double tongTienVe, double tongTienDatCoc, double giamGiaVeTapThe, LocalDateTime ngayLayVe, TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen) {
+		this.maPhieuDatVe = maPhieuDatVe;
+		this.tongTienVe = tongTienVe;
+		this.tongTienDatCoc = tongTienDatCoc;
+		this.giamGiaVeTapThe = giamGiaVeTapThe;
 		this.ngayLayVe = ngayLayVe;
 		this.trangThaiPhieuDatVe = trangThaiPhieuDatVe;
 		this.loaiPhieuDatVe = loaiPhieuDatVe;
 		this.hoaDon = hoaDon;
 		this.chuyenTau = chuyenTau;
-		this.gaTau = gaTau;
+		this.gaTauDi = gaTauDi;
+		this.gaTauDen = gaTauDen;
 	}
-	public PhieuDatVe(String maPhieuDatVe) {
-		super();
-		this.maPhieuDatVe = maPhieuDatVe;
-	}
+
 	public String getMaPhieuDatVe() {
 		return maPhieuDatVe;
 	}
+
 	public void setMaPhieuDatVe(String maPhieuDatVe) {
 		this.maPhieuDatVe = maPhieuDatVe;
 	}
-	public double getTongGiaVeDaDat() {
-		return tongGiaVeDaDat;
+
+	public double getTongTienVe() {
+		return tongTienVe;
 	}
-	public void setTongGiaVeDaDat(double tongGiaVeDaDat) {
-		this.tongGiaVeDaDat = tongGiaVeDaDat;
+
+	public void setTongTienVe(double tongTienVe) {
+		this.tongTienVe = tongTienVe;
 	}
-	public double getTongTienDaDatCoc() {
-		return tongTienDaDatCoc;
+
+	public double getTongTienDatCoc() {
+		return tongTienDatCoc;
 	}
-	public void setTongTienDaDatCoc(double tongTienDaDatCoc) {
-		this.tongTienDaDatCoc = tongTienDaDatCoc;
+
+	public void setTongTienDatCoc(double tongTienDatCoc) {
+		this.tongTienDatCoc = tongTienDatCoc;
 	}
-	public Date getNgayLayVe() {
+
+	public double getGiamGiaVeTapThe() {
+		return giamGiaVeTapThe;
+	}
+
+	public void setGiamGiaVeTapThe(double giamGiaVeTapThe) {
+		this.giamGiaVeTapThe = giamGiaVeTapThe;
+	}
+
+	public LocalDateTime getNgayLayVe() {
 		return ngayLayVe;
 	}
-	public void setNgayLayVe(Date ngayLayVe) {
+
+	public void setNgayLayVe(LocalDateTime ngayLayVe) {
 		this.ngayLayVe = ngayLayVe;
 	}
+
 	public TrangThaiPhieuDatVe getTrangThaiPhieuDatVe() {
 		return trangThaiPhieuDatVe;
 	}
+
 	public void setTrangThaiPhieuDatVe(TrangThaiPhieuDatVe trangThaiPhieuDatVe) {
 		this.trangThaiPhieuDatVe = trangThaiPhieuDatVe;
 	}
+
 	public LoaiPhieuDatVe getLoaiPhieuDatVe() {
 		return loaiPhieuDatVe;
 	}
+
 	public void setLoaiPhieuDatVe(LoaiPhieuDatVe loaiPhieuDatVe) {
 		this.loaiPhieuDatVe = loaiPhieuDatVe;
 	}
+
 	public HoaDon getHoaDon() {
 		return hoaDon;
 	}
+
 	public void setHoaDon(HoaDon hoaDon) {
 		this.hoaDon = hoaDon;
 	}
+
 	public ChuyenTau getChuyenTau() {
 		return chuyenTau;
 	}
+
 	public void setChuyenTau(ChuyenTau chuyenTau) {
 		this.chuyenTau = chuyenTau;
 	}
-	public GaTau getGaTau() {
-		return gaTau;
+
+	public GaTau getGaTauDi() {
+		return gaTauDi;
 	}
-	public void setGaTau(GaTau gaTau) {
-		this.gaTau = gaTau;
+
+	public void setGaTauDi(GaTau gaTauDi) {
+		this.gaTauDi = gaTauDi;
 	}
-	
+
+	public GaTau getGaTauDen() {
+		return gaTauDen;
+	}
+
+	public void setGaTauDen(GaTau gaTauDen) {
+		this.gaTauDen = gaTauDen;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		PhieuDatVe that = (PhieuDatVe) o;
+		return Objects.equals(maPhieuDatVe, that.maPhieuDatVe);
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(maPhieuDatVe);
+		return Objects.hashCode(maPhieuDatVe);
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PhieuDatVe other = (PhieuDatVe) obj;
-		return Objects.equals(maPhieuDatVe, other.maPhieuDatVe);
-	}
+
 	@Override
 	public String toString() {
-		return "PhieuDatVe [maPhieuDatVe=" + maPhieuDatVe + ", tongGiaVeDaDat=" + tongGiaVeDaDat + ", tongTienDaDatCoc="
-				+ tongTienDaDatCoc + ", ngayLayVe=" + ngayLayVe + ", trangThaiPhieuDatVe=" + trangThaiPhieuDatVe
-				+ ", loaiPhieuDatVe=" + loaiPhieuDatVe + ", hoaDon=" + hoaDon + ", chuyenTau=" + chuyenTau + ", gaTau="
-				+ gaTau + "]";
+		return "PhieuDatVe{" +
+				"maPhieuDatVe='" + maPhieuDatVe + '\'' +
+				", tongTienVe=" + tongTienVe +
+				", tongTienDatCoc=" + tongTienDatCoc +
+				", giamGiaVeTapThe=" + giamGiaVeTapThe +
+				", ngayLayVe=" + ngayLayVe +
+				", trangThaiPhieuDatVe=" + trangThaiPhieuDatVe +
+				", loaiPhieuDatVe=" + loaiPhieuDatVe +
+				", hoaDon=" + hoaDon +
+				", chuyenTau=" + chuyenTau +
+				", gaTauDi=" + gaTauDi +
+				", gaTauDen=" + gaTauDen +
+				'}';
 	}
-	
-	
 }

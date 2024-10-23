@@ -16,4 +16,6 @@ module GUI.applications {
     exports GUI.controllers;
     opens GUI.controllers to javafx.fxml;
     exports DataGeneration;
+    exports GUI.controllers.BanVe_GUI_Items;
+    opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
 }

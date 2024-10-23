@@ -1,13 +1,16 @@
 package DTO;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class HoaDon {
 	private String maHoaDon;
-	private Date thoiGianLap;
+	private LocalDateTime thoiGianLap;
 	private double tongTien;
-	private double tongTienDaDatCoc;
+	private double tongTienDaDatCoc ;
+	private double tongTienKhachHangTra ;
+	private TrangThaiHoaDon trangThaiHoaDon ;
 	private LoaiHoaDon loaiHoaDon;
 	private NhanVien nhanVien;
 	private KhachHang khachHang;
@@ -15,83 +18,120 @@ public class HoaDon {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public HoaDon(String maHoaDon, Date thoiGianLap, double tongTien, double tongTienDaDatCoc, LoaiHoaDon loaiHoaDon,
-			NhanVien nhanVien, KhachHang khachHang) {
-		super();
+
+	public HoaDon(String maHoaDon) {
+		this.maHoaDon = maHoaDon;
+	}
+
+	public HoaDon(NhanVien nhanVien, String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, double tongTienKhachHangTra, TrangThaiHoaDon trangThaiHoaDon, LoaiHoaDon loaiHoaDon, KhachHang khachHang) {
+		this.nhanVien = nhanVien;
 		this.maHoaDon = maHoaDon;
 		this.thoiGianLap = thoiGianLap;
 		this.tongTien = tongTien;
 		this.tongTienDaDatCoc = tongTienDaDatCoc;
+		this.tongTienKhachHangTra = tongTienKhachHangTra;
+		this.trangThaiHoaDon = trangThaiHoaDon;
 		this.loaiHoaDon = loaiHoaDon;
-		this.nhanVien = nhanVien;
 		this.khachHang = khachHang;
 	}
-	public HoaDon(String maHoaDon) {
-		super();
-		this.maHoaDon = maHoaDon;
-	}
+
 	public String getMaHoaDon() {
 		return maHoaDon;
 	}
+
 	public void setMaHoaDon(String maHoaDon) {
 		this.maHoaDon = maHoaDon;
 	}
-	public Date getThoiGianLap() {
+
+	public LocalDateTime getThoiGianLap() {
 		return thoiGianLap;
 	}
-	public void setThoiGianLap(Date thoiGianLap) {
+
+	public void setThoiGianLap(LocalDateTime thoiGianLap) {
 		this.thoiGianLap = thoiGianLap;
 	}
+
 	public double getTongTien() {
 		return tongTien;
 	}
+
 	public void setTongTien(double tongTien) {
 		this.tongTien = tongTien;
 	}
+
 	public double getTongTienDaDatCoc() {
 		return tongTienDaDatCoc;
 	}
+
 	public void setTongTienDaDatCoc(double tongTienDaDatCoc) {
 		this.tongTienDaDatCoc = tongTienDaDatCoc;
 	}
+
+	public double getTongTienKhachHangTra() {
+		return tongTienKhachHangTra;
+	}
+
+	public void setTongTienKhachHangTra(double tongTienKhachHangTra) {
+		this.tongTienKhachHangTra = tongTienKhachHangTra;
+	}
+
+	public TrangThaiHoaDon getTrangThaiHoaDon() {
+		return trangThaiHoaDon;
+	}
+
+	public void setTrangThaiHoaDon(TrangThaiHoaDon trangThaiHoaDon) {
+		this.trangThaiHoaDon = trangThaiHoaDon;
+	}
+
 	public LoaiHoaDon getLoaiHoaDon() {
 		return loaiHoaDon;
 	}
+
 	public void setLoaiHoaDon(LoaiHoaDon loaiHoaDon) {
 		this.loaiHoaDon = loaiHoaDon;
 	}
+
 	public NhanVien getNhanVien() {
 		return nhanVien;
 	}
+
 	public void setNhanVien(NhanVien nhanVien) {
 		this.nhanVien = nhanVien;
 	}
+
 	public KhachHang getKhachHang() {
 		return khachHang;
 	}
+
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		HoaDon hoaDon = (HoaDon) o;
+		return Objects.equals(maHoaDon, hoaDon.maHoaDon);
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(maHoaDon);
+		return Objects.hashCode(maHoaDon);
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		HoaDon other = (HoaDon) obj;
-		return Objects.equals(maHoaDon, other.maHoaDon);
-	}
+
 	@Override
 	public String toString() {
-		return "HoaDon [maHoaDon=" + maHoaDon + ", thoiGianLap=" + thoiGianLap + ", tongTien=" + tongTien
-				+ ", tongTienDaDatCoc=" + tongTienDaDatCoc + ", loaiHoaDon=" + loaiHoaDon + ", nhanVien=" + nhanVien
-				+ ", khachHang=" + khachHang + "]";
+		return "HoaDon{" +
+				"maHoaDon='" + maHoaDon + '\'' +
+				", thoiGianLap=" + thoiGianLap +
+				", tongTien=" + tongTien +
+				", tongTienDaDatCoc=" + tongTienDaDatCoc +
+				", tongTienKhachHangTra=" + tongTienKhachHangTra +
+				", trangThaiHoaDon=" + trangThaiHoaDon +
+				", loaiHoaDon=" + loaiHoaDon +
+				", nhanVien=" + nhanVien +
+				", khachHang=" + khachHang +
+				'}';
 	}
 }

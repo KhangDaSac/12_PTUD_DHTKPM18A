@@ -8,11 +8,12 @@ import java.sql.SQLException;
 
 public class ConnectDB {
 	public static Connection con = null;
-	private static ConnectDB instance = new ConnectDB();
+	private static ConnectDB instance = null;
 	
 	public ConnectDB(){
 		try{
-			String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
+
+			String url = "jdbc:sqlserver://localhost:1433;DatabaseName=QLBVT;encrypt=true;trustServerCertificate=true";
 			String user = "sa";
 			String password = "3.141592653";
 			con = DriverManager.getConnection(url, user, password);
@@ -33,6 +34,9 @@ public class ConnectDB {
 		}
 	}
 	public static ConnectDB getInstance() {
+		if(instance == null){
+			instance = new ConnectDB();
+		}
 		return instance;
 	}
 	public static Connection getConnection() {
