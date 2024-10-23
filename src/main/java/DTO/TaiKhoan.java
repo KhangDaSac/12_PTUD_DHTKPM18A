@@ -4,60 +4,56 @@ import java.util.Date;
 import java.util.Objects;
 
 public class TaiKhoan {
-	private String tenDangNhap;
+	private NhanVien nhanVien;
 	private String matKhau;
-	private Date ngayTao;
 	public TaiKhoan() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TaiKhoan(String tenDangNhap, String matKhau, Date ngayTao) {
-		super();
-		this.tenDangNhap = tenDangNhap;
+
+	public TaiKhoan(NhanVien nhanVien) {
+		this.nhanVien = nhanVien;
+	}
+
+	public TaiKhoan(NhanVien nhanVien, String matKhau) {
+		this.nhanVien = nhanVien;
 		this.matKhau = matKhau;
-		this.ngayTao = ngayTao;
 	}
-	public TaiKhoan(String tenDangNhap) {
-		super();
-		this.tenDangNhap = tenDangNhap;
+
+	public NhanVien getNhanVien() {
+		return nhanVien;
 	}
-	public String getTenDangNhap() {
-		return tenDangNhap;
+
+	public void setNhanVien(NhanVien nhanVien) {
+		this.nhanVien = nhanVien;
 	}
-	public void setTenDangNhap(String tenDangNhap) {
-		this.tenDangNhap = tenDangNhap;
-	}
+
 	public String getMatKhau() {
 		return matKhau;
 	}
+
 	public void setMatKhau(String matKhau) {
 		this.matKhau = matKhau;
 	}
-	public Date getNgayTao() {
-		return ngayTao;
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		TaiKhoan taiKhoan = (TaiKhoan) o;
+		return Objects.equals(nhanVien, taiKhoan.nhanVien);
 	}
-	public void setNgayTao(Date ngayTao) {
-		this.ngayTao = ngayTao;
-	}
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(tenDangNhap);
+		return Objects.hashCode(nhanVien);
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TaiKhoan other = (TaiKhoan) obj;
-		return Objects.equals(tenDangNhap, other.tenDangNhap);
-	}
+
 	@Override
 	public String toString() {
-		return "TaiKhoan [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", ngayTao=" + ngayTao + "]";
+		return "TaiKhoan{" +
+				"nhanVien=" + nhanVien +
+				", matKhau='" + matKhau + '\'' +
+				'}';
 	}
-	
 }

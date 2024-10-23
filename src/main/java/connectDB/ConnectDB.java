@@ -1,33 +1,33 @@
 package connectDB;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import connectDB.ConnectDB;
+
 public class ConnectDB {
 	public static Connection con = null;
 	private static ConnectDB instance = new ConnectDB();
 	
-	public ConnectDB(){
-		try{
-			String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
-			String user = "sa";
-			String password = "123";
-			con = DriverManager.getConnection(url, user, password);
-			if (con != null) {
-				System.out.println("Kết nối thành công");
-			}
-		}catch (SQLException e){
-			System.err.println(e.getMessage());
+	public Connection connect() throws SQLException, ClassNotFoundException{
+		String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
+		String user = "sa";
+		String password = "123";
+		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		con = DriverManager.getConnection(url, user, password);
+		if (con != null) {
+			System.out.println("Kết nối thành công");
 		}
+		return con;
 	}
 	public void disconnect() {
 		if (con!= null) {
 			try {
 				con.close();
 			} catch (Exception e) {
+				// TODO: handle exception
 				e.printStackTrace();
 			}
 		}
