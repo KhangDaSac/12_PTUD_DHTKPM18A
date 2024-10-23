@@ -87,7 +87,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnQuanLyKhachHang" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý khách hàng">
+                        <Button fx:id="btnQuanLyKhachHang" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyKhachHangOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý khách hàng">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>

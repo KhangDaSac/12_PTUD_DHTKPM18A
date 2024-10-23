@@ -81,6 +81,14 @@ public class Main_Controller {
         }
     }
 
+    @FXML
+    void btnQuanLyKhachHangOnAction(ActionEvent event) {
+        try {
+            chuyenTrang("/view/QuanLyKhachHang_GUI.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private void chuyenTrang(String trangMoiPath) throws IOException {
         Parent trangMoi = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(trangMoiPath)));
