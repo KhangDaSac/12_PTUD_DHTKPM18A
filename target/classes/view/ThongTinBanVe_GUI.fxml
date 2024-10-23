@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/All.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinBanVeGUI">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/All.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinBanVe_GUI_Controller">
    <children>
       <AnchorPane layoutX="389.0" layoutY="83.0" prefHeight="60.0" prefWidth="450.0" stylesheets="@../css/ThongTinBanVe_GUI.css">
          <children>
