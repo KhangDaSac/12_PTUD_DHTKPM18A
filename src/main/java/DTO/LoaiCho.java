@@ -1,17 +1,15 @@
-package ENTITY;
+package DTO;
 
 import java.util.Objects;
 
 public class LoaiCho {
 	private String maLoaiCho;
 	private String tenLoaiCho;
-	private double doDaiChang;
 	private double heSoGiaCho;
-	public LoaiCho(String maLoaiCho, String tenLoaiCho, double doDaiChang, double heSoGiaCho) {
+	public LoaiCho(String maLoaiCho, String tenLoaiCho, double heSoGiaCho) {
 		super();
 		this.maLoaiCho = maLoaiCho;
 		this.tenLoaiCho = tenLoaiCho;
-		this.doDaiChang = doDaiChang;
 		this.heSoGiaCho = heSoGiaCho;
 	}
 	public LoaiCho() {
@@ -33,12 +31,6 @@ public class LoaiCho {
 	}
 	public void setTenLoaiCho(String tenLoaiCho) {
 		this.tenLoaiCho = tenLoaiCho;
-	}
-	public double getDoDaiChang() {
-		return doDaiChang;
-	}
-	public void setDoDaiChang(double doDaiChang) {
-		this.doDaiChang = doDaiChang;
 	}
 	public double getHeSoGiaCho() {
 		return heSoGiaCho;
@@ -64,8 +56,10 @@ public class LoaiCho {
 	}
 	@Override
 	public String toString() {
-		return "LoaiCho [maLoaiCho=" + maLoaiCho + ", tenLoaiCho=" + tenLoaiCho + ", doDaiChang=" + doDaiChang
-				+ ", heSoGiaCho=" + heSoGiaCho + "]";
+		return "LoaiCho{" +
+				"maLoaiCho='" + maLoaiCho + '\'' +
+				", tenLoaiCho='" + tenLoaiCho + '\'' +
+				", heSoGiaCho=" + heSoGiaCho +
+				'}';
 	}
-	
 }
