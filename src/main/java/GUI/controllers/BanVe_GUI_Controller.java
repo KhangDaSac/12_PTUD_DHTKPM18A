@@ -5,6 +5,7 @@ import DTO.ChuyenTau;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -25,7 +27,6 @@ public class BanVe_GUI_Controller {
 
     @FXML
     private JFXButton btnTimChuyenTau;
-
 
     @FXML
     private ComboBox<String> cmbGaTauDen;
@@ -44,7 +45,11 @@ public class BanVe_GUI_Controller {
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
-        hienThiDanhSachChuyenTau();
+        try {
+            hienThiDanhSachChuyenTau();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -58,11 +63,17 @@ public class BanVe_GUI_Controller {
         LocalDateTime ngayDi = dapNgayKhoiHanh.getValue().atTime(0, 0, 0);
         ArrayList<ChuyenTau> chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaTauDi, gaTauDen, ngayDi);
 
+
     }
 
-    public void hienThiDanhSachChuyenTau(){
+    public void hienThiDanhSachChuyenTau() throws IOException {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau.fxml"));
+        AnchorPane anchorPane = loader.load();
 
+        // Thêm AnchorPane vào HBox
+        hboxDanhSachChuyenTau.getChildren().clear();
+        hboxDanhSachChuyenTau.getChildren().add(anchorPane);
     }
 
 

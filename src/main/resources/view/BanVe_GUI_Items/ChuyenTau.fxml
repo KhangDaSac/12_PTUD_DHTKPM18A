@@ -1,52 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="220.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <ImageView fitHeight="220.0" fitWidth="150.0">
-            <image>
-                <Image url="@../../images/BanVe_GUI/train-gray.png" />
-            </image>
-        </ImageView>
-        <Label layoutX="37.0" layoutY="4.0" text="SE02-181024">
-            <font>
-                <Font size="13.0" />
-            </font>
-        </Label>
-        <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
-            <children>
-                <AnchorPane prefHeight="19.0" prefWidth="120.0">
-                    <children>
-                        <Label style="-fx-font-weight: 700;" text="TG đi:" />
-                        <Label text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="19.0" prefWidth="120.0">
-                    <children>
-                        <Label style="-fx-font-weight: 700;" text="Đã đặt" />
-                        <Label text="10" AnchorPane.leftAnchor="45.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
-                    <children>
-                        <Label style="-fx-font-weight: 700;" text="Đã bán:" />
-                        <Label text="10" AnchorPane.leftAnchor="45.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
-                    <children>
-                        <Label style="-fx-font-weight: 700;" text="Còn trống: " />
-                        <Label text="10" AnchorPane.leftAnchor="65.0" />
-                    </children>
-                </AnchorPane>
-            </children>
-        </VBox>
-    </children>
+<AnchorPane onMouseClicked="#anpChuyenTauOnMouseClicked" prefHeight="220.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ChuyenTau">
+   <children>
+      <ImageView fx:id="imvChuyenTau" fitHeight="220.0" fitWidth="150.0">
+         <image>
+            <Image url="@../../images/BanVe_GUI/train-gray.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblMaChuyenTau" layoutX="37.0" layoutY="4.0" text="SE02-181024">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
+         <children>
+            <AnchorPane prefHeight="19.0" prefWidth="120.0">
+               <children>
+                  <Label style="-fx-font-weight: 700;" text="TG đi:" />
+                  <Label fx:id="lblThoiGianDi" text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="19.0" prefWidth="120.0">
+               <children>
+                  <Label style="-fx-font-weight: 700;" text="TG đến:" />
+                  <Label fx:id="lblThoiGianDen" text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="19.0" prefWidth="120.0">
+               <children>
+                  <Label style="-fx-font-weight: 700;" text="Đã đặt và bán:" />
+                  <Label fx:id="lblDaDatVeBan" text="10" AnchorPane.leftAnchor="90.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
+               <children>
+                  <Label style="-fx-font-weight: 700;" text="Chặng dài hơn:" />
+                  <Label fx:id="lblChangDaiHon" text="10" AnchorPane.leftAnchor="90.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
+               <children>
+                  <Label style="-fx-font-weight: 700;" text="Còn trống: " />
+                  <Label fx:id="lblConTrong" text="10" AnchorPane.leftAnchor="90.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>
