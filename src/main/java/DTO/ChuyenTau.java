@@ -64,11 +64,6 @@ public class ChuyenTau {
 		return Objects.equals(maChuyenTau, chuyenTau.maChuyenTau);
 	}
 
-	public ChuyenTau(String maChuyenTau, int soLuongCho) {
-		this.maChuyenTau = maChuyenTau;
-		this.soLuongCho = soLuongCho;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maChuyenTau);
