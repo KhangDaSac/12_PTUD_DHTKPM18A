@@ -3,89 +3,110 @@ package DTO;
 import java.util.Objects;
 
 public class Cho {
-	private String maCho;
-	private int soCho;
-	private double doDaiChangToiThieu ;
-	private ToaTau toaTau;
-	private LoaiCho loaiCho;
-	public Cho() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Cho(String maCho, int soCho, double doDaiChangToiThieu, ToaTau toaTau, LoaiCho loaiCho) {
-		super();
-		this.maCho = maCho;
-		this.soCho = soCho;
-		this.doDaiChangToiThieu = doDaiChangToiThieu;
-		this.toaTau = toaTau;
-		this.loaiCho = loaiCho;
-	}
-	public Cho(String maCho) {
-		super();
-		this.maCho = maCho;
-	}
+    private String maCho;
+    private int soCho;
+    private double doDaiChangToiThieu;
+    private double giaCho;
+    private ToaTau toaTau;
+    private LoaiCho loaiCho;
 
-	public String getMaCho() {
-		return maCho;
-	}
+    public Cho() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	public void setMaCho(String maCho) {
-		this.maCho = maCho;
-	}
+    public Cho(String maCho, int soCho, double doDaiChangToiThieu, ToaTau toaTau, LoaiCho loaiCho) {
+        super();
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.doDaiChangToiThieu = doDaiChangToiThieu;
+        this.toaTau = toaTau;
+        this.loaiCho = loaiCho;
+    }
 
-	public int getSoCho() {
-		return soCho;
-	}
+    public Cho(String maCho) {
+        super();
+        this.maCho = maCho;
+    }
 
-	public void setSoCho(int soCho) {
-		this.soCho = soCho;
-	}
+    public String getMaCho() {
+        return maCho;
+    }
 
-	public double getDoDaiChangToiThieu() {
-		return doDaiChangToiThieu;
-	}
+    public void setMaCho(String maCho) {
+        this.maCho = maCho;
+    }
 
-	public void setDoDaiChangToiThieu(double doDaiChangToiThieu) {
-		this.doDaiChangToiThieu = doDaiChangToiThieu;
-	}
+    public int getSoCho() {
+        return soCho;
+    }
 
-	public ToaTau getToaTau() {
-		return toaTau;
-	}
+    public void setSoCho(int soCho) {
+        this.soCho = soCho;
+    }
 
-	public void setToaTau(ToaTau toaTau) {
-		this.toaTau = toaTau;
-	}
+    public double getDoDaiChangToiThieu() {
+        return doDaiChangToiThieu;
+    }
 
-	public LoaiCho getLoaiCho() {
-		return loaiCho;
-	}
+    public void setDoDaiChangToiThieu(double doDaiChangToiThieu) {
+        this.doDaiChangToiThieu = doDaiChangToiThieu;
+    }
 
-	public void setLoaiCho(LoaiCho loaiCho) {
-		this.loaiCho = loaiCho;
-	}
+    public double getGiaCho() {
+        return giaCho;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Cho cho = (Cho) o;
-		return Objects.equals(maCho, cho.maCho);
-	}
+    public void setGiaCho(double giaCho) {
+        this.giaCho = giaCho;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(maCho);
-	}
+    public ToaTau getToaTau() {
+        return toaTau;
+    }
 
-	@Override
-	public String toString() {
-		return "Cho{" +
-				"maCho='" + maCho + '\'' +
-				", soCho=" + soCho +
-				", doDaiChangToiThieu=" + doDaiChangToiThieu +
-				", toaTau=" + toaTau +
-				", loaiCho=" + loaiCho +
-				'}';
-	}
+    public void setToaTau(ToaTau toaTau) {
+        this.toaTau = toaTau;
+    }
+
+    public LoaiCho getLoaiCho() {
+        return loaiCho;
+    }
+
+    public void setLoaiCho(LoaiCho loaiCho) {
+        this.loaiCho = loaiCho;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cho cho = (Cho) o;
+        return Objects.equals(maCho, cho.maCho);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(maCho);
+    }
+
+    public Cho(String maCho, int soCho, double doDaiChangToiThieu, double giaCho, ToaTau toaTau, LoaiCho loaiCho) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.doDaiChangToiThieu = doDaiChangToiThieu;
+        this.giaCho = giaCho;
+        this.toaTau = toaTau;
+        this.loaiCho = loaiCho;
+    }
+
+    @Override
+    public String toString() {
+        return "Cho{" +
+                "maCho='" + maCho + '\'' +
+                ", soCho=" + soCho +
+                ", doDaiChangToiThieu=" + doDaiChangToiThieu +
+                ", toaTau=" + toaTau +
+                ", loaiCho=" + loaiCho +
+                '}';
+    }
 }

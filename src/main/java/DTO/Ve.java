@@ -4,11 +4,10 @@ import java.util.Objects;
 
 public class Ve {
 	private String maVe;
-	private double tongTienVe;
 	private HoaDon hoaDon;
-	private ChuyenTau chuyenTau;
 	private GaTau gaTauDi;
 	private GaTau gaTauDen;
+	private double tongTienVe;
 	private double giamGiaVeTapThe;
 	private LoaiVe loaiVe ;
 	private TrangThaiVe trangThaiVe ;
@@ -21,11 +20,10 @@ public class Ve {
 		this.maVe = maVe;
 	}
 
-	public Ve(String maVe, double tongTienVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
+	public Ve(String maVe, double tongTienVe, HoaDon hoaDon, GaTau gaTauDi, GaTau gaTauDen, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
 		this.tongTienVe = tongTienVe;
 		this.hoaDon = hoaDon;
-		this.chuyenTau = chuyenTau;
 		this.gaTauDi = gaTauDi;
 		this.gaTauDen = gaTauDen;
 		this.giamGiaVeTapThe = giamGiaVeTapThe;
@@ -57,13 +55,6 @@ public class Ve {
 		this.hoaDon = hoaDon;
 	}
 
-	public ChuyenTau getChuyenTau() {
-		return chuyenTau;
-	}
-
-	public void setChuyenTau(ChuyenTau chuyenTau) {
-		this.chuyenTau = chuyenTau;
-	}
 
 	public GaTau getGaTauDi() {
 		return gaTauDi;
@@ -124,7 +115,6 @@ public class Ve {
 				"maVe='" + maVe + '\'' +
 				", tongTienVe=" + tongTienVe +
 				", hoaDon=" + hoaDon +
-				", chuyenTau=" + chuyenTau +
 				", gaTauDi=" + gaTauDi +
 				", gaTauDen=" + gaTauDen +
 				", giamGiaVeTapThe=" + giamGiaVeTapThe +

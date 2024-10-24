@@ -6,7 +6,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -59,7 +64,7 @@ public class LayDiaChiNhaHang {
         }
 
         Faker faker = new Faker(new Locale("vi"));
-        List<String> danhSachCCCD = generateUniqueCCCD(300);
+        List<String> danhSachCCCD = generateUniqueCCCD(600);
         // Phát sinh dữ liệu
 
 
@@ -67,10 +72,13 @@ public class LayDiaChiNhaHang {
 
         Random random = new Random();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm");
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("ddMMyy");
+        DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         for (int i = 0; i < 300; i++) {
             String ten = faker.name().fullName();
-            String diaChi = listDiaChi.get(i);
+
             String soDienThoai = faker.phoneNumber().phoneNumber();
             int ran = random.nextInt(5);
             String maKhachHang = "KH" + (20 + ran) + String.format("%06d",arr[ran] + 1);
@@ -107,9 +115,78 @@ public class LayDiaChiNhaHang {
 //            System.out.println("Số điện thoại: " + soDienThoai.substring(0, 10));
 //            System.out.println("Ngày sinh: " + birthDate.toString());
 //            System.out.println("Loại khách hàng: " + maLoaiKH);
-            System.out.println("insert into KhachHang values ('" + maKhachHang+ "', '" + danhSachCCCD.get(i) +"', '" + ten + "', '" + birthDate.toString() +"', '" + soDienThoai.replaceAll(" ", "").substring(0, 10) + "', '" + maLoaiKH + "')");
+            System.out.println("insert into KhachHang values ('" + maKhachHang+ "', '" + danhSachCCCD.get(i) +"', N'" + ten + "', '" + birthDate.toString() +"', '" + soDienThoai.replaceAll(" ", "").substring(0, 10) + "', '" + maLoaiKH + "')");
 
         }
+
+
+        int[] arr2 = new int[5];
+        ArrayList<String> listMaNV = new ArrayList<String>();
+        for(int i = 0; i < 300; i++){
+            int ran = random.nextInt(5);
+            String ten = faker.name().fullName();
+            String maNV = "NV" + (20 + ran) + String.format("%06d",arr2[ran] + 1);
+            arr2[ran]++;
+            String diaChi = listDiaChi.get(i);
+            String CCCD = danhSachCCCD.get(i + 300);
+            String trangThai = "DANGLAM";
+            String sdt = faker.phoneNumber().phoneNumber().replaceAll(" ", "").substring(0, 10);
+            String loaiNhanVien = null;
+            if(i < 290){
+                loaiNhanVien = "NHANVIENBANVE";
+            }else{
+                loaiNhanVien = "QUANLY";
+            }
+            listMaNV.add(maNV);
+            System.out.println("insert into NhanVien values ('" + maNV+ "', '" + CCCD + "', N'" + ten + "', '" + sdt + "', N'" + diaChi + "', '" + trangThai + "', '" + loaiNhanVien + "')");
+
+        }
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
+        byte[] hashBytes = digest.digest("123".getBytes());
+
+        String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
+        for(int i = 0; i< 300; i++){
+            System.out.println("insert into TaiKhoan values ('" + listMaNV.get(i) + "', '" + hashedPassword + "')");
+        }
+
+
+        LocalDateTime time = LocalDateTime.of(2024, 10, 1, 6, 0, 0);
+        for(int i = 0; i < 360; i++){
+            int ran = random.nextInt(290);
+            String loaiCa = null;
+            if(time.getHour() == 6){
+                loaiCa = "S";
+            }else if(time.getHour() == 14){
+                loaiCa = "C";
+            }if(time.getHour() == 22){
+                loaiCa = "T";
+            }
+            String maCaLamViec = "CLV" + time.format(formatter2) + loaiCa;
+            String thoiGianBatDau = time.format(formatter3);
+            time = time.plusHours(8);
+            String thoiGianKetThuc = time.format(formatter3);
+            String maNV = listMaNV.get(ran);
+
+            System.out.println("insert into CaLamViec values ('" + maCaLamViec + "', '" + thoiGianBatDau + "', '" + thoiGianKetThuc + "', '" + maNV + "')");
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("DSNhanVien.txt"))) {
+            for (String line : listMaNV) {
+                writer.write(line);
+                writer.newLine();  // Ghi xuống dòng
+            }
+            System.out.println("Ghi thành công vào file output.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
     public static List<String> generateUniqueCCCD(int count) {
         Set<String> cccdSet = new HashSet<>();
