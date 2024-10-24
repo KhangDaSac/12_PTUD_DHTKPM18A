@@ -1,13 +1,16 @@
 package BUS;
 
 import DAO.ChuyenTau_DAO;
+import DAO.GaTau_DAO;
 import DAO.ToaTau_DAO;
 import DTO.ChuyenTau;
+import DTO.GaTau;
 import DTO.ToaTau;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuanLyChuyenTau_BUS {
     public static ArrayList<ChuyenTau> getDanhSachChuyenTau(String maGaDi, String maGaDen, LocalDate ngayDi) throws Exception {
@@ -34,4 +37,15 @@ public class QuanLyChuyenTau_BUS {
         double khoangCach = 0;
         return khoangCach;
     }
+
+    public static ArrayList<GaTau> getDanhSachGaTau(){
+        GaTau_DAO gaTau_DAO = new GaTau_DAO();
+        ArrayList<GaTau> gaTauList = gaTau_DAO.xuatDanhSachGaTau();
+        return gaTauList;
+    }
+
+//    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
+//        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();
+//        LocalDateTime thoiGianDi
+//    }
 }
