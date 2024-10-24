@@ -1,6 +1,6 @@
 module GUI.applications {
     requires javafx.fxml;
-
+    requires javafx.base;
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -18,4 +18,5 @@ module GUI.applications {
     exports DataGeneration;
     exports GUI.controllers.BanVe_GUI_Items;
     opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
+    opens DTO to javafx.base;
 }
