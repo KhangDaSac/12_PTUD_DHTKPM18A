@@ -9,6 +9,7 @@ public class Cho {
     private double giaCho;
     private ToaTau toaTau;
     private LoaiCho loaiCho;
+    private TrangThaiCho trangThaiCho;
 
     public Cho() {
         super();
@@ -22,6 +23,16 @@ public class Cho {
         this.doDaiChangToiThieu = doDaiChangToiThieu;
         this.toaTau = toaTau;
         this.loaiCho = loaiCho;
+    }
+
+    public Cho(String maCho, int soCho, double doDaiChangToiThieu, double giaCho, ToaTau toaTau, LoaiCho loaiCho, TrangThaiCho trangThaiCho) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.doDaiChangToiThieu = doDaiChangToiThieu;
+        this.giaCho = giaCho;
+        this.toaTau = toaTau;
+        this.loaiCho = loaiCho;
+        this.trangThaiCho = trangThaiCho;
     }
 
     public Cho(String maCho) {
@@ -75,6 +86,14 @@ public class Cho {
 
     public void setLoaiCho(LoaiCho loaiCho) {
         this.loaiCho = loaiCho;
+    }
+
+    public TrangThaiCho getTrangThaiCho() {
+        return trangThaiCho;
+    }
+
+    public void setTrangThaiCho(TrangThaiCho trangThaiCho) {
+        this.trangThaiCho = trangThaiCho;
     }
 
     @Override
