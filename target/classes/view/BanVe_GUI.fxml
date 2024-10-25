@@ -294,12 +294,12 @@
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <AnchorPane prefHeight="230.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anpChuyenTauTruoc" onMouseClicked="#anpChuyenTauTruocOnMouseClicked" prefHeight="230.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="-5.0" layoutY="123.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.leftAnchor="30.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="230.0" prefWidth="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anpChuyenTauSau" layoutX="10.0" layoutY="10.0" onMouseClicked="#anpChuyenTauSauOnMouseClicked" prefHeight="230.0" prefWidth="65.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="ANGLE_RIGHT" layoutX="21.0" layoutY="115.0" scaleX="8.0" scaleY="8.0" x="20.0" AnchorPane.rightAnchor="25.0" />
                      </children>

@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import utils.TimeFormat;
@@ -25,6 +27,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BanVe_GUI_Controller implements Initializable {
+    @FXML
+    private AnchorPane anpChuyenTauSau;
+
+    @FXML
+    private AnchorPane anpChuyenTauTruoc;
 
     @FXML
     private JFXButton btnTiepTuc;
@@ -52,6 +59,10 @@ public class BanVe_GUI_Controller implements Initializable {
 
     private ArrayList<GaTau> gaTauList;
 
+    private ArrayList<ChuyenTau> chuyenTauList;
+
+    private int trangGaTauHienTai;
+
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
             timDanhSachChuyenTau();
@@ -60,6 +71,40 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnChonCaToaOnAction(ActionEvent event) {
 
+    }
+
+    @FXML
+    void anpChuyenTauSauOnMouseClicked(MouseEvent event) {
+        int lengthList = chuyenTauList.size();
+        if(trangGaTauHienTai < Math.ceil(lengthList/4.0)){
+            trangGaTauHienTai++;
+            try {
+                int batDau = Math.max(4*(trangGaTauHienTai - 1), 0);
+                int ketThuc = Math.min(4 * trangGaTauHienTai, lengthList);
+                hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
+                anpChuyenTauSau.setVisible(lengthList > ketThuc);
+                anpChuyenTauTruoc.setVisible(batDau > 0);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    void anpChuyenTauTruocOnMouseClicked(MouseEvent event) {
+        int lengthList = chuyenTauList.size();
+        if(trangGaTauHienTai > 1){
+            trangGaTauHienTai--;
+            try {
+                int batDau = Math.max(4*(trangGaTauHienTai - 1), 0);
+                int ketThuc = Math.min(4 * trangGaTauHienTai, lengthList);
+                hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
+                anpChuyenTauSau.setVisible(lengthList > ketThuc);
+                anpChuyenTauTruoc.setVisible(batDau > 0);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void timDanhSachChuyenTau(){
@@ -75,11 +120,13 @@ public class BanVe_GUI_Controller implements Initializable {
         GaTau gaTauDen = gaTauList.get(cmbGaTauDen.getSelectionModel().getSelectedIndex());
 
         LocalDate ngayDi = dapNgayKhoiHanh.getValue();
-        ArrayList<ChuyenTau> chuyenTauList;
         try {
             chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaTauDi.getMaGaTau(), gaTauDen.getMaGaTau(), ngayDi);
             System.out.println(chuyenTauList);
-            hienThiDanhSachChuyenTau(chuyenTauList);
+            trangGaTauHienTai = 1;
+            anpChuyenTauTruoc.setVisible(false);
+            anpChuyenTauSau.setVisible(chuyenTauList.size() > 4);
+            hienThiDanhSachChuyenTau(chuyenTauList, 0, 4);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -95,9 +142,9 @@ public class BanVe_GUI_Controller implements Initializable {
         }
     }
 
-    public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList) throws IOException {
+    public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachChuyenTau.getChildren().clear();
-        for (int i = 0; i < 4; i++){
+        for (int i = batDau; i < ketThuc; i++){
             ChuyenTau chuyenTau = chuyenTauList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau.fxml"));
             Parent anchorPane = loader.load();
@@ -109,8 +156,6 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.getLblDaDatVeBan().setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));
             controller.getLblChangDaiHon().setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
             controller.getLblConTrong().setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
-
-
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
         }
     }
@@ -143,6 +188,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
         cmbGaTauDen.getSelectionModel().select(51);
         cmbGaTauDi.getSelectionModel().select(125);
+        dapNgayKhoiHanh.setValue(LocalDate.of(2024, 10, 30));
 
 
         hboxDanhSachToaTau.getChildren().clear();
