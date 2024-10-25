@@ -34,6 +34,12 @@ public class BanVe_GUI_Controller implements Initializable {
     private AnchorPane anpChuyenTauTruoc;
 
     @FXML
+    private AnchorPane anpToaTauSau;
+
+    @FXML
+    private AnchorPane anpToaTauTruoc;
+
+    @FXML
     private JFXButton btnTiepTuc;
 
     @FXML
@@ -57,11 +63,19 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     private HBox hboxDanhSachToaTau;
 
+    private String maGaDi;
+
+    private String maGaDen;
+
     private ArrayList<GaTau> gaTauList;
 
     private ArrayList<ChuyenTau> chuyenTauList;
 
-    private int trangGaTauHienTai;
+    private ArrayList<ToaTau> toaTauList;
+
+    private int trangChuyenTauHienTai;
+
+    private int trangToaTauHienTai;
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
@@ -76,11 +90,11 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void anpChuyenTauSauOnMouseClicked(MouseEvent event) {
         int lengthList = chuyenTauList.size();
-        if(trangGaTauHienTai < Math.ceil(lengthList/4.0)){
-            trangGaTauHienTai++;
+        if(trangChuyenTauHienTai < Math.ceil(lengthList/4.0)){
+            trangChuyenTauHienTai++;
             try {
-                int batDau = Math.max(4*(trangGaTauHienTai - 1), 0);
-                int ketThuc = Math.min(4 * trangGaTauHienTai, lengthList);
+                int batDau = Math.max(4*(trangChuyenTauHienTai - 1), 0);
+                int ketThuc = Math.min(4 * trangChuyenTauHienTai, lengthList);
                 hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
                 anpChuyenTauSau.setVisible(lengthList > ketThuc);
                 anpChuyenTauTruoc.setVisible(batDau > 0);
@@ -93,14 +107,48 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void anpChuyenTauTruocOnMouseClicked(MouseEvent event) {
         int lengthList = chuyenTauList.size();
-        if(trangGaTauHienTai > 1){
-            trangGaTauHienTai--;
+        if(trangChuyenTauHienTai > 1){
+            trangChuyenTauHienTai--;
             try {
-                int batDau = Math.max(4*(trangGaTauHienTai - 1), 0);
-                int ketThuc = Math.min(4 * trangGaTauHienTai, lengthList);
+                int batDau = Math.max(4*(trangChuyenTauHienTai - 1), 0);
+                int ketThuc = Math.min(4 * trangChuyenTauHienTai, lengthList);
                 hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
                 anpChuyenTauSau.setVisible(lengthList > ketThuc);
                 anpChuyenTauTruoc.setVisible(batDau > 0);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    void anpToaTauSauOnMouseClicked(MouseEvent event) {
+        int lengthList = toaTauList.size();
+        if(trangToaTauHienTai < Math.ceil(lengthList/9.0)){
+            trangToaTauHienTai++;
+            try {
+                int batDau = Math.max(9 * (trangToaTauHienTai - 1), 0);
+                int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
+                hienThiDanhSachToa(toaTauList, batDau, ketThuc);
+                anpToaTauSau.setVisible(lengthList > ketThuc);
+                anpToaTauTruoc.setVisible(batDau > 0);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    @FXML
+    void anpToaTauTruocOnMouseClicked(MouseEvent event) {
+        int lengthList = toaTauList.size();
+        if(trangToaTauHienTai > 1){
+            trangToaTauHienTai--;
+            try {
+                int batDau = Math.max(9*(trangToaTauHienTai - 1), 0);
+                int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
+                hienThiDanhSachToa(toaTauList, batDau, ketThuc);
+                anpToaTauSau.setVisible(lengthList > ketThuc);
+                anpToaTauTruoc.setVisible(batDau > 0);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -121,9 +169,11 @@ public class BanVe_GUI_Controller implements Initializable {
 
         LocalDate ngayDi = dapNgayKhoiHanh.getValue();
         try {
-            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaTauDi.getMaGaTau(), gaTauDen.getMaGaTau(), ngayDi);
+            maGaDi = gaTauDi.getMaGaTau();
+            maGaDen = gaTauDen.getMaGaTau();
+            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
             System.out.println(chuyenTauList);
-            trangGaTauHienTai = 1;
+            trangChuyenTauHienTai = 1;
             anpChuyenTauTruoc.setVisible(false);
             anpChuyenTauSau.setVisible(chuyenTauList.size() > 4);
             hienThiDanhSachChuyenTau(chuyenTauList, 0, 4);
@@ -133,10 +183,14 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void timDanhSachToaTau(String maChuyenTau){
-        ArrayList<ToaTau> toaTauList;
+
         try {
-            toaTauList = QuanLyChuyenTau_BUS.getDanhSachToaTau(maChuyenTau);
-            hienThiDanhSachToa(toaTauList);
+            toaTauList = QuanLyChuyenTau_BUS.getDanhSachToaTau(maChuyenTau, maGaDi, maGaDen);
+            anpToaTauTruoc.setVisible(false);
+            anpToaTauSau.setVisible(toaTauList.size() > 9);
+            trangToaTauHienTai = 1;
+            hienThiDanhSachToa(toaTauList, 0, 9);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -162,9 +216,9 @@ public class BanVe_GUI_Controller implements Initializable {
 
 
 
-    public void hienThiDanhSachToa(ArrayList<ToaTau> toaTauList) throws IOException {
+    public void hienThiDanhSachToa(ArrayList<ToaTau> toaTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachToaTau.getChildren().clear();
-        for(int i = 0; i < 9; i++){
+        for(int i = batDau; i < ketThuc; i++){
             ToaTau toaTau = toaTauList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ToaTau.fxml"));
             Parent anchorPane = loader.load();

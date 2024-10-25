@@ -27,16 +27,12 @@ public class QuanLyChuyenTau_BUS {
         return chuyenTauList;
     }
 
-    public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau){
+    public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){
         ToaTau_DAO toaTau_DAO = new ToaTau_DAO();
-        ArrayList<ToaTau> toaTauList = toaTau_DAO.xuatDanhSachToaTauTheoChuyen(maChuyenTau);
+        ArrayList<ToaTau> toaTauList = toaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
         return toaTauList;
     }
 
-    public static double tinhKhoangCachHaiGa(String maGaDi, String maGaDen, String maChuyenTau){
-        double khoangCach = 0;
-        return khoangCach;
-    }
 
     public static ArrayList<GaTau> getDanhSachGaTau(){
         GaTau_DAO gaTau_DAO = new GaTau_DAO();

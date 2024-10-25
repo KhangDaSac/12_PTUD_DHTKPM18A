@@ -98,4 +98,32 @@ public class ToaTau_DAO {
         }
         return danhSachToaTau;
     }
+
+
+    public ArrayList<ToaTau> getDanhSachToaTauTheoChuyen(String maChuyen, String maGaDi, String maGaDen) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
+        try {
+            String query = "exec dbo.UDP_TimDanhSachToaTauTheoMaChuyenTau ?, ?, ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maChuyen);
+            statement.setString(2, maGaDi);
+            statement.setString(3, maGaDen);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String maToaTau = rs.getString("maToaTau");
+                int thuTuToa = rs.getInt("thuTuToa");
+                int soLuongCho = rs.getInt("soLuongCho");
+                int soLuongChoDanhChoChangDaiHon = rs.getInt("soLuongChoDanhChoChangDaiHon");
+                int soLuongChoDaDatVaBan = rs.getInt("soLuongChoDaDatVaBan");
+                int soLuongChoTrong = rs.getInt("soLuongChoTrong");
+
+                ToaTau toaTau = new ToaTau(maToaTau, thuTuToa, soLuongCho, soLuongChoDanhChoChangDaiHon, soLuongChoDaDatVaBan, soLuongChoTrong);
+                danhSachToaTau.add(toaTau);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return danhSachToaTau;
+    }
 }
