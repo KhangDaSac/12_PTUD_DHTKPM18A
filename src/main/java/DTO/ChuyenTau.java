@@ -131,6 +131,16 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+	public ChuyenTau(String maChuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maChuyenTau = maChuyenTau;
+		this.soLuongCho = soLuongCho;
+		this.thoiGianDi = thoiGianDi;
+		this.thoiGianDen = thoiGianDen;
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maChuyenTau);

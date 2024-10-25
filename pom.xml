@@ -141,6 +141,12 @@
             <artifactId>javafx-base</artifactId>
             <version>23</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.8.0.0</version>
+        </dependency>
+
 
     </dependencies>
 

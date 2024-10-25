@@ -10,19 +10,21 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import utils.TimeFormat;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class BanVe_GUI_Controller {
+public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     private JFXButton btnTiepTuc;
@@ -104,7 +106,9 @@ public class BanVe_GUI_Controller {
             controller.getLblMaChuyenTau().setText(chuyenTau.getMaChuyenTau());
             controller.getLblThoiGianDi().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
             controller.getLblThoiGianDen().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
-
+            controller.getLblDaDatVeBan().setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));
+            controller.getLblChangDaiHon().setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
+            controller.getLblConTrong().setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
 
 
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
@@ -126,9 +130,9 @@ public class BanVe_GUI_Controller {
         }
     }
 
-    @FXML
-    public void initialize() {
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("hello");
         gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();
         cmbGaTauDen.getItems().clear();
         cmbGaTauDi.getItems().clear();
@@ -137,6 +141,10 @@ public class BanVe_GUI_Controller {
             cmbGaTauDi.getItems().add(gaTau.getTenGaTau());
         }
 
+        cmbGaTauDen.getSelectionModel().select(51);
+        cmbGaTauDi.getSelectionModel().select(125);
+
+
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
 
@@ -144,10 +152,4 @@ public class BanVe_GUI_Controller {
 
         });
     }
-
-
-
-
-
-
 }
