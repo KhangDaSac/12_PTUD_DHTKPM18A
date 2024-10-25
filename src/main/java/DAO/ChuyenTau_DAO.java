@@ -67,4 +67,27 @@ public class ChuyenTau_DAO {
         }
     }
 
+    public ArrayList<ChuyenTau> getDanhSachChuyenTau(String maGaDi, String maGaDen, LocalDate ngayDi) {
+        ArrayList<ChuyenTau> chuyenTauList = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "select * from ChuyenTau where maGaDi = ? and maGaDen = ? and ngayKhoiHanh = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maGaDi);
+            statement.setString(2, maGaDen);
+            statement.setDate(3, Date.valueOf(ngayDi));
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String maChuyenTau = rs.getString(1);
+                TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
+                LocalDateTime ngayKhoiHanh = rs.getTimestamp(3).toLocalDateTime();
+                int soLuongCho = rs.getInt(4);
+                ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho, ngayKhoiHanh);
+                chuyenTauList.add(chuyenTau);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chuyenTauList;
+    }
 }

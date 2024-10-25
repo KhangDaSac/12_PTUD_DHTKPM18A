@@ -71,6 +71,14 @@ public class Main_Controller {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    void btnThongKeOnAction (ActionEvent event) {
+        try {
+            chuyenTrang("/view/BaoCaoThongKe_GUI.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void chuyenTrangChu(ActionEvent event) {

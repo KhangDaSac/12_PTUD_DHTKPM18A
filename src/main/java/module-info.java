@@ -1,5 +1,4 @@
 module hellloooo.demo {
-    requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
@@ -9,6 +8,9 @@ module hellloooo.demo {
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafaker;
+    requires org.jsoup;
+    requires com.jfoenix;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;

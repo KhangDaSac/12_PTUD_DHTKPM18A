@@ -1,0 +1,10 @@
+.title-header{
+    -fx-border-color: #000000 transparent #000000 transparent;
+}
+.button-bar-dau{
+    -fx-alignment: center;
+}
+.btnThongKe{
+    -fx-background-color:#774BC3;
+    -fx-text-fill: white;
+}
