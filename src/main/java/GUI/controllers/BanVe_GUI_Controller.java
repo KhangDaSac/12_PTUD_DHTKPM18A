@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -71,11 +72,25 @@ public class BanVe_GUI_Controller implements Initializable {
 
     private ArrayList<ChuyenTau> chuyenTauList;
 
+    private ArrayList<ChuyenTau_Controller> chuyenTauControllerList = new ArrayList<ChuyenTau_Controller>();
+
+    private int chuyenTauDangChon;
+
+
+
     private ArrayList<ToaTau> toaTauList;
 
     private int trangChuyenTauHienTai;
 
     private int trangToaTauHienTai;
+
+    public int getChuyenTauDangChon() {
+        return chuyenTauDangChon;
+    }
+
+    public void setChuyenTauDangChon(int chuyenTauDangChon) {
+        this.chuyenTauDangChon = chuyenTauDangChon;
+    }
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
@@ -198,12 +213,29 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachChuyenTau.getChildren().clear();
+        chuyenTauControllerList.clear();
         for (int i = batDau; i < ketThuc; i++){
             ChuyenTau chuyenTau = chuyenTauList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau.fxml"));
             Parent anchorPane = loader.load();
             ChuyenTau_Controller controller = loader.getController();
+            chuyenTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
+            Image image;
+            if(chuyenTau.getSoLuongChoTrongTrong() > 0){
+                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png"));
+            }else{
+                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png"));
+            }
+            controller.setDefaultImage(image);
+
+            if(chuyenTauDangChon == i){
+                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
+            }
+
+            controller.setSoThuTu(i);
+            controller.getImvChuyenTau().setImage(image);
+
             controller.getLblMaChuyenTau().setText(chuyenTau.getMaChuyenTau());
             controller.getLblThoiGianDi().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
             controller.getLblThoiGianDen().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
@@ -251,5 +283,11 @@ public class BanVe_GUI_Controller implements Initializable {
         cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
 
         });
+    }
+
+    public void boChonTatCaChuyenTau(){
+        for (ChuyenTau_Controller chuyenTau_Controller : chuyenTauControllerList){
+            chuyenTau_Controller.chinhMauKhongChon();
+        }
     }
 }
