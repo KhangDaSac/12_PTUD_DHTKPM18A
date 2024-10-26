@@ -281,8 +281,16 @@ public class BanVe_GUI_Controller implements Initializable {
         hboxDanhSachChuyenTau.getChildren().clear();
 
         cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
-
+            cmbGaTauDi.getItems().clear();
+            String tenGaTau = cmbGaTauDi.getEditor().getText();
+            for (GaTau gaTau : gaTauList){
+                if(gaTau.getTenGaTau().toLowerCase().startsWith(tenGaTau.toLowerCase())){
+                    cmbGaTauDi.getItems().add(gaTau.getTenGaTau());
+                }
+            }
         });
+
+
     }
 
     public void boChonTatCaChuyenTau(){
