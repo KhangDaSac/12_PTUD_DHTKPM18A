@@ -44,6 +44,4 @@ public class Ve_Controller implements Initializable {
     public void khoiTao(){
 
     }
-
-
 }

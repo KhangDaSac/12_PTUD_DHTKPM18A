@@ -5,6 +5,7 @@ import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.Cho_Controller;
 import GUI.controllers.BanVe_GUI_Items.ChuyenTau_Controller;
 import GUI.controllers.BanVe_GUI_Items.ToaTau_Controller;
+import GUI.controllers.BanVe_GUI_Items.Ve_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,9 +97,21 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<ToaTau_Controller> toaTauControllerList = new ArrayList<ToaTau_Controller>();
     private ArrayList<Cho_Controller> choControllerList = new ArrayList<Cho_Controller>();
 
+    private ArrayList<Ve> danhSachVeBan = new ArrayList<>();
+    private ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
+
     private int chuyenTauDangChon;
     private int toaTauDangChon;
-    private boolean[] cacChoDangChon;
+
+    private ArrayList<Cho> listChoBan = new ArrayList<Cho>();
+
+    public ArrayList<Cho> getListChoBan() {
+        return listChoBan;
+    }
+
+    public void setListChoBan(ArrayList<Cho> listChoBan) {
+        this.listChoBan = listChoBan;
+    }
 
     public int getToaTauDangChon() {
         return toaTauDangChon;
@@ -108,13 +121,6 @@ public class BanVe_GUI_Controller implements Initializable {
         this.toaTauDangChon = toaTauDangChon;
     }
 
-    public boolean[] getCacChoDangChon() {
-        return cacChoDangChon;
-    }
-
-    public void setCacChoDangChon(boolean[] cacChoDangChon) {
-        this.cacChoDangChon = cacChoDangChon;
-    }
 
     private int trangChuyenTauHienTai;
 
@@ -204,23 +210,19 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnBoChonTatCaOnAction(ActionEvent event) {
-        int length = cacChoDangChon.length;
-        for(int i = 0; i < length; i++){
-            Cho_Controller controller = choControllerList.get(i);
-            if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
-                cacChoDangChon[i] = false;
-            }
+        for(Cho_Controller controller : choControllerList){
+            listChoBan.remove(controller.getCho());
         }
         capNhatCacChoDaChon();
     }
 
     @FXML
     void btnChonCaToaOnAction(ActionEvent event) {
-        int length = cacChoDangChon.length;
-        for(int i = 0; i < length; i++){
-            Cho_Controller controller = choControllerList.get(i);
+        for(Cho_Controller controller : choControllerList){
             if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
-                cacChoDangChon[i] = true;
+                if(!listChoBan.contains(controller.getCho())){
+                    listChoBan.add(controller.getCho());
+                }
             }
         }
         capNhatCacChoDaChon();
@@ -228,7 +230,11 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnThemVeOnAction(ActionEvent event) {
-
+        try {
+            themVeVaoGio();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void timDanhSachChuyenTau(){
@@ -324,7 +330,7 @@ public class BanVe_GUI_Controller implements Initializable {
         choList = QuanLyChuyenTau_BUS.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
         try {
             hienThiDanhSachCho(choList);
-            cacChoDangChon = new boolean[choList.size()];
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -471,21 +477,19 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void capNhatCacChoDaChon(){
-        int length = cacChoDangChon.length;
-        for(int i = 0; i < length; i++){
-            if(cacChoDangChon[i]){
-                choControllerList.get(i).chuyenMauDangChon();
-            }else{
-                choControllerList.get(i).chuyenMauMacDinh();
+        for (Cho_Controller controller : choControllerList){
+            controller.chuyenMauMacDinh();
+            for(Cho cho : listChoBan) {
+                if (cho.equals(controller.getCho())) {
+                    controller.chuyenMauDangChon();
+                    break;
+                }
             }
         }
     }
 
-    public void themVeVaoGio(){
+    public void themVeVaoGio() throws IOException {
         vboxGioVe.getChildren().clear();
-        int length = cacChoDangChon.length;
-        for(int i = 0; i < length; i++){
 
-        }
     }
 }

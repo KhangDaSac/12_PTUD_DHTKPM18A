@@ -37,7 +37,11 @@ public class Cho_Controller implements Initializable {
     @FXML
     void btnChoOnAction(ActionEvent event) {
         if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
-            banVe_GUI_controller.getCacChoDangChon()[cho.getSoCho() - 1] = !banVe_GUI_controller.getCacChoDangChon()[cho.getSoCho() - 1];
+            if(!banVe_GUI_controller.getListChoBan().contains(cho)){
+                banVe_GUI_controller.getListChoBan().add(cho);
+            }else{
+                banVe_GUI_controller.getListChoBan().remove(cho);
+            }
             banVe_GUI_controller.capNhatCacChoDaChon();
         }
     }
