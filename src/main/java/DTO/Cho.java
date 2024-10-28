@@ -138,6 +138,23 @@ public class Cho {
     }
 
     public double tinhGiaCho(double doDaiChang){
-        return 0;
+        double gia = 0;
+        if(doDaiChang <= 100){
+            gia += doDaiChang * 1200;
+            return  gia;
+        }
+
+        gia += 100 * 1200;
+
+        if(doDaiChang <= 500){
+            gia += (doDaiChang - 100) * 900;
+            return gia;
+        }
+
+        gia += (500 - 100) * 900;
+
+        gia += (doDaiChang - 500) * 700;
+
+        return gia;
     }
 }

@@ -2,10 +2,7 @@ package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
 import DTO.*;
-import GUI.controllers.BanVe_GUI_Items.Cho_Controller;
-import GUI.controllers.BanVe_GUI_Items.ChuyenTau_Controller;
-import GUI.controllers.BanVe_GUI_Items.ToaTau_Controller;
-import GUI.controllers.BanVe_GUI_Items.Ve_Controller;
+import GUI.controllers.BanVe_GUI_Items.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -97,6 +94,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<ToaTau_Controller> toaTauControllerList = new ArrayList<ToaTau_Controller>();
     private ArrayList<Cho_Controller> choControllerList = new ArrayList<Cho_Controller>();
     private  ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
+    private ArrayList<ChiTietVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_Controller>();
 
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
     private ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
@@ -500,6 +498,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(chuyenTau, gaDen);
                 Ve ve = new Ve(chiTietChuyenTauDi, chiTietChuyenTauDen);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
+                cho.setToaTau(toaTauList.get(toaTauDangChon));
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
                 danhSachChiTietVe.add(chiTietVe);
                 danhSachVe.add(ve);
@@ -522,6 +521,20 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.khoiTao();
 
             vboxGioVe.getChildren().add(anchorPane);
+        }
+
+        chiTietVeControllerList.clear();
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe.fxml"));
+            Parent anchorPane = loader.load();
+            ChiTietVe_Controller controller = loader.getController();
+            chiTietVeControllerList.add(controller);
+            controller.setBanVe_gui_controller(this);
+
+            controller.setChiTietVe(chiTietVe);
+            controller.khoiTao();
+
+            vboxChiTietVe.getChildren().add(anchorPane);
         }
     }
 }
