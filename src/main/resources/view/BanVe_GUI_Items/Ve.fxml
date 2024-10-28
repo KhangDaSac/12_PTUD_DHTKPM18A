@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anpVe" minHeight="150.0" onMouseClicked="#anpVeOnMouseClicked" prefHeight="150.0" prefWidth="440.0" styleClass="ve" stylesheets="@../../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_Controller">
+   <children>
+      <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane styleClass="ve-right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="120.0" text="Chuyến tàu:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="250.0" text="SE02181024">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="60.0" stylesheets="@../../css/All.css" text="Ga đi:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="60.0" stylesheets="@../../css/All.css" text="Ga đến:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblTenGaDen" layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Hà Nội">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Thời gian đi:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblThoiGianDi" prefHeight="30.0" prefWidth="250.0" text="18/10/2024 23:25">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="71.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giá vé:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblGiaVe" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

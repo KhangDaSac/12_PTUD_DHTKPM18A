@@ -13,12 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import utils.TimeFormat;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -26,6 +25,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BanVe_GUI_Controller implements Initializable {
+    @FXML
+    private VBox vboxChiTietVe;
+
+    @FXML
+    private VBox vboxGioVe;
 
     @FXML
     private AnchorPane anpDanhSachCho;
@@ -53,6 +57,9 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     private ComboBox<String> cmbGaTauDi;
+
+    @FXML
+    private ComboBox<String> cmbLoaiVe;
 
     @FXML
     private DatePicker dapNgayKhoiHanh;
@@ -420,6 +427,11 @@ public class BanVe_GUI_Controller implements Initializable {
         anpDanhSachCho.setVisible(false);
         grpDanhSachCho.setVisible(false);
 
+        //Combobox loại vé
+        cmbLoaiVe.getItems().add("Vé cá nhân");
+        cmbLoaiVe.getItems().add("Vé tập thể");
+        cmbLoaiVe.getSelectionModel().select(0);
+
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
 
@@ -466,6 +478,14 @@ public class BanVe_GUI_Controller implements Initializable {
             }else{
                 choControllerList.get(i).chuyenMauMacDinh();
             }
+        }
+    }
+
+    public void themVeVaoGio(){
+        vboxGioVe.getChildren().clear();
+        int length = cacChoDangChon.length;
+        for(int i = 0; i < length; i++){
+
         }
     }
 }
