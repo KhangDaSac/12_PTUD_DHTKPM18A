@@ -11,6 +11,7 @@ public class KhachHang {
 	private String soDienThoai;
 	private LoaiKhachHang loaiKhachHang;
 	private LocalDate ngaySinh;
+	private LoaiKhachHang phanTramGiamGia;
 	public KhachHang() {
 		super();
 		// TODO Auto-generated constructor stub

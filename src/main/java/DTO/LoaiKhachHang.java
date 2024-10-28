@@ -1,8 +1,9 @@
 package DTO;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
-public class LoaiKhachHang {
+public class LoaiKhachHang  extends KhachHang{
 	private String maLoaiKhachHang;
 	private String tenLoaiKhachHang;
 	private double phanTramGiamGia;
@@ -10,6 +11,13 @@ public class LoaiKhachHang {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public LoaiKhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LoaiKhachHang loaiKhachHang, LocalDate ngaySinh, String maLoaiKhachHang, double phanTramGiamGia) {
+		super(maKhachHang, CCCD, tenKhachHang, soDienThoai, loaiKhachHang, ngaySinh);
+		this.maLoaiKhachHang = maLoaiKhachHang;
+		this.phanTramGiamGia = phanTramGiamGia;
+	}
+
 	public LoaiKhachHang(String maLoaiKhachHang, String tenLoaiKhachHang, double phanTramGiamGia) {
 		super();
 		this.maLoaiKhachHang = maLoaiKhachHang;

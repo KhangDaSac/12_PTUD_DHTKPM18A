@@ -75,11 +75,11 @@ public class ChuyenTau_DAO {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maGaDi);
             statement.setString(2, maGaDen);
-            statement.setInt(3, ngayDi.getDayOfMonth());
-            statement.setInt(4, ngayDi.getMonthValue());
             statement.setInt(5, ngayDi.getYear());
             ResultSet rs = statement.executeQuery();
-            while(rs.next()) {
+            while(rs.next()) {            statement.setInt(3, ngayDi.getDayOfMonth());
+                statement.setInt(4, ngayDi.getMonthValue());
+
                 String maChuyenTau =rs.getString("maChuyenTau");
                 int soLuongCho = rs.getInt("soLuongCho");
                 ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, soLuongCho);
