@@ -101,7 +101,7 @@ public class ChuyenTau_Controller implements Initializable {
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
     private ChuyenTau chuyenTau;
-    private Image defaultImage;
+
 
     private int soThuTu;
 
@@ -113,13 +113,6 @@ public class ChuyenTau_Controller implements Initializable {
         this.chuyenTau = chuyenTau;
     }
 
-    public Image getDefaultImage() {
-        return defaultImage;
-    }
-
-    public void setDefaultImage(Image defaultImage) {
-        this.defaultImage = defaultImage;
-    }
 
     public int getSoThuTu() {
         return soThuTu;
@@ -139,7 +132,11 @@ public class ChuyenTau_Controller implements Initializable {
     }
 
     public void chinhMauKhongChon(){
-        imvChuyenTau.setImage(defaultImage);
+        if(chuyenTau.getSoLuongChoTrongTrong() > 0){
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
+        }else{
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
+        }
     }
 
 
@@ -149,6 +146,11 @@ public class ChuyenTau_Controller implements Initializable {
     }
 
     public void khoiTao(){
+        if(chuyenTau.getSoLuongChoTrongTrong() > 0){
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
+        }else{
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
+        }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
         lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));

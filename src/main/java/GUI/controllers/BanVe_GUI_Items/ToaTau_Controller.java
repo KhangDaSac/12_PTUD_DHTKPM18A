@@ -34,8 +34,6 @@ public class ToaTau_Controller {
 
     private ToaTau toaTau;
 
-    private Image defaultImage;
-
     public ToaTau getToaTau() {
         return toaTau;
     }
@@ -75,14 +73,17 @@ public class ToaTau_Controller {
     public void khoiTao(){
         lblThuTuTau.setText(String.valueOf(toaTau.getThuTuToa()));
         if(toaTau.getSoLuongChoTrongTrong() > 0){
-            defaultImage = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-gray.png"));
+            imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-gray.png")));
         }else{
-            defaultImage = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-red.png"));
+            imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-red.png")));
         }
     }
 
     public void chinhMauKhongChon(){
-
-        imvToaTau.setImage(defaultImage);
+        if(toaTau.getSoLuongChoTrongTrong() > 0){
+            imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-gray.png")));
+        }else{
+            imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-red.png")));
+        }
     }
 }

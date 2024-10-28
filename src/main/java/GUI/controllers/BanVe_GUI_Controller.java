@@ -19,9 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import utils.TimeFormat;
 
 import java.io.IOException;
@@ -31,6 +29,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class BanVe_GUI_Controller implements Initializable {
+
+    @FXML
+    private AnchorPane anpDanhSachCho;
+
     @FXML
     private AnchorPane anpChuyenTauSau;
 
@@ -209,11 +211,13 @@ public class BanVe_GUI_Controller implements Initializable {
             maGaDi = gaTauDi.getMaGaTau();
             maGaDen = gaTauDen.getMaGaTau();
             chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
-            System.out.println(chuyenTauList);
             trangChuyenTauHienTai = 1;
             anpChuyenTauTruoc.setVisible(false);
             anpChuyenTauSau.setVisible(chuyenTauList.size() > 4);
             hienThiDanhSachChuyenTau(chuyenTauList, 0, 4);
+
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -245,19 +249,11 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setBanVe_GUI_Controller(this);
             controller.setChuyenTau(chuyenTau);
             controller.khoiTao();
-            Image image;
-            if(chuyenTau.getSoLuongChoTrongTrong() > 0){
-                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png"));
-            }else{
-                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png"));
-            }
-            controller.setDefaultImage(image);
-
             if(chuyenTauDangChon == i){
-                image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
+                Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
+                controller.getImvChuyenTau().setImage(image);
             }
             controller.setSoThuTu(i);
-            controller.getImvChuyenTau().setImage(image);
 
 
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
@@ -268,11 +264,13 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public void hienThiDanhSachToa(ArrayList<ToaTau> toaTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachToaTau.getChildren().clear();
+        toaTauControllerList.clear();
         for(int i = batDau; i < ketThuc; i++){
             ToaTau toaTau = toaTauList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ToaTau.fxml"));
             Parent anchorPane = loader.load();
             ToaTau_Controller controller = loader.getController();
+            toaTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
             controller.setToaTau(toaTau);
             controller.khoiTao();
@@ -296,16 +294,72 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void hienThiDanhSachCho(ArrayList<Cho> choList) throws IOException {
+        anpDanhSachCho.setVisible(true);
+        grpDanhSachCho.setVisible(true);
         grpDanhSachCho.getChildren().clear();
-        for(int i = 0; i < choList.size(); i++){
+        int length = choList.size();
+        if(length == 64){
+            grpDanhSachCho.getColumnConstraints().clear();
+            grpDanhSachCho.getRowConstraints().clear();
+            for (int j = 0; j < 16; j++) {
+                ColumnConstraints column = new ColumnConstraints();
+                grpDanhSachCho.getColumnConstraints().add(column);
+            }
+            for (int j = 0; j < 4; j++) {
+                RowConstraints row = new RowConstraints();
+                grpDanhSachCho.getRowConstraints().add(row);
+            }
+        }else if(length == 42){
+            grpDanhSachCho.getColumnConstraints().clear();
+            grpDanhSachCho.getRowConstraints().clear();
+            for (int j = 0; j < 14; j++) {
+                ColumnConstraints column = new ColumnConstraints();
+                grpDanhSachCho.getColumnConstraints().add(column);
+            }
+            for (int j = 0; j < 3; j++) {
+                RowConstraints row = new RowConstraints();
+                grpDanhSachCho.getRowConstraints().add(row);
+            }
+        }else if(length == 28){
+            grpDanhSachCho.getColumnConstraints().clear();
+            grpDanhSachCho.getRowConstraints().clear();
+            for (int j = 0; j < 14; j++) {
+                ColumnConstraints column = new ColumnConstraints();
+                grpDanhSachCho.getColumnConstraints().add(column);
+            }
+            for (int j = 0; j < 2; j++) {
+                RowConstraints row = new RowConstraints();
+                grpDanhSachCho.getRowConstraints().add(row);
+            }
+        }else if(length == 14){
+            grpDanhSachCho.getColumnConstraints().clear();
+            grpDanhSachCho.getRowConstraints().clear();
+            for (int j = 0; j < 7; j++) {
+                ColumnConstraints column = new ColumnConstraints();
+                grpDanhSachCho.getColumnConstraints().add(column);
+            }
+            for (int j = 0; j < 2; j++) {
+                RowConstraints row = new RowConstraints();
+                grpDanhSachCho.getRowConstraints().add(row);
+            }
+        }
+        for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho.fxml"));
             Parent anchorPane = loader.load();
             Cho_Controller controller = loader.getController();
             controller.setCho(cho);
             controller.khoiTao();
-            grpDanhSachCho.add(anchorPane, i/4, i%4);
+
+            if(length == 64){
+                grpDanhSachCho.add(anchorPane, i/4, i%4);
+            }else if(length == 42){
+                grpDanhSachCho.add(anchorPane, i/3, i%3);
+            }else if(length == 28 || length == 14){
+                grpDanhSachCho.add(anchorPane, i/2, i%2);
+            }
         }
+
 
     }
 
@@ -323,9 +377,17 @@ public class BanVe_GUI_Controller implements Initializable {
 
         dapNgayKhoiHanh.setValue(LocalDate.of(2024, 10, 31));
 
+        anpChuyenTauTruoc.setVisible(false);
+        anpChuyenTauSau.setVisible(false);
+        anpToaTauTruoc.setVisible(false);
+        anpToaTauSau.setVisible(false);
+
+        anpDanhSachCho.setVisible(false);
+        grpDanhSachCho.setVisible(false);
 
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
+
 
         cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
             cmbGaTauDi.getItems().clear();
