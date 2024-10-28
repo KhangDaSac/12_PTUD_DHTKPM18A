@@ -457,9 +457,9 @@
          <children>
             <AnchorPane AnchorPane.topAnchor="0.0">
                <children>
-                  <ScrollPane fx:id="srpGioVe" layoutX="25.6" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                  <ScrollPane layoutX="25.6" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <content>
-                        <VBox prefHeight="308.0" prefWidth="434.0" styleClass="danhSachVe">
+                        <VBox fx:id="vboxGioVe" prefHeight="308.0" prefWidth="434.0" styleClass="danhSachVe">
                            <children>
                               <AnchorPane minHeight="150.0" prefHeight="150.0" styleClass="ve" stylesheets="@../css/BanVe_GUI.css">
                                  <children>
@@ -806,9 +806,9 @@
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="15.0" prefHeight="228.0" prefWidth="471.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="330.0">
                <children>
-                  <ScrollPane fx:id="srpChiTietVe" layoutX="25.6" prefHeight="200.0" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                  <ScrollPane layoutX="25.6" prefHeight="200.0" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                      <content>
-                        <VBox prefHeight="197.0" prefWidth="434.0" styleClass="danhSachVe">
+                        <VBox fx:id="vboxChiTietVe" prefHeight="197.0" prefWidth="434.0" styleClass="danhSachVe">
                            <children>
                               <AnchorPane minHeight="210.0" prefHeight="210.0" styleClass="ve" stylesheets="@../css/BanVe_GUI.css">
                                  <children>

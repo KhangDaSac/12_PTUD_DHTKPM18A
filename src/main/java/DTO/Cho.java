@@ -136,4 +136,8 @@ public class Cho {
                 ", loaiCho=" + loaiCho +
                 '}';
     }
+
+    public double tinhGiaCho(double doDaiChang){
+        return 0;
+    }
 }

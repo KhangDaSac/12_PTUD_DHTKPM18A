@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Ve {
 	private String maVe;
 	private HoaDon hoaDon;
-	private GaTau gaTauDi;
-	private GaTau gaTauDen;
+	private ChiTietChuyenTau thongTinGaTauDi;
+	private ChiTietChuyenTau thongTinGaTauDen;
 	private double tongTienVe;
 	private double giamGiaVeTapThe;
 	private LoaiVe loaiVe ;
@@ -20,12 +20,13 @@ public class Ve {
 		this.maVe = maVe;
 	}
 
-	public Ve(String maVe, double tongTienVe, HoaDon hoaDon, GaTau gaTauDi, GaTau gaTauDen, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
+
+	public Ve(String maVe, HoaDon hoaDon, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, double tongTienVe, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
-		this.tongTienVe = tongTienVe;
 		this.hoaDon = hoaDon;
-		this.gaTauDi = gaTauDi;
-		this.gaTauDen = gaTauDen;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.tongTienVe = tongTienVe;
 		this.giamGiaVeTapThe = giamGiaVeTapThe;
 		this.loaiVe = loaiVe;
 		this.trangThaiVe = trangThaiVe;
@@ -56,20 +57,20 @@ public class Ve {
 	}
 
 
-	public GaTau getGaTauDi() {
-		return gaTauDi;
+	public ChiTietChuyenTau getThongTinGaTauDi() {
+		return thongTinGaTauDi;
 	}
 
-	public void setGaTauDi(GaTau gaTauDi) {
-		this.gaTauDi = gaTauDi;
+	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
+		this.thongTinGaTauDi = thongTinGaTauDi;
 	}
 
-	public GaTau getGaTauDen() {
-		return gaTauDen;
+	public ChiTietChuyenTau getThongTinGaTauDen() {
+		return thongTinGaTauDen;
 	}
 
-	public void setGaTauDen(GaTau gaTauDen) {
-		this.gaTauDen = gaTauDen;
+	public void setThongTinGaTauDen(ChiTietChuyenTau thongTinGaTauDen) {
+		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
 	public double getGiamGiaVeTapThe() {
@@ -96,6 +97,11 @@ public class Ve {
 		this.trangThaiVe = trangThaiVe;
 	}
 
+	public Ve(ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -113,10 +119,10 @@ public class Ve {
 	public String toString() {
 		return "Ve{" +
 				"maVe='" + maVe + '\'' +
-				", tongTienVe=" + tongTienVe +
 				", hoaDon=" + hoaDon +
-				", gaTauDi=" + gaTauDi +
-				", gaTauDen=" + gaTauDen +
+				", thongTinGaTauDi=" + thongTinGaTauDi +
+				", thongTinGaTauDen=" + thongTinGaTauDen +
+				", tongTienVe=" + tongTienVe +
 				", giamGiaVeTapThe=" + giamGiaVeTapThe +
 				", loaiVe=" + loaiVe +
 				", trangThaiVe=" + trangThaiVe +

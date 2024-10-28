@@ -4,10 +4,7 @@ import DAO.Cho_DAO;
 import DAO.ChuyenTau_DAO;
 import DAO.GaTau_DAO;
 import DAO.ToaTau_DAO;
-import DTO.Cho;
-import DTO.ChuyenTau;
-import DTO.GaTau;
-import DTO.ToaTau;
+import DTO.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,6 +44,8 @@ public class QuanLyChuyenTau_BUS {
         ArrayList<Cho> choList = cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
         return choList;
     }
+
+
 
 //    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
 //        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();

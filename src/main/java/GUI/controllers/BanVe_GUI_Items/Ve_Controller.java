@@ -1,6 +1,7 @@
 package GUI.controllers.BanVe_GUI_Items;
 
 import DTO.Ve;
+import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -31,6 +32,24 @@ public class Ve_Controller implements Initializable {
 
     private Ve ve;
 
+    private BanVe_GUI_Controller banVe_GUI_Controller;
+
+    public Ve getVe() {
+        return ve;
+    }
+
+    public void setVe(Ve ve) {
+        this.ve = ve;
+    }
+
+    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
+        return banVe_GUI_Controller;
+    }
+
+    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
+        this.banVe_GUI_Controller = banVe_GUI_Controller;
+    }
+
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
 
@@ -42,6 +61,9 @@ public class Ve_Controller implements Initializable {
     }
 
     public void khoiTao(){
+        lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+        lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
+        lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
 
     }
 }
