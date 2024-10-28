@@ -36,6 +36,11 @@ public class Cho_Controller implements Initializable {
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
+        if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
+            banVe_GUI_controller.getCacChoDangChon()[cho.getSoCho() - 1] = !banVe_GUI_controller.getCacChoDangChon()[cho.getSoCho() - 1];
+            banVe_GUI_controller.capNhatCacChoDaChon();
+            System.out.println(banVe_GUI_controller.getCacChoDangChon()[cho.getSoCho() - 1]);
+        }
 
     }
 
@@ -46,21 +51,31 @@ public class Cho_Controller implements Initializable {
 
     public void khoiTao(){
         btnCho.setText(String.valueOf(cho.getSoCho()));
+        chuyenMauMacDinh();
+
+    }
+
+    public void chuyenMauMacDinh(){
         btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho.css").toExternalForm());
         switch (cho.getTrangThaiCho()){
             case DADATHOACBAN -> {
-                btnCho.getStyleClass().removeAll();
+                btnCho.getStyleClass().remove("choDangChon");
                 btnCho.getStyleClass().add("choDaDatHoacBan");
             }
             case DANHCHOCHANGDAIHON -> {
-                btnCho.getStyleClass().removeAll();
+                btnCho.getStyleClass().remove("choDangChon");
                 btnCho.getStyleClass().add("choDanhChoChanDaiHon");
             }
             case CONTRONG -> {
-                btnCho.getStyleClass().removeAll();
+                btnCho.getStyleClass().remove("choDangChon");
                 btnCho.getStyleClass().add("choTrong");
             }
         }
+    }
 
+    public void chuyenMauDangChon(){
+        btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho.css").toExternalForm());
+        btnCho.getStyleClass().remove("choTrong");
+        btnCho.getStyleClass().add("choDangChon");
     }
 }

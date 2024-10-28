@@ -13,6 +13,11 @@
     -fx-text-fill: #000;
 }
 
+.choDangChon{
+    -fx-background-color: #6AFF79;
+    -fx-text-fill: #000;
+}
+
 .cho .jfx-button{
     -fx-alignment: center;
     -fx-font-weight: 700;

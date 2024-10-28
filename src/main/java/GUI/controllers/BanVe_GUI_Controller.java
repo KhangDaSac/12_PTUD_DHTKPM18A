@@ -1,10 +1,7 @@
 package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
-import DTO.Cho;
-import DTO.ChuyenTau;
-import DTO.GaTau;
-import DTO.ToaTau;
+import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.Cho_Controller;
 import GUI.controllers.BanVe_GUI_Items.ChuyenTau_Controller;
 import GUI.controllers.BanVe_GUI_Items.ToaTau_Controller;
@@ -69,6 +66,15 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     private HBox hboxDanhSachToaTau;
 
+    @FXML
+    private JFXButton btnBoChonTatCa;
+
+    @FXML
+    private JFXButton btnChonCaToa;
+
+    @FXML
+    private JFXButton btnThemVe;
+
     private String maGaDi;
 
     private String maGaDen;
@@ -85,7 +91,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     private int chuyenTauDangChon;
     private int toaTauDangChon;
-    private int[] cacChoDangChon;
+    private boolean[] cacChoDangChon;
 
     public int getToaTauDangChon() {
         return toaTauDangChon;
@@ -95,11 +101,11 @@ public class BanVe_GUI_Controller implements Initializable {
         this.toaTauDangChon = toaTauDangChon;
     }
 
-    public int[] getCacChoDangChon() {
+    public boolean[] getCacChoDangChon() {
         return cacChoDangChon;
     }
 
-    public void setCacChoDangChon(int[] cacChoDangChon) {
+    public void setCacChoDangChon(boolean[] cacChoDangChon) {
         this.cacChoDangChon = cacChoDangChon;
     }
 
@@ -118,11 +124,6 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
             timDanhSachChuyenTau();
-    }
-
-    @FXML
-    void btnChonCaToaOnAction(ActionEvent event) {
-
     }
 
     @FXML
@@ -194,6 +195,30 @@ public class BanVe_GUI_Controller implements Initializable {
         }
     }
 
+    @FXML
+    void btnBoChonTatCaOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnChonCaToaOnAction(ActionEvent event) {
+        int length = cacChoDangChon.length;
+        for(int i = 0; i < length; i++){
+            Cho_Controller controller = choControllerList.get(i);
+
+            if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
+                cacChoDangChon[i] = true;
+
+            }
+        }
+        capNhatCacChoDaChon();
+    }
+
+    @FXML
+    void btnThemVeOnAction(ActionEvent event) {
+
+    }
+
     public void timDanhSachChuyenTau(){
         if(cmbGaTauDi.getSelectionModel().getSelectedIndex() < 0){
             System.out.println("Ga tàu đi không hợp lệ");
@@ -231,6 +256,8 @@ public class BanVe_GUI_Controller implements Initializable {
             anpToaTauSau.setVisible(toaTauList.size() > 9);
             trangToaTauHienTai = 1;
             hienThiDanhSachToa(toaTauList, 0, 9);
+
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -288,6 +315,7 @@ public class BanVe_GUI_Controller implements Initializable {
         choList = QuanLyChuyenTau_BUS.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
         try {
             hienThiDanhSachCho(choList);
+            cacChoDangChon = new boolean[choList.size()];
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -343,11 +371,16 @@ public class BanVe_GUI_Controller implements Initializable {
                 grpDanhSachCho.getRowConstraints().add(row);
             }
         }
+
+        choControllerList.clear();
+
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho.fxml"));
             Parent anchorPane = loader.load();
             Cho_Controller controller = loader.getController();
+            controller.setBanVe_GUI_controller(this);
+            choControllerList.add(controller);
             controller.setCho(cho);
             controller.khoiTao();
 
@@ -421,5 +454,18 @@ public class BanVe_GUI_Controller implements Initializable {
         for(ToaTau_Controller toaTau_Controller : toaTauControllerList){
             toaTau_Controller.chinhMauKhongChon();
         }
+    }
+
+    public void capNhatCacChoDaChon(){
+        int length = cacChoDangChon.length;
+        for(int i = 0; i < length; i++){
+            if(cacChoDangChon[i]){
+                choControllerList.get(i).chuyenMauDangChon();
+            }else{
+                choControllerList.get(i).chuyenMauMacDinh();
+            }
+            System.out.print(cacChoDangChon[i] + " ");
+        }
+        System.out.println();
     }
 }
