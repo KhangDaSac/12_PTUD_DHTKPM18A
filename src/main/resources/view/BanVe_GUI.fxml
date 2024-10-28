@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
    <children>
       <AnchorPane layoutX="41.0" layoutY="79.0">
          <children>
@@ -101,7 +102,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
                   </AnchorPane>
-                  <JFXButton fx:id="btnTimChuyenTau" onAction="#btnTimChuyenTauOnAction" prefHeight="70.0" prefWidth="180.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Tìm chuyến tàu">
+                  <JFXButton fx:id="btnTimChuyenTau" onAction="#btnTimChuyenTauOnAction" prefHeight="70.0" prefWidth="180.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tìm chuyến tàu">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -962,7 +963,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <JFXButton fx:id="btnTiepTuc" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Tiếp tục">
+                        <JFXButton fx:id="btnTiepTuc" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tiếp tục">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -1808,7 +1809,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </JFXButton>
-                  <JFXButton layoutX="336.0" layoutY="10.0" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Thêm vé">
+                  <JFXButton layoutX="336.0" layoutY="10.0" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Thêm vé">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -1818,4 +1819,8 @@
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../css/BanVe_GUI_Items/Cho.css" />
+      <URL value="@../css/BanVe_GUI.css" />
+   </stylesheets>
 </AnchorPane>

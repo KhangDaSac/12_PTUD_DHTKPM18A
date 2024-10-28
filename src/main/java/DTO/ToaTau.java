@@ -37,6 +37,17 @@ public class ToaTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.soLuongCho = soLuongCho;
+		this.loaiToaTau = loaiToaTau;
+		this.chuyenTau = chuyenTau;
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	public String getMaToaTau() {
 		return maToaTau;
 	}

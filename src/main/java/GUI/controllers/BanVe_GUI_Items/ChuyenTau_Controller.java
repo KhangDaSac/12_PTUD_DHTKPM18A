@@ -1,5 +1,6 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.ChuyenTau;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import utils.TimeFormat;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -98,11 +100,18 @@ public class ChuyenTau_Controller implements Initializable {
     private Label lblThoiGianDi;
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
-
+    private ChuyenTau chuyenTau;
     private Image defaultImage;
 
     private int soThuTu;
 
+    public ChuyenTau getChuyenTau() {
+        return chuyenTau;
+    }
+
+    public void setChuyenTau(ChuyenTau chuyenTau) {
+        this.chuyenTau = chuyenTau;
+    }
 
     public Image getDefaultImage() {
         return defaultImage;
@@ -137,5 +146,14 @@ public class ChuyenTau_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    public void khoiTao(){
+        lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
+        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
+        lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));
+        lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
+        lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
     }
 }

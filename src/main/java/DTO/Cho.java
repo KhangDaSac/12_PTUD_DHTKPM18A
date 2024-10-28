@@ -35,6 +35,14 @@ public class Cho {
         this.trangThaiCho = trangThaiCho;
     }
 
+    public Cho(String maCho, int soCho, ToaTau toaTau, LoaiCho loaiCho, TrangThaiCho trangThaiCho) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.toaTau = toaTau;
+        this.loaiCho = loaiCho;
+        this.trangThaiCho = trangThaiCho;
+    }
+
     public Cho(String maCho) {
         super();
         this.maCho = maCho;

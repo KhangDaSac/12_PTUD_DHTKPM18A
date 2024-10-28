@@ -117,8 +117,10 @@ public class ToaTau_DAO {
                 int soLuongChoDanhChoChangDaiHon = rs.getInt("soLuongChoDanhChoChangDaiHon");
                 int soLuongChoDaDatVaBan = rs.getInt("soLuongChoDaDatVaBan");
                 int soLuongChoTrong = rs.getInt("soLuongChoTrong");
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGia"));
+                ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
 
-                ToaTau toaTau = new ToaTau(maToaTau, thuTuToa, soLuongCho, soLuongChoDanhChoChangDaiHon, soLuongChoDaDatVaBan, soLuongChoTrong);
+                ToaTau toaTau = new ToaTau(maToaTau, thuTuToa, soLuongCho, loaiToaTau, chuyenTau, soLuongChoDanhChoChangDaiHon, soLuongChoDaDatVaBan, soLuongChoTrong);
                 danhSachToaTau.add(toaTau);
             }
         } catch (Exception e) {
