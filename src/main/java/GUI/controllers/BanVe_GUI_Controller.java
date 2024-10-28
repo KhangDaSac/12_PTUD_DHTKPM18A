@@ -197,7 +197,14 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnBoChonTatCaOnAction(ActionEvent event) {
-
+        int length = cacChoDangChon.length;
+        for(int i = 0; i < length; i++){
+            Cho_Controller controller = choControllerList.get(i);
+            if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
+                cacChoDangChon[i] = false;
+            }
+        }
+        capNhatCacChoDaChon();
     }
 
     @FXML
@@ -205,10 +212,8 @@ public class BanVe_GUI_Controller implements Initializable {
         int length = cacChoDangChon.length;
         for(int i = 0; i < length; i++){
             Cho_Controller controller = choControllerList.get(i);
-
             if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
                 cacChoDangChon[i] = true;
-
             }
         }
         capNhatCacChoDaChon();
@@ -256,11 +261,8 @@ public class BanVe_GUI_Controller implements Initializable {
             anpToaTauSau.setVisible(toaTauList.size() > 9);
             trangToaTauHienTai = 1;
             hienThiDanhSachToa(toaTauList, 0, 9);
-
-
-
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+
         }
     }
 
@@ -464,8 +466,6 @@ public class BanVe_GUI_Controller implements Initializable {
             }else{
                 choControllerList.get(i).chuyenMauMacDinh();
             }
-            System.out.print(cacChoDangChon[i] + " ");
         }
-        System.out.println();
     }
 }
