@@ -1,6 +1,7 @@
 package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
+import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
 import com.jfoenix.controls.JFXButton;
@@ -315,6 +316,7 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setBanVe_GUI_Controller(this);
             controller.setToaTau(toaTau);
             controller.khoiTao();
+            controller.setSoThuTu(i);
 
             if(toaTauDangChon == i){
                 Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
@@ -407,7 +409,7 @@ public class BanVe_GUI_Controller implements Initializable {
             }
         }
 
-
+        capNhatCacChoDaChon();
     }
 
     @Override
@@ -439,6 +441,9 @@ public class BanVe_GUI_Controller implements Initializable {
 
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
+
+        vboxGioVe.getChildren().clear();
+        vboxChiTietVe.getChildren().clear();
 
 
         cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
@@ -475,40 +480,70 @@ public class BanVe_GUI_Controller implements Initializable {
         }
     }
 
+    public void boChonTatCaVe(){
+        for(Ve_Controller ve_controller : veControllerList){
+            ve_controller.khongChonVe();
+        }
+    }
+
     public void capNhatCacChoDaChon(){
-        for (Cho_Controller controller : choControllerList){
+        for (Cho_Controller controller : choControllerList) {
             controller.chuyenMauMacDinh();
-            for(Cho cho : choChonList) {
-                if (cho.equals(controller.getCho())) {
-                    controller.chuyenMauDangChon();
-                    break;
-                }
+
+            boolean daThemVaoGioVe = danhSachChiTietVe.stream().anyMatch(chiTietVe -> chiTietVe.getCho().equals(controller.getCho()));
+
+            if (daThemVaoGioVe) {
+                controller.chuyenMauDaThemVaoGioVe();
+                continue;
+            }
+
+            boolean dangChon = choChonList.stream().anyMatch(cho -> cho.equals(controller.getCho()));
+
+            if (dangChon) {
+                controller.chuyenMauDangChon();
             }
         }
     }
 
     public void themVeVaoGio() throws IOException {
-        vboxGioVe.getChildren().clear();
-        vboxChiTietVe.getChildren().clear();
+
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
                 ChuyenTau chuyenTau = chuyenTauList.get(chuyenTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(chuyenTau, gaDi);
+                chiTietChuyenTauDi.setThoiGianDi(chuyenTau.getThoiGianDi());
                 ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(chuyenTau, gaDen);
-                Ve ve = new Ve(chiTietChuyenTauDi, chiTietChuyenTauDen);
+                String maVeMoi = "";
+                if(danhSachVe.isEmpty()){
+                    maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
+                }else{
+                    maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(danhSachVe.getLast());
+                }
+
+                Ve ve = new Ve(maVeMoi, chiTietChuyenTauDi, chiTietChuyenTauDen);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
                 danhSachChiTietVe.add(chiTietVe);
                 danhSachVe.add(ve);
+
+                for(Cho_Controller controller : choControllerList){
+                    if(controller.getCho().equals(cho)){
+                        controller.setDaThemVaoGio(true);
+                        break;
+                    }
+                }
             }
+            choChonList.clear();
         }
 
         capNhatGioVe();
+        capNhatCacChoDaChon();
     }
 
     public void capNhatGioVe() throws IOException {
+        vboxGioVe.getChildren().clear();
         veControllerList.clear();
         for(Ve ve : danhSachVe){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Ve.fxml"));
@@ -522,19 +557,24 @@ public class BanVe_GUI_Controller implements Initializable {
 
             vboxGioVe.getChildren().add(anchorPane);
         }
+    }
 
+    public void capNhatChiTietVe(Ve ve) throws IOException {
+        vboxChiTietVe.getChildren().clear();
         chiTietVeControllerList.clear();
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe.fxml"));
-            Parent anchorPane = loader.load();
-            ChiTietVe_Controller controller = loader.getController();
-            chiTietVeControllerList.add(controller);
-            controller.setBanVe_gui_controller(this);
+            if(chiTietVe.getVe().equals(ve)){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe.fxml"));
+                Parent anchorPane = loader.load();
+                ChiTietVe_Controller controller = loader.getController();
+                chiTietVeControllerList.add(controller);
+                controller.setBanVe_gui_controller(this);
 
-            controller.setChiTietVe(chiTietVe);
-            controller.khoiTao();
+                controller.setChiTietVe(chiTietVe);
+                controller.khoiTao();
 
-            vboxChiTietVe.getChildren().add(anchorPane);
+                vboxChiTietVe.getChildren().add(anchorPane);
+            }
         }
     }
 }

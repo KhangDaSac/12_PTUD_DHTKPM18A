@@ -102,6 +102,12 @@ public class Ve {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public Ve(String maVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
+		this.maVe = maVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" minHeight="150.0" onMouseClicked="#anpVeOnMouseClicked" prefHeight="150.0" prefWidth="440.0" styleClass="ve" stylesheets="@../../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_Controller">
+<AnchorPane fx:id="anpVe" minHeight="150.0" onMouseClicked="#anpVeOnMouseClicked" prefHeight="150.0" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -88,4 +89,8 @@
          </children>
       </AnchorPane>
    </children>
+   <stylesheets>
+      <URL value="@../../css/BanVe_GUI.css" />
+      <URL value="@../../css/BanVe_GUI_Items/Ve.css" />
+   </stylesheets>
 </AnchorPane>

@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import utils.TimeFormat;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -53,17 +55,34 @@ public class Ve_Controller implements Initializable {
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
 
+        try {
+            banVe_GUI_Controller.capNhatChiTietVe(ve);
+            banVe_GUI_Controller.boChonTatCaVe();
+            chonVe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void khoiTao(){
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
+        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
+    }
 
+    public void chonVe(){
+        anpVe.getStyleClass().add("veDangChon");
+        anpVe.getStyleClass().removeAll("veKhongChon");
+    }
+
+    public void khongChonVe(){
+        anpVe.getStyleClass().removeAll("veDangChon");
+        anpVe.getStyleClass().add("veKhongChon");
     }
 }

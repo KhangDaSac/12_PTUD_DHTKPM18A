@@ -18,6 +18,11 @@
     -fx-text-fill: #fff;
 }
 
+.choDaThemVaoGioVe{
+    -fx-background-color: #851DE0;
+    -fx-text-fill: #fff;
+}
+
 .cho .jfx-button{
     -fx-alignment: center;
     -fx-font-weight: 700;
