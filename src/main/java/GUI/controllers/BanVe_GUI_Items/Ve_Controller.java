@@ -18,6 +18,14 @@ public class Ve_Controller implements Initializable {
     private AnchorPane anpVe;
 
     @FXML
+    private AnchorPane anpXoaVe;
+
+
+    @FXML
+    private Label lblSTT;
+
+
+    @FXML
     private Label lblGiaVe;
 
     @FXML
@@ -54,7 +62,6 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
-
         try {
             banVe_GUI_Controller.capNhatChiTietVe(ve);
             banVe_GUI_Controller.boChonTatCaVe();
@@ -63,6 +70,12 @@ public class Ve_Controller implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    void anpXoaVeOnMouseCliced(MouseEvent event) {
+        banVe_GUI_Controller.xoaVe(ve);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

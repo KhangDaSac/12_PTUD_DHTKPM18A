@@ -144,17 +144,18 @@ public class Cho {
             return  gia;
         }
 
-        gia += 100 * 1200;
+        gia += 100 * 1000;
 
         if(doDaiChang <= 500){
             gia += (doDaiChang - 100) * 900;
             return gia;
         }
 
-        gia += (500 - 100) * 900;
+        gia += (500 - 100) * 600;
 
-        gia += (doDaiChang - 500) * 700;
+        gia += (doDaiChang - 500) * 400;
 
+        gia = gia * toaTau.getLoaiToaTau().getHeSoGia() * loaiCho.getHeSoGiaCho();
         return gia;
     }
 }

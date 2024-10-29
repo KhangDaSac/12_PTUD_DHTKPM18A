@@ -28,6 +28,11 @@ public class ToaTau {
 		this.maToaTau = maToaTau;
 	}
 
+	public ToaTau(String maToaTau, LoaiToaTau loaiToaTau) {
+		this.maToaTau = maToaTau;
+		this.loaiToaTau = loaiToaTau;
+	}
+
 	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
 		this.maToaTau = maToaTau;
 		this.thuTuToa = thuTuToa;

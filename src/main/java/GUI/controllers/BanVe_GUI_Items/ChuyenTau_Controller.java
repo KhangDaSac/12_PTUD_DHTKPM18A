@@ -104,7 +104,6 @@ public class ChuyenTau_Controller implements Initializable {
     private ChuyenTau chuyenTau;
     private ChiTietChuyenTau chiTietChuyenTauDi;
     private ChiTietChuyenTau chiTietChuyenTauDen;
-    private double doDaiChang;
 
     public ChiTietChuyenTau getChiTietChuyenTauDi() {
         return chiTietChuyenTauDi;
@@ -120,14 +119,6 @@ public class ChuyenTau_Controller implements Initializable {
 
     public void setChiTietChuyenTauDen(ChiTietChuyenTau chiTietChuyenTauDen) {
         this.chiTietChuyenTauDen = chiTietChuyenTauDen;
-    }
-
-    public double getDoDaiChang() {
-        return doDaiChang;
-    }
-
-    public void setDoDaiChang(double doDaiChang) {
-        this.doDaiChang = doDaiChang;
     }
 
     private int soThuTu;

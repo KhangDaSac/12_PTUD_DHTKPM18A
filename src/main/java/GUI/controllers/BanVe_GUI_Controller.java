@@ -12,8 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -21,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class BanVe_GUI_Controller implements Initializable {
@@ -392,16 +391,18 @@ public class BanVe_GUI_Controller implements Initializable {
         }
 
         choControllerList.clear();
-
+        ChuyenTau_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon);
+        double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho.fxml"));
             Parent anchorPane = loader.load();
-            Cho_Controller controller = loader.getController();
-            controller.setBanVe_GUI_controller(this);
-            choControllerList.add(controller);
-            controller.setCho(cho);
-            controller.khoiTao();
+            Cho_Controller cho_controller = loader.getController();
+            cho_controller.setBanVe_GUI_controller(this);
+            choControllerList.add(cho_controller);
+            cho_controller.setCho(cho);
+
+            cho_controller.khoiTao(doDaiChang);
 
             if(length == 64){
                 grpDanhSachCho.add(anchorPane, i/4, i%4);
@@ -533,6 +534,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 for(Cho_Controller controller : choControllerList){
                     if(controller.getCho().equals(cho)){
                         controller.setDaThemVaoGio(true);
+                        controller.capNhatTrangThai();
                         break;
                     }
                 }
@@ -564,6 +566,8 @@ public class BanVe_GUI_Controller implements Initializable {
     public void capNhatChiTietVe(Ve ve) throws IOException {
         vboxChiTietVe.getChildren().clear();
         chiTietVeControllerList.clear();
+        if(ve == null)
+            return;
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
             if(chiTietVe.getVe().equals(ve)){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe.fxml"));
@@ -577,6 +581,32 @@ public class BanVe_GUI_Controller implements Initializable {
 
                 vboxChiTietVe.getChildren().add(anchorPane);
             }
+        }
+    }
+
+    public void xoaVe(Ve veXoa){
+        Iterator<ChiTietVe> iterator = danhSachChiTietVe.iterator();
+        while (iterator.hasNext()) {
+            ChiTietVe chiTietVe = iterator.next();
+            if (chiTietVe.getVe().equals(veXoa)) {
+                iterator.remove();
+                for(Cho_Controller controller : choControllerList){
+                    if(controller.getCho().equals(chiTietVe.getCho())){
+                        controller.setDaThemVaoGio(false);
+                    }
+                }
+            }
+        }
+
+
+
+        danhSachVe.remove(veXoa);
+        try {
+            capNhatGioVe();
+            capNhatChiTietVe(null);
+            capNhatCacChoDaChon();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

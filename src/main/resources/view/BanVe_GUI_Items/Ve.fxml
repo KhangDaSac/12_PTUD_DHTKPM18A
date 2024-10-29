@@ -2,6 +2,8 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,7 +24,17 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="250.0" text="SE02181024">
+                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="127.0" text="SE02181024">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="40.0" text="STT:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="58.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -85,7 +97,14 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="anpXoaVe" onMouseClicked="#anpXoaVeOnMouseCliced" prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="23.0" layoutX="14.0" layoutY="52.0">
+                     <image>
+                        <Image url="@../../images/BanVe_GUI/ThungRac.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>
