@@ -8,6 +8,9 @@ public class ToaTau {
 	private int soLuongCho;
 	private LoaiToaTau loaiToaTau;
 	private ChuyenTau chuyenTau;
+	private int soLuongChoDaBanVaDat;
+	private int soLuongChoChangDaiHon;
+	private int soLuongChoTrongTrong;
 	public ToaTau() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,6 +27,27 @@ public class ToaTau {
 		super();
 		this.maToaTau = maToaTau;
 	}
+
+	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.soLuongCho = soLuongCho;
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
+	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.soLuongCho = soLuongCho;
+		this.loaiToaTau = loaiToaTau;
+		this.chuyenTau = chuyenTau;
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	public String getMaToaTau() {
 		return maToaTau;
 	}
@@ -54,6 +78,31 @@ public class ToaTau {
 	public void setChuyenTau(ChuyenTau chuyenTau) {
 		this.chuyenTau = chuyenTau;
 	}
+
+	public int getSoLuongChoDaBanVaDat() {
+		return soLuongChoDaBanVaDat;
+	}
+
+	public void setSoLuongChoDaBanVaDat(int soLuongChoDaBanVaDat) {
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+	}
+
+	public int getSoLuongChoChangDaiHon() {
+		return soLuongChoChangDaiHon;
+	}
+
+	public void setSoLuongChoChangDaiHon(int soLuongChoChangDaiHon) {
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+	}
+
+	public int getSoLuongChoTrongTrong() {
+		return soLuongChoTrongTrong;
+	}
+
+	public void setSoLuongChoTrongTrong(int soLuongChoTrongTrong) {
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(maToaTau);

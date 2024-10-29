@@ -14,7 +14,7 @@ public class GaTau_DAO {
         ArrayList<GaTau> danhSachGaTau = new ArrayList<GaTau>();
         Connection con = ConnectDB.getInstance().getConnection() ;
         try {
-            String query = "select * from GaTau";
+            String query = "select * from GaTau order by tenGaTau";
              Statement statement = con.createStatement();
              ResultSet rs = statement.executeQuery(query);
              while (rs.next()) {

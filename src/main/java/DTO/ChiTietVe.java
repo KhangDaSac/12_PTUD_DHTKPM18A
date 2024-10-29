@@ -5,7 +5,7 @@ import java.util.Objects;
 public class ChiTietVe {
 	private double giaCho;
 	private double soTienGiamGia;
-	private double thnahTien;
+	private double thanhTien;
 	private Ve ve;
 	private KhachHang khachHang;
 	private Cho cho;
@@ -18,12 +18,17 @@ public class ChiTietVe {
 		this.ve = ve;
 	}
 
-	public ChiTietVe(double giaCho, double soTienGiamGia, double thnahTien, Ve ve, KhachHang khachHang, Cho cho) {
+	public ChiTietVe(double giaCho, double soTienGiamGia, double thanhTien, Ve ve, KhachHang khachHang, Cho cho) {
 		this.giaCho = giaCho;
 		this.soTienGiamGia = soTienGiamGia;
-		this.thnahTien = thnahTien;
+		this.thanhTien = thanhTien;
 		this.ve = ve;
 		this.khachHang = khachHang;
+		this.cho = cho;
+	}
+
+	public ChiTietVe(Ve ve, Cho cho) {
+		this.ve = ve;
 		this.cho = cho;
 	}
 
@@ -43,12 +48,12 @@ public class ChiTietVe {
 		this.soTienGiamGia = soTienGiamGia;
 	}
 
-	public double getThnahTien() {
-		return thnahTien;
+	public double getThanhTien() {
+		return thanhTien;
 	}
 
-	public void setThnahTien(double thnahTien) {
-		this.thnahTien = thnahTien;
+	public void setThanhTien(double thanhTien) {
+		this.thanhTien = thanhTien;
 	}
 
 	public Ve getVe() {
@@ -93,7 +98,7 @@ public class ChiTietVe {
 		return "ChiTietVe{" +
 				"giaCho=" + giaCho +
 				", soTienGiamGia=" + soTienGiamGia +
-				", thnahTien=" + thnahTien +
+				", thnahTien=" + thanhTien +
 				", ve=" + ve +
 				", khachHang=" + khachHang +
 				", cho=" + cho +

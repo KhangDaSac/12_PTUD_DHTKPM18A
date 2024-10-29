@@ -54,21 +54,11 @@
     -fx-background-color: #e8e8e8;
 }
 
-
-
-.cho .jfx-button{
-    -fx-alignment: center;
-    -fx-text-fill: #fff;
-    -fx-font-weight: 700;
-    -fx-background-radius: 5px;
-    -fx-background-color: #999999;
-    -fx-font-size: 13;
-    -fx-effect: none;
-}
-
 .danhSachCho{
     -fx-border-color: #000;
     -fx-border-radius: 5px;
+    -fx-border-width: 0.5px;
+
 }
 
 .buttonOption{
@@ -77,4 +67,6 @@
     -fx-font-size: 16;
     -fx-text-fill: #fff;
 }
+
+
 

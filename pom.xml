@@ -136,31 +136,43 @@
             <artifactId>fontawesomefx-fontawesome</artifactId>
             <version>4.7.0-9.1.2</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.jfoenix</groupId>
-            <artifactId>jfoenix</artifactId>
-            <version>9.0.10</version> <!-- hoặc phiên bản mới hơn nếu cần -->
-        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
             <version>23</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.2.3</version> <!-- Kiểm tra và dùng phiên bản mới nhất -->
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>19.8.0.0</version>
         </dependency>
+
+        <!-- Dependency for Batik SVG DOM -->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.2</version> <!-- Sử dụng phiên bản mới nhất tại thời điểm hiện tại -->
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-svg-dom</artifactId>
+            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
         </dependency>
+
+        <!-- Dependency for Batik Swing -->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.17.2</version>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-swing</artifactId>
+            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
+        </dependency>
+
+        <!-- Dependency for Batik Anim -->
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-anim</artifactId>
+            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
+        </dependency>
+
+        <!-- Dependency for Batik XML -->
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-xml</artifactId>
+            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
         </dependency>
     </dependencies>
 

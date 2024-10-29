@@ -1,6 +1,5 @@
 module GUI.applications {
     requires javafx.fxml;
-
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -11,14 +10,16 @@ module GUI.applications {
     requires javafaker;
     requires org.jsoup;
     requires com.jfoenix;
+    requires javafx.swing;
+    requires batik.swing;
+    requires batik.anim;
+    requires batik.dom;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
-    opens GUI.controllers to javafx.fxml, javafx.base;
+    opens GUI.controllers to javafx.fxml;
+    exports DataGeneration;
     exports GUI.controllers.BanVe_GUI_Items;
     opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
-    requires javafx.base;
-    requires org.apache.poi.ooxml;
     opens DTO to javafx.base;
-
 }
