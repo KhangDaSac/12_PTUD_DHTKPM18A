@@ -11,8 +11,14 @@ module hellloooo.demo {
     requires javafaker;
     requires org.jsoup;
     requires com.jfoenix;
+    requires eu.hansolo.toolbox;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
     opens GUI.controllers to javafx.fxml;
+    requires javafx.controls;
+    requires javafx.graphics;
+    requires javafx.base;
+
+    opens DTO to javafx.base;
 }

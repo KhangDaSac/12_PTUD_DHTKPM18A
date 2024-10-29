@@ -62,6 +62,14 @@ public class Main_Controller {
 
     @FXML
     private Label lblTieuDeTrang;
+    @FXML
+    void btnQuanLiHoaDonOnAction(ActionEvent event) {
+        try {
+            chuyenTrang("/view/HoaDon_GUI.fxml");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     void btnQuanLyVeOnAction(ActionEvent event) {

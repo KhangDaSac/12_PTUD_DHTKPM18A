@@ -1,7 +1,6 @@
 package DTO;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class HoaDon {
@@ -12,7 +11,7 @@ public class HoaDon {
 	private double tongTienKhachHangTra ;
 	private TrangThaiHoaDon trangThaiHoaDon ;
 	private LoaiHoaDon loaiHoaDon;
-	private NhanVien nhanVien;
+	private CaLamViec caLamViec;
 	private KhachHang khachHang;
 	public HoaDon() {
 		super();
@@ -23,8 +22,7 @@ public class HoaDon {
 		this.maHoaDon = maHoaDon;
 	}
 
-	public HoaDon(NhanVien nhanVien, String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, double tongTienKhachHangTra, TrangThaiHoaDon trangThaiHoaDon, LoaiHoaDon loaiHoaDon, KhachHang khachHang) {
-		this.nhanVien = nhanVien;
+	public HoaDon(String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, double tongTienKhachHangTra, TrangThaiHoaDon trangThaiHoaDon, LoaiHoaDon loaiHoaDon, CaLamViec caLamViec, KhachHang khachHang) {
 		this.maHoaDon = maHoaDon;
 		this.thoiGianLap = thoiGianLap;
 		this.tongTien = tongTien;
@@ -32,6 +30,7 @@ public class HoaDon {
 		this.tongTienKhachHangTra = tongTienKhachHangTra;
 		this.trangThaiHoaDon = trangThaiHoaDon;
 		this.loaiHoaDon = loaiHoaDon;
+		this.caLamViec = caLamViec;
 		this.khachHang = khachHang;
 	}
 
@@ -91,12 +90,12 @@ public class HoaDon {
 		this.loaiHoaDon = loaiHoaDon;
 	}
 
-	public NhanVien getNhanVien() {
-		return nhanVien;
+	public CaLamViec getCaLamViec() {
+		return caLamViec;
 	}
 
-	public void setNhanVien(NhanVien nhanVien) {
-		this.nhanVien = nhanVien;
+	public void setCaLamViec(CaLamViec caLamViec) {
+		this.caLamViec = caLamViec;
 	}
 
 	public KhachHang getKhachHang() {
@@ -130,8 +129,10 @@ public class HoaDon {
 				", tongTienKhachHangTra=" + tongTienKhachHangTra +
 				", trangThaiHoaDon=" + trangThaiHoaDon +
 				", loaiHoaDon=" + loaiHoaDon +
-				", nhanVien=" + nhanVien +
+				", caLamViec=" + caLamViec +
 				", khachHang=" + khachHang +
 				'}';
 	}
+
+
 }
