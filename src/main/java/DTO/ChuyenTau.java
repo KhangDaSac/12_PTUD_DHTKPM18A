@@ -9,8 +9,6 @@ public class ChuyenTau {
 	private String maChuyenTau;
 	private TuyenTau tuyenTau;
 	private int soLuongCho;
-	private LocalDateTime thoiGianDi;
-	private LocalDateTime thoiGianDen;
 	private int soLuongChoDaBanVaDat;
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
@@ -46,21 +44,6 @@ public class ChuyenTau {
 		this.soLuongCho = soLuongCho;
 	}
 
-	public LocalDateTime getThoiGianDi() {
-		return thoiGianDi;
-	}
-
-	public void setThoiGianDi(LocalDateTime thoiGianDi) {
-		this.thoiGianDi = thoiGianDi;
-	}
-
-	public LocalDateTime getThoiGianDen() {
-		return thoiGianDen;
-	}
-
-	public void setThoiGianDen(LocalDateTime thoiGianDen) {
-		this.thoiGianDen = thoiGianDen;
-	}
 
 	public int getSoLuongChoDaBanVaDat() {
 		return soLuongChoDaBanVaDat;
@@ -99,13 +82,6 @@ public class ChuyenTau {
 		this.soLuongCho = soLuongCho;
 	}
 
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen) {
-		this.maChuyenTau = maChuyenTau;
-		this.tuyenTau = tuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.thoiGianDi = thoiGianDi;
-		this.thoiGianDen = thoiGianDen;
-	}
 
 	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho) {
 		this.maChuyenTau = maChuyenTau;
@@ -113,29 +89,10 @@ public class ChuyenTau {
 		this.soLuongCho = soLuongCho;
 	}
 
-	public ChuyenTau(String maChuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen) {
-		this.maChuyenTau = maChuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.thoiGianDi = thoiGianDi;
-		this.thoiGianDen = thoiGianDen;
-	}
 
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
-		this.maChuyenTau = maChuyenTau;
-		this.tuyenTau = tuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.thoiGianDi = thoiGianDi;
-		this.thoiGianDen = thoiGianDen;
-		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
-		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
-		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
-	}
-
-	public ChuyenTau(String maChuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+	public ChuyenTau(String maChuyenTau, int soLuongCho, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
 		this.maChuyenTau = maChuyenTau;
 		this.soLuongCho = soLuongCho;
-		this.thoiGianDi = thoiGianDi;
-		this.thoiGianDen = thoiGianDen;
 		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
 		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;

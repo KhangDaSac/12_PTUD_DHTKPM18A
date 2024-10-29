@@ -15,7 +15,7 @@ public class ChiTietChuyenTau {
 		this.chuyenTau = chuyenTau;
 	}
 
-	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, double soKm, int thuTuGa) {
+	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
 		this.chuyenTau = chuyenTau;
 		this.gaTau = gaTau;
 		this.thoiGianDen = thoiGianDen;
@@ -24,8 +24,7 @@ public class ChiTietChuyenTau {
 		this.thuTuGa = thuTuGa;
 	}
 
-	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
-	}
+
 
 	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau) {
 		this.chuyenTau = chuyenTau;
