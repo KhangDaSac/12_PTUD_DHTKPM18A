@@ -12,8 +12,7 @@ module GUI.applications {
     requires com.jfoenix;
     requires javafx.swing;
     requires batik.swing;
-    requires batik.anim;
-    requires batik.dom;
+    requires org.apache.poi.ooxml;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
