@@ -260,7 +260,16 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
             maLoai = "TE";
             giamGia= 0.25;
         }
-        kh.setMaKhachHang(txtMaKH.getText());
+
+        String kHcuoi = listKH.getLast().getMaKhachHang();
+        if (kHcuoi == null || !kHcuoi.startsWith("KH2000")) {
+            kHcuoi= "KH20000001";
+        }
+        String numberPart = kHcuoi.substring(6);
+        int number = Integer.parseInt(numberPart);
+        number++;
+        System.out.println("KH2000"+number);
+        kh.setMaKhachHang(String.format("KH2000%04d",number));
         kh.setCCCD(txtCCCD_KH.getText());
         kh.setTenKhachHang(txtTenKH.getText());
         kh.setSoDienThoai(txtSDT_KH.getText());

@@ -67,6 +67,7 @@ public class Main_Controller {
     void btnQuanLyVeOnAction(ActionEvent event) {
         try {
             chuyenTrang("/view/BanVe_GUI.fxml");
+            lblTieuDeTrang.setText("Quản lý vé");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +77,7 @@ public class Main_Controller {
     void chuyenTrangChu(ActionEvent event) {
         try {
             chuyenTrang("/view/TrangChu_GUI.fxml");
+            lblTieuDeTrang.setText("Trang chủ");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -85,6 +87,7 @@ public class Main_Controller {
     void btnQuanLyKhachHangOnAction(ActionEvent event) {
         try {
             chuyenTrang("/view/QuanLyKhachHang_GUI.fxml");
+            lblTieuDeTrang.setText("Quản lý khách hàng");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
