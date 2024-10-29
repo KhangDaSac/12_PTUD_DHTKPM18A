@@ -549,7 +549,9 @@ public class BanVe_GUI_Controller implements Initializable {
     public void capNhatGioVe() throws IOException {
         vboxGioVe.getChildren().clear();
         veControllerList.clear();
-        for(Ve ve : danhSachVe){
+        int length = danhSachVe.size();
+        for(int i = 0; i < length; i++){
+            Ve ve = danhSachVe.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Ve.fxml"));
             Parent anchorPane = loader.load();
             Ve_Controller controller = loader.getController();
@@ -557,7 +559,11 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setBanVe_GUI_Controller(this);
 
             controller.setVe(ve);
+            controller.setSoThuTu(i);
             controller.khoiTao();
+            if(i == 0){
+                controller.chonVe();
+            }
 
             vboxGioVe.getChildren().add(anchorPane);
         }

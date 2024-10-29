@@ -42,6 +42,16 @@ public class Ve_Controller implements Initializable {
 
     private Ve ve;
 
+    private int soThuTu;
+
+    public int getSoThuTu() {
+        return soThuTu;
+    }
+
+    public void setSoThuTu(int soThuTu) {
+        this.soThuTu = soThuTu;
+    }
+
     private BanVe_GUI_Controller banVe_GUI_Controller;
 
     public Ve getVe() {
@@ -62,13 +72,7 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
-        try {
-            banVe_GUI_Controller.capNhatChiTietVe(ve);
-            banVe_GUI_Controller.boChonTatCaVe();
-            chonVe();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        chonVe();
     }
 
     @FXML
@@ -86,16 +90,24 @@ public class Ve_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
+        lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
     }
 
     public void chonVe(){
-        anpVe.getStyleClass().add("veDangChon");
-        anpVe.getStyleClass().removeAll("veKhongChon");
+        try {
+            banVe_GUI_Controller.capNhatChiTietVe(ve);
+            banVe_GUI_Controller.boChonTatCaVe();
+            anpVe.getStyleClass().add("veDangChon");
+            anpVe.getStyleClass().removeAll("veKhongChon");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void khongChonVe(){
         anpVe.getStyleClass().removeAll("veDangChon");
         anpVe.getStyleClass().add("veKhongChon");
     }
+
 }
