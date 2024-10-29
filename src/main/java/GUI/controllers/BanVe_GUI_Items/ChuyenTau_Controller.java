@@ -1,5 +1,6 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.ChiTietChuyenTau;
 import DTO.ChuyenTau;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
@@ -101,7 +102,33 @@ public class ChuyenTau_Controller implements Initializable {
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
     private ChuyenTau chuyenTau;
+    private ChiTietChuyenTau chiTietChuyenTauDi;
+    private ChiTietChuyenTau chiTietChuyenTauDen;
+    private double doDaiChang;
 
+    public ChiTietChuyenTau getChiTietChuyenTauDi() {
+        return chiTietChuyenTauDi;
+    }
+
+    public void setChiTietChuyenTauDi(ChiTietChuyenTau chiTietChuyenTauDi) {
+        this.chiTietChuyenTauDi = chiTietChuyenTauDi;
+    }
+
+    public ChiTietChuyenTau getChiTietChuyenTauDen() {
+        return chiTietChuyenTauDen;
+    }
+
+    public void setChiTietChuyenTauDen(ChiTietChuyenTau chiTietChuyenTauDen) {
+        this.chiTietChuyenTauDen = chiTietChuyenTauDen;
+    }
+
+    public double getDoDaiChang() {
+        return doDaiChang;
+    }
+
+    public void setDoDaiChang(double doDaiChang) {
+        this.doDaiChang = doDaiChang;
+    }
 
     private int soThuTu;
 
@@ -124,11 +151,7 @@ public class ChuyenTau_Controller implements Initializable {
 
     @FXML
     void anpChuyenTauOnMouseClicked(MouseEvent event) {
-        banVe_GUI_Controller.setChuyenTauDangChon(soThuTu);
-        banVe_GUI_Controller.timDanhSachToaTau(lblMaChuyenTau.getText());
-        banVe_GUI_Controller.boChonTatCaChuyenTau();
-        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
-        imvChuyenTau.setImage(image);
+        chonChuyenTau();
     }
 
     public void chinhMauKhongChon(){
@@ -152,10 +175,19 @@ public class ChuyenTau_Controller implements Initializable {
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
         }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
-        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
-        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
+        System.out.println(chiTietChuyenTauDi.getThoiGianDi());
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
+        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
         lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
         lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
+    }
+
+    public void chonChuyenTau(){
+        banVe_GUI_Controller.setChuyenTauDangChon(soThuTu);
+        banVe_GUI_Controller.timDanhSachToaTau(lblMaChuyenTau.getText());
+        banVe_GUI_Controller.boChonTatCaChuyenTau();
+        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
+        imvChuyenTau.setImage(image);
     }
 }

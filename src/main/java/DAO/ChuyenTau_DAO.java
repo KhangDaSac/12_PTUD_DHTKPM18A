@@ -79,16 +79,12 @@ public class ChuyenTau_DAO {
             while(rs.next()) {
                 String maChuyenTau =rs.getString("maChuyenTau");
                 int soLuongCho = rs.getInt("soLuongCho");
-                LocalDateTime thoiGianDi = rs.getTimestamp("thoiGianDi").toLocalDateTime();
-                LocalDateTime thoiGianDen = rs.getTimestamp("thoiGianDen").toLocalDateTime();
                 int soLuongChoDaDatVaBan = rs.getInt("soLuongChoDaDatVaBan");
                 int soLuongChoDanhChoChanDaiHon = rs.getInt("soLuongChoDanhChoChanDaiHon");
                 int soLuongChoTrong = rs.getInt("soLuongChoTrong");
                 ChuyenTau chuyenTau = new ChuyenTau(
                         maChuyenTau,
                         soLuongCho,
-                        thoiGianDi,
-                        thoiGianDen,
                         soLuongChoDaDatVaBan,
                         soLuongChoDanhChoChanDaiHon,
                         soLuongChoTrong);

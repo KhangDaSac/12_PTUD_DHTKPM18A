@@ -94,7 +94,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<ChuyenTau_Controller> chuyenTauControllerList = new ArrayList<ChuyenTau_Controller>();
     private ArrayList<ToaTau_Controller> toaTauControllerList = new ArrayList<ToaTau_Controller>();
     private ArrayList<Cho_Controller> choControllerList = new ArrayList<Cho_Controller>();
-    private  ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
+    private ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
     private ArrayList<ChiTietVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_Controller>();
 
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
@@ -290,13 +290,15 @@ public class BanVe_GUI_Controller implements Initializable {
             chuyenTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
             controller.setChuyenTau(chuyenTau);
+            controller.setChiTietChuyenTauDi(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi));
+            controller.setChiTietChuyenTauDen(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen));
             controller.khoiTao();
+            chuyenTauDangChon = 0;
+
             if(chuyenTauDangChon == i){
-                Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
-                controller.getImvChuyenTau().setImage(image);
+                controller.chonChuyenTau();
             }
             controller.setSoThuTu(i);
-
 
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
         }
@@ -306,6 +308,8 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public void hienThiDanhSachToa(ArrayList<ToaTau> toaTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachToaTau.getChildren().clear();
+        anpDanhSachCho.setVisible(false);
+        grpDanhSachCho.setVisible(false);
         toaTauControllerList.clear();
         for(int i = batDau; i < ketThuc; i++){
             ToaTau toaTau = toaTauList.get(i);
@@ -317,10 +321,9 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setToaTau(toaTau);
             controller.khoiTao();
             controller.setSoThuTu(i);
-
+            toaTauDangChon = 0;
             if(toaTauDangChon == i){
-                Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
-                controller.getImvToaTau().setImage(image);
+                controller.chonToaTau();
             }
 
             hboxDanhSachToaTau.getChildren().add(anchorPane);
@@ -510,10 +513,9 @@ public class BanVe_GUI_Controller implements Initializable {
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
-                ChuyenTau chuyenTau = chuyenTauList.get(chuyenTauDangChon);
-                ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(chuyenTau, gaDi);
-                chiTietChuyenTauDi.setThoiGianDi(chuyenTau.getThoiGianDi());
-                ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(chuyenTau, gaDen);
+                ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
+                ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
+                ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
                 String maVeMoi = "";
                 if(danhSachVe.isEmpty()){
                     maVeMoi = QuanLyVe_BUS.taoMaVeMoi();

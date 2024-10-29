@@ -1,9 +1,6 @@
 package BUS;
 
-import DAO.Cho_DAO;
-import DAO.ChuyenTau_DAO;
-import DAO.GaTau_DAO;
-import DAO.ToaTau_DAO;
+import DAO.*;
 import DTO.*;
 
 import java.time.LocalDate;
@@ -43,6 +40,12 @@ public class QuanLyChuyenTau_BUS {
         Cho_DAO cho_DAO = new Cho_DAO();
         ArrayList<Cho> choList = cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
         return choList;
+    }
+
+    public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(ChuyenTau chuyenTau, GaTau gaTau){
+        ChiTietChuyenTau_DAO chiTietChuyenTau_DAO = new ChiTietChuyenTau_DAO();
+        ChiTietChuyenTau chiTietChuyenTau = chiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau.getMaChuyenTau(), gaTau.getMaGaTau());
+        return chiTietChuyenTau;
     }
 
 

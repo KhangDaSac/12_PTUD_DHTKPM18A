@@ -63,11 +63,7 @@ public class ToaTau_Controller {
 
     @FXML
     void anpToaTauOnMousrClicked(MouseEvent event) {
-        banVe_GUI_Controller.timDanhSachCho(toaTau.getMaToaTau());
-        banVe_GUI_Controller.setToaTauDangChon(soThuTu);
-        banVe_GUI_Controller.boChonTatCaToaTau();
-        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
-        imvToaTau.setImage(image);
+        chonToaTau();
     }
 
     public void khoiTao(){
@@ -85,5 +81,13 @@ public class ToaTau_Controller {
         }else{
             imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-red.png")));
         }
+    }
+
+    public void chonToaTau(){
+        banVe_GUI_Controller.timDanhSachCho(toaTau.getMaToaTau());
+        banVe_GUI_Controller.setToaTauDangChon(soThuTu);
+        banVe_GUI_Controller.boChonTatCaToaTau();
+        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
+        imvToaTau.setImage(image);
     }
 }
