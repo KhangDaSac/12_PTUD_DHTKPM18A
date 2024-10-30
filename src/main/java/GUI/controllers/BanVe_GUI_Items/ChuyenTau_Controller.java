@@ -166,7 +166,6 @@ public class ChuyenTau_Controller implements Initializable {
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
         }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
-        System.out.println(chiTietChuyenTauDi.getThoiGianDi());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
         lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
         lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));

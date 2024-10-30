@@ -136,9 +136,9 @@ public class Ve {
 	}
 
 	public double tinhGiamGiaVeTapThe(){
-		if(loaiVe == LoaiVe.VECANHAN){
+		if(loaiVe == LoaiVe.VETAPTHE){
 			giamGiaVeTapThe = tongTienVe * 0.1;
-		}else if(loaiVe == LoaiVe.VETAPTHE){
+		}else if(loaiVe == LoaiVe.VECANHAN){
 			giamGiaVeTapThe = 0;
 		}
 		return giamGiaVeTapThe;

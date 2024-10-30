@@ -241,7 +241,7 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnChonCaToaOnAction(ActionEvent event) {
         for(Cho_Controller controller : choControllerList){
-            if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG){
+            if(controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG && !controller.isDaThemVaoGio()){
                 if(!choChonList.contains(controller.getCho())){
                     choChonList.add(controller.getCho());
                 }
@@ -313,6 +313,22 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList, int batDau, int ketThuc) throws IOException {
         hboxDanhSachChuyenTau.getChildren().clear();
+        hboxDanhSachToaTau.getChildren().clear();
+        anpDanhSachCho.setVisible(false);
+        grpDanhSachCho.setVisible(false);
+        anpChuyenTauSau.setVisible(false);
+        anpChuyenTauTruoc.setVisible(false);
+        anpToaTauSau.setVisible(false);
+        anpToaTauTruoc.setVisible(false);
+        if(chuyenTauList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText("Không tìm thấy chuyến tàu phù hợp");
+            alert.getButtonTypes().setAll(ButtonType.OK);
+            alert.showAndWait();
+
+            return;
+        }
         chuyenTauControllerList.clear();
         for (int i = batDau; i < ketThuc; i++){
             ChuyenTau chuyenTau = chuyenTauList.get(i);
@@ -376,6 +392,7 @@ public class BanVe_GUI_Controller implements Initializable {
         anpDanhSachCho.setVisible(true);
         grpDanhSachCho.setVisible(true);
         grpDanhSachCho.getChildren().clear();
+
         int length = choList.size();
         if(length == 64){
             grpDanhSachCho.getColumnConstraints().clear();
@@ -445,7 +462,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 grpDanhSachCho.add(anchorPane, i/2, i%2);
             }
         }
-
+        choChonList.clear();
         capNhatCacChoDaChon();
     }
 
@@ -461,7 +478,7 @@ public class BanVe_GUI_Controller implements Initializable {
         cmbGaTauDi.getSelectionModel().select(125);
         cmbGaTauDen.getSelectionModel().select(51);
 
-        dapNgayKhoiHanh.setValue(LocalDate.of(2024, 10, 31));
+        dapNgayKhoiHanh.setValue(LocalDate.of(2024, 11, 4));
 
         anpChuyenTauTruoc.setVisible(false);
         anpChuyenTauSau.setVisible(false);
@@ -586,7 +603,7 @@ public class BanVe_GUI_Controller implements Initializable {
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
             if(choChonList.size() < 5){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION );
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Thông báo");
                 alert.setHeaderText("Vé tập thể phải từ 5 chỗ trở lên");
                 alert.getButtonTypes().setAll(ButtonType.OK);
@@ -730,7 +747,7 @@ public class BanVe_GUI_Controller implements Initializable {
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
         for (Ve ve: danhSachVe){
-            tongTienHoaDon += ve.getTongTienVe();
+            tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }
         txtTongTien.setText(CurrencyFormat.currencyFormat(tongTienHoaDon));
         return tongTienHoaDon;

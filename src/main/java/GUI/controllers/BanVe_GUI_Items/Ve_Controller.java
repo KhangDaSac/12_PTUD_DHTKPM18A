@@ -111,6 +111,10 @@ public class Ve_Controller implements Initializable {
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
 
+
+        lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
+        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
+
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
             vboxDanhSachThoiTin.getChildren().remove(hboxGiamGiaVeTapThe);
