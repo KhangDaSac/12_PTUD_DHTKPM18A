@@ -172,7 +172,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="231.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnQuanLyNhanVien" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyChuyenTauOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý nhân viên">
+                        <Button fx:id="btnQuanLyNhanVien" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyNhanVienOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý nhân viên">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>
@@ -204,7 +204,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="341.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnThongTinUngDung" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Thông tin ứng dụng">
+                        <Button fx:id="btnThongTinUngDung" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnThongTinUngDungOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Thông tin ứng dụng">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="25.0">
                                  <image>

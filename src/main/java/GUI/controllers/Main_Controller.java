@@ -263,4 +263,13 @@ public class Main_Controller {
 
     }
 
+    @FXML
+    void btnQuanLyNhanVienOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnThongTinUngDungOnAction(ActionEvent event) {
+
+    }
 }
