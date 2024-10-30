@@ -10,9 +10,6 @@ module GUI.applications {
     requires javafaker;
     requires org.jsoup;
     requires com.jfoenix;
-    requires javafx.swing;
-    requires batik.swing;
-    requires org.apache.poi.ooxml;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
@@ -21,4 +18,10 @@ module GUI.applications {
     exports GUI.controllers.BanVe_GUI_Items;
     opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
     opens DTO to javafx.base;
+    requires javafx.controls;
+    requires javafx.graphics;
+    requires javafx.base;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+
 }

@@ -1,9 +1,6 @@
 package DAO;
 
-import DTO.Cho;
-import DTO.LoaiCho;
-import DTO.ToaTau;
-import DTO.TrangThaiCho;
+import DTO.*;
 import connectDB.ConnectDB;
 
 import java.sql.Connection;
@@ -27,5 +24,18 @@ public class Ve_DAO {
             e.printStackTrace();
         }
         return maVeLonNhat;
+    }
+
+    public Ve getVeTheoMa(String maVe){
+        Ve veTim = new Ve();
+        Connection con = ConnectDB.getInstance().getConnection();
+        try{
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return veTim;
     }
 }

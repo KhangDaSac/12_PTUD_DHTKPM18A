@@ -121,7 +121,6 @@ public class BanVe_GUI_Controller implements Initializable {
         this.toaTauDangChon = toaTauDangChon;
     }
 
-
     private int trangChuyenTauHienTai;
 
     private int trangToaTauHienTai;
