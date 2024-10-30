@@ -10,9 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -586,9 +584,15 @@ public class BanVe_GUI_Controller implements Initializable {
                 danhSachChiTietVe.add(chiTietVe);
 
             }
-            tinhTongTienHoaDon();
-            choChonList.clear();
         }else if(loaiVe == LoaiVe.VETAPTHE){
+            if(choChonList.size() < 5){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION );
+                alert.setTitle("Thông báo");
+                alert.setHeaderText("Vé tập thể phải từ 5 chỗ trở lên");
+                alert.getButtonTypes().setAll(ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
             ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
             ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
             ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
@@ -620,8 +624,9 @@ public class BanVe_GUI_Controller implements Initializable {
                 danhSachChiTietVe.add(chiTietVe);
             }
             danhSachVe.add(ve);
-            choChonList.clear();
         }
+        tinhTongTienHoaDon();
+        choChonList.clear();
 
         capNhatGioVe();
         capNhatCacChoDaChon();
