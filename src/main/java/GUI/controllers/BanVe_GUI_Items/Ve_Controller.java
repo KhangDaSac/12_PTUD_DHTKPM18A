@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import utils.CurrencyFormat;
 import utils.TimeFormat;
 
 import java.io.IOException;
@@ -90,6 +91,7 @@ public class Ve_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
+        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
     }

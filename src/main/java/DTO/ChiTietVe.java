@@ -104,4 +104,8 @@ public class ChiTietVe {
 				", cho=" + cho +
 				'}';
 	}
+
+	public double tinhThanhTien(){
+		return giaCho - soTienGiamGia;
+	}
 }

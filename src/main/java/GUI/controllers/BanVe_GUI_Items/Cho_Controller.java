@@ -22,6 +22,15 @@ public class Cho_Controller implements Initializable {
     private BanVe_GUI_Controller banVe_GUI_controller;
     private boolean daThemVaoGio;
     private boolean dangChon;
+
+    public boolean isDangChon() {
+        return dangChon;
+    }
+
+    public void setDangChon(boolean dangChon) {
+        this.dangChon = dangChon;
+    }
+
     private Tooltip tooltip;
     String giaCho;
 
@@ -109,11 +118,15 @@ public class Cho_Controller implements Initializable {
     public void chuyenMauDangChon(){
         btnCho.getStyleClass().clear();
         btnCho.getStyleClass().add("choDangChon");
+        dangChon = true;
+        capNhatTrangThai();
     }
 
     public void chuyenMauDaThemVaoGioVe(){
         btnCho.getStyleClass().clear();
         btnCho.getStyleClass().add("choDaThemVaoGioVe");
+        daThemVaoGio = true;
+        capNhatTrangThai();
     }
 
     public void capNhatTrangThai(){
@@ -137,6 +150,13 @@ public class Cho_Controller implements Initializable {
             }
         }
 
-        tooltip.setText(trangThaiCho + "\n" + giaCho);
+        tooltip.setStyle(
+                "-fx-font-size: 16px; " +
+                "-fx-background-color: white; " +
+                "-fx-font-weight: normal; " +
+                "-fx-text-fill: black; "
+        );
+
+        tooltip.setText(cho.getLoaiCho().getTenLoaiCho() + "\n" + trangThaiCho + "\n" + giaCho);
     }
 }

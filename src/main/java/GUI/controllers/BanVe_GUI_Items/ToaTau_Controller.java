@@ -4,9 +4,12 @@ import DTO.ToaTau;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 public class ToaTau_Controller {
 
@@ -15,6 +18,11 @@ public class ToaTau_Controller {
 
     @FXML
     private Label lblThuTuTau;
+
+
+    @FXML
+    private AnchorPane anpToaTau;
+
 
     public Label getLblThuTuTau() {
         return lblThuTuTau;
@@ -33,6 +41,8 @@ public class ToaTau_Controller {
     }
 
     private ToaTau toaTau;
+
+    private Tooltip tooltip;
 
     public ToaTau getToaTau() {
         return toaTau;
@@ -73,6 +83,16 @@ public class ToaTau_Controller {
         }else{
             imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-red.png")));
         }
+
+        tooltip = new Tooltip(toaTau.getLoaiToaTau().getTenLoaiToa());
+        tooltip.setShowDelay(Duration.millis(0)); // Hiển thị ngay lập tức khi hover
+        tooltip.setHideDelay(Duration.millis(0));
+        tooltip.setStyle(
+                "-fx-font-size: 16px; " +
+                "-fx-background-color: white; " +
+                "-fx-text-fill: black; "
+        );
+        Tooltip.install(anpToaTau, tooltip);
     }
 
     public void chinhMauKhongChon(){

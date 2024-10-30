@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import utils.CurrencyFormat;
 
 public class ChiTietVe_Controller {
 
@@ -64,6 +65,9 @@ public class ChiTietVe_Controller {
     public void khoiTao(){
         lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
         lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
+        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
+        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
     }
 
 }

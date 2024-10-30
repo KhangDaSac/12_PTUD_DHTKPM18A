@@ -12,9 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import utils.CurrencyFormat;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -51,6 +54,9 @@ public class BanVe_GUI_Controller implements Initializable {
     private JFXButton btnTimChuyenTau;
 
     @FXML
+    private JFXButton btnXoaTatCaVeTrongGio;
+
+    @FXML
     private ComboBox<String> cmbGaTauDen;
 
     @FXML
@@ -79,6 +85,10 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     private JFXButton btnThemVe;
+
+    @FXML
+    private TextField txtTongTien;
+
 
     private GaTau gaDi;
 
@@ -182,8 +192,10 @@ public class BanVe_GUI_Controller implements Initializable {
                 int batDau = Math.max(9 * (trangToaTauHienTai - 1), 0);
                 int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
                 hienThiDanhSachToa(toaTauList, batDau, ketThuc);
+                toaTauControllerList.get(0).chonToaTau();
                 anpToaTauSau.setVisible(lengthList > ketThuc);
                 anpToaTauTruoc.setVisible(batDau > 0);
+                capNhatCacChoDaChon();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -199,8 +211,10 @@ public class BanVe_GUI_Controller implements Initializable {
                 int batDau = Math.max(9*(trangToaTauHienTai - 1), 0);
                 int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
                 hienThiDanhSachToa(toaTauList, batDau, ketThuc);
+                toaTauControllerList.get(0).chonToaTau();
                 anpToaTauSau.setVisible(lengthList > ketThuc);
                 anpToaTauTruoc.setVisible(batDau > 0);
+                capNhatCacChoDaChon();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -234,6 +248,11 @@ public class BanVe_GUI_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    void btnXoaTatCaVeTrongGioOnAction(ActionEvent event) {
+        xoaTatCaVe();
     }
 
     public void timDanhSachChuyenTau(){
@@ -449,6 +468,8 @@ public class BanVe_GUI_Controller implements Initializable {
         vboxGioVe.getChildren().clear();
         vboxChiTietVe.getChildren().clear();
 
+        txtTongTien.setText(CurrencyFormat.currencyFormat(0));
+
 
         cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
             cmbGaTauDi.getItems().clear();
@@ -493,6 +514,7 @@ public class BanVe_GUI_Controller implements Initializable {
     public void capNhatCacChoDaChon(){
         for (Cho_Controller controller : choControllerList) {
             controller.chuyenMauMacDinh();
+            controller.capNhatTrangThai();
 
             boolean daThemVaoGioVe = danhSachChiTietVe.stream().anyMatch(chiTietVe -> chiTietVe.getCho().equals(controller.getCho()));
 
@@ -528,17 +550,26 @@ public class BanVe_GUI_Controller implements Initializable {
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
-                danhSachChiTietVe.add(chiTietVe);
-                danhSachVe.add(ve);
+
+
 
                 for(Cho_Controller controller : choControllerList){
                     if(controller.getCho().equals(cho)){
                         controller.setDaThemVaoGio(true);
                         controller.capNhatTrangThai();
+                        chiTietVe.setGiaCho(controller.getCho().getGiaCho());
+                        chiTietVe.setSoTienGiamGia(0);
+                        chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
                         break;
                     }
                 }
+
+                ve.setTongTienVe(chiTietVe.getThanhTien());
+                danhSachVe.add(ve);
+                danhSachChiTietVe.add(chiTietVe);
+
             }
+            tinhTongTienHoaDon();
             choChonList.clear();
         }
 
@@ -599,20 +630,54 @@ public class BanVe_GUI_Controller implements Initializable {
                 for(Cho_Controller controller : choControllerList){
                     if(controller.getCho().equals(chiTietVe.getCho())){
                         controller.setDaThemVaoGio(false);
+                        controller.setDangChon(false);
                     }
                 }
             }
         }
-
-
 
         danhSachVe.remove(veXoa);
         try {
             capNhatGioVe();
             capNhatChiTietVe(null);
             capNhatCacChoDaChon();
+            tinhTongTienHoaDon();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void xoaTatCaVe(){
+        Iterator<ChiTietVe> iteratorChiTietVe = danhSachChiTietVe.iterator();
+        while (iteratorChiTietVe.hasNext()) {
+            ChiTietVe chiTietVe = iteratorChiTietVe.next();
+            iteratorChiTietVe.remove();
+            for(Cho_Controller controller : choControllerList){
+                if(controller.getCho().equals(chiTietVe.getCho())){
+                    controller.setDaThemVaoGio(false);
+                    controller.setDangChon(false);
+                }
+            }
+        }
+
+        danhSachVe.clear();
+
+        try {
+            capNhatGioVe();
+            capNhatCacChoDaChon();
+            capNhatChiTietVe(null);
+            tinhTongTienHoaDon();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public double tinhTongTienHoaDon(){
+        double tongTienHoaDon = 0;
+        for (Ve ve: danhSachVe){
+            tongTienHoaDon += ve.getTongTienVe();
+        }
+        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTienHoaDon));
+        return tongTienHoaDon;
     }
 }
