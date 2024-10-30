@@ -34,8 +34,6 @@ public class Ve_DAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
         return veTim;
     }
 }
