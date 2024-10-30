@@ -89,6 +89,15 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     private TextField txtTongTien;
 
+    private Main_Controller main_Controller;
+
+    public Main_Controller getMain_Controller() {
+        return main_Controller;
+    }
+
+    public void setMain_Controller(Main_Controller main_Controller) {
+        this.main_Controller = main_Controller;
+    }
 
     private GaTau gaDi;
 
@@ -157,6 +166,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 int batDau = Math.max(4*(trangChuyenTauHienTai - 1), 0);
                 int ketThuc = Math.min(4 * trangChuyenTauHienTai, lengthList);
                 hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
+                chuyenTauControllerList.get(0).chonChuyenTau();
                 anpChuyenTauSau.setVisible(lengthList > ketThuc);
                 anpChuyenTauTruoc.setVisible(batDau > 0);
             } catch (IOException e) {
@@ -174,6 +184,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 int batDau = Math.max(4*(trangChuyenTauHienTai - 1), 0);
                 int ketThuc = Math.min(4 * trangChuyenTauHienTai, lengthList);
                 hienThiDanhSachChuyenTau(chuyenTauList, batDau, ketThuc);
+                chuyenTauControllerList.get(0).chonChuyenTau();
                 anpChuyenTauSau.setVisible(lengthList > ketThuc);
                 anpChuyenTauTruoc.setVisible(batDau > 0);
             } catch (IOException e) {
@@ -253,6 +264,11 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnXoaTatCaVeTrongGioOnAction(ActionEvent event) {
         xoaTatCaVe();
+    }
+
+    @FXML
+    void btnTiepTucOnAction(ActionEvent event) {
+        main_Controller.chuyenTrangThongTinBanVe();
     }
 
     public void timDanhSachChuyenTau(){
@@ -410,7 +426,7 @@ public class BanVe_GUI_Controller implements Initializable {
         }
 
         choControllerList.clear();
-        ChuyenTau_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon);
+        ChuyenTau_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon - 4 * (trangChuyenTauHienTai - 1));
         double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
@@ -571,6 +587,8 @@ public class BanVe_GUI_Controller implements Initializable {
             }
             tinhTongTienHoaDon();
             choChonList.clear();
+        }else if(loaiVe == LoaiVe.VETAPTHE){
+
         }
 
         capNhatGioVe();
