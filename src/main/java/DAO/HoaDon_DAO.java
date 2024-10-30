@@ -6,16 +6,23 @@ import connectDB.ConnectDB;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.sql.Connection;
+
+import static connectDB.ConnectDB.con;
 
 public class HoaDon_DAO {
     public ArrayList<HoaDon> getDanhSachHoaDon() {
-        ArrayList<HoaDon> dsHoaDon= new ArrayList<>();
-        Connection con = ConnectDB.getInstance().getConnection();
-        try{
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
+        try {
+            ConnectDB.getInstance().connect();  // Kết nối trước khi lấy kết nối
+            Connection con = ConnectDB.getConnection();
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
             String query = "SELECT * FROM HoaDon";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 HoaDon hoaDon = new HoaDon();
                 hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
                 hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
@@ -25,14 +32,13 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
+                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
                 dsHoaDon.add(hoaDon);
             }
-
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return dsHoaDon;
     }
 
     public HoaDon getHoaDonTheoMa(String ma){
@@ -53,7 +59,7 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
+                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -61,16 +67,21 @@ public class HoaDon_DAO {
 
         return hoaDon;
     }
-    public HoaDon getHoaDonTheoKhachHang(String ma){
+    public ArrayList<HoaDon> getDSHoaDonTheoCacTieuChi(String maHoaDon,String maKhachHang, String maCaLam, String trangThai, String loaiHoaDon, LocalDateTime thoiGianLap){
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        HoaDon hoaDon = new HoaDon();
         try{
-            String query = "SELECT * FROM HoaDon WHERE maKhachHang = ?";
+            String query = "exec timHoaDonTheoCacTieuChi ?,?,?,?,?,?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,ma);
+            statement.setString(1,maHoaDon);
+            statement.setString(2,maKhachHang);
+            statement.setTimestamp(3, Timestamp.valueOf(thoiGianLap));
+            statement.setString(4,trangThai);
+            statement.setString(5,loaiHoaDon);
+            statement.setString(6,maCaLam);
             ResultSet rs = statement.executeQuery();
-            statement.execute();
             while (rs.next()){
+                HoaDon hoaDon = new HoaDon();
                 hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
                 hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
                 hoaDon.setTongTien(rs.getDouble("tongTien"));
@@ -79,118 +90,13 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
+                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
+                dsHoaDon.add(hoaDon);
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+        return dsHoaDon;
 
-        return hoaDon;
     }
-
-    public HoaDon getHoaDonTheoLoai(String loai){
-        Connection con = ConnectDB.getInstance().getConnection();
-        HoaDon hoaDon = new HoaDon();
-        try{
-            String query = "SELECT * FROM HoaDon WHERE loaiHoaDon = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,loai);
-            ResultSet rs = statement.executeQuery();
-            statement.execute();
-            while (rs.next()){
-                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
-                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-                hoaDon.setTongTien(rs.getDouble("tongTien"));
-                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
-                hoaDon.setTongTienKhachHangTra(rs.getDouble("tongTienKhachHangTra"));
-                hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
-                hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
-                hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return hoaDon;
-    }
-    public HoaDon getHoaDonTheoTrangThai(String trangThai){
-        Connection con = ConnectDB.getInstance().getConnection();
-        HoaDon hoaDon = new HoaDon();
-        try{
-            String query = "SELECT * FROM HoaDon WHERE trangThaiHoaDon = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,trangThai);
-            ResultSet rs = statement.executeQuery();
-            statement.execute();
-            while (rs.next()){
-                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
-                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-                hoaDon.setTongTien(rs.getDouble("tongTien"));
-                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
-                hoaDon.setTongTienKhachHangTra(rs.getDouble("tongTienKhachHangTra"));
-                hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
-                hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
-                hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return hoaDon;
-    }
-    public HoaDon getHoaDonTheoCaLamViec(String maCa){
-        Connection con = ConnectDB.getInstance().getConnection();
-        HoaDon hoaDon = new HoaDon();
-        try{
-            String query = "SELECT * FROM HoaDon WHERE maCaLamViec = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,maCa);
-            ResultSet rs = statement.executeQuery();
-            statement.execute();
-            while (rs.next()){
-                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
-                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-                hoaDon.setTongTien(rs.getDouble("tongTien"));
-                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
-                hoaDon.setTongTienKhachHangTra(rs.getDouble("tongTienKhachHangTra"));
-                hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
-                hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
-                hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return hoaDon;
-    }
-
-    public HoaDon getHoaDonTheoThoiGian(LocalDateTime thoiGian){
-        Connection con = ConnectDB.getInstance().getConnection();
-        HoaDon hoaDon = new HoaDon();
-        try{
-            String query = "SELECT * FROM HoaDon WHERE thoiGianLap = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setTimestamp(1, Timestamp.valueOf(thoiGian));
-            ResultSet rs = statement.executeQuery();
-            statement.execute();
-            while (rs.next()){
-                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
-                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-                hoaDon.setTongTien(rs.getDouble("tongTien"));
-                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
-                hoaDon.setTongTienKhachHangTra(rs.getDouble("tongTienKhachHangTra"));
-                hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
-                hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
-                hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachHang")));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return hoaDon;
-    }
-
 }

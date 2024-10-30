@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import DAO.HoaDon_DAO;
 import DTO.*;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
@@ -18,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class HoaDon_GUI_controller extends Application {
     @FXML
@@ -53,12 +55,9 @@ public class HoaDon_GUI_controller extends Application {
         primaryStage.show();
     }
     public ObservableList<HoaDon> getHoaDonData() {
-        ObservableList<HoaDon> hoaDonData = FXCollections.observableArrayList();
-        hoaDonData.add(new HoaDon("HD001", LocalDateTime.now(), 1000000, 500000, 500000, TrangThaiHoaDon.CHOLAYVE, LoaiHoaDon.HOADONBAN, new CaLamViec("CLV001"), new KhachHang("KH001")));
-        hoaDonData.add(new HoaDon("HD002", LocalDateTime.now(), 2000000, 1000000, 1000000, TrangThaiHoaDon.CHOLAYVE, LoaiHoaDon.HOADONBAN, new CaLamViec("CLV002"), new KhachHang("KH002")));
-        hoaDonData.add(new HoaDon("HD003", LocalDateTime.now(), 3000000, 1500000, 1500000, TrangThaiHoaDon.CHOLAYVE, LoaiHoaDon.HOADONBAN, new CaLamViec("CLV003"), new KhachHang("KH003")));
-        hoaDonData.add(new HoaDon("HD004", LocalDateTime.now(), 4000000, 2000000, 2000000, TrangThaiHoaDon.CHOLAYVE, LoaiHoaDon.HOADONBAN, new CaLamViec("CLV004"), new KhachHang("KH004")));
-        hoaDonData.add(new HoaDon("HD005", LocalDateTime.now(), 5000000, 2500000, 2500000, TrangThaiHoaDon.CHOLAYVE, LoaiHoaDon.HOADONBAN, new CaLamViec("CLV005"), new KhachHang("KH005")));
+        ArrayList<HoaDon> hoaDonList = new ArrayList<>();
+        hoaDonList = new HoaDon_DAO().getDanhSachHoaDon();
+        ObservableList<HoaDon> hoaDonData = FXCollections.observableArrayList(hoaDonList);
         System.out.println("Số lượng hóa đơn: " + hoaDonData.size());
         return hoaDonData;
     }

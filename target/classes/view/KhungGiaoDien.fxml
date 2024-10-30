@@ -119,7 +119,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="65.0" prefHeight="55.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="btnQuanLyHoaDon" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="280.0" onAction="#btnQuanLiHoaDonOnAction" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý hóa đơn">
+                        <Button fx:id="btnQuanLyHoaDon" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLiHoaDonOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý hóa đơn">
                            <graphic>
                               <ImageView fitHeight="31.0" fitWidth="25.0">
                                  <image>

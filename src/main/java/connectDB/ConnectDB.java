@@ -10,9 +10,9 @@ import connectDB.ConnectDB;
 public class ConnectDB {
 	public static Connection con = null;
 	private static ConnectDB instance = new ConnectDB();
-	
+
 	public Connection connect() throws SQLException, ClassNotFoundException{
-		String url = "jdbc:sqlserver://localhost:51010;databaseName=QLBVT";
+		String url = "jdbc:sqlserver://localhost:1433;databaseName=QLBVT;encrypt=false";
 		String user = "sa";
 		String password = "123";
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -33,33 +33,35 @@ public class ConnectDB {
 		}
 	}
 	public static ConnectDB getInstance() {
+		if(instance == null)
+			instance = new ConnectDB();
 		return instance;
 	}
 	public static Connection getConnection() {
 		return con;
 	}
 	public ResultSet excuteQueryRead(String sql) {
-        try {
-            return con.createStatement().executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		try {
+			return con.createStatement().executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return null;
-    }
-    public void commitQuery() throws Exception {
-        try {
-            con.commit();
-        } catch (SQLException e) {
-            throw new Exception("Lỗi commit query");
-        }
-    }
-    public void rollbackQuery() throws Exception {
-        try {
-            con.rollback();
-        } catch (SQLException e) {
-            throw new Exception("Lỗi rollback query");
-        }
-    }
-   
+		return null;
+	}
+	public void commitQuery() throws Exception {
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			throw new Exception("Lỗi commit query");
+		}
+	}
+	public void rollbackQuery() throws Exception {
+		try {
+			con.rollback();
+		} catch (SQLException e) {
+			throw new Exception("Lỗi rollback query");
+		}
+	}
+
 }

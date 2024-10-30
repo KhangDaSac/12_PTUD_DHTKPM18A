@@ -19,6 +19,7 @@ module hellloooo.demo {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.base;
+    requires com.microsoft.sqlserver.jdbc;
 
     opens DTO to javafx.base;
 }
