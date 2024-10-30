@@ -20,9 +20,8 @@ public class ChuyenTau_DAO {
             while(rs.next()) {
                 String maChuyenTau =rs.getString(1);
                 TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-                LocalDateTime ngayKhoiHanh = rs.getTimestamp(3).toLocalDateTime() ;
-                int soLuongCho =  rs.getInt(4);
-             ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho,ngayKhoiHanh);
+                int soLuongCho =  rs.getInt(3);
+             ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
                 dsChuyenTau.add(chuyenTau);
             }
         }catch (Exception e) {
@@ -43,9 +42,8 @@ public class ChuyenTau_DAO {
             while (rs.next()) {
                 String maChuyenTau = rs.getString(1);
                 TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-                LocalDateTime ngayKhoiHanh = rs.getTimestamp(3).toLocalDateTime();
                 int soLuongCho = rs.getInt(4);
-                chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho, ngayKhoiHanh);
+                chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
             }
 
         } catch (Exception e) {
@@ -67,27 +65,30 @@ public class ChuyenTau_DAO {
         }
     }
 
-    public ArrayList<ChuyenTau> getDanhSachChuyenTau(String maGaDi, String maGaDen, LocalDate ngayDi) {
-        ArrayList<ChuyenTau> chuyenTauList = new ArrayList<>();
+    public ArrayList<ChuyenTau> getDanhSachChuyenTau(String maGaDi, String maGaDen, LocalDate ngayDi){
+        ArrayList<ChuyenTau> dsChuyenTau= new ArrayList<ChuyenTau>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query = "select * from ChuyenTau where maGaDi = ? and maGaDen = ? and ngayKhoiHanh = ?";
+            String query ="exec timDanhSachChuyenTau ?, ?, ?, ?, ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maGaDi);
             statement.setString(2, maGaDen);
-            statement.setDate(3, Date.valueOf(ngayDi));
+            statement.setInt(3, ngayDi.getDayOfMonth());
+            statement.setInt(4, ngayDi.getMonthValue());
+            statement.setInt(5, ngayDi.getYear());
             ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String maChuyenTau = rs.getString(1);
-                TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-                LocalDateTime ngayKhoiHanh = rs.getTimestamp(3).toLocalDateTime();
-                int soLuongCho = rs.getInt(4);
-                ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho, ngayKhoiHanh);
-                chuyenTauList.add(chuyenTau);
+            while(rs.next()) {
+                String maChuyenTau =rs.getString("maChuyenTau");
+                int soLuongCho = rs.getInt("soLuongCho");
+                LocalDateTime thoiGianDi = rs.getTimestamp("thoiGianDi").toLocalDateTime();
+                LocalDateTime thoiGianDen = rs.getTimestamp("thoiGianDen").toLocalDateTime();
+                ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, soLuongCho, thoiGianDi, thoiGianDen);
+                dsChuyenTau.add(chuyenTau);
             }
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
-        return chuyenTauList;
+        return dsChuyenTau;
     }
+
 }

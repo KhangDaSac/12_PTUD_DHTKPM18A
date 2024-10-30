@@ -21,6 +21,10 @@
     -fx-background-color: transparent;
 }
 
+.editable-combo-box  *{
+    -fx-font-size: 16px;
+}
+
 .group-editable-combo-box{
     -fx-background-color: #fff;
     -fx-background-radius: 7px;

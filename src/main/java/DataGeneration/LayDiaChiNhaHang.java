@@ -63,34 +63,52 @@ public class LayDiaChiNhaHang {
         // Phát sinh dữ liệu
 
 
+        int[] arr = new int[5];
 
-
-
+        Random random = new Random();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (int i = 0; i < 300; i++) {
             String ten = faker.name().fullName();
             String diaChi = listDiaChi.get(i);
             String soDienThoai = faker.phoneNumber().phoneNumber();
-            LocalDate birthDate = faker.date().birthday(10, 65).toInstant()
+            int ran = random.nextInt(5);
+            String maKhachHang = "KH" + (20 + ran) + String.format("%06d",arr[ran] + 1);
+            arr[ran]++;
+            LocalDate birthDate = faker.date().birthday(4, 65).toInstant()
                     .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
             int tuoi = calculateAge(birthDate);
             String maLoaiKH = null;
-            if(tuoi <= 10){
+            if(tuoi <= 6){
                 maLoaiKH = "TE";
             }else if(tuoi <= 22){
-                maLoaiKH = "HS";
+                double randomNum = random.nextDouble();
+                if(randomNum < 0.92){
+                    maLoaiKH = "HS";
+                }else{
+                    maLoaiKH = "TT";
+                }
             }else if (tuoi >= 60){
-
+                maLoaiKH = "CT";
+            }else{
+                double randomNum = random.nextDouble();
+                if(randomNum < 0.08){
+                    maLoaiKH = "TB";
+                }else{
+                    maLoaiKH = "TT";
+                }
             }
 
             // In dữ liệu
-            System.out.println("CCCD: " + danhSachCCCD.get(i));
-            System.out.println("Tên: " + ten);
-            System.out.println("Địa chỉ: " + diaChi);
-            System.out.println("Số điện thoại: " + soDienThoai.substring(0, 10).replace(" ", ""));
-            System.out.println("----------------------");
-            System.out.println("insert into KhachHang values (" + ")");
+//            System.out.println("Mã khách hàng: " + maKhachHang);
+//            System.out.println("CCCD: " + danhSachCCCD.get(i));
+//            System.out.println("Tên: " + ten);
+//            System.out.println("Địa chỉ: " + diaChi);
+//            System.out.println("Số điện thoại: " + soDienThoai.substring(0, 10));
+//            System.out.println("Ngày sinh: " + birthDate.toString());
+//            System.out.println("Loại khách hàng: " + maLoaiKH);
+            System.out.println("insert into KhachHang values ('" + maKhachHang+ "', '" + danhSachCCCD.get(i) +"', '" + ten + "', '" + birthDate.toString() +"', '" + soDienThoai.replaceAll(" ", "").substring(0, 10) + "', '" + maLoaiKH + "')");
+
         }
     }
     public static List<String> generateUniqueCCCD(int count) {

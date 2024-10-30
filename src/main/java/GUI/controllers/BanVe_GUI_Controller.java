@@ -2,6 +2,7 @@ package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
 import DTO.ChuyenTau;
+import DTO.GaTau;
 import DTO.ToaTau;
 import GUI.controllers.BanVe_GUI_Items.ChuyenTau_Controller;
 import GUI.controllers.BanVe_GUI_Items.ToaTau_Controller;
@@ -12,8 +13,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import utils.TimeFormat;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -45,6 +48,8 @@ public class BanVe_GUI_Controller {
     @FXML
     private HBox hboxDanhSachToaTau;
 
+    private ArrayList<GaTau> gaTauList;
+
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
             timDanhSachChuyenTau();
@@ -56,12 +61,21 @@ public class BanVe_GUI_Controller {
     }
 
     public void timDanhSachChuyenTau(){
-        String gaTauDi = cmbGaTauDi.getValue();
-        String gaTauDen = cmbGaTauDen.getValue();
+        if(cmbGaTauDi.getSelectionModel().getSelectedIndex() < 0){
+            System.out.println("Ga tàu đi không hợp lệ");
+            return;
+        }
+        if(cmbGaTauDen.getSelectionModel().getSelectedIndex() < 0){
+            System.out.println("Ga tàu đến không hợp lệ");
+            return;
+        }
+        GaTau gaTauDi = gaTauList.get(cmbGaTauDi.getSelectionModel().getSelectedIndex());
+        GaTau gaTauDen = gaTauList.get(cmbGaTauDen.getSelectionModel().getSelectedIndex());
+
         LocalDate ngayDi = dapNgayKhoiHanh.getValue();
         ArrayList<ChuyenTau> chuyenTauList;
         try {
-            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaTauDi, gaTauDen, ngayDi);
+            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaTauDi.getMaGaTau(), gaTauDen.getMaGaTau(), ngayDi);
             System.out.println(chuyenTauList);
             hienThiDanhSachChuyenTau(chuyenTauList);
         } catch (Exception e) {
@@ -88,8 +102,8 @@ public class BanVe_GUI_Controller {
             ChuyenTau_Controller controller = loader.getController();
             controller.setBanVe_GUI_Controller(this);
             controller.getLblMaChuyenTau().setText(chuyenTau.getMaChuyenTau());
-            controller.getLblThoiGianDi().setText("");
-            controller.getLblThoiGianDen().setText("");
+            controller.getLblThoiGianDi().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
+            controller.getLblThoiGianDen().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
 
 
 
@@ -114,10 +128,24 @@ public class BanVe_GUI_Controller {
 
     @FXML
     public void initialize() {
+
+        gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();
+        cmbGaTauDen.getItems().clear();
+        cmbGaTauDi.getItems().clear();
+        for(GaTau gaTau : gaTauList){
+            cmbGaTauDen.getItems().add(gaTau.getTenGaTau());
+            cmbGaTauDi.getItems().add(gaTau.getTenGaTau());
+        }
+
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
 
+        cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
+
+        });
     }
+
+
 
 
 
