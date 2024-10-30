@@ -134,4 +134,18 @@ public class Ve {
 				", trangThaiVe=" + trangThaiVe +
 				'}';
 	}
+
+	public double tinhGiamGiaVeTapThe(){
+		if(loaiVe == LoaiVe.VECANHAN){
+			giamGiaVeTapThe = tongTienVe * 0.1;
+		}else if(loaiVe == LoaiVe.VETAPTHE){
+			giamGiaVeTapThe = 0;
+		}
+		return giamGiaVeTapThe;
+	}
+
+	public double tinhTongTienVeCuoi(){
+		tinhGiamGiaVeTapThe();
+		return tongTienVe - giamGiaVeTapThe;
+	}
 }

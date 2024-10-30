@@ -114,7 +114,7 @@ public class Cho_DAO {
                 int soCho = rs.getInt("soCho");
                 LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"), rs.getString("tenLoaiCho"), rs.getDouble("heSoGiaCho"));
                 LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToa"));
-                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), loaiToaTau);
+                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau);
                 TrangThaiCho trangThaiCho = TrangThaiCho.values()[rs.getInt("trangThaiCho")];
 
                 Cho cho = new Cho(maCho, soCho, toaTau, loaiCho, trangThaiCho);

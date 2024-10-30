@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" minHeight="150.0" onMouseClicked="#anpVeOnMouseClicked" prefHeight="150.0" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_Controller">
+<AnchorPane fx:id="anpVe" minHeight="160.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <AnchorPane styleClass="ve-right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                  <VBox fx:id="vboxDanhSachThoiTin" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <children>
                         <HBox prefHeight="30.0">
                            <children>
@@ -93,17 +93,53 @@
                               </Label>
                            </children>
                         </HBox>
+                        <HBox fx:id="hboxGiamGiaVeTapThe" layoutX="10.0" layoutY="101.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giảm giá:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblGiamGiaVeTapThe" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="hboxGiaVeCuoi" layoutX="10.0" layoutY="132.0" prefHeight="30.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giá vé cuối:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblGiaVeCuoi" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anpXoaVe" onMouseClicked="#anpXoaVeOnMouseCliced" prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="anpXoaVe" onMouseClicked="#anpXoaVeOnMouseCliced" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="27.0" fitWidth="23.0" layoutX="14.0" layoutY="52.0">
-                     <image>
-                        <Image url="@../../images/BanVe_GUI/ThungRac.png" />
-                     </image>
-                  </ImageView>
+                  <VBox prefWidth="50.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox style="-fx-alignment: center;">
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../images/BanVe_GUI/ThungRac.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children></AnchorPane>
          </children>
       </AnchorPane>

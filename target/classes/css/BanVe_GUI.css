@@ -41,11 +41,6 @@
     -fx-effect: dropshadow(gaussian, #444444, 10, 0, 2, 2);
 }
 
-.ve-left{
-    -fx-background-color: #4379F2;
-    -fx-background-radius: 10 0 0 10;
-}
-
 .ve-right{
     -fx-background-radius: 0 10 10 0;
 }

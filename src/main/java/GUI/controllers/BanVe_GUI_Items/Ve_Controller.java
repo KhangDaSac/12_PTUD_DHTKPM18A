@@ -1,5 +1,6 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
@@ -7,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
@@ -21,16 +24,26 @@ public class Ve_Controller implements Initializable {
     @FXML
     private AnchorPane anpXoaVe;
 
+    @FXML
+    private HBox hboxGiaVeCuoi;
 
     @FXML
-    private Label lblSTT;
-
+    private HBox hboxGiamGiaVeTapThe;
 
     @FXML
     private Label lblGiaVe;
 
     @FXML
+    private Label lblGiaVeCuoi;
+
+    @FXML
+    private Label lblGiamGiaVeTapThe;
+
+    @FXML
     private Label lblMaChuyenTau;
+
+    @FXML
+    private Label lblSTT;
 
     @FXML
     private Label lblTenGaDen;
@@ -40,6 +53,9 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     private Label lblThoiGianDi;
+
+    @FXML
+    private VBox vboxDanhSachThoiTin;
 
     private Ve ve;
 
@@ -94,6 +110,17 @@ public class Ve_Controller implements Initializable {
         lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
+
+        if(ve.getLoaiVe() == LoaiVe.VECANHAN){
+            vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
+            vboxDanhSachThoiTin.getChildren().remove(hboxGiamGiaVeTapThe);
+            anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+
+        }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
+            anpVe.setMinHeight(210);
+            anpXoaVe.getStyleClass().add("ve-left-veTapThe");
+
+        }
     }
 
     public void chonVe(){

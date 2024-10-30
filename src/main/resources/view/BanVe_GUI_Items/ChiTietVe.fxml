@@ -126,7 +126,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="anpLoaiVe" prefWidth="50.0" styleClass="ve-left" stylesheets="@../../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

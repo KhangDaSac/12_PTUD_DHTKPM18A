@@ -530,7 +530,7 @@ public class BanVe_GUI_Controller implements Initializable {
     public void capNhatCacChoDaChon(){
         for (Cho_Controller controller : choControllerList) {
             controller.chuyenMauMacDinh();
-            controller.capNhatTrangThai();
+
 
             boolean daThemVaoGioVe = danhSachChiTietVe.stream().anyMatch(chiTietVe -> chiTietVe.getCho().equals(controller.getCho()));
 
@@ -544,6 +544,7 @@ public class BanVe_GUI_Controller implements Initializable {
             if (dangChon) {
                 controller.chuyenMauDangChon();
             }
+            controller.capNhatTrangThai();
         }
     }
 
@@ -588,7 +589,38 @@ public class BanVe_GUI_Controller implements Initializable {
             tinhTongTienHoaDon();
             choChonList.clear();
         }else if(loaiVe == LoaiVe.VETAPTHE){
+            ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
+            ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
+            ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
+            String maVeMoi = "";
+            if(danhSachVe.isEmpty()){
+                maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
+            }else{
+                maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(danhSachVe.getLast());
+            }
 
+            Ve ve = new Ve(maVeMoi, chiTietChuyenTauDi, chiTietChuyenTauDen);
+            ve.setLoaiVe(LoaiVe.VETAPTHE);
+            for(Cho cho : choChonList){
+                ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
+
+                for(Cho_Controller controller : choControllerList){
+                    if(controller.getCho().equals(cho)){
+                        controller.setDaThemVaoGio(true);
+                        controller.capNhatTrangThai();
+                        chiTietVe.setGiaCho(controller.getCho().getGiaCho());
+                        chiTietVe.setSoTienGiamGia(0);
+                        chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
+                        break;
+                    }
+                }
+
+                ve.setTongTienVe(ve.getTongTienVe() + chiTietVe.getThanhTien());
+                ve.tinhGiamGiaVeTapThe();
+                danhSachChiTietVe.add(chiTietVe);
+            }
+            danhSachVe.add(ve);
+            choChonList.clear();
         }
 
         capNhatGioVe();
@@ -647,8 +679,8 @@ public class BanVe_GUI_Controller implements Initializable {
                 iterator.remove();
                 for(Cho_Controller controller : choControllerList){
                     if(controller.getCho().equals(chiTietVe.getCho())){
-                        controller.setDaThemVaoGio(false);
                         controller.setDangChon(false);
+                        controller.setDaThemVaoGio(false);
                     }
                 }
             }

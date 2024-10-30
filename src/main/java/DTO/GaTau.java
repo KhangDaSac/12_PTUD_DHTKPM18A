@@ -12,6 +12,12 @@ public class GaTau {
 		this.tenGaTau = tenGaTau;
 		this.diaChi = diaChi;
 	}
+
+	public GaTau(String maGaTau, String tenGaTau) {
+		this.maGaTau = maGaTau;
+		this.tenGaTau = tenGaTau;
+	}
+
 	public GaTau() {
 		super();
 		// TODO Auto-generated constructor stub
