@@ -1,9 +1,6 @@
 package DAO;
 
-import DTO.Cho;
-import DTO.LoaiCho;
-import DTO.ToaTau;
-import DTO.TrangThaiCho;
+import DTO.*;
 import connectDB.ConnectDB;
 
 import java.sql.Connection;
@@ -116,7 +113,8 @@ public class Cho_DAO {
                 String maCho = rs.getString("maCho");
                 int soCho = rs.getInt("soCho");
                 LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"), rs.getString("tenLoaiCho"), rs.getDouble("heSoGiaCho"));
-                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"));
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToa"));
+                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau);
                 TrangThaiCho trangThaiCho = TrangThaiCho.values()[rs.getInt("trangThaiCho")];
 
                 Cho cho = new Cho(maCho, soCho, toaTau, loaiCho, trangThaiCho);

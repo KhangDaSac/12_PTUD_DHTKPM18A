@@ -1,11 +1,13 @@
 package GUI.controllers.BanVe_GUI_Items;
 
 import DTO.ChiTietVe;
+import DTO.LoaiVe;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import utils.CurrencyFormat;
 
 public class ChiTietVe_Controller {
 
@@ -36,6 +38,9 @@ public class ChiTietVe_Controller {
     @FXML
     private Label lblToa;
 
+    @FXML
+    private AnchorPane anpLoaiVe;
+
     private ChiTietVe chiTietVe;
 
     private BanVe_GUI_Controller banVe_gui_controller;
@@ -64,6 +69,16 @@ public class ChiTietVe_Controller {
     public void khoiTao(){
         lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
         lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
+        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
+        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
+        anpChiTietVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/ChiTietVe.css").toExternalForm());
+
+        if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VECANHAN){
+            anpLoaiVe.getStyleClass().add("ve-left-veCaNhan");
+        }else if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VETAPTHE){
+            anpLoaiVe.getStyleClass().add("ve-left-veTapThe");
+        }
     }
 
 }

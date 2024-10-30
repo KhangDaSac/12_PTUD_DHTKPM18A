@@ -1,5 +1,6 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
 import javafx.fxml.FXML;
@@ -7,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import utils.CurrencyFormat;
 import utils.TimeFormat;
 
 import java.io.IOException;
@@ -18,10 +22,28 @@ public class Ve_Controller implements Initializable {
     private AnchorPane anpVe;
 
     @FXML
+    private AnchorPane anpXoaVe;
+
+    @FXML
+    private HBox hboxGiaVeCuoi;
+
+    @FXML
+    private HBox hboxGiamGiaVeTapThe;
+
+    @FXML
     private Label lblGiaVe;
 
     @FXML
+    private Label lblGiaVeCuoi;
+
+    @FXML
+    private Label lblGiamGiaVeTapThe;
+
+    @FXML
     private Label lblMaChuyenTau;
+
+    @FXML
+    private Label lblSTT;
 
     @FXML
     private Label lblTenGaDen;
@@ -32,7 +54,20 @@ public class Ve_Controller implements Initializable {
     @FXML
     private Label lblThoiGianDi;
 
+    @FXML
+    private VBox vboxDanhSachThoiTin;
+
     private Ve ve;
+
+    private int soThuTu;
+
+    public int getSoThuTu() {
+        return soThuTu;
+    }
+
+    public void setSoThuTu(int soThuTu) {
+        this.soThuTu = soThuTu;
+    }
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
 
@@ -54,15 +89,14 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
-
-        try {
-            banVe_GUI_Controller.capNhatChiTietVe(ve);
-            banVe_GUI_Controller.boChonTatCaVe();
-            chonVe();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        chonVe();
     }
+
+    @FXML
+    void anpXoaVeOnMouseCliced(MouseEvent event) {
+        banVe_GUI_Controller.xoaVe(ve);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,16 +107,36 @@ public class Ve_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
+        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
+        lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
+
+        if(ve.getLoaiVe() == LoaiVe.VECANHAN){
+            vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
+            vboxDanhSachThoiTin.getChildren().remove(hboxGiamGiaVeTapThe);
+            anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+
+        }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
+            anpVe.setMinHeight(210);
+            anpXoaVe.getStyleClass().add("ve-left-veTapThe");
+
+        }
     }
 
     public void chonVe(){
-        anpVe.getStyleClass().add("veDangChon");
-        anpVe.getStyleClass().removeAll("veKhongChon");
+        try {
+            banVe_GUI_Controller.capNhatChiTietVe(ve);
+            banVe_GUI_Controller.boChonTatCaVe();
+            anpVe.getStyleClass().add("veDangChon");
+            anpVe.getStyleClass().removeAll("veKhongChon");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void khongChonVe(){
         anpVe.getStyleClass().removeAll("veDangChon");
         anpVe.getStyleClass().add("veKhongChon");
     }
+
 }

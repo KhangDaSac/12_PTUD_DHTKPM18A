@@ -5,3 +5,13 @@
 .veKhongChon{
     -fx-background-color: transparent;
 }
+
+.ve-left-veCaNhan{
+    -fx-background-color: #4379F2;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.ve-left-veTapThe{
+    -fx-background-color: #851DE0;
+    -fx-background-radius: 10 0 0 10;
+}

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#anpToaTauOnMousrClicked" prefHeight="60.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ToaTau_Controller">
+<AnchorPane fx:id="anpToaTau" onMouseClicked="#anpToaTauOnMousrClicked" prefHeight="60.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ToaTau_Controller">
    <children>
       <ImageView fx:id="imvToaTau" fitHeight="30.0" fitWidth="60.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <image>
