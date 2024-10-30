@@ -341,15 +341,15 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setChiTietChuyenTauDi(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi));
             controller.setChiTietChuyenTauDen(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen));
             controller.khoiTao();
-            chuyenTauDangChon = 0;
 
-            if(chuyenTauDangChon == i){
-                controller.chonChuyenTau();
-            }
+
+
             controller.setSoThuTu(i);
 
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
         }
+        chuyenTauDangChon = 0;
+        chuyenTauControllerList.getFirst().chonChuyenTau();
     }
 
 
@@ -369,13 +369,10 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setToaTau(toaTau);
             controller.khoiTao();
             controller.setSoThuTu(i);
-            toaTauDangChon = 0;
-            if(toaTauDangChon == i){
-                controller.chonToaTau();
-            }
-
             hboxDanhSachToaTau.getChildren().add(anchorPane);
         }
+        toaTauDangChon = 0;
+        toaTauControllerList.getFirst().chonToaTau();
     }
 
     public void timDanhSachCho(String maToaTau){
