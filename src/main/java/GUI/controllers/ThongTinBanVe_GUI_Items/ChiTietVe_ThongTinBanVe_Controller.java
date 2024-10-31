@@ -43,7 +43,15 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     private AnchorPane anpLoaiVe;
 
     private ChiTietVe chiTietVe;
+    private boolean dangChon;
 
+    public boolean isDangChon() {
+        return dangChon;
+    }
+
+    public void setDangChon(boolean dangChon) {
+        this.dangChon = dangChon;
+    }
 
     private ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller;
 
@@ -87,12 +95,24 @@ public class ChiTietVe_ThongTinBanVe_Controller {
         thongTinBanVe_gui_controller.boChonTatCaChiTietVe();
         anpChiTietVe.getStyleClass().removeAll("chiTietVeKhongChon");
         anpChiTietVe.getStyleClass().add("chiTietVeDangChon");
+        dangChon = true;
     }
 
 
     public void khongChonChiTietVe(){
+        dangChon = false;
         anpChiTietVe.getStyleClass().removeAll("chiTietVeDangChon");
         anpChiTietVe.getStyleClass().add("chiTietVeKhongChon");
+    }
+
+    public void capNhatLaiThongTinKhachHang(){
+        lblTenKhachHang.setText(chiTietVe.getKhachHang().getTenKhachHang());
+        lblCCCD.setText(chiTietVe.getKhachHang().getCCCD());
+        chiTietVe.setSoTienGiamGia(chiTietVe.tinhTienGiamGia());
+        chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
+        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
+        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
+        lblCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
     }
 
 }

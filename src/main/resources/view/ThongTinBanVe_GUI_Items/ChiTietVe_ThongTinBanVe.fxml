@@ -45,7 +45,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="250.0">
+                              <Label fx:id="lblCCCD" prefHeight="26.0" prefWidth="223.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -59,7 +59,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTenKhachHang" prefHeight="28.0" prefWidth="134.0">
+                              <Label fx:id="lblTenKhachHang" prefHeight="26.0" prefWidth="230.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -87,7 +87,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiaCho" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                              <Label fx:id="lblGiaCho" prefHeight="26.0" prefWidth="227.0" text="871,000 VNĐ">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -101,7 +101,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiamGia" prefHeight="30.0" prefWidth="250.0" text="0 VNĐ">
+                              <Label fx:id="lblGiamGia" prefHeight="26.0" prefWidth="210.0" text="0 VNĐ">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -115,7 +115,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblThanhTien" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                              <Label fx:id="lblThanhTien" prefHeight="26.0" prefWidth="201.0" text="871,000 VNĐ">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

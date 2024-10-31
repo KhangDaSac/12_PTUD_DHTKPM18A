@@ -113,6 +113,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
     private ArrayList<ChiTietVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_Controller>();
 
+    private HoaDon hoaDon;
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
     private ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
 
@@ -266,6 +267,9 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
+        if(danhSachVe.isEmpty()){
+            return;
+        }
         main_Controller.chuyenTrangThongTinBanVe(danhSachVe, danhSachChiTietVe);
     }
 
@@ -567,6 +571,12 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void themVeVaoGio() throws IOException {
+        if(choChonList.isEmpty()){
+            return;
+        }
+
+
+        hoaDon = new HoaDon();
 
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
@@ -749,6 +759,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
+        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
         for (Ve ve: danhSachVe){
             tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }

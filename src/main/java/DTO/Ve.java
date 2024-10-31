@@ -1,5 +1,6 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Ve {
@@ -145,7 +146,18 @@ public class Ve {
 	}
 
 	public double tinhTongTienVeCuoi(){
-		tinhGiamGiaVeTapThe();
-		return tongTienVe - giamGiaVeTapThe;
+		return tongTienVe - tinhGiamGiaVeTapThe();
+	}
+
+	public static void tinhTienCacVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+		for(Ve ve : danhSachVe){
+			double tongTienVe = 0;
+			for(ChiTietVe chiTietVe : danhSachChiTietVe){
+				if(chiTietVe.getVe().equals(ve))
+					tongTienVe += chiTietVe.tinhThanhTien();
+			}
+			ve.setTongTienVe(tongTienVe);
+			ve.setGiamGiaVeTapThe(ve.tinhGiamGiaVeTapThe());
+		}
 	}
 }

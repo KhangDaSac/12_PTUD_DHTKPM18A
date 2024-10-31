@@ -106,6 +106,14 @@ public class ChiTietVe {
 	}
 
 	public double tinhThanhTien(){
-		return giaCho - soTienGiamGia;
+		return giaCho - tinhTienGiamGia();
+	}
+
+	public double tinhTienGiamGia(){
+		if(khachHang != null){
+			double phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
+			return phanTramGiamGia * giaCho;
+		}
+		return 0;
 	}
 }

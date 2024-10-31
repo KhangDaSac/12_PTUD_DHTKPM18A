@@ -125,6 +125,8 @@
     -fx-background-radius: 50%;
     -fx-background-color: #0D92F4;
     -fx-font-weight: 700;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14;
 }
 
 .cangGiuaTheoChieuNgang{
