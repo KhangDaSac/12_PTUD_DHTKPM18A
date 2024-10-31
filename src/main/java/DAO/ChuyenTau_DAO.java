@@ -3,6 +3,7 @@ package DAO;
 import DTO.ChuyenTau;
 import DTO.TuyenTau;
 import connectDB.ConnectDB;
+import utils.TimeFormat;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -69,20 +70,24 @@ public class ChuyenTau_DAO {
         ArrayList<ChuyenTau> dsChuyenTau= new ArrayList<ChuyenTau>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query ="exec timDanhSachChuyenTau ?, ?, ?, ?, ?";
+            String query ="exec dbo.UDP_TimDanhSachChuyenTau ?, ?, ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maGaDi);
             statement.setString(2, maGaDen);
-            statement.setInt(3, ngayDi.getDayOfMonth());
-            statement.setInt(4, ngayDi.getMonthValue());
-            statement.setInt(5, ngayDi.getYear());
+            statement.setString(3, TimeFormat.formatLocalDateTimeSQL(ngayDi));
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 String maChuyenTau =rs.getString("maChuyenTau");
                 int soLuongCho = rs.getInt("soLuongCho");
-                LocalDateTime thoiGianDi = rs.getTimestamp("thoiGianDi").toLocalDateTime();
-                LocalDateTime thoiGianDen = rs.getTimestamp("thoiGianDen").toLocalDateTime();
-                ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, soLuongCho, thoiGianDi, thoiGianDen);
+                int soLuongChoDaDatVaBan = rs.getInt("soLuongChoDaDatVaBan");
+                int soLuongChoDanhChoChanDaiHon = rs.getInt("soLuongChoDanhChoChanDaiHon");
+                int soLuongChoTrong = rs.getInt("soLuongChoTrong");
+                ChuyenTau chuyenTau = new ChuyenTau(
+                        maChuyenTau,
+                        soLuongCho,
+                        soLuongChoDaDatVaBan,
+                        soLuongChoDanhChoChanDaiHon,
+                        soLuongChoTrong);
                 dsChuyenTau.add(chuyenTau);
             }
         }catch (Exception e) {

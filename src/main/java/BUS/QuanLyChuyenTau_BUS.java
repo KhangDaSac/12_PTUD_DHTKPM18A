@@ -1,11 +1,7 @@
 package BUS;
 
-import DAO.ChuyenTau_DAO;
-import DAO.GaTau_DAO;
-import DAO.ToaTau_DAO;
-import DTO.ChuyenTau;
-import DTO.GaTau;
-import DTO.ToaTau;
+import DAO.*;
+import DTO.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,22 +23,32 @@ public class QuanLyChuyenTau_BUS {
         return chuyenTauList;
     }
 
-    public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau){
+    public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){
         ToaTau_DAO toaTau_DAO = new ToaTau_DAO();
-        ArrayList<ToaTau> toaTauList = toaTau_DAO.xuatDanhSachToaTauTheoChuyen(maChuyenTau);
+        ArrayList<ToaTau> toaTauList = toaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
         return toaTauList;
     }
 
-    public static double tinhKhoangCachHaiGa(String maGaDi, String maGaDen, String maChuyenTau){
-        double khoangCach = 0;
-        return khoangCach;
-    }
 
     public static ArrayList<GaTau> getDanhSachGaTau(){
         GaTau_DAO gaTau_DAO = new GaTau_DAO();
         ArrayList<GaTau> gaTauList = gaTau_DAO.xuatDanhSachGaTau();
         return gaTauList;
     }
+
+    public static ArrayList<Cho> getDanhSachChoTheoMaToaTau(String maToaTau, String maGaDi, String maGaDen){
+        Cho_DAO cho_DAO = new Cho_DAO();
+        ArrayList<Cho> choList = cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
+        return choList;
+    }
+
+    public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(ChuyenTau chuyenTau, GaTau gaTau){
+        ChiTietChuyenTau_DAO chiTietChuyenTau_DAO = new ChiTietChuyenTau_DAO();
+        ChiTietChuyenTau chiTietChuyenTau = chiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau.getMaChuyenTau(), gaTau.getMaGaTau());
+        return chiTietChuyenTau;
+    }
+
+
 
 //    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
 //        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();

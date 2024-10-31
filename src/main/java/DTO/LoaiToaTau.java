@@ -20,6 +20,12 @@ public class LoaiToaTau {
 		super();
 		this.maLoaiToa = maLoaiToa;
 	}
+
+	public LoaiToaTau(String maLoaiToa, String tenLoaiToa) {
+		this.maLoaiToa = maLoaiToa;
+		this.tenLoaiToa = tenLoaiToa;
+	}
+
 	public String getMaLoaiToa() {
 		return maLoaiToa;
 	}

@@ -1,5 +1,6 @@
 package DTO;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -8,58 +9,64 @@ public class ChuyenTau {
 	private String maChuyenTau;
 	private TuyenTau tuyenTau;
 	private int soLuongCho;
-	private LocalDateTime ngayKhoiHanh;
-
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, LocalDateTime ngayKhoiHanh) {
-		this.maChuyenTau = maChuyenTau;
-		this.tuyenTau = tuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.ngayKhoiHanh = ngayKhoiHanh;
-	}
+	private int soLuongChoDaBanVaDat;
+	private int soLuongChoChangDaiHon;
+	private int soLuongChoTrongTrong;
 
 	public ChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
 	}
-	public ChuyenTau(String maChuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen) {
 
+	public ChuyenTau() {
 	}
-
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho) {
-	}
-
-
-
 
 	public String getMaChuyenTau() {
 		return maChuyenTau;
-	}
-
-	public TuyenTau getTuyenTau() {
-		return tuyenTau;
-	}
-
-	public int getSoLuongCho() {
-		return soLuongCho;
-	}
-
-	public LocalDateTime getNgayKhoiHanh() {
-		return ngayKhoiHanh;
 	}
 
 	public void setMaChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
 	}
 
+	public TuyenTau getTuyenTau() {
+		return tuyenTau;
+	}
+
 	public void setTuyenTau(TuyenTau tuyenTau) {
 		this.tuyenTau = tuyenTau;
+	}
+
+	public int getSoLuongCho() {
+		return soLuongCho;
 	}
 
 	public void setSoLuongCho(int soLuongCho) {
 		this.soLuongCho = soLuongCho;
 	}
 
-	public void setNgayKhoiHanh(LocalDateTime ngayKhoiHanh) {
-		this.ngayKhoiHanh = ngayKhoiHanh;
+
+	public int getSoLuongChoDaBanVaDat() {
+		return soLuongChoDaBanVaDat;
+	}
+
+	public void setSoLuongChoDaBanVaDat(int soLuongChoDaBanVaDat) {
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+	}
+
+	public int getSoLuongChoChangDaiHon() {
+		return soLuongChoChangDaiHon;
+	}
+
+	public void setSoLuongChoChangDaiHon(int soLuongChoChangDaiHon) {
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+	}
+
+	public int getSoLuongChoTrongTrong() {
+		return soLuongChoTrongTrong;
+	}
+
+	public void setSoLuongChoTrongTrong(int soLuongChoTrongTrong) {
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
 	@Override
@@ -75,18 +82,26 @@ public class ChuyenTau {
 		this.soLuongCho = soLuongCho;
 	}
 
+
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho) {
+		this.maChuyenTau = maChuyenTau;
+		this.tuyenTau = tuyenTau;
+		this.soLuongCho = soLuongCho;
+	}
+
+
+	public ChuyenTau(String maChuyenTau, int soLuongCho, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maChuyenTau = maChuyenTau;
+		this.soLuongCho = soLuongCho;
+		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maChuyenTau);
 	}
 
-	@Override
-	public String toString() {
-		return "ChuyenTau{" +
-				"maChuyenTau='" + maChuyenTau + '\'' +
-				", tuyenTau=" + tuyenTau +
-				", soLuongCho=" + soLuongCho +
-				", ngayKhoiHanh=" + ngayKhoiHanh +
-				'}';
-	}
+
 }

@@ -109,12 +109,12 @@
     -fx-font-weight: 700;
 }
 
-.jfx-button{
+.jfx-button1{
     -fx-background-color: #0D92F4;
     -fx-text-fill: #fff;
     -fx-font-size: 16;
     -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
-    -fx-alignment: center; /* Căn chỉnh nội dung giữa */
+    -fx-alignment: center;
 }
 
 .text-bold{
@@ -125,6 +125,8 @@
     -fx-background-radius: 50%;
     -fx-background-color: #0D92F4;
     -fx-font-weight: 700;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14;
 }
 
 .cangGiuaTheoChieuNgang{

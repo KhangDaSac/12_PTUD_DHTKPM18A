@@ -1,8 +1,6 @@
 package DAO;
 
-import DTO.Cho;
-import DTO.LoaiCho;
-import DTO.ToaTau;
+import DTO.*;
 import connectDB.ConnectDB;
 
 import java.sql.Connection;
@@ -100,4 +98,32 @@ public class Cho_DAO {
         }
         return danhSachCho;
     }
+
+    public ArrayList<Cho> getDanhSachChoTheoMaToaTau(String maToaTau, String gaDi, String gaDen){
+        ArrayList<Cho> danhSachCho = new ArrayList<Cho>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "exec dbo.UDP_TimDanhSachChoTrenToaTau ?, ?, ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maToaTau);
+            statement.setString(2, gaDi);
+            statement.setString(3, gaDen);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String maCho = rs.getString("maCho");
+                int soCho = rs.getInt("soCho");
+                LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"), rs.getString("tenLoaiCho"), rs.getDouble("heSoGiaCho"));
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToa"));
+                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau);
+                TrangThaiCho trangThaiCho = TrangThaiCho.values()[rs.getInt("trangThaiCho")];
+
+                Cho cho = new Cho(maCho, soCho, toaTau, loaiCho, trangThaiCho);
+                danhSachCho.add(cho);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return danhSachCho;
+    }
+
 }
