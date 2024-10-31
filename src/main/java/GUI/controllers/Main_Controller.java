@@ -131,6 +131,7 @@ public class Main_Controller {
         }
         ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
         thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setHoaDon(hoaDon);
         thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
         thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         thongTinBanVe_gui_controller.khoiTao();
@@ -293,6 +294,7 @@ public class Main_Controller {
         }
         BanVe_GUI_Controller banVe_gui_controller = loader.getController();
         banVe_gui_controller.setMain_Controller(this);
+        banVe_gui_controller.setHoaDon(hoaDon);
         banVe_gui_controller.setDanhSachVe(danhSachVe);
         banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         anpNoiDungTrang.getChildren().clear();

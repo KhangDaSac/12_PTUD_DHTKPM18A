@@ -551,7 +551,8 @@ public class BanVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
-                Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
+                if(hoaDon != null)
+                    hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
                 capNhatGioVe();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -615,6 +616,7 @@ public class BanVe_GUI_Controller implements Initializable {
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
+
                 ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
@@ -629,6 +631,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 ve.setHoaDon(hoaDon);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
+                ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
 
 
@@ -794,7 +797,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
-        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
+        hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
         for (Ve ve: danhSachVe){
             tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }

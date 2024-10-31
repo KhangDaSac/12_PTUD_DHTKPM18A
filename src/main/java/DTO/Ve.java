@@ -11,7 +11,7 @@ public class Ve {
 	private double tongTienVe;
 	private double giamGiaVeTapThe;
 	private LoaiVe loaiVe ;
-	private TrangThaiVe trangThaiVe ;
+	private TrangThaiVe trangThaiVe;
 	public Ve() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -149,15 +149,4 @@ public class Ve {
 		return tongTienVe - tinhGiamGiaVeTapThe();
 	}
 
-	public static void tinhTienCacVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
-		for(Ve ve : danhSachVe){
-			double tongTienVe = 0;
-			for(ChiTietVe chiTietVe : danhSachChiTietVe){
-				if(chiTietVe.getVe().equals(ve))
-					tongTienVe += chiTietVe.tinhThanhTien();
-			}
-			ve.setTongTienVe(tongTienVe);
-			ve.setGiamGiaVeTapThe(ve.tinhGiamGiaVeTapThe());
-		}
-	}
 }
