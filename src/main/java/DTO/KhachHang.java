@@ -1,5 +1,6 @@
 package DTO;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class KhachHang {
@@ -7,6 +8,7 @@ public class KhachHang {
 	private String CCCD;
 	private String tenKhachHang;
 	private String soDienThoai;
+	private LocalDate ngaySinh;
 	private LoaiKhachHang loaiKhachHang;
 	public KhachHang() {
 		super();
@@ -55,7 +57,15 @@ public class KhachHang {
 	public void setLoaiKhachHang(LoaiKhachHang loaiKhachHang) {
 		this.loaiKhachHang = loaiKhachHang;
 	}
-	
+
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
+
+	public void setNgaySinh(LocalDate ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(maKhachHang);
@@ -76,5 +86,13 @@ public class KhachHang {
 		return "KhachHang [maKhachHang=" + maKhachHang + ", CCCD=" + CCCD + ", tenKhachHang=" + tenKhachHang
 				+ ", soDienThoai=" + soDienThoai + ", loaiKhachHang=" + loaiKhachHang + "]";
 	}
-	
+
+	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LocalDate ngaySinh, LoaiKhachHang loaiKhachHang) {
+		this.maKhachHang = maKhachHang;
+		this.CCCD = CCCD;
+		this.tenKhachHang = tenKhachHang;
+		this.soDienThoai = soDienThoai;
+		this.ngaySinh = ngaySinh;
+		this.loaiKhachHang = loaiKhachHang;
+	}
 }

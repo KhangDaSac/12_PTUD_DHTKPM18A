@@ -1,6 +1,7 @@
 package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
+import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
@@ -113,6 +114,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
     private ArrayList<ChiTietVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_Controller>();
 
+    private HoaDon hoaDon;
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
     private ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
 
@@ -266,7 +268,10 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
-        main_Controller.chuyenTrangThongTinBanVe();
+        if(danhSachVe.isEmpty()){
+            return;
+        }
+        main_Controller.chuyenTrangThongTinBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
     }
 
     public void timDanhSachChuyenTau(){
@@ -539,6 +544,12 @@ public class BanVe_GUI_Controller implements Initializable {
         }
     }
 
+    public void boChonTatCaChiTietVe(){
+        for(ChiTietVe_Controller chiTietVe_controller : chiTietVeControllerList){
+            chiTietVe_controller.khongChonChiTietVe();
+        }
+    }
+
     public void capNhatCacChoDaChon(){
         for (Cho_Controller controller : choControllerList) {
             controller.chuyenMauMacDinh();
@@ -561,6 +572,12 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void themVeVaoGio() throws IOException {
+        if(choChonList.isEmpty()){
+            return;
+        }
+
+        String maHoaDon = QuanLyHoaDon_BUS.layHoaDonTiepTheo();
+        hoaDon = new HoaDon(maHoaDon);
 
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
@@ -576,6 +593,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 }
 
                 Ve ve = new Ve(maVeMoi, chiTietChuyenTauDi, chiTietChuyenTauDen);
+                ve.setHoaDon(hoaDon);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
@@ -743,6 +761,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
+        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
         for (Ve ve: danhSachVe){
             tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }

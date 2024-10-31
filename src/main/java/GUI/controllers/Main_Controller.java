@@ -1,5 +1,8 @@
 package GUI.controllers;
 
+import DTO.ChiTietVe;
+import DTO.HoaDon;
+import DTO.Ve;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Main_Controller {
@@ -117,7 +121,7 @@ public class Main_Controller {
 
 
 
-    public void chuyenTrangThongTinBanVe(){
+    public void chuyenTrangThongTinBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -125,6 +129,11 @@ public class Main_Controller {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
+        thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
+        thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
+        thongTinBanVe_gui_controller.khoiTao();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -158,6 +167,7 @@ public class Main_Controller {
 
     @FXML
     void btnBanVeOnAction(ActionEvent event) {
+        lblTieuDeTrang.setText("BÁN VÉ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -272,4 +282,6 @@ public class Main_Controller {
     void btnThongTinUngDungOnAction(ActionEvent event) {
 
     }
+
+
 }
