@@ -30,7 +30,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     private ArrayList<ChiTietVe> danhSachChiTietVe;
     private Main_Controller main_controller;
     private KhachHang khachHang;
-    private KhachHang khachHangMuaVe;
 
 
     private ArrayList<Ve_ThongTinBanVe_Controller> veControllerList = new ArrayList<Ve_ThongTinBanVe_Controller>();
@@ -151,7 +150,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hoaDon = new HoaDon();
-
     }
 
     public void khoiTao(){
@@ -267,11 +265,11 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     public void themThongTinNguoiMua(){
         if(khachHang == null)
             return;
-        khachHangMuaVe = khachHang;
-        txtCCCDKhachHangMuaVe.setText(khachHangMuaVe.getCCCD());
-        txtTenKhachHangMuaVe.setText(khachHangMuaVe.getTenKhachHang());
-        txtSoDienThoaiKhachHangMuaVe.setText(khachHangMuaVe.getSoDienThoai());
-        txtMaKhachHangMuaVe.setText(khachHangMuaVe.getMaKhachHang());
+        hoaDon.setKhachHangMua(khachHang);
+        txtCCCDKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getCCCD());
+        txtTenKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getTenKhachHang());
+        txtSoDienThoaiKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getSoDienThoai());
+        txtMaKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getMaKhachHang());
     }
 
     public void themThongTinNguoiDiTau(){
@@ -283,9 +281,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 controller.capNhatLaiThongTinKhachHang();
             }
         }
-
-
-
+        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
         try {
             capNhatGioVe();
             tinhTongTienHoaDon();
@@ -296,7 +292,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
-        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
         for (Ve ve: danhSachVe){
             tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }

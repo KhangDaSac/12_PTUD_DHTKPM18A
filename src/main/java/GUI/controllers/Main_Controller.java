@@ -1,6 +1,7 @@
 package GUI.controllers;
 
 import DTO.ChiTietVe;
+import DTO.HoaDon;
 import DTO.Ve;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -120,7 +121,7 @@ public class Main_Controller {
 
 
 
-    public void chuyenTrangThongTinBanVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+    public void chuyenTrangThongTinBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {

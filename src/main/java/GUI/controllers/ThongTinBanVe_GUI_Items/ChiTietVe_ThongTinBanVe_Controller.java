@@ -106,7 +106,9 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     }
 
     public void capNhatLaiThongTinKhachHang(){
+        System.out.println(chiTietVe.getKhachHang());
         lblTenKhachHang.setText(chiTietVe.getKhachHang().getTenKhachHang());
+        System.out.println(lblTenKhachHang.getText());
         lblCCCD.setText(chiTietVe.getKhachHang().getCCCD());
         chiTietVe.setSoTienGiamGia(chiTietVe.tinhTienGiamGia());
         chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());

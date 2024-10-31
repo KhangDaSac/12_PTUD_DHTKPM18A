@@ -1,6 +1,7 @@
 package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
+import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
@@ -270,7 +271,7 @@ public class BanVe_GUI_Controller implements Initializable {
         if(danhSachVe.isEmpty()){
             return;
         }
-        main_Controller.chuyenTrangThongTinBanVe(danhSachVe, danhSachChiTietVe);
+        main_Controller.chuyenTrangThongTinBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
     }
 
     public void timDanhSachChuyenTau(){
@@ -575,8 +576,8 @@ public class BanVe_GUI_Controller implements Initializable {
             return;
         }
 
-
-        hoaDon = new HoaDon();
+        String maHoaDon = QuanLyHoaDon_BUS.layHoaDonTiepTheo();
+        hoaDon = new HoaDon(maHoaDon);
 
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
@@ -592,6 +593,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 }
 
                 Ve ve = new Ve(maVeMoi, chiTietChuyenTauDi, chiTietChuyenTauDen);
+                ve.setHoaDon(hoaDon);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);

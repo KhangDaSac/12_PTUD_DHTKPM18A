@@ -108,23 +108,24 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
+
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
 
 
-        lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
-        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
             vboxDanhSachThoiTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+            lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
 
         }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
             anpVe.setMinHeight(210);
             anpXoaVe.getStyleClass().add("ve-left-veTapThe");
-
+            lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
+            lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
+            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
         }
     }
 
