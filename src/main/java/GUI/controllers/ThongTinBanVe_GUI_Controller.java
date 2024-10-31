@@ -278,7 +278,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         for(ChiTietVe_ThongTinBanVe_Controller controller : chiTietVeControllerList){
             if(controller.isDangChon()){
                 controller.getChiTietVe().setKhachHang(khachHang);
-                controller.capNhatLaiThongTinKhachHang();
+//                controller.capNhatLaiThongTinKhachHang();
             }
         }
         Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);

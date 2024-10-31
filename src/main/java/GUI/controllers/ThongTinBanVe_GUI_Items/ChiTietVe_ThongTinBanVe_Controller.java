@@ -89,6 +89,8 @@ public class ChiTietVe_ThongTinBanVe_Controller {
         }else if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VETAPTHE){
             anpLoaiVe.getStyleClass().add("ve-left-veTapThe");
         }
+
+        capNhatLaiThongTinKhachHang();
     }
 
     public void chonChiTietVe(){
@@ -106,9 +108,10 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     }
 
     public void capNhatLaiThongTinKhachHang(){
-        System.out.println(chiTietVe.getKhachHang());
+        if(chiTietVe.getKhachHang() == null)
+            return;
+        lblLoaiKhachHang.setText(chiTietVe.getKhachHang().getLoaiKhachHang().getTenLoaiKhachHang());
         lblTenKhachHang.setText(chiTietVe.getKhachHang().getTenKhachHang());
-        System.out.println(lblTenKhachHang.getText());
         lblCCCD.setText(chiTietVe.getKhachHang().getCCCD());
         chiTietVe.setSoTienGiamGia(chiTietVe.tinhTienGiamGia());
         chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
