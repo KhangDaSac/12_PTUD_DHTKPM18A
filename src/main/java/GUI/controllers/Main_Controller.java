@@ -131,6 +131,7 @@ public class Main_Controller {
         }
         ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
         thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setHoaDon(hoaDon);
         thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
         thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         thongTinBanVe_gui_controller.khoiTao();
@@ -281,6 +282,27 @@ public class Main_Controller {
     @FXML
     void btnThongTinUngDungOnAction(ActionEvent event) {
 
+    }
+
+    public void quayLaiTrangBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
+        banVe_gui_controller.setMain_Controller(this);
+        banVe_gui_controller.setHoaDon(hoaDon);
+        banVe_gui_controller.setDanhSachVe(danhSachVe);
+        banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
 

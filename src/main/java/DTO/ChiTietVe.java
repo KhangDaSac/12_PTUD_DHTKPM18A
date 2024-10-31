@@ -112,7 +112,8 @@ public class ChiTietVe {
 	public double tinhTienGiamGia(){
 		if(khachHang != null){
 			double phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
-			return phanTramGiamGia * giaCho;
+			soTienGiamGia = phanTramGiamGia * giaCho;
+			return soTienGiamGia;
 		}
 		return 0;
 	}

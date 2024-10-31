@@ -1,6 +1,8 @@
 package DAO;
 
+import DTO.HoaDon;
 import connectDB.ConnectDB;
+import utils.TimeFormat;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,5 +24,25 @@ public class HoaDon_DAO {
             e.printStackTrace();
         }
         return maHoaDonLonNhat;
+    }
+
+    public void themHoaDon(HoaDon hoaDon){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "insert into HoaDon values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, hoaDon.getMaHoaDon());
+            statement.setString(2, TimeFormat.formatLocalDateTimeSQL(hoaDon.getThoiGianLap()));
+            statement.setDouble(3, hoaDon.getTongTien());
+            statement.setDouble(4, hoaDon.getTongTienDaDatCoc());
+            statement.setDouble(5, hoaDon.getTongTienKhachHangTra());
+            statement.setString(6, hoaDon.getLoaiHoaDon().toString());
+            statement.setString(7, hoaDon.getTrangThaiHoaDon().toString());
+            statement.setString(8, hoaDon.getCaLamViec().getMaCaLamViec());
+            statement.setString(9, hoaDon.getKhachHangMua().getMaKhachHang());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
