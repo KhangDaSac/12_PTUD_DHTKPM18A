@@ -319,7 +319,7 @@
                            <graphic>
                               <ImageView>
                                  <image>
-                                    <Image url="@../images/BanVe_GUI/Ban.png" />
+                                    <Image url="@../images/BanVe_GUI/Mua.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -356,9 +356,9 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </GridPane.margin>
                            <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="30.0">
+                              <ImageView fitHeight="30.0" fitWidth="30.0">
                                  <image>
-                                    <Image url="@../images/BanVe_GUI/ChuyenSangThemKhachHang.png" />
+                                    <Image url="@../images/BanVe_GUI/ThemKhachHang.png" />
                                  </image>
                               </ImageView>
                            </graphic>

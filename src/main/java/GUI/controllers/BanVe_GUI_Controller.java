@@ -6,6 +6,7 @@ import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -139,6 +140,30 @@ public class BanVe_GUI_Controller implements Initializable {
         this.toaTauDangChon = toaTauDangChon;
     }
 
+
+    public HoaDon getHoaDon() {
+        return hoaDon;
+    }
+
+    public void setHoaDon(HoaDon hoaDon) {
+        this.hoaDon = hoaDon;
+    }
+
+    public ArrayList<Ve> getDanhSachVe() {
+        return danhSachVe;
+    }
+
+    public void setDanhSachVe(ArrayList<Ve> danhSachVe) {
+        this.danhSachVe = danhSachVe;
+    }
+
+    public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
+        return danhSachChiTietVe;
+    }
+
+    public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
+        this.danhSachChiTietVe = danhSachChiTietVe;
+    }
 
     private int trangChuyenTauHienTai;
 
@@ -524,6 +549,14 @@ public class BanVe_GUI_Controller implements Initializable {
         });
 
 
+        Platform.runLater(()->{
+            try {
+                Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
+                capNhatGioVe();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void boChonTatCaChuyenTau(){
