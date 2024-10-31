@@ -1,6 +1,5 @@
 package DTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -21,8 +20,15 @@ public class ChuyenTau {
 	public ChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
 	}
-	public ChuyenTau() {
+	public ChuyenTau(String maChuyenTau, int soLuongCho, LocalDateTime thoiGianDi, LocalDateTime thoiGianDen) {
+
 	}
+
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho) {
+	}
+
+
+
 
 	public String getMaChuyenTau() {
 		return maChuyenTau;

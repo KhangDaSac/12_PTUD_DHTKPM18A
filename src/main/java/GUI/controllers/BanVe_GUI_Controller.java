@@ -102,8 +102,8 @@ public class BanVe_GUI_Controller {
             ChuyenTau_Controller controller = loader.getController();
             controller.setBanVe_GUI_Controller(this);
             controller.getLblMaChuyenTau().setText(chuyenTau.getMaChuyenTau());
-            controller.getLblThoiGianDi().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
-            controller.getLblThoiGianDen().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
+//            controller.getLblThoiGianDi().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDi()));
+//            controller.getLblThoiGianDen().setText(TimeFormat.formatLocalDateTime(chuyenTau.getThoiGianDen()));
 
 
 

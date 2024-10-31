@@ -11,6 +11,10 @@
 .chart-bar{
     -fx-background-color: transparent;
 }
+.btnLoaiThongKe{
+    -fx-background-color:#ADEFD1FF;
+    -fx-text-fill: #00203FFF;
+}
 .data0.chart-bar{
     -fx-background-color: #2B49B3;
     -fx-width: 10px;

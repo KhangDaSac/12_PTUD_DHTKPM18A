@@ -2,6 +2,9 @@ package GUI.controllers;
 
 import connectDB.ConnectDB;
 import javafx.application.Application;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -34,6 +38,16 @@ public class BaoCaoThongKe_GUI_Controller extends Application{
     private DatePicker dapNgayKetThuc;
     @FXML
     private TextField txtDoanhThu;
+    @FXML
+    private ComboBox cmbLoaiThoiGian;
+    @FXML
+    private ComboBox cmbLoc;
+    @FXML
+    private ComboBox cmbChonThang;
+    @FXML
+    private ComboBox cmbChonNam;
+
+
     private  void taiDuLieuLenBieuDo (){
         XYChart.Series<String,Double> series_01= new XYChart.Series<>();
         series_01.getData().add(new XYChart.Data("Jan",500));
@@ -56,7 +70,8 @@ public class BaoCaoThongKe_GUI_Controller extends Application{
     public void start(Stage primaryStage) throws Exception {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BaoCaoThongKe_GUI.fxml"));
             Parent root = loader.load();
-            controller = loader.getController(); // Initialize the controller
+            controller = loader.getController();
+            controller.initializeComboBoxes();// Initialize the controller
             Scene scene = new Scene(root);
             primaryStage.setTitle("Hóa đơn");
             primaryStage.setScene(scene);
@@ -69,8 +84,7 @@ public class BaoCaoThongKe_GUI_Controller extends Application{
     }
 double tongDoanhThu=0;
     // thong ke doanh thu theo thang
-    public void thongKeDoanhThuTheoThang (LocalDate ngayBatDau, LocalDate ngayKetThuc, String dieuKienLoc) {
-        if (dieuKienLoc.equals("tất cả")) {
+    public void thongKeDoanhThuTheoThang (LocalDate ngayBatDau, LocalDate ngayKetThuc) {
             try {
                 ConnectDB.getInstance().connect();
                 Connection con = ConnectDB.getConnection();
@@ -79,6 +93,7 @@ double tongDoanhThu=0;
                 statement.setDate(1, Date.valueOf(ngayBatDau));
                 statement.setDate(2, Date.valueOf(ngayKetThuc));
                 ResultSet rs = statement.executeQuery();
+
                 while (rs.next()) {
                     XYChart.Series<String, Double> series_01 = new XYChart.Series<>();
                     switch (rs.getInt("thang")) {
@@ -102,17 +117,31 @@ double tongDoanhThu=0;
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-        } else {
-            // Handle other conditions
         }
 
-    }
 
+
+
+    public void initializeComboBoxes(){
+        ObservableList<String> loaiThoiGian = FXCollections.observableArrayList("Ngày","Tháng","Năm");
+        cmbLoaiThoiGian.setItems(loaiThoiGian);
+        ObservableList<String> loaiLoc = FXCollections.observableArrayList("Lọc theo ngày","Lọc theo tháng","Lọc theo năm");
+        cmbLoc.setItems(loaiLoc);
+        ObservableList<String> thang = FXCollections.observableArrayList("Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12");
+        cmbChonThang.setItems(thang);
+        ObservableList<String> nam = FXCollections.observableArrayList("2021","2022","2023","2024");
+        cmbChonNam.setItems(nam);
+    }
     public void btnThongKeOnAction(ActionEvent actionEvent) {
         LocalDate ngayBatDau = dapNgayBatDau.getValue();
         LocalDate ngayKetThuc = dapNgayKetThuc.getValue();
+        String loaiThoiGian = cmbLoaiThoiGian.getSelectionModel().getSelectedItem().toString();
+        String thang = cmbChonThang.getSelectionModel().getSelectedItem().toString();
+        int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
+        String loc = cmbLoc.getSelectionModel().getSelectedItem().toString();
         chart.getData().clear();
-        thongKeDoanhThuTheoThang(ngayBatDau, ngayKetThuc, "tất cả");
+        tongDoanhThu = 0;
+        thongKeDoanhThuTheoThang(ngayBatDau, ngayKetThuc);
         txtDoanhThu.setText(String.valueOf(tongDoanhThu/1000000)+"M");
     }
 }
