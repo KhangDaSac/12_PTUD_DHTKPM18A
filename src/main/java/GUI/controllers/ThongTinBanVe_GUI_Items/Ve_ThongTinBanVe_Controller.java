@@ -1,8 +1,7 @@
-package GUI.controllers.BanVe_GUI_Items;
+package GUI.controllers.ThongTinBanVe_GUI_Items;
 
 import DTO.LoaiVe;
 import DTO.Ve;
-import GUI.controllers.BanVe_GUI_Controller;
 import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Ve_Controller implements Initializable {
+public class Ve_ThongTinBanVe_Controller implements Initializable {
     @FXML
     private AnchorPane anpVe;
 
@@ -70,7 +69,15 @@ public class Ve_Controller implements Initializable {
         this.soThuTu = soThuTu;
     }
 
-    private BanVe_GUI_Controller banVe_GUI_Controller;
+    private ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller;
+
+    public ThongTinBanVe_GUI_Controller getThongTinBanVe_gui_controller() {
+        return thongTinBanVe_gui_controller;
+    }
+
+    public void setThongTinBanVe_gui_controller(ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller) {
+        this.thongTinBanVe_gui_controller = thongTinBanVe_gui_controller;
+    }
 
     public Ve getVe() {
         return ve;
@@ -80,13 +87,6 @@ public class Ve_Controller implements Initializable {
         this.ve = ve;
     }
 
-    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
-        return banVe_GUI_Controller;
-    }
-
-    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
-        this.banVe_GUI_Controller = banVe_GUI_Controller;
-    }
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
@@ -95,8 +95,7 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     void anpXoaVeOnMouseCliced(MouseEvent event) {
-        if(banVe_GUI_Controller != null)
-            banVe_GUI_Controller.xoaVe(ve);
+
     }
 
 
@@ -131,8 +130,8 @@ public class Ve_Controller implements Initializable {
 
     public void chonVe(){
         try {
-            banVe_GUI_Controller.capNhatChiTietVe(ve);
-            banVe_GUI_Controller.boChonTatCaVe();
+            thongTinBanVe_gui_controller.capNhatChiTietVe(ve);
+            thongTinBanVe_gui_controller.boChonTatCaVe();
             anpVe.getStyleClass().add("veDangChon");
             anpVe.getStyleClass().removeAll("veKhongChon");
         } catch (IOException e) {

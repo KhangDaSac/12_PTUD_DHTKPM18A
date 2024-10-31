@@ -266,7 +266,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
-        main_Controller.chuyenTrangThongTinBanVe();
+        main_Controller.chuyenTrangThongTinBanVe(danhSachVe, danhSachChiTietVe);
     }
 
     public void timDanhSachChuyenTau(){
@@ -536,6 +536,12 @@ public class BanVe_GUI_Controller implements Initializable {
     public void boChonTatCaVe(){
         for(Ve_Controller ve_controller : veControllerList){
             ve_controller.khongChonVe();
+        }
+    }
+
+    public void boChonTatCaChiTietVe(){
+        for(ChiTietVe_Controller chiTietVe_controller : chiTietVeControllerList){
+            chiTietVe_controller.khongChonChiTietVe();
         }
     }
 

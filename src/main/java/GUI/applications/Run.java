@@ -17,6 +17,7 @@ public class Run extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Trang chủ");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
