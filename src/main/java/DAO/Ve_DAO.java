@@ -26,7 +26,7 @@ public class Ve_DAO {
         return maVeLonNhat;
     }
 
-    public void themDanhSachVe(ArrayList<Ve> danhSachVe){
+    public boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
         Connection con = ConnectDB.getInstance().getConnection();
         String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         for(Ve ve : danhSachVe){
@@ -41,11 +41,12 @@ public class Ve_DAO {
                 statement.setDouble(7, ve.getTongTienVe());
                 statement.setString(8, ve.getLoaiVe().toString());
                 statement.setString(9, ve.getTrangThaiVe().toString());
-                statement.executeUpdate();
+                statement.execute();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                return false;
             }
         }
+        return true;
     }
 }

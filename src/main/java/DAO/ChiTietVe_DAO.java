@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ChiTietVe_DAO {
-    public void themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
+    public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
         Connection con = ConnectDB.getInstance().getConnection();
         String query = "insert into ChiTietVe values (?, ?, ?, ?, ?, ?)";
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
@@ -26,8 +26,9 @@ public class ChiTietVe_DAO {
                 statement.executeUpdate();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                return false;
             }
         }
+        return true;
     }
 }
