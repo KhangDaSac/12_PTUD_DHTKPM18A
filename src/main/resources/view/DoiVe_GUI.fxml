@@ -5,8 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DoiVe_GUI_Controller">
    <children>
       <JFXButton layoutX="56.0" layoutY="21.0" prefHeight="40.0" prefWidth="40.0" styleClass="butonChuThich" stylesheets="@../css/All.css" text="?">
          <font>
@@ -27,28 +25,64 @@
       </JFXButton>
       <AnchorPane layoutX="112.0" layoutY="128.0" prefHeight="686.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0">
          <children>
-            <AnchorPane layoutX="12.0" layoutY="102.0" prefHeight="221.0" prefWidth="756.0" AnchorPane.topAnchor="102.0">
+            <AnchorPane layoutX="12.0" layoutY="96.8" nodeOrientation="LEFT_TO_RIGHT" prefHeight="227.0" prefWidth="756.0" AnchorPane.topAnchor="97.0">
                <children>
-                  <TableView layoutX="14.0" layoutY="11.0" prefHeight="200.0" prefWidth="726.0">
-                    <columns>
-                      <TableColumn prefWidth="105.60001373291016" text="Mã Vé" />
-                      <TableColumn prefWidth="139.99993896484375" text="Tên Khách Hàng " />
-                        <TableColumn prefWidth="126.4000244140625" text="CCCD" />
-                        <TableColumn prefWidth="140.0" text="Chuyến Tàu" />
-                        <TableColumn prefWidth="120.79998779296875" text="Thời Gian" />
-                        <TableColumn prefWidth="96.00003662109373" text="Giá " />
-                    </columns>
-                  </TableView>
+                  <HBox fx:id="add1ChuyenTau" alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="220.0" prefWidth="756.0">
+                     <children>
+                        <AnchorPane prefHeight="220.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fitHeight="220.0" fitWidth="150.0">
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/train-gray.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="37.0" layoutY="4.0" text="SE02-181024">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                              <VBox layoutX="13.0" layoutY="34.0" prefHeight="90.0" prefWidth="125.0">
+                                 <children>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="TG đi:" />
+                                          <Label text="18/10/24 23:25" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã đặt" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Đã bán:" />
+                                          <Label text="10" AnchorPane.leftAnchor="45.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="120.0">
+                                       <children>
+                                          <Label style="-fx-font-weight: 700;" text="Còn trống: " />
+                                          <Label text="10" AnchorPane.leftAnchor="65.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="1.0" layoutY="353.0" prefHeight="60.0" prefWidth="770.0" AnchorPane.topAnchor="353.0">
+            <AnchorPane layoutX="-13.0" layoutY="335.0" prefHeight="60.0" prefWidth="770.0">
                <children>
-                  <AnchorPane prefHeight="60.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anpToaTauTruoc" onMouseClicked="#anpToaTauTruocOnMouseClicked" prefHeight="60.0" prefWidth="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="ANGLE_LEFT" layoutX="9.0" layoutY="34.0" scaleX="5.0" scaleY="5.0" x="20.0" AnchorPane.leftAnchor="29.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="60.0" prefWidth="48.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="anpToaTauSau" onMouseClicked="#anpToaTauSauOnMouseClicked" prefHeight="60.0" prefWidth="60.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <FontAwesomeIconView glyphName="ANGLE_RIGHT" layoutX="9.0" layoutY="32.0" scaleX="5.0" scaleY="5.0" wrappingWidth="4.285714149475098" x="20.0" AnchorPane.rightAnchor="32.3142858505249" />
                      </children>
@@ -185,804 +219,28 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="23.0" layoutY="413.0" prefHeight="174.0" prefWidth="726.0" AnchorPane.topAnchor="413.0">
+            <AnchorPane layoutX="1.0" layoutY="413.0" maxWidth="770.0" prefHeight="180.0" prefWidth="770.0">
                <children>
-                  <GridPane fx:id="grpDanhSachCho" prefHeight="170.0" prefWidth="703.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="2.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <HBox prefHeight="180.0" prefWidth="770.0" style="-fx-alignment: center;">
                      <children>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css">
-                           <children>
-                              <JFXButton text="1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                           <children>
-                              <JFXButton text="2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="16.0" layoutY="14.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="1">
-                           <children>
-                              <JFXButton text="5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="7" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="2">
-                           <children>
-                              <JFXButton text="9" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="11" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="12" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="3">
-                           <children>
-                              <JFXButton text="13" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="15" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="16" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="4">
-                           <children>
-                              <JFXButton text="17" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="18" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="19" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="5">
-                           <children>
-                              <JFXButton text="21" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="22" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="23" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="24" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="6">
-                           <children>
-                              <JFXButton text="25" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="26" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="27" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="28" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="7">
-                           <children>
-                              <JFXButton text="29" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="30" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="7" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="31" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="32" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="8">
-                           <children>
-                              <JFXButton text="33" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="8" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="34" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="8" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="35" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="355.0" layoutY="96.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="8" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="36" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="9">
-                           <children>
-                              <JFXButton text="37" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="9" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="38" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="9" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="39" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="9" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="40" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="10">
-                           <children>
-                              <JFXButton text="41" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="10" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="42" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="10" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="43" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="10" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="44" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="11">
-                           <children>
-                              <JFXButton text="45" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="11" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="46" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="11" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="47" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="11" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="48" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="12">
-                           <children>
-                              <JFXButton text="49" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="12" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="50" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="12" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="51" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="12" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="52" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="13">
-                           <children>
-                              <JFXButton text="53" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="13" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="54" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="13" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="55" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="13" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="56" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="14">
-                           <children>
-                              <JFXButton text="57" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="14" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="58" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="14" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="59" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="14" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="60" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="15">
-                           <children>
-                              <JFXButton text="61" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="15" GridPane.rowIndex="1">
-                           <children>
-                              <JFXButton text="62" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="15" GridPane.rowIndex="2">
-                           <children>
-                              <JFXButton text="63" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="11.0" layoutY="11.0" styleClass="cho" stylesheets="@../css/BanVe_GUI.css" GridPane.columnIndex="15" GridPane.rowIndex="3">
-                           <children>
-                              <JFXButton text="64" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                           </children>
-                           <GridPane.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </GridPane.margin>
-                        </AnchorPane>
+                        <VBox style="-fx-alignment: center;">
+                           <children>
+                              <AnchorPane fx:id="anpDanhSachCho" styleClass="danhSachCho" stylesheets="@../css/BanVe_GUI.css">
+                                 <children>
+                                    <GridPane fx:id="grpDanhSachCho">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </children>
-                  </GridPane>
+                  </HBox>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="12.0" layoutY="594.0" prefHeight="100.0" prefWidth="629.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="594.0">
@@ -996,18 +254,18 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox editable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                              <ComboBox disable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                            </children>
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <JFXButton layoutX="221.0" layoutY="20.0" prefHeight="79.0" prefWidth="169.0" styleClass="buttonOption" stylesheets="@../css/BanVe_GUI.css" text="Bỏ chọn tất cả">
+                        <JFXButton fx:id="btnBoChonTatCa" layoutX="221.0" layoutY="20.0" onAction="#btnBoChonTatCaOnAcTion" prefHeight="79.0" prefWidth="169.0" styleClass="buttonOption" stylesheets="@../css/BanVe_GUI.css" text="Bỏ chọn tất cả">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXButton layoutX="336.0" layoutY="10.0" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đổi Vé">
+                        <JFXButton fx:id="btnDoiVe" layoutX="336.0" layoutY="10.0" onAction="#btnDoiVeOnAction" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đổi Vé">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -1016,7 +274,29 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <TextField layoutX="27.0" layoutY="66.0" prefHeight="26.0" prefWidth="250.0" promptText="Tìm kiếm Vé" />
+            <HBox layoutX="29.0" layoutY="1.0" prefHeight="73.0" prefWidth="550.0" spacing="20.0">
+               <children>
+                  <AnchorPane prefHeight="60.0" prefWidth="199.0" styleClass="group" stylesheets="@../css/All.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="4.0" prefHeight="18.0" prefWidth="140.0" text="Mã vé" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="4.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtMaVe" layoutX="5.0" layoutY="39.0" prefHeight="32.0" prefWidth="194.0" promptText="Tìm vé" />
+                     </children>
+                  </AnchorPane>
+                  <JFXButton fx:id="btnTimVe" onAction="#btnTimVeOnAction" prefHeight="81.0" prefWidth="194.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tìm Vé">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../images/BanVe_GUI/TimChuyenTau.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="802.0" layoutY="130.0" prefHeight="671.0" prefWidth="446.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="17.0">
@@ -1045,7 +325,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="250.0" text="SE02181024">
+                                                      <Label fx:id="lblToaTau_Cu" prefHeight="30.0" prefWidth="250.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1059,7 +339,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
+                                                      <Label fx:id="lblCho_Cu" prefHeight="30.0" prefWidth="100.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1074,7 +354,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                                      <Label fx:id="lblGiaCho_Cu" prefHeight="30.0" prefWidth="250.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1110,7 +390,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="250.0" text="SE02181024">
+                                                      <Label fx:id="lblToaTau_Moi" prefHeight="30.0" prefWidth="250.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1124,7 +404,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
+                                                      <Label fx:id="lblCho_Moi" prefHeight="30.0" prefWidth="100.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1139,7 +419,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                                      <Label fx:id="lblGiaCho_Moi" prefHeight="30.0" prefWidth="250.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1150,7 +430,7 @@
                                           </VBox>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane prefWidth="50.0" styleClass="ve-left" stylesheets="@../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane layoutY="-14.0" prefWidth="50.0" styleClass="ve-left" stylesheets="@../css/BanVe_GUI.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-14.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -1175,7 +455,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="250.0">
+                                                      <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="166.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1189,7 +469,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="28.0" prefWidth="134.0">
+                                                      <Label fx:id="lblTenKH" prefHeight="28.0" prefWidth="134.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1203,7 +483,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="28.0" prefWidth="193.0">
+                                                      <Label fx:id="lblLoaiKH" prefHeight="28.0" prefWidth="193.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1217,7 +497,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="30.0" prefWidth="165.0" text="871,000 VNĐ">
+                                                      <Label fx:id="lblGiaCu_ChiTietVeDoi" prefHeight="30.0" prefWidth="165.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1231,21 +511,7 @@
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label prefHeight="28.0" prefWidth="165.0" text="0 VNĐ">
-                                                         <font>
-                                                            <Font size="16.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <HBox layoutX="10.0" layoutY="132.0" prefHeight="30.0">
-                                                   <children>
-                                                      <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../css/All.css" text="Thành tiền:">
-                                                         <font>
-                                                            <Font name="System Bold" size="16.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <Label prefHeight="30.0" prefWidth="165.0" text="871,000 VNĐ">
+                                                      <Label fx:id="lblGiaMoi_ChiTietVeDoi" prefHeight="28.0" prefWidth="165.0">
                                                          <font>
                                                             <Font size="16.0" />
                                                          </font>
@@ -1272,13 +538,13 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../css/All.css" text="871,000 VNĐ" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <TextField fx:id="txtTongTien" disable="true" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../css/All.css" text="871,000 VNĐ" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                            </children>
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <JFXButton fx:id="btnTiepTuc" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tiếp tục">
+                        <JFXButton prefHeight="90.0" prefWidth="142.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tiếp tục">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>

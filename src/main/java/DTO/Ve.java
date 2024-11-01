@@ -11,6 +11,7 @@ public class Ve {
 	private double giamGiaVeTapThe;
 	private LoaiVe loaiVe ;
 	private TrangThaiVe trangThaiVe ;
+	private ChuyenTau chuyenTau;
 	public Ve() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,17 @@ public class Ve {
 		this.maVe = maVe;
 	}
 
+	public Ve(HoaDon hoaDon, String maVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, double tongTienVe, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe, ChuyenTau chuyenTau) {
+		this.hoaDon = hoaDon;
+		this.maVe = maVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.tongTienVe = tongTienVe;
+		this.giamGiaVeTapThe = giamGiaVeTapThe;
+		this.loaiVe = loaiVe;
+		this.trangThaiVe = trangThaiVe;
+		this.chuyenTau = chuyenTau;
+	}
 
 	public Ve(String maVe, HoaDon hoaDon, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, double tongTienVe, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
@@ -31,6 +43,10 @@ public class Ve {
 		this.loaiVe = loaiVe;
 		this.trangThaiVe = trangThaiVe;
 	}
+
+	public ChuyenTau getChuyenTau() {return chuyenTau;}
+
+	public void setChuyenTau(ChuyenTau chuyenTau) {this.chuyenTau = chuyenTau;}
 
 	public String getMaVe() {
 		return maVe;
@@ -132,6 +148,7 @@ public class Ve {
 				", giamGiaVeTapThe=" + giamGiaVeTapThe +
 				", loaiVe=" + loaiVe +
 				", trangThaiVe=" + trangThaiVe +
+				", chuyenTau =" + chuyenTau+
 				'}';
 	}
 

@@ -98,7 +98,6 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     private GaTau gaDi;
-
     private GaTau gaDen;
 
     private ArrayList<GaTau> gaTauList;
@@ -450,6 +449,9 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Cho_Controller.loaiTrang("BanVe_GUI.fxml"); // để trang Cho_Controller biết trang nào đang gọi
+        ToaTau_Controller.loaiTrang("BanVe_GUI.fxml"); // để trang ToaTau_Controller biết trang nào đang gọi
+        ChuyenTau_Controller.loaiTrang("BanVe_GUI.fxml");
         gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();
         cmbGaTauDen.getItems().clear();
         cmbGaTauDi.getItems().clear();

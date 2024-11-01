@@ -32,20 +32,20 @@ public class Cho_DAO {
         return null;
     }
 
-    public Cho timChoTheoMa(String maChoNgoi) {
+    public Cho timChoTheoMa(String maToaTau) {
         Connection con = ConnectDB.getInstance().getConnection();
         Cho cho = null;
         try {
-            String query = "select * from Cho where maCho = ?";
+            String query = "select * from Cho where maToaTau = ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maChoNgoi);
+            statement.setString(1, maToaTau);
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                String maCho = rs.getString(1);
-                int soCho = rs.getInt(2);
-                double doDaiChangToiThieu = rs.getDouble(3);
-                LoaiCho loaiCho = new LoaiCho(rs.getString(4));
-                ToaTau toaTau = new ToaTau(rs.getString(5));
+                String maCho = rs.getString("maCho");
+                int soCho = rs.getInt("soCho");
+                double doDaiChangToiThieu = rs.getDouble("doDaiChanToiThieu");
+                LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"));
+                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"));
                 cho = new Cho(maCho, soCho, doDaiChangToiThieu, toaTau, loaiCho);
             }
         } catch (Exception e) {
@@ -116,7 +116,6 @@ public class Cho_DAO {
                 LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToa"));
                 ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau);
                 TrangThaiCho trangThaiCho = TrangThaiCho.values()[rs.getInt("trangThaiCho")];
-
                 Cho cho = new Cho(maCho, soCho, toaTau, loaiCho, trangThaiCho);
                 danhSachCho.add(cho);
             }

@@ -103,5 +103,15 @@ public class ChuyenTau {
 		return Objects.hashCode(maChuyenTau);
 	}
 
-
+	@Override
+	public String toString() {
+		return "ChuyenTau{" +
+				"maChuyenTau='" + maChuyenTau + '\'' +
+				", tuyenTau=" + tuyenTau +
+				", soLuongCho=" + soLuongCho +
+				", soLuongChoDaBanVaDat=" + soLuongChoDaBanVaDat +
+				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
+				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
+				'}';
+	}
 }
