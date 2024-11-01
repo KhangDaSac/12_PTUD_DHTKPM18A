@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,7 @@
       <AnchorPane prefHeight="500.0" prefWidth="400.0" />
       <AnchorPane layoutX="402.0" layoutY="3.0" prefHeight="500.0" prefWidth="400.0">
          <children>
-            <VBox layoutX="17.0" layoutY="113.0" prefHeight="330.0" prefWidth="367.0">
+            <VBox layoutX="17.0" layoutY="56.0" prefHeight="387.0" prefWidth="367.0">
                <children>
                   <AnchorPane layoutX="20.0" layoutY="182.0" prefHeight="40.0" prefWidth="367.0" stylesheets="@../css/DangNhap_GUI.css">
                      <children>
@@ -26,35 +27,43 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <AnchorPane prefHeight="40.0" prefWidth="258.0" styleClass="group-input" stylesheets="@../css/DangNhap_GUI.css">
+                  <AnchorPane prefHeight="70.0" prefWidth="288.0" styleClass="group" stylesheets="@../css/All.css">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="140.0" text="Tên đăng nhập" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtTongTien" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
-                     <children>
-                        <Label layoutX="13.0" layoutY="8.0" text="Tài khoản">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TextField layoutX="134.0" prefHeight="38.0" prefWidth="209.0" promptText="Nhập tài khoản" styleClass="input" stylesheets="@../css/DangNhap_GUI.css" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                     </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="40.0" prefWidth="258.0" styleClass="group-input" stylesheets="@../css/DangNhap_GUI.css">
+                  <AnchorPane layoutX="20.0" layoutY="81.0" prefHeight="70.0" styleClass="group" stylesheets="@../css/All.css">
                      <children>
-                        <Label layoutX="15.0" layoutY="8.0" text="Mật khẩu">
+                        <Label prefHeight="30.0" prefWidth="140.0" text="Mật khẩu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="134.0" prefHeight="38.0" prefWidth="209.0" promptText="Nhập mật khẩu" styleClass="input" stylesheets="@../css/DangNhap_GUI.css" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
+                        <PasswordField AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="80.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="btnTiepTuc" onAction="#btnTiepTucOnAction" prefHeight="70.0" prefWidth="342.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đăng nhập">
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../images/DangNhap_GUI/DangNhap.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -66,14 +75,6 @@
                      </VBox.margin>
                      <children>
                         <CheckBox mnemonicParsing="false" text="Hiển thị mật khẩu" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="20.0" layoutY="142.0" prefHeight="40.0" prefWidth="258.0" stylesheets="@../css/DangNhap_GUI.css">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                     <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="346.0" styleClass="button-login" stylesheets="@../css/DangNhap_GUI.css" text="Đăng nhập" />
                      </children>
                   </AnchorPane>
                </children>
