@@ -58,6 +58,7 @@ public class DangNhap_GUI_Controller {
                 Main_Controller main_controller = fxmlLoaderKhungGiaoDien.getController();
                 main_controller.setStage(stage);
                 main_controller.setNhanVien(nhanVien);
+                stage.setResizable(true);
                 stage.setMaximized(true);
                 stage.setScene(sceneKhungGiaoDien);
             }
