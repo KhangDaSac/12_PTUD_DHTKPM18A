@@ -1,38 +1,19 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 public class HoaDon {
 	private String maHoaDon;
 	private LocalDateTime thoiGianLap;
 	private double tongTien;
-	private double tongTienDaDatCoc ;
+	private double tongTienDaDatCoc;
 	private double tongTienKhachHangTra ;
 	private TrangThaiHoaDon trangThaiHoaDon ;
 	private LoaiHoaDon loaiHoaDon;
+	private KhachHang khachHangMua;
 	private CaLamViec caLamViec;
-	private KhachHang khachHang;
-	public HoaDon() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public HoaDon(String maHoaDon) {
-		this.maHoaDon = maHoaDon;
-	}
-
-	public HoaDon(String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, double tongTienKhachHangTra, TrangThaiHoaDon trangThaiHoaDon, LoaiHoaDon loaiHoaDon, CaLamViec caLamViec, KhachHang khachHang) {
-		this.maHoaDon = maHoaDon;
-		this.thoiGianLap = thoiGianLap;
-		this.tongTien = tongTien;
-		this.tongTienDaDatCoc = tongTienDaDatCoc;
-		this.tongTienKhachHangTra = tongTienKhachHangTra;
-		this.trangThaiHoaDon = trangThaiHoaDon;
-		this.loaiHoaDon = loaiHoaDon;
-		this.caLamViec = caLamViec;
-		this.khachHang = khachHang;
-	}
 
 	public String getMaHoaDon() {
 		return maHoaDon;
@@ -90,20 +71,20 @@ public class HoaDon {
 		this.loaiHoaDon = loaiHoaDon;
 	}
 
+	public KhachHang getKhachHangMua() {
+		return khachHangMua;
+	}
+
+	public void setKhachHangMua(KhachHang khachHangMua) {
+		this.khachHangMua = khachHangMua;
+	}
+
 	public CaLamViec getCaLamViec() {
 		return caLamViec;
 	}
 
 	public void setCaLamViec(CaLamViec caLamViec) {
 		this.caLamViec = caLamViec;
-	}
-
-	public KhachHang getKhachHang() {
-		return khachHang;
-	}
-
-	public void setKhachHang(KhachHang khachHang) {
-		this.khachHang = khachHang;
 	}
 
 	@Override
@@ -119,20 +100,23 @@ public class HoaDon {
 		return Objects.hashCode(maHoaDon);
 	}
 
-	@Override
-	public String toString() {
-		return "HoaDon{" +
-				"maHoaDon='" + maHoaDon + '\'' +
-				", thoiGianLap=" + thoiGianLap +
-				", tongTien=" + tongTien +
-				", tongTienDaDatCoc=" + tongTienDaDatCoc +
-				", tongTienKhachHangTra=" + tongTienKhachHangTra +
-				", trangThaiHoaDon=" + trangThaiHoaDon +
-				", loaiHoaDon=" + loaiHoaDon +
-				", caLamViec=" + caLamViec +
-				", khachHang=" + khachHang +
-				'}';
+	public HoaDon(String maHoaDon) {
+		this.maHoaDon = maHoaDon;
 	}
 
+	public HoaDon(String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, double tongTienKhachHangTra, TrangThaiHoaDon trangThaiHoaDon, LoaiHoaDon loaiHoaDon, KhachHang khachHangMua, CaLamViec caLamViec) {
+		this.maHoaDon = maHoaDon;
+		this.thoiGianLap = thoiGianLap;
+		this.tongTien = tongTien;
+		this.tongTienDaDatCoc = tongTienDaDatCoc;
+		this.tongTienKhachHangTra = tongTienKhachHangTra;
+		this.trangThaiHoaDon = trangThaiHoaDon;
+		this.loaiHoaDon = loaiHoaDon;
+		this.khachHangMua = khachHangMua;
+		this.caLamViec = caLamViec;
+	}
 
+	public HoaDon() {
+
+	}
 }

@@ -86,8 +86,7 @@ double tongDoanhThu=0;
     // thong ke doanh thu theo thang
     public void thongKeDoanhThuTheoThang (LocalDate ngayBatDau, LocalDate ngayKetThuc) {
             try {
-                ConnectDB.getInstance().connect();
-                Connection con = ConnectDB.getConnection();
+                Connection con = ConnectDB.getInstance().getConnection();
                 String query = "exec thongKeDoanhThuTheoThang ?,?";
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setDate(1, Date.valueOf(ngayBatDau));
@@ -114,7 +113,7 @@ double tongDoanhThu=0;
                     chart.setLegendVisible(false);
                     chart.getData().add(series_01);
                 }
-            } catch (SQLException | ClassNotFoundException e) {
+            } catch (SQLException  e) {
                 throw new RuntimeException(e);
             }
         }

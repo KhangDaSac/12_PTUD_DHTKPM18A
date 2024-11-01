@@ -13,9 +13,8 @@ import static connectDB.ConnectDB.con;
 public class HoaDon_DAO {
     public ArrayList<HoaDon> getDanhSachHoaDon() {
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
-        try {
-            ConnectDB.getInstance().connect();  // Kết nối trước khi lấy kết nối
-            Connection con = ConnectDB.getConnection();
+        try {// Kết nối trước khi lấy kết nối
+            Connection con = ConnectDB.getInstance().getConnection();
             if (con == null) {
                 throw new SQLException("Failed to establish a database connection.");
             }
@@ -32,7 +31,7 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
+                hoaDon.setKhachHangMua(new KhachHang(rs.getString("maKhachhangMua")));
                 dsHoaDon.add(hoaDon);
             }
         } catch (Exception e) {
@@ -59,7 +58,7 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
+                hoaDon.setKhachHangMua(new KhachHang(rs.getString("maKhachhangMua")));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -90,7 +89,7 @@ public class HoaDon_DAO {
                 hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
                 hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
                 hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDon.setKhachHang(new KhachHang(rs.getString("maKhachhangMua")));
+                hoaDon.setKhachHangMua(new KhachHang(rs.getString("maKhachhangMua")));
                 dsHoaDon.add(hoaDon);
             }
         }catch (Exception e){
@@ -98,5 +97,21 @@ public class HoaDon_DAO {
         }
         return dsHoaDon;
 
+    }
+    public String layMaHoaDonLonNhatCuaNgayHienTai(String ngayHienTai){
+        String maHoaDonLonNhat = null;
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "select max(maHoaDon) as maHoaDon from HoaDon where maHoaDon like 'HD' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, ngayHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                maHoaDonLonNhat = rs.getString("maHoaDon");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maHoaDonLonNhat;
     }
 }
