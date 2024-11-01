@@ -6,6 +6,7 @@ import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -139,6 +140,30 @@ public class BanVe_GUI_Controller implements Initializable {
         this.toaTauDangChon = toaTauDangChon;
     }
 
+
+    public HoaDon getHoaDon() {
+        return hoaDon;
+    }
+
+    public void setHoaDon(HoaDon hoaDon) {
+        this.hoaDon = hoaDon;
+    }
+
+    public ArrayList<Ve> getDanhSachVe() {
+        return danhSachVe;
+    }
+
+    public void setDanhSachVe(ArrayList<Ve> danhSachVe) {
+        this.danhSachVe = danhSachVe;
+    }
+
+    public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
+        return danhSachChiTietVe;
+    }
+
+    public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
+        this.danhSachChiTietVe = danhSachChiTietVe;
+    }
 
     private int trangChuyenTauHienTai;
 
@@ -326,11 +351,7 @@ public class BanVe_GUI_Controller implements Initializable {
         anpToaTauSau.setVisible(false);
         anpToaTauTruoc.setVisible(false);
         if(chuyenTauList.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Không tìm thấy chuyến tàu phù hợp");
-            alert.getButtonTypes().setAll(ButtonType.OK);
-            alert.showAndWait();
+            main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
 
             return;
         }
@@ -524,6 +545,15 @@ public class BanVe_GUI_Controller implements Initializable {
         });
 
 
+        Platform.runLater(()->{
+            try {
+                if(hoaDon != null)
+                    hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
+                capNhatGioVe();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     public void boChonTatCaChuyenTau(){
@@ -582,6 +612,7 @@ public class BanVe_GUI_Controller implements Initializable {
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
+
                 ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
@@ -596,6 +627,7 @@ public class BanVe_GUI_Controller implements Initializable {
                 ve.setHoaDon(hoaDon);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(toaTauDangChon));
+                ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho);
 
 
@@ -618,11 +650,7 @@ public class BanVe_GUI_Controller implements Initializable {
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
             if(choChonList.size() < 5){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vé tập thể phải từ 5 chỗ trở lên");
-                alert.getButtonTypes().setAll(ButtonType.OK);
-                alert.showAndWait();
+                main_Controller.showMessagesDialog("Vé tập thể phải từ 5 người trở lên");
                 return;
             }
             ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
@@ -761,7 +789,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     public double tinhTongTienHoaDon(){
         double tongTienHoaDon = 0;
-        Ve.tinhTienCacVe(danhSachVe, danhSachChiTietVe);
+        hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
         for (Ve ve: danhSachVe){
             tongTienHoaDon += ve.tinhTongTienVeCuoi();
         }

@@ -11,17 +11,17 @@ public class QuanLyVe_BUS {
         Ve_DAO ve_DAO = new Ve_DAO();
         String maVeMoi = null;
         LocalDate ngayHienTai = LocalDate.now();
-        String ngayHienTaiString = TimeFormat.formatLocalDateTimeNumber(ngayHienTai);
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
         String maVeCu = ve_DAO.layMaVeLonNhatCuaNgayHienTai(ngayHienTaiString);
         if(maVeCu == null){
-            return "V" + ngayHienTaiString + "0000000";
+            return "V" + ngayHienTaiString + "000001";
         }
 
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
         String phanSau = maVeCu.substring(maVeCu.length() - 6);
 
-        maVeMoi = phanTruoc + String.valueOf(Integer.parseInt(phanSau) + 1);
+        maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
 
         return maVeMoi;
     }
@@ -30,7 +30,7 @@ public class QuanLyVe_BUS {
         String maVeCu = ve.getMaVe();
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
         String phanSau = maVeCu.substring(maVeCu.length() - 6);
-        String maVeMoi = phanTruoc + String.valueOf(Integer.parseInt(phanSau) + 1);
+        String maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
         return maVeMoi;
     }
 }

@@ -79,9 +79,6 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     public void khoiTao(){
         lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
         lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
-        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
-        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
-        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
         anpChiTietVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/ChiTietVe.css").toExternalForm());
 
         if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VECANHAN){
@@ -90,7 +87,11 @@ public class ChiTietVe_ThongTinBanVe_Controller {
             anpLoaiVe.getStyleClass().add("ve-left-veTapThe");
         }
 
+
         capNhatLaiThongTinKhachHang();
+        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
+        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
     }
 
     public void chonChiTietVe(){
@@ -115,9 +116,8 @@ public class ChiTietVe_ThongTinBanVe_Controller {
         lblCCCD.setText(chiTietVe.getKhachHang().getCCCD());
         chiTietVe.setSoTienGiamGia(chiTietVe.tinhTienGiamGia());
         chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
-        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
-        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
-        lblCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
     }
+
+
 
 }

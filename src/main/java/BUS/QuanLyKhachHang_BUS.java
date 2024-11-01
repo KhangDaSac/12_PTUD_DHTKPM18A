@@ -10,6 +10,10 @@ public class QuanLyKhachHang_BUS {
         }
         KhachHang_DAO khachHangDao = new KhachHang_DAO();
         KhachHang khachHang = khachHangDao.getKhachHangTheoCCCD(cccd);
+
+        if(khachHang == null)
+            throw new Exception("Không tìm thấy khách hàng");
+
         return khachHang;
     }
 }

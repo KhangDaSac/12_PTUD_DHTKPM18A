@@ -1,9 +1,6 @@
 package DAO;
 
-import DTO.Cho;
-import DTO.LoaiCho;
-import DTO.ToaTau;
-import DTO.TrangThaiCho;
+import DTO.*;
 import connectDB.ConnectDB;
 
 import java.sql.Connection;
@@ -27,5 +24,29 @@ public class Ve_DAO {
             e.printStackTrace();
         }
         return maVeLonNhat;
+    }
+
+    public boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        for(Ve ve : danhSachVe){
+            try {
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1, ve.getMaVe());
+                statement.setString(2, ve.getHoaDon().getMaHoaDon());
+                statement.setString(3, ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+                statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
+                statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
+                statement.setDouble(6, ve.getGiamGiaVeTapThe());
+                statement.setDouble(7, ve.getTongTienVe());
+                statement.setString(8, ve.getLoaiVe().toString());
+                statement.setString(9, ve.getTrangThaiVe().toString());
+                statement.execute();
+
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
     }
 }

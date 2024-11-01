@@ -2,25 +2,33 @@ package GUI.controllers;
 
 import DTO.ChiTietVe;
 import DTO.HoaDon;
+import DTO.NhanVien;
 import DTO.Ve;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import utils.ShowMessagesDialog;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class Main_Controller {
+public class Main_Controller implements Initializable {
     @FXML
     private AnchorPane anpNoiDungTrang;
 
@@ -94,12 +102,36 @@ public class Main_Controller {
     private Label lblTieuDeTrang;
 
     @FXML
-    private VBox vboxQuanLyBaoCaoVaThongKe;
+    private StackPane stpKhung;
 
     @FXML
     private VBox vboxLuaChonQuanLyVe;
 
+    @FXML
+    private VBox vboxQuanLyBaoCaoVaThongKe;
 
+    @FXML
+    private VBox vboxQuanLyPhieuDatVe;
+
+    private Stage stage;
+
+    private NhanVien nhanVien;
+
+    public NhanVien getNhanVien() {
+        return nhanVien;
+    }
+
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @FXML
     void chuyenTrangChu(ActionEvent event) {
@@ -131,6 +163,7 @@ public class Main_Controller {
         }
         ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
         thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setHoaDon(hoaDon);
         thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
         thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         thongTinBanVe_gui_controller.khoiTao();
@@ -283,5 +316,60 @@ public class Main_Controller {
 
     }
 
+    public void quayLaiTrangBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
+        banVe_gui_controller.setMain_Controller(this);
+        banVe_gui_controller.setHoaDon(hoaDon);
+        banVe_gui_controller.setDanhSachVe(danhSachVe);
+        banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
 
+    public void showMessagesDialog(String messages){
+        ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{
+            if(nhanVien != null){
+                lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
+                lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
+            }
+        });
+    }
+
+
+    @FXML
+    void btnQuanLyPhieuDatVeEntered(MouseEvent event) {
+        vboxQuanLyPhieuDatVe.setVisible(true);
+    }
+
+    @FXML
+    void btnQuanLyPhieuDatVeExited(MouseEvent event) {
+        vboxQuanLyPhieuDatVe.setVisible(false);
+    }
+
+
+    @FXML
+    void vboxQuanLyPhieuDatVeEntered(MouseEvent event) {
+        vboxQuanLyPhieuDatVe.setVisible(true);
+    }
+
+    @FXML
+    void vboxQuanLyPhieuDatVeExtied(MouseEvent event) {
+        vboxQuanLyPhieuDatVe.setVisible(false);
+    }
 }

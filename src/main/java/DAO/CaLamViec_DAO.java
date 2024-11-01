@@ -26,6 +26,7 @@ public class CaLamViec_DAO {
                 NhanVien nhanVien = new NhanVien(rs.getString(4));
                 CaLamViec caLamViec = new CaLamViec(maCaLamViec,thoiGianBatDau,thoiGianKetThuc,nhanVien);
                 dsCaLamViec.add(caLamViec);
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
