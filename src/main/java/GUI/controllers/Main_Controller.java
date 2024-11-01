@@ -93,6 +93,12 @@ public class Main_Controller implements Initializable {
     private Button btnTrangChu;
 
     @FXML
+    private Button btnTimPhieuDatVe;
+
+    @FXML
+    private Button btnTimVe;
+
+    @FXML
     private Label lblMaNhanVienDangNhap;
 
     @FXML
@@ -371,5 +377,15 @@ public class Main_Controller implements Initializable {
     @FXML
     void vboxQuanLyPhieuDatVeExtied(MouseEvent event) {
         vboxQuanLyPhieuDatVe.setVisible(false);
+    }
+
+    @FXML
+    void btnTimPhieuDatVeOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnTimVeOnAction(ActionEvent event) {
+
     }
 }

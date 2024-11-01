@@ -24,4 +24,5 @@ module GUI.applications {
     opens DTO to javafx.base;
     exports GUI.controllers.ThongTinBanVe_GUI_Items;
     opens GUI.controllers.ThongTinBanVe_GUI_Items to javafx.fxml;
+
 }
