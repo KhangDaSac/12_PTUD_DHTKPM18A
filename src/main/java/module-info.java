@@ -12,6 +12,7 @@ module GUI.applications {
     requires org.jsoup;
     requires com.jfoenix;
     requires org.apache.poi.ooxml;
+
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
@@ -19,4 +20,6 @@ module GUI.applications {
     exports DataGeneration;
     exports GUI.controllers.BanVe_GUI_Items;
     opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
+
+    opens DTO to javafx.base;
 }

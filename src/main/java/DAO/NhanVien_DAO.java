@@ -28,8 +28,8 @@ public class NhanVien_DAO {
                 String soDienThoai = rs.getString("soDienThoai");
                 String diaChi = rs.getString("diaChi");
 
-                TrangThaiNhanVien trangThaiNhanVien = TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien").toUpperCase());
-                LoaiNhanVien loaiNhanVien = LoaiNhanVien.valueOf(rs.getString("loaiNhanVien").toUpperCase());
+                LoaiNhanVien loaiNhanVien = LoaiNhanVien.valueOf(rs.getString("loaiNhanVien"));
+                TrangThaiNhanVien trangThaiNhanVien = TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien"));
 
                 NhanVien nv = new NhanVien(maNV, cCCD, tenNV, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
                 dsNV.add(nv);
@@ -53,8 +53,9 @@ public class NhanVien_DAO {
             stmt.setString(3, nv.getTenNhanVien());
             stmt.setString(4, nv.getSoDienThoai());
             stmt.setString(5, nv.getDiaChi());
-            stmt.setString(6, nv.getTrangThaiNhanVien().toString());
             stmt.setString(7, nv.getLoaiNhanVien().toString());
+            stmt.setString(6, nv.getTrangThaiNhanVien().toString());
+
             n = stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

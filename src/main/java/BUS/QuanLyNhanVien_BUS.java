@@ -20,18 +20,10 @@ public class QuanLyNhanVien_BUS {
             throw new Exception("Địa chỉ không hợp lệ");
         } else if (!soDienThoai.matches("0\\d{9}")) {
             throw new Exception("Số điện thoại không hợp lệ");
-        } else {
-            try {
-                LoaiNhanVien loai = LoaiNhanVien.valueOf(String.valueOf(loaiNhanVien));
-            } catch (IllegalArgumentException e) {
-                throw new Exception("Loại nhân viên không hợp lệ");
-            }
-
-            try {
-                TrangThaiNhanVien trangThai = TrangThaiNhanVien.valueOf(String.valueOf(trangThaiNhanVien));
-            } catch (IllegalArgumentException e) {
-                throw new Exception("Trạng thái nhân viên không hợp lệ");
-            }
+        } else if (!(loaiNhanVien instanceof LoaiNhanVien)) {
+            throw new Exception("Loại nhân viên không hợp lệ");
+        } else if (trangThaiNhanVien == null || !(trangThaiNhanVien instanceof TrangThaiNhanVien)){
+            throw new Exception("Trạng thái nhân viên không hợp lệ");
         }
 
         NhanVien_DAO nhanVien_DAO = new NhanVien_DAO();
