@@ -62,7 +62,7 @@ public class GaTau {
 	}
 	@Override
 	public String toString() {
-		return "GaTau [maGaTau=" + maGaTau + ", tenGaTau=" + tenGaTau + ", diaChi=" + diaChi + "]";
+		return tenGaTau;
 	}
 	
 }

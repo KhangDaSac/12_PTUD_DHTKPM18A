@@ -70,7 +70,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbGaTauDi" editable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" visibleRowCount="5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                        <ComboBox fx:id="cmbGaTauDi" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" visibleRowCount="5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -83,7 +83,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbGaTauDen" editable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" visibleRowCount="5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                        <ComboBox fx:id="cmbGaTauDen" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" visibleRowCount="5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
