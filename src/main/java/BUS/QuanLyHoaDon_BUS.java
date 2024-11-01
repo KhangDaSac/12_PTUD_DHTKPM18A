@@ -32,16 +32,32 @@ public class QuanLyHoaDon_BUS {
 
     }
 
-    public static void themHoaDon(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+    public static boolean themHoaDon(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         Ve_DAO ve_dao = new Ve_DAO();
         ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
 
+        if(hoaDon.getKhachHangMua() == null)
+            throw new Exception("Chưa nhập thông tin người mua");
 
-        hoaDon_dao.themHoaDon(hoaDon);
-        ve_dao.themDanhSachVe(danhSachVe);
-        chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe);
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            if(chiTietVe.getKhachHang() == null){
+                throw new Exception("Chưa nhập thông tin người người đi tàu");
+            }
+        }
 
+        if(!hoaDon_dao.themHoaDon(hoaDon)){
+            return false;
+        }
 
+        if(!ve_dao.themDanhSachVe(danhSachVe)){
+            return false;
+        }
+
+        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
+            return false;
+        }
+
+        return true;
     }
 }

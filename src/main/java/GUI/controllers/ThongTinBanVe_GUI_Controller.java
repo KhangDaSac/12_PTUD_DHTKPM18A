@@ -5,6 +5,7 @@ import BUS.QuanLyKhachHang_BUS;
 import DTO.*;
 import GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller;
 import GUI.controllers.ThongTinBanVe_GUI_Items.Ve_ThongTinBanVe_Controller;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,8 +17,6 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -128,8 +127,19 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         hoaDon.setCaLamViec(new CaLamViec("CLV010125C"));
         hoaDon.setTongTienDaDatCoc(0);
         hoaDon.setTongTienKhachHangTra(hoaDon.getTongTien());
-        System.out.println(hoaDon.getMaHoaDon());
-        QuanLyHoaDon_BUS.themHoaDon(hoaDon, danhSachVe, danhSachChiTietVe);
+        try {
+            if(QuanLyHoaDon_BUS.themHoaDon(hoaDon, danhSachVe, danhSachChiTietVe)){
+                hoaDon = null;
+                danhSachVe.clear();
+                danhSachChiTietVe.clear();
+                main_controller.showMessagesDialog("Bán vé thành công");
+                main_controller.quayLaiTrangBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
+            }else{
+                main_controller.showMessagesDialog("Bán vé thất bại");
+            }
+        } catch (Exception e) {
+            main_controller.showMessagesDialog(e.getMessage());
+        }
     }
 
     @FXML
@@ -159,7 +169,9 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        hoaDon = new HoaDon();
+        Platform.runLater(()->{
+            tinhTongTienHoaDon();
+        });
     }
 
     public void khoiTao(){
@@ -237,12 +249,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
             }
             hienThiThongTinKhachHang();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText(e.getMessage());
-            alert.getButtonTypes().setAll(ButtonType.OK);
-            alert.showAndWait();
-
+            main_controller.showMessagesDialog(e.getMessage());
         }
     }
 

@@ -351,11 +351,7 @@ public class BanVe_GUI_Controller implements Initializable {
         anpToaTauSau.setVisible(false);
         anpToaTauTruoc.setVisible(false);
         if(chuyenTauList.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Thông báo");
-            alert.setHeaderText("Không tìm thấy chuyến tàu phù hợp");
-            alert.getButtonTypes().setAll(ButtonType.OK);
-            alert.showAndWait();
+            main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
 
             return;
         }
@@ -654,11 +650,7 @@ public class BanVe_GUI_Controller implements Initializable {
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
             if(choChonList.size() < 5){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Vé tập thể phải từ 5 chỗ trở lên");
-                alert.getButtonTypes().setAll(ButtonType.OK);
-                alert.showAndWait();
+                main_Controller.showMessagesDialog("Vé tập thể phải từ 5 người trở lên");
                 return;
             }
             ChuyenTau_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);

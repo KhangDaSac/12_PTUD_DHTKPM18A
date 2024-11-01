@@ -26,7 +26,7 @@ public class HoaDon_DAO {
         return maHoaDonLonNhat;
     }
 
-    public void themHoaDon(HoaDon hoaDon){
+    public boolean themHoaDon(HoaDon hoaDon){
         Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "insert into HoaDon values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -40,9 +40,10 @@ public class HoaDon_DAO {
             statement.setString(7, hoaDon.getTrangThaiHoaDon().toString());
             statement.setString(8, hoaDon.getCaLamViec().getMaCaLamViec());
             statement.setString(9, hoaDon.getKhachHangMua().getMaKhachHang());
-            statement.executeUpdate();
+            statement.execute();
         } catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
+        return true;
     }
 }

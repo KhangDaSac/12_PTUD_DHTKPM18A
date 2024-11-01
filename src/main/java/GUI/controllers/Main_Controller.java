@@ -13,8 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import utils.ShowMessagesDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -98,6 +100,9 @@ public class Main_Controller {
 
     @FXML
     private VBox vboxLuaChonQuanLyVe;
+
+    @FXML
+    private StackPane stpKhung;
 
 
 
@@ -305,5 +310,8 @@ public class Main_Controller {
         AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
+    public void showMessagesDialog(String messages){
+        ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
+    }
 
 }
