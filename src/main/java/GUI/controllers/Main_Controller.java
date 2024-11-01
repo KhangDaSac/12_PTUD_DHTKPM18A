@@ -363,7 +363,6 @@ public class Main_Controller implements Initializable {
     }
 
 
-
     @FXML
     void vboxQuanLyPhieuDatVeEntered(MouseEvent event) {
         vboxQuanLyPhieuDatVe.setVisible(true);
