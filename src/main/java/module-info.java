@@ -11,6 +11,7 @@ module GUI.applications {
     requires javafaker;
     requires org.jsoup;
     requires com.jfoenix;
+    requires org.apache.poi.ooxml;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;

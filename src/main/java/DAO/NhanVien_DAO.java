@@ -12,21 +12,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class NhanVien_DAO {
-    public NhanVien_DAO(){
-        super();
-    }
+    Connection con = ConnectDB.getInstance().getConnection();
 
     public ArrayList<NhanVien> getAllEmployee() {
         ArrayList<NhanVien> dsNV = new ArrayList<NhanVien>();
-        ConnectDB.getInstance();
-        Connection con = ConnectDB.getConnection();
         PreparedStatement sm = null;
         try {
             sm = con.prepareStatement("SELECT * FROM NhanVien");
             ResultSet rs = sm.executeQuery();
 
             while (rs.next()){
-                String maNV = rs.getString("maNV");
+                String maNV = rs.getString("maNhanVien");
                 String cCCD = rs.getString("CCCD");
                 String tenNV = rs.getString("tenNhanVien");
                 String soDienThoai = rs.getString("soDienThoai");
@@ -40,17 +36,12 @@ public class NhanVien_DAO {
             }
         } catch (Exception e){
             e.printStackTrace();
-        } finally {
-            try {
-                sm.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            throw new RuntimeException(e);
         }
         return dsNV;
     }
 
-    public boolean create(NhanVien nv){
+    public void create(NhanVien nv){
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
@@ -66,18 +57,11 @@ public class NhanVien_DAO {
             stmt.setString(7, nv.getLoaiNhanVien().toString());
             n = stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException(e);
         }
-        return n > 0;
     }
 
-    public boolean update(NhanVien nv){
+    public void update(NhanVien nv){
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
@@ -93,150 +77,9 @@ public class NhanVien_DAO {
             stmt.setString(7, nv.getMaNhanVien());
             n = stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException(e);
         }
-        return n > 0;
     }
-
-//    //Lấy nhân viên theo tên nhân viên
-//    public ArrayList<NhanVien> getEmployee_ByName(String tenNhanVien) {
-//        ArrayList<NhanVien> dsNV = new ArrayList<>();
-//        ConnectDB.getInstance();
-//        Connection con = ConnectDB.getConnection();
-//        PreparedStatement sm = null;
-//        try {
-//            sm = con.prepareStatement("SELECT * FROM NhanVien WHERE tenNhanVien LIKE ?");
-//            sm.setString(1, "%" + tenNhanVien + "%");
-//            ResultSet rs = sm.executeQuery();
-//
-//            while (rs.next()) {
-//                NhanVien nv = mapNhanVien(rs);
-//                dsNV.add(nv);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (sm != null) sm.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return dsNV;
-//    }
-//
-//    // Lấy nhân viên theo mã nhân viên
-//    public NhanVien getEmployee_ByID(String maNhanVien) {
-//        NhanVien nv = null;
-//        ConnectDB.getInstance();
-//        Connection con = ConnectDB.getConnection();
-//        PreparedStatement sm = null;
-//        try {
-//            sm = con.prepareStatement("SELECT * FROM NhanVien WHERE maNhanVien = ?");
-//            sm.setString(1, maNhanVien);
-//            ResultSet rs = sm.executeQuery();
-//
-//            if (rs.next()) {
-//                nv = mapNhanVien(rs);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (sm != null) sm.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return nv;
-//    }
-//
-//    // Lấy nhân viên theo loại nhân viên
-//    public ArrayList<NhanVien> getEmployee_ByType(LoaiNhanVien loaiNhanVien) {
-//        ArrayList<NhanVien> dsNV = new ArrayList<>();
-//        ConnectDB.getInstance();
-//        Connection con = ConnectDB.getConnection();
-//        PreparedStatement sm = null;
-//        try {
-//            sm = con.prepareStatement("SELECT * FROM NhanVien WHERE loaiNhanVien = ?");
-//            sm.setString(1, loaiNhanVien.toString());
-//            ResultSet rs = sm.executeQuery();
-//
-//            while (rs.next()) {
-//                NhanVien nv = mapNhanVien(rs);
-//                dsNV.add(nv);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (sm != null) sm.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return dsNV;
-//    }
-//
-//    // Lấy nhân viên theo trạng thái
-//    public ArrayList<NhanVien> getEmployee_ByState(TrangThaiNhanVien trangThaiNhanVien) {
-//        ArrayList<NhanVien> dsNV = new ArrayList<>();
-//        ConnectDB.getInstance();
-//        Connection con = ConnectDB.getConnection();
-//        PreparedStatement sm = null;
-//        try {
-//            sm = con.prepareStatement("SELECT * FROM NhanVien WHERE trangThaiNhanVien = ?");
-//            sm.setString(1, trangThaiNhanVien.toString());
-//            ResultSet rs = sm.executeQuery();
-//
-//            while (rs.next()) {
-//                NhanVien nv = mapNhanVien(rs);
-//                dsNV.add(nv);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (sm != null) sm.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return dsNV;
-//    }
-//
-//    // Lấy nhân viên theo số điện thoại
-//    public ArrayList<NhanVien> getEmployee_ByNumber(String soDienThoai) {
-//        ArrayList<NhanVien> dsNV = new ArrayList<>();
-//        ConnectDB.getInstance();
-//        Connection con = ConnectDB.getConnection();
-//        PreparedStatement sm = null;
-//        try {
-//            sm = con.prepareStatement("SELECT * FROM NhanVien WHERE soDienThoai = ?");
-//            sm.setString(1, soDienThoai);
-//            ResultSet rs = sm.executeQuery();
-//
-//            while (rs.next()) {
-//                NhanVien nv = mapNhanVien(rs);
-//                dsNV.add(nv);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                if (sm != null) sm.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        return dsNV;
-//    }
 
     // Tìm nhân viên theo tiêu chí bất kì
     public ArrayList<NhanVien> getEmployees(String maNhanVien, String cCCD, String tenNhanVien,String soDienThoai, String diaChi, LoaiNhanVien loaiNhanVien, TrangThaiNhanVien trangThaiNhanVien) {
@@ -294,13 +137,7 @@ public class NhanVien_DAO {
                 dsNV.add(nv);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (sm != null) sm.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            throw new RuntimeException(e);
         }
         return dsNV;
     }

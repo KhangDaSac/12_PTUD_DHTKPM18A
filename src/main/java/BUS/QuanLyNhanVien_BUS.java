@@ -8,11 +8,6 @@ import DTO.TrangThaiNhanVien;
 import java.util.ArrayList;
 
 public class QuanLyNhanVien_BUS {
-//    private NhanVien_DAO nhanVienDao;
-//
-//    public QuanLyNhanVien_BUS(){
-//        nhanVienDao = new NhanVien_DAO();
-//    }
 
     public static ArrayList<NhanVien> getEmployees(String maNhanVien, String CCCD, String tenNhanVien, String diaChi, String soDienThoai, LoaiNhanVien loaiNhanVien, TrangThaiNhanVien trangThaiNhanVien) throws Exception {
         if (!maNhanVien.matches("NV\\d{2}\\d{4}")) {

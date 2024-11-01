@@ -12,7 +12,6 @@ public class NhanVien {
 	private TrangThaiNhanVien trangThaiNhanVien;
 	public NhanVien() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public NhanVien(String maNhanVien) {

@@ -26,7 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox prefHeight="698.0" prefWidth="397.0" spacing="20.0">
+            <VBox prefHeight="597.0" prefWidth="330.0" spacing="20.0">
                <children>
                   <AnchorPane prefHeight="75.0" prefWidth="376.0" styleClass="group" stylesheets="@../css/All.css">
                      <children>
@@ -35,8 +35,8 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtMaKH" layoutX="17.599999999999998" layoutY="33.0" onMouseExited="#txtMaKH_MouseExit" prefHeight="40.0" prefWidth="482.0" promptText="Mã nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
-                        <Label fx:id="lblMaKH_Loi" layoutX="400.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtMa_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtMa_NV_OnMouseClicked" onMouseExited="#txtMa_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Mã nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <Label fx:id="lblMaNV_Loi" layoutX="400.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="75.0" prefWidth="514.0" styleClass="group" stylesheets="@../css/All.css">
@@ -46,7 +46,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCCCD_KH" layoutX="17.599999999999998" layoutY="33.0" onMouseExited="#txtCCCD_OnMouseExit" prefHeight="40.0" prefWidth="482.0" promptText="CCCD" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtCCCD_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtCCCD_OnMouseClicked" onMouseExited="#txtCCCD_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="CCCD" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblCCCD_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -57,8 +57,19 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtTenKH" layoutX="17.599999999999998" layoutY="33.0" onMouseExited="#txtTenKH_OnMouseExit" prefHeight="40.0" prefWidth="482.0" promptText="Tên nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
-                        <Label fx:id="lblTenKH_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtTen_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtTen_NV_OnMouseClicked" onMouseExited="#txtTen_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Tên nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <Label fx:id="lblTenNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="200.0" prefHeight="75.0" prefWidth="514.0" styleClass="group" stylesheets="@../css/All.css">
+                     <children>
+                        <Label layoutX="23.0" prefHeight="40.0" prefWidth="140.0" text="Địa chỉ" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtDiaChi_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtDiaChi_NV_OnMouseClicked" onMouseExited="#txtDiaChi_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Địa chỉ" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <Label fx:id="lblDiaChi_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="75.0" prefWidth="514.0" styleClass="group" stylesheets="@../css/All.css">
@@ -68,70 +79,64 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtSDT_KH" layoutX="17.599999999999998" layoutY="33.0" onMouseExited="#txtSDT_OnMouseExit" prefHeight="40.0" prefWidth="482.0" promptText="Số điện thoại" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtSDT_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtSDT_NV_OnMouseClicked" onMouseExited="#txtSDT_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Số điện thoại" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblSDT_Loi" layoutX="384.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="75.0" prefWidth="514.0" styleClass="group-editable-combo-box" stylesheets="@../css/All.css">
                      <children>
-                        <Label layoutX="23.0" layoutY="10.0" prefHeight="40.0" prefWidth="162.0" text="Số điện thoại:" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="0.0">
+                        <Label layoutX="23.0" prefHeight="40.0" prefWidth="140.0" text="Loại nhân viên:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbLoaiKhachHang2" editable="true" layoutX="14.0" layoutY="23.0" onMouseExited="#txtLoaiKH_OnMouseExit" prefHeight="78.4" prefWidth="378.4" promptText="Loại khách hàng" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="-13.400000000000006" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-4.400000000000091" AnchorPane.topAnchor="23.0" />
-                        <AnchorPane prefHeight="84.8" prefWidth="519.2" styleClass="group" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label layoutX="23.0" prefHeight="40.0" prefWidth="140.0" text="Loại nhân viên:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="cmbLoaiNhanVien" editable="true" layoutX="16.0" layoutY="35.0" onMouseExited="#txtLoaiKH_OnMouseExit" prefHeight="40.0" prefWidth="482.0" promptText="Loại nhân viên" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
-                              <Label fx:id="lblLoaiKH_Loi1" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
-                           </children>
-                        </AnchorPane>
+                        <ComboBox fx:id="cmbLoaiNhanVien" editable="true" layoutX="16.0" layoutY="35.0" onMouseClicked="#txtLoai_NV_OnMouseClicked" onMouseExited="#txtLoaiNhanVien_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Loại nhân viên:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <Label fx:id="lblLoaiNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="75.0" prefWidth="514.0" styleClass="group" stylesheets="@../css/All.css">
+                  <AnchorPane prefHeight="75.0" prefWidth="514.0" styleClass="group-editable-combo-box" stylesheets="@../css/All.css">
                      <children>
                         <Label layoutX="23.0" prefHeight="40.0" prefWidth="140.0" text="Trạng thái:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbTrangThai" editable="true" layoutX="16.0" layoutY="35.0" onMouseExited="#txtLoaiKH_OnMouseExit" prefHeight="40.0" prefWidth="482.0" promptText="Trạng thái:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
-                        <Label fx:id="lblLoaiKH_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
+                        <ComboBox fx:id="cmbTrangThai" editable="true" layoutX="16.0" layoutY="35.0" onMouseClicked="#txtTrangThai_NV_OnMouseClicked" onMouseExited="#txtTrangThai_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Trạng thái:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <Label fx:id="lblTrangThaiNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <JFXButton fx:id="btnThemNV" onAction="#btnThemKhachHangOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Thêm" />
-                        <JFXButton fx:id="btnSuaNV" onAction="#btnSuaKhachHangOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Sửa" />
+                        <JFXButton fx:id="btnThemNV" onAction="#btnThemNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Thêm" />
+                        <JFXButton fx:id="btnSuaNV" onAction="#btnSuaNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Sửa" />
                      </children>
                   </HBox>
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="17.0" GridPane.columnIndex="1">
                <children>
-                  <TextField fx:id="txtTimKiemNV" onMouseExited="#txtMaKH_MouseExit" prefHeight="40.0" prefWidth="762.0" promptText="Tìm nhân viên" stylesheets="@../css/All.css">
+                  <TextField fx:id="txtTimKiem_NV" prefHeight="40.0" prefWidth="762.0" promptText="Tìm nhân viên" stylesheets="@../css/All.css">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TableView fx:id="tblNV" onMouseClicked="#tblOnMuseClick" prefHeight="503.0" prefWidth="917.0" stylesheets="@../css/QuanLyKhachHang_GUI.css">
+                  <TableView fx:id="tblNV" onMouseClicked="#tblOnMuseClick" prefHeight="503.0" prefWidth="917.0" stylesheets="@../css/QuanLyNhanVien_GUI.css">
                     <columns>
                       <TableColumn fx:id="colSTT_NV" prefWidth="37.5999721288681" text="STT" />
-                      <TableColumn fx:id="colMa_NV" prefWidth="114.40003967285156" text="Mã" />
-                        <TableColumn fx:id="colCCCD_NV" prefWidth="112.80001831054688" text="CCCD" />
-                        <TableColumn fx:id="colTen_NV" prefWidth="174.39996337890625" text="Họ &amp; tên" />
-                        <TableColumn fx:id="colSoDienThoai_NV" maxWidth="202.39996337890625" prefWidth="162.39984130859375" text="Số điện thoại" />
-                        <TableColumn fx:id="colLoai_NV" minWidth="8.79998779296875" prefWidth="164.80010986328125" text="Loại nhân viên" />
-                        <TableColumn fx:id="colTrangThai_NV" prefWidth="153.5999755859375" text="Trạng thái" />
+                      <TableColumn fx:id="colMa_NV" prefWidth="98.13337707519531" text="Mã" />
+                        <TableColumn fx:id="colCCCD_NV" prefWidth="113.06649780273438" text="CCCD" />
+                        <TableColumn fx:id="colTen_NV" prefWidth="164.0" text="Họ &amp; tên" />
+                        <TableColumn fx:id="colDiaChi_NV" prefWidth="144.7999267578125" text="Địa chỉ" />
+                        <TableColumn fx:id="colSoDienThoai_NV" maxWidth="282.933349609375" prefWidth="131.4666748046875" text="Số điện thoại" />
+                        <TableColumn fx:id="colLoai_NV" minWidth="8.79998779296875" prefWidth="131.7333984375" text="Loại nhân viên" />
+                        <TableColumn fx:id="colTrangThai_NV" prefWidth="115.466796875" text="Trạng thái" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </VBox.margin>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <JFXButton fx:id="btnXuatDSNV" onAction="#btnXuatDanhSachNhanVienOnAction" prefHeight="65.0" prefWidth="921.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Xuất danh sách nhân viên">
                      <VBox.margin>
