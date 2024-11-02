@@ -299,6 +299,7 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
         if(danhSachVe.isEmpty()){
+            main_Controller.showMessagesDialog("Trong giỏ không có vé");
             return;
         }
         main_Controller.chuyenTrangThongTinBanVe(hoaDon, danhSachVe, danhSachChiTietVe);

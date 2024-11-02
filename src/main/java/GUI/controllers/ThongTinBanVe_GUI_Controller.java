@@ -226,6 +226,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 vboxChiTietVe.getChildren().add(anchorPane);
             }
         }
+        chiTietVeControllerList.getFirst().chonChiTietVe();
     }
 
     public void boChonTatCaVe(){
