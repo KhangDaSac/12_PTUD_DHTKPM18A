@@ -141,6 +141,13 @@
     -fx-cursor: hand;
 }
 
+.buttonOption{
+    -fx-background-color: #15B392;
+    -fx-effect: dropshadow(gaussian, #15B392, 10, 0, 2, 2);
+    -fx-font-size: 16;
+    -fx-text-fill: #fff;
+}
+
 
 
 
