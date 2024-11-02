@@ -13,7 +13,10 @@ import utils.TimeFormat;
 public class HoaDon_LayVe_Controller {
 
     @FXML
-    private AnchorPane anpVe;
+    private AnchorPane anpHoaDon;
+
+    @FXML
+    private Label lblSoThuTu;
 
     @FXML
     private Label lblMaCaLam;
@@ -36,6 +39,15 @@ public class HoaDon_LayVe_Controller {
     private HoaDon hoaDon;
     private LayVe_GUI_Controller layVe_gui_controller;
     private int soThuTu;
+    private boolean dangChon;
+
+    public boolean isDangChon() {
+        return dangChon;
+    }
+
+    public void setDangChon(boolean dangChon) {
+        this.dangChon = dangChon;
+    }
 
     public int getSoThuTu() {
         return soThuTu;
@@ -68,20 +80,34 @@ public class HoaDon_LayVe_Controller {
         lblMaCaLam.setText(hoaDon.getCaLamViec().getMaCaLamViec());
         lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDon.getTongTien()));
         lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDon.getTongTienDaDatCoc()));
+        lblSoThuTu.setText(String.valueOf(soThuTu + 1));
+        dangChon = false;
         if(hoaDon.getTrangThaiHoaDon().equals(TrangThaiHoaDon.CHOLAYVE)){
             lblTrangThai.setText("Chờ lấy vé");
         }
+        anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());
     }
 
 
     @FXML
-    void anpVeOnMouseClicked(MouseEvent event) {
+    void anpHoaDonOnMouseClicked(MouseEvent event) {
+        layVe_gui_controller.boChonTatCaHoaDon();
+        chonHoaDon();
 
+        layVe_gui_controller.getDanhSachPhieuDatVeTheoMaHoaDon(hoaDon.getMaHoaDon());
+        layVe_gui_controller.capNhatDanhSachPhieuDatVe();
     }
 
-    @FXML
-    void anpXoaVeOnMouseCliced(MouseEvent event) {
+    public void chonHoaDon(){
+        dangChon = true;
+        anpHoaDon.getStyleClass().removeAll("hoaDonKhongChon");
+        anpHoaDon.getStyleClass().add("hoaDonChon");
+    }
 
+    public void boChonHoaDon(){
+        dangChon = false;
+        anpHoaDon.getStyleClass().removeAll("hoaDonChon");
+        anpHoaDon.getStyleClass().add("hoaDonKhongChon");
     }
 
 }

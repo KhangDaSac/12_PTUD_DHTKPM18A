@@ -2,9 +2,13 @@ package GUI.controllers;
 
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
+import BUS.QuanLyPhieuDatVe_BUS;
+import DTO.ChiTietPhieuDatVe;
 import DTO.HoaDon;
 import DTO.KhachHang;
+import DTO.PhieuDatVe;
 import GUI.controllers.LayVe_GUI_Items.HoaDon_LayVe_Controller;
+import GUI.controllers.LayVe_GUI_Items.PhieuDatVe_LayVe_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,9 +80,12 @@ public class LayVe_GUI_Controller {
     }
 
     private ArrayList<HoaDon_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDon_LayVe_Controller>();
+    private ArrayList<PhieuDatVe_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<PhieuDatVe_LayVe_Controller>();
 
 
     private ArrayList<HoaDon> hoaDonList;
+    private ArrayList<PhieuDatVe> phieuDatVeList;
+    private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList;
 
     @FXML
     void btnBoChonTatCaVeOnAction(ActionEvent event) {
@@ -171,5 +178,41 @@ public class LayVe_GUI_Controller {
 
 
     }
+
+    public void boChonTatCaHoaDon(){
+        for (HoaDon_LayVe_Controller controller : hoaDon_layVe_controllerList){
+            controller.boChonHoaDon();
+        }
+    }
+
+    public void getDanhSachPhieuDatVeTheoMaHoaDon(String maHoaDon){
+        phieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachPhieuDatVeTheoMaHoaDon(maHoaDon);
+
+    }
+
+    public void capNhatDanhSachPhieuDatVe(){
+        vboxDanhSachPhieuDatVe.getChildren().clear();
+        if(phieuDatVeList.isEmpty())
+            return;
+        int length = phieuDatVeList.size();
+        for(int i = 0; i < length; i++){
+            PhieuDatVe phieuDatVe = phieuDatVeList.get(i);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/PhieuDatVe_LayVe.fxml"));
+                Parent anchorPane = loader.load();
+                PhieuDatVe_LayVe_Controller controller = loader.getController();
+                phieuDatVeLayVeControllerList.add(controller);
+                controller.setLayVe_gui_controller(this);
+                controller.setSoThuTu(i);
+                controller.setPhieuDatVe(phieuDatVe);
+                controller.khoiTao();
+
+                vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
 }
