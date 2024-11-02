@@ -6,6 +6,7 @@ import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -57,9 +58,16 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     @FXML
     private VBox vboxDanhSachThoiTin;
 
+    @FXML
+    private ImageView imvDungThongTinNguoiDiTau;
+
     private Ve ve;
 
     private int soThuTu;
+
+    private boolean duThongTinNguoiDiTau;
+
+
 
     public int getSoThuTu() {
         return soThuTu;
@@ -77,6 +85,14 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
 
     public void setThongTinBanVe_gui_controller(ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller) {
         this.thongTinBanVe_gui_controller = thongTinBanVe_gui_controller;
+    }
+
+    public boolean isDuThongTinNguoiDiTau() {
+        return duThongTinNguoiDiTau;
+    }
+
+    public void setDuThongTinNguoiDiTau(boolean duThongTinNguoiDiTau) {
+        this.duThongTinNguoiDiTau = duThongTinNguoiDiTau;
     }
 
     public Ve getVe() {
@@ -127,10 +143,13 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
         }
+
+        imvDungThongTinNguoiDiTau.setVisible(duThongTinNguoiDiTau);
     }
 
     public void chonVe(){
         try {
+            thongTinBanVe_gui_controller.setVeDangChon(soThuTu);
             thongTinBanVe_gui_controller.capNhatChiTietVe(ve);
             thongTinBanVe_gui_controller.boChonTatCaVe();
             anpVe.getStyleClass().add("veDangChon");

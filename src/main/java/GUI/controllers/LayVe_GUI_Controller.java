@@ -86,6 +86,7 @@ public class LayVe_GUI_Controller {
     private ArrayList<HoaDon> hoaDonList;
     private ArrayList<PhieuDatVe> phieuDatVeList;
     private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList;
+    private ArrayList<PhieuDatVe> phieuDatVeDangChon = new ArrayList<PhieuDatVe>();
 
     @FXML
     void btnBoChonTatCaVeOnAction(ActionEvent event) {

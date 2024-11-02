@@ -119,6 +119,16 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @FXML
     private VBox vboxGioVe;
 
+    private int veDangChon;
+
+    public int getVeDangChon() {
+        return veDangChon;
+    }
+
+    public void setVeDangChon(int veDangChon) {
+        this.veDangChon = veDangChon;
+    }
+
     @FXML
     void btnBanVeOnAction(ActionEvent event) {
         hoaDon.setThoiGianLap(LocalDateTime.now());
@@ -198,14 +208,17 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
             veControllerList.add(controller);
             controller.setThongTinBanVe_gui_controller(this);
 
+            controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
+
             controller.setVe(ve);
             controller.setSoThuTu(i);
             controller.khoiTao();
 
             vboxGioVe.getChildren().add(anchorPane);
         }
-        veControllerList.getFirst().chonVe();
+        veControllerList.get(veDangChon).chonVe();
     }
+
 
     public void capNhatChiTietVe(Ve ve) throws IOException {
         vboxChiTietVe.getChildren().clear();
@@ -219,6 +232,8 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 ChiTietVe_ThongTinBanVe_Controller controller = loader.getController();
                 chiTietVeControllerList.add(controller);
                 controller.setThongTinBanVe_gui_controller(this);
+
+
 
                 controller.setChiTietVe(chiTietVe);
                 controller.khoiTao();
@@ -319,6 +334,15 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         return tongTienHoaDon;
     }
 
+    public boolean kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(Ve ve){
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            if(chiTietVe.getVe().equals(ve)){
+                if(chiTietVe.getKhachHang() == null)
+                    return false;
+            }
+        }
+        return true;
+    }
 
 
 }
