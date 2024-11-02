@@ -347,6 +347,10 @@ public class Main_Controller implements Initializable {
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
+    public boolean showLoadingDialog(){
+        return ShowMessagesDialog.showDialogWithLoading(stpKhung, "Loanding", "Loading");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{

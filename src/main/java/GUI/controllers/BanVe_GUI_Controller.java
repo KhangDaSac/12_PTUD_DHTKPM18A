@@ -184,7 +184,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
-            timDanhSachChuyenTau();
+        timDanhSachChuyenTau();
     }
 
     @FXML
@@ -530,9 +530,19 @@ public class BanVe_GUI_Controller implements Initializable {
         txtTongTien.setText(CurrencyFormat.currencyFormat(0));
 
 
-        cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
-
-
+        dapNgayKhoiHanh.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                if (date.isBefore(today)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #D3D3D3;");
+                }
+                if (date.equals(today)) {
+                    setStyle("-fx-background-color: #FF6347;");
+                }
+            }
         });
 
         cmbGaTauDi.getEditor().setOnKeyPressed(event -> {
@@ -594,7 +604,7 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.chuyenMauMacDinh();
 
 
-            boolean daThemVaoGioVe = danhSachChiTietVe.stream().anyMatch(chiTietVe -> chiTietVe.getCho().equals(controller.getCho()));
+            boolean daThemVaoGioVe = kiemTraTrungChangTrongGioVe(controller.getCho());
 
             if (daThemVaoGioVe) {
                 controller.chuyenMauDaThemVaoGioVe();
@@ -608,6 +618,23 @@ public class BanVe_GUI_Controller implements Initializable {
             }
             controller.capNhatTrangThai();
         }
+    }
+
+    public boolean kiemTraTrungChangTrongGioVe(Cho cho){
+        if(danhSachChiTietVe.isEmpty())
+            return false;
+        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDi().getThuTuGa();
+        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDen().getThuTuGa();
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            if(chiTietVe.getCho().equals(cho)){
+                int thuTuGaDiCTV = chiTietVe.getVe().getThongTinGaTauDi().getThuTuGa();
+                int thuTuGaDenCTV = chiTietVe.getVe().getThongTinGaTauDen().getThuTuGa();
+
+                if(!(thuTuGaDen <= thuTuGaDiCTV || thuTuGaDi >= thuTuGaDenCTV))
+                    return true;
+            }
+        }
+        return false;
     }
 
     public void themVeVaoGio() throws IOException {
