@@ -18,11 +18,19 @@ public class KhachHang {
 			LoaiKhachHang loaiKhachHang) {
 		super();
 		this.maKhachHang = maKhachHang;
-		CCCD = cCCD;
+		this.CCCD = cCCD;
 		this.tenKhachHang = tenKhachHang;
 		this.soDienThoai = soDienThoai;
 		this.loaiKhachHang = loaiKhachHang;
 	}
+
+	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, LoaiKhachHang loaiKhachHang) {
+		this.maKhachHang = maKhachHang;
+		this.CCCD = CCCD;
+		this.tenKhachHang = tenKhachHang;
+		this.loaiKhachHang = loaiKhachHang;
+	}
+
 	public KhachHang(String maKhachHang) {
 		super();
 		this.maKhachHang = maKhachHang;

@@ -89,6 +89,12 @@ public class Main_Controller implements Initializable {
     private Button btnTrangChu;
 
     @FXML
+    private Button btnTimPhieuDatVe;
+
+    @FXML
+    private Button btnTimVe;
+
+    @FXML
     private Label lblMaNhanVienDangNhap;
 
     @FXML
@@ -261,7 +267,22 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
-
+        lblTieuDeTrang.setText("LẤY VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        LayVe_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
@@ -368,6 +389,10 @@ public class Main_Controller implements Initializable {
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
+    public boolean showLoadingDialog(){
+        return ShowMessagesDialog.showDialogWithLoading(stpKhung, "Loanding", "Loading");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
@@ -398,5 +423,15 @@ public class Main_Controller implements Initializable {
     @FXML
     void vboxQuanLyPhieuDatVeExtied(MouseEvent event) {
         vboxQuanLyPhieuDatVe.setVisible(false);
+    }
+
+    @FXML
+    void btnTimPhieuDatVeOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnTimVeOnAction(ActionEvent event) {
+
     }
 }

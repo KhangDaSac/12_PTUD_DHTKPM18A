@@ -13,32 +13,32 @@ public class PhieuDatVe {
 	private TrangThaiPhieuDatVe trangThaiPhieuDatVe;
 	private LoaiPhieuDatVe loaiPhieuDatVe;
 	private HoaDon hoaDon;
-	private ChuyenTau chuyenTau;
-	private GaTau gaTauDi;
-	private GaTau gaTauDen;
-	private HoaDon maHoaDon;
+	private ChiTietChuyenTau chiTietChuyenTauDi;
+	private ChiTietChuyenTau chiTietChuyenTauDen;
 	public PhieuDatVe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PhieuDatVe(String maPhieuDatVe, double tongTienVe, double tongTienDatCoc, double giamGiaVeTapThe, LocalDateTime ngayLayVe, TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen, HoaDon maHoaDon) {
-		this.maPhieuDatVe = maPhieuDatVe;
-		this.tongTienVe = tongTienVe;
-		this.tongTienDatCoc = tongTienDatCoc;
-		this.giamGiaVeTapThe = giamGiaVeTapThe;
-		this.ngayLayVe = ngayLayVe;
-		this.trangThaiPhieuDatVe = trangThaiPhieuDatVe;
-		this.loaiPhieuDatVe = loaiPhieuDatVe;
-		this.hoaDon = hoaDon;
-		this.chuyenTau = chuyenTau;
-		this.gaTauDi = gaTauDi;
-		this.gaTauDen = gaTauDen;
-		this.maHoaDon = maHoaDon;
-	}
-
 	public PhieuDatVe(String maPhieuDatVe) {
 		this.maPhieuDatVe = maPhieuDatVe;
+	}
+
+
+	public ChiTietChuyenTau getChiTietChuyenTauDi() {
+		return chiTietChuyenTauDi;
+	}
+
+	public void setChiTietChuyenTauDi(ChiTietChuyenTau chiTietChuyenTauDi) {
+		this.chiTietChuyenTauDi = chiTietChuyenTauDi;
+	}
+
+	public ChiTietChuyenTau getChiTietChuyenTauDen() {
+		return chiTietChuyenTauDen;
+	}
+
+	public void setChiTietChuyenTauDen(ChiTietChuyenTau chiTietChuyenTauDen) {
+		this.chiTietChuyenTauDen = chiTietChuyenTauDen;
 	}
 
 	public String getMaPhieuDatVe() {
@@ -105,36 +105,16 @@ public class PhieuDatVe {
 		this.hoaDon = hoaDon;
 	}
 
-	public ChuyenTau getChuyenTau() {
-		return chuyenTau;
-	}
-
-	public void setChuyenTau(ChuyenTau chuyenTau) {
-		this.chuyenTau = chuyenTau;
-	}
-
-	public GaTau getGaTauDi() {
-		return gaTauDi;
-	}
-
-	public void setGaTauDi(GaTau gaTauDi) {
-		this.gaTauDi = gaTauDi;
-	}
-
-	public GaTau getGaTauDen() {
-		return gaTauDen;
-	}
-
-	public void setGaTauDen(GaTau gaTauDen) {
-		this.gaTauDen = gaTauDen;
-	}
-
-	public HoaDon getMaHoaDon() {
-		return maHoaDon;
-	}
-
-	public void setMaHoaDon(HoaDon maHoaDon) {
-		this.maHoaDon = maHoaDon;
+	public PhieuDatVe(String maPhieuDatVe, HoaDon hoaDon, ChiTietChuyenTau chiTietChuyenTauDi, ChiTietChuyenTau chiTietChuyenTauDen, double giamGiaVeTapThe, double tongTienVe, double tongTienDatCoc, TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe) {
+		this.maPhieuDatVe = maPhieuDatVe;
+		this.hoaDon = hoaDon;
+		this.chiTietChuyenTauDi = chiTietChuyenTauDi;
+		this.chiTietChuyenTauDen = chiTietChuyenTauDen;
+		this.giamGiaVeTapThe = giamGiaVeTapThe;
+		this.tongTienVe = tongTienVe;
+		this.tongTienDatCoc = tongTienDatCoc;
+		this.trangThaiPhieuDatVe = trangThaiPhieuDatVe;
+		this.loaiPhieuDatVe = loaiPhieuDatVe;
 	}
 
 	@Override
@@ -161,10 +141,26 @@ public class PhieuDatVe {
 				", trangThaiPhieuDatVe=" + trangThaiPhieuDatVe +
 				", loaiPhieuDatVe=" + loaiPhieuDatVe +
 				", hoaDon=" + hoaDon +
-				", chuyenTau=" + chuyenTau +
-				", gaTauDi=" + gaTauDi +
-				", gaTauDen=" + gaTauDen +
-				", maHoaDon=" + maHoaDon +
+				", chiTietChuyenTauDi=" + chiTietChuyenTauDi +
+				", chiTietChuyenTauDen=" + chiTietChuyenTauDen +
 				'}';
 	}
+
+	public double tinhGiamGiaVeTapThe(){
+		if(loaiPhieuDatVe == LoaiPhieuDatVe.PHIEUDATTAPTHE){
+			giamGiaVeTapThe = tongTienVe * 0.1;
+		}else if(loaiPhieuDatVe == LoaiPhieuDatVe.PHIEUDATCANHAN){
+			giamGiaVeTapThe = 0;
+		}
+		return giamGiaVeTapThe;
+	}
+
+	public double tinhTongTienVeCuoi(){
+		return tongTienVe - tinhGiamGiaVeTapThe();
+	}
+
+	public double tinhTienCoc(){
+		return tinhTongTienVeCuoi() * 0.2;
+	}
+
 }
