@@ -89,6 +89,10 @@ public class ToaTau_Controller {
         chonToaTau();}
         else if(trang.equals("DoiVe_GUI.fxml")){
             chonToaTau_DoiVe();
+            doiVe_gui_controller.setLblToaTau_Moi(toaTau.getMaToaTau());
+            doiVe_gui_controller.setLblCho_Moi(0);
+            doiVe_gui_controller.setLblGiaCho_Moi(0.0);
+
         }else {
             System.out.printf("trang không xác định");
         }

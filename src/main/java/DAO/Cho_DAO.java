@@ -32,26 +32,34 @@ public class Cho_DAO {
         return null;
     }
 
-    public Cho timChoTheoMa(String maToaTau) {
+    public static Cho timChoTheoMaCho(String maChoTim) {
         Connection con = ConnectDB.getInstance().getConnection();
         Cho cho = null;
         try {
-            String query = "select * from Cho where maToaTau = ?";
+            String query = "select * from Cho where maCho = ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maToaTau);
-            ResultSet rs = statement.executeQuery(query);
+            statement.setString(1, maChoTim);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maCho = rs.getString("maCho");
                 int soCho = rs.getInt("soCho");
-                double doDaiChangToiThieu = rs.getDouble("doDaiChanToiThieu");
-                LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"));
                 ToaTau toaTau = new ToaTau(rs.getString("maToaTau"));
-                cho = new Cho(maCho, soCho, doDaiChangToiThieu, toaTau, loaiCho);
+                //double giacho =rs.getDouble("giaCho");
+                cho = new Cho(toaTau,maCho, soCho);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return cho;
+    }
+
+    public static void setChoTheoMaChovaMaToa(){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try{
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public ArrayList<Cho> xuatDanhSachChoTheoLoai(String maLoaiCho) {

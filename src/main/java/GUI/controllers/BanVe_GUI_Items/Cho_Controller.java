@@ -89,7 +89,20 @@ public class Cho_Controller implements Initializable {
                 }
             }
         }else if (trang.equals("DoiVe_GUI.fxml")) {
-            System.out.printf("đã vào trang đổi vé");
+            if (cho.getTrangThaiCho()== TrangThaiCho.CONTRONG){
+                if(!doiVe_gui_controller.getChoChon().equals(cho)){
+                    doiVe_gui_controller.setChoChon(cho);
+                    dangChon = true;
+                }else {
+                    doiVe_gui_controller.setChoChon(null);
+                    dangChon = false;
+                }
+                capNhatTrangThai();
+                doiVe_gui_controller.capNhatCacChoDaChon();
+                doiVe_gui_controller.setLblCho_Moi(cho.getSoCho());
+                doiVe_gui_controller.setLblGiaCho_Moi(cho.getGiaCho());
+                doiVe_gui_controller.setLblToaTau_Moi(cho.getToaTau().getMaToaTau());
+            }
         }else {
             System.out.printf("trang không xác định");
         }
@@ -111,7 +124,22 @@ public class Cho_Controller implements Initializable {
         tooltip.setShowDelay(Duration.millis(0)); // Hiển thị ngay lập tức khi hover
         tooltip.setHideDelay(Duration.millis(0));
     }
-
+    public void chuyenTrangThaiCho(Cho cho){
+        switch (cho.getTrangThaiCho()){
+            case DADATHOACBAN -> {
+                btnCho.getStyleClass().clear();
+                btnCho.getStyleClass().add("choDaDatHoacBan");
+            }
+            case DANHCHOCHANGDAIHON -> {
+                btnCho.getStyleClass().clear();
+                btnCho.getStyleClass().add("choDanhChoChanDaiHon");
+            }
+            case CONTRONG -> {
+                btnCho.getStyleClass().clear();
+                btnCho.getStyleClass().add("choTrong");
+            }
+        }
+    }
     public void chuyenMauMacDinh(){
 
         switch (cho.getTrangThaiCho()){

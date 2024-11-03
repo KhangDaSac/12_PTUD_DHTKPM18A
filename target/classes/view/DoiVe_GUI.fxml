@@ -243,9 +243,9 @@
                   </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="12.0" layoutY="594.0" prefHeight="100.0" prefWidth="629.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="594.0">
+            <AnchorPane layoutX="12.0" layoutY="594.0" prefHeight="100.0" prefWidth="756.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="594.0">
                <children>
-                  <HBox layoutX="53.0" prefHeight="100.0" prefWidth="579.0">
+                  <HBox layoutX="278.0" prefHeight="100.0" prefWidth="414.0">
                      <children>
                         <AnchorPane prefHeight="70.0" prefWidth="180.0" styleClass="group-editable-combo-box" stylesheets="@../css/All.css">
                            <children>
@@ -254,17 +254,12 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <ComboBox disable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+                              <ComboBox fx:id="cmbLoaiVe" disable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
                            </children>
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <JFXButton fx:id="btnBoChonTatCa" layoutX="221.0" layoutY="20.0" onAction="#btnBoChonTatCaOnAcTion" prefHeight="79.0" prefWidth="169.0" styleClass="buttonOption" stylesheets="@../css/BanVe_GUI.css" text="Bỏ chọn tất cả">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
                         <JFXButton fx:id="btnDoiVe" layoutX="336.0" layoutY="10.0" onAction="#btnDoiVeOnAction" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đổi Vé">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -430,7 +425,7 @@
                                           </VBox>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane layoutY="-14.0" prefWidth="50.0" styleClass="ve-left" stylesheets="@../css/BanVe_GUI.css" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-14.0" />
+                                    <AnchorPane prefHeight="130.0" prefWidth="50.0" styleClass="ve-left" stylesheets="@../css/BanVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -464,7 +459,7 @@
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">
                                                    <children>
-                                                      <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../css/All.css" text="Họ và tên">
+                                                      <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../css/All.css" text="Họ và tên:">
                                                          <font>
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
@@ -478,7 +473,7 @@
                                                 </HBox>
                                                 <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0">
                                                    <children>
-                                                      <Label prefHeight="28.0" prefWidth="150.0" stylesheets="@../css/All.css" text="Loại khách hàng">
+                                                      <Label prefHeight="28.0" prefWidth="150.0" stylesheets="@../css/All.css" text="Loại khách hàng:">
                                                          <font>
                                                             <Font name="System Bold" size="16.0" />
                                                          </font>
@@ -533,7 +528,7 @@
                      <children>
                         <AnchorPane prefHeight="100.0" prefWidth="288.0" styleClass="group" stylesheets="@../css/All.css">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="140.0" text="Tổng tiền" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                              <Label fx:id="lblTongTien" layoutX="15.200000000000001" layoutY="5.6" prefHeight="30.0" prefWidth="250.0" text="Tổng tiền" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="3.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

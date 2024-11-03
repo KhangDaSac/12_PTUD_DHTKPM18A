@@ -1,7 +1,9 @@
 package BUS;
 
+import DAO.ChiTietVe_DAO;
 import DAO.ChuyenTau_DAO;
 import DAO.Ve_DAO;
+import DTO.ChiTietVe;
 import DTO.ChuyenTau;
 import DTO.Ve;
 import utils.TimeFormat;
@@ -40,11 +42,10 @@ public class QuanLyVe_BUS {
         Ve ve =veDao.getVeTheoMa(maVe);
         return ve;
     }
-    public static ChuyenTau getChuyenTauTheoMa(String maCT){
-        ChuyenTau_DAO chuyenTauDao= new ChuyenTau_DAO();
-        ChuyenTau ct = chuyenTauDao.timChuyenTauTheoMa(maCT);
-        return ct;
+    public static void doiVe(String maVe,String maGheCu,String maGheMoi){
+        ChiTietVe_DAO chiTietVeDao= new ChiTietVe_DAO();
+        chiTietVeDao.doiChoTuMaVeMaGheCuMaGheMoi(maVe,maGheCu, maGheMoi);
+        System.out.printf("doi ve thanh cong");
     }
-
 
 }

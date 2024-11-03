@@ -25,7 +25,6 @@ public class LoaiKhachHang  extends KhachHang{
 		this.phanTramGiamGia = phanTramGiamGia;
 	}
 	public LoaiKhachHang(String maLoaiKhachHang) {
-		super();
 		this.maLoaiKhachHang = maLoaiKhachHang;
 	}
 	public String getMaLoaiKhachHang() {

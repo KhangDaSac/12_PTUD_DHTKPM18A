@@ -34,19 +34,19 @@ public class ToaTau_DAO {
         return danhSachToaTau;
     }
 
-    public ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
+    public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
         Connection con = ConnectDB.getInstance().getConnection();
         ToaTau toaTau = null;
         try {
             String query = "select * from ToaTau where maChuyenTau = ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,maChuyenTau);
-            ResultSet rs = statement.executeQuery(query);
+            statement.setString(1, maChuyenTau);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maToa = rs.getString("maToaTau");
                 int thuTuToa = rs.getInt("thuTuToa");
                 int soLuongCho = rs.getInt("soLuongCho");
-                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGia"));
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"));
                 ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 toaTau = new ToaTau(maToa, thuTuToa, soLuongCho, loaiToaTau, chuyenTau);
             }

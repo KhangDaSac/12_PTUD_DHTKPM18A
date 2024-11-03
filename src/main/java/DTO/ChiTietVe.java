@@ -32,6 +32,13 @@ public class ChiTietVe {
 		this.cho = cho;
 	}
 
+	public ChiTietVe(double giaCho, Ve ve, Cho cho,KhachHang khachHang) {
+		this.giaCho = giaCho;
+		this.ve = ve;
+		this.cho = cho;
+		this.khachHang = khachHang;
+	}
+
 	public double getGiaCho() {
 		return giaCho;
 	}

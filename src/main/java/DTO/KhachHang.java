@@ -34,6 +34,13 @@ public class KhachHang {
 		this.ngaySinh = ngaySinh;
 	}
 
+	public KhachHang(String maKhachHang, String tenKhachHang, LoaiKhachHang loaiKhachHang, String CCCD) {
+		this.maKhachHang = maKhachHang;
+		this.tenKhachHang = tenKhachHang;
+		this.loaiKhachHang = loaiKhachHang;
+		this.CCCD = CCCD;
+	}
+
 	public KhachHang(String maKhachHang) {
 		super();
 		this.maKhachHang = maKhachHang;

@@ -2,6 +2,8 @@ package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
 import BUS.QuanLyVe_BUS;
+import DAO.ChiTietVe_DAO;
+import DAO.Cho_DAO;
 import DAO.ChuyenTau_DAO;
 import DAO.ToaTau_DAO;
 import DTO.*;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +43,10 @@ public class DoiVe_GUI_Controller implements Initializable {
     private AnchorPane anpToaTauTruoc;
 
     @FXML
-    private JFXButton btnBoChonTatCa;
+    private ComboBox<String> cmbLoaiVe;
+
+    @FXML
+    private JFXButton btnDatLaiTrang;
 
     @FXML
     private JFXButton btnDoiVe;
@@ -56,6 +62,9 @@ public class DoiVe_GUI_Controller implements Initializable {
 
     @FXML
     private Label lblCCCD;
+
+    @FXML
+    private Label lblTongTien;
 
     @FXML
     private Label lblCho_Cu;
@@ -98,10 +107,43 @@ public class DoiVe_GUI_Controller implements Initializable {
     private GaTau gaDi;
     private GaTau gaDen;
     private Ve veKhachHang = new Ve();
+    private ChiTietVe ctVe = new ChiTietVe();
     private ChuyenTau chuyenTauKH = new ChuyenTau();
     private ToaTau toaTauKH =new ToaTau();
     private Cho choKH = new Cho();
     private Cho choChon = new Cho();
+
+    public Cho getChoChon() {
+        return choChon;
+    }
+
+    public void setChoChon(Cho choChon) {
+        this.choChon = choChon;
+    }
+
+    public void setLblToaTau_Moi(String maToaTau) {
+        lblToaTau_Moi.setText(maToaTau);
+    }
+
+    public void setLblGiaCho_Moi(double giaChoMoi) {
+        if (giaChoMoi ==0.0){
+            lblGiaCho_Moi.setText("");
+            lblGiaMoi_ChiTietVeDoi.setText("");
+        }else {
+            lblGiaCho_Moi.setText(String.format("%.3fVNĐ",giaChoMoi));
+            lblGiaMoi_ChiTietVeDoi.setText(String.format("%.3fVNĐ",giaChoMoi));
+        }
+
+    }
+
+    public void setLblCho_Moi(int choMoi) {
+        if(choMoi==0){
+            lblCho_Moi.setText("");
+        }else {
+            lblCho_Moi.setText(String.format("%d",choMoi));
+        }
+
+    }
 
     private ArrayList<GaTau> gaTauList;
     private ArrayList<ToaTau> toaTauList;
@@ -118,6 +160,7 @@ public class DoiVe_GUI_Controller implements Initializable {
     public void setChuyenTauDangChon(int chuyenTauDangChon) {
         this.chuyenTauDangChon = chuyenTauDangChon;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Cho_Controller.loaiTrang("DoiVe_GUI.fxml");
@@ -130,11 +173,13 @@ public class DoiVe_GUI_Controller implements Initializable {
         grpDanhSachCho.setVisible(false);
         hboxDanhSachToaTau.getChildren().clear();
         txtTongTien.setText(CurrencyFormat.currencyFormat(0));
+        cmbLoaiVe.setValue(LoaiVe.VECANHAN.toString());
 
     }
 
     public void setToaTauDangChon(int toaTauDangChon) {
         this.toaTauDangChon = toaTauDangChon;
+        lblToaTau_Moi.setText(toaTauKH.getMaToaTau());
     }
 
     @FXML
@@ -148,6 +193,7 @@ public class DoiVe_GUI_Controller implements Initializable {
                 int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
                 hienThiDanhSachToa(toaTauList, batDau, ketThuc);
                 toaTauControllerList.get(0).chonToaTau_DoiVe();
+                lblToaTau_Moi.setText(toaTauList.get(toaTauDangChon).getMaToaTau());
                 anpToaTauSau.setVisible(lengthList > ketThuc);
                 anpToaTauTruoc.setVisible(batDau > 0);
                 capNhatCacChoDaChon();
@@ -167,6 +213,7 @@ public class DoiVe_GUI_Controller implements Initializable {
                 int ketThuc = Math.min(9 * trangToaTauHienTai, lengthList);
                 hienThiDanhSachToa(toaTauList, batDau, ketThuc);
                 toaTauControllerList.get(0).chonToaTau_DoiVe();
+                lblToaTau_Moi.setText(toaTauList.getFirst().getMaToaTau());
                 anpToaTauSau.setVisible(lengthList > ketThuc);
                 anpToaTauTruoc.setVisible(batDau > 0);
                 capNhatCacChoDaChon();
@@ -176,36 +223,82 @@ public class DoiVe_GUI_Controller implements Initializable {
         }
     }
 
-    @FXML
-    void btnBoChonTatCaOnAcTion(ActionEvent event) {
-        dangChon = false;
-        capNhatCacChoDaChon();
-    }
+//    @FXML
+//    void btnDatLaiTrangOnAcTion(ActionEvent event) {
+//        dangChon = false;
+//        capNhatCacChoDaChon();
+//    }
 
     @FXML
     void btnDoiVeOnAction(ActionEvent event) {
+        double giaChoCu = Double.parseDouble(lblGiaCu_ChiTietVeDoi.getText().replace("VNĐ","").trim());
+        double giaChoMoi = Double.parseDouble(lblGiaMoi_ChiTietVeDoi.getText().replace("VNĐ","").trim());
+        double tongTien;
+        QuanLyVe_BUS quanLyVeBus = new QuanLyVe_BUS();
+        if (choKH.getGiaCho()>(choChon.getGiaCho()+50)){
+            tongTien = giaChoCu - giaChoMoi -50;
+            txtTongTien.setText(String.format("%.3fVNĐ",tongTien));
+            lblTongTien.setText("Trả lại khách:");
+        }else if (choKH.getGiaCho()>(choChon.getGiaCho()+50)){
+            tongTien = giaChoMoi + 50 - giaChoCu;
+            txtTongTien.setText(String.format("%.3fVNĐ",tongTien));
+            lblTongTien.setText("Thu thêm:");
+        }else {
+            lblTongTien.setText("Tổng tiền");
+            txtTongTien.setText("0VNĐ");
+        }
 
+        if (choChon.getSoCho()>0){
+        choChon.setTrangThaiCho(TrangThaiCho.DADATHOACBAN);
+        choKH.setTrangThaiCho(TrangThaiCho.CONTRONG);
+        capNhatCacChoDaChon();
+        quanLyVeBus.doiVe( veKhachHang.getMaVe(),ctVe.getCho().getMaCho(),choChon.getMaCho());
+        }else {
+            System.out.printf("chọn chỗ cần đổi");
+        }
     }
 
     @FXML
     void btnTimVeOnAction(ActionEvent event) throws IOException {
         String maTim = txtMaVe.getText();
         QuanLyVe_BUS veBus = new QuanLyVe_BUS();
-        if(!maTim.equals("")){
+        if (maTim.equals("")) {
+            System.out.println("Vui lòng nhập mã vé!!!");
+            txtMaVe.requestFocus();
+        } else if (!maTim.matches("^V\\d{12}$")) {
+            System.out.println("Vé không hợp lệ. Định dạng đúng là 'VXXXXXXXXXXXX' với X là chữ số.");
+            txtMaVe.requestFocus();
+        } else {
             veKhachHang = veBus.getVeTheoMa(maTim);
-            gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
-            gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
-            chuyenTauKH = ChuyenTau_DAO.timChuyenTauTheoMa(veKhachHang.getChuyenTau().getMaChuyenTau());
-            trangChuyenTauHienTai = 1;
-            add1ChuyenTau.setVisible(true);
-            hienThiChuyenTau(chuyenTauKH);
+            if (veKhachHang != null) {
+                if (veKhachHang.getLoaiVe() == LoaiVe.VECANHAN) {
+                    gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
+                    gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
+                    chuyenTauKH = ChuyenTau_DAO.timChuyenTauTheoMa(veKhachHang.getChuyenTau().getMaChuyenTau());
+                    ctVe = ChiTietVe_DAO.getCTVeTheoMaVe(veKhachHang.getMaVe());
 
-        }else {
-            System.out.println("nhap ma!!!");
+                    lblToaTau_Cu.setText(ctVe.getCho().getToaTau().getMaToaTau());
+                    lblCho_Cu.setText(String.format("%d", ctVe.getCho().getSoCho()));
+                    lblGiaCho_Cu.setText(String.format("%.3f VNĐ", ctVe.getGiaCho()));
+                    lblTenKH.setText(ctVe.getKhachHang().getTenKhachHang());
+                    lblCCCD.setText(ctVe.getKhachHang().getCCCD());
+                    lblLoaiKH.setText(ctVe.getKhachHang().getLoaiKhachHang().getTenLoaiKhachHang());
+                    lblGiaCu_ChiTietVeDoi.setText(String.format("%.3f VNĐ", ctVe.getGiaCho()));
+                    trangChuyenTauHienTai = 1;
+                    add1ChuyenTau.setVisible(true);
+                    hienThiChuyenTau(chuyenTauKH);
+                } else {
+                    System.out.println("Phải là vé cá nhân!");
+                    txtMaVe.requestFocus();
+                }
+            } else {
+                System.out.println("Không tìm thấy vé với mã: " + maTim);
+                txtMaVe.requestFocus();
+            }
         }
 
-
     }
+
     public void timDanhSachToaTau(String maChuyenTau){
         try {
             toaTauList = QuanLyChuyenTau_BUS.getDanhSachToaTau(maChuyenTau, veKhachHang.getThongTinGaTauDi().getGaTau().getMaGaTau(), veKhachHang.getThongTinGaTauDen().getGaTau().getMaGaTau());
@@ -217,6 +310,7 @@ public class DoiVe_GUI_Controller implements Initializable {
 
         }
     }
+
     public void timDanhSachCho(String maToaTau){
         choList = QuanLyChuyenTau_BUS.getDanhSachChoTheoMaToaTau(maToaTau, veKhachHang.getThongTinGaTauDi().getGaTau().getMaGaTau(), veKhachHang.getThongTinGaTauDen().getGaTau().getMaGaTau());
         try {
@@ -319,16 +413,16 @@ public class DoiVe_GUI_Controller implements Initializable {
             controller.khoiTao();
             controller.setSoThuTu(i);
             toaTauDangChon = 0;
-
-            if(toaTauDangChon == i){
-
+            if (toaTau.getMaToaTau().equals(ctVe.getCho().getToaTau().getMaToaTau())){
+                lblToaTau_Moi.setText(ctVe.getCho().getToaTau().getMaToaTau());
+                toaTauDangChon = i;
                 controller.chonToaTau_DoiVe();
-
             }
 
             hboxDanhSachToaTau.getChildren().add(anchorPane);
         }
     }
+
     public void hienThiChuyenTau(ChuyenTau chuyenTau) throws IOException {
         add1ChuyenTau.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau.fxml"));
@@ -363,6 +457,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             controller.capNhatTrangThai();
         }
     }
+
     public void capNhatCacChoDaChon(){
         for (Cho_Controller controller : choControllerList) {
             controller.chuyenMauMacDinh();
@@ -371,12 +466,17 @@ public class DoiVe_GUI_Controller implements Initializable {
 
             if (dangChon) {
                 controller.chuyenMauDangChon();
+                lblCho_Moi.setText(String.format("%d",choChon.getSoCho()));
+            }
+            if (choKH.getTrangThaiCho()==TrangThaiCho.CONTRONG){
+                controller.chuyenMauMacDinh();
+            }
+            if (choChon.getTrangThaiCho()==TrangThaiCho.DADATHOACBAN){
+                controller.chuyenMauMacDinh();
             }
             controller.capNhatTrangThai();
         }
     }
-
-
 
 
 }
