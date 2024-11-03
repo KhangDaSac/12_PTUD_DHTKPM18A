@@ -47,6 +47,8 @@ public class Cho {
         this.toaTau = toaTau;
     }
 
+
+
     public Cho(String maCho, int soCho, ToaTau toaTau, LoaiCho loaiCho, TrangThaiCho trangThaiCho) {
         this.maCho = maCho;
         this.soCho = soCho;

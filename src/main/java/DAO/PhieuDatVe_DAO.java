@@ -55,4 +55,18 @@ public class PhieuDatVe_DAO {
         }
         return phieuDatVeList;
     }
+
+    public static boolean capNhatTrangThaiPhieuDatVe(String maPhieuDatVe, String trangThai){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "UPDATE PhieuDatVe SET trangThaiPhieuDatVe = ? WHERE maPhieuDatVe = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, trangThai);
+            statement.setString(2, maPhieuDatVe);
+            statement.execute();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

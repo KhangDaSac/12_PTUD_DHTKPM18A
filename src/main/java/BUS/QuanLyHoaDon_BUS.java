@@ -61,6 +61,29 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
+    public static boolean layVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
+        Ve_DAO ve_dao = new Ve_DAO();
+        ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
+
+
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            if(chiTietVe.getKhachHang() == null){
+                throw new Exception("Chưa nhập thông tin người người đi tàu");
+            }
+        }
+
+
+        if(!ve_dao.themDanhSachVe(danhSachVe)){
+            return false;
+        }
+
+        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
+            return false;
+        }
+
+        return true;
+    }
+
     public static ArrayList<HoaDon> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);

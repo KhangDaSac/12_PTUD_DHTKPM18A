@@ -4,7 +4,7 @@ import DAO.TaiKhoan_DAO;
 import DTO.NhanVien;
 import utils.HashPassword;
 
-public class QuanLiNhanVien_BUS {
+public class QuanLyNhanVien_BUS {
     public static NhanVien dangNhap(String tenDangNhap, String maKhau) throws Exception {
         if(tenDangNhap == null || tenDangNhap.isEmpty()){
             throw new Exception("Tên đăng nhập không được rỗng");

@@ -33,6 +33,7 @@ public class ChiTietVe_DAO {
                 statement.executeUpdate();
 
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return false;
             }
         }

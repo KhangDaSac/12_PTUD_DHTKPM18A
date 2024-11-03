@@ -103,7 +103,7 @@ public class LayVe_GUI_Controller {
 
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
-
+        layVe();
     }
 
     @FXML
@@ -314,16 +314,37 @@ public class LayVe_GUI_Controller {
                     if(controller.getPhieuDatVe().equals(controller2.getChiTietPhieuDatVe().getPhieuDatVe())){
                         ChiTietPhieuDatVe chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
                         ChiTietVe chiTietVe = new ChiTietVe(
-
+                                chiTietPhieuDatVe.getGiaCho(),
+                                chiTietPhieuDatVe.getSoTienGiamGia(),
+                                chiTietPhieuDatVe.getThanhTien(),
+                                ve,
+                                chiTietPhieuDatVe.getKhachHang(),
+                                chiTietPhieuDatVe.getCho()
                         );
+                        System.out.println(chiTietVe);
                         chiTietVeList.add(chiTietVe);
                     }
                 }
             }
         }
 
-
-
+        try {
+            if(QuanLyHoaDon_BUS.layVe(veList, chiTietVeList)){
+                if(QuanLyPhieuDatVe_BUS.capNhatTrangThaiPhieuDatVe(phieuDatVeList, "DALAYVE")){
+                    main_controller.showMessagesDialog("Lấy vé thành công");
+                    phieuDatVeList.clear();
+                    chiTietPhieuDatVeList.clear();
+                    capNhatDanhSachPhieuDatVe();
+                    hienThiDanhSachChiTietPhieuDatVe(null);
+                    hienThiDanhSachHoaDonDat();
+                    tinhTongTienLayVe();
+                }
+            }else{
+                main_controller.showMessagesDialog("Lấy vé thất bại");
+            }
+        } catch (Exception e) {
+            main_controller.showMessagesDialog(e.getMessage());
+        }
     }
 
     public double tinhTongTienLayVe(){
@@ -335,8 +356,6 @@ public class LayVe_GUI_Controller {
                 tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
             }
         }
-
-        System.out.println("Da tinh tien");
 
         txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien - tongTienCoc));
         return tongTien - tongTienCoc;

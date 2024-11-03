@@ -25,8 +25,8 @@ public class ChiTietPhieuDatVe_DAO {
                 );
 
                 Cho cho = new Cho(
-                        rs.getString("soCho"),
-                        rs.getInt("thuTuToa"),
+                        rs.getString("maCho"),
+                        rs.getInt("soCho"),
                         toaTau
                 );
 

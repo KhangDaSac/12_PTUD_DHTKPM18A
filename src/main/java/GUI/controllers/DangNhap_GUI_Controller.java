@@ -1,6 +1,6 @@
 package GUI.controllers;
 
-import BUS.QuanLiNhanVien_BUS;
+import BUS.QuanLyNhanVien_BUS;
 import DTO.NhanVien;
 import GUI.applications.Run;
 import com.jfoenix.controls.JFXButton;
@@ -14,8 +14,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class DangNhap_GUI_Controller {
 
@@ -80,7 +78,7 @@ public class DangNhap_GUI_Controller {
     public NhanVien dangNhap() throws Exception {
         String tenDangNhap = txtTenDangNhap.getText();
         String matKhau = txtMatKhau.getText();
-        NhanVien nhanVien = QuanLiNhanVien_BUS.dangNhap(tenDangNhap, matKhau);
+        NhanVien nhanVien = QuanLyNhanVien_BUS.dangNhap(tenDangNhap, matKhau);
         if(nhanVien != null)
             return nhanVien;
         else
