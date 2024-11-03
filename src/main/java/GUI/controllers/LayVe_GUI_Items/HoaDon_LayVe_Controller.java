@@ -95,6 +95,7 @@ public class HoaDon_LayVe_Controller {
         chonHoaDon();
 
         layVe_gui_controller.getDanhSachPhieuDatVeTheoMaHoaDon(hoaDon.getMaHoaDon());
+        layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(hoaDon.getMaHoaDon());
         layVe_gui_controller.capNhatDanhSachPhieuDatVe();
     }
 

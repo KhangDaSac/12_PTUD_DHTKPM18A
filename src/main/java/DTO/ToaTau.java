@@ -15,6 +15,12 @@ public class ToaTau {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public ToaTau(String maToaTau, int thuTuToa) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+	}
+
 	public ToaTau(String maToaTau, int thuTuToa, int soLuongCho, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau) {
 		super();
 		this.maToaTau = maToaTau;

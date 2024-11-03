@@ -105,6 +105,8 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
+        layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
+
         if(dangChon){
             khongChonPhieuDatVe();
         }else{
@@ -125,7 +127,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         lblTenGaDen.setText(phieuDatVe.getChiTietChuyenTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(phieuDatVe.getChiTietChuyenTauDi().getThoiGianDi()));
         lblGiaVe.setText(CurrencyFormat.currencyFormat(phieuDatVe.getTongTienVe()));
-
+        lblTienCoc.setText(CurrencyFormat.currencyFormat(phieuDatVe.getTongTienDatCoc()));
         anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
         anpChonPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
 

@@ -3,12 +3,11 @@ package GUI.controllers;
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
 import BUS.QuanLyPhieuDatVe_BUS;
-import DTO.ChiTietPhieuDatVe;
-import DTO.HoaDon;
-import DTO.KhachHang;
-import DTO.PhieuDatVe;
+import DTO.*;
+import GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.HoaDon_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.PhieuDatVe_LayVe_Controller;
+import GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -81,12 +80,13 @@ public class LayVe_GUI_Controller {
 
     private ArrayList<HoaDon_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDon_LayVe_Controller>();
     private ArrayList<PhieuDatVe_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<PhieuDatVe_LayVe_Controller>();
-
+    private ArrayList<ChiTietPhieuDatVe_LayVe_Controller> chiTietPhieuDatVeLayVeControllerList = new ArrayList<ChiTietPhieuDatVe_LayVe_Controller>();
 
     private ArrayList<HoaDon> hoaDonList;
     private ArrayList<PhieuDatVe> phieuDatVeList;
     private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList;
     private ArrayList<PhieuDatVe> phieuDatVeDangChon = new ArrayList<PhieuDatVe>();
+
 
     @FXML
     void btnBoChonTatCaVeOnAction(ActionEvent event) {
@@ -148,7 +148,6 @@ public class LayVe_GUI_Controller {
     }
 
     public void layDanhSachHoaDonDatTheoKhachHang(){
-        System.out.println(khachHang.getMaKhachHang());
         hoaDonList = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
     }
@@ -188,7 +187,10 @@ public class LayVe_GUI_Controller {
 
     public void getDanhSachPhieuDatVeTheoMaHoaDon(String maHoaDon){
         phieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachPhieuDatVeTheoMaHoaDon(maHoaDon);
+    }
 
+    public void getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maPhieuDatVe){
+        chiTietPhieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(maPhieuDatVe);
     }
 
     public void capNhatDanhSachPhieuDatVe(){
@@ -215,5 +217,36 @@ public class LayVe_GUI_Controller {
         }
     }
 
+    public void hienThiDanhSachChiTietPhieuDatVe(PhieuDatVe phieuDatVe){
+        vboxChiTietPhieuDatVe.getChildren().clear();
+        chiTietPhieuDatVeLayVeControllerList.clear();
+        if(phieuDatVe == null)
+            return;
+        for(ChiTietPhieuDatVe chiTietPhieuDatVe : chiTietPhieuDatVeList){
+            if(chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)){
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
+                    Parent anchorPane = loader.load();
+                    ChiTietPhieuDatVe_LayVe_Controller controller = loader.getController();
+                    chiTietPhieuDatVeLayVeControllerList.add(controller);
+                    controller.setLayVe_gui_controller(this);
 
+                    controller.setChiTietPhieuDatVe(chiTietPhieuDatVe);
+                    controller.khoiTao();
+
+                    vboxChiTietPhieuDatVe.getChildren().add(anchorPane);
+                }catch (IOException e){
+
+                }
+            }
+        }
+        chiTietPhieuDatVeLayVeControllerList.getFirst();
+    }
+
+
+    public void boChonTatCaChiTietPhieuDatVe() {
+        for(ChiTietPhieuDatVe_LayVe_Controller controller : chiTietPhieuDatVeLayVeControllerList){
+            controller.khongChonChiTietPhieuDatVe();
+        }
+    }
 }

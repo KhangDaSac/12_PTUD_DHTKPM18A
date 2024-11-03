@@ -1,7 +1,6 @@
 package DAO;
 
-import DTO.ChiTietPhieuDatVe;
-import DTO.PhieuDatVe;
+import DTO.*;
 import connectDB.ConnectDB;
 
 import java.sql.Connection;
@@ -10,27 +9,59 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ChiTietPhieuDatVe_DAO {
-//    public static ArrayList<PhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
-//        ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList = new ArrayList<ChiTietPhieuDatVe>();
-//        Connection con = ConnectDB.getInstance().getConnection();
-//        try {
-//            String query = "exec UDP_TimDanhSachChiTietPhieuDatVeThaoMaHoaDon ?";
-//            PreparedStatement statement = con.prepareStatement(query);
-//            statement.setString(1, maHD);
-//            ResultSet rs = statement.executeQuery(query);
-//            while (rs.next()) {
-//                String maPhieuDatVe = rs.getString("maPhieuDatVe");
-//                String maCho = rs.getString("maCho");
-//                String maKhachHang = rs.getString("maKhachHang");
-//                double giaCho = rs.getDouble("giaCho");
-//                double soTienGiamGia = rs.getDouble("soTienGiamGia");
-//                double thanhTien = rs.getDouble("thanhTien");
-//                String maHoaDon = rs.getString("maHoaDon");
-//
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
+        ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList = new ArrayList<ChiTietPhieuDatVe>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "exec UDP_TimDanhSachChiTietPhieuDatVeThaoMaHoaDon ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHD);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+
+                ToaTau toaTau = new ToaTau(
+                        rs.getString("maToaTau"),
+                        rs.getInt("thuTuToa")
+                );
+
+                Cho cho = new Cho(
+                        rs.getString("soCho"),
+                        rs.getInt("thuTuToa"),
+                        toaTau
+                );
+
+                LoaiKhachHang loaiKhachHang = new LoaiKhachHang(
+                        rs.getString("maLoaiKhachHang"),
+                        rs.getString("tenLoaiKhachHang"),
+                        rs.getDouble("phanTramGiamGia"));
+
+                KhachHang khachHang = new KhachHang(
+                        rs.getString("maKhachHang"),
+                        rs.getString("CCCD"),
+                        rs.getString("tenKhachHang"),
+                        loaiKhachHang
+                );
+
+                double giaCho = rs.getDouble("giaCho");
+                double soTienGiamGia = rs.getDouble("soTienGiamGia");
+                double thanhTien = rs.getDouble("thanhTien");
+                PhieuDatVe phieuDatVe = new PhieuDatVe(rs.getString("maPhieuDatVe"));
+
+                ChiTietPhieuDatVe chiTietPhieuDatVe = new ChiTietPhieuDatVe(
+                        giaCho,
+                        cho,
+                        phieuDatVe,
+                        khachHang,
+                        soTienGiamGia,
+                        thanhTien
+                );
+
+                chiTietPhieuDatVeList.add(chiTietPhieuDatVe);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return chiTietPhieuDatVeList;
+    }
 }
