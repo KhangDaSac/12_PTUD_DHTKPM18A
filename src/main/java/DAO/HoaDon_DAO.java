@@ -128,8 +128,8 @@ public class HoaDon_DAO {
      try {
          String query = "exec timHoaDonDatVe ?,?";
          PreparedStatement statement = con.prepareStatement(query);
-         statement.setString(1, maKhachHang);
-         statement.setDate(2, Date.valueOf(thoiGianLap));
+         statement.setString(1, maKhachHang != null && !maKhachHang.isEmpty() ? maKhachHang : null);
+         statement.setDate(2, thoiGianLap != null ? Date.valueOf(thoiGianLap) : null);
          ResultSet rs = statement.executeQuery();
          if (rs.next()) {
              HoaDon hoaDon = new HoaDon();
@@ -155,6 +155,35 @@ public class HoaDon_DAO {
                 throw new SQLException("Failed to establish a database connection.");
             }
             String query = "SELECT * FROM HoaDon";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
+                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
+                hoaDon.setTongTien(rs.getDouble("tongTien"));
+                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
+                hoaDon.setTongTienKhachHangTra(rs.getDouble("tongTienKhachHangTra"));
+                hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon")));
+                hoaDon.setLoaiHoaDon(LoaiHoaDon.valueOf(rs.getString("loaiHoaDon")));
+                hoaDon.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
+                KhachHang khachHang= new KhachHang(rs.getString("maKhachHangMua"),KhachHang_DAO.getTenKhachHangTheoMa(rs.getString("maKhachHangMua")));
+                hoaDon.setKhachHangMua(khachHang);
+                dsHoaDon.add(hoaDon);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dsHoaDon;
+    }
+    public static ArrayList<HoaDon> getDanhSachHoaDonDat() {
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
+        try {// Kết nối trước khi lấy kết nối
+            Connection con = ConnectDB.getInstance().getConnection();
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
+            String query = "SELECT * FROM HoaDon where loaiHoaDon = 'HOADONDAT' AND trangThaiHoaDon = 'CHOLAYVE'";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {

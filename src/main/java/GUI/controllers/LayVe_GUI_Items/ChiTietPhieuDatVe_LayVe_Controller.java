@@ -2,6 +2,7 @@ package GUI.controllers.LayVe_GUI_Items;
 
 import DTO.ChiTietPhieuDatVe;
 import DTO.LoaiPhieuDatVe;
+import GUI.controllers.HuyDatVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -43,6 +44,7 @@ public class ChiTietPhieuDatVe_LayVe_Controller {
 
     private ChiTietPhieuDatVe chiTietPhieuDatVe;
     private LayVe_GUI_Controller layVe_gui_controller;
+    private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
     private boolean dangChon;
 
     public boolean isDangChon() {
@@ -60,6 +62,9 @@ public class ChiTietPhieuDatVe_LayVe_Controller {
     public void setLayVe_gui_controller(LayVe_GUI_Controller layVe_gui_controller) {
         this.layVe_gui_controller = layVe_gui_controller;
     }
+    public void setHuyDatVe_gui_controller(HuyDatVe_GUI_Controller huyDatVe_gui_controller) {
+        this.huyDatVe_gui_controller = huyDatVe_gui_controller;
+    }
 
     public ChiTietPhieuDatVe getChiTietPhieuDatVe() {
         return chiTietPhieuDatVe;
@@ -71,8 +76,11 @@ public class ChiTietPhieuDatVe_LayVe_Controller {
 
     @FXML
     void anpChiTietPhieuDatVeOnMouseClicked(MouseEvent event) {
-        layVe_gui_controller.boChonTatCaChiTietPhieuDatVe();
-        chonChiTietPhieuDatVe();
+        if (layVe_gui_controller!=null){
+            layVe_gui_controller.boChonTatCaChiTietPhieuDatVe();
+            chonChiTietPhieuDatVe();
+        }
+
     }
 
     public void khoiTao(){

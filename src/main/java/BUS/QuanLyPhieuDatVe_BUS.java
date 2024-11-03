@@ -15,4 +15,10 @@ public class QuanLyPhieuDatVe_BUS {
     public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
         return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(maHD);
     }
+    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
+        return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(maPDV);
+    }
+    public static void huyPhieuDatVe(String maPhieuDatVe){
+        PhieuDatVe_DAO.huyPhieuDatVe(maPhieuDatVe);
+    }
 }

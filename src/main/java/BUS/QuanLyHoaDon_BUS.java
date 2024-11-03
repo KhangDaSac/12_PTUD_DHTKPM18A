@@ -70,4 +70,8 @@ public class QuanLyHoaDon_BUS {
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
     }
+    public static ArrayList<HoaDon> getDanhSachHoaDonDat(){
+        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
+        return hoaDon_dao.getDanhSachHoaDonDat();
+    }
 }

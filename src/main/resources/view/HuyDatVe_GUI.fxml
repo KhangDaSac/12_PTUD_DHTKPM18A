@@ -25,7 +25,7 @@
                <children>
                       <VBox>
                           <children>
-                              <HBox prefHeight="90.0" prefWidth="768.0">
+                              <HBox prefHeight="90.0" prefWidth="725.0">
                                   <children>
                                       <VBox prefHeight="80.0" prefWidth="190.0" styleClass="box-thong-tin">
                                           <children>
@@ -34,7 +34,10 @@
                                                       <Font size="16.0" />
                                                   </font>
                                               </Label>
-                                              <TextField fx:id="txtCCCD" prefHeight="45.0" prefWidth="186.0" />
+                                              <TextField fx:id="txtCCCD" prefHeight="45.0" prefWidth="186.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></TextField>
                                           </children>
                                           <HBox.margin>
                                               <Insets bottom="5.0" left="5.0" right="30.0" top="5.0" />
@@ -70,13 +73,13 @@
                                       </JFXButton>
                                   </children>
                               </HBox>
-                              <TableView fx:id="tableView" prefHeight="568.0" prefWidth="734.0" styleClass="chuTrongTable">
+                              <TableView fx:id="tableView" prefHeight="568.0" prefWidth="743.0" styleClass="chuTrongTable">
                                   <columns>
-                                      <TableColumn fx:id="colMaHoaDon" prefWidth="120.79998338222504" text="Mã hóa đơn" />
-                                      <TableColumn fx:id="colTenKhachHang" prefWidth="174.4000473022461" text="Tên khách hàng" />
+                                      <TableColumn fx:id="colMaHoaDon" prefWidth="148.79999387264252" text="Mã hóa đơn" />
+                                      <TableColumn fx:id="colTenKhachHang" prefWidth="147.20001220703125" text="Tên khách hàng" />
                                       <TableColumn fx:id="colNgayThanhToan" prefWidth="160.0" text="Ngày thanh toán" />
-                                      <TableColumn fx:id="colTongTienCoc" prefWidth="158.39993286132812" text="Tổng tiền cọc" />
-                                      <TableColumn fx:id="colTongTien" prefWidth="155.199951171875" text="Tổng tiền" />
+                                      <TableColumn fx:id="colTongTienCoc" prefWidth="142.39999389648438" text="Tổng tiền cọc" />
+                                      <TableColumn fx:id="colTongTien" prefWidth="143.199951171875" text="Tổng tiền" />
 
                                   </columns>
                                   <VBox.margin>
@@ -97,7 +100,7 @@
                                     <Insets top="40.0" />
                                  </HBox.margin>
                                 </Label>
-                                <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="223.0" styleClass="button-tim-kiem" text="Chọn tất cả các phiếu">
+                                <Button fx:id="btnChonTatCaPhieuDatVe" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-tim-kiem" text="Chọn tất cả các phiếu">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
@@ -116,16 +119,16 @@
                         </HBox>
                           <AnchorPane prefHeight="248.0" prefWidth="482.0">
                               <children>
-                                  <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="248.0" prefWidth="474.0">
+                                  <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="248.0" prefWidth="518.0">
                                  <content>
-                                    <VBox fx:id="vboxDanhSachPhieuDatVe" prefHeight="247.0" prefWidth="474.0" />
+                                    <VBox fx:id="vboxDanhSachPhieuDatVe" prefHeight="246.0" prefWidth="502.0" />
                                  </content>
                                   </ScrollPane>
                               </children>
                           </AnchorPane>
                           <Label text="Chi tiết phiếu đặt vé">
                               <font>
-                                  <Font size="16.0" />
+                                  <Font name="System Bold" size="16.0" />
                               </font>
                            <VBox.margin>
                               <Insets top="15.0" />
@@ -133,34 +136,45 @@
                           </Label>
                           <AnchorPane prefHeight="170.0" prefWidth="476.0">
                            <children>
-                                  <ScrollPane layoutX="7.0" layoutY="2.0" prefHeight="192.0" prefWidth="474.0">
+                                  <ScrollPane layoutX="7.0" layoutY="2.0" prefHeight="192.0" prefWidth="518.0">
                                  <content>
-                                    <VBox fx:id="vBoxDanhSachChiTietPhieuDatVe" prefHeight="200.0" prefWidth="474.0" />
+                                    <VBox fx:id="vBoxDanhSachChiTietPhieuDatVe" prefHeight="200.0" prefWidth="503.0" />
                                  </content>
                                   </ScrollPane>
                            </children>
                           </AnchorPane>
-                          <HBox prefHeight="67.0" prefWidth="200.0">
+                          <HBox  prefHeight="101.0" prefWidth="526.0">
                               <children>
-                                  <Button mnemonicParsing="false" onAction="#btnHuyPhieuDatOnAction" prefHeight="66.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
+                              <VBox>
+                                 <children>
+                                    <Label text="Tổng tiền trả khách">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtTongTienTraKhach" prefHeight="58.0" prefWidth="199.0" styleClass="box-thong-tin">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                                  <Button mnemonicParsing="false" onAction="#btnHuyPhieuDatOnAction" prefHeight="59.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
                                       <font>
                                           <Font size="16.0" />
                                       </font>
                                       <HBox.margin>
-                                          <Insets right="50.0" />
+                                          <Insets left="100.0" top="30.0" />
                                       </HBox.margin>
-                                  </Button>
-                                  <Button fx:id="" mnemonicParsing="false" prefHeight="67.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Lấy vé">
-                                      <font>
-                                          <Font size="16.0" />
-                                      </font>
                                   </Button>
                               </children>
                            <VBox.margin>
-                              <Insets top="40.0" />
+                              <Insets />
                            </VBox.margin>
                            <padding>
-                              <Insets left="100.0" />
+                              <Insets left="70.0" />
                            </padding>
                           </HBox>
                      </children>

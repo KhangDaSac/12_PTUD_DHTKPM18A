@@ -126,6 +126,7 @@
                   </VBox>
                </children>
             </AnchorPane>
+            <AnchorPane fx:id="anpLoaiPhieuDatVe" prefWidth="50.0" stylesheets="@../../css/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>
