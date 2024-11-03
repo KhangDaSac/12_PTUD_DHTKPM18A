@@ -86,13 +86,16 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     }
 
     public ObservableList<HoaDon> getHoaDonData() {
+        ArrayList<HoaDon> hoaDonList;
         if (dapNgayThanhToan.getValue() == null && txtCCCD.getText().isEmpty()) {
-            ArrayList<HoaDon> hoaDonList = new QuanLyHoaDon_BUS().getDanhSachHoaDonDat();
-            return FXCollections.observableArrayList(hoaDonList);
+            hoaDonList = new QuanLyHoaDon_BUS().getDanhSachHoaDonDat();
+        } else {
+            hoaDonList = new QuanLyHoaDon_BUS().getHoaDonTheoMaKhachHangVaThoiGianLap(txtCCCD.getText(), dapNgayThanhToan.getValue());
         }
-                ArrayList<HoaDon> hoaDonList = new QuanLyHoaDon_BUS().getHoaDonTheoMaKhachHangVaThoiGianLap(txtCCCD.getText(), dapNgayThanhToan.getValue());
-                return FXCollections.observableArrayList(hoaDonList);
-            }
+        // In ra số lượng hóa đơn nhận được để kiểm tra
+        System.out.println("Số lượng hóa đơn nhận được: " + hoaDonList.size());
+        return FXCollections.observableArrayList(hoaDonList);
+    }
 
 
 
@@ -270,10 +273,14 @@ public class HuyDatVe_GUI_Controller implements Initializable {
                 }
             }
         }
-
         System.out.println("Da tinh tien");
         txtTongTienTraKhach.setText(CurrencyFormat.currencyFormat(tongTienCoc-lePhiHuy));
         return tongTienCoc-lePhiHuy;
     }
 
+    public void boChonTatCaPhieuDatVe() {
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            controller.boChonPhieuDatVe();
+        }
+    }
 }

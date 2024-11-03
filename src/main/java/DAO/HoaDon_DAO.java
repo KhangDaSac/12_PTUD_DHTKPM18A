@@ -142,7 +142,6 @@ public class HoaDon_DAO {
              dsHoaDon.add(hoaDon);
          }
      } catch (SQLException e) {
-
          throw new RuntimeException(e);
      }
      return dsHoaDon;

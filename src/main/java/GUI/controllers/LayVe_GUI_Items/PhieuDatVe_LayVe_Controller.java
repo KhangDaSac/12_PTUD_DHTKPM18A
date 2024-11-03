@@ -127,20 +127,30 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         if (layVe_gui_controller != null) {
             layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(phieuDatVe.getHoaDon().getMaHoaDon());
             layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
+            chonPhieuDatVe();
+            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+                if (chonLayVe) {
+                    boChonLayVe();
+                } else {
+                    chonLayVe();
+                }
+            }
 
         } else if (huyDatVe_gui_controller != null) {
             huyDatVe_gui_controller.tinhTongTienHuyDatVe();
             huyDatVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
             huyDatVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
-        }
-        chonPhieuDatVe();
-        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
-            if (chonLayVe) {
-                boChonLayVe();
-            } else {
-                chonLayVe();
+            chonPhieuDatVe();
+            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+                if (chonLayVe) {
+                    boChonLayVe();
+                    huyDatVe_gui_controller.tinhTongTienHuyDatVe();
+                } else {
+                    chonLayVe();
+                }
             }
         }
+
     }
 
     @Override
@@ -183,6 +193,9 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     public void chonPhieuDatVe() {
         if (layVe_gui_controller != null) {
             layVe_gui_controller.boChonTatCaPhieuDatVe();
+        }
+        else{
+            huyDatVe_gui_controller.boChonTatCaPhieuDatVe();
         }
         dangChon = true;
         anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeKhongChon");
