@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="216.0" prefWidth="495.0" styleClass="coChu" stylesheets="@../../css/QuanLiPhieuDatVe_GUI_Items/PhieuDatVe.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.PhieuDatVe_GUI_Items.PhieuDatVe_Controller">
+   <children>
+      <AnchorPane layoutX="22.0" layoutY="20.0" styleClass="shadow-pane" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <VBox prefHeight="186.0" prefWidth="51.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="51.0" layoutY="-7.0" prefHeight="186.0" prefWidth="431.0">
+               <children>
+                  <VBox layoutX="38.0" layoutY="31.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="118.0" text="Mã phiếu đặt:" />
+                              <Label prefHeight="26.0" prefWidth="113.0" />
+                              <Label prefHeight="26.0" prefWidth="89.0" text="Số thứ tự:" />
+                              <Label prefHeight="26.0" prefWidth="58.0" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="118.0" text="Mã chuyến tàu:" />
+                              <Label prefHeight="26.0" prefWidth="192.0" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="118.0" text="Ga đi:" />
+                              <Label prefHeight="26.0" prefWidth="126.0" />
+                              <Label prefHeight="26.0" prefWidth="89.0" text="Ga đến:" />
+                              <Label prefHeight="26.0" prefWidth="58.0" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="118.0" text="Thời gian đi:" />
+                              <Label prefHeight="26.0" prefWidth="170.0" />
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="26.0" prefWidth="118.0" text="Giá vé:" />
+                              <Label prefHeight="26.0" prefWidth="186.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>

@@ -24,4 +24,7 @@ public class TimeFormat {
         return localDateTime.format(formatterLocalDateTimeSQL);
     }
 
+    public static LocalDateTime localDateToLocalDateTime(LocalDate thoiGianLap) {
+        return thoiGianLap.atStartOfDay();
+    }
 }

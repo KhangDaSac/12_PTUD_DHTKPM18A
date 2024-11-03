@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class GaTau_DAO {
     public ArrayList<GaTau> xuatDanhSachGaTau() {
         ArrayList<GaTau> danhSachGaTau = new ArrayList<GaTau>();
-        Connection con = ConnectDB.getInstance().getConnection() ;
+        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select * from GaTau order by tenGaTau";
              Statement statement = con.createStatement();

@@ -9,13 +9,13 @@ import java.sql.SQLException;
 public class ConnectDB {
 	public static Connection con = null;
 	private static ConnectDB instance = null;
-	
+
 	public ConnectDB(){
 		try{
 
 			String url = "jdbc:sqlserver://localhost:1433;DatabaseName=QLBVT;encrypt=true;trustServerCertificate=true";
 			String user = "sa";
-			String password = "3.141592653";
+			String password = "123";
 			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
 				System.out.println("Kết nối thành công");
@@ -43,27 +43,27 @@ public class ConnectDB {
 		return con;
 	}
 	public ResultSet excuteQueryRead(String sql) {
-        try {
-            return con.createStatement().executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+		try {
+			return con.createStatement().executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-        return null;
-    }
-    public void commitQuery() throws Exception {
-        try {
-            con.commit();
-        } catch (SQLException e) {
-            throw new Exception("Lỗi commit query");
-        }
-    }
-    public void rollbackQuery() throws Exception {
-        try {
-            con.rollback();
-        } catch (SQLException e) {
-            throw new Exception("Lỗi rollback query");
-        }
-    }
-   
+		return null;
+	}
+	public void commitQuery() throws Exception {
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			throw new Exception("Lỗi commit query");
+		}
+	}
+	public void rollbackQuery() throws Exception {
+		try {
+			con.rollback();
+		} catch (SQLException e) {
+			throw new Exception("Lỗi rollback query");
+		}
+	}
+
 }

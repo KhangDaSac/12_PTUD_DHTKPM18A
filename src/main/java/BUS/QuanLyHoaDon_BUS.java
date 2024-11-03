@@ -65,4 +65,10 @@ public class QuanLyHoaDon_BUS {
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
     }
+    public static ArrayList<HoaDon> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
+        return HoaDon_DAO.getHoaDonTheoMaKhachHangVaThoiGianLap(maKhachHang, thoiGianLap);
+    }
+    public static ArrayList<HoaDon> getDanhSachHoaDon(){
+        return HoaDon_DAO.getDanhSachHoaDon();
+    }
 }

@@ -60,10 +60,9 @@ public class ToaTau_DAO {
         Connection con = ConnectDB.getInstance().getConnection();
         ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
         try {
-            String query = "select * from ToaTau where maChuyenTau = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maChuyen);
-            ResultSet rs = statement.executeQuery();
+            String query = "select * from ToaTau where maChuyen = ?";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 String maToa = rs.getString(1);
                 int thuTuToa = rs.getInt(2);
