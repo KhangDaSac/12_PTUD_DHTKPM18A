@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -221,7 +220,7 @@
             </AnchorPane>
             <AnchorPane layoutX="1.0" layoutY="413.0" maxWidth="770.0" prefHeight="180.0" prefWidth="770.0">
                <children>
-                  <HBox prefHeight="180.0" prefWidth="770.0" style="-fx-alignment: center;">
+                  <HBox prefHeight="206.0" prefWidth="770.0" style="-fx-alignment: center;">
                      <children>
                         <VBox style="-fx-alignment: center;">
                            <children>
@@ -245,28 +244,7 @@
             </AnchorPane>
             <AnchorPane layoutX="12.0" layoutY="594.0" prefHeight="100.0" prefWidth="756.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="594.0">
                <children>
-                  <HBox layoutX="278.0" prefHeight="100.0" prefWidth="414.0">
-                     <children>
-                        <AnchorPane prefHeight="70.0" prefWidth="180.0" styleClass="group-editable-combo-box" stylesheets="@../css/All.css">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="140.0" text="Loại vé" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <ComboBox fx:id="cmbLoaiVe" disable="true" layoutX="0.8000000000000007" prefHeight="40.0" prefWidth="175.0" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <JFXButton fx:id="btnDoiVe" layoutX="336.0" layoutY="10.0" onAction="#btnDoiVeOnAction" prefHeight="79.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đổi Vé">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </JFXButton>
-                     </children>
-                  </HBox>
+                  <HBox layoutX="278.0" prefHeight="100.0" prefWidth="414.0" />
                </children>
             </AnchorPane>
             <HBox layoutX="29.0" layoutY="1.0" prefHeight="73.0" prefWidth="550.0" spacing="20.0">
@@ -539,7 +517,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <JFXButton prefHeight="90.0" prefWidth="142.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tiếp tục">
+                        <JFXButton fx:id="btnDoiVe" onAction="#btnDoiVeOnAction" prefHeight="100.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đổi Vé">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>

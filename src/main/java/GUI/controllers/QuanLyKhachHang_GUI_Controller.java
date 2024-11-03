@@ -119,6 +119,16 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
 
     private KhachHang_DAO kH_DAO = new KhachHang_DAO();
 
+    private Main_Controller main_Controller;
+
+    public Main_Controller getMain_Controller() {
+        return main_Controller;
+    }
+
+    public void setMain_Controller(Main_Controller main_Controller) {
+        this.main_Controller = main_Controller;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         upDataTbl();

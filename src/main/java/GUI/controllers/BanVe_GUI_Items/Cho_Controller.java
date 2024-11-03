@@ -124,22 +124,7 @@ public class Cho_Controller implements Initializable {
         tooltip.setShowDelay(Duration.millis(0)); // Hiển thị ngay lập tức khi hover
         tooltip.setHideDelay(Duration.millis(0));
     }
-    public void chuyenTrangThaiCho(Cho cho){
-        switch (cho.getTrangThaiCho()){
-            case DADATHOACBAN -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDaDatHoacBan");
-            }
-            case DANHCHOCHANGDAIHON -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDanhChoChanDaiHon");
-            }
-            case CONTRONG -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choTrong");
-            }
-        }
-    }
+
     public void chuyenMauMacDinh(){
 
         switch (cho.getTrangThaiCho()){
