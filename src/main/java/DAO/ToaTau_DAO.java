@@ -34,19 +34,20 @@ public class ToaTau_DAO {
         return danhSachToaTau;
     }
 
-    public ToaTau timToaTauTheoMa(String maToaTau) {
+    public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
         Connection con = ConnectDB.getInstance().getConnection();
         ToaTau toaTau = null;
         try {
-            String query = "select * from ToaTau where maToa = ?";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(query);
+            String query = "select * from ToaTau where maChuyenTau = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maChuyenTau);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String maToa = rs.getString(1);
-                int thuTuToa = rs.getInt(2);
-                int soLuongCho = rs.getInt(3);
-                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString(4));
-                ChuyenTau chuyenTau = new ChuyenTau(rs.getString(5));
+                String maToa = rs.getString("maToaTau");
+                int thuTuToa = rs.getInt("thuTuToa");
+                int soLuongCho = rs.getInt("soLuongCho");
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"));
+                ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 toaTau = new ToaTau(maToa, thuTuToa, soLuongCho, loaiToaTau, chuyenTau);
             }
         } catch (Exception e) {
@@ -119,7 +120,6 @@ public class ToaTau_DAO {
                 int soLuongChoTrong = rs.getInt("soLuongChoTrong");
                 LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGia"));
                 ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
-
                 ToaTau toaTau = new ToaTau(maToaTau, thuTuToa, soLuongCho, loaiToaTau, chuyenTau, soLuongChoDanhChoChangDaiHon, soLuongChoDaDatVaBan, soLuongChoTrong);
                 danhSachToaTau.add(toaTau);
             }

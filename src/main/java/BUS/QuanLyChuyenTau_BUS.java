@@ -47,7 +47,11 @@ public class QuanLyChuyenTau_BUS {
         ChiTietChuyenTau chiTietChuyenTau = chiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau.getMaChuyenTau(), gaTau.getMaGaTau());
         return chiTietChuyenTau;
     }
-
+    public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau){
+        ToaTau_DAO toaTauDao= new ToaTau_DAO();
+        ToaTau toaTau = toaTauDao.timToaTauTheoMaChuyenTau(maChuyenTau);
+        return  toaTau;
+    }
 
 
 //    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){

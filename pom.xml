@@ -174,7 +174,15 @@
             <artifactId>batik-xml</artifactId>
             <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version> <!-- Kiểm tra và dùng phiên bản mới nhất -->
+        </dependency>
+
+
     </dependencies>
+
 
     <build>
         <plugins>

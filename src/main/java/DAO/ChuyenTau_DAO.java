@@ -31,7 +31,7 @@ public class ChuyenTau_DAO {
         return dsChuyenTau;
     }
 
-    public ChuyenTau timChuyenTauTheoMa(String maChuyen) {
+    public static ChuyenTau timChuyenTauTheoMa(String maChuyen) {
         Connection con = ConnectDB.getInstance().getConnection();
         ChuyenTau chuyenTau = null;
         try {
@@ -41,9 +41,9 @@ public class ChuyenTau_DAO {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                String maChuyenTau = rs.getString(1);
-                TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-                int soLuongCho = rs.getInt(4);
+                String maChuyenTau = rs.getString("maChuyenTau");
+                TuyenTau tuyenTau = new TuyenTau(rs.getString("maTuyenTau"));
+                int soLuongCho = rs.getInt("soLuongCho");
                 chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
             }
 

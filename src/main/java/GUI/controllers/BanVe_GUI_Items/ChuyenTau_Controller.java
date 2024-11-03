@@ -3,6 +3,7 @@ package GUI.controllers.BanVe_GUI_Items;
 import DTO.ChiTietChuyenTau;
 import DTO.ChuyenTau;
 import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.DoiVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -71,12 +72,23 @@ public class ChuyenTau_Controller implements Initializable {
         this.lblThoiGianDi = lblThoiGianDi;
     }
 
+    public static String trang;
+
     public BanVe_GUI_Controller getBanVe_GUI_Controller() {
         return banVe_GUI_Controller;
     }
 
     public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
         this.banVe_GUI_Controller = banVe_GUI_Controller;
+    }
+
+    public  DoiVe_GUI_Controller getDoiVe_gui_controller() {return  doiVe_gui_controller;}
+    public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
+        this.doiVe_gui_controller = doiVe_gui_controller;
+    }
+
+    public static void loaiTrang(String link){
+        trang = link;
     }
 
     @FXML
@@ -101,6 +113,7 @@ public class ChuyenTau_Controller implements Initializable {
     private Label lblThoiGianDi;
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
+    private DoiVe_GUI_Controller doiVe_gui_controller;
     private ChuyenTau chuyenTau;
     private ChiTietChuyenTau chiTietChuyenTauDi;
     private ChiTietChuyenTau chiTietChuyenTauDen;
@@ -129,6 +142,7 @@ public class ChuyenTau_Controller implements Initializable {
 
     public void setChuyenTau(ChuyenTau chuyenTau) {
         this.chuyenTau = chuyenTau;
+
     }
 
 
@@ -142,11 +156,17 @@ public class ChuyenTau_Controller implements Initializable {
 
     @FXML
     void anpChuyenTauOnMouseClicked(MouseEvent event) {
-        chonChuyenTau();
+        if(trang.equals("BanVe_GUI.fxml")){
+            chonChuyenTau();}
+        else if(trang.equals("DoiVe_GUI.fxml")){
+            chon1ChuyenTau();
+        }else {
+            System.out.printf("trang không xác định");
+        }
     }
 
     public void chinhMauKhongChon(){
-        if(chuyenTau.getSoLuongChoTrongTrong() > 0){
+        if(chuyenTau.getSoLuongChoTrongTrong() >= 0){
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
         }else{
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
@@ -160,7 +180,7 @@ public class ChuyenTau_Controller implements Initializable {
     }
 
     public void khoiTao(){
-        if(chuyenTau.getSoLuongChoTrongTrong() > 0){
+        if(chuyenTau.getSoLuongChoTrongTrong() >= 0){
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
         }else{
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
@@ -180,4 +200,13 @@ public class ChuyenTau_Controller implements Initializable {
         Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
         imvChuyenTau.setImage(image);
     }
+    public void chon1ChuyenTau(){
+        if (doiVe_gui_controller != null && lblMaChuyenTau.getText() != null) {
+            doiVe_gui_controller.timDanhSachToaTau(lblMaChuyenTau.getText());
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png")));
+        } else {
+            System.err.println("Không thể chọn chuyến tàu - thông tin thiếu!");
+        }
+    }
+
 }

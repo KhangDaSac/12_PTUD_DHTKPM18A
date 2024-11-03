@@ -24,6 +24,13 @@ public class KhachHang {
 		this.loaiKhachHang = loaiKhachHang;
 	}
 
+	public KhachHang(String maKhachHang, String tenKhachHang, LoaiKhachHang loaiKhachHang, String CCCD) {
+		this.maKhachHang = maKhachHang;
+		this.tenKhachHang = tenKhachHang;
+		this.loaiKhachHang = loaiKhachHang;
+		this.CCCD = CCCD;
+	}
+
 	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, LoaiKhachHang loaiKhachHang) {
 		this.maKhachHang = maKhachHang;
 		this.CCCD = CCCD;

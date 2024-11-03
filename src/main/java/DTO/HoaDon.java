@@ -128,7 +128,21 @@ public class HoaDon {
 	}
 
 	public HoaDon() {
+	}
 
+	@Override
+	public String toString() {
+		return "HoaDon{" +
+				"maHoaDon='" + maHoaDon + '\'' +
+				", thoiGianLap=" + thoiGianLap +
+				", tongTien=" + tongTien +
+				", tongTienDaDatCoc=" + tongTienDaDatCoc +
+				", tongTienKhachHangTra=" + tongTienKhachHangTra +
+				", trangThaiHoaDon=" + trangThaiHoaDon +
+				", loaiHoaDon=" + loaiHoaDon +
+				", khachHangMua=" + khachHangMua +
+				", caLamViec=" + caLamViec +
+				'}';
 	}
 
 	public void tinhTienHoaDon(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
