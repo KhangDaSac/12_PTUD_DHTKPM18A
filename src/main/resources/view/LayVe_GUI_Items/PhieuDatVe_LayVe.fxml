@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="71.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giá vé:">
+                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giá vé:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -95,7 +95,7 @@
                         </HBox>
                         <HBox fx:id="hboxGiamGiaVeTapThe" layoutX="10.0" layoutY="101.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giảm giá:">
+                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giảm giá:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -109,7 +109,7 @@
                         </HBox>
                         <HBox fx:id="hboxGiaVeCuoi" layoutX="10.0" layoutY="132.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Giá vé cuối:">
+                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giá vé cuối:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -123,7 +123,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="162.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Tiền cọc:">
+                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Tiền cọc:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
@@ -135,11 +135,20 @@
                               </Label>
                            </children>
                         </HBox>
+                        <HBox layoutX="10.0" layoutY="192.0" prefHeight="50.0">
+                           <children>
+                              <ImageView fx:id="imvTrangThai" fitHeight="50.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anpChonPhieuDatVe" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="anpChonPhieuDatVe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox prefWidth="50.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>

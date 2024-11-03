@@ -23,10 +23,10 @@ import java.util.ArrayList;
 public class LayVe_GUI_Controller {
 
     @FXML
-    private JFXButton btnBoChonTatCaVe;
+    private JFXButton btnBoChonTatCa;
 
     @FXML
-    private JFXButton btnChonTatCaVe;
+    private JFXButton btnChonTatCa;
 
     @FXML
     private JFXButton btnLayVe;
@@ -89,13 +89,13 @@ public class LayVe_GUI_Controller {
 
 
     @FXML
-    void btnBoChonTatCaVeOnAction(ActionEvent event) {
-
+    void btnBoChonTatCaOnAction(ActionEvent event) {
+        boChonLayVeTatPhieuDatVe();
     }
 
     @FXML
-    void btnChonTatCaVeOnAction(ActionEvent event) {
-
+    void btnChonTatCaOnAction(ActionEvent event) {
+        chonLayVeTatPhieuDatVe();
     }
 
     @FXML
@@ -135,7 +135,12 @@ public class LayVe_GUI_Controller {
             txtCCCD.setEditable(true);
             txtCCCD.selectAll();
             xoaThongTinKhachHang();
-            hoaDonList = new ArrayList<HoaDon>();
+            hoaDonList.clear();
+
+            phieuDatVeList.clear();
+            chiTietPhieuDatVeList.clear();
+            capNhatDanhSachPhieuDatVe();
+            hienThiDanhSachChiTietPhieuDatVe(null);
             hienThiDanhSachHoaDonDat();
         }
     }
@@ -249,4 +254,25 @@ public class LayVe_GUI_Controller {
             controller.khongChonChiTietPhieuDatVe();
         }
     }
+
+    public void boChonTatCaPhieuDatVe() {
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            controller.boChonPhieuDatVe();
+        }
+    }
+
+
+    public void chonLayVeTatPhieuDatVe(){
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            controller.chonLayVe();
+        }
+    }
+
+    public void boChonLayVeTatPhieuDatVe(){
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            controller.boChonLayVe();
+        }
+    }
+
+
 }

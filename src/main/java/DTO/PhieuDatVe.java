@@ -117,6 +117,11 @@ public class PhieuDatVe {
 		this.loaiPhieuDatVe = loaiPhieuDatVe;
 	}
 
+	public PhieuDatVe(String maPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe) {
+		this.maPhieuDatVe = maPhieuDatVe;
+		this.loaiPhieuDatVe = loaiPhieuDatVe;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

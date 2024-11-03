@@ -253,7 +253,7 @@ public class Main_Controller implements Initializable {
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("LẤY VÉ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();
