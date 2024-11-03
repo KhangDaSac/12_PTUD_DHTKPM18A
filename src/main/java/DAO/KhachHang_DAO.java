@@ -59,10 +59,10 @@ public class KhachHang_DAO {
                 String cCCD = rs.getString("CCCD");
                 String tenKhachHang = rs.getString("tenKhachHang");
                 String soDienThoai = rs.getString("soDienThoai");
-                LoaiKhachHang maloaiKhachHang = new LoaiKhachHang(rs.getString("maLoaiKhachHang"),rs.getString("tenLoaiKhachHang"),rs.getDouble("phanTramGiamGia"));
+                LoaiKhachHang loaiKhachHang = new LoaiKhachHang(rs.getString("maLoaiKhachHang"),rs.getString("tenLoaiKhachHang"),rs.getDouble("phanTramGiamGia"));
                 LocalDate ngaySinh = rs.getDate("ngaySinh") != null ? rs.getDate("ngaySinh").toLocalDate() : null;
                 //LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
-                KhachHang khachHang = new KhachHang(maKhachHang,cCCD, tenKhachHang,soDienThoai,maloaiKhachHang,ngaySinh );
+                KhachHang khachHang = new KhachHang(maKhachHang,cCCD, tenKhachHang,soDienThoai,ngaySinh, loaiKhachHang);
                 dsKhachHang.add(khachHang);
             }
         } catch (Exception e) {
