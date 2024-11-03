@@ -126,7 +126,6 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anpLoaiPhieuDatVe" prefWidth="50.0" styleClass="ve-left" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

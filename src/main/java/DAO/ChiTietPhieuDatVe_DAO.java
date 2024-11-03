@@ -45,7 +45,10 @@ public class ChiTietPhieuDatVe_DAO {
                 double giaCho = rs.getDouble("giaCho");
                 double soTienGiamGia = rs.getDouble("soTienGiamGia");
                 double thanhTien = rs.getDouble("thanhTien");
-                PhieuDatVe phieuDatVe = new PhieuDatVe(rs.getString("maPhieuDatVe"));
+                PhieuDatVe phieuDatVe = new PhieuDatVe(
+                        rs.getString("maPhieuDatVe"),
+                        LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"))
+                );
 
                 ChiTietPhieuDatVe chiTietPhieuDatVe = new ChiTietPhieuDatVe(
                         giaCho,
