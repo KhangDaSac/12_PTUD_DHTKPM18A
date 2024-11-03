@@ -9,9 +9,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class KhachHang_DAO {
-    Connection con = ConnectDB.getInstance().getConnection();
-    ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
+
+
     public ArrayList<KhachHang> xuatDanhSachKhachHang (){
+        Connection con = ConnectDB.getInstance().getConnection();
+        ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
         try {
             String query = "select * from KhachHang kh join LoaiKhachHang lkh on lkh.maLoaiKhachHang= kh.maLoaiKhachHang ";
             Statement statement = con.createStatement();
@@ -34,6 +36,7 @@ public class KhachHang_DAO {
     }
 
     public void suaThongTinKhachHang (KhachHang kh){
+        Connection con = ConnectDB.getInstance().getConnection();
         try{
             String query = "update KhachHang SET CCCD = ?, tenKhachHang = ?, soDienThoai = ?, maLoaiKhachHang = ?, ngaySinh = ? WHERE maKhachHang = ?";
             PreparedStatement statement = con.prepareStatement(query);
@@ -55,6 +58,7 @@ public class KhachHang_DAO {
         }
     }
     public  void addKhachHang (KhachHang kh){
+        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "insert into KhachHang values(?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
