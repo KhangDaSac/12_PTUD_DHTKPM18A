@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class KhachHang_DAO {
-
-
     public ArrayList<KhachHang> xuatDanhSachKhachHang (){
         Connection con = ConnectDB.getInstance().getConnection();
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
