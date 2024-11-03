@@ -40,20 +40,22 @@ public class HoaDon_DAO {
 
         return hoaDon;
     }
-    public ArrayList<HoaDon> getDSHoaDonTheoCacTieuChi(String maHoaDon,String maKhachHang, String maCaLam, String trangThai, String loaiHoaDon, LocalDate thoiGianLap){
+    public ArrayList<HoaDon> getDSHoaDonTheoCacTieuChi(String maHoaDon, String maKhachHang, String maCaLam, String trangThai, String loaiHoaDon, LocalDate thoiGianLap) {
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        try{
+        try {
             String query = "exec timHoaDonTheoCacTieuChi ?,?,?,?,?,?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,maHoaDon);
-            statement.setString(2,maKhachHang);
-            statement.setDate(3, Date.valueOf(thoiGianLap));
-            statement.setString(4,trangThai);
-            statement.setString(5,loaiHoaDon);
-            statement.setString(6,maCaLam);
+
+            statement.setString(1, maHoaDon != null && !maHoaDon.isEmpty() ? maHoaDon : null);
+            statement.setString(2, maKhachHang != null && !maKhachHang.isEmpty() ? maKhachHang : null);
+            statement.setString(3, maCaLam != null && !maCaLam.isEmpty() ? maCaLam : null);
+            statement.setString(4, trangThai != null && !trangThai.isEmpty() ? trangThai : null);
+            statement.setString(5, loaiHoaDon != null && !loaiHoaDon.isEmpty() ? loaiHoaDon : null);
+            statement.setDate(6, thoiGianLap != null ? Date.valueOf(thoiGianLap) : null);
+
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 HoaDon hoaDon = new HoaDon();
                 hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
                 hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
@@ -66,11 +68,10 @@ public class HoaDon_DAO {
                 hoaDon.setKhachHangMua(new KhachHang(rs.getString("maKhachhangMua")));
                 dsHoaDon.add(hoaDon);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dsHoaDon;
-
     }
     public String layMaHoaDonLonNhatCuaNgayHienTai(String ngayHienTai){
         String maHoaDonLonNhat = null;
@@ -108,47 +109,34 @@ public class HoaDon_DAO {
         }
         return true;
     }
-//    CREATE PROCEDURE timHoaDonDatVe
-//            @CCCD varchar(12),
-//    @thoiGianLap date
-//            AS
-//    BEGIN
-//    SELECT HD.maHoaDon, KH.maKhachHang, HD.thoiGianLap, STRING_AGG(PDV.maPhieuDatVe, ', ') AS MaPhieuDatVe, HD.tongTienDaDatCoc,HD.tongTien
-//    FROM HoaDon as HD join KhachHang as KH on HD.maKhachhangMua = KH.maKhachHang join PhieuDatVe as PDV on HD.maHoaDon = PDV.maHoaDon
-//    WHERE
-//            (@CCCD IS NULL OR @CCCD = '' OR KH.CCCD = @CCCD) AND
-//		(@thoiGianLap IS NULL OR (CAST(HD.thoiGianLap AS date) = @thoiGianLap)) AND
-//            loaiHoaDon = 'HOADONDAT'
-//    group by HD.maHoaDon,KH.maKhachHang, HD.thoiGianLap, HD.tongTienDaDatCoc,HD.tongTien
-//            END
-//    GO
- public static ArrayList<HoaDon> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
-     Connection con = ConnectDB.getInstance().getConnection();
-     ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
-     try {
-         String query = "exec timHoaDonDatVe ?,?";
-         PreparedStatement statement = con.prepareStatement(query);
-         statement.setString(1, maKhachHang != null && !maKhachHang.isEmpty() ? maKhachHang : null);
-         statement.setDate(2, thoiGianLap != null ? Date.valueOf(thoiGianLap) : null);
-         ResultSet rs = statement.executeQuery();
-         if (rs.next()) {
-             HoaDon hoaDon = new HoaDon();
-             hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
-             hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-             hoaDon.setTongTien(rs.getDouble("tongTien"));
-             hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
-             KhachHang khachHang= new KhachHang(rs.getString("maKhachHang"),KhachHang_DAO.getTenKhachHangTheoMa(rs.getString("maKhachHang")));
-             hoaDon.setKhachHangMua(khachHang);
-             dsHoaDon.add(hoaDon);
-         }
-     } catch (SQLException e) {
-         throw new RuntimeException(e);
-     }
-     return dsHoaDon;
- }
+
+    public static ArrayList<HoaDon> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
+        try {
+            String query = "exec timHoaDonDatVe ?,?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maKhachHang != null && !maKhachHang.isEmpty() ? maKhachHang : null);
+            statement.setDate(2, thoiGianLap != null ? Date.valueOf(thoiGianLap) : null);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
+                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
+                hoaDon.setTongTien(rs.getDouble("tongTien"));
+                hoaDon.setTongTienDaDatCoc(rs.getDouble("tongTienDaDatCoc"));
+                KhachHang khachHang = new KhachHang(rs.getString("maKhachHang"), KhachHang_DAO.getTenKhachHangTheoMa(rs.getString("maKhachHang")));
+                hoaDon.setKhachHangMua(khachHang);
+                dsHoaDon.add(hoaDon);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return dsHoaDon;
+    }
     public static ArrayList<HoaDon> getDanhSachHoaDon() {
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
-        try {// Kết nối trước khi lấy kết nối
+        try {
             Connection con = ConnectDB.getInstance().getConnection();
             if (con == null) {
                 throw new SQLException("Failed to establish a database connection.");
@@ -177,7 +165,7 @@ public class HoaDon_DAO {
     }
     public static ArrayList<HoaDon> getDanhSachHoaDonDat() {
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
-        try {// Kết nối trước khi lấy kết nối
+        try {
             Connection con = ConnectDB.getInstance().getConnection();
             if (con == null) {
                 throw new SQLException("Failed to establish a database connection.");

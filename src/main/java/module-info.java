@@ -25,6 +25,7 @@ module GUI.applications {
     exports GUI.controllers.ThongTinBanVe_GUI_Items;
     opens GUI.controllers.ThongTinBanVe_GUI_Items to javafx.fxml;
     requires javafx.controls;
+    requires itextpdf;
     exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
 
     // Other exports and opens statements

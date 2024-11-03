@@ -23,7 +23,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Mã hóa đơn">
+                              <Label prefHeight="26.0" prefWidth="112.0" text="Mã hóa đơn">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -31,7 +31,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtMaHoaDon" prefHeight="26.0" prefWidth="156.0" />
                            </children>
                            <HBox.margin>
                               <Insets left="100.0" right="100.0" />
@@ -47,7 +47,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cbmTrangThaiHoaDon" prefWidth="150.0" />
                            </children>
                            <HBox.margin>
                               <Insets right="100.0" />
@@ -63,7 +63,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cbmLoaiHoaDon" prefWidth="150.0" />
                            </children>
                         </HBox>
                      </children>
@@ -75,7 +75,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Mã khách hàng">
+                              <Label prefHeight="26.0" prefWidth="116.0" text="CCCD">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -83,7 +83,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtCCCD" prefHeight="26.0" prefWidth="158.0" />
                            </children>
                            <HBox.margin>
                               <Insets left="100.0" right="100.0" />
@@ -91,7 +91,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <Label text="Mã ca làm việc">
+                              <Label prefHeight="26.0" prefWidth="130.0" text="Mã ca làm việc">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -99,7 +99,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <TextField fx:id="txtMaCaLamViec" prefHeight="26.0" prefWidth="151.0" />
                            </children>
                            <HBox.margin>
                               <Insets right="100.0" />
@@ -115,7 +115,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <DatePicker />
+                              <DatePicker fx:id="dapThoiGianLap" prefHeight="26.0" prefWidth="149.0" />
                            </children>
                         </HBox>
                      </children>
@@ -125,7 +125,7 @@
                   </HBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Tìm kiếm">
+                        <Button fx:id="btnTimKiem" mnemonicParsing="false" onAction="#btnTimKiemOnAction" text="Tìm kiếm">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -133,7 +133,7 @@
                               <Insets right="100.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Xuất hóa đơn">
+                        <Button fx:id="btnXuatHoaDon" mnemonicParsing="false" onAction="#btnXuatHoaDonOnAction" text="Xuất hóa đơn">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -151,12 +151,12 @@
                   <Insets top="80.0" />
                </padding>
             </VBox>
-            <TableView fx:id="tableView" prefHeight="248.0" prefWidth="1290.0">
+            <TableView fx:id="tableView" prefHeight="248.0" prefWidth="1290.0" styleClass="coChu" stylesheets="@../css/QuanLyHoaDon.css">
               <columns>
-                <TableColumn fx:id="colSTT" prefWidth="75.0" text="STT" />
-                <TableColumn fx:id="colMaHoaDon" prefWidth="97.60000610351562" text="Mã hóa đơn" />
-                  <TableColumn fx:id="colThoiGianLap" prefWidth="125.59999084472656" text="Thời gian lập" />
-                  <TableColumn fx:id="colTongTien" prefWidth="154.39996337890625" text="Tổng tiền" />
+                <TableColumn fx:id="colSTT" prefWidth="46.4000244140625" text="STT" />
+                <TableColumn fx:id="colMaHoaDon" prefWidth="127.19998168945312" text="Mã hóa đơn" />
+                  <TableColumn fx:id="colThoiGianLap" prefWidth="159.199951171875" text="Thời gian lập" />
+                  <TableColumn fx:id="colTongTien" prefWidth="120.800048828125" text="Tổng tiền" />
                   <TableColumn fx:id="colTongTienCoc" prefWidth="133.60003662109375" text="Tổng tiền cọc" />
                   <TableColumn fx:id="colTongTienTra" prefWidth="137.5999755859375" text="Tổng tiền trả" />
                   <TableColumn fx:id="colLoaiHoaDon" prefWidth="128.0" text="Loại hóa đơn" />

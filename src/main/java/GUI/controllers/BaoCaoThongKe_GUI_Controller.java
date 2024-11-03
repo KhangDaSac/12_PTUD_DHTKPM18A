@@ -27,7 +27,12 @@ import java.util.ResourceBundle;
 
 import static javafx.application.Application.launch;
 
-public class BaoCaoThongKe_GUI_Controller extends Application{
+public class BaoCaoThongKe_GUI_Controller implements Initializable {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initializeComboBoxes();
+    }
+
     @FXML
     private  BarChart<String,Double> chart;
     private BaoCaoThongKe_GUI_Controller controller;
@@ -48,42 +53,13 @@ public class BaoCaoThongKe_GUI_Controller extends Application{
     private ComboBox cmbChonNam;
 
 
-    private  void taiDuLieuLenBieuDo (){
-        XYChart.Series<String,Double> series_01= new XYChart.Series<>();
-        series_01.getData().add(new XYChart.Data("Jan",500));
-        series_01.getData().add(new XYChart.Data("Feb",600));
-        series_01.getData().add(new XYChart.Data("Mar",700));
-        series_01.getData().add(new XYChart.Data("Apr",800));
-        series_01.getData().add(new XYChart.Data("May",900));
-        series_01.getData().add(new XYChart.Data("Jun",1000));
-        series_01.getData().add(new XYChart.Data("Jul",1100));
-        series_01.getData().add(new XYChart.Data("Aug",1200));
-        series_01.getData().add(new XYChart.Data("Sep",1300));
-        series_01.getData().add(new XYChart.Data("Oct",1400));
-        series_01.getData().add(new XYChart.Data("Nov", 1500));
-        series_01.getData().add(new XYChart.Data("Dec", 1600));
-        chart.setLegendVisible(false);
-        chart.getData().add(series_01);
-    }
 
-
-    public void start(Stage primaryStage) throws Exception {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BaoCaoThongKe_GUI.fxml"));
-            Parent root = loader.load();
-            controller = loader.getController();
-            controller.initializeComboBoxes();// Initialize the controller
-            Scene scene = new Scene(root);
-            primaryStage.setTitle("Hóa đơn");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }
 
     public static void main(String[] args) {
         launch(args);
        
     }
 double tongDoanhThu=0;
-    // thong ke doanh thu theo thang
     public void thongKeDoanhThuTheoThang (LocalDate ngayBatDau, LocalDate ngayKetThuc) {
             try {
                 Connection con = ConnectDB.getInstance().getConnection();
