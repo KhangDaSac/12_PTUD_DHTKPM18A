@@ -127,8 +127,8 @@ public class DoiVe_GUI_Controller implements Initializable {
 
     public void setLblGiaCho_Moi(double giaChoMoi) {
         if (giaChoMoi ==0.0){
-            lblGiaCho_Moi.setText("");
-            lblGiaMoi_ChiTietVeDoi.setText("");
+            lblGiaCho_Moi.setText("0");
+            lblGiaMoi_ChiTietVeDoi.setText("0");
         }else {
             lblGiaCho_Moi.setText(String.format("%.3fVNĐ",giaChoMoi));
             lblGiaMoi_ChiTietVeDoi.setText(String.format("%.3fVNĐ",giaChoMoi));
@@ -468,12 +468,12 @@ public class DoiVe_GUI_Controller implements Initializable {
                 controller.chuyenMauDangChon();
                 lblCho_Moi.setText(String.format("%d",choChon.getSoCho()));
             }
-            if (choKH.getTrangThaiCho()==TrangThaiCho.CONTRONG){
-                controller.chuyenMauMacDinh();
-            }
-            if (choChon.getTrangThaiCho()==TrangThaiCho.DADATHOACBAN){
-                controller.chuyenMauMacDinh();
-            }
+//            if (choKH.getTrangThaiCho()==TrangThaiCho.CONTRONG){
+//                controller.chuyenMauMacDinh();
+//            }
+//            if (choChon.getTrangThaiCho()==TrangThaiCho.DADATHOACBAN){
+//                controller.chuyenMauMacDinh();
+//            }
             controller.capNhatTrangThai();
         }
     }
