@@ -143,4 +143,7 @@ double tongDoanhThu=0;
         thongKeDoanhThuTheoThang(ngayBatDau, ngayKetThuc);
         txtDoanhThu.setText(String.valueOf(tongDoanhThu/1000000)+"M");
     }
+
+    public void setMain_Controller(Main_Controller mainController) {
+    }
 }

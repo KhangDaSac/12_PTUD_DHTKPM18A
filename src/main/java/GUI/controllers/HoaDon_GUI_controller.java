@@ -80,7 +80,7 @@ public class HoaDon_GUI_controller extends Application {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getMaCaLamViec()); // Giả sử phương thức getter là getMaCa()
+                    setText(item.getMaCaLamViec());
                 }
             }
         });

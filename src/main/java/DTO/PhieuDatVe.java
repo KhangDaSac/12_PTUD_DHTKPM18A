@@ -16,16 +16,13 @@ public class PhieuDatVe {
 	private ChuyenTau chuyenTau;
 	private GaTau gaTauDi;
 	private GaTau gaTauDen;
+	private HoaDon maHoaDon;
 	public PhieuDatVe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PhieuDatVe(String maPhieuDatVe) {
-		this.maPhieuDatVe = maPhieuDatVe;
-	}
-
-	public PhieuDatVe(String maPhieuDatVe, double tongTienVe, double tongTienDatCoc, double giamGiaVeTapThe, LocalDateTime ngayLayVe, TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen) {
+	public PhieuDatVe(String maPhieuDatVe, double tongTienVe, double tongTienDatCoc, double giamGiaVeTapThe, LocalDateTime ngayLayVe, TrangThaiPhieuDatVe trangThaiPhieuDatVe, LoaiPhieuDatVe loaiPhieuDatVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen, HoaDon maHoaDon) {
 		this.maPhieuDatVe = maPhieuDatVe;
 		this.tongTienVe = tongTienVe;
 		this.tongTienDatCoc = tongTienDatCoc;
@@ -37,6 +34,11 @@ public class PhieuDatVe {
 		this.chuyenTau = chuyenTau;
 		this.gaTauDi = gaTauDi;
 		this.gaTauDen = gaTauDen;
+		this.maHoaDon = maHoaDon;
+	}
+
+	public PhieuDatVe(String maPhieuDatVe) {
+		this.maPhieuDatVe = maPhieuDatVe;
 	}
 
 	public String getMaPhieuDatVe() {
@@ -127,6 +129,14 @@ public class PhieuDatVe {
 		this.gaTauDen = gaTauDen;
 	}
 
+	public HoaDon getMaHoaDon() {
+		return maHoaDon;
+	}
+
+	public void setMaHoaDon(HoaDon maHoaDon) {
+		this.maHoaDon = maHoaDon;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -154,6 +164,7 @@ public class PhieuDatVe {
 				", chuyenTau=" + chuyenTau +
 				", gaTauDi=" + gaTauDi +
 				", gaTauDen=" + gaTauDen +
+				", maHoaDon=" + maHoaDon +
 				'}';
 	}
 }

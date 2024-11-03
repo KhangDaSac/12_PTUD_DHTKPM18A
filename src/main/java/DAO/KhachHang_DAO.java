@@ -35,6 +35,21 @@ public class KhachHang_DAO {
         }
         return null;
     }
+    public static String getTenKhachHangTheoMa(String maKhachHang){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "select tenKhachHang from KhachHang where maKhachHang = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maKhachHang);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("tenKhachHang");
+            }
+        }catch (Exception e){
+
+        }
+        return null;
+    }
 
 
 }
