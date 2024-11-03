@@ -1,7 +1,6 @@
 package DTO;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class KhachHang {
@@ -9,29 +8,20 @@ public class KhachHang {
 	private String CCCD;
 	private String tenKhachHang;
 	private String soDienThoai;
-	private LoaiKhachHang loaiKhachHang;
 	private LocalDate ngaySinh;
-	private LoaiKhachHang phanTramGiamGia;
+	private LoaiKhachHang loaiKhachHang;
 	public KhachHang() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public LocalDate getNgaySinh() {
-		return ngaySinh;
-	}
-
-	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LoaiKhachHang loaiKhachHang, LocalDate ngaySinh) {
+	public KhachHang(String maKhachHang, String cCCD, String tenKhachHang, String soDienThoai,
+			LoaiKhachHang loaiKhachHang) {
+		super();
 		this.maKhachHang = maKhachHang;
-		this.CCCD = CCCD;
+		this.CCCD = cCCD;
 		this.tenKhachHang = tenKhachHang;
 		this.soDienThoai = soDienThoai;
 		this.loaiKhachHang = loaiKhachHang;
-		this.ngaySinh = ngaySinh;
-	}
-
-	public void setNgaySinh(LocalDate ngaySinh) {
-		this.ngaySinh = ngaySinh;
 	}
 
 	public KhachHang(String maKhachHang, String tenKhachHang, LoaiKhachHang loaiKhachHang, String CCCD) {
@@ -39,6 +29,13 @@ public class KhachHang {
 		this.tenKhachHang = tenKhachHang;
 		this.loaiKhachHang = loaiKhachHang;
 		this.CCCD = CCCD;
+	}
+
+	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, LoaiKhachHang loaiKhachHang) {
+		this.maKhachHang = maKhachHang;
+		this.CCCD = CCCD;
+		this.tenKhachHang = tenKhachHang;
+		this.loaiKhachHang = loaiKhachHang;
 	}
 
 	public KhachHang(String maKhachHang) {
@@ -75,7 +72,15 @@ public class KhachHang {
 	public void setLoaiKhachHang(LoaiKhachHang loaiKhachHang) {
 		this.loaiKhachHang = loaiKhachHang;
 	}
-	
+
+	public LocalDate getNgaySinh() {
+		return ngaySinh;
+	}
+
+	public void setNgaySinh(LocalDate ngaySinh) {
+		this.ngaySinh = ngaySinh;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(maKhachHang);
@@ -96,5 +101,13 @@ public class KhachHang {
 		return "KhachHang [maKhachHang=" + maKhachHang + ", CCCD=" + CCCD + ", tenKhachHang=" + tenKhachHang
 				+ ", soDienThoai=" + soDienThoai + ", loaiKhachHang=" + loaiKhachHang + "]";
 	}
-	
+
+	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LocalDate ngaySinh, LoaiKhachHang loaiKhachHang) {
+		this.maKhachHang = maKhachHang;
+		this.CCCD = CCCD;
+		this.tenKhachHang = tenKhachHang;
+		this.soDienThoai = soDienThoai;
+		this.ngaySinh = ngaySinh;
+		this.loaiKhachHang = loaiKhachHang;
+	}
 }

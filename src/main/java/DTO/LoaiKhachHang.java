@@ -12,11 +12,7 @@ public class LoaiKhachHang  extends KhachHang{
 		// TODO Auto-generated constructor stub
 	}
 
-	public LoaiKhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LoaiKhachHang loaiKhachHang, LocalDate ngaySinh, String maLoaiKhachHang, double phanTramGiamGia) {
-		super(maKhachHang, CCCD, tenKhachHang, soDienThoai, loaiKhachHang, ngaySinh);
-		this.maLoaiKhachHang = maLoaiKhachHang;
-		this.phanTramGiamGia = phanTramGiamGia;
-	}
+
 
 	public LoaiKhachHang(String maLoaiKhachHang, String tenLoaiKhachHang, double phanTramGiamGia) {
 		super();

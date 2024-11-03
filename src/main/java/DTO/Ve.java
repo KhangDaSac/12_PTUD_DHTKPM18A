@@ -1,5 +1,6 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Ve {
@@ -10,7 +11,7 @@ public class Ve {
 	private double tongTienVe;
 	private double giamGiaVeTapThe;
 	private LoaiVe loaiVe ;
-	private TrangThaiVe trangThaiVe ;
+	private TrangThaiVe trangThaiVe;
 	private ChuyenTau chuyenTau;
 	public Ve() {
 		super();
@@ -148,21 +149,20 @@ public class Ve {
 				", giamGiaVeTapThe=" + giamGiaVeTapThe +
 				", loaiVe=" + loaiVe +
 				", trangThaiVe=" + trangThaiVe +
-				", chuyenTau =" + chuyenTau+
 				'}';
 	}
 
 	public double tinhGiamGiaVeTapThe(){
-		if(loaiVe == LoaiVe.VECANHAN){
+		if(loaiVe == LoaiVe.VETAPTHE){
 			giamGiaVeTapThe = tongTienVe * 0.1;
-		}else if(loaiVe == LoaiVe.VETAPTHE){
+		}else if(loaiVe == LoaiVe.VECANHAN){
 			giamGiaVeTapThe = 0;
 		}
 		return giamGiaVeTapThe;
 	}
 
 	public double tinhTongTienVeCuoi(){
-		tinhGiamGiaVeTapThe();
-		return tongTienVe - giamGiaVeTapThe;
+		return tongTienVe - tinhGiamGiaVeTapThe();
 	}
+
 }

@@ -22,10 +22,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.poi.ss.usermodel.*;
+//import org.apache.poi.ss.usermodel.Cell;
+//import org.apache.poi.*;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 import java.io.File;
@@ -326,44 +326,44 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
         kH_DAO.suaThongTinKhachHang(kh);
     }
 
-    @FXML
-    void btnXuatDanhSachKhachHangOnAction(ActionEvent event) throws IOException {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("fileThongTinKhachHang");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
-        File file = fileChooser.showSaveDialog(tblKH.getScene().getWindow());
-
-        if(file!=null){
-            try(Workbook wb = new XSSFWorkbook()){
-                Sheet sheet = wb.createSheet("DanhSachKhachHang");
-
-                //tiêu đề cột
-                Row headerRow = sheet.createRow(0);
-                for(int i = 1; i< tblKH.getColumns().size();i++){
-                    Cell cell = headerRow.createCell(i);
-                    cell.setCellValue(tblKH.getColumns().get(i).getText());
-                }
-
-                //ghi dữ liêu từ tbl vào sheet
-                for(int i = 0; i< tblKH.getItems().size();i++){
-                    Row row = sheet.createRow(i+1);
-                    for(int j =1; j< tblKH.getColumns().size();j++){
-                        Cell cell = row.createCell(j);
-                        Object cellData = tblKH.getColumns().get(j).getCellData(i);
-                        cell.setCellValue(cellData !=null ? cellData.toString() : "");
-                    }
-                }
-
-                //ghi file excel ra ổ đĩa
-                try (FileOutputStream fileOut = new FileOutputStream(file)) {
-                    wb.write(fileOut);
-                    System.out.println("Đã in ra excel");
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    @FXML
+//    void btnXuatDanhSachKhachHangOnAction(ActionEvent event) throws IOException {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("fileThongTinKhachHang");
+//        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+//        File file = fileChooser.showSaveDialog(tblKH.getScene().getWindow());
+//
+//        if(file!=null){
+//            try(Workbook wb = new XSSFWorkbook()){
+//                Sheet sheet = wb.createSheet("DanhSachKhachHang");
+//
+//                //tiêu đề cột
+//                Row headerRow = sheet.createRow(0);
+//                for(int i = 1; i< tblKH.getColumns().size();i++){
+//                    Cell cell = headerRow.createCell(i);
+//                    cell.setCellValue(tblKH.getColumns().get(i).getText());
+//                }
+//
+//                //ghi dữ liêu từ tbl vào sheet
+//                for(int i = 0; i< tblKH.getItems().size();i++){
+//                    Row row = sheet.createRow(i+1);
+//                    for(int j =1; j< tblKH.getColumns().size();j++){
+//                        Cell cell = row.createCell(j);
+//                        Object cellData = tblKH.getColumns().get(j).getCellData(i);
+//                        cell.setCellValue(cellData !=null ? cellData.toString() : "");
+//                    }
+//                }
+//
+//                //ghi file excel ra ổ đĩa
+//                try (FileOutputStream fileOut = new FileOutputStream(file)) {
+//                    wb.write(fileOut);
+//                    System.out.println("Đã in ra excel");
+//                }catch (IOException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     @FXML
     void timKiemKhachHang() {

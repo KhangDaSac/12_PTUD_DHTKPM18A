@@ -113,6 +113,15 @@ public class ChiTietVe {
 	}
 
 	public double tinhThanhTien(){
-		return giaCho - soTienGiamGia;
+		return giaCho - tinhTienGiamGia();
+	}
+
+	public double tinhTienGiamGia(){
+		if(khachHang != null){
+			double phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
+			soTienGiamGia = phanTramGiamGia * giaCho;
+			return soTienGiamGia;
+		}
+		return 0;
 	}
 }

@@ -63,7 +63,7 @@ public class ChiTietVe_Controller {
 
     @FXML
     void anpChiTietVeOnMouseClicked(MouseEvent event) {
-
+        chonChiTietVe();
     }
 
     public void khoiTao(){
@@ -79,6 +79,18 @@ public class ChiTietVe_Controller {
         }else if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VETAPTHE){
             anpLoaiVe.getStyleClass().add("ve-left-veTapThe");
         }
+    }
+
+    public void chonChiTietVe(){
+        banVe_gui_controller.boChonTatCaChiTietVe();
+        anpChiTietVe.getStyleClass().removeAll("chiTietVeKhongChon");
+        anpChiTietVe.getStyleClass().add("chiTietVeDangChon");
+    }
+
+
+    public void khongChonChiTietVe(){
+        anpChiTietVe.getStyleClass().removeAll("chiTietVeDangChon");
+        anpChiTietVe.getStyleClass().add("chiTietVeKhongChon");
     }
 
 }

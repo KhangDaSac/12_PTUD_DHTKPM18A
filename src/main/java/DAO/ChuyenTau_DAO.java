@@ -74,7 +74,7 @@ public class ChuyenTau_DAO {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maGaDi);
             statement.setString(2, maGaDen);
-            statement.setString(3, TimeFormat.formatLocalDateTimeSQL(ngayDi));
+            statement.setString(3, TimeFormat.formatLocalDateSQL(ngayDi));
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 String maChuyenTau =rs.getString("maChuyenTau");

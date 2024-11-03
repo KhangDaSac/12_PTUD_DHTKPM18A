@@ -1,6 +1,7 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -10,10 +11,20 @@ public class HoaDon {
 	private double tongTien;
 	private double tongTienDaDatCoc;
 	private double tongTienKhachHangTra ;
-	private TrangThaiHoaDon trangThaiHoaDon ;
+	private TrangThaiHoaDon trangThaiHoaDon;
 	private LoaiHoaDon loaiHoaDon;
 	private KhachHang khachHangMua;
 	private CaLamViec caLamViec;
+
+	public HoaDon(String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, TrangThaiHoaDon trangThaiHoaDon, CaLamViec caLamViec, KhachHang khachHangMua) {
+		this.maHoaDon = maHoaDon;
+		this.thoiGianLap = thoiGianLap;
+		this.tongTien = tongTien;
+		this.tongTienDaDatCoc = tongTienDaDatCoc;
+		this.trangThaiHoaDon = trangThaiHoaDon;
+		this.caLamViec = caLamViec;
+		this.khachHangMua = khachHangMua;
+	}
 
 	public String getMaHoaDon() {
 		return maHoaDon;
@@ -132,5 +143,41 @@ public class HoaDon {
 				", khachHangMua=" + khachHangMua +
 				", caLamViec=" + caLamViec +
 				'}';
+	}
+
+	public void tinhTienHoaDon(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+		double tongTienHoaDon = 0;
+		for(Ve ve : danhSachVe){
+			double tongTienVe = 0;
+			for(ChiTietVe chiTietVe : danhSachChiTietVe){
+				if(chiTietVe.getVe().equals(ve))
+					tongTienVe += chiTietVe.tinhThanhTien();
+			}
+			ve.setTongTienVe(tongTienVe);
+			ve.setGiamGiaVeTapThe(ve.tinhGiamGiaVeTapThe());
+			tongTienHoaDon += tongTienVe;
+		}
+		setTongTien(tongTienHoaDon);
+		tinhTienCoc();
+		tinhTienKhachHangTra();
+	}
+
+	public double tinhTienCoc(){
+		if(loaiHoaDon == LoaiHoaDon.HOADONDAT){
+			tongTienDaDatCoc = tongTien * 0.2;
+			return tongTienDaDatCoc;
+		}
+		return 0;
+	}
+
+	public double tinhTienKhachHangTra(){
+		if(loaiHoaDon == LoaiHoaDon.HOADONBAN){
+			tongTienKhachHangTra = tongTien;
+			return tongTienKhachHangTra;
+		}else{
+			tongTienKhachHangTra = tongTienDaDatCoc;
+			return tongTienKhachHangTra;
+		}
+
 	}
 }

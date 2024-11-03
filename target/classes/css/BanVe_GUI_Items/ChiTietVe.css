@@ -7,3 +7,11 @@
     -fx-background-color: #851DE0;
     -fx-background-radius: 10 0 0 10;
 }
+
+.chiTietVeDangChon{
+    -fx-background-color: #999999;
+}
+
+.chiTietVeKhongChon{
+    -fx-background-color: transparent;
+}

@@ -3,6 +3,7 @@ package GUI.controllers.BanVe_GUI_Items;
 import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -94,7 +95,8 @@ public class Ve_Controller implements Initializable {
 
     @FXML
     void anpXoaVeOnMouseCliced(MouseEvent event) {
-        banVe_GUI_Controller.xoaVe(ve);
+        if(banVe_GUI_Controller != null)
+            banVe_GUI_Controller.xoaVe(ve);
     }
 
 
@@ -110,6 +112,10 @@ public class Ve_Controller implements Initializable {
         lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
+
+
+        lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
+        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
