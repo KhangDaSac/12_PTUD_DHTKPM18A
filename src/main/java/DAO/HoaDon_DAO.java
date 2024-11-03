@@ -40,7 +40,7 @@ public class HoaDon_DAO {
 
         return hoaDon;
     }
-    public ArrayList<HoaDon> getDSHoaDonTheoCacTieuChi(String maHoaDon,String maKhachHang, String maCaLam, String trangThai, String loaiHoaDon, LocalDateTime thoiGianLap){
+    public ArrayList<HoaDon> getDSHoaDonTheoCacTieuChi(String maHoaDon,String maKhachHang, String maCaLam, String trangThai, String loaiHoaDon, LocalDate thoiGianLap){
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
         try{
@@ -48,7 +48,7 @@ public class HoaDon_DAO {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
             statement.setString(2,maKhachHang);
-            statement.setTimestamp(3, Timestamp.valueOf(thoiGianLap));
+            statement.setDate(3, Date.valueOf(thoiGianLap));
             statement.setString(4,trangThai);
             statement.setString(5,loaiHoaDon);
             statement.setString(6,maCaLam);
@@ -175,5 +175,29 @@ public class HoaDon_DAO {
             e.printStackTrace();
         }
         return dsHoaDon;
+    }
+    public ArrayList<HoaDon> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
+        Connection con = ConnectDB.getInstance().getConnection();
+        ArrayList<HoaDon> hoaDonList = new ArrayList<HoaDon>();
+        try{
+            String query = "exec UDP_TimDanhSachHoaDonDatTheoMaKhachHang ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maKhachHang);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                String maHoaDon = rs.getString("maHoaDon");
+                LocalDateTime thoiGianLap = rs.getTimestamp("thoiGianLap").toLocalDateTime();
+                double tongTien = rs.getDouble("tongTien");
+                double tongTienDatCoc = rs.getDouble("tongTienDaDatCoc");
+                TrangThaiHoaDon trangThaiHoaDon = TrangThaiHoaDon.valueOf(rs.getString("trangThaiHoaDon"));
+                CaLamViec caLamViec = new CaLamViec(rs.getString("maCaLamViec"));
+                KhachHang khachHang = new KhachHang(rs.getString("maKhachHangMua"));
+                HoaDon hoaDon = new HoaDon(maHoaDon, thoiGianLap, tongTien, tongTienDatCoc, trangThaiHoaDon, caLamViec, khachHang);
+                hoaDonList.add(hoaDon);
+            }
+        } catch (Exception e) {
+
+        }
+        return hoaDonList;
     }
 }

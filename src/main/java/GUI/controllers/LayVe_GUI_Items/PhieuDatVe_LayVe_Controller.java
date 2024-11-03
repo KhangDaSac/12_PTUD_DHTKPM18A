@@ -2,6 +2,7 @@ package GUI.controllers.LayVe_GUI_Items;
 
 import DTO.LoaiPhieuDatVe;
 import DTO.PhieuDatVe;
+import GUI.controllers.HuyDatVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -65,6 +66,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     private VBox vboxDanhSachThongTin;
 
     private LayVe_GUI_Controller layVe_gui_controller;
+    private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
 
 
     private PhieuDatVe phieuDatVe;
@@ -102,7 +104,9 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     public void setPhieuDatVe(PhieuDatVe phieuDatVe) {
         this.phieuDatVe = phieuDatVe;
     }
-
+    public void setHuyDatVe_gui_controller(HuyDatVe_GUI_Controller huyDatVe_gui_controller) {
+        this.huyDatVe_gui_controller = huyDatVe_gui_controller;
+    }
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
         layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);

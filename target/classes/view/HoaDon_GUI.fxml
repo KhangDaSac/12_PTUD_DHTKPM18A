@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.HoaDon_GUI_controller">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyHoaDon_GUI_Controller">
    <children>
-      <VBox>
+      <VBox styleClass="coChu" stylesheets="@../css/QuanLyHoaDon.css">
          <children>
             <VBox>
                <children>
@@ -31,7 +31,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtMaHoaDon" />
                            </children>
                            <HBox.margin>
                               <Insets left="100.0" right="100.0" />
@@ -47,7 +47,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cmbTrangThaiHoaDon" prefHeight="37.0" prefWidth="164.0" />
                            </children>
                            <HBox.margin>
                               <Insets right="100.0" />
@@ -63,7 +63,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="cmLoaiHoaDon" prefHeight="38.0" prefWidth="194.0" />
                            </children>
                         </HBox>
                      </children>
@@ -75,7 +75,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label text="Mã khách hàng">
+                              <Label prefHeight="26.0" prefWidth="84.0" text="CCCD">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -83,7 +83,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField />
+                              <TextField fx:id="txtCCCD" prefHeight="37.0" prefWidth="202.0" />
                            </children>
                            <HBox.margin>
                               <Insets left="100.0" right="100.0" />
@@ -91,7 +91,7 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <Label text="Mã ca làm việc">
+                              <Label prefHeight="26.0" prefWidth="133.0" text="Mã ca làm việc">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -99,7 +99,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <ComboBox prefWidth="150.0" />
+                              <TextField fx:id="txtMaCaLamViec" prefHeight="37.0" prefWidth="167.0" />
                            </children>
                            <HBox.margin>
                               <Insets right="100.0" />
@@ -115,7 +115,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <DatePicker />
+                              <DatePicker fx:id="dapThoiGianLap" prefHeight="37.0" prefWidth="198.0" />
                            </children>
                         </HBox>
                      </children>
@@ -125,7 +125,7 @@
                   </HBox>
                   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Tìm kiếm">
+                        <Button fx:id="btnTimKiemHoaDon" mnemonicParsing="false" onAction="#btnTimKiemHoaDonOnAcTion" prefHeight="37.0" prefWidth="99.0" text="Tìm kiếm">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -133,7 +133,7 @@
                               <Insets right="100.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Xuất hóa đơn">
+                        <Button fx:id="btnXuatHoaDon" mnemonicParsing="false" onAction="#btnXuatHoaDonOnAcTion" prefHeight="37.0" prefWidth="124.0" text="Xuất hóa đơn">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -151,7 +151,7 @@
                   <Insets top="80.0" />
                </padding>
             </VBox>
-            <TableView fx:id="tableView" prefHeight="248.0" prefWidth="1290.0">
+            <TableView fx:id="tableView" prefHeight="248.0" prefWidth="1290.0" styleClass="coChu">
               <columns>
                 <TableColumn fx:id="colSTT" prefWidth="75.0" text="STT" />
                 <TableColumn fx:id="colMaHoaDon" prefWidth="97.60000610351562" text="Mã hóa đơn" />

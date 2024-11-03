@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.HoaDon_GUI_controller">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyHoaDon_GUI_Controller">
    <children>
       <VBox>
          <children>
