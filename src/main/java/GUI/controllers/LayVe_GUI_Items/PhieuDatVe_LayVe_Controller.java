@@ -77,6 +77,15 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     private boolean dangChon;
     private boolean chonLayVe;
 
+
+    public boolean isChonLayVe() {
+        return chonLayVe;
+    }
+
+    public void setChonLayVe(boolean chonLayVe) {
+        this.chonLayVe = chonLayVe;
+    }
+
     public LayVe_GUI_Controller getLayVe_gui_controller() {
         return layVe_gui_controller;
     }
@@ -115,9 +124,9 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         chonPhieuDatVe();
         if(phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)){
             if(chonLayVe){
-                chonLayVe();
-            }else{
                 boChonLayVe();
+            }else{
+                chonLayVe();
             }
         }
     }
@@ -178,11 +187,14 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         if(phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)){
             chonLayVe = true;
             imvChonPhieuDatVe.setVisible(true);
+            layVe_gui_controller.tinhTongTienLayVe();
+
         }
     }
 
     public void boChonLayVe(){
         chonLayVe = false;
         imvChonPhieuDatVe.setVisible(false);
+        layVe_gui_controller.tinhTongTienLayVe();
     }
 }

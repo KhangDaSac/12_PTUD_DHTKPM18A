@@ -3,6 +3,7 @@ package GUI.controllers;
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
 import BUS.QuanLyPhieuDatVe_BUS;
+import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.HoaDon_LayVe_Controller;
@@ -16,6 +17,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CurrencyFormat;
+import utils.ShowMessagesDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -272,6 +275,71 @@ public class LayVe_GUI_Controller {
         for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
             controller.boChonLayVe();
         }
+    }
+
+    public void layVe(){
+        if(phieuDatVeList.isEmpty()){
+            main_controller.showMessagesDialog("Chưa chọn vé");
+            return;
+        }
+        ArrayList<Ve> veList = new ArrayList<Ve>();
+        ArrayList<ChiTietVe> chiTietVeList = new ArrayList<ChiTietVe>();
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            if (controller.isChonLayVe()){
+                String maVeMoi = "";
+                if(veList.isEmpty()){
+                    maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
+                }else{
+                    maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(veList.getLast());
+                }
+
+                PhieuDatVe phieuDatVe = controller.getPhieuDatVe();
+
+                LoaiVe loaiVe = phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATCANHAN) ? LoaiVe.VECANHAN :
+                                phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATTAPTHE) ? LoaiVe.VETAPTHE : null;
+
+                Ve ve = new Ve(
+                        maVeMoi,
+                        phieuDatVe.getHoaDon(),
+                        phieuDatVe.getChiTietChuyenTauDi(),
+                        phieuDatVe.getChiTietChuyenTauDen(),
+                        phieuDatVe.getTongTienVe(),
+                        phieuDatVe.getGiamGiaVeTapThe(),
+                        loaiVe,
+                        TrangThaiVe.DANGSUDUNG
+                );
+                veList.add(ve);
+
+                for(ChiTietPhieuDatVe_LayVe_Controller controller2 : chiTietPhieuDatVeLayVeControllerList){
+                    if(controller.getPhieuDatVe().equals(controller2.getChiTietPhieuDatVe().getPhieuDatVe())){
+                        ChiTietPhieuDatVe chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
+                        ChiTietVe chiTietVe = new ChiTietVe(
+
+                        );
+                        chiTietVeList.add(chiTietVe);
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+    public double tinhTongTienLayVe(){
+        double tongTien = 0;
+        double tongTienCoc = 0;
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            if(controller.isChonLayVe()){
+                tongTien += controller.getPhieuDatVe().getTongTienVe();
+                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
+            }
+        }
+
+        System.out.println("Da tinh tien");
+
+        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien - tongTienCoc));
+        return tongTien - tongTienCoc;
     }
 
 
