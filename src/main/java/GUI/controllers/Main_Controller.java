@@ -237,7 +237,7 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnDoiVeOnAction(ActionEvent event) {
-        lblTieuDeTrang.setText("LẤY VÉ");
+        lblTieuDeTrang.setText("ĐỔI VÉ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -246,6 +246,7 @@ public class Main_Controller implements Initializable {
             throw new RuntimeException(e);
         }
         DoiVe_GUI_Controller controller = loader.getController();
+        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

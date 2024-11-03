@@ -102,6 +102,7 @@ public class Cho_Controller implements Initializable {
                 doiVe_gui_controller.setLblCho_Moi(cho.getSoCho());
                 doiVe_gui_controller.setLblGiaCho_Moi(cho.getGiaCho());
                 doiVe_gui_controller.setLblToaTau_Moi(cho.getToaTau().getMaToaTau());
+                doiVe_gui_controller.tinhTongTien();
             }
         }else {
             System.out.printf("trang không xác định");
