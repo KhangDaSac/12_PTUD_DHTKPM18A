@@ -14,16 +14,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import org.controlsfx.control.textfield.TextFields;
 import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class BanVe_GUI_Controller implements Initializable {
     @FXML
@@ -57,10 +62,10 @@ public class BanVe_GUI_Controller implements Initializable {
     private JFXButton btnXoaTatCaVeTrongGio;
 
     @FXML
-    private ComboBox<String> cmbGaTauDen;
+    private ComboBox<GaTau> cmbGaTauDen;
 
     @FXML
-    private ComboBox<String> cmbGaTauDi;
+    private ComboBox<GaTau> cmbGaTauDi;
 
     @FXML
     private ComboBox<String> cmbLoaiVe;
@@ -179,7 +184,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
-            timDanhSachChuyenTau();
+        timDanhSachChuyenTau();
     }
 
     @FXML
@@ -294,6 +299,7 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
         if(danhSachVe.isEmpty()){
+            main_Controller.showMessagesDialog("Trong giỏ không có vé");
             return;
         }
         main_Controller.chuyenTrangThongTinBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
@@ -308,8 +314,8 @@ public class BanVe_GUI_Controller implements Initializable {
             System.out.println("Ga tàu đến không hợp lệ");
             return;
         }
-        GaTau gaTauDi = gaTauList.get(cmbGaTauDi.getSelectionModel().getSelectedIndex());
-        GaTau gaTauDen = gaTauList.get(cmbGaTauDen.getSelectionModel().getSelectedIndex());
+        GaTau gaTauDi = cmbGaTauDi.getValue();
+        GaTau gaTauDen = cmbGaTauDen.getValue();
 
         LocalDate ngayDi = dapNgayKhoiHanh.getValue();
         try {
@@ -495,8 +501,8 @@ public class BanVe_GUI_Controller implements Initializable {
         cmbGaTauDen.getItems().clear();
         cmbGaTauDi.getItems().clear();
         for(GaTau gaTau : gaTauList){
-            cmbGaTauDen.getItems().add(gaTau.getTenGaTau());
-            cmbGaTauDi.getItems().add(gaTau.getTenGaTau());
+            cmbGaTauDen.getItems().add(gaTau);
+            cmbGaTauDi.getItems().add(gaTau);
         }
         cmbGaTauDi.getSelectionModel().select(125);
         cmbGaTauDen.getSelectionModel().select(51);
@@ -525,23 +531,37 @@ public class BanVe_GUI_Controller implements Initializable {
         txtTongTien.setText(CurrencyFormat.currencyFormat(0));
 
 
-        cmbGaTauDi.getEditor().setOnKeyTyped(event -> {
+        dapNgayKhoiHanh.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+                if (date.isBefore(today)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #D3D3D3;");
+                }
+                if (date.equals(today)) {
+                    setStyle("-fx-background-color: #FF6347;");
+                }
+            }
+        });
+
+        cmbGaTauDi.getEditor().setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.SPACE) {
+                return;
+            }
             cmbGaTauDi.getItems().clear();
             String tenGaTau = cmbGaTauDi.getEditor().getText();
             for (GaTau gaTau : gaTauList){
                 if(gaTau.getTenGaTau().toLowerCase().startsWith(tenGaTau.toLowerCase())){
                     cmbGaTauDi.show();
-                    cmbGaTauDi.getItems().add(gaTau.getTenGaTau());
-                    //cmbGaTauDi.getSelectionModel().selectFirst();
+                    cmbGaTauDi.getItems().add(gaTau);
                 }
             }
-
-        });
-
-        cmbGaTauDi.getEditor().setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.TAB) {
                 cmbGaTauDi.getSelectionModel().selectFirst();
             }
+
         });
 
 
@@ -585,7 +605,7 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.chuyenMauMacDinh();
 
 
-            boolean daThemVaoGioVe = danhSachChiTietVe.stream().anyMatch(chiTietVe -> chiTietVe.getCho().equals(controller.getCho()));
+            boolean daThemVaoGioVe = kiemTraTrungChangTrongGioVe(controller.getCho());
 
             if (daThemVaoGioVe) {
                 controller.chuyenMauDaThemVaoGioVe();
@@ -599,6 +619,23 @@ public class BanVe_GUI_Controller implements Initializable {
             }
             controller.capNhatTrangThai();
         }
+    }
+
+    public boolean kiemTraTrungChangTrongGioVe(Cho cho){
+        if(danhSachChiTietVe.isEmpty())
+            return false;
+        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDi().getThuTuGa();
+        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDen().getThuTuGa();
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            if(chiTietVe.getCho().equals(cho)){
+                int thuTuGaDiCTV = chiTietVe.getVe().getThongTinGaTauDi().getThuTuGa();
+                int thuTuGaDenCTV = chiTietVe.getVe().getThongTinGaTauDen().getThuTuGa();
+
+                if(!(thuTuGaDen <= thuTuGaDiCTV || thuTuGaDi >= thuTuGaDenCTV))
+                    return true;
+            }
+        }
+        return false;
     }
 
     public void themVeVaoGio() throws IOException {
@@ -795,5 +832,11 @@ public class BanVe_GUI_Controller implements Initializable {
         }
         txtTongTien.setText(CurrencyFormat.currencyFormat(tongTienHoaDon));
         return tongTienHoaDon;
+    }
+
+    public static String removeDiacritics(String input) {
+        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{M}");
+        return pattern.matcher(normalized).replaceAll("");
     }
 }

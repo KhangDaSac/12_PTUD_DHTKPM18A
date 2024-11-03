@@ -33,4 +33,6 @@ public class QuanLyVe_BUS {
         String maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
         return maVeMoi;
     }
+
+
 }

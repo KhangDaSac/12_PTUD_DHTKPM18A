@@ -16,6 +16,16 @@ public class HoaDon {
 	private KhachHang khachHangMua;
 	private CaLamViec caLamViec;
 
+	public HoaDon(String maHoaDon, LocalDateTime thoiGianLap, double tongTien, double tongTienDaDatCoc, TrangThaiHoaDon trangThaiHoaDon, CaLamViec caLamViec, KhachHang khachHangMua) {
+		this.maHoaDon = maHoaDon;
+		this.thoiGianLap = thoiGianLap;
+		this.tongTien = tongTien;
+		this.tongTienDaDatCoc = tongTienDaDatCoc;
+		this.trangThaiHoaDon = trangThaiHoaDon;
+		this.caLamViec = caLamViec;
+		this.khachHangMua = khachHangMua;
+	}
+
 	public String getMaHoaDon() {
 		return maHoaDon;
 	}
