@@ -109,7 +109,7 @@ public class DoiVe_GUI_Controller implements Initializable {
     private Ve veKhachHang = new Ve();
     private ChiTietVe ctVe = new ChiTietVe();
     private ChuyenTau chuyenTauKH = new ChuyenTau();
-    private ToaTau toaTauKH =new ToaTau();
+    private ToaTau toaTauKH = new ToaTau();
     private Cho choKH = new Cho();
     private Cho choChon = new Cho();
 
