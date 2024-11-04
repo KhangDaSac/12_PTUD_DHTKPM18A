@@ -107,49 +107,49 @@ public class HuyVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTimKiemMaVeOnAction(ActionEvent event) {
-        String maVe = txtMaVe.getText(); // Lấy mã vé từ TextField
-        Ve ve = HuyVe_DAO.getTicketByID(maVe); // Gọi phương thức getTicketByID từ BUS
-        HoaDon hoaDon = HoaDon_DAO.getOrderById(ve.getHoaDon().getMaHoaDon());
-        System.out.println(ve.getHoaDon().getMaHoaDon());
-        System.out.println(hoaDon.getKhachHang().getMaKhachHang());
-
-        if (ve != null && hoaDon.getKhachHang() != null) {
-            // Cập nhật các TextField với thông tin từ đối tượng Ve
-            txtMaKhachHang.setText(hoaDon.getKhachHang().getMaKhachHang());
-            txtTenKhachHang.setText(hoaDon.getKhachHang().getTenKhachHang());
-            txtSoDienThoai.setText(hoaDon.getKhachHang().getSoDienThoai());
-            txtLoaiKhachHang.setText(String.valueOf(hoaDon.getKhachHang().getLoaiKhachHang()));
-
-            txtMaChuyenTau.setText(ve.getChuyenTau().getMaChuyenTau());
-            txtGaDi.setText(String.valueOf(ve.getGaTauDi()));
-            txtGaDen.setText(String.valueOf(ve.getGaTauDen()));
-            txtNgayKhoiHanh.setText(String.valueOf(ve.getChuyenTau().getNgayKhoiHanh()));
-
-            txtMaVe_TT.setText(ve.getMaVe()); // Hiển thị trạng thái vé
-            txtMaHoaDon.setText(ve.getHoaDon().getMaHoaDon());
-            txtLoaiVe.setText(ve.getLoaiVe().name()); // Hiển thị loại vé
-
-            try (Connection connection = ConnectDB.getInstance().getConnection()) {
-                // Giả sử bạn đã có biến connection từ lớp DAO để truyền vào
-                double[] ketQua = tinhGiaVaLePhiTraVe(ve.getMaVe(), String.valueOf(ve.getHoaDon().getKhachHang().getLoaiKhachHang()), connection);
-                double giaVe = ketQua[0];
-                double lePhiTraVe = ketQua[1];
-
-                // Cập nhật giá và lệ phí vào các TextField
-                txtTongTienVe.setText(String.format("%.2f", giaVe)); // Cập nhật giá vé
-                txtLePhiTraVe.setText(String.format("%.2f", lePhiTraVe)); // Hiển thị lệ phí trả vé
-
-                // Tính tiền hoàn trả
-                double tienHoanTra = giaVe - lePhiTraVe;
-                txtTienHoanTra.setText(String.format("%.2f", tienHoanTra)); // Hiển thị tiền hoàn trả
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Có lỗi khi tính toán giá vé và lệ phí.");
-            }
-        } else {
-            // Xử lý trường hợp không tìm thấy vé
-            System.out.println("Không tìm thấy vé với mã: " + maVe);
-        }
+//        String maVe = txtMaVe.getText(); // Lấy mã vé từ TextField
+//        Ve ve = HuyVe_DAO.getTicketByID(maVe); // Gọi phương thức getTicketByID từ BUS
+//        HoaDon hoaDon = HoaDon_DAO.getOrderById(ve.getHoaDon().getMaHoaDon());
+//        System.out.println(ve.getHoaDon().getMaHoaDon());
+//        System.out.println(hoaDon.getKhachHang().getMaKhachHang());
+//
+//        if (ve != null && hoaDon.getKhachHang() != null) {
+//            // Cập nhật các TextField với thông tin từ đối tượng Ve
+//            txtMaKhachHang.setText(hoaDon.getKhachHang().getMaKhachHang());
+//            txtTenKhachHang.setText(hoaDon.getKhachHang().getTenKhachHang());
+//            txtSoDienThoai.setText(hoaDon.getKhachHang().getSoDienThoai());
+//            txtLoaiKhachHang.setText(String.valueOf(hoaDon.getKhachHang().getLoaiKhachHang()));
+//
+//            txtMaChuyenTau.setText(ve.getChuyenTau().getMaChuyenTau());
+//            txtGaDi.setText(String.valueOf(ve.getGaTauDi()));
+//            txtGaDen.setText(String.valueOf(ve.getGaTauDen()));
+//            txtNgayKhoiHanh.setText(String.valueOf(ve.getChuyenTau().getNgayKhoiHanh()));
+//
+//            txtMaVe_TT.setText(ve.getMaVe()); // Hiển thị trạng thái vé
+//            txtMaHoaDon.setText(ve.getHoaDon().getMaHoaDon());
+//            txtLoaiVe.setText(ve.getLoaiVe().name()); // Hiển thị loại vé
+//
+//            try (Connection connection = ConnectDB.getInstance().getConnection()) {
+//                // Giả sử bạn đã có biến connection từ lớp DAO để truyền vào
+//                double[] ketQua = tinhGiaVaLePhiTraVe(ve.getMaVe(), String.valueOf(ve.getHoaDon().getKhachHang().getLoaiKhachHang()), connection);
+//                double giaVe = ketQua[0];
+//                double lePhiTraVe = ketQua[1];
+//
+//                // Cập nhật giá và lệ phí vào các TextField
+//                txtTongTienVe.setText(String.format("%.2f", giaVe)); // Cập nhật giá vé
+//                txtLePhiTraVe.setText(String.format("%.2f", lePhiTraVe)); // Hiển thị lệ phí trả vé
+//
+//                // Tính tiền hoàn trả
+//                double tienHoanTra = giaVe - lePhiTraVe;
+//                txtTienHoanTra.setText(String.format("%.2f", tienHoanTra)); // Hiển thị tiền hoàn trả
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//                System.out.println("Có lỗi khi tính toán giá vé và lệ phí.");
+//            }
+//        } else {
+//            // Xử lý trường hợp không tìm thấy vé
+//            System.out.println("Không tìm thấy vé với mã: " + maVe);
+//        }
     }
 
     public static double[] tinhGiaVaLePhiTraVe(String maVe, String loaiKhachHang, Connection connection) throws SQLException {

@@ -48,7 +48,7 @@ public class HuyVe_DAO {
                 GaTau gaTauDen = new GaTau(maGaDen);
 
                 // Khởi tạo đối tượng Ve với tất cả các thông tin cần thiết
-                ve = new Ve(maVe, hoaDon, chuyenTau, gaTauDi, gaTauDen, giamGiaVeTapThe, tongTienVe, loaiVe, trangThaiVe);
+                //ve = new Ve(maVe, hoaDon, chuyenTau, gaTauDi, gaTauDen, giamGiaVeTapThe, tongTienVe, loaiVe, trangThaiVe);
 
             }
         } catch (Exception e) {
