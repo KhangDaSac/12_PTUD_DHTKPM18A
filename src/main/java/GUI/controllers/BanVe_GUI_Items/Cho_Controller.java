@@ -91,12 +91,12 @@ public class Cho_Controller implements Initializable {
         }else if (trang.equals("DoiVe_GUI.fxml")) {
             if (cho.getTrangThaiCho()== TrangThaiCho.CONTRONG){
                 if(!doiVe_gui_controller.getChoChon().equals(cho)){
-                    doiVe_gui_controller.setChoChon(cho);
-                    dangChon = true;
-                }else {
-                    doiVe_gui_controller.setChoChon(null);
-                    dangChon = false;
+
+                        doiVe_gui_controller.setChoChon(cho);
+                        doiVe_gui_controller.capNhatCacChoDaChon();
+
                 }
+
                 capNhatTrangThai();
                 doiVe_gui_controller.capNhatCacChoDaChon();
                 doiVe_gui_controller.setLblCho_Moi(cho.getSoCho());

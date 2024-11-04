@@ -110,4 +110,9 @@ public class KhachHang {
 		this.ngaySinh = ngaySinh;
 		this.loaiKhachHang = loaiKhachHang;
 	}
+
+	public KhachHang(String maKhachHang, String tenKhachHang) {
+		this.maKhachHang = maKhachHang;
+		this.tenKhachHang = tenKhachHang;
+	}
 }

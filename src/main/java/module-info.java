@@ -11,9 +11,6 @@ module GUI.applications {
     requires org.jsoup;
     requires com.jfoenix;
     requires javafx.swing;
-    requires batik.swing;
-    requires batik.anim;
-    requires batik.dom;
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
@@ -26,6 +23,7 @@ module GUI.applications {
     opens GUI.controllers.ThongTinBanVe_GUI_Items to javafx.fxml;
     requires javafx.controls;
     requires itextpdf;
+    requires org.apache.poi.ooxml;
     exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
 
     // Other exports and opens statements

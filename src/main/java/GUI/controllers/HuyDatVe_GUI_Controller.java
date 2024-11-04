@@ -177,6 +177,8 @@ public class HuyDatVe_GUI_Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends HoaDon> observable, HoaDon oldSelection, HoaDon newSelection) {
                 if (newSelection != null) {
+                    danhSachPhieuDatVe.clear();
+                    phieuDatVeLayVeControllerList.clear();
                     getDanhSachPhieuDatVeTheoHoaDon();
                     hienThiDanhSachPhieu();
                 }
@@ -189,6 +191,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     }
 
     public void hienThiDanhSachPhieu() {
+        boChonTatCaPhieuDatVe();
         vboxDanhSachPhieuDatVe.getChildren().clear();
         if (tableView.getSelectionModel().getSelectedItem() == null)
             return;
@@ -253,6 +256,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     public double tinhTongTienHuyDatVe(){
         double tongTienCoc = 0;
         double lePhiHuy = 0;
+        boChonTatCaPhieuDatVe();
         for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
             if(controller.isChonLayVe()){
                 tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
