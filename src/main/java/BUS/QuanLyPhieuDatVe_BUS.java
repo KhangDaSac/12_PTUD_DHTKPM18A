@@ -24,4 +24,10 @@ public class QuanLyPhieuDatVe_BUS {
         }
         return true;
     }
+    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
+        return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(maPDV);
+    }
+    public static void huyPhieuDatVe(String maPhieuDatVe){
+        PhieuDatVe_DAO.huyPhieuDatVe(maPhieuDatVe);
+    }
 }

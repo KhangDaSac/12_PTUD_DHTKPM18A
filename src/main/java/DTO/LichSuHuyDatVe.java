@@ -99,4 +99,7 @@ public class LichSuHuyDatVe {
                 ", caLamViec=" + caLamViec +
                 '}';
     }
+    public Double tinhtienHoanTra(LocalDateTime thoiGianHuy,LocalDateTime thoiGianKhoiHanh){
+        return (double) (soTienHoanTra - lePhi);
+    }
 }

@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PhieuDatVe_DAO {
-    public static ArrayList<PhieuDatVe> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD){
+    public static ArrayList<PhieuDatVe> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
         ArrayList<PhieuDatVe> phieuDatVeList = new ArrayList<PhieuDatVe>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
@@ -25,7 +25,7 @@ public class PhieuDatVe_DAO {
                         new ChuyenTau(rs.getString("maChuyenTau")),
                         new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
                         rs.getTimestamp("thoiGianDi").toLocalDateTime()
-                        );
+                );
 
                 ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
                         new ChuyenTau(rs.getString("maChuyenTau")),
@@ -68,5 +68,17 @@ public class PhieuDatVe_DAO {
             return false;
         }
         return true;
+    }
+
+    public static void huyPhieuDatVe(String maPhieuDatVe) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "update PhieuDatVe set trangThaiPhieuDatVe = 'DAHUY' where maPhieuDatVe = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maPhieuDatVe);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
