@@ -42,7 +42,11 @@ public class KhachHang {
 		super();
 		this.maKhachHang = maKhachHang;
 	}
-	public String getMaKhachHang() {
+
+    public KhachHang(String maKhachHang, String tenKhachHang, String soDienThoai, String maLoaiKhachHang) {
+    }
+
+    public String getMaKhachHang() {
 		return maKhachHang;
 	}
 	public void setMaKhachHang(String maKhachHang) {
