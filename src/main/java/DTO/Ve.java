@@ -21,16 +21,19 @@ public class Ve {
 		this.maVe = maVe;
 	}
 
-	public Ve(String maVe, double tongTienVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
+	public Ve(String maVe, HoaDon hoaDon, ChuyenTau chuyenTau, GaTau gaTauDi, GaTau gaTauDen, double giamGiaVeTapThe, double tongTienVe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
-		this.tongTienVe = tongTienVe;
 		this.hoaDon = hoaDon;
 		this.chuyenTau = chuyenTau;
 		this.gaTauDi = gaTauDi;
 		this.gaTauDen = gaTauDen;
 		this.giamGiaVeTapThe = giamGiaVeTapThe;
+		this.tongTienVe = tongTienVe;
 		this.loaiVe = loaiVe;
 		this.trangThaiVe = trangThaiVe;
+	}
+
+	public Ve(ChuyenTau maChuyenTau, GaTau maGaDi, GaTau maGaDen) {
 	}
 
 	public String getMaVe() {
@@ -39,14 +42,6 @@ public class Ve {
 
 	public void setMaVe(String maVe) {
 		this.maVe = maVe;
-	}
-
-	public double getTongTienVe() {
-		return tongTienVe;
-	}
-
-	public void setTongTienVe(double tongTienVe) {
-		this.tongTienVe = tongTienVe;
 	}
 
 	public HoaDon getHoaDon() {
@@ -89,6 +84,14 @@ public class Ve {
 		this.giamGiaVeTapThe = giamGiaVeTapThe;
 	}
 
+	public double getTongTienVe() {
+		return tongTienVe;
+	}
+
+	public void setTongTienVe(double tongTienVe) {
+		this.tongTienVe = tongTienVe;
+	}
+
 	public LoaiVe getLoaiVe() {
 		return loaiVe;
 	}
@@ -122,12 +125,12 @@ public class Ve {
 	public String toString() {
 		return "Ve{" +
 				"maVe='" + maVe + '\'' +
-				", tongTienVe=" + tongTienVe +
 				", hoaDon=" + hoaDon +
 				", chuyenTau=" + chuyenTau +
 				", gaTauDi=" + gaTauDi +
 				", gaTauDen=" + gaTauDen +
 				", giamGiaVeTapThe=" + giamGiaVeTapThe +
+				", tongTienVe=" + tongTienVe +
 				", loaiVe=" + loaiVe +
 				", trangThaiVe=" + trangThaiVe +
 				'}';

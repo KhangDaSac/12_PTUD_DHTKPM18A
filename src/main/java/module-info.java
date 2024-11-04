@@ -12,6 +12,8 @@ module GUI.applications {
     requires org.jsoup;
     requires com.jfoenix;
     requires org.apache.poi.ooxml;
+    requires java.desktop;
+    requires eu.hansolo.toolbox;
 
     exports GUI.applications;
     opens GUI.applications to javafx.fxml;

@@ -27,6 +27,13 @@ public class ChiTietChuyenTau {
 	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
 	}
 
+	public ChiTietChuyenTau() {
+
+	}
+
+	public ChiTietChuyenTau(String thoiGianDi) {
+	}
+
 	public ChuyenTau getChuyenTau() {
 		return chuyenTau;
 	}

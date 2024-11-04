@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/QuanLyNhanVien_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyNhanVien_GUI_Controller">
+<AnchorPane fx:id="scene" prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/QuanLyNhanVien_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyNhanVien_GUI_Controller">
    <children>
       <GridPane layoutX="42.4" layoutY="80.0" prefHeight="698.0" prefWidth="1268.0" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
@@ -35,7 +35,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtMa_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtMa_NV_OnMouseClicked" onMouseExited="#txtMa_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Mã nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtMa_NV" layoutX="17.599999999999998" layoutY="33.0" prefHeight="40.0" prefWidth="482.0" promptText="Mã nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblMaNV_Loi" layoutX="400.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -46,7 +46,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtCCCD_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtCCCD_OnMouseClicked" onMouseExited="#txtCCCD_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="CCCD" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtCCCD_NV" layoutX="17.599999999999998" layoutY="33.0" onKeyReleased="#txtCCCD_OnKeyReleased" onMouseClicked="#txtCCCD_OnMouseClicked" onMouseExited="#txtCCCD_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="CCCD" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblCCCD_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -57,7 +57,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtTen_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtTen_NV_OnMouseClicked" onMouseExited="#txtTen_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Tên nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtTen_NV" layoutX="17.599999999999998" layoutY="33.0" onKeyReleased="#txtTen_NV_OnKeyReleased" onMouseClicked="#txtTen_NV_OnMouseClicked" onMouseExited="#txtTen_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Tên nhân viên" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblTenNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -68,7 +68,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtDiaChi_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtDiaChi_NV_OnMouseClicked" onMouseExited="#txtDiaChi_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Địa chỉ" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtDiaChi_NV" layoutX="17.599999999999998" layoutY="33.0" onKeyReleased="#txtDiaChi_NV_OnKeyReleased" onMouseClicked="#txtDiaChi_NV_OnMouseClicked" onMouseExited="#txtDiaChi_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Địa chỉ" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblDiaChi_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -79,7 +79,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtSDT_NV" layoutX="17.599999999999998" layoutY="33.0" onMouseClicked="#txtSDT_NV_OnMouseClicked" onMouseExited="#txtSDT_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Số điện thoại" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <TextField fx:id="txtSDT_NV" layoutX="17.599999999999998" layoutY="33.0" onKeyReleased="#txtSDT_NV_OnKeyReleased" onMouseClicked="#txtSDT_NV_OnMouseClicked" onMouseExited="#txtSDT_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Số điện thoại" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblSDT_Loi" layoutX="384.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -90,7 +90,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbLoaiNhanVien" editable="true" layoutX="16.0" layoutY="35.0" onMouseClicked="#txtLoai_NV_OnMouseClicked" onMouseExited="#txtLoaiNhanVien_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Loại nhân viên:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <ComboBox fx:id="cmbLoaiNhanVien" editable="true" layoutX="16.0" layoutY="35.0" onAction="#cmbLoaiNhanVien_OnAction" onMouseClicked="#txtLoai_NV_OnMouseClicked" prefHeight="40.0" prefWidth="482.0" promptText="Loại nhân viên:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblLoaiNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>
@@ -101,7 +101,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cmbTrangThai" editable="true" layoutX="16.0" layoutY="35.0" onMouseClicked="#txtTrangThai_NV_OnMouseClicked" onMouseExited="#txtTrangThai_NV_OnMouseExited" prefHeight="40.0" prefWidth="482.0" promptText="Trạng thái:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
+                        <ComboBox fx:id="cmbTrangThai" editable="true" layoutX="16.0" layoutY="35.0" onAction="#cmbTrangThai_OnAction" onMouseClicked="#txtTrangThai_NV_OnMouseClicked" prefHeight="40.0" prefWidth="482.0" promptText="Trạng thái:" styleClass="editable-combo-box" stylesheets="@../css/All.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0" />
                         <Label fx:id="lblTrangThaiNV_Loi" layoutX="379.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="20.0" prefWidth="108.0" textFill="RED" AnchorPane.rightAnchor="17.0" />
                      </children>
                   </AnchorPane>

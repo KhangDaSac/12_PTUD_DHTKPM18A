@@ -201,7 +201,20 @@ public class Main_Controller {
 
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        HuyVe_GUI_Controller controller = loader.getController();
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
