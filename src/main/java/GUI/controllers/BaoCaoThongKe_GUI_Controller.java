@@ -168,7 +168,13 @@ public void thongKeDoanhThuTheoNgay(int nam, int thang){
        throw new RuntimeException(e);
    }
 }
+public void thongKeDoanhThuTheoNgay(LocalDate ngayBatDau, LocalDate ngayKetThuc){
+        try {
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+}
 
     public void initializeComboBoxes(){
         ObservableList<String> loaiThoiGian = FXCollections.observableArrayList("Ngày","Tháng","Năm");
@@ -194,7 +200,14 @@ public void thongKeDoanhThuTheoNgay(int nam, int thang){
                 chart.getData().clear();
                 thongKeDoanhThuTheoNgay(nam,thang);
             }
+        }
+        else if(cmbLoaiThoiGian.getValue().equals("Ngày")){
+            if(cmbLoc.getValue().equals("Lọc theo ngày")){
+                LocalDate ngayBatDau = dapNgayBatDau.getValue();
+                LocalDate ngayKetThuc = dapNgayKetThuc.getValue();
+               chart.getData().clear();
 
+            }
         }
 
     }
