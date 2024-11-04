@@ -77,14 +77,15 @@ public class ChiTietVe_DAO {
             }
             return ctVe;
         }
-        public void doiChoTuMaVeMaGheCuMaGheMoi(String maVe,String maGheCu,String maGheMoi){
+        public void doiChoTuMaVeMaGheCuMaGheMoi(String maVe,String maGheCu,String maGheMoi,double giaCho){
             Connection con = ConnectDB.getInstance().getConnection();
             try{
-                String query = "UPDATE ChiTietVe SET maCho = ? WHERE maVe =?  AND maCho = ?";
+                String query = "UPDATE ChiTietVe SET maCho = ?,giaCho =? WHERE maVe =?  AND maCho = ?";
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1,maGheMoi);
-                statement.setString(2,maVe);
-                statement.setString(3,maGheCu);
+                statement.setDouble(2,giaCho);
+                statement.setString(3,maVe);
+                statement.setString(4,maGheCu);
                 statement.executeUpdate();
             } catch (Exception e) {
                 throw new RuntimeException(e);

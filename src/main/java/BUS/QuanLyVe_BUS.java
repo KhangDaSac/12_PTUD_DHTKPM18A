@@ -41,9 +41,9 @@ public class QuanLyVe_BUS {
         Ve ve =veDao.getVeTheoMa(maVe);
         return ve;
     }
-    public static void doiVe(String maVe,String maGheCu,String maGheMoi){
+    public static void doiVe(String maVe,String maGheCu,String maGheMoi, double giaCho){
         ChiTietVe_DAO chiTietVeDao= new ChiTietVe_DAO();
-        chiTietVeDao.doiChoTuMaVeMaGheCuMaGheMoi(maVe,maGheCu, maGheMoi);
+        chiTietVeDao.doiChoTuMaVeMaGheCuMaGheMoi(maVe,maGheCu, maGheMoi,giaCho);
         System.out.printf("doi ve thanh cong");
     }
 
