@@ -203,6 +203,7 @@ public class LayVe_GUI_Controller {
 
     public void capNhatDanhSachPhieuDatVe(){
         vboxDanhSachPhieuDatVe.getChildren().clear();
+        phieuDatVeLayVeControllerList.clear();
         if(phieuDatVeList.isEmpty())
             return;
         int length = phieuDatVeList.size();
@@ -278,7 +279,13 @@ public class LayVe_GUI_Controller {
     }
 
     public void layVe(){
-        if(phieuDatVeList.isEmpty()){
+        int sl = 0;
+        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+            if(controller.isChonLayVe()){
+                sl++;
+            }
+        }
+        if(sl == 0){
             main_controller.showMessagesDialog("Chưa chọn vé");
             return;
         }
@@ -334,6 +341,8 @@ public class LayVe_GUI_Controller {
                     main_controller.showMessagesDialog("Lấy vé thành công");
                     phieuDatVeList.clear();
                     chiTietPhieuDatVeList.clear();
+                    chiTietPhieuDatVeLayVeControllerList.clear();
+                    phieuDatVeList.clear();
                     capNhatDanhSachPhieuDatVe();
                     hienThiDanhSachChiTietPhieuDatVe(null);
                     hienThiDanhSachHoaDonDat();

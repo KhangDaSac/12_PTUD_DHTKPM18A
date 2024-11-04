@@ -506,8 +506,8 @@ public class BanVe_GUI_Controller implements Initializable {
             cmbGaTauDen.getItems().add(gaTau);
             cmbGaTauDi.getItems().add(gaTau);
         }
-        cmbGaTauDi.getSelectionModel().select(125);
-        cmbGaTauDen.getSelectionModel().select(51);
+        cmbGaTauDi.getSelectionModel().select(42);
+        cmbGaTauDen.getSelectionModel().select(17);
 
         dapNgayKhoiHanh.setValue(LocalDate.of(2024, 11, 4));
 
