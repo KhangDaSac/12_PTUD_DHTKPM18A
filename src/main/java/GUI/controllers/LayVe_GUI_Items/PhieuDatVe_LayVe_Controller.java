@@ -137,7 +137,6 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
             }
 
         } else if (huyDatVe_gui_controller != null) {
-            huyDatVe_gui_controller.boChonTatCaPhieuDatVe();
             huyDatVe_gui_controller.tinhTongTienHuyDatVe();
             huyDatVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
             huyDatVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
@@ -145,7 +144,6 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
             if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
                 if (chonLayVe) {
                     boChonLayVe();
-                    huyDatVe_gui_controller.tinhTongTienHuyDatVe();
                 } else {
                     chonLayVe();
                 }
