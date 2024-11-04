@@ -227,7 +227,7 @@
                                                 </ImageView>
                                                 <VBox>
                                                    <children>
-                                                      <TextField editable="false" prefHeight="27.0" prefWidth="150.0" styleClass="txtDoanhThu" />
+                                                      <TextField fx:id="txtSoVeBan" editable="false" prefHeight="27.0" prefWidth="150.0" styleClass="txtDoanhThu" />
                                                       <Label prefHeight="20.0" text="Số lượng vé bán" textFill="#635d5d">
                                                          <font>
                                                             <Font size="14.0" />
@@ -252,7 +252,7 @@
                                                 </ImageView>
                                                 <VBox>
                                                    <children>
-                                                      <TextField editable="false" prefHeight="27.0" prefWidth="150.0" styleClass="txtDoanhThu" />
+                                                      <TextField fx:id="txtSoVeHuy" editable="false" prefHeight="27.0" prefWidth="150.0" styleClass="txtDoanhThu" />
                                                       <Label prefHeight="19.0" text="Số lượng vé trả" textFill="#635d5d">
                                                          <font>
                                                             <Font size="14.0" />
@@ -277,7 +277,7 @@
                                                 </ImageView>
                                                 <VBox>
                                                    <children>
-                                                      <TextField editable="false" opacity="0.0" prefHeight="27.0" prefWidth="150.0" />
+                                                      <TextField fx:id="txtSoVeDoi" editable="false" prefHeight="27.0" prefWidth="150.0" styleClass="txtDoanhThu" />
                                                       <Label prefHeight="19.0" text="Số lượng vé đổi" textFill="#635d5d">
                                                          <font>
                                                             <Font size="14.0" />
