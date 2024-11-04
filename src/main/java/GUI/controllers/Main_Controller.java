@@ -417,7 +417,21 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnQuanLyNhanVienOnAction(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyNhanVien_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        QuanLyNhanVien_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML

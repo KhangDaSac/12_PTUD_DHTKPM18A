@@ -133,43 +133,49 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     }
     public void btnHuyPhieuDatOnAction(ActionEvent actionEvent) {
         double tongTienTraKhach = tinhTongTienHuyDatVe();
-        if (tongTienTraKhach > 0) {
-            int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy đặt vé?", "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) {
-                chonLayVeTatPhieuDatVe();
-                for (PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList) {
-
-                        if (controller.getPhieuDatVe().getTongTienDatCoc() > 0) {
-                            if (controller.getPhieuDatVe().getLoaiPhieuDatVe().equals("PHIEUDATCANHAN")) {
-                                if (controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(24).isAfter(LocalDateTime.now())) {
-                                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(controller.getPhieuDatVe().getMaPhieuDatVe());
-                                    LichSuHuyDatVe_DAO.themLichSuHuyDatVe(phatSinhMaLichSuHuyDatVe(),LocalDateTime.now(),controller.getPhieuDatVe().getTongTienDatCoc()-tongTienTraKhach,tongTienTraKhach,controller.getPhieuDatVe().getMaPhieuDatVe(), CaLamViec_DAO.timCaLamViec(LocalDate.now()).getMaCaLamViec());
-                                    JOptionPane.showMessageDialog(null, "Hủy đặt vé thành công");
-                                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(controller.getPhieuDatVe().getMaPhieuDatVe());
-                                }
-                                else{
-                                    JOptionPane.showMessageDialog(null, "Hủy đặt vé không thành công");
-                                }
-                            } else {
-                                if (controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(72).isAfter(LocalDateTime.now())) {
-                                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(controller.getPhieuDatVe().getMaPhieuDatVe());
-                                    JOptionPane.showMessageDialog(null, "Hủy đặt vé thành công");
-                                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(controller.getPhieuDatVe().getMaPhieuDatVe());
-                                }
-                                else{
-                                    JOptionPane.showMessageDialog(null, "Hủy đặt vé không thành công");
-                                }
-                            }
-                        }
-
-                }
-                loadDuLieuLenTable();
-
-            }
-        } else {
+        if (tongTienTraKhach <= 0) {
             JOptionPane.showMessageDialog(null, "Không có vé nào được chọn");
+            return;
         }
+
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy đặt vé?", "Warning", dialogButton);
+        if (dialogResult != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        chonLayVeTatPhieuDatVe();
+        for (PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList) {
+            if (!controller.isChonLayVe()) {
+                continue;
+            }
+
+            PhieuDatVe phieuDatVe = controller.getPhieuDatVe();
+            if (phieuDatVe.getTongTienDatCoc() > 0) {
+                LocalDateTime thoiGianDi = phieuDatVe.getChiTietChuyenTauDi().getThoiGianDi();
+                long gioCanHuy = phieuDatVe.getLoaiPhieuDatVe().equals("PHIEUDATCANHAN") ? 48 : 72;
+
+                if (thoiGianDi.minusHours(gioCanHuy).isAfter(LocalDateTime.now())) {
+                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
+                    if (phieuDatVe.getLoaiPhieuDatVe().equals("PHIEUDATCANHAN")) {
+                        LichSuHuyDatVe_DAO.themLichSuHuyDatVe(
+                                phatSinhMaLichSuHuyDatVe(),
+                                LocalDateTime.now(),
+                                phieuDatVe.getTongTienDatCoc() - tongTienTraKhach,
+                                tongTienTraKhach,
+                                phieuDatVe.getMaPhieuDatVe(),
+                                CaLamViec_DAO.timCaLamViec(LocalDate.now()).getMaCaLamViec()
+                        );
+                    }
+                    JOptionPane.showMessageDialog(null, "Hủy đặt vé thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hủy đặt vé không thành công");
+                }
+            } else {
+                QuanLyPhieuDatVe_BUS.huyPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
+            }
+        }
+        loadDuLieuLenTable();
     }
 
     private void setupTableSelectionHandler(TableView<HoaDon> tableView) {
@@ -273,4 +279,6 @@ public class HuyDatVe_GUI_Controller implements Initializable {
             controller.boChonPhieuDatVe();
         }
     }
+
+
 }

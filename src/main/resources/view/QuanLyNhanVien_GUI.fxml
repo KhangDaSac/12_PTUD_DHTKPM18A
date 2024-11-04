@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scene" prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/QuanLyNhanVien_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyNhanVien_GUI_Controller">
+<AnchorPane fx:id="scene" prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyNhanVien_GUI_Controller">
    <children>
       <GridPane layoutX="42.4" layoutY="80.0" prefHeight="698.0" prefWidth="1268.0" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
@@ -120,7 +120,7 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TableView fx:id="tblNV" onMouseClicked="#tblOnMuseClick" prefHeight="503.0" prefWidth="917.0" stylesheets="@../css/QuanLyNhanVien_GUI.css">
+                  <TableView fx:id="tblNV" onMouseClicked="#tblOnMuseClick" prefHeight="503.0" prefWidth="917.0">
                     <columns>
                       <TableColumn fx:id="colSTT_NV" prefWidth="37.5999721288681" text="STT" />
                       <TableColumn fx:id="colMa_NV" prefWidth="98.13337707519531" text="Mã" />
