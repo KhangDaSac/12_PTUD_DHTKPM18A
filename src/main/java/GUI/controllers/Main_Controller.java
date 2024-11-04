@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import BUS.QuanLyKhachHang_BUS;
 import DTO.ChiTietVe;
 import DTO.HoaDon;
 import DTO.NhanVien;
@@ -298,7 +299,22 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnQuanLyKhachHangOnAction(ActionEvent event) {
-
+        lblTieuDeTrang.setText("QUẢN LÝ KHÁCH HÀNG");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyKhachHang_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        QuanLyKhachHang_GUI_Controller controller = loader.getController();
+        controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
