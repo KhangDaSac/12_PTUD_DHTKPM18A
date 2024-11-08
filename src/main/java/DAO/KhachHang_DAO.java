@@ -16,6 +16,8 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static connectDB.ConnectDB.con;
+
 public class KhachHang_DAO {
     public KhachHang getKhachHangTheoCCCD(String cccd){
         Connection con = ConnectDB.getInstance().getConnection();
@@ -70,7 +72,6 @@ public class KhachHang_DAO {
     }
 
     public void suaThongTinKhachHang (KhachHang kh){
-        Connection con = ConnectDB.getInstance().getConnection();
         try{
             String query = "update KhachHang SET CCCD = ?, tenKhachHang = ?, soDienThoai = ?, maLoaiKhachHang = ?, ngaySinh = ? WHERE maKhachHang = ?";
             PreparedStatement statement = con.prepareStatement(query);
@@ -92,7 +93,6 @@ public class KhachHang_DAO {
         }
     }
     public  void addKhachHang (KhachHang kh){
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "insert into KhachHang values(?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
@@ -107,6 +107,22 @@ public class KhachHang_DAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getTenKhachHangTheoMa(String maKhachHang){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "select tenKhachHang from KhachHang where maKhachHang = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maKhachHang);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                return rs.getString("tenKhachHang");
+            }
+        }catch (Exception e){
+
+        }
+        return null;
     }
 
 }

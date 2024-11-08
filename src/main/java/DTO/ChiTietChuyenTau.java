@@ -39,6 +39,13 @@ public class ChiTietChuyenTau {
 		this.thoiGianDi = thoiGianDi;
 	}
 
+	public ChiTietChuyenTau() {
+
+	}
+
+	public ChiTietChuyenTau(String thoiGianDi) {
+	}
+
 	public ChuyenTau getChuyenTau() {
 		return chuyenTau;
 	}

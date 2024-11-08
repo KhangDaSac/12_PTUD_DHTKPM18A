@@ -14,7 +14,7 @@ public class QuanLyChuyenTau_BUS {
             throw new Exception("Mã ga đi không hợp lệ");
         }else if(!maGaDi.matches("[A-Z]{3}")){
             throw new Exception("Mã ga đến không hợp lệ");
-        }if(!ngayDi.isAfter(LocalDate.now())){
+        }if(ngayDi.isBefore(LocalDate.now())){
             System.out.println(ngayDi);
             throw new Exception("Ngày đi không hợp lệ");
         }

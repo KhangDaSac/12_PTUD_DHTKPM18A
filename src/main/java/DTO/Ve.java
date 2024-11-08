@@ -34,6 +34,9 @@ public class Ve {
 		this.chuyenTau = chuyenTau;
 	}
 
+
+
+
 	public Ve(String maVe, HoaDon hoaDon, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, double tongTienVe, double giamGiaVeTapThe, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
 		this.hoaDon = hoaDon;

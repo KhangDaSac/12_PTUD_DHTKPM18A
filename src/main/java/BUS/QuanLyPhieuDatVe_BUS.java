@@ -15,4 +15,19 @@ public class QuanLyPhieuDatVe_BUS {
     public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
         return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(maHD);
     }
+
+    public static boolean capNhatTrangThaiPhieuDatVe(ArrayList<PhieuDatVe> danhSachPhieuDatVe, String trangThai){
+        for(PhieuDatVe phieuDatVe : danhSachPhieuDatVe){
+            if(!PhieuDatVe_DAO.capNhatTrangThaiPhieuDatVe(phieuDatVe.getMaPhieuDatVe(), trangThai)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
+        return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(maPDV);
+    }
+    public static void huyPhieuDatVe(String maPhieuDatVe){
+        PhieuDatVe_DAO.huyPhieuDatVe(maPhieuDatVe);
+    }
 }
