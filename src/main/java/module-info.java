@@ -18,6 +18,8 @@ module GUI.applications {
     exports DataGeneration;
     exports GUI.controllers.BanVe_GUI_Items;
     opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
+    exports GUI.controllers.DoiVe_GUI_Items;
+    opens GUI.controllers.DoiVe_GUI_Items to javafx.fxml;
     opens DTO to javafx.base;
     exports GUI.controllers.ThongTinBanVe_GUI_Items;
     opens GUI.controllers.ThongTinBanVe_GUI_Items to javafx.fxml;

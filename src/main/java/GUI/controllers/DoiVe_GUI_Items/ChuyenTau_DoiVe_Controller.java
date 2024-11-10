@@ -1,8 +1,8 @@
-package GUI.controllers.BanVe_GUI_Items;
+package GUI.controllers.DoiVe_GUI_Items;
 
 import DTO.ChiTietChuyenTau;
 import DTO.ChuyenTau;
-import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.DoiVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,7 +14,7 @@ import utils.TimeFormat;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChuyenTau_Controller implements Initializable {
+public class ChuyenTau_DoiVe_Controller implements Initializable {
     public ImageView getImvChuyenTau() {
         return imvChuyenTau;
     }
@@ -71,15 +71,16 @@ public class ChuyenTau_Controller implements Initializable {
         this.lblThoiGianDi = lblThoiGianDi;
     }
 
+    public static String trang;
 
-    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
-        return banVe_GUI_Controller;
+    public  DoiVe_GUI_Controller getDoiVe_gui_controller() {return  doiVe_gui_controller;}
+    public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
+        this.doiVe_gui_controller = doiVe_gui_controller;
     }
 
-    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
-        this.banVe_GUI_Controller = banVe_GUI_Controller;
+    public static void loaiTrang(String link){
+        trang = link;
     }
-
 
     @FXML
     private ImageView imvChuyenTau;
@@ -102,7 +103,7 @@ public class ChuyenTau_Controller implements Initializable {
     @FXML
     private Label lblThoiGianDi;
 
-    private BanVe_GUI_Controller banVe_GUI_Controller;
+    private DoiVe_GUI_Controller doiVe_gui_controller;
     private ChuyenTau chuyenTau;
     private ChiTietChuyenTau chiTietChuyenTauDi;
     private ChiTietChuyenTau chiTietChuyenTauDen;
@@ -145,14 +146,15 @@ public class ChuyenTau_Controller implements Initializable {
 
     @FXML
     void anpChuyenTauOnMouseClicked(MouseEvent event) {
-            chonChuyenTau();
+            chon1ChuyenTau();
+
     }
 
     public void chinhMauKhongChon(){
         if(chuyenTau.getSoLuongChoTrongTrong() >= 0){
-            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-gray.png")));
         }else{
-            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-red.png")));
         }
     }
 
@@ -164,9 +166,9 @@ public class ChuyenTau_Controller implements Initializable {
 
     public void khoiTao(){
         if(chuyenTau.getSoLuongChoTrongTrong() >= 0){
-            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-gray.png")));
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-gray.png")));
         }else{
-            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-red.png")));
         }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
@@ -175,13 +177,13 @@ public class ChuyenTau_Controller implements Initializable {
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
         lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
     }
-
-    public void chonChuyenTau(){
-        banVe_GUI_Controller.setChuyenTauDangChon(soThuTu);
-        banVe_GUI_Controller.timDanhSachToaTau(lblMaChuyenTau.getText());
-        banVe_GUI_Controller.boChonTatCaChuyenTau();
-        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
-        imvChuyenTau.setImage(image);
+    public void chon1ChuyenTau(){
+        if (doiVe_gui_controller != null && lblMaChuyenTau.getText() != null) {
+            doiVe_gui_controller.timDanhSachToaTau(lblMaChuyenTau.getText());
+            imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-green.png")));
+        } else {
+            System.err.println("Không thể chọn chuyến tàu - thông tin thiếu!");
+        }
     }
 
 }

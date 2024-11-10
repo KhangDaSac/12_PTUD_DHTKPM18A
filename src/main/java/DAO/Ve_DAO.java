@@ -51,11 +51,12 @@ public class Ve_DAO {
         return true;
     }
 
-    public Ve getVeTheoMa(String maVe){
+    public static Ve getVeTheoMa(String maVe){
         Ve veTim = new Ve();
         Connection con = ConnectDB.getInstance().getConnection();
         try{
-            String query = "select * from Ve where maVe = ?";
+            String query = "select*from Ve v join ChiTietChuyenTau ct on v.maChuyenTau= ct.maChuyenTau\n" +
+                    "where v.maVe=?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maVe);
             ResultSet rs = statement.executeQuery();
@@ -65,8 +66,8 @@ public class Ve_DAO {
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 GaTau gaDi = new GaTau(rs.getString("maGaDi"));
                 GaTau gaDen= new GaTau(rs.getString("maGaDen"));
-                ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(maChuyenTau,gaDi);
-                ChiTietChuyenTau thongTinDen= new ChiTietChuyenTau(maChuyenTau,gaDen);
+                ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(maChuyenTau,gaDi,rs.getTimestamp("thoiGianDi").toLocalDateTime());
+                ChiTietChuyenTau thongTinDen= new ChiTietChuyenTau(maChuyenTau,gaDen,rs.getTimestamp("thoiGianDen").toLocalDateTime());
                 Double giamGiaTT = rs.getDouble("giamGiaVeTapThe");
                 Double tongTien= rs.getDouble("tongTienVe");
                 LoaiVe loai = LoaiVe.valueOf(rs.getString("loaiVe"));
