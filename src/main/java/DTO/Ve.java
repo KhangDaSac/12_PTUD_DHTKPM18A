@@ -8,7 +8,6 @@ public class Ve {
 	private String maVe;
 	private HoaDonBanVe hoaDonBanVe;
 	private HoaDonLayVe hoaDonLayVe;
-	private HoaDonHuyVe hoaDonHuyVe;
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private LoaiVe loaiVe ;
@@ -46,13 +45,6 @@ public class Ve {
 		return thongTinGaTauDi;
 	}
 
-	public HoaDonHuyVe getHoaDonHuyVe() {
-		return hoaDonHuyVe;
-	}
-
-	public void setHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe) {
-		this.hoaDonHuyVe = hoaDonHuyVe;
-	}
 
 	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
 		this.thongTinGaTauDi = thongTinGaTauDi;
@@ -111,46 +103,11 @@ public class Ve {
 		return Objects.hashCode(maVe);
 	}
 
-	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, HoaDonLayVe hoaDonLayVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double tienVe) {
-		this.maVe = maVe;
-		this.hoaDonBanVe = hoaDonBanVe;
-		this.hoaDonLayVe = hoaDonLayVe;
-		this.thongTinGaTauDi = thongTinGaTauDi;
-		this.thongTinGaTauDen = thongTinGaTauDen;
-		this.loaiVe = loaiVe;
-		this.trangThaiVe = trangThaiVe;
-		this.tienVe = tienVe;
-		this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
-	}
-
 	public Ve(String maVe) {
 		this.maVe = maVe;
 	}
 
 	public double tienVeCuoi(){
 		return tienVe * (1 - phanTramGiamGiaVeTapThe);
-	}
-
-	public double lePhiHuyVe(){
-		Duration thoiGianConLai = Duration.between(LocalDateTime.now(), thongTinGaTauDi.getThoiGianDi());
-		long soGioConLai = thoiGianConLai.toHours();
-
-		if(loaiVe.equals(LoaiVe.VECANHAN)){
-			if(soGioConLai >= 48){
-				return tienVeCuoi() * 0.1;
-			}else if(soGioConLai >= 4){
-				return tienVeCuoi() * 0.2;
-			}
-		}
-
-		if(loaiVe.equals(LoaiVe.VETAPTHE)){
-			if(soGioConLai >= 72){
-				return tienVeCuoi() * 0.2;
-			}else if(soGioConLai >= 24){
-				return tienVeCuoi() * 0.3;
-			}
-		}
-
-		return 0;
 	}
 }

@@ -7,8 +7,8 @@ import java.util.Objects;
 public class HoaDonHuyDatVe {
     private String maHoaDonHuyDatVe;
     private LocalDateTime thoiGianHuy;
-    private double lePhi;
-    private HoaDonDatVe hoaDonDatVe;
+    private KhachHang khachHangHuyDatVe;
+    private double tongTienCuoi;
     private CaLamViec caLamViec;
 
     public String getMaHoaDonHuyDatVe() {
@@ -27,20 +27,20 @@ public class HoaDonHuyDatVe {
         this.thoiGianHuy = thoiGianHuy;
     }
 
-    public double getLePhi() {
-        return lePhi;
+    public KhachHang getKhachHangHuyDatVe() {
+        return khachHangHuyDatVe;
     }
 
-    public void setLePhi(double lePhi) {
-        this.lePhi = lePhi;
+    public void setKhachHangHuyDatVe(KhachHang khachHangHuyDatVe) {
+        this.khachHangHuyDatVe = khachHangHuyDatVe;
     }
 
-    public HoaDonDatVe getHoaDonDatVe() {
-        return hoaDonDatVe;
+    public double getTongTienCuoi() {
+        return tongTienCuoi;
     }
 
-    public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
-        this.hoaDonDatVe = hoaDonDatVe;
+    public void setTongTienCuoi(double tongTienCuoi) {
+        this.tongTienCuoi = tongTienCuoi;
     }
 
     public CaLamViec getCaLamViec() {
@@ -64,7 +64,4 @@ public class HoaDonHuyDatVe {
         return Objects.hashCode(maHoaDonHuyDatVe);
     }
 
-    public double tongTienCuoi(){
-        return hoaDonDatVe.getTongTienDatCoc() - lePhi;
-    }
 }

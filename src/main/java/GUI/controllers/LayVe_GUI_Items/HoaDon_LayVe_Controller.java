@@ -1,7 +1,6 @@
 package GUI.controllers.LayVe_GUI_Items;
 
 import DTO.HoaDonBanVe;
-import DTO.TrangThaiHoaDonDat;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

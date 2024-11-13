@@ -7,6 +7,7 @@ import java.util.Objects;
 public class VeDat {
 	private String maVeDat;
 	private HoaDonDatVe hoaDonDatVe;
+	private HoaDonLayVe hoaDonLayVe;
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private TrangThaiVeDat trangThaiVeDat;
@@ -32,6 +33,14 @@ public class VeDat {
 
 	public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
 		this.hoaDonDatVe = hoaDonDatVe;
+	}
+
+	public HoaDonLayVe getHoaDonLayVe() {
+		return hoaDonLayVe;
+	}
+
+	public void setHoaDonLayVe(HoaDonLayVe hoaDonLayVe) {
+		this.hoaDonLayVe = hoaDonLayVe;
 	}
 
 	public ChiTietChuyenTau getThongTinGaTauDi() {
@@ -112,23 +121,12 @@ public class VeDat {
 		this.loaiVe = loaiVe;
 		this.tienVe = tienVe;
 		this.tienDatCoc = tienDatCoc;
-		this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
-	}
+		if(loaiVe.equals(LoaiVe.VETAPTHE)){
+			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
+		}else{
+			this.phanTramGiamGiaVeTapThe = 0;
+		}
 
-	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, TrangThaiVeDat trangThaiVeDat, LoaiVe loaiVe, double tienVe, double phanTramGiamGiaVeTapThe, double tienDatCoc) {
-		this.maVeDat = maVeDat;
-		this.hoaDonDatVe = hoaDonDatVe;
-		this.thongTinGaTauDi = thongTinGaTauDi;
-		this.thongTinGaTauDen = thongTinGaTauDen;
-		this.trangThaiVeDat = trangThaiVeDat;
-		this.loaiVe = loaiVe;
-		this.tienVe = tienVe;
-		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
-		this.tienDatCoc = tienDatCoc;
-	}
-
-	public VeDat(String maVeDat) {
-		this.maVeDat = maVeDat;
 	}
 
 	public double tienVeCuoi(){
@@ -138,27 +136,5 @@ public class VeDat {
 	public double tienDatCoc(){
 		tienDatCoc = tienVeCuoi() * PHANTRAMDATCOC;
 		return tienDatCoc;
-	}
-
-	public double lePhiHuyDatVe(){
-		Duration thoiGianConLai = Duration.between(LocalDateTime.now(), thongTinGaTauDi.getThoiGianDi());
-		long soGioConLai = thoiGianConLai.toHours();
-
-		if(loaiVe.equals(LoaiVe.VECANHAN)){
-			if(soGioConLai >= 48){
-				return tienDatCoc() * 0.1;
-			}else if(soGioConLai >= 4){
-				return tienDatCoc() * 0.2;
-			}
-		}
-
-		if(loaiVe.equals(LoaiVe.VETAPTHE)){
-			if(soGioConLai >= 72){
-				return tienDatCoc() * 0.2;
-			}else if(soGioConLai >= 24){
-				return tienDatCoc() * 0.3;
-			}
-		}
-		return 0;
 	}
 }

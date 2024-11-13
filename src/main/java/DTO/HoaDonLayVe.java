@@ -8,7 +8,8 @@ import java.util.Objects;
 public class HoaDonLayVe {
     private String maHoaDonLayVe;
     private LocalDateTime thoiGianLayVe;
-    private HoaDonDatVe hoaDonDatVe;
+    private KhachHang khachHangLayVe;
+    private double tongTienCuoi;
     private CaLamViec caLamViec;
 
     public String getMaHoaDonLayVe() {
@@ -27,12 +28,20 @@ public class HoaDonLayVe {
         this.thoiGianLayVe = thoiGianLayVe;
     }
 
-    public HoaDonDatVe getHoaDonDatVe() {
-        return hoaDonDatVe;
+    public KhachHang getKhachHangLayVe() {
+        return khachHangLayVe;
     }
 
-    public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
-        this.hoaDonDatVe = hoaDonDatVe;
+    public void setKhachHangLayVe(KhachHang khachHangLayVe) {
+        this.khachHangLayVe = khachHangLayVe;
+    }
+
+    public double getTongTienCuoi() {
+        return tongTienCuoi;
+    }
+
+    public void setTongTienCuoi(double tongTienCuoi) {
+        this.tongTienCuoi = tongTienCuoi;
     }
 
     public CaLamViec getCaLamViec() {
@@ -56,19 +65,9 @@ public class HoaDonLayVe {
         return Objects.hashCode(maHoaDonLayVe);
     }
 
-
-    public HoaDonLayVe(String maHoaDonLayVe, LocalDateTime thoiGianLayVe, HoaDonDatVe hoaDonDatVe, CaLamViec caLamViec) {
-        this.maHoaDonLayVe = maHoaDonLayVe;
-        this.thoiGianLayVe = thoiGianLayVe;
-        this.hoaDonDatVe = hoaDonDatVe;
-        this.caLamViec = caLamViec;
-    }
-
     public HoaDonLayVe(String maHoaDonLayVe) {
         this.maHoaDonLayVe = maHoaDonLayVe;
     }
 
-    public double tongTienCuoi(){
-        return hoaDonDatVe.getTongTien() - hoaDonDatVe.getTongTienDatCoc();
-    }
+
 }
