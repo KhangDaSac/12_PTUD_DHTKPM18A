@@ -2,7 +2,8 @@ package DTO;
 
 public enum TrangThaiCho {
     CONTRONG,
-    DADATHOACBAN,
+    DADAT,
+    DABAN,
     DANHCHOCHANGDAIHON;
 }
 

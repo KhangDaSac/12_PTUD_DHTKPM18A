@@ -1,18 +1,18 @@
 package DTO;
 
-public class ChiTietPhieuDatVe {
+public class ChiTietVeDat {
 	private double giaCho;
 	private Cho cho;
-	private PhieuDatVe phieuDatVe;
+	private VeDat phieuDatVe;
 	private KhachHang khachHang;
 	private double soTienGiamGia ;
 	private double thanhTien ;
-	public ChiTietPhieuDatVe() {
+	public ChiTietVeDat() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ChiTietPhieuDatVe(double giaCho, Cho cho, PhieuDatVe phieuDatVe, KhachHang khachHang, double soTienGiamGia, double thanhTien) {
+	public ChiTietVeDat(double giaCho, Cho cho, VeDat phieuDatVe, KhachHang khachHang, double soTienGiamGia, double thanhTien) {
 		this.giaCho = giaCho;
 		this.cho = cho;
 		this.phieuDatVe = phieuDatVe;
@@ -21,7 +21,7 @@ public class ChiTietPhieuDatVe {
 		this.thanhTien = thanhTien;
 	}
 
-	public ChiTietPhieuDatVe(PhieuDatVe phieuDatVe) {
+	public ChiTietVeDat(VeDat phieuDatVe) {
 		this.phieuDatVe = phieuDatVe;
 	}
 
@@ -41,11 +41,11 @@ public class ChiTietPhieuDatVe {
 		this.cho = cho;
 	}
 
-	public PhieuDatVe getPhieuDatVe() {
+	public VeDat getPhieuDatVe() {
 		return phieuDatVe;
 	}
 
-	public void setPhieuDatVe(PhieuDatVe phieuDatVe) {
+	public void setPhieuDatVe(VeDat phieuDatVe) {
 		this.phieuDatVe = phieuDatVe;
 	}
 

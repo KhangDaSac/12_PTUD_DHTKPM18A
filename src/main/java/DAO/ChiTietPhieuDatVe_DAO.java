@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ChiTietPhieuDatVe_DAO {
-    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
-        ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList = new ArrayList<ChiTietPhieuDatVe>();
+    public static ArrayList<ChiTietVeDat> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
+        ArrayList<ChiTietVeDat> chiTietPhieuDatVeList = new ArrayList<ChiTietVeDat>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "exec UDP_TimDanhSachChiTietPhieuDatVeThaoMaHoaDon ?";
@@ -45,12 +45,12 @@ public class ChiTietPhieuDatVe_DAO {
                 double giaCho = rs.getDouble("giaCho");
                 double soTienGiamGia = rs.getDouble("soTienGiamGia");
                 double thanhTien = rs.getDouble("thanhTien");
-                PhieuDatVe phieuDatVe = new PhieuDatVe(
+                VeDat phieuDatVe = new VeDat(
                         rs.getString("maPhieuDatVe"),
                         LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"))
                 );
 
-                ChiTietPhieuDatVe chiTietPhieuDatVe = new ChiTietPhieuDatVe(
+                ChiTietVeDat chiTietPhieuDatVe = new ChiTietVeDat(
                         giaCho,
                         cho,
                         phieuDatVe,
@@ -67,8 +67,8 @@ public class ChiTietPhieuDatVe_DAO {
         }
         return chiTietPhieuDatVeList;
     }
-    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
-        ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList = new ArrayList<ChiTietPhieuDatVe>();
+    public static ArrayList<ChiTietVeDat> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
+        ArrayList<ChiTietVeDat> chiTietPhieuDatVeList = new ArrayList<ChiTietVeDat>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "exec UDP_TimDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe ?";
@@ -103,12 +103,12 @@ public class ChiTietPhieuDatVe_DAO {
                 double giaCho = rs.getDouble("giaCho");
                 double soTienGiamGia = rs.getDouble("soTienGiamGia");
                 double thanhTien = rs.getDouble("thanhTien");
-                PhieuDatVe phieuDatVe = new PhieuDatVe(
+                VeDat phieuDatVe = new VeDat(
                         rs.getString("maPhieuDatVe"),
                         LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"))
                 );
 
-                ChiTietPhieuDatVe chiTietPhieuDatVe = new ChiTietPhieuDatVe(
+                ChiTietVeDat chiTietPhieuDatVe = new ChiTietVeDat(
                         giaCho,
                         cho,
                         phieuDatVe,

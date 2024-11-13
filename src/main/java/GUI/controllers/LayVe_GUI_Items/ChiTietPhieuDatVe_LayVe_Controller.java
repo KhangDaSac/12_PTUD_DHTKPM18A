@@ -1,7 +1,6 @@
 package GUI.controllers.LayVe_GUI_Items;
 
-import DTO.ChiTietPhieuDatVe;
-import DTO.LoaiPhieuDatVe;
+import DTO.ChiTietVeDat;
 import GUI.controllers.HuyDatVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
@@ -42,7 +41,7 @@ public class ChiTietPhieuDatVe_LayVe_Controller {
     @FXML
     private Label lblToa;
 
-    private ChiTietPhieuDatVe chiTietPhieuDatVe;
+    private ChiTietVeDat chiTietPhieuDatVe;
     private LayVe_GUI_Controller layVe_gui_controller;
     private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
     private boolean dangChon;
@@ -66,11 +65,11 @@ public class ChiTietPhieuDatVe_LayVe_Controller {
         this.huyDatVe_gui_controller = huyDatVe_gui_controller;
     }
 
-    public ChiTietPhieuDatVe getChiTietPhieuDatVe() {
+    public ChiTietVeDat getChiTietPhieuDatVe() {
         return chiTietPhieuDatVe;
     }
 
-    public void setChiTietPhieuDatVe(ChiTietPhieuDatVe chiTietPhieuDatVe) {
+    public void setChiTietPhieuDatVe(ChiTietVeDat chiTietPhieuDatVe) {
         this.chiTietPhieuDatVe = chiTietPhieuDatVe;
     }
 

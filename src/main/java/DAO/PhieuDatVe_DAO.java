@@ -6,12 +6,11 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class PhieuDatVe_DAO {
-    public static ArrayList<PhieuDatVe> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
-        ArrayList<PhieuDatVe> phieuDatVeList = new ArrayList<PhieuDatVe>();
+    public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
+        ArrayList<VeDat> phieuDatVeList = new ArrayList<VeDat>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDon ?";
@@ -20,7 +19,7 @@ public class PhieuDatVe_DAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maPhieuDatVe = rs.getString("maPhieuDatVe");
-                HoaDon hoaDon = new HoaDon(rs.getString("maHoaDon"));
+                HoaDonBanVe hoaDon = new HoaDonBanVe(rs.getString("maHoaDon"));
                 ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
                         new ChuyenTau(rs.getString("maChuyenTau")),
                         new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
@@ -33,10 +32,10 @@ public class PhieuDatVe_DAO {
                 double giamGiaVeTapThe = rs.getDouble("giamGiaVeTapThe");
                 double tongTienVe = rs.getDouble("tongTienVe");
                 double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
-                TrangThaiPhieuDatVe trangThaiPhieuDatVe = TrangThaiPhieuDatVe.valueOf(rs.getString("trangThaiPhieuDatVe"));
+                TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
                 LoaiPhieuDatVe loaiPhieuDatVe = LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"));
 
-                PhieuDatVe phieuDatVe = new PhieuDatVe(
+                VeDat phieuDatVe = new VeDat(
                         maPhieuDatVe,
                         hoaDon,
                         chiTietChuyenTauDi,

@@ -4,7 +4,7 @@ import DAO.ChiTietVe_DAO;
 import DAO.HoaDon_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
-import DTO.HoaDon;
+import DTO.HoaDonBanVe;
 import DTO.Ve;
 import utils.TimeFormat;
 
@@ -32,7 +32,7 @@ public class QuanLyHoaDon_BUS {
 
     }
 
-    public static boolean themHoaDon(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
+    public static boolean themHoaDon(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         Ve_DAO ve_dao = new Ve_DAO();
         ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
@@ -84,17 +84,17 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static ArrayList<HoaDon> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
+    public static ArrayList<HoaDonBanVe> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
         return HoaDon_DAO.getHoaDonTheoMaKhachHangVaThoiGianLap(maKhachHang, thoiGianLap);
     }
-    public static ArrayList<HoaDon> getDanhSachHoaDon(){
+    public static ArrayList<HoaDonBanVe> getDanhSachHoaDon(){
         return HoaDon_DAO.getDanhSachHoaDon();
     }
-    public static ArrayList<HoaDon> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
+    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
     }
-    public static ArrayList<HoaDon> getDanhSachHoaDonDat(){
+    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDat(){
         HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
         return hoaDon_dao.getDanhSachHoaDonDat();
     }

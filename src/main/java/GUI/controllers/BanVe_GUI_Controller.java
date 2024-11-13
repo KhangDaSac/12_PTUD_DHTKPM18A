@@ -14,10 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import org.controlsfx.control.textfield.TextFields;
 import utils.CurrencyFormat;
 
 import java.io.IOException;
@@ -26,7 +24,6 @@ import java.text.Normalizer;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -119,7 +116,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<Ve_Controller> veControllerList = new ArrayList<Ve_Controller>();
     private ArrayList<ChiTietVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_Controller>();
 
-    private HoaDon hoaDon;
+    private HoaDonBanVe hoaDon;
     private ArrayList<Ve> danhSachVe = new ArrayList<>();
     private ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
 
@@ -145,11 +142,11 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
 
-    public HoaDon getHoaDon() {
+    public HoaDonBanVe getHoaDon() {
         return hoaDon;
     }
 
-    public void setHoaDon(HoaDon hoaDon) {
+    public void setHoaDon(HoaDonBanVe hoaDon) {
         this.hoaDon = hoaDon;
     }
 
@@ -646,7 +643,7 @@ public class BanVe_GUI_Controller implements Initializable {
         }
 
         String maHoaDon = QuanLyHoaDon_BUS.layHoaDonTiepTheo();
-        hoaDon = new HoaDon(maHoaDon);
+        hoaDon = new HoaDonBanVe(maHoaDon);
 
         LoaiVe loaiVe = LoaiVe.values()[cmbLoaiVe.getSelectionModel().getSelectedIndex()];
         if(loaiVe == LoaiVe.VECANHAN){

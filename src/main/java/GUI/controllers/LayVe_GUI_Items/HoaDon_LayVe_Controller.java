@@ -1,7 +1,7 @@
 package GUI.controllers.LayVe_GUI_Items;
 
-import DTO.HoaDon;
-import DTO.TrangThaiHoaDon;
+import DTO.HoaDonBanVe;
+import DTO.TrangThaiHoaDonDat;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,7 +36,7 @@ public class HoaDon_LayVe_Controller {
     @FXML
     private Label lblTrangThai;
 
-    private HoaDon hoaDon;
+    private HoaDonBanVe hoaDon;
     private LayVe_GUI_Controller layVe_gui_controller;
     private int soThuTu;
     private boolean dangChon;
@@ -65,11 +65,11 @@ public class HoaDon_LayVe_Controller {
         this.layVe_gui_controller = layVe_gui_controller;
     }
 
-    public HoaDon getHoaDon() {
+    public HoaDonBanVe getHoaDon() {
         return hoaDon;
     }
 
-    public void setHoaDon(HoaDon hoaDon) {
+    public void setHoaDon(HoaDonBanVe hoaDon) {
         this.hoaDon = hoaDon;
     }
 
@@ -82,7 +82,7 @@ public class HoaDon_LayVe_Controller {
         lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDon.getTongTienDaDatCoc()));
         lblSoThuTu.setText(String.valueOf(soThuTu + 1));
         dangChon = false;
-        if(hoaDon.getTrangThaiHoaDon().equals(TrangThaiHoaDon.CHOLAYVE)){
+        if(hoaDon.getTrangThaiHoaDon().equals(TrangThaiHoaDonDat.CHOLAYVE)){
             lblTrangThai.setText("Chờ lấy vé");
         }
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());

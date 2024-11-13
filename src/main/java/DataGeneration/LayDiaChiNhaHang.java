@@ -148,7 +148,7 @@ public class LayDiaChiNhaHang {
             throw new RuntimeException(e);
         }
 
-        byte[] hashBytes = digest.digest("123".getBytes());
+        byte[] hashBytes = digest.digest("NhanVien@123456".getBytes());
 
         String hashedPassword = Base64.getEncoder().encodeToString(hashBytes);
         for(int i = 0; i< 300; i++){
@@ -156,8 +156,8 @@ public class LayDiaChiNhaHang {
         }
 
 
-        LocalDateTime time = LocalDateTime.of(2024, 10, 1, 6, 0, 0);
-        for(int i = 0; i < 360; i++){
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 6, 0, 0);
+        for(int i = 0; i < 1098; i++){
             int ran = random.nextInt(290);
             String loaiCa = null;
             if(time.getHour() == 6){

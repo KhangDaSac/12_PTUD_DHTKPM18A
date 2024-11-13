@@ -24,6 +24,7 @@ module GUI.applications {
     requires javafx.controls;
     requires itextpdf;
     requires org.apache.poi.ooxml;
+    requires xalan;
     exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
 
     // Other exports and opens statements

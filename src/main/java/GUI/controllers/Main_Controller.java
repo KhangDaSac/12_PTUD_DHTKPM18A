@@ -1,8 +1,7 @@
 package GUI.controllers;
 
-import BUS.QuanLyKhachHang_BUS;
 import DTO.ChiTietVe;
-import DTO.HoaDon;
+import DTO.HoaDonBanVe;
 import DTO.NhanVien;
 import DTO.Ve;
 import javafx.application.Platform;
@@ -156,7 +155,7 @@ public class Main_Controller implements Initializable {
 
 
 
-    public void chuyenTrangThongTinBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+    public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -439,7 +438,7 @@ public class Main_Controller implements Initializable {
 
     }
 
-    public void quayLaiTrangBanVe(HoaDon hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+    public void quayLaiTrangBanVe(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {

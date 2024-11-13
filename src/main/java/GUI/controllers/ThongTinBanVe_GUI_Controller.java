@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
 
 public class ThongTinBanVe_GUI_Controller implements Initializable {
-    private HoaDon hoaDon;
+    private HoaDonBanVe hoaDon;
     private ArrayList<Ve> danhSachVe;
     private ArrayList<ChiTietVe> danhSachChiTietVe;
     private Main_Controller main_controller;
@@ -33,11 +33,11 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     private ArrayList<Ve_ThongTinBanVe_Controller> veControllerList = new ArrayList<Ve_ThongTinBanVe_Controller>();
     private ArrayList<ChiTietVe_ThongTinBanVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_ThongTinBanVe_Controller>();
 
-    public HoaDon getHoaDon() {
+    public HoaDonBanVe getHoaDon() {
         return hoaDon;
     }
 
-    public void setHoaDon(HoaDon hoaDon) {
+    public void setHoaDon(HoaDonBanVe hoaDon) {
         this.hoaDon = hoaDon;
     }
 
@@ -133,7 +133,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     void btnBanVeOnAction(ActionEvent event) {
         hoaDon.setThoiGianLap(LocalDateTime.now());
         hoaDon.setLoaiHoaDon(LoaiHoaDon.HOADONBAN);
-        hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.DALAYTOANBO);
+        hoaDon.setTrangThaiHoaDon(TrangThaiHoaDonDat.DALAYTOANBO);
         hoaDon.setCaLamViec(new CaLamViec("CLV010125C"));
         hoaDon.setTongTienDaDatCoc(0);
         hoaDon.setTongTienKhachHangTra(hoaDon.getTongTien());
