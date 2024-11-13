@@ -6,6 +6,7 @@ import java.util.Objects;
 public class HoaDonHuyVe {
 	private String maHoaDonHuyVe;
 	private LocalDateTime thoiGianHuy;
+	private KhachHang khachHangHuyVe;
 	private double lePhi;
 	private Ve ve;
 	private CaLamViec caLamViec;
@@ -24,6 +25,14 @@ public class HoaDonHuyVe {
 
 	public void setThoiGianHuy(LocalDateTime thoiGianHuy) {
 		this.thoiGianHuy = thoiGianHuy;
+	}
+
+	public KhachHang getKhachHangHuyVe() {
+		return khachHangHuyVe;
+	}
+
+	public void setKhachHangHuyVe(KhachHang khachHangHuyVe) {
+		this.khachHangHuyVe = khachHangHuyVe;
 	}
 
 	public double getLePhi() {
@@ -50,6 +59,8 @@ public class HoaDonHuyVe {
 		this.caLamViec = caLamViec;
 	}
 
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -67,13 +78,7 @@ public class HoaDonHuyVe {
 		this.maHoaDonHuyVe = maHoaDonHuyVe;
 	}
 
-	public HoaDonHuyVe(String maHoaDonHuyVe, LocalDateTime thoiGianHuy, double lePhi, Ve ve, CaLamViec caLamViec) {
-		this.maHoaDonHuyVe = maHoaDonHuyVe;
-		this.thoiGianHuy = thoiGianHuy;
-		this.lePhi = lePhi;
-		this.ve = ve;
-		this.caLamViec = caLamViec;
-	}
+
 
 	public double tongTienCuoi(){
 		return ve.tienVeCuoi() - lePhi;
