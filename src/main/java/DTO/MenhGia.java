@@ -1,9 +1,6 @@
 package DTO;
 
 public enum MenhGia {
-    T100VND,
-    T200VND,
-    T500VND,
     T1000VND,
     T2000VND,
     T5000VND,
