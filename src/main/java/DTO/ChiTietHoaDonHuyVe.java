@@ -47,7 +47,7 @@ public class ChiTietHoaDonHuyVe {
     }
 
     public Duration thoiGianConLai() {
-        Duration thoiGianConLai = Duration.between(hoaDonHuyVe.getThoiGianHuy(), ve.getThongTinGaTauDi().getThoiGianDi());
+        Duration thoiGianConLai = Duration.between(hoaDonHuyVe.getThoiGianHuyVe(), ve.getThongTinGaTauDi().getThoiGianDi());
         return thoiGianConLai;
     }
 

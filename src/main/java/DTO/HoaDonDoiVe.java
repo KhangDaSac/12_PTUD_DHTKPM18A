@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class HoaDonDoiVe {
 	private String maLichSuDoi;
-	private LocalDateTime thoiGianDoi;
+	private LocalDateTime thoiGianDoiVe;
 	private double lePhi;
 	private Ve veCu;
 	private Ve veMoi;
@@ -21,12 +21,12 @@ public class HoaDonDoiVe {
 		this.maLichSuDoi = maLichSuDoi;
 	}
 
-	public LocalDateTime getThoiGianDoi() {
-		return thoiGianDoi;
+	public LocalDateTime getThoiGianDoiVe() {
+		return thoiGianDoiVe;
 	}
 
-	public void setThoiGianDoi(LocalDateTime thoiGianDoi) {
-		this.thoiGianDoi = thoiGianDoi;
+	public void setThoiGianDoiVe(LocalDateTime thoiGianDoiVe) {
+		this.thoiGianDoiVe = thoiGianDoiVe;
 	}
 
 	public double getLePhi() {
@@ -76,15 +76,6 @@ public class HoaDonDoiVe {
 
 	public HoaDonDoiVe(String maLichSuDoi) {
 		this.maLichSuDoi = maLichSuDoi;
-	}
-
-	public HoaDonDoiVe(String maLichSuDoi, LocalDateTime thoiGianDoi, Ve veCu, Ve veMoi, CaLamViec caLamViec) {
-		this.maLichSuDoi = maLichSuDoi;
-		this.thoiGianDoi = thoiGianDoi;
-		this.veCu = veCu;
-		this.veMoi = veMoi;
-		this.caLamViec = caLamViec;
-		this.lePhi = LEPHIDOIVE;
 	}
 
 	public double tongTienCuoi(){

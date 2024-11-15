@@ -1,7 +1,5 @@
 package DTO;
 
-import org.apache.bcel.generic.PUSH;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -68,6 +66,4 @@ public class HoaDonLayVe {
     public HoaDonLayVe(String maHoaDonLayVe) {
         this.maHoaDonLayVe = maHoaDonLayVe;
     }
-
-
 }

@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Ve {
 	private String maVe;
 	private HoaDonBanVe hoaDonBanVe;
-	private HoaDonLayVe hoaDonLayVe;
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private LoaiVe loaiVe ;
@@ -33,13 +32,6 @@ public class Ve {
 		this.hoaDonBanVe = hoaDonBanVe;
 	}
 
-	public HoaDonLayVe getHoaDonLayVe() {
-		return hoaDonLayVe;
-	}
-
-	public void setHoaDonLayVe(HoaDonLayVe hoaDonLayVe) {
-		this.hoaDonLayVe = hoaDonLayVe;
-	}
 
 	public ChiTietChuyenTau getThongTinGaTauDi() {
 		return thongTinGaTauDi;
@@ -101,6 +93,21 @@ public class Ve {
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maVe);
+	}
+
+	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double tienVe) {
+		this.maVe = maVe;
+		this.hoaDonBanVe = hoaDonBanVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.loaiVe = loaiVe;
+		this.trangThaiVe = trangThaiVe;
+		this.tienVe = tienVe;
+		if(loaiVe.equals(LoaiVe.VETAPTHE)){
+			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
+		}else{
+			this.phanTramGiamGiaVeTapThe = 0;
+		}
 	}
 
 	public Ve(String maVe) {

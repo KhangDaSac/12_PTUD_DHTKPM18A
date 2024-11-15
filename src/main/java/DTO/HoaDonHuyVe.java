@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class HoaDonHuyVe {
 	private String maHoaDonHuyVe;
-	private LocalDateTime thoiGianHuy;
+	private LocalDateTime thoiGianHuyVe;
 	private KhachHang khachHangHuyVe;
 	private double tongTienVeHuy;
 	private CaLamViec caLamViec;
@@ -18,12 +18,12 @@ public class HoaDonHuyVe {
 		this.maHoaDonHuyVe = maHoaDonHuyVe;
 	}
 
-	public LocalDateTime getThoiGianHuy() {
-		return thoiGianHuy;
+	public LocalDateTime getThoiGianHuyVe() {
+		return thoiGianHuyVe;
 	}
 
-	public void setThoiGianHuy(LocalDateTime thoiGianHuy) {
-		this.thoiGianHuy = thoiGianHuy;
+	public void setThoiGianHuyVe(LocalDateTime thoiGianHuyVe) {
+		this.thoiGianHuyVe = thoiGianHuyVe;
 	}
 
 	public KhachHang getKhachHangHuyVe() {

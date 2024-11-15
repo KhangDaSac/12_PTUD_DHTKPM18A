@@ -7,7 +7,6 @@ import java.util.Objects;
 public class VeDat {
 	private String maVeDat;
 	private HoaDonDatVe hoaDonDatVe;
-	private HoaDonLayVe hoaDonLayVe;
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private TrangThaiVeDat trangThaiVeDat;
@@ -33,14 +32,6 @@ public class VeDat {
 
 	public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
 		this.hoaDonDatVe = hoaDonDatVe;
-	}
-
-	public HoaDonLayVe getHoaDonLayVe() {
-		return hoaDonLayVe;
-	}
-
-	public void setHoaDonLayVe(HoaDonLayVe hoaDonLayVe) {
-		this.hoaDonLayVe = hoaDonLayVe;
 	}
 
 	public ChiTietChuyenTau getThongTinGaTauDi() {

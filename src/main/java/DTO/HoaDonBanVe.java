@@ -7,9 +7,9 @@ import java.util.Objects;
 public class HoaDonBanVe {
 	private String maHoaDonBanVe;
 	private LocalDateTime thoiGianLap;
-	private KhachHang khachHangMua;
+	private KhachHang khachHangMuaVe;
 	private CaLamViec caLamViec;
-	private double tongTien;
+	private double tongTienCuoi;
 
 	public String getMaHoaDonBanVe() {
 		return maHoaDonBanVe;
@@ -27,12 +27,12 @@ public class HoaDonBanVe {
 		this.thoiGianLap = thoiGianLap;
 	}
 
-	public KhachHang getKhachHangMua() {
-		return khachHangMua;
+	public KhachHang getKhachHangMuaVe() {
+		return khachHangMuaVe;
 	}
 
-	public void setKhachHangMua(KhachHang khachHangMua) {
-		this.khachHangMua = khachHangMua;
+	public void setKhachHangMuaVe(KhachHang khachHangMuaVe) {
+		this.khachHangMuaVe = khachHangMuaVe;
 	}
 
 	public CaLamViec getCaLamViec() {
@@ -43,12 +43,12 @@ public class HoaDonBanVe {
 		this.caLamViec = caLamViec;
 	}
 
-	public double getTongTien() {
-		return tongTien;
+	public double getTongTienCuoi() {
+		return tongTienCuoi;
 	}
 
-	public void setTongTien(double tongTien) {
-		this.tongTien = tongTien;
+	public void setTongTienCuoi(double tongTienCuoi) {
+		this.tongTienCuoi = tongTienCuoi;
 	}
 
 	@Override
@@ -68,11 +68,5 @@ public class HoaDonBanVe {
 		this.maHoaDonBanVe = maHoaDonBanVe;
 	}
 
-	public HoaDonBanVe(String maHoaDonBanVe, LocalDateTime thoiGianLap, KhachHang khachHangMua, CaLamViec caLamViec, double tongTien) {
-		this.maHoaDonBanVe = maHoaDonBanVe;
-		this.thoiGianLap = thoiGianLap;
-		this.khachHangMua = khachHangMua;
-		this.caLamViec = caLamViec;
-		this.tongTien = tongTien;
-	}
+
 }
