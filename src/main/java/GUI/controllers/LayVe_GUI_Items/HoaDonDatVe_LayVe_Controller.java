@@ -1,6 +1,8 @@
 package GUI.controllers.LayVe_GUI_Items;
 
 import DTO.HoaDonBanVe;
+import DTO.HoaDonDatVe;
+import DTO.TrangThaiVeDat;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
-public class HoaDon_LayVe_Controller {
+public class HoaDonDatVe_LayVe_Controller {
 
     @FXML
     private AnchorPane anpHoaDon;
@@ -35,7 +37,7 @@ public class HoaDon_LayVe_Controller {
     @FXML
     private Label lblTrangThai;
 
-    private HoaDonBanVe hoaDon;
+    private HoaDonDatVe hoaDonDatVe;
     private LayVe_GUI_Controller layVe_gui_controller;
     private int soThuTu;
     private boolean dangChon;
@@ -64,26 +66,15 @@ public class HoaDon_LayVe_Controller {
         this.layVe_gui_controller = layVe_gui_controller;
     }
 
-    public HoaDonBanVe getHoaDon() {
-        return hoaDon;
-    }
-
-    public void setHoaDon(HoaDonBanVe hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
 
     public void khoiTao(){
-        lblMaHoaDon.setText(hoaDon.getMaHoaDon());
-        lblThoiGianLap.setText(TimeFormat.formatLocalDateTime(hoaDon.getThoiGianLap()));
-        lblMaCaLam.setText(hoaDon.getCaLamViec().getMaCaLamViec());
-        lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDon.getTongTien()));
-        lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDon.getTongTienDaDatCoc()));
+        lblMaHoaDon.setText(hoaDonDatVe.getMaHoaDonDatVe());
+        lblThoiGianLap.setText(TimeFormat.formatLocalDateTime(hoaDonDatVe.getThoiGianLap()));
+        lblMaCaLam.setText(hoaDonDatVe.getCaLamViec().getMaCaLamViec());
+        lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.getTongTienCuoi()));
+        lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.getTongTienDatCoc()));
         lblSoThuTu.setText(String.valueOf(soThuTu + 1));
         dangChon = false;
-        if(hoaDon.getTrangThaiHoaDon().equals(TrangThaiHoaDonDat.CHOLAYVE)){
-            lblTrangThai.setText("Chờ lấy vé");
-        }
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());
     }
 
@@ -93,9 +84,7 @@ public class HoaDon_LayVe_Controller {
         layVe_gui_controller.boChonTatCaHoaDon();
         chonHoaDon();
 
-        layVe_gui_controller.getDanhSachPhieuDatVeTheoMaHoaDon(hoaDon.getMaHoaDon());
-        layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(hoaDon.getMaHoaDon());
-        layVe_gui_controller.capNhatDanhSachPhieuDatVe();
+
     }
 
     public void chonHoaDon(){

@@ -1,7 +1,7 @@
 package BUS;
 
 import DAO.ChiTietVe_DAO;
-import DAO.HoaDon_DAO;
+import DAO.HoaDonBanVe_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class QuanLyHoaDon_BUS {
     public static String layHoaDonTiepTheo(){
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
+        HoaDonBanVe_DAO hoaDon_dao = new HoaDonBanVe_DAO();
         String maHoaDonMoi = null;
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
@@ -33,11 +33,11 @@ public class QuanLyHoaDon_BUS {
     }
 
     public static boolean themHoaDon(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
+        HoaDonBanVe_DAO hoaDon_dao = new HoaDonBanVe_DAO();
         Ve_DAO ve_dao = new Ve_DAO();
         ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
 
-        if(hoaDon.getKhachHangMua() == null)
+        if(hoaDon.getKhachHangMuaVe() == null)
             throw new Exception("Chưa nhập thông tin người mua");
 
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
@@ -46,9 +46,9 @@ public class QuanLyHoaDon_BUS {
             }
         }
 
-        if(!hoaDon_dao.themHoaDon(hoaDon)){
-            return false;
-        }
+//        if(!hoaDon_dao.themHoaDon(hoaDon)){
+//            return false;
+//        }
 
         if(!ve_dao.themDanhSachVe(danhSachVe)){
             return false;
@@ -84,18 +84,6 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static ArrayList<HoaDonBanVe> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
-        return HoaDon_DAO.getHoaDonTheoMaKhachHangVaThoiGianLap(maKhachHang, thoiGianLap);
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDon(){
-        return HoaDon_DAO.getDanhSachHoaDon();
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
-        return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDat(){
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
-        return hoaDon_dao.getDanhSachHoaDonDat();
-    }
+
+
 }

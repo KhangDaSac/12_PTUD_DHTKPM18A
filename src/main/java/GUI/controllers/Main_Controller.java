@@ -165,7 +165,7 @@ public class Main_Controller implements Initializable {
         }
         ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
         thongTinBanVe_gui_controller.setMain_controller(this);
-        thongTinBanVe_gui_controller.setHoaDon(hoaDon);
+        thongTinBanVe_gui_controller.setHoaDonBanVe(hoaDon);
         thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
         thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         thongTinBanVe_gui_controller.khoiTao();
@@ -246,8 +246,6 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        DoiVe_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -266,8 +264,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        HuyDatVe_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        HuyDatVe_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -285,7 +283,7 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        HuyVe_GUI_Controller controller = loader.getController();
+//        HuyVe_GUI_Controller controller = loader.getController();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -330,8 +328,8 @@ public class Main_Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        QuanLyHoaDon_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        QuanLyHoaDon_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -350,8 +348,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        QuanLyKhachHang_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        QuanLyKhachHang_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -381,8 +379,8 @@ public class Main_Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        BaoCaoThongKe_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        BaoCaoThongKe_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -423,8 +421,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        QuanLyNhanVien_GUI_Controller controller = loader.getController();
-        controller.setMain_controller(this);
+//        QuanLyNhanVien_GUI_Controller controller = loader.getController();
+//        controller.setMain_controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -438,7 +436,7 @@ public class Main_Controller implements Initializable {
 
     }
 
-    public void quayLaiTrangBanVe(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
+    public void quayLaiTrangBanVe(HoaDonBanVe hoaDonBanVe, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -448,7 +446,7 @@ public class Main_Controller implements Initializable {
         }
         BanVe_GUI_Controller banVe_gui_controller = loader.getController();
         banVe_gui_controller.setMain_Controller(this);
-        banVe_gui_controller.setHoaDon(hoaDon);
+        banVe_gui_controller.setHoaDonBanVe(hoaDonBanVe);
         banVe_gui_controller.setDanhSachVe(danhSachVe);
         banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         anpNoiDungTrang.getChildren().clear();

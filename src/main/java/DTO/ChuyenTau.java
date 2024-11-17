@@ -81,6 +81,14 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maChuyenTau = maChuyenTau;
+		this.soLuongChoDaBan = soLuongChoDaBan;
+		this.soLuongChoDaDat = soLuongChoDaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
 	public ChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
 	}

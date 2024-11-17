@@ -33,12 +33,11 @@ public class Ve_DAO {
             try {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, ve.getMaVe());
-                statement.setString(2, ve.getHoaDon().getMaHoaDon());
+                statement.setString(2, ve.getHoaDonBanVe().getMaHoaDonBanVe());
                 statement.setString(3, ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
                 statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
                 statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
-                statement.setDouble(6, ve.getGiamGiaVeTapThe());
-                statement.setDouble(7, ve.getTongTienVe());
+                statement.setDouble(6, ve.getPhanTramGiamGiaVeTapThe());
                 statement.setString(8, ve.getLoaiVe().toString());
                 statement.setString(9, ve.getTrangThaiVe().toString());
                 statement.execute();
@@ -48,33 +47,5 @@ public class Ve_DAO {
             }
         }
         return true;
-    }
-
-    public Ve getVeTheoMa(String maVe){
-        Ve veTim = new Ve();
-        Connection con = ConnectDB.getInstance().getConnection();
-        try{
-            String query = "select * from Ve where maVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maVe);
-            ResultSet rs = statement.executeQuery();
-            while( rs.next()){
-                String ma = rs.getString("maVe");
-                HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDon")) ;
-                ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
-                GaTau gaDi = new GaTau(rs.getString("maGaDi"));
-                GaTau gaDen= new GaTau(rs.getString("maGaDen"));
-                ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(maChuyenTau,gaDi);
-                ChiTietChuyenTau thongTinDen= new ChiTietChuyenTau(maChuyenTau,gaDen);
-                Double giamGiaTT = rs.getDouble("giamGiaVeTapThe");
-                Double tongTien= rs.getDouble("tongTienVe");
-                LoaiVe loai = LoaiVe.valueOf(rs.getString("loaiVe"));
-                TrangThaiVe trangThai = TrangThaiVe.valueOf(rs.getString("trangThaiVe"));
-                veTim = new Ve(maHoaHon,ma,thongTinDi,thongTinDen,tongTien,giamGiaTT,loai,trangThai,maChuyenTau);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return veTim;
     }
 }

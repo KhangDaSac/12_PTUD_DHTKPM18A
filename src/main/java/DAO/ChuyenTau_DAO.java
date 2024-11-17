@@ -11,47 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ChuyenTau_DAO {
-    public ArrayList<ChuyenTau> xuatDanhSachChuyenTau(){
-        ArrayList<ChuyenTau> dsChuyenTau= new ArrayList<ChuyenTau>();
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query ="select * from ChuyenTau";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while(rs.next()) {
-                String maChuyenTau =rs.getString(1);
-                TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-                int soLuongCho =  rs.getInt(3);
-             ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
-                dsChuyenTau.add(chuyenTau);
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return dsChuyenTau;
-    }
-
-    public static ChuyenTau timChuyenTauTheoMa(String maChuyen) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        ChuyenTau chuyenTau = null;
-        try {
-            String query = "select * from ChuyenTau where maChuyenTau = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maChuyen);
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                String maChuyenTau = rs.getString("maChuyenTau");
-                TuyenTau tuyenTau = new TuyenTau(rs.getString("maTuyenTau"));
-                int soLuongCho = rs.getInt("soLuongCho");
-                chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return chuyenTau;
-    }
     public void suaThoiGianKhoiHanh (LocalDateTime thoiGianKhoiHanh, String maChuyen){
         Connection con = ConnectDB.getInstance().getConnection();
         try{
@@ -78,14 +37,14 @@ public class ChuyenTau_DAO {
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 String maChuyenTau =rs.getString("maChuyenTau");
-                int soLuongCho = rs.getInt("soLuongCho");
-                int soLuongChoDaDatVaBan = rs.getInt("soLuongChoDaDatVaBan");
+                int soLuongChoDaDat = rs.getInt("soLuongChoDaDat");
+                int soLuongChoDaBan = rs.getInt("soLuongChoDaBan");
                 int soLuongChoDanhChoChanDaiHon = rs.getInt("soLuongChoDanhChoChanDaiHon");
                 int soLuongChoTrong = rs.getInt("soLuongChoTrong");
                 ChuyenTau chuyenTau = new ChuyenTau(
                         maChuyenTau,
-                        soLuongCho,
-                        soLuongChoDaDatVaBan,
+                        soLuongChoDaBan,
+                        soLuongChoDaDat,
                         soLuongChoDanhChoChanDaiHon,
                         soLuongChoTrong);
                 dsChuyenTau.add(chuyenTau);

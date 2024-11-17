@@ -3,7 +3,6 @@ package GUI.controllers.BanVe_GUI_Items;
 import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
-import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Ve_Controller implements Initializable {
+public class Ve_BanVe_Controller implements Initializable {
     @FXML
     private AnchorPane anpVe;
 
@@ -109,13 +108,11 @@ public class Ve_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.getTongTienVe()));
+        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
 
 
-        lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.getGiamGiaVeTapThe()));
-        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tinhTongTienVeCuoi()));
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
@@ -130,14 +127,10 @@ public class Ve_Controller implements Initializable {
     }
 
     public void chonVe(){
-        try {
-            banVe_GUI_Controller.capNhatChiTietVe(ve);
             banVe_GUI_Controller.boChonTatCaVe();
             anpVe.getStyleClass().add("veDangChon");
             anpVe.getStyleClass().removeAll("veKhongChon");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
     public void khongChonVe(){

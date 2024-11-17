@@ -1,8 +1,8 @@
 package GUI.controllers.LayVe_GUI_Items;
 
+import DTO.LoaiVe;
 import DTO.VeDat;
 import DTO.TrangThaiVeDat;
-import GUI.controllers.HuyDatVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +19,7 @@ import utils.TimeFormat;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PhieuDatVe_LayVe_Controller implements Initializable {
+public class VeDat_LayVe_Controller implements Initializable {
 
     @FXML
     private AnchorPane anpChonPhieuDatVe;
@@ -70,9 +70,8 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     private ImageView imvTrangThai;
 
     private LayVe_GUI_Controller layVe_gui_controller;
-    private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
 
-    private VeDat phieuDatVe;
+    private VeDat veDat;
     private int soThuTu;
     private boolean dangChon;
     private boolean chonLayVe;
@@ -93,9 +92,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         this.layVe_gui_controller = layVe_gui_controller;
     }
 
-    public void setHuyDatVe_gui_controller(HuyDatVe_GUI_Controller huyDatVeGuiController) {
-        this.huyDatVe_gui_controller = huyDatVeGuiController;
-    }
+
 
     public boolean isDangChon() {
         return dangChon;
@@ -113,21 +110,21 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         this.soThuTu = soThuTu;
     }
 
-    public VeDat getPhieuDatVe() {
-        return phieuDatVe;
+    public VeDat getVeDat() {
+        return veDat;
     }
 
-    public void setPhieuDatVe(VeDat phieuDatVe) {
-        this.phieuDatVe = phieuDatVe;
+    public void setVeDat(VeDat veDat) {
+        this.veDat = veDat;
     }
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
         if (layVe_gui_controller != null) {
-            layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(phieuDatVe.getHoaDon().getMaHoaDon());
-            layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
+            layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(veDat.getHoaDonDatVe().getMaHoaDonDatVe());
+            layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(veDat);
             chonPhieuDatVe();
-            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
+            if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
                 if (chonLayVe) {
                     boChonLayVe();
                 } else {
@@ -135,20 +132,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
                 }
             }
 
-        } else if (huyDatVe_gui_controller != null) {
-            huyDatVe_gui_controller.tinhTongTienHuyDatVe();
-            huyDatVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
-            huyDatVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
-            chonPhieuDatVe();
-            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
-                if (chonLayVe) {
-                    boChonLayVe();
-                } else {
-                    chonLayVe();
-                }
-            }
         }
-
     }
 
     @Override
@@ -158,30 +142,29 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
 
     public void khoiTao() {
         lblSTT.setText(String.valueOf(soThuTu + 1));
-        lblMaChuyenTau.setText(phieuDatVe.getChiTietChuyenTauDi().getChuyenTau().getMaChuyenTau());
-        lblTenGaDi.setText(phieuDatVe.getChiTietChuyenTauDi().getGaTau().getTenGaTau());
-        lblTenGaDen.setText(phieuDatVe.getChiTietChuyenTauDen().getGaTau().getTenGaTau());
-        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(phieuDatVe.getChiTietChuyenTauDi().getThoiGianDi()));
-        lblGiaVe.setText(CurrencyFormat.currencyFormat(phieuDatVe.getTongTienVe()));
-        lblTienCoc.setText(CurrencyFormat.currencyFormat(phieuDatVe.getTongTienDatCoc()));
+        lblMaChuyenTau.setText(veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+        lblTenGaDi.setText(veDat.getThongTinGaTauDi().getGaTau().getTenGaTau());
+        lblTenGaDen.setText(veDat.getThongTinGaTauDen().getGaTau().getTenGaTau());
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi()));
+        lblGiaVe.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
+        lblTienCoc.setText(CurrencyFormat.currencyFormat(veDat.tienDatCoc()));
         anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
         anpChonPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
 
-        if (phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATCANHAN)) {
+        if (veDat.getLoaiVe().equals(LoaiVe.VECANHAN)) {
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
             anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-caNhan");
-        } else if (phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATTAPTHE)) {
-            lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(phieuDatVe.tinhGiamGiaVeTapThe()));
-            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(phieuDatVe.tinhTongTienVeCuoi()));
+        } else if (veDat.getLoaiVe().equals(LoaiVe.VETAPTHE)) {
+
             anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-tapThe");
         }
 
-        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
+        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
-        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.DALAYVE)) {
+        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DALAYVE)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
-        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.DAHUY)) {
+        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DAHUY)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
         }
 
@@ -189,12 +172,8 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     }
 
     public void chonPhieuDatVe() {
-        if (layVe_gui_controller != null) {
-            layVe_gui_controller.boChonTatCaPhieuDatVe();
-        }
-        else{
-            huyDatVe_gui_controller.boChonTatCaPhieuDatVe();
-        }
+        layVe_gui_controller.boChonTatCaPhieuDatVe();
+
         dangChon = true;
         anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeKhongChon");
         anpPhieuDatVe.getStyleClass().add("phieuDatVeDangChon");
@@ -207,7 +186,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     }
 
     public void chonLayVe() {
-        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
+        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
             chonLayVe = true;
             imvChonPhieuDatVe.setVisible(true);
             if (layVe_gui_controller != null) {

@@ -100,6 +100,19 @@ public class ToaTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+	public ToaTau(String maToaTau, int thuTuToa, LoaiToaTau loaiToaTau) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.loaiToaTau = loaiToaTau;
+	}
+
+	public ToaTau(String maToaTau, int thuTuToa, LoaiToaTau loaiToaTau, ChuyenTau chuyenTau) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.loaiToaTau = loaiToaTau;
+		this.chuyenTau = chuyenTau;
+	}
+
 	public ToaTau(String maToaTau) {
 		this.maToaTau = maToaTau;
 	}

@@ -3,7 +3,6 @@ package GUI.controllers.BanVe_GUI_Items;
 import DTO.Cho;
 import DTO.TrangThaiCho;
 import GUI.controllers.BanVe_GUI_Controller;
-import GUI.controllers.DoiVe_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,14 +14,13 @@ import utils.CurrencyFormat;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Cho_Controller implements Initializable {
+public class Cho_BanVe_Controller implements Initializable {
     @FXML
     private JFXButton btnCho;
 
     private static String trang;
     private Cho cho;
     private BanVe_GUI_Controller banVe_GUI_controller;
-    private DoiVe_GUI_Controller doiVe_gui_controller;
     private boolean daThemVaoGio;
     private boolean dangChon;
 
@@ -61,51 +59,24 @@ public class Cho_Controller implements Initializable {
         this.banVe_GUI_controller = banVe_GUI_controller;
     }
 
-    public DoiVe_GUI_Controller getDoiVe_gui_controller() {
-        return doiVe_gui_controller;
-    }
-
-    public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
-        this.doiVe_gui_controller = doiVe_gui_controller;
-    }
     public static void loaiTrang(String link){
         trang = link;
     }
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
-        if(trang.equals("BanVe_GUI.fxml")){
-            if(!daThemVaoGio){
-                if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
-                    if(!banVe_GUI_controller.getChoChonList().contains(cho)){
-                        banVe_GUI_controller.getChoChonList().add(cho);
-                        dangChon = true;
-                    }else{
-                        banVe_GUI_controller.getChoChonList().remove(cho);
-                        dangChon = false;
-                    }
-                    capNhatTrangThai();
-                    banVe_GUI_controller.capNhatCacChoDaChon();
+        if(!daThemVaoGio){
+            if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
+                if(!banVe_GUI_controller.getChoChonList().contains(cho)){
+                    banVe_GUI_controller.getChoChonList().add(cho);
+                    dangChon = true;
+                }else{
+                    banVe_GUI_controller.getChoChonList().remove(cho);
+                    dangChon = false;
                 }
-            }
-        }else if (trang.equals("DoiVe_GUI.fxml")) {
-            if (cho.getTrangThaiCho()== TrangThaiCho.CONTRONG){
-                if(!doiVe_gui_controller.getChoChon().equals(cho)){
-
-                        doiVe_gui_controller.setChoChon(cho);
-                        doiVe_gui_controller.capNhatCacChoDaChon();
-
-                }
-
                 capNhatTrangThai();
-                doiVe_gui_controller.capNhatCacChoDaChon();
-                doiVe_gui_controller.setLblCho_Moi(cho.getSoCho());
-                doiVe_gui_controller.setLblGiaCho_Moi(cho.getGiaCho());
-                doiVe_gui_controller.setLblToaTau_Moi(cho.getToaTau().getMaToaTau());
-                doiVe_gui_controller.tinhTongTien();
+                banVe_GUI_controller.capNhatCacChoDaChon();
             }
-        }else {
-            System.out.printf("trang không xác định");
         }
     }
 
@@ -129,7 +100,7 @@ public class Cho_Controller implements Initializable {
     public void chuyenMauMacDinh(){
 
         switch (cho.getTrangThaiCho()){
-            case DADATHOACBAN -> {
+            case DABAN -> {
                 btnCho.getStyleClass().clear();
                 btnCho.getStyleClass().add("choDaDatHoacBan");
             }
@@ -170,7 +141,7 @@ public class Cho_Controller implements Initializable {
                 case TrangThaiCho.CONTRONG -> {
                     trangThaiCho = "Còn trống";
                 }
-                case TrangThaiCho.DADATHOACBAN -> {
+                case TrangThaiCho.DABAN -> {
                     trangThaiCho = "Đã đặt hoặc bán";
                 }
                 case TrangThaiCho.DANHCHOCHANGDAIHON -> {

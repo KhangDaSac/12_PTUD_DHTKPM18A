@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class PhieuDatVe_DAO {
+public class VeDat_DAO {
     public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
         ArrayList<VeDat> phieuDatVeList = new ArrayList<VeDat>();
         Connection con = ConnectDB.getInstance().getConnection();
@@ -19,7 +19,7 @@ public class PhieuDatVe_DAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maPhieuDatVe = rs.getString("maPhieuDatVe");
-                HoaDonBanVe hoaDon = new HoaDonBanVe(rs.getString("maHoaDon"));
+                HoaDonBanVe hoaDonBanVe = new HoaDonBanVe(rs.getString("maHoaDon"));
                 ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
                         new ChuyenTau(rs.getString("maChuyenTau")),
                         new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
@@ -29,25 +29,25 @@ public class PhieuDatVe_DAO {
                 ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
                         new ChuyenTau(rs.getString("maChuyenTau")),
                         new GaTau(rs.getString("maGaDen"), rs.getString("tenGaDen")));
-                double giamGiaVeTapThe = rs.getDouble("giamGiaVeTapThe");
+                double phanTramGiamGiaVeTapThe = rs.getDouble("phanTramGiamGiaVeTapThe");
                 double tongTienVe = rs.getDouble("tongTienVe");
                 double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
                 TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
-                LoaiPhieuDatVe loaiPhieuDatVe = LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"));
+                LoaiVe loaiPhieuDatVe = LoaiVe.valueOf(rs.getString("loaiPhieuDatVe"));
 
-                VeDat phieuDatVe = new VeDat(
-                        maPhieuDatVe,
-                        hoaDon,
-                        chiTietChuyenTauDi,
-                        chiTietChuyenTauDen,
-                        giamGiaVeTapThe,
-                        tongTienVe,
-                        tongTienDatCoc,
-                        trangThaiPhieuDatVe,
-                        loaiPhieuDatVe
-                );
+//                VeDat phieuDatVe = new VeDat(
+//                        maPhieuDatVe,
+//                        hoaDonBanVe,
+//                        chiTietChuyenTauDi,
+//                        chiTietChuyenTauDen,
+//                        phanTramGiamGiaVeTapThe,
+//                        tongTienVe,
+//                        tongTienDatCoc,
+//                        trangThaiPhieuDatVe,
+//                        loaiPhieuDatVe
+//                );
 
-                phieuDatVeList.add(phieuDatVe);
+                //phieuDatVeList.add(phieuDatVe);
             }
         } catch (Exception e) {
             e.printStackTrace();

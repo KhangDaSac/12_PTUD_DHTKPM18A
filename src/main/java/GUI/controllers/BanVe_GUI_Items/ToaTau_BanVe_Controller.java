@@ -2,7 +2,6 @@ package GUI.controllers.BanVe_GUI_Items;
 
 import DTO.ToaTau;
 import GUI.controllers.BanVe_GUI_Controller;
-import GUI.controllers.DoiVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -12,7 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class ToaTau_Controller {
+public class ToaTau_BanVe_Controller {
 
     @FXML
     private ImageView imvToaTau;
@@ -54,7 +53,6 @@ public class ToaTau_Controller {
     }
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
-    private DoiVe_GUI_Controller doiVe_gui_controller;
     private int soThuTu;
     private static String trang;
 
@@ -74,28 +72,13 @@ public class ToaTau_Controller {
         this.banVe_GUI_Controller = banVe_GUI_Controller;
     }
 
-    public DoiVe_GUI_Controller getDoiVe_gui_controller() {return doiVe_gui_controller;}
-
-    public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
-        this.doiVe_gui_controller = doiVe_gui_controller;
-    }
     public static void loaiTrang(String link){
         trang = link;
     }
 
     @FXML
     void anpToaTauOnMousrClicked(MouseEvent event) {
-        if(trang.equals("BanVe_GUI.fxml")){
-        chonToaTau();}
-        else if(trang.equals("DoiVe_GUI.fxml")){
-            chonToaTau_DoiVe();
-            doiVe_gui_controller.setLblToaTau_Moi(toaTau.getMaToaTau());
-            doiVe_gui_controller.setLblCho_Moi(0);
-            doiVe_gui_controller.setLblGiaCho_Moi(0.0);
-
-        }else {
-            System.out.printf("trang không xác định");
-        }
+        chonToaTau();
     }
 
     public void khoiTao(){
@@ -129,13 +112,6 @@ public class ToaTau_Controller {
         banVe_GUI_Controller.timDanhSachCho(toaTau.getMaToaTau());
         banVe_GUI_Controller.setToaTauDangChon(soThuTu);
         banVe_GUI_Controller.boChonTatCaToaTau();
-        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
-        imvToaTau.setImage(image);
-    }
-    public void chonToaTau_DoiVe(){
-        doiVe_gui_controller.timDanhSachCho(toaTau.getMaToaTau()); // chỗ này sai
-        doiVe_gui_controller.setToaTauDangChon(soThuTu);
-        doiVe_gui_controller.boChonTatCaToaTau();
         Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
         imvToaTau.setImage(image);
     }

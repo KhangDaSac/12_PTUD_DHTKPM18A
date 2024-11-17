@@ -95,6 +95,9 @@ public class Ve {
 		return Objects.hashCode(maVe);
 	}
 
+	public Ve() {
+	}
+
 	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double tienVe) {
 		this.maVe = maVe;
 		this.hoaDonBanVe = hoaDonBanVe;
@@ -112,6 +115,13 @@ public class Ve {
 
 	public Ve(String maVe) {
 		this.maVe = maVe;
+	}
+
+	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
+		this.maVe = maVe;
+		this.hoaDonBanVe = hoaDonBanVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
 	public double tienVeCuoi(){

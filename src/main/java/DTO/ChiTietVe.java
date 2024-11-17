@@ -64,13 +64,10 @@ public class ChiTietVe {
 		return Objects.hash(ve, cho);
 	}
 
-
-	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho, double phanTramGiamGia) {
+	public ChiTietVe(Ve ve, Cho cho, double giaCho) {
 		this.ve = ve;
 		this.cho = cho;
-		this.khachHang = khachHang;
 		this.giaCho = giaCho;
-		this.phanTramGiamGia = phanTramGiamGia;
 	}
 
 	public ChiTietVe(Ve ve) {
