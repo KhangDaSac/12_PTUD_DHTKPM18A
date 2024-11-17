@@ -1,8 +1,7 @@
 package GUI.controllers.LayVe_GUI_Items;
 
-import DTO.LoaiPhieuDatVe;
-import DTO.PhieuDatVe;
-import DTO.TrangThaiPhieuDatVe;
+import DTO.VeDat;
+import DTO.TrangThaiVeDat;
 import GUI.controllers.HuyDatVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
@@ -73,7 +72,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     private LayVe_GUI_Controller layVe_gui_controller;
     private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
 
-    private PhieuDatVe phieuDatVe;
+    private VeDat phieuDatVe;
     private int soThuTu;
     private boolean dangChon;
     private boolean chonLayVe;
@@ -114,11 +113,11 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
         this.soThuTu = soThuTu;
     }
 
-    public PhieuDatVe getPhieuDatVe() {
+    public VeDat getPhieuDatVe() {
         return phieuDatVe;
     }
 
-    public void setPhieuDatVe(PhieuDatVe phieuDatVe) {
+    public void setPhieuDatVe(VeDat phieuDatVe) {
         this.phieuDatVe = phieuDatVe;
     }
 
@@ -128,7 +127,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
             layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(phieuDatVe.getHoaDon().getMaHoaDon());
             layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
             chonPhieuDatVe();
-            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
                 if (chonLayVe) {
                     boChonLayVe();
                 } else {
@@ -141,7 +140,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
             huyDatVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
             huyDatVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(phieuDatVe);
             chonPhieuDatVe();
-            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+            if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
                 if (chonLayVe) {
                     boChonLayVe();
                 } else {
@@ -178,11 +177,11 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
             anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-tapThe");
         }
 
-        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
-        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.DALAYVE)) {
+        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.DALAYVE)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
-        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.DAHUY)) {
+        } else if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.DAHUY)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
         }
 
@@ -208,7 +207,7 @@ public class PhieuDatVe_LayVe_Controller implements Initializable {
     }
 
     public void chonLayVe() {
-        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiPhieuDatVe.CHOLAYVE)) {
+        if (phieuDatVe.getTrangThaiPhieuDatVe().equals(TrangThaiVeDat.CHOLAYVE)) {
             chonLayVe = true;
             imvChonPhieuDatVe.setVisible(true);
             if (layVe_gui_controller != null) {

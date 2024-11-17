@@ -34,21 +34,21 @@ import java.util.ResourceBundle;
 
 public class HuyDatVe_GUI_Controller implements Initializable {
     @FXML
-    private TableView<HoaDon> tableView;
+    private TableView<HoaDonBanVe> tableView;
     @FXML
     private TextField txtCCCD;
     @FXML
     private DatePicker dapNgayThanhToan;
     @FXML
-    private TableColumn<HoaDon, String> colMaHoaDon;
+    private TableColumn<HoaDonBanVe, String> colMaHoaDon;
     @FXML
-    private TableColumn<HoaDon, KhachHang> colTenKhachHang;
+    private TableColumn<HoaDonBanVe, KhachHang> colTenKhachHang;
     @FXML
-    private TableColumn<HoaDon, String> colNgayThanhToan;
+    private TableColumn<HoaDonBanVe, String> colNgayThanhToan;
     @FXML
-    private TableColumn<HoaDon, Double> colTongTienCoc;
+    private TableColumn<HoaDonBanVe, Double> colTongTienCoc;
     @FXML
-    private TableColumn<HoaDon, Double> colTongTien;
+    private TableColumn<HoaDonBanVe, Double> colTongTien;
     @FXML
     private Main_Controller main_Controller;
     @FXML
@@ -66,9 +66,9 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     @FXML
     private TextField txtTongTienTraKhach;
 
-    private ArrayList<PhieuDatVe> danhSachPhieuDatVe = new ArrayList<>();
+    private ArrayList<VeDat> danhSachPhieuDatVe = new ArrayList<>();
     private ArrayList<PhieuDatVe_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<>();
-    private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList = new ArrayList<>(); // Initialize here
+    private ArrayList<ChiTietVeDat> chiTietPhieuDatVeList = new ArrayList<>(); // Initialize here
     private ArrayList<ChiTietPhieuDatVe_LayVe_Controller> chiTietPhieuDatVeLayVeControllerList = new ArrayList<>();
 
     public Main_Controller getMain_Controller() {
@@ -85,8 +85,8 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         setupTableSelectionHandler(tableView);
     }
 
-    public ObservableList<HoaDon> getHoaDonData() {
-        ArrayList<HoaDon> hoaDonList;
+    public ObservableList<HoaDonBanVe> getHoaDonData() {
+        ArrayList<HoaDonBanVe> hoaDonList;
         if (dapNgayThanhToan.getValue() == null && txtCCCD.getText().isEmpty()) {
             hoaDonList = new QuanLyHoaDon_BUS().getDanhSachHoaDonDat();
         } else {
@@ -102,7 +102,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     public void loadDuLieuLenTable() {
         colMaHoaDon.setCellValueFactory(new PropertyValueFactory<>("maHoaDon"));
         colTenKhachHang.setCellValueFactory(new PropertyValueFactory<>("khachHangMua"));
-        colTenKhachHang.setCellFactory(column -> new TableCell<HoaDon, KhachHang>() {
+        colTenKhachHang.setCellFactory(column -> new TableCell<HoaDonBanVe, KhachHang>() {
             @Override
             protected void updateItem(KhachHang item, boolean empty) {
                 super.updateItem(item, empty);
@@ -150,7 +150,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
                 continue;
             }
 
-            PhieuDatVe phieuDatVe = controller.getPhieuDatVe();
+            VeDat phieuDatVe = controller.getPhieuDatVe();
             if (phieuDatVe.getTongTienDatCoc() > 0) {
                 LocalDateTime thoiGianDi = phieuDatVe.getChiTietChuyenTauDi().getThoiGianDi();
                 long gioCanHuy = phieuDatVe.getLoaiPhieuDatVe().equals("PHIEUDATCANHAN") ? 48 : 72;
@@ -178,10 +178,10 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         loadDuLieuLenTable();
     }
 
-    private void setupTableSelectionHandler(TableView<HoaDon> tableView) {
-        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HoaDon>() {
+    private void setupTableSelectionHandler(TableView<HoaDonBanVe> tableView) {
+        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HoaDonBanVe>() {
             @Override
-            public void changed(ObservableValue<? extends HoaDon> observable, HoaDon oldSelection, HoaDon newSelection) {
+            public void changed(ObservableValue<? extends HoaDonBanVe> observable, HoaDonBanVe oldSelection, HoaDonBanVe newSelection) {
                 if (newSelection != null) {
                     danhSachPhieuDatVe.clear();
                     phieuDatVeLayVeControllerList.clear();
@@ -203,7 +203,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
             return;
         int length = danhSachPhieuDatVe.size();
         for (int i = 0; i < length; i++) {
-            PhieuDatVe phieuDatVe = danhSachPhieuDatVe.get(i);
+            VeDat phieuDatVe = danhSachPhieuDatVe.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/PhieuDatVe_LayVe.fxml"));
                 Parent anchorPane = loader.load();
@@ -221,12 +221,12 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         }
     }
 
-    public void hienThiDanhSachChiTietPhieuDatVe(PhieuDatVe phieuDatVe) {
+    public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe) {
         vBoxDanhSachChiTietPhieuDatVe.getChildren().clear();
         chiTietPhieuDatVeLayVeControllerList.clear();
         if (phieuDatVe == null)
             return;
-        for (ChiTietPhieuDatVe chiTietPhieuDatVe : chiTietPhieuDatVeList) {
+        for (ChiTietVeDat chiTietPhieuDatVe : chiTietPhieuDatVeList) {
             if (chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));

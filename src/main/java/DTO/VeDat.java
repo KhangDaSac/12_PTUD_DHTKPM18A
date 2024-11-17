@@ -4,39 +4,39 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Ve {
-	private String maVe;
-	private HoaDonBanVe hoaDonBanVe;
+public class VeDat {
+	private String maVeDat;
+	private HoaDonDatVe hoaDonDatVe;
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
-	private LoaiVe loaiVe ;
-	private TrangThaiVe trangThaiVe;
+	private TrangThaiVeDat trangThaiVeDat;
+	private LoaiVe loaiVe;
 	private double tienVe;
 	private double phanTramGiamGiaVeTapThe;
+	private double tienDatCoc;
 
+	private final double PHANTRAMDATCOC = 0.2;
 	private final double PHANTRAMGIAMGIAVETAPTHE = 0.1;
 
-	public String getMaVe() {
-		return maVe;
+	public String getMaVeDat() {
+		return maVeDat;
 	}
 
-	public void setMaVe(String maVe) {
-		this.maVe = maVe;
+	public void setMaVeDat(String maVeDat) {
+		this.maVeDat = maVeDat;
 	}
 
-	public HoaDonBanVe getHoaDonBanVe() {
-		return hoaDonBanVe;
+	public HoaDonDatVe getHoaDonDatVe() {
+		return hoaDonDatVe;
 	}
 
-	public void setHoaDonBanVe(HoaDonBanVe hoaDonBanVe) {
-		this.hoaDonBanVe = hoaDonBanVe;
+	public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
+		this.hoaDonDatVe = hoaDonDatVe;
 	}
-
 
 	public ChiTietChuyenTau getThongTinGaTauDi() {
 		return thongTinGaTauDi;
 	}
-
 
 	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
 		this.thongTinGaTauDi = thongTinGaTauDi;
@@ -50,20 +50,20 @@ public class Ve {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public TrangThaiVeDat getTrangThaiVeDat() {
+		return trangThaiVeDat;
+	}
+
+	public void setTrangThaiVeDat(TrangThaiVeDat trangThaiVeDat) {
+		this.trangThaiVeDat = trangThaiVeDat;
+	}
+
 	public LoaiVe getLoaiVe() {
 		return loaiVe;
 	}
 
 	public void setLoaiVe(LoaiVe loaiVe) {
 		this.loaiVe = loaiVe;
-	}
-
-	public TrangThaiVe getTrangThaiVe() {
-		return trangThaiVe;
-	}
-
-	public void setTrangThaiVe(TrangThaiVe trangThaiVe) {
-		this.trangThaiVe = trangThaiVe;
 	}
 
 	public double getTienVe() {
@@ -82,39 +82,50 @@ public class Ve {
 		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
 	}
 
+	public double getTienDatCoc() {
+		return tienDatCoc;
+	}
+
+	public void setTienDatCoc(double tienDatCoc) {
+		this.tienDatCoc = tienDatCoc;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Ve ve = (Ve) o;
-		return Objects.equals(maVe, ve.maVe);
+		VeDat veDat = (VeDat) o;
+		return Objects.equals(maVeDat, veDat.maVeDat);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(maVe);
+		return Objects.hashCode(maVeDat);
 	}
 
-	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double tienVe) {
-		this.maVe = maVe;
-		this.hoaDonBanVe = hoaDonBanVe;
+	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, TrangThaiVeDat trangThaiVeDat, LoaiVe loaiVe, double tienVe, double tienDatCoc) {
+		this.maVeDat = maVeDat;
+		this.hoaDonDatVe = hoaDonDatVe;
 		this.thongTinGaTauDi = thongTinGaTauDi;
 		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.trangThaiVeDat = trangThaiVeDat;
 		this.loaiVe = loaiVe;
-		this.trangThaiVe = trangThaiVe;
 		this.tienVe = tienVe;
+		this.tienDatCoc = tienDatCoc;
 		if(loaiVe.equals(LoaiVe.VETAPTHE)){
 			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
 		}else{
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
-	}
 
-	public Ve(String maVe) {
-		this.maVe = maVe;
 	}
 
 	public double tienVeCuoi(){
 		return tienVe * (1 - phanTramGiamGiaVeTapThe);
+	}
+
+	public double tienDatCoc(){
+		tienDatCoc = tienVeCuoi() * PHANTRAMDATCOC;
+		return tienDatCoc;
 	}
 }

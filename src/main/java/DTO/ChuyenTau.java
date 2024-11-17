@@ -1,24 +1,15 @@
 package DTO;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 
 public class ChuyenTau {
 	private String maChuyenTau;
 	private TuyenTau tuyenTau;
-	private int soLuongCho;
-	private int soLuongChoDaBanVaDat;
+	private int soLuongChoDaBan;
+	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
-
-	public ChuyenTau(String maChuyenTau) {
-		this.maChuyenTau = maChuyenTau;
-	}
-
-	public ChuyenTau() {
-	}
 
 	public String getMaChuyenTau() {
 		return maChuyenTau;
@@ -36,21 +27,20 @@ public class ChuyenTau {
 		this.tuyenTau = tuyenTau;
 	}
 
-	public int getSoLuongCho() {
-		return soLuongCho;
+	public int getSoLuongChoDaBan() {
+		return soLuongChoDaBan;
 	}
 
-	public void setSoLuongCho(int soLuongCho) {
-		this.soLuongCho = soLuongCho;
+	public void setSoLuongChoDaBan(int soLuongChoDaBan) {
+		this.soLuongChoDaBan = soLuongChoDaBan;
 	}
 
-
-	public int getSoLuongChoDaBanVaDat() {
-		return soLuongChoDaBanVaDat;
+	public int getSoLuongChoDaDat() {
+		return soLuongChoDaDat;
 	}
 
-	public void setSoLuongChoDaBanVaDat(int soLuongChoDaBanVaDat) {
-		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
+	public void setSoLuongChoDaDat(int soLuongChoDaDat) {
+		this.soLuongChoDaDat = soLuongChoDaDat;
 	}
 
 	public int getSoLuongChoChangDaiHon() {
@@ -77,41 +67,21 @@ public class ChuyenTau {
 		return Objects.equals(maChuyenTau, chuyenTau.maChuyenTau);
 	}
 
-	public ChuyenTau(String maChuyenTau, int soLuongCho) {
-		this.maChuyenTau = maChuyenTau;
-		this.soLuongCho = soLuongCho;
-	}
-
-
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho) {
-		this.maChuyenTau = maChuyenTau;
-		this.tuyenTau = tuyenTau;
-		this.soLuongCho = soLuongCho;
-	}
-
-
-	public ChuyenTau(String maChuyenTau, int soLuongCho, int soLuongChoDaBanVaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
-		this.maChuyenTau = maChuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.soLuongChoDaBanVaDat = soLuongChoDaBanVaDat;
-		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
-		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maChuyenTau);
 	}
 
-	@Override
-	public String toString() {
-		return "ChuyenTau{" +
-				"maChuyenTau='" + maChuyenTau + '\'' +
-				", tuyenTau=" + tuyenTau +
-				", soLuongCho=" + soLuongCho +
-				", soLuongChoDaBanVaDat=" + soLuongChoDaBanVaDat +
-				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
-				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
-				'}';
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maChuyenTau = maChuyenTau;
+		this.tuyenTau = tuyenTau;
+		this.soLuongChoDaBan = soLuongChoDaBan;
+		this.soLuongChoDaDat = soLuongChoDaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
+	public ChuyenTau(String maChuyenTau) {
+		this.maChuyenTau = maChuyenTau;
 	}
 }

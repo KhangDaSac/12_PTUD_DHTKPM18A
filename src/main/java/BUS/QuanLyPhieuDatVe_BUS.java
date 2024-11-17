@@ -2,29 +2,29 @@ package BUS;
 
 import DAO.ChiTietPhieuDatVe_DAO;
 import DAO.PhieuDatVe_DAO;
-import DTO.ChiTietPhieuDatVe;
-import DTO.PhieuDatVe;
+import DTO.ChiTietVeDat;
+import DTO.VeDat;
 
 import java.util.ArrayList;
 
 public class QuanLyPhieuDatVe_BUS {
-    public static ArrayList<PhieuDatVe> getDanhSachPhieuDatVeTheoMaHoaDon(String maHoaDon){
+    public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHoaDon){
         return PhieuDatVe_DAO.getDanhSachPhieuDatVeTheoMaHoaDon(maHoaDon);
     }
 
-    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
+    public static ArrayList<ChiTietVeDat> getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maHD){
         return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(maHD);
     }
 
-    public static boolean capNhatTrangThaiPhieuDatVe(ArrayList<PhieuDatVe> danhSachPhieuDatVe, String trangThai){
-        for(PhieuDatVe phieuDatVe : danhSachPhieuDatVe){
+    public static boolean capNhatTrangThaiPhieuDatVe(ArrayList<VeDat> danhSachPhieuDatVe, String trangThai){
+        for(VeDat phieuDatVe : danhSachPhieuDatVe){
             if(!PhieuDatVe_DAO.capNhatTrangThaiPhieuDatVe(phieuDatVe.getMaPhieuDatVe(), trangThai)){
                 return false;
             }
         }
         return true;
     }
-    public static ArrayList<ChiTietPhieuDatVe> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
+    public static ArrayList<ChiTietVeDat> getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(String maPDV){
         return ChiTietPhieuDatVe_DAO.getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(maPDV);
     }
     public static void huyPhieuDatVe(String maPhieuDatVe){

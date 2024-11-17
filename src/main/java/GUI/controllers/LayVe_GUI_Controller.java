@@ -8,7 +8,6 @@ import DTO.*;
 import GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.HoaDon_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.PhieuDatVe_LayVe_Controller;
-import GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
-import utils.ShowMessagesDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -85,10 +83,10 @@ public class LayVe_GUI_Controller {
     private ArrayList<PhieuDatVe_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<PhieuDatVe_LayVe_Controller>();
     private ArrayList<ChiTietPhieuDatVe_LayVe_Controller> chiTietPhieuDatVeLayVeControllerList = new ArrayList<ChiTietPhieuDatVe_LayVe_Controller>();
 
-    private ArrayList<HoaDon> hoaDonList;
-    private ArrayList<PhieuDatVe> phieuDatVeList;
-    private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList;
-    private ArrayList<PhieuDatVe> phieuDatVeDangChon = new ArrayList<PhieuDatVe>();
+    private ArrayList<HoaDonBanVe> hoaDonList;
+    private ArrayList<VeDat> phieuDatVeList;
+    private ArrayList<ChiTietVeDat> chiTietPhieuDatVeList;
+    private ArrayList<VeDat> phieuDatVeDangChon = new ArrayList<VeDat>();
 
 
     @FXML
@@ -166,7 +164,7 @@ public class LayVe_GUI_Controller {
             return;
         int length = hoaDonList.size();
         for(int i = 0; i < length; i++){
-            HoaDon hoaDon = hoaDonList.get(i);
+            HoaDonBanVe hoaDon = hoaDonList.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/HoaDon_LayVe.fxml"));
                 Parent anchorPane = loader.load();
@@ -208,7 +206,7 @@ public class LayVe_GUI_Controller {
             return;
         int length = phieuDatVeList.size();
         for(int i = 0; i < length; i++){
-            PhieuDatVe phieuDatVe = phieuDatVeList.get(i);
+            VeDat phieuDatVe = phieuDatVeList.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/PhieuDatVe_LayVe.fxml"));
                 Parent anchorPane = loader.load();
@@ -226,12 +224,12 @@ public class LayVe_GUI_Controller {
         }
     }
 
-    public void hienThiDanhSachChiTietPhieuDatVe(PhieuDatVe phieuDatVe){
+    public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe){
         vboxChiTietPhieuDatVe.getChildren().clear();
         chiTietPhieuDatVeLayVeControllerList.clear();
         if(phieuDatVe == null)
             return;
-        for(ChiTietPhieuDatVe chiTietPhieuDatVe : chiTietPhieuDatVeList){
+        for(ChiTietVeDat chiTietPhieuDatVe : chiTietPhieuDatVeList){
             if(chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
@@ -300,7 +298,7 @@ public class LayVe_GUI_Controller {
                     maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(veList.getLast());
                 }
 
-                PhieuDatVe phieuDatVe = controller.getPhieuDatVe();
+                VeDat phieuDatVe = controller.getPhieuDatVe();
 
                 LoaiVe loaiVe = phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATCANHAN) ? LoaiVe.VECANHAN :
                                 phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATTAPTHE) ? LoaiVe.VETAPTHE : null;
@@ -319,7 +317,7 @@ public class LayVe_GUI_Controller {
 
                 for(ChiTietPhieuDatVe_LayVe_Controller controller2 : chiTietPhieuDatVeLayVeControllerList){
                     if(controller.getPhieuDatVe().equals(controller2.getChiTietPhieuDatVe().getPhieuDatVe())){
-                        ChiTietPhieuDatVe chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
+                        ChiTietVeDat chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
                         ChiTietVe chiTietVe = new ChiTietVe(
                                 chiTietPhieuDatVe.getGiaCho(),
                                 chiTietPhieuDatVe.getSoTienGiamGia(),

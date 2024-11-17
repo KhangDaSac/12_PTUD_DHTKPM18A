@@ -14,38 +14,35 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.FileOutputStream;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class QuanLyHoaDon_GUI_Controller implements Initializable {
     @FXML
-    private TableColumn<HoaDon, String> colMaHoaDon;
+    private TableColumn<HoaDonBanVe, String> colMaHoaDon;
     @FXML
-    private TableColumn<HoaDon, LocalDateTime> colThoiGianLap;
+    private TableColumn<HoaDonBanVe, LocalDateTime> colThoiGianLap;
     @FXML
-    private TableColumn<HoaDon, Double> colTongTien;
+    private TableColumn<HoaDonBanVe, Double> colTongTien;
     @FXML
-    private TableColumn<HoaDon, Double> colTongTienCoc;
+    private TableColumn<HoaDonBanVe, Double> colTongTienCoc;
     @FXML
-    private TableColumn<HoaDon, Double> colTongTienTra;
+    private TableColumn<HoaDonBanVe, Double> colTongTienTra;
     @FXML
-    private TableColumn<HoaDon, LoaiHoaDon> colLoaiHoaDon;
+    private TableColumn<HoaDonBanVe, LoaiHoaDon> colLoaiHoaDon;
     @FXML
-    private TableColumn<HoaDon, TrangThaiHoaDon> colTrangThaiHoaDon;
+    private TableColumn<HoaDonBanVe, TrangThaiHoaDonDat> colTrangThaiHoaDon;
     @FXML
-    private TableColumn<HoaDon, CaLamViec> colMaCaLamViec;
+    private TableColumn<HoaDonBanVe, CaLamViec> colMaCaLamViec;
     @FXML
-    private TableColumn<HoaDon, KhachHang> colMaKhachHang;
+    private TableColumn<HoaDonBanVe, KhachHang> colMaKhachHang;
     @FXML
-    private TableView<HoaDon> tableView;
+    private TableView<HoaDonBanVe> tableView;
     @FXML
     private TableColumn<Object, Object> colSTT;
     private Main_Controller main_controller;
@@ -66,7 +63,7 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     @FXML
     private Button btnXuatHoaDon;
 
-    private HoaDon selectedHoaDon;
+    private HoaDonBanVe selectedHoaDon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,8 +76,8 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
         colTongTienTra.setCellValueFactory(new PropertyValueFactory<>("tongTienKhachHangTra"));
         colLoaiHoaDon.setCellValueFactory(new PropertyValueFactory<>("loaiHoaDon"));
         colTrangThaiHoaDon.setCellValueFactory(new PropertyValueFactory<>("trangThaiHoaDon"));
-        colMaCaLamViec.setCellValueFactory(new PropertyValueFactory<HoaDon, CaLamViec>("caLamViec"));
-        colMaCaLamViec.setCellFactory(column -> new TableCell<HoaDon, CaLamViec>() {
+        colMaCaLamViec.setCellValueFactory(new PropertyValueFactory<HoaDonBanVe, CaLamViec>("caLamViec"));
+        colMaCaLamViec.setCellFactory(column -> new TableCell<HoaDonBanVe, CaLamViec>() {
             @Override
             protected void updateItem(CaLamViec item, boolean empty) {
                 super.updateItem(item, empty);
@@ -92,8 +89,8 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
             }
         });
 
-        colMaKhachHang.setCellValueFactory(new PropertyValueFactory<HoaDon, KhachHang>("khachHangMua"));
-        colMaKhachHang.setCellFactory(column -> new TableCell<HoaDon, KhachHang>() {
+        colMaKhachHang.setCellValueFactory(new PropertyValueFactory<HoaDonBanVe, KhachHang>("khachHangMua"));
+        colMaKhachHang.setCellFactory(column -> new TableCell<HoaDonBanVe, KhachHang>() {
             @Override
             protected void updateItem(KhachHang item, boolean empty) {
                 super.updateItem(item, empty);
@@ -125,8 +122,8 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
         cbmLoaiHoaDon.setItems(loaiHoaDon);
     }
 
-    public ObservableList<HoaDon> getHoaDonData() {
-        ArrayList<HoaDon> hoaDonList = new HoaDon_DAO().getDanhSachHoaDon();
+    public ObservableList<HoaDonBanVe> getHoaDonData() {
+        ArrayList<HoaDonBanVe> hoaDonList = new HoaDon_DAO().getDanhSachHoaDon();
         return FXCollections.observableArrayList(hoaDonList);
     }
 
@@ -217,7 +214,7 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
             }
         }
 
-        ArrayList<HoaDon> hoaDonList = new HoaDon_DAO().getDSHoaDonTheoCacTieuChi(
+        ArrayList<HoaDonBanVe> hoaDonList = new HoaDon_DAO().getDSHoaDonTheoCacTieuChi(
                 txtMaHoaDon.getText().isEmpty() ? null : txtMaHoaDon.getText(),
                 txtCCCD.getText().isEmpty() ? null : txtCCCD.getText(),
                 txtMaCaLamViec.getText().isEmpty() ? null : txtMaCaLamViec.getText(),

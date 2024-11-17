@@ -15,8 +15,6 @@ public class ChiTietChuyenTau {
 		this.chuyenTau = chuyenTau;
 	}
 
-
-
 	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
 		this.chuyenTau = chuyenTau;
 		this.gaTau = gaTau;

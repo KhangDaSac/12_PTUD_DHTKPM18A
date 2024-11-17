@@ -6,7 +6,6 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Ve_DAO {
@@ -62,7 +61,7 @@ public class Ve_DAO {
             ResultSet rs = statement.executeQuery();
             while( rs.next()){
                 String ma = rs.getString("maVe");
-                HoaDon maHoaHon = new HoaDon(rs.getString("maHoaDon")) ;
+                HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDon")) ;
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 GaTau gaDi = new GaTau(rs.getString("maGaDi"));
                 GaTau gaDen= new GaTau(rs.getString("maGaDen"));
