@@ -7,7 +7,7 @@ public class HoaDonHuyVe {
 	private String maHoaDonHuyVe;
 	private LocalDateTime thoiGianHuyVe;
 	private KhachHang khachHangHuyVe;
-	private double tongTienVeHuy;
+	private double tongTienCuoi;
 	private CaLamViec caLamViec;
 
 	public String getMaHoaDonHuyVe() {
@@ -34,12 +34,12 @@ public class HoaDonHuyVe {
 		this.khachHangHuyVe = khachHangHuyVe;
 	}
 
-	public double getTongTienVeHuy() {
-		return tongTienVeHuy;
+	public double getTongTienCuoi() {
+		return tongTienCuoi;
 	}
 
-	public void setTongTienVeHuy(double tongTienVeHuy) {
-		this.tongTienVeHuy = tongTienVeHuy;
+	public void setTongTienCuoi(double tongTienCuoi) {
+		this.tongTienCuoi = tongTienCuoi;
 	}
 
 	public CaLamViec getCaLamViec() {
