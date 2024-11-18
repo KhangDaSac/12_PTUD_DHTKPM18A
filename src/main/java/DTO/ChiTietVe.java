@@ -74,6 +74,10 @@ public class ChiTietVe {
 		this.ve = ve;
 	}
 
+	public double giamGia(){
+		return giaCho * phanTramGiamGia;
+	}
+
 	public double thanhTienChiTietVe(){
 		return giaCho * (1 - phanTramGiamGia);
 	}

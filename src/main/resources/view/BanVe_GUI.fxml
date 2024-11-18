@@ -115,9 +115,9 @@
                   </JFXButton>
                </children>
             </HBox>
-            <AnchorPane layoutX="65.0" layoutY="80.0" prefHeight="235.0" prefWidth="640.0" AnchorPane.topAnchor="80.0">
+            <AnchorPane layoutX="14.0" layoutY="80.0" prefHeight="235.0" prefWidth="740.0" AnchorPane.topAnchor="80.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fx:id="scpDanhSachChuyenTau" hbarPolicy="NEVER" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <HBox fx:id="hboxDanhSachChuyenTau" prefHeight="230.0" styleClass="h-box" stylesheets="@../css/BanVe_GUI.css">
                            <children>
@@ -397,9 +397,9 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="70.0" layoutY="322.0" prefHeight="60.0" prefWidth="630.0" AnchorPane.topAnchor="322.0">
+            <AnchorPane layoutX="14.0" layoutY="322.0" prefHeight="60.0" prefWidth="740.0" AnchorPane.topAnchor="322.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fx:id="scpDanhSachToaTau" hbarPolicy="NEVER" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <HBox fx:id="hboxDanhSachToaTau" prefHeight="60.0" styleClass="h-box">
                            <children>

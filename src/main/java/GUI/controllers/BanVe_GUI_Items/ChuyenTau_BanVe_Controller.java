@@ -15,64 +15,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChuyenTau_BanVe_Controller implements Initializable {
-    public ImageView getImvChuyenTau() {
-        return imvChuyenTau;
-    }
-
-    public void setImvChuyenTau(ImageView imvChuyenTau) {
-        this.imvChuyenTau = imvChuyenTau;
-    }
-
-    public Label getLblChangDaiHon() {
-        return lblChangDaiHon;
-    }
-
-    public void setLblChangDaiHon(Label lblChangDaiHon) {
-        this.lblChangDaiHon = lblChangDaiHon;
-    }
-
-    public Label getLblConTrong() {
-        return lblConTrong;
-    }
-
-    public void setLblConTrong(Label lblConTrong) {
-        this.lblConTrong = lblConTrong;
-    }
-
-    public Label getLblDaDatVeBan() {
-        return lblDaDatVeBan;
-    }
-
-    public void setLblDaDatVeBan(Label lblDaDatVeBan) {
-        this.lblDaDatVeBan = lblDaDatVeBan;
-    }
-
-    public Label getLblMaChuyenTau() {
-        return lblMaChuyenTau;
-    }
-
-    public void setLblMaChuyenTau(Label lblMaChuyenTau) {
-        this.lblMaChuyenTau = lblMaChuyenTau;
-    }
-
-    public Label getLblThoiGianDen() {
-        return lblThoiGianDen;
-    }
-
-    public void setLblThoiGianDen(Label lblThoiGianDen) {
-        this.lblThoiGianDen = lblThoiGianDen;
-    }
-
-    public Label getLblThoiGianDi() {
-        return lblThoiGianDi;
-    }
-
-    public void setLblThoiGianDi(Label lblThoiGianDi) {
-        this.lblThoiGianDi = lblThoiGianDi;
-    }
-
-    public static String trang;
-
     public BanVe_GUI_Controller getBanVe_GUI_Controller() {
         return banVe_GUI_Controller;
     }
@@ -81,9 +23,6 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
         this.banVe_GUI_Controller = banVe_GUI_Controller;
     }
 
-    public static void loaiTrang(String link){
-        trang = link;
-    }
 
     @FXML
     private ImageView imvChuyenTau;
@@ -95,7 +34,10 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
     private Label lblConTrong;
 
     @FXML
-    private Label lblDaDatVeBan;
+    private Label lblDaBan;
+
+    @FXML
+    private Label lblDaDat;
 
     @FXML
     private Label lblMaChuyenTau;
@@ -108,25 +50,6 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
     private ChuyenTau chuyenTau;
-    private ChiTietChuyenTau chiTietChuyenTauDi;
-    private ChiTietChuyenTau chiTietChuyenTauDen;
-
-    public ChiTietChuyenTau getChiTietChuyenTauDi() {
-        return chiTietChuyenTauDi;
-    }
-
-    public void setChiTietChuyenTauDi(ChiTietChuyenTau chiTietChuyenTauDi) {
-        this.chiTietChuyenTauDi = chiTietChuyenTauDi;
-    }
-
-    public ChiTietChuyenTau getChiTietChuyenTauDen() {
-        return chiTietChuyenTauDen;
-    }
-
-    public void setChiTietChuyenTauDen(ChiTietChuyenTau chiTietChuyenTauDen) {
-        this.chiTietChuyenTauDen = chiTietChuyenTauDen;
-    }
-
     private int soThuTu;
 
     public ChuyenTau getChuyenTau() {
@@ -173,9 +96,10 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
         }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
-        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
-        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
-        lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThongTinGaTauDi().getThoiGianDi()));
+        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThongTinGaTauDen().getThoiGianDen()));
+        lblDaBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
+        lblDaDat.setText(String.valueOf(chuyenTau.getSoLuongChoDaDat()));
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
         lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
     }

@@ -120,6 +120,10 @@ public class VeDat {
 
 	}
 
+	public double giamGiaVeTapThe(){
+		return tienVe * phanTramGiamGiaVeTapThe;
+	}
+
 	public double tienVeCuoi(){
 		return tienVe * (1 - phanTramGiamGiaVeTapThe);
 	}

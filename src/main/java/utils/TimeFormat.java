@@ -8,7 +8,7 @@ public class TimeFormat {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
     private static DateTimeFormatter formatterLocalDateSQL = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static DateTimeFormatter formatterLocalDateTimeSQL = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
-    private static DateTimeFormatter formatterLocalDateNumber = DateTimeFormatter.ofPattern("ddMMyy");
+    private static DateTimeFormatter formatterLocalDateNumber = DateTimeFormatter.ofPattern("ddMMyyyy");
     public static String formatLocalDateTime(LocalDateTime localDateTime){
         return localDateTime.format(formatter);
     }

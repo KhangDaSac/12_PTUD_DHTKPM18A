@@ -18,9 +18,7 @@ public class QuanLyChuyenTau_BUS {
             System.out.println(ngayDi);
             throw new Exception("Ngày đi không hợp lệ");
         }
-        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();
-        ArrayList<ChuyenTau> chuyenTauList = chuyenTau_DAO.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
-        return chuyenTauList;
+        return ChuyenTau_DAO.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
     }
 
     public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){

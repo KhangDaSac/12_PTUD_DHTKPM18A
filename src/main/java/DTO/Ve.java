@@ -124,6 +124,10 @@ public class Ve {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public double giamGiaVeTapThe(){
+		return tienVe * phanTramGiamGiaVeTapThe;
+	}
+
 	public double tienVeCuoi(){
 		return tienVe * (1 - phanTramGiamGiaVeTapThe);
 	}

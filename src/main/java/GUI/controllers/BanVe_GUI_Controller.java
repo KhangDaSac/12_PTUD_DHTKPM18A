@@ -70,6 +70,13 @@ public class BanVe_GUI_Controller implements Initializable {
     private HBox hboxDanhSachToaTau;
 
     @FXML
+    private ScrollPane scpDanhSachChuyenTau;
+
+    @FXML
+    private ScrollPane scpDanhSachToaTau;
+
+
+    @FXML
     private TextField txtTongTien;
 
     @FXML
@@ -152,7 +159,6 @@ public class BanVe_GUI_Controller implements Initializable {
 
     private int trangChuyenTauHienTai;
 
-    private int trangToaTauHienTai;
 
     public int getChuyenTauDangChon() {
         return chuyenTauDangChon;
@@ -227,8 +233,7 @@ public class BanVe_GUI_Controller implements Initializable {
             gaDi = gaTauDi;
             gaDen = gaTauDen;
             chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
-            trangChuyenTauHienTai = 1;
-            hienThiDanhSachChuyenTau(chuyenTauList, 0, 4);
+            hienThiDanhSachChuyenTau(chuyenTauList);
 
 
         } catch (Exception e) {
@@ -240,34 +245,33 @@ public class BanVe_GUI_Controller implements Initializable {
 
         try {
             toaTauList = QuanLyChuyenTau_BUS.getDanhSachToaTau(maChuyenTau, gaDi.getMaGaTau(), gaDen.getMaGaTau());
-            trangToaTauHienTai = 1;
             hienThiDanhSachToa(toaTauList, 0, 9);
         } catch (Exception e) {
 
         }
     }
 
-    public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList, int batDau, int ketThuc) throws IOException {
+    public void hienThiDanhSachChuyenTau(ArrayList<ChuyenTau> chuyenTauList) throws IOException {
         hboxDanhSachChuyenTau.getChildren().clear();
         hboxDanhSachToaTau.getChildren().clear();
         anpDanhSachCho.setVisible(false);
         grpDanhSachCho.setVisible(false);
         if(chuyenTauList.isEmpty()){
-            main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
+            //main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
+            System.out.println("Khong tim thay");
 
             return;
         }
         chuyenTauControllerList.clear();
-        for (int i = batDau; i < ketThuc; i++){
+        int length = chuyenTauList.size();
+        for (int i = 0; i < length; i++){
             ChuyenTau chuyenTau = chuyenTauList.get(i);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau_BanVe.fxml"));
             Parent anchorPane = loader.load();
             ChuyenTau_BanVe_Controller controller = loader.getController();
             chuyenTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
             controller.setChuyenTau(chuyenTau);
-            controller.setChiTietChuyenTauDi(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi));
-            controller.setChiTietChuyenTauDen(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen));
             controller.khoiTao();
 
 
@@ -276,8 +280,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
             hboxDanhSachChuyenTau.getChildren().add(anchorPane);
         }
-        chuyenTauDangChon = 0;
-        chuyenTauControllerList.getFirst().chonChuyenTau();
+        //chuyenTauControllerList.getFirst().chonChuyenTau();
     }
 
 
@@ -367,7 +370,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
         choControllerList.clear();
         ChuyenTau_BanVe_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon - 4 * (trangChuyenTauHienTai - 1));
-        double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
+        double doDaiChang = controller.getChuyenTau().getThongTinGaTauDen().getSoKm() - controller.getChuyenTau().getThongTinGaTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho.fxml"));
@@ -393,9 +396,15 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        scpDanhSachChuyenTau.setOnScroll(event -> {
+            double deltaX = event.getDeltaY();
+            scpDanhSachChuyenTau.setHvalue(scpDanhSachChuyenTau.getHvalue() - deltaX * 10 / scpDanhSachChuyenTau.getContent().getBoundsInLocal().getWidth());
+            event.consume();
+        });
+
         Cho_BanVe_Controller.loaiTrang("BanVe_GUI.fxml"); // để trang Cho_Controller biết trang nào đang gọi
         ToaTau_BanVe_Controller.loaiTrang("BanVe_GUI.fxml"); // để trang ToaTau_Controller biết trang nào đang gọi
-        ChuyenTau_BanVe_Controller.loaiTrang("BanVe_GUI.fxml");
         gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();
         cmbGaTauDen.getItems().clear();
         cmbGaTauDi.getItems().clear();
@@ -406,7 +415,7 @@ public class BanVe_GUI_Controller implements Initializable {
         cmbGaTauDi.getSelectionModel().select(42);
         cmbGaTauDen.getSelectionModel().select(17);
 
-        dapNgayKhoiHanh.setValue(LocalDate.of(2024, 11, 4));
+        dapNgayKhoiHanh.setValue(LocalDate.of(2024, 12, 13));
 
         anpDanhSachCho.setVisible(false);
         grpDanhSachCho.setVisible(false);
@@ -512,8 +521,8 @@ public class BanVe_GUI_Controller implements Initializable {
     public boolean kiemTraTrungChangTrongGioVe(Cho cho){
         if(danhSachChiTietVe.isEmpty())
             return false;
-        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDi().getThuTuGa();
-        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDen().getThuTuGa();
+        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDi().getThuTuGa();
+        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDen().getThuTuGa();
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
             if(chiTietVe.getCho().equals(cho)){
                 int thuTuGaDiCTV = chiTietVe.getVe().getThongTinGaTauDi().getThuTuGa();
@@ -539,8 +548,8 @@ public class BanVe_GUI_Controller implements Initializable {
             for(Cho cho : choChonList){
 
                 ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
-                ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
-                ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
+                ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDi();
+                ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDen();
                 String maVeMoi = "";
                 if(danhSachVe.isEmpty()){
                     maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
@@ -573,8 +582,8 @@ public class BanVe_GUI_Controller implements Initializable {
                 return;
             }
             ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
-            ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
-            ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
+            ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDi();
+            ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDen();
             String maVeMoi = "";
             if(danhSachVe.isEmpty()){
                 maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
