@@ -22,8 +22,7 @@ public class QuanLyChuyenTau_BUS {
     }
 
     public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){
-        ToaTau_DAO toaTau_DAO = new ToaTau_DAO();
-        ArrayList<ToaTau> toaTauList = toaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
+        ArrayList<ToaTau> toaTauList = ToaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
         return toaTauList;
     }
 
@@ -35,9 +34,7 @@ public class QuanLyChuyenTau_BUS {
     }
 
     public static ArrayList<Cho> getDanhSachChoTheoMaToaTau(String maToaTau, String maGaDi, String maGaDen){
-        Cho_DAO cho_DAO = new Cho_DAO();
-        ArrayList<Cho> choList = cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
-        return choList;
+        return Cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
     }
 
     public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(ChuyenTau chuyenTau, GaTau gaTau){

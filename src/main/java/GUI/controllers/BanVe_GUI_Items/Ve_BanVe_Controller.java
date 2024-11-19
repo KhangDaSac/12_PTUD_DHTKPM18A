@@ -1,5 +1,6 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.ChiTietVe;
 import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
@@ -15,6 +16,7 @@ import utils.TimeFormat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Ve_BanVe_Controller implements Initializable {
@@ -31,13 +33,25 @@ public class Ve_BanVe_Controller implements Initializable {
     private HBox hboxGiamGiaVeTapThe;
 
     @FXML
-    private Label lblGiaVe;
+    private Label lblCCCD;
+
+    @FXML
+    private Label lblCho;
+
+    @FXML
+    private Label lblGiaCho;
 
     @FXML
     private Label lblGiaVeCuoi;
 
     @FXML
-    private Label lblGiamGiaVeTapThe;
+    private Label lblGiamGiaLoaiKhachHang;
+
+    @FXML
+    private Label lblGiamGiaLoaiKhachHang1;
+
+    @FXML
+    private Label lblLoaiKhachHang;
 
     @FXML
     private Label lblMaChuyenTau;
@@ -52,12 +66,21 @@ public class Ve_BanVe_Controller implements Initializable {
     private Label lblTenGaDi;
 
     @FXML
+    private Label lblTenKhachHang;
+
+    @FXML
     private Label lblThoiGianDi;
 
     @FXML
-    private VBox vboxDanhSachThoiTin;
+    private Label lblToa;
 
+    @FXML
+    private VBox vboxDanhDachChoVeTapThe;
+
+    @FXML
+    private VBox vboxDanhSachThongTin;
     private Ve ve;
+    private ArrayList<ChiTietVe> danhSachChiTietVe;
 
     private int soThuTu;
 
@@ -108,15 +131,15 @@ public class Ve_BanVe_Controller implements Initializable {
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
 
 
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThoiTin.getChildren().remove(hboxGiaVeCuoi);
-            vboxDanhSachThoiTin.getChildren().remove(hboxGiamGiaVeTapThe);
+            vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
+            vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
 
         }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){

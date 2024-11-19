@@ -16,7 +16,7 @@ public class QuanLyVe_BUS {
 
         String maVeCu = ve_DAO.layMaVeLonNhatCuaNgayHienTai(ngayHienTaiString);
         if(maVeCu == null){
-            return "V" + ngayHienTaiString + "000001";
+            return "VE" + ngayHienTaiString + "00000001";
         }
 
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
@@ -27,8 +27,7 @@ public class QuanLyVe_BUS {
         return maVeMoi;
     }
 
-    public static String taoMaVeTiepTheo(Ve ve){
-        String maVeCu = ve.getMaVe();
+    public static String taoMaVeTiepTheo(String maVeCu){
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
         String phanSau = maVeCu.substring(maVeCu.length() - 6);
         String maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);

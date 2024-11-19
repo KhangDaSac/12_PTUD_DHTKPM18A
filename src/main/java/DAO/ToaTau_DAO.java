@@ -12,8 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ToaTau_DAO {
+    public static Connection con = ConnectDB.getInstance().getConnection();;
     public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
-        Connection con = ConnectDB.getInstance().getConnection();
         ToaTau toaTau = null;
         try {
             String query = "select * from ToaTau where maChuyenTau = ?";
@@ -56,24 +56,23 @@ public class ToaTau_DAO {
     }
 
 
-    public ArrayList<ToaTau> getDanhSachToaTauTheoChuyen(String maChuyen, String maGaDi, String maGaDen) {
-        Connection con = ConnectDB.getInstance().getConnection();
+    public static ArrayList<ToaTau> getDanhSachToaTauTheoChuyen(String maChuyen, String maGaDi, String maGaDen) {
         ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
         try {
-            String query = "exec dbo.UDP_TimDanhSachToaTauTheoMaChuyenTau ?, ?, ?";
+            String query = "exec dbo.UDP_GetDanhSacToaTauTheo_GaDi_GaDen_MaChuyen ?, ?, ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maChuyen);
-            statement.setString(2, maGaDi);
-            statement.setString(3, maGaDen);
+            statement.setString(1, maGaDi);
+            statement.setString(2, maGaDen);
+            statement.setString(3, maChuyen);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maToaTau = rs.getString("maToaTau");
                 int thuTuToa = rs.getInt("thuTuToa");
-                int soLuongChoDanhChoChangDaiHon = rs.getInt("soLuongChoDanhChoChangDaiHon");
-                int soLuongChoDaDat = rs.getInt("soLuongChoDaDat");
-                int soLuongChoDaBan = rs.getInt("soLuongChoDaBan");
-                int soLuongChoTrong = rs.getInt("soLuongChoTrong");
-                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGia"));
+                int soLuongChoDanhChoChangDaiHon = rs.getInt("danhChoChangDaiHon");
+                int soLuongChoDaDat = rs.getInt("daDat");
+                int soLuongChoDaBan = rs.getInt("daBan");
+                int soLuongChoTrong = rs.getInt("conTrong");
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToaTau"));
                 ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 ToaTau toaTau = new ToaTau(
                         maToaTau,
@@ -83,7 +82,8 @@ public class ToaTau_DAO {
                         soLuongChoDaBan,
                         soLuongChoDaDat,
                         soLuongChoDanhChoChangDaiHon,
-                        soLuongChoTrong);
+                        soLuongChoTrong
+                );
                 danhSachToaTau.add(toaTau);
             }
         } catch (Exception e) {

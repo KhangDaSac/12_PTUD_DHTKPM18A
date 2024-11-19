@@ -397,7 +397,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="322.0" prefHeight="60.0" prefWidth="740.0" AnchorPane.topAnchor="322.0">
+            <AnchorPane layoutX="14.0" layoutY="322.0" prefHeight="65.0" prefWidth="740.0" AnchorPane.topAnchor="322.0">
                <children>
                   <ScrollPane fx:id="scpDanhSachToaTau" hbarPolicy="NEVER" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
@@ -577,9 +577,9 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane maxWidth="770.0" prefHeight="180.0" prefWidth="750.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="390.0">
+            <AnchorPane layoutX="14.4" maxWidth="770.0" prefHeight="180.0" prefWidth="728.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="390.0">
                <children>
-                  <HBox prefHeight="180.0" prefWidth="750.0" style="-fx-alignment: center;">
+                  <HBox prefHeight="180.0" prefWidth="740.0" style="-fx-alignment: center;">
                      <children>
                         <VBox style="-fx-alignment: center;">
                            <children>

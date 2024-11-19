@@ -18,9 +18,9 @@ public class QuanLyHoaDon_BUS {
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
-        String maHoaDonCu = hoaDon_dao.layMaHoaDonLonNhatCuaNgayHienTai(ngayHienTaiString);
+        String maHoaDonCu = hoaDon_dao.layMaHoaDonBanVeLonNhatCuaNgayHienTai(ngayHienTaiString);
         if(maHoaDonCu == null){
-            return "HD" + ngayHienTaiString + "000001";
+            return "HDBV" + ngayHienTaiString + "000001";
         }
 
         String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);

@@ -71,16 +71,16 @@ public class HoaDonBanVe_DAO {
 //        }
 //        return dsHoaDon;
 //    }
-    public String layMaHoaDonLonNhatCuaNgayHienTai(String ngayHienTai){
+    public String layMaHoaDonBanVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maHoaDonLonNhat = null;
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query = "select max(maHoaDon) as maHoaDon from HoaDon where maHoaDon like 'HD' + ? + '%'";
+            String query = "select max(maHoaDonBanVe) as maHoaDonBanVe from HoaDonBanVe where maHoaDon like 'HD' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                maHoaDonLonNhat = rs.getString("maHoaDon");
+                maHoaDonLonNhat = rs.getString("maHoaDonBanVe");
             }
         } catch (Exception e) {
             e.printStackTrace();

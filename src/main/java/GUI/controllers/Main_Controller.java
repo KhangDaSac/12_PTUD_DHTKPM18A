@@ -447,8 +447,7 @@ public class Main_Controller implements Initializable {
         BanVe_GUI_Controller banVe_gui_controller = loader.getController();
         banVe_gui_controller.setMain_Controller(this);
         banVe_gui_controller.setHoaDonBanVe(hoaDonBanVe);
-        banVe_gui_controller.setDanhSachVe(danhSachVe);
-        banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
+        //banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

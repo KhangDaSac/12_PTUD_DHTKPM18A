@@ -18,7 +18,6 @@ public class Cho_BanVe_Controller implements Initializable {
     @FXML
     private JFXButton btnCho;
 
-    private static String trang;
     private Cho cho;
     private BanVe_GUI_Controller banVe_GUI_controller;
     private boolean daThemVaoGio;
@@ -33,7 +32,7 @@ public class Cho_BanVe_Controller implements Initializable {
     }
 
     private Tooltip tooltip;
-    String giaCho;
+    private String giaCho;
 
     public boolean isDaThemVaoGio() {
         return daThemVaoGio;
@@ -59,9 +58,6 @@ public class Cho_BanVe_Controller implements Initializable {
         this.banVe_GUI_controller = banVe_GUI_controller;
     }
 
-    public static void loaiTrang(String link){
-        trang = link;
-    }
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
@@ -102,7 +98,11 @@ public class Cho_BanVe_Controller implements Initializable {
         switch (cho.getTrangThaiCho()){
             case DABAN -> {
                 btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDaDatHoacBan");
+                btnCho.getStyleClass().add("choDaBan");
+            }
+            case DADAT -> {
+                btnCho.getStyleClass().clear();
+                btnCho.getStyleClass().add("choDaDat");
             }
             case DANHCHOCHANGDAIHON -> {
                 btnCho.getStyleClass().clear();
@@ -142,7 +142,10 @@ public class Cho_BanVe_Controller implements Initializable {
                     trangThaiCho = "Còn trống";
                 }
                 case TrangThaiCho.DABAN -> {
-                    trangThaiCho = "Đã đặt hoặc bán";
+                    trangThaiCho = "Đã bán";
+                }
+                case DADAT -> {
+                    trangThaiCho = "Đã đặt";
                 }
                 case TrangThaiCho.DANHCHOCHANGDAIHON -> {
                     trangThaiCho = "Dành cho chặng dài hơn";

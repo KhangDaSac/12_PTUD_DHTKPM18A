@@ -12,6 +12,8 @@ public class ToaTau {
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
 
+
+
 	public String getMaToaTau() {
 		return maToaTau;
 	}
@@ -98,6 +100,13 @@ public class ToaTau {
 		this.soLuongChoDaDat = soLuongChoDaDat;
 		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
+	public ToaTau(String maToaTau, ChuyenTau chuyenTau, int thuTuToa, LoaiToaTau loaiToaTau) {
+		this.maToaTau = maToaTau;
+		this.thuTuToa = thuTuToa;
+		this.loaiToaTau = loaiToaTau;
+		this.chuyenTau = chuyenTau;
 	}
 
 	public ToaTau(String maToaTau, int thuTuToa, LoaiToaTau loaiToaTau) {

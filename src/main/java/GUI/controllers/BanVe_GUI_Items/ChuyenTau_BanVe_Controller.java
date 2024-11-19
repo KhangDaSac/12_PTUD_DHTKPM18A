@@ -23,7 +23,6 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
         this.banVe_GUI_Controller = banVe_GUI_Controller;
     }
 
-
     @FXML
     private ImageView imvChuyenTau;
 
@@ -60,7 +59,6 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
         this.chuyenTau = chuyenTau;
 
     }
-
 
     public int getSoThuTu() {
         return soThuTu;
