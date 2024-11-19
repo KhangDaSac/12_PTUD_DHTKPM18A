@@ -75,7 +75,7 @@ public class HoaDonBanVe_DAO {
         String maHoaDonLonNhat = null;
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query = "select max(maHoaDonBanVe) as maHoaDonBanVe from HoaDonBanVe where maHoaDon like 'HD' + ? + '%'";
+            String query = "select max(maHoaDonBanVe) as maHoaDonBanVe from HoaDonBanVe where maHoaDonBanVe like 'HD' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();

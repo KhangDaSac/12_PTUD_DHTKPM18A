@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" minHeight="160.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller">
+<AnchorPane fx:id="anpVe" minHeight="320.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -126,7 +126,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblTenKhachHang" prefHeight="30.0" prefWidth="250.0" text="Nguyễn Văn A">
+                                    <Label fx:id="lblTenKhachHang" prefHeight="30.0" prefWidth="250.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -140,7 +140,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="250.0" text="012345678900">
+                                    <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="250.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -154,7 +154,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblLoaiKhachHang" prefHeight="30.0" prefWidth="250.0" text="Thông thường">
+                                    <Label fx:id="lblLoaiKhachHang" prefHeight="30.0" prefWidth="250.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -168,7 +168,7 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblGiamGiaLoaiKhachHang" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                                    <Label fx:id="lblGiamGiaLoaiKhachHang" prefHeight="30.0" prefWidth="250.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -184,7 +184,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiamGiaLoaiKhachHang1" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
+                              <Label fx:id="lblGiamGiaVeTapThe" prefHeight="30.0" prefWidth="250.0" text="871,000 VNĐ">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

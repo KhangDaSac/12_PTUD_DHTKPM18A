@@ -223,8 +223,8 @@ public class LayVe_GUI_Controller {
         vboxChiTietPhieuDatVe.getChildren().clear();
         if(phieuDatVe == null)
             return;
-        for(ChiTietVeDat chiTietPhieuDatVe : chiTietPhieuDatVeList){
-            if(chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)){
+        for(ChiTietVeDat chiTietVeDat : chiTietPhieuDatVeList){
+            if(chiTietVeDat.getVeDat().equals(phieuDatVe)){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
                     Parent anchorPane = loader.load();

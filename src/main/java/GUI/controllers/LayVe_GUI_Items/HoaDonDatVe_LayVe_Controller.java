@@ -71,8 +71,8 @@ public class HoaDonDatVe_LayVe_Controller {
         lblMaHoaDon.setText(hoaDonDatVe.getMaHoaDonDatVe());
         lblThoiGianLap.setText(TimeFormat.formatLocalDateTime(hoaDonDatVe.getThoiGianLap()));
         lblMaCaLam.setText(hoaDonDatVe.getCaLamViec().getMaCaLamViec());
-        lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.getTongTienCuoi()));
-        lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.getTongTienDatCoc()));
+        lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
+        lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienDatCoc()));
         lblSoThuTu.setText(String.valueOf(soThuTu + 1));
         dangChon = false;
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());

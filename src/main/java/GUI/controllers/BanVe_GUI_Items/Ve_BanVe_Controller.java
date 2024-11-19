@@ -1,6 +1,7 @@
 package GUI.controllers.BanVe_GUI_Items;
 
 import DTO.ChiTietVe;
+import DTO.KhachHang;
 import DTO.LoaiVe;
 import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
@@ -48,7 +49,7 @@ public class Ve_BanVe_Controller implements Initializable {
     private Label lblGiamGiaLoaiKhachHang;
 
     @FXML
-    private Label lblGiamGiaLoaiKhachHang1;
+    private Label lblGiamGiaVeTapThe;
 
     @FXML
     private Label lblLoaiKhachHang;
@@ -80,7 +81,6 @@ public class Ve_BanVe_Controller implements Initializable {
     @FXML
     private VBox vboxDanhSachThongTin;
     private Ve ve;
-    private ArrayList<ChiTietVe> danhSachChiTietVe;
 
     private int soThuTu;
 
@@ -127,20 +127,31 @@ public class Ve_BanVe_Controller implements Initializable {
     }
 
     public void khoiTao(){
+
+        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaCho.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
-        lblSTT.setText(String.valueOf(soThuTu + 1));
-        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve.css").toExternalForm());
-
-
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+
+            lblCho.setText(String.valueOf(ve.getDanhSachChiTietVe().getFirst().getCho().getSoCho()));
+            lblToa.setText(String.valueOf(ve.getDanhSachChiTietVe().getFirst().getCho().getToaTau().getThuTuToa()));
+            lblGiaCho.setText(CurrencyFormat.currencyFormat(ve.getDanhSachChiTietVe().getFirst().getGiaCho()));
+            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+
+            if(ve.getDanhSachChiTietVe().getFirst().getKhachHang() != null){
+                KhachHang khachHang = ve.getDanhSachChiTietVe().getFirst().getKhachHang();
+                lblCCCD.setText(khachHang.getCCCD());
+                lblTenKhachHang.setText(khachHang.getTenKhachHang());
+                lblLoaiKhachHang.setText(khachHang.getLoaiKhachHang().getTenLoaiKhachHang());
+                lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(ve.getDanhSachChiTietVe().getFirst().giamGia()));
+            }
+
+            lblSTT.setText(String.valueOf(soThuTu + 1));
 
         }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
             anpVe.setMinHeight(210);

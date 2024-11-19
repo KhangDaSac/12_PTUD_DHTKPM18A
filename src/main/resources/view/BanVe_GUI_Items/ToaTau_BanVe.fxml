@@ -13,7 +13,7 @@
             <Image url="@../../images/BanVe_GUI/train-car-gray.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblThuTuTau" layoutX="29.0" layoutY="39.0" prefHeight="20.0" prefWidth="60.0" style="-fx-alignment: center;" styleClass="text-bold" stylesheets="@../../css/All.css" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="lblThuTuTau" layoutX="29.0" layoutY="39.0" prefHeight="20.0" prefWidth="60.0" style="-fx-alignment: center; -fx-font-weight: 700;" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="14.0" />
          </font>

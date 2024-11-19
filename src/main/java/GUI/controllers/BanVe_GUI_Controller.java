@@ -107,7 +107,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
 
     private HoaDonBanVe hoaDonBanVe;
-    Map<Ve, ArrayList<ChiTietVe>> danhSachVe = new HashMap<Ve, ArrayList<ChiTietVe>>();
+    private ArrayList<Ve> danhSachVe = new ArrayList<Ve>();
 
     private int chuyenTauDangChon;
     private int toaTauDangChon;
@@ -214,8 +214,6 @@ public class BanVe_GUI_Controller implements Initializable {
             gaDen = gaTauDen;
             chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
             hienThiDanhSachChuyenTau(chuyenTauList);
-
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -509,8 +507,8 @@ public class BanVe_GUI_Controller implements Initializable {
         int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDi().getThuTuGa();
         int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDen().getThuTuGa();
 
-        for (Map.Entry<Ve, ArrayList<ChiTietVe>> entry : danhSachVe.entrySet()) {
-            ArrayList<ChiTietVe> danhSachChiTietVe = entry.getValue();
+        for (Ve ve : danhSachVe) {
+            ArrayList<ChiTietVe> danhSachChiTietVe = ve.getDanhSachChiTietVe();
 
             for(ChiTietVe chiTietVe : danhSachChiTietVe){
                 if(chiTietVe.getCho().equals(cho)){
@@ -541,6 +539,8 @@ public class BanVe_GUI_Controller implements Initializable {
                 ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDen();
+                chiTietChuyenTauDi.setGaTau(gaDi);
+                chiTietChuyenTauDen.setGaTau(gaDen);
 
                 Ve ve = new Ve(null, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
@@ -556,10 +556,11 @@ public class BanVe_GUI_Controller implements Initializable {
                         break;
                     }
                 }
+
                 ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
                 danhSachChiTietVe.add(chiTietVe);
-
-                danhSachVe.put(ve, danhSachChiTietVe);
+                ve.setDanhSachChiTietVe(danhSachChiTietVe);
+                danhSachVe.add(ve);
 
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
@@ -591,7 +592,8 @@ public class BanVe_GUI_Controller implements Initializable {
 
 
             }
-            danhSachVe.put(ve, danhSachChiTietVe);
+            ve.setDanhSachChiTietVe(danhSachChiTietVe);
+            danhSachVe.add(ve);
         }
         tinhTongTienHoaDon();
         choChonList.clear();
@@ -604,8 +606,7 @@ public class BanVe_GUI_Controller implements Initializable {
         vboxGioVe.getChildren().clear();
         veControllerList.clear();
         int i = 0;
-        for (Map.Entry<Ve, ArrayList<ChiTietVe>> entry : danhSachVe.entrySet()) {
-            Ve ve = entry.getKey();
+        for (Ve ve : danhSachVe) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Ve_BanVe.fxml"));
             Parent anchorPane = loader.load();
             Ve_BanVe_Controller controller = loader.getController();
@@ -627,7 +628,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
 
     public void xoaVe(Ve veXoa){
-        Iterator<ChiTietVe> iteratorChiTietVe = danhSachVe.get(veXoa).iterator();
+        Iterator<ChiTietVe> iteratorChiTietVe = veXoa.getDanhSachChiTietVe().iterator();
         while (iteratorChiTietVe.hasNext()) {
             ChiTietVe chiTietVe = iteratorChiTietVe.next();
             if (chiTietVe.getVe().equals(veXoa)) {
@@ -652,8 +653,8 @@ public class BanVe_GUI_Controller implements Initializable {
     }
 
     public void xoaTatCaVe(){
-        for (Map.Entry<Ve, ArrayList<ChiTietVe>> entry : danhSachVe.entrySet()) {
-            Iterator<ChiTietVe> iteratorChiTietVe = entry.getValue().iterator();
+        for (Ve ve : danhSachVe) {
+            Iterator<ChiTietVe> iteratorChiTietVe = ve.getDanhSachChiTietVe().iterator();
 
             while (iteratorChiTietVe.hasNext()) {
                 ChiTietVe chiTietVe = iteratorChiTietVe.next();

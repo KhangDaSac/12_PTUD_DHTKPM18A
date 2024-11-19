@@ -80,6 +80,10 @@ public class Ve {
 		return danhSachChiTietVe;
 	}
 
+	public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
+		this.danhSachChiTietVe = danhSachChiTietVe;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
