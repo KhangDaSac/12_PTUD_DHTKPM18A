@@ -2,14 +2,16 @@ package DTO;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HoaDonHuyDatVe {
     private String maHoaDonHuyDatVe;
     private LocalDateTime thoiGianHuy;
     private KhachHang khachHangHuyDatVe;
-    private double tongTienCuoi;
     private CaLamViec caLamViec;
+
+    private ArrayList<ChiTietHoaDonHuyDatVe> danhSachChiTietHoaDonHuyDatVe;
 
     public String getMaHoaDonHuyDatVe() {
         return maHoaDonHuyDatVe;
@@ -35,20 +37,20 @@ public class HoaDonHuyDatVe {
         this.khachHangHuyDatVe = khachHangHuyDatVe;
     }
 
-    public double getTongTienCuoi() {
-        return tongTienCuoi;
-    }
-
-    public void setTongTienCuoi(double tongTienCuoi) {
-        this.tongTienCuoi = tongTienCuoi;
-    }
-
     public CaLamViec getCaLamViec() {
         return caLamViec;
     }
 
     public void setCaLamViec(CaLamViec caLamViec) {
         this.caLamViec = caLamViec;
+    }
+
+    public ArrayList<ChiTietHoaDonHuyDatVe> getDanhSachChiTietHoaDonHuyDatVe() {
+        return danhSachChiTietHoaDonHuyDatVe;
+    }
+
+    public void setDanhSachChiTietHoaDonHuyDatVe(ArrayList<ChiTietHoaDonHuyDatVe> danhSachChiTietHoaDonHuyDatVe) {
+        this.danhSachChiTietHoaDonHuyDatVe = danhSachChiTietHoaDonHuyDatVe;
     }
 
     @Override
@@ -62,6 +64,14 @@ public class HoaDonHuyDatVe {
     @Override
     public int hashCode() {
         return Objects.hashCode(maHoaDonHuyDatVe);
+    }
+
+    public double tongTienCuoi(){
+        double tongTienCuoi = 0;
+        for(ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe : danhSachChiTietHoaDonHuyDatVe){
+            tongTienCuoi += chiTietHoaDonHuyDatVe.soTienHoanLai();
+        }
+        return tongTienCuoi;
     }
 
 }

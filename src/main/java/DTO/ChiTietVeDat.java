@@ -1,28 +1,27 @@
 package DTO;
 
 public class ChiTietVeDat {
-	private double giaCho;
+
 	private Cho cho;
-	private VeDat phieuDatVe;
+	private VeDat veDat;
+	private double giaCho;
 	private KhachHang khachHang;
-	private double soTienGiamGia ;
-	private double thanhTien ;
-	public ChiTietVeDat() {
-		super();
-		// TODO Auto-generated constructor stub
+	private double phanTramGiamGia;
+
+	public Cho getCho() {
+		return cho;
 	}
 
-	public ChiTietVeDat(double giaCho, Cho cho, VeDat phieuDatVe, KhachHang khachHang, double soTienGiamGia, double thanhTien) {
-		this.giaCho = giaCho;
+	public void setCho(Cho cho) {
 		this.cho = cho;
-		this.phieuDatVe = phieuDatVe;
-		this.khachHang = khachHang;
-		this.soTienGiamGia = soTienGiamGia;
-		this.thanhTien = thanhTien;
 	}
 
-	public ChiTietVeDat(VeDat phieuDatVe) {
-		this.phieuDatVe = phieuDatVe;
+	public VeDat getVeDat() {
+		return veDat;
+	}
+
+	public void setVeDat(VeDat veDat) {
+		this.veDat = veDat;
 	}
 
 	public double getGiaCho() {
@@ -33,22 +32,6 @@ public class ChiTietVeDat {
 		this.giaCho = giaCho;
 	}
 
-	public Cho getCho() {
-		return cho;
-	}
-
-	public void setCho(Cho cho) {
-		this.cho = cho;
-	}
-
-	public VeDat getPhieuDatVe() {
-		return phieuDatVe;
-	}
-
-	public void setPhieuDatVe(VeDat phieuDatVe) {
-		this.phieuDatVe = phieuDatVe;
-	}
-
 	public KhachHang getKhachHang() {
 		return khachHang;
 	}
@@ -57,31 +40,26 @@ public class ChiTietVeDat {
 		this.khachHang = khachHang;
 	}
 
-	public double getSoTienGiamGia() {
-		return soTienGiamGia;
+	public double getPhanTramGiamGia() {
+		return phanTramGiamGia;
 	}
 
-	public void setSoTienGiamGia(double soTienGiamGia) {
-		this.soTienGiamGia = soTienGiamGia;
+	public void setPhanTramGiamGia(double phanTramGiamGia) {
+		this.phanTramGiamGia = phanTramGiamGia;
 	}
 
-	public double getThanhTien() {
-		return thanhTien;
+	public ChiTietVeDat() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setThanhTien(double thanhTien) {
-		this.thanhTien = thanhTien;
+	public double giamGia(){
+		return giaCho * phanTramGiamGia;
 	}
 
-	@Override
-	public String toString() {
-		return "ChiTietPhieuDatVe{" +
-				"giaCho=" + giaCho +
-				", cho=" + cho +
-				", phieuDatVe=" + phieuDatVe +
-				", khachHang=" + khachHang +
-				", soTienGiamGia=" + soTienGiamGia +
-				", thanhTien=" + thanhTien +
-				'}';
+	public double thanhTienChiTietVeDat(){
+		return giaCho * (1 - phanTramGiamGia);
 	}
+
+
 }

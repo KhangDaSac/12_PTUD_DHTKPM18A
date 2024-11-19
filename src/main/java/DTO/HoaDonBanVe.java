@@ -9,8 +9,8 @@ public class HoaDonBanVe {
 	private LocalDateTime thoiGianLap;
 	private KhachHang khachHangMuaVe;
 	private CaLamViec caLamViec;
-	private double tongTienCuoi;
 
+	private ArrayList<Ve> danhSachVe;
 	public String getMaHoaDonBanVe() {
 		return maHoaDonBanVe;
 	}
@@ -43,12 +43,12 @@ public class HoaDonBanVe {
 		this.caLamViec = caLamViec;
 	}
 
-	public double getTongTienCuoi() {
-		return tongTienCuoi;
+	public ArrayList<Ve> getDanhSachVe() {
+		return danhSachVe;
 	}
 
-	public void setTongTienCuoi(double tongTienCuoi) {
-		this.tongTienCuoi = tongTienCuoi;
+	public void setDanhSachVe(ArrayList<Ve> danhSachVe) {
+		this.danhSachVe = danhSachVe;
 	}
 
 	@Override
@@ -68,5 +68,11 @@ public class HoaDonBanVe {
 		this.maHoaDonBanVe = maHoaDonBanVe;
 	}
 
-
+	public double tongTienCuoi(){
+		double tongTienCuoi = 0;
+		for (Ve ve : danhSachVe){
+			tongTienCuoi += ve.tienVeCuoi();
+		}
+		return tongTienCuoi;
+	}
 }

@@ -2,6 +2,7 @@ package DTO;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Ve {
@@ -11,8 +12,9 @@ public class Ve {
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private LoaiVe loaiVe ;
 	private TrangThaiVe trangThaiVe;
-	private double tienVe;
 	private double phanTramGiamGiaVeTapThe;
+
+	private ArrayList<ChiTietVe> danhSachChiTietVe;
 
 	private final double PHANTRAMGIAMGIAVETAPTHE = 0.1;
 
@@ -66,20 +68,16 @@ public class Ve {
 		this.trangThaiVe = trangThaiVe;
 	}
 
-	public double getTienVe() {
-		return tienVe;
-	}
-
-	public void setTienVe(double tienVe) {
-		this.tienVe = tienVe;
-	}
-
 	public double getPhanTramGiamGiaVeTapThe() {
 		return phanTramGiamGiaVeTapThe;
 	}
 
 	public void setPhanTramGiamGiaVeTapThe(double phanTramGiamGiaVeTapThe) {
 		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
+	}
+
+	public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
+		return danhSachChiTietVe;
 	}
 
 	@Override
@@ -98,14 +96,13 @@ public class Ve {
 	public Ve() {
 	}
 
-	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double tienVe) {
+	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
 		this.hoaDonBanVe = hoaDonBanVe;
 		this.thongTinGaTauDi = thongTinGaTauDi;
 		this.thongTinGaTauDen = thongTinGaTauDen;
 		this.loaiVe = loaiVe;
 		this.trangThaiVe = trangThaiVe;
-		this.tienVe = tienVe;
 		if(loaiVe.equals(LoaiVe.VETAPTHE)){
 			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
 		}else{
@@ -124,11 +121,19 @@ public class Ve {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public double tienVe(){
+		double tienVe = 0;
+		for (ChiTietVe chiTietVe : danhSachChiTietVe){
+			tienVe += chiTietVe.thanhTienChiTietVe();
+		}
+		return tienVe;
+	}
+
 	public double giamGiaVeTapThe(){
-		return tienVe * phanTramGiamGiaVeTapThe;
+		return tienVe() * phanTramGiamGiaVeTapThe;
 	}
 
 	public double tienVeCuoi(){
-		return tienVe * (1 - phanTramGiamGiaVeTapThe);
+		return tienVe() * (1 - phanTramGiamGiaVeTapThe);
 	}
 }

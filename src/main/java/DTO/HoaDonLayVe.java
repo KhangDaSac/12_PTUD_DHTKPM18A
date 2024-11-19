@@ -1,14 +1,16 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HoaDonLayVe {
     private String maHoaDonLayVe;
     private LocalDateTime thoiGianLayVe;
     private KhachHang khachHangLayVe;
-    private double tongTienCuoi;
     private CaLamViec caLamViec;
+
+    private ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe;
 
     public String getMaHoaDonLayVe() {
         return maHoaDonLayVe;
@@ -34,20 +36,20 @@ public class HoaDonLayVe {
         this.khachHangLayVe = khachHangLayVe;
     }
 
-    public double getTongTienCuoi() {
-        return tongTienCuoi;
-    }
-
-    public void setTongTienCuoi(double tongTienCuoi) {
-        this.tongTienCuoi = tongTienCuoi;
-    }
-
     public CaLamViec getCaLamViec() {
         return caLamViec;
     }
 
     public void setCaLamViec(CaLamViec caLamViec) {
         this.caLamViec = caLamViec;
+    }
+
+    public ArrayList<ChiTietHoaDonLayVe> getDanhSachChiTietHoaDonLayVe() {
+        return danhSachChiTietHoaDonLayVe;
+    }
+
+    public void setDanhSachChiTietHoaDonLayVe(ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe) {
+        this.danhSachChiTietHoaDonLayVe = danhSachChiTietHoaDonLayVe;
     }
 
     @Override
@@ -65,5 +67,13 @@ public class HoaDonLayVe {
 
     public HoaDonLayVe(String maHoaDonLayVe) {
         this.maHoaDonLayVe = maHoaDonLayVe;
+    }
+
+    public double tongTienCuoi(){
+        double tongTienCuoi = 0;
+        for (ChiTietHoaDonLayVe chiTietHoaDonLayVe : danhSachChiTietHoaDonLayVe){
+            tongTienCuoi += chiTietHoaDonLayVe.thanhTien();
+        }
+        return tongTienCuoi;
     }
 }

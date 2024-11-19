@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ChiTietHoaDonHuyDatVe {
     private HoaDonHuyDatVe hoaDonHuyDatVe;
     private VeDat veDat;
-    private double lePhi;
+    private double phanTramLePhi;
 
     public HoaDonHuyDatVe getHoaDonHuyDatVe() {
         return hoaDonHuyDatVe;
@@ -24,12 +24,12 @@ public class ChiTietHoaDonHuyDatVe {
         this.veDat = veDat;
     }
 
-    public double getLePhi() {
-        return lePhi;
+    public double getPhanTramLePhi() {
+        return phanTramLePhi;
     }
 
-    public void setLePhi(double lePhi) {
-        this.lePhi = lePhi;
+    public void setPhanTramLePhi(double phanTramLePhi) {
+        this.phanTramLePhi = phanTramLePhi;
     }
 
     @Override
@@ -50,27 +50,28 @@ public class ChiTietHoaDonHuyDatVe {
         return thoiGianConLai;
     }
 
-    public double lePhi(){
+    public ChiTietHoaDonHuyDatVe() {
         long soGioConLai = thoiGianConLai().toHours();
-        lePhi = 0;
-
         if(veDat.getLoaiVe().equals(LoaiVe.VECANHAN)){
             if(soGioConLai >= 48){
-                lePhi = veDat.tienDatCoc() * 0.1;
+                this.phanTramLePhi = 0.1;
             }else if(soGioConLai >= 4){
-                lePhi = veDat.tienDatCoc() * 0.2;
+                this.phanTramLePhi = 0.2;
             }
         }else if(veDat.getLoaiVe().equals(LoaiVe.VETAPTHE)){
             if(soGioConLai >= 72){
-                lePhi = veDat.tienDatCoc() * 0.2;
+                this.phanTramLePhi = 0.2;
             }else if(soGioConLai >= 24){
-                lePhi = veDat.tienDatCoc() * 0.3;
+                this.phanTramLePhi = 0.3;
             }
         }
-        return lePhi;
+    }
+
+    public double lePhi(){
+        return veDat.tienDatCoc() * phanTramLePhi;
     }
 
     public double soTienHoanLai(){
-        return veDat.tienDatCoc() - lePhi;
+        return veDat.tienDatCoc() * (1 - phanTramLePhi);
     }
 }
