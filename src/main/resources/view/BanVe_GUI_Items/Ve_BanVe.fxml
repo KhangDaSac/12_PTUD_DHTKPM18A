@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" minHeight="320.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="440.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller">
+<AnchorPane fx:id="anpVe" minHeight="330.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -149,7 +149,7 @@
                               </HBox>
                               <HBox prefHeight="30.0">
                                  <children>
-                                    <Label prefHeight="30.0" prefWidth="170.0" stylesheets="@../../css/All.css" text="Loại khách hàng:">
+                                    <Label prefHeight="30.0" prefWidth="170.0" text="Loại khách hàng:">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>

@@ -22,7 +22,7 @@ public class QuanLyVe_BUS {
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
         String phanSau = maVeCu.substring(maVeCu.length() - 6);
 
-        maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+        maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
 
         return maVeMoi;
     }
@@ -30,7 +30,7 @@ public class QuanLyVe_BUS {
     public static String taoMaVeTiepTheo(String maVeCu){
         String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
         String phanSau = maVeCu.substring(maVeCu.length() - 6);
-        String maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+        String maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
         return maVeMoi;
     }
 

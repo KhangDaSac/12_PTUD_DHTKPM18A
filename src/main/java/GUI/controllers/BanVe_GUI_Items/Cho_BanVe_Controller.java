@@ -94,7 +94,6 @@ public class Cho_BanVe_Controller implements Initializable {
     }
 
     public void chuyenMauMacDinh(){
-
         switch (cho.getTrangThaiCho()){
             case DABAN -> {
                 btnCho.getStyleClass().clear();

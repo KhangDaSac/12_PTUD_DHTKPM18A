@@ -30,10 +30,7 @@ public class Ve_DAO {
     public boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
         Connection con = ConnectDB.getInstance().getConnection();
         String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
         for(Ve ve : danhSachVe){
-            ve.setMaVe(maVeMoi);
-            maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(maVeMoi);
             try {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, ve.getMaVe());

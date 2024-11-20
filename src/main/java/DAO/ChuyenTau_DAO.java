@@ -22,7 +22,6 @@ public class ChuyenTau_DAO {
             statement.setString(1, maGaDi);
             statement.setString(2, maGaDen);
             statement.setString(3, TimeFormat.formatLocalDateSQL(ngayDi));
-            System.out.println(maGaDi + " " + maGaDen + " " + ngayDi);
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 String maChuyenTau = rs.getString("maChuyenTau");

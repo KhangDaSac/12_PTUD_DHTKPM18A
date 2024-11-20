@@ -58,6 +58,11 @@ public class Ve {
 
 	public void setLoaiVe(LoaiVe loaiVe) {
 		this.loaiVe = loaiVe;
+		if(loaiVe.equals(LoaiVe.VETAPTHE)){
+			this.phanTramGiamGiaVeTapThe = 0.1;
+		}else if(loaiVe.equals(LoaiVe.VECANHAN)){
+			this.phanTramGiamGiaVeTapThe = 0;
+		}
 	}
 
 	public TrangThaiVe getTrangThaiVe() {
@@ -95,6 +100,21 @@ public class Ve {
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(maVe);
+	}
+
+	@Override
+	public String toString() {
+		return "Ve{" +
+				"maVe='" + maVe + '\'' +
+				", hoaDonBanVe=" + hoaDonBanVe +
+				", thongTinGaTauDi=" + thongTinGaTauDi +
+				", thongTinGaTauDen=" + thongTinGaTauDen +
+				", loaiVe=" + loaiVe +
+				", trangThaiVe=" + trangThaiVe +
+				", phanTramGiamGiaVeTapThe=" + phanTramGiamGiaVeTapThe +
+				", danhSachChiTietVe=" + danhSachChiTietVe +
+				", PHANTRAMGIAMGIAVETAPTHE=" + PHANTRAMGIAMGIAVETAPTHE +
+				'}';
 	}
 
 	public Ve() {

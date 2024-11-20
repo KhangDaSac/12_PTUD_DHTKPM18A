@@ -15,3 +15,12 @@
     -fx-background-color: #851DE0;
     -fx-background-radius: 10 0 0 10;
 }
+
+.tieuDe{
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+.noiDung{
+    -fx-font-size: 16;
+}
