@@ -664,9 +664,9 @@
          <children>
             <AnchorPane prefHeight="550.0" prefWidth="500.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" vbarPolicy="NEVER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                  <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <content>
-                        <VBox fx:id="vboxGioVe" prefHeight="400.0" prefWidth="476.0" styleClass="danhSachVe" />
+                        <VBox fx:id="vboxGioVe" prefHeight="400.0" prefWidth="460.0" styleClass="danhSachVe" />
                      </content>
                   </ScrollPane>
                   <Label text="Giỏ vé" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-14.0">
@@ -722,7 +722,7 @@
       </AnchorPane>
    </children>
    <stylesheets>
-      <URL value="@../css/BanVe_GUI_Items/Cho.css" />
+      <URL value="@../css/BanVe_GUI_Items/Cho_BanVe.css" />
       <URL value="@../css/BanVe_GUI.css" />
    </stylesheets>
 </AnchorPane>

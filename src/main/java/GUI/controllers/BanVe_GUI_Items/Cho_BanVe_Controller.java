@@ -82,7 +82,7 @@ public class Cho_BanVe_Controller implements Initializable {
     }
 
     public void khoiTao(double doDaiChang){
-        btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho.css").toExternalForm());
+        btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho_BanVe.css").toExternalForm());
         btnCho.setText(String.valueOf(cho.getSoCho()));
         chuyenMauMacDinh();
         tooltip = new Tooltip();

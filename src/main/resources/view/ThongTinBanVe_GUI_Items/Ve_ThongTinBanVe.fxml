@@ -145,6 +145,6 @@
    </children>
    <stylesheets>
       <URL value="@../../css/BanVe_GUI.css" />
-      <URL value="@../../css/BanVe_GUI_Items/Ve.css" />
+      <URL value="@../../css/BanVe_GUI_Items/Ve_BanVe.css" />
    </stylesheets>
 </AnchorPane>
