@@ -179,36 +179,22 @@
                   </VBox>
                   <VBox prefHeight="500.0" prefWidth="470.0">
                      <children>
-                        <AnchorPane prefHeight="502.0" prefWidth="450.0">
+                        <AnchorPane prefHeight="660.0">
                            <children>
-                              <ScrollPane layoutX="25.6" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                 <content>
-                                    <VBox fx:id="vboxGioVe" prefHeight="308.0" prefWidth="434.0" styleClass="danhSachVe" />
-                                 </content>
-                              </ScrollPane>
-                              <Label text="Giỏ vé" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-15.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="200.0" prefWidth="470.0">
-                     <children>
-                        <AnchorPane prefHeight="490.0" prefWidth="470.0">
-                           <children>
-                              <ScrollPane layoutX="25.6" prefHeight="200.0" prefWidth="450.0" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                 <content>
-                                    <VBox fx:id="vboxChiTietVe" prefHeight="197.0" prefWidth="434.0" styleClass="danhSachVe" />
-                                 </content>
-                              </ScrollPane>
-                              <Label text="Thông tin chi tiết vé" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-15.0">
-                                 <font>
-                                    <Font name="System Bold" size="16.0" />
-                                 </font>
-                              </Label>
+                              <AnchorPane prefHeight="550.0" prefWidth="500.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                       <content>
+                                          <VBox fx:id="vboxGioVe" prefHeight="400.0" prefWidth="460.0" styleClass="danhSachVe" />
+                                       </content>
+                                    </ScrollPane>
+                                    <Label text="Giỏ vé" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-14.0">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>

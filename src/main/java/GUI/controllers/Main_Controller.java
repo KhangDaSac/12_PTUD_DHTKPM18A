@@ -65,13 +65,10 @@ public class Main_Controller implements Initializable {
     private Button btnQuanLyKhachHang;
 
     @FXML
-    private Button btnQuanLyLichSu;
-
-    @FXML
     private Button btnQuanLyNhanVien;
 
     @FXML
-    private Button btnQuanLyPhieuDatVe;
+    private Button btnQuanLyVeDat;
 
     @FXML
     private Button btnQuanLyVe;
@@ -356,16 +353,6 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
-    }
-
-    @FXML
-    void btnQuanLyLichSuOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnQuanLyPhieuDatVeOnAction(ActionEvent event) {
-
     }
 
     @FXML
