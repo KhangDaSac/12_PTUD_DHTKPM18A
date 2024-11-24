@@ -676,10 +676,4 @@ public class BanVe_GUI_Controller implements Initializable {
     public void hienThiTongTienHoaDonBanVe(){
         txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonBanVe.tongTienCuoi()));
     }
-
-    public static String removeDiacritics(String input) {
-        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
-        Pattern pattern = Pattern.compile("\\p{M}");
-        return pattern.matcher(normalized).replaceAll("");
-    }
 }

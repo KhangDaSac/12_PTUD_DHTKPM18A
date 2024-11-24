@@ -15,6 +15,10 @@ public class ChuyenTau {
 	private ChiTietChuyenTau thongTinGaTauDi;
 	private ChiTietChuyenTau thongTinGaTauDen;
 
+	private int soLuongCho;
+	private int soLuongVe;
+	private int soLuongVeDat;
+
 	public String getMaChuyenTau() {
 		return maChuyenTau;
 	}
@@ -79,6 +83,30 @@ public class ChuyenTau {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public int getSoLuongCho() {
+		return soLuongCho;
+	}
+
+	public void setSoLuongCho(int soLuongCho) {
+		this.soLuongCho = soLuongCho;
+	}
+
+	public int getSoLuongVe() {
+		return soLuongVe;
+	}
+
+	public void setSoLuongVe(int soLuongVe) {
+		this.soLuongVe = soLuongVe;
+	}
+
+	public int getSoLuongVeDat() {
+		return soLuongVeDat;
+	}
+
+	public void setSoLuongVeDat(int soLuongVeDat) {
+		this.soLuongVeDat = soLuongVeDat;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -119,7 +147,32 @@ public class ChuyenTau {
 		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, int soLuongVe, int soLuongVeDat) {
+		this.maChuyenTau = maChuyenTau;
+		this.tuyenTau = tuyenTau;
+		this.soLuongCho = soLuongCho;
+		this.soLuongVe = soLuongVe;
+		this.soLuongVeDat = soLuongVeDat;
+	}
+
 	public ChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
+	}
+
+	@Override
+	public String toString() {
+		return "ChuyenTau{" +
+				"maChuyenTau='" + maChuyenTau + '\'' +
+				", tuyenTau=" + tuyenTau +
+				", soLuongChoDaBan=" + soLuongChoDaBan +
+				", soLuongChoDaDat=" + soLuongChoDaDat +
+				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
+				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
+				", thongTinGaTauDi=" + thongTinGaTauDi +
+				", thongTinGaTauDen=" + thongTinGaTauDen +
+				", soLuongCho=" + soLuongCho +
+				", soLuongVe=" + soLuongVe +
+				", soLuongVeDat=" + soLuongVeDat +
+				'}';
 	}
 }

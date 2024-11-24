@@ -64,4 +64,39 @@ public class ChuyenTau_DAO {
         return dsChuyenTau;
     }
 
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh){
+        ArrayList<ChuyenTau> danhSachChuyenTau = new ArrayList<ChuyenTau>();
+
+        String query ="exec dbo.UDP_GetDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayKhoiHanh ?, ?, ?";
+        System.out.println(maChuyenTau);
+        System.out.println(maTuyenTau);
+        System.out.println(ngayKhoiHanh);
+
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maChuyenTau);
+            statement.setString(2, maTuyenTau);
+            statement.setString(3, TimeFormat.formatLocalDateSQL(ngayKhoiHanh));
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                danhSachChuyenTau.add(new ChuyenTau(
+                        rs.getString("maChuyenTau"),
+                        new TuyenTau(
+                                rs.getString("maTuyenTau"),
+                                rs.getString("tenTuyenTau"),
+                                rs.getString("moTa")
+                        ),
+                        rs.getInt("soLuongCho"),
+                        rs.getInt("soLuongVe"),
+                        rs.getInt("soLuongVeDat")
+                ));
+            }
+        }catch (Exception e){
+
+        }
+
+        return danhSachChuyenTau;
+    }
+
 }

@@ -48,6 +48,12 @@ public class QuanLyChuyenTau_BUS {
         return  toaTau;
     }
 
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh){
+        maChuyenTau = maChuyenTau.isEmpty() ? null : maChuyenTau;
+        maTuyenTau = maTuyenTau.isEmpty() ? null : maTuyenTau;
+        return ChuyenTau_DAO.getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(maChuyenTau, maTuyenTau, ngayKhoiHanh);
+    }
+
 
 //    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
 //        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();

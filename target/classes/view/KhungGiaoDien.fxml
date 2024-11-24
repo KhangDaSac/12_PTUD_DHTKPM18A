@@ -95,7 +95,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="250.0">
                            <children>
-                              <Button fx:id="btnQuanLyPhieuDatVe" graphicTextGap="10.0" mnemonicParsing="false" onMouseEntered="#btnQuanLyPhieuDatVeEntered" onMouseExited="#btnQuanLyPhieuDatVeExited" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý phiếu đặt vé">
+                              <Button fx:id="btnQuanLyVeDat" graphicTextGap="10.0" mnemonicParsing="false" onMouseEntered="#btnQuanLyVeDatEntered" onMouseExited="#btnQuanLyVeDatExited" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý vé đặt">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="25.0">
                                        <image>
@@ -132,22 +132,6 @@
                                     <ImageView fitHeight="31.0" fitWidth="25.0">
                                        <image>
                                           <Image url="@../images/iconMenu/QuanLyHoaDon.png" />
-                                       </image>
-                                       <viewport>
-                                          <Rectangle2D />
-                                       </viewport>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="120.0" prefHeight="55.0" prefWidth="250.0">
-                           <children>
-                              <Button fx:id="btnQuanLyLichSu" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnQuanLyLichSuOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien.css" text="Quản lý lịch sử">
-                                 <graphic>
-                                    <ImageView fitHeight="24.0" fitWidth="25.0">
-                                       <image>
-                                          <Image url="@../images/iconMenu/QuanLyLichSu.png" />
                                        </image>
                                        <viewport>
                                           <Rectangle2D />
