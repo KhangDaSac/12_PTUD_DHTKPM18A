@@ -1,11 +1,13 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class ChuyenTau {
 	private String maChuyenTau;
 	private TuyenTau tuyenTau;
+
 	private int soLuongChoDaBan;
 	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
