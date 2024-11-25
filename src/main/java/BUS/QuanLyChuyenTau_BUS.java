@@ -48,7 +48,13 @@ public class QuanLyChuyenTau_BUS {
         return  toaTau;
     }
 
-    public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh){
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh) throws Exception {
+
+        if((maChuyenTau == null || maChuyenTau.isEmpty())
+            && maTuyenTau == null || maTuyenTau.isEmpty()
+            && ngayKhoiHanh == null)
+            throw new Exception("Vui lòng nhập thông tin tìm kiếm");
+
         maChuyenTau = maChuyenTau == null ? "" : maChuyenTau;
         maTuyenTau = maTuyenTau == null ? "" : maTuyenTau;
 

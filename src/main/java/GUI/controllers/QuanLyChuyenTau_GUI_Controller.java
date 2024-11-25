@@ -89,12 +89,12 @@ public class QuanLyChuyenTau_GUI_Controller implements Initializable {
     void btnTimChuyenTauOnAction(ActionEvent event) {
         try {
             getDanhSachChuyenTau();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+
         }
     }
 
-    private void getDanhSachChuyenTau() throws IOException {
+    private void getDanhSachChuyenTau() throws Exception {
         String maChuyenTau = txtMaChuyenTau.getText();
         String maTuyenTau = txtMaTuyenTau.getText();
         LocalDate ngayKhoiHanh = dapNgayKhoiHanh.getValue();
