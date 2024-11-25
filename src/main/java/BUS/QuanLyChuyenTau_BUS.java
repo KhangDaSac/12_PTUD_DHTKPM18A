@@ -49,8 +49,10 @@ public class QuanLyChuyenTau_BUS {
     }
 
     public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh){
-        maChuyenTau = maChuyenTau.isEmpty() ? null : maChuyenTau;
-        maTuyenTau = maTuyenTau.isEmpty() ? null : maTuyenTau;
+        maChuyenTau = maChuyenTau == null ? "" : maChuyenTau;
+        maTuyenTau = maTuyenTau == null ? "" : maTuyenTau;
+
+
         return ChuyenTau_DAO.getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(maChuyenTau, maTuyenTau, ngayKhoiHanh);
     }
 

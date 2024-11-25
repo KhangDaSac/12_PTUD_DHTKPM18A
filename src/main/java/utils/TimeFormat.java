@@ -13,6 +13,8 @@ public class TimeFormat {
         return localDateTime.format(formatter);
     }
     public static String formatLocalDateSQL(LocalDate localDate){
+        if(localDate == null)
+            return "";
         return localDate.format(formatterLocalDateSQL);
     }
 
