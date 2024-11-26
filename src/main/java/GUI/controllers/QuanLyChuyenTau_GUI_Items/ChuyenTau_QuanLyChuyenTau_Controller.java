@@ -50,7 +50,7 @@ public class ChuyenTau_QuanLyChuyenTau_Controller {
 
     @FXML
     void anpChuyenTauOnMouseClicked(MouseEvent event) {
-
+        chonChuyenTau();
     }
 
     public void khoiTao(){
@@ -67,6 +67,17 @@ public class ChuyenTau_QuanLyChuyenTau_Controller {
         }else{
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
         }
+    }
+
+    public void chonChuyenTau(){
+        if(quanLyChuyenTau_gui_controller.getChuyenTau() != null && quanLyChuyenTau_gui_controller.getChuyenTau().equals(chuyenTau))
+            return;
+
+        quanLyChuyenTau_gui_controller.setChuyenTau(chuyenTau);
+        quanLyChuyenTau_gui_controller.boChonTatCaChuyenTau();
+        quanLyChuyenTau_gui_controller.hienThiThongTinChuyenTau();
+        Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));
+        imvChuyenTau.setImage(image);
     }
 
 }

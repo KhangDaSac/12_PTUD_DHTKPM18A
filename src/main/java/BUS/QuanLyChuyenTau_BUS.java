@@ -62,9 +62,7 @@ public class QuanLyChuyenTau_BUS {
         return ChuyenTau_DAO.getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(maChuyenTau, maTuyenTau, ngayKhoiHanh);
     }
 
-
-//    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
-//        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();
-//        LocalDateTime thoiGianDi
-//    }
+    public static ArrayList<ChiTietChuyenTau> getLichTrinhTheoMaChuyenTau(String maChuyenTau){
+        return ChiTietChuyenTau_DAO.getLichTrinhTheoMaChuyenTau(maChuyenTau);
+    }
 }

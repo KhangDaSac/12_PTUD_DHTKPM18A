@@ -16,7 +16,7 @@
             <Image url="@../../images/BanVe_GUI/train-gray.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblMaChuyenTau" layoutX="17.0" layoutY="4.0" prefWidth="120.0" style="-fx-alignment: center;" text="SE02N24112024" AnchorPane.topAnchor="9.0">
+      <Label fx:id="lblMaChuyenTau" layoutX="20.0" layoutY="14.0" prefWidth="120.0" style="-fx-alignment: center;" text="SE02N24112024" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="14.0" />
          </font>
@@ -25,26 +25,12 @@
          <children>
             <HBox prefHeight="25.0">
                <children>
-                  <Label prefWidth="70.0" style="-fx-font-weight: 700;" text="Mã tuyến:">
+                  <Label prefWidth="70.0" style="-fx-font-weight: 700; -fx-font-size: 14;" text="Mã tuyến:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblMaTuyenTau" text="SE02">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="25.0">
-               <children>
-                  <Label prefWidth="70.0" style="-fx-font-weight: 700;" text="Số chỗ:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblSoCho" text="10">
+                  <Label fx:id="lblMaTuyenTau" style="-fx-font-size: 14;" text="SE02">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -53,12 +39,12 @@
             </HBox>
             <HBox prefHeight="25.0">
                <children>
-                  <Label prefWidth="70.0" style="-fx-font-weight: 700;" text="Số vé:">
+                  <Label prefWidth="70.0" style="-fx-font-weight: 700; -fx-font-size: 14;" text="Số chỗ:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSoVe" text="10">
+                  <Label fx:id="lblSoCho" style="-fx-font-size: 14;" text="10">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -67,12 +53,26 @@
             </HBox>
             <HBox prefHeight="25.0">
                <children>
-                  <Label prefWidth="70.0" style="-fx-font-weight: 700;" text="Số vé đặt:">
+                  <Label prefWidth="70.0" style="-fx-font-weight: 700; -fx-font-size: 14;" text="Số vé:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSoVeDat" text="10">
+                  <Label fx:id="lblSoVe" style="-fx-font-size: 14;" text="10">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="25.0">
+               <children>
+                  <Label prefWidth="70.0" style="-fx-font-weight: 700; -fx-font-size: 14;" text="Số vé đặt:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSoVeDat" style="-fx-font-size: 14;" text="10">
                      <font>
                         <Font size="14.0" />
                      </font>
