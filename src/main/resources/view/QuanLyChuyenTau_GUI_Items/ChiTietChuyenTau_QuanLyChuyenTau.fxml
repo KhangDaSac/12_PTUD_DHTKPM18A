@@ -31,7 +31,7 @@
          <children>
             <HBox prefWidth="400.0">
                <children>
-                  <Label fx:id="lblTenGa" text="Sài Gòn">
+                  <Label fx:id="lblTenGa" style="-fx-text-fill: #B03052;" text="Sài Gòn">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -45,7 +45,7 @@
                         <Font name="System Italic" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDiaChiGa" prefHeight="50.0" prefWidth="380.0" text="Số 1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh" wrapText="true">
+                  <Label fx:id="lblDiaChiGa" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="380.0" text="Số 1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh" wrapText="true">
                      <font>
                         <Font name="System Italic" size="16.0" />
                      </font>

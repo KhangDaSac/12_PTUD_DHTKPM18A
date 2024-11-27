@@ -458,8 +458,7 @@ public class BanVe_GUI_Controller implements Initializable {
         Platform.runLater(()->{
             try {
                 if(hoaDonBanVe != null)
-
-                capNhatGioVe();
+                    capNhatGioVe();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

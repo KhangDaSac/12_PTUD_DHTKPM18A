@@ -206,7 +206,6 @@ public class QuanLyChuyenTau_GUI_Controller implements Initializable {
             controller.setChiTietChuyenTau(chiTietChuyenTau);
             controller.khoiTao();
 
-
             vboxLichTrinh.getChildren().add(anchorPane);
         }
 
