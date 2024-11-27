@@ -10,6 +10,12 @@ public class ChuyenTau {
 	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
+	private ChiTietChuyenTau thongTinGaTauDi;
+	private ChiTietChuyenTau thongTinGaTauDen;
+
+	public ChuyenTau() {
+
+	}
 
 	public String getMaChuyenTau() {
 		return maChuyenTau;
@@ -59,6 +65,22 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+	public ChiTietChuyenTau getThongTinGaTauDi() {
+		return thongTinGaTauDi;
+	}
+
+	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
+		this.thongTinGaTauDi = thongTinGaTauDi;
+	}
+
+	public ChiTietChuyenTau getThongTinGaTauDen() {
+		return thongTinGaTauDen;
+	}
+
+	public void setThongTinGaTauDen(ChiTietChuyenTau thongTinGaTauDen) {
+		this.thongTinGaTauDen = thongTinGaTauDen;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -79,6 +101,24 @@ public class ChuyenTau {
 		this.soLuongChoDaDat = soLuongChoDaDat;
 		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
+	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
+		this.maChuyenTau = maChuyenTau;
+		this.soLuongChoDaBan = soLuongChoDaBan;
+		this.soLuongChoDaDat = soLuongChoDaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+	}
+
+	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
+		this.maChuyenTau = maChuyenTau;
+		this.soLuongChoDaBan = soLuongChoDaBan;
+		this.soLuongChoDaDat = soLuongChoDaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
 	public ChuyenTau(String maChuyenTau) {

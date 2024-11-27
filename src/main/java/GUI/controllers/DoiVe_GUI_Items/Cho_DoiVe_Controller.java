@@ -12,6 +12,7 @@ import javafx.util.Duration;
 import utils.CurrencyFormat;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Cho_DoiVe_Controller implements Initializable {
@@ -21,7 +22,6 @@ public class Cho_DoiVe_Controller implements Initializable {
     private static String trang;
     private Cho cho;
     private DoiVe_GUI_Controller doiVe_gui_controller;
-    private boolean daThemVaoGio;
     private boolean dangChon;
 
     public boolean isDangChon() {
@@ -35,13 +35,6 @@ public class Cho_DoiVe_Controller implements Initializable {
     private Tooltip tooltip;
     String giaCho;
 
-    public boolean isDaThemVaoGio() {
-        return daThemVaoGio;
-    }
-
-    public void setDaThemVaoGio(boolean daThemVaoGio) {
-        this.daThemVaoGio = daThemVaoGio;
-    }
 
     public Cho getCho() {
         return cho;
@@ -59,18 +52,13 @@ public class Cho_DoiVe_Controller implements Initializable {
     public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
         this.doiVe_gui_controller = doiVe_gui_controller;
     }
-    public static void loaiTrang(String link){
-        trang = link;
-    }
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
         if (cho.getTrangThaiCho()== TrangThaiCho.CONTRONG){
                 if(!doiVe_gui_controller.getChoChon().equals(cho)){
-
                         doiVe_gui_controller.setChoChon(cho);
                         doiVe_gui_controller.capNhatCacChoDaChon();
-
                 }
                 capNhatTrangThai();
                 doiVe_gui_controller.capNhatCacChoDaChon();
@@ -78,8 +66,9 @@ public class Cho_DoiVe_Controller implements Initializable {
                 doiVe_gui_controller.setLblGiaCho_Moi(cho.getGiaCho());
                 doiVe_gui_controller.setLblToaTau_Moi(cho.getToaTau().getMaToaTau());
                 doiVe_gui_controller.tinhTongTien();
+                dangChon =false;
             } else {
-            System.out.printf("trang không xác định");
+            System.out.printf("trạng thái không xác định\n");
         }
     }
 
@@ -89,7 +78,7 @@ public class Cho_DoiVe_Controller implements Initializable {
     }
 
     public void khoiTao(double doDaiChang){
-        btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho.css").toExternalForm());
+        btnCho.getStylesheets().add(getClass().getResource("/css/DoiVe_GUI_Items/Cho_DoiVe.css").toExternalForm());
         btnCho.setText(String.valueOf(cho.getSoCho()));
         chuyenMauMacDinh();
         tooltip = new Tooltip();
@@ -101,11 +90,14 @@ public class Cho_DoiVe_Controller implements Initializable {
     }
 
     public void chuyenMauMacDinh(){
-
         switch (cho.getTrangThaiCho()){
-            case DADATHOACBAN -> {
+            case DABAN -> {
                 btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDaDatHoacBan");
+                btnCho.getStyleClass().add("choDaBan");
+            }
+            case DADAT -> {
+                btnCho.getStyleClass().clear();
+                btnCho.getStyleClass().add("choDaDat");
             }
             case DANHCHOCHANGDAIHON -> {
                 btnCho.getStyleClass().clear();
@@ -125,27 +117,23 @@ public class Cho_DoiVe_Controller implements Initializable {
         capNhatTrangThai();
     }
 
-    public void chuyenMauDaThemVaoGioVe(){
-        btnCho.getStyleClass().clear();
-        btnCho.getStyleClass().add("choDaThemVaoGioVe");
-        daThemVaoGio = true;
-        capNhatTrangThai();
-    }
+
 
     public void capNhatTrangThai(){
         String trangThaiCho = "";
         giaCho = CurrencyFormat.currencyFormat(cho.getGiaCho());
-        if(daThemVaoGio){
-            trangThaiCho = "Đã thêm vào giỏ vé";
-        }else if(dangChon){
+        if(dangChon){
             trangThaiCho = "Đang chọn";
         }else{
             switch (cho.getTrangThaiCho()){
                 case TrangThaiCho.CONTRONG -> {
                     trangThaiCho = "Còn trống";
                 }
-                case TrangThaiCho.DADATHOACBAN -> {
-                    trangThaiCho = "Đã đặt hoặc bán";
+                case TrangThaiCho.DADAT -> {
+                    trangThaiCho = "Đã đặt";
+                }
+                case TrangThaiCho.DABAN -> {
+                    trangThaiCho = "Đã bán";
                 }
                 case TrangThaiCho.DANHCHOCHANGDAIHON -> {
                     trangThaiCho = "Dành cho chặng dài hơn";

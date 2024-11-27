@@ -3,13 +3,8 @@ package GUI.controllers;
 import BUS.QuanLyChuyenTau_BUS;
 import BUS.QuanLyVe_BUS;
 import DAO.ChiTietVe_DAO;
-import DAO.Cho_DAO;
 import DAO.ChuyenTau_DAO;
-import DAO.ToaTau_DAO;
 import DTO.*;
-import GUI.controllers.BanVe_GUI_Items.Cho_Controller;
-import GUI.controllers.BanVe_GUI_Items.ChuyenTau_Controller;
-import GUI.controllers.BanVe_GUI_Items.ToaTau_Controller;
 import GUI.controllers.DoiVe_GUI_Items.Cho_DoiVe_Controller;
 import GUI.controllers.DoiVe_GUI_Items.ChuyenTau_DoiVe_Controller;
 import GUI.controllers.DoiVe_GUI_Items.ToaTau_DoiVe_Controller;
@@ -19,16 +14,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -106,6 +100,16 @@ public class DoiVe_GUI_Controller implements Initializable {
     private TextField txtTongTien;
 
     private int trangChuyenTauHienTai;
+
+    private Stage stage;
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private GaTau gaDi;
     private GaTau gaDen;
@@ -237,12 +241,12 @@ public class DoiVe_GUI_Controller implements Initializable {
         double giaChoCu = Double.parseDouble(lblGiaCu_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
         double giaChoMoi = Double.parseDouble(lblGiaMoi_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
         double tongTien = 0;
-        if (giaChoMoi > (giaChoCu + 50000)) {
-            tongTien = Math.abs(giaChoCu - giaChoMoi - 50000);
+        if (giaChoMoi > (giaChoCu + 20000)) {
+            tongTien = Math.abs(giaChoCu - giaChoMoi - 20000);
             txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien));
             lblTongTien.setText("Thu thêm:");
-        } else if (giaChoMoi < (giaChoCu + 50000)) {
-            tongTien = Math.abs(giaChoMoi + 50000 - giaChoCu);
+        } else if (giaChoMoi < (giaChoCu + 20000)) {
+            tongTien = Math.abs(giaChoMoi + 20000 - giaChoCu);
             txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien));
             lblTongTien.setText("Trả lại khách:");
         } else {
@@ -267,6 +271,8 @@ public class DoiVe_GUI_Controller implements Initializable {
     @FXML
     void btnTimVeOnAction(ActionEvent event) throws IOException {
         String maTim = txtMaVe.getText();
+        QuanLyChuyenTau_BUS chuyenTauBus= new QuanLyChuyenTau_BUS();
+        QuanLyVe_BUS ctVeBus = new QuanLyVe_BUS();
         if(ktMaVeNhap(maTim)){
             QuanLyVe_BUS veBus = new QuanLyVe_BUS();
             veKhachHang = veBus.getVeTheoMa(maTim);
@@ -279,21 +285,21 @@ public class DoiVe_GUI_Controller implements Initializable {
             main_Controller.showMessagesDialog("Không tìm thấy vé với mã: " + maTim);
             txtMaVe.requestFocus();
 
-        } else if (veKhachHang.getLoaiVe() != LoaiVe.VECANHAN) {
-            main_Controller.showMessagesDialog("Phải là vé cá nhân");
-            txtMaVe.requestFocus();
+//        } else if (veKhachHang.getLoaiVe() != LoaiVe.VECANHAN) {
+//            main_Controller.showMessagesDialog("Phải là vé cá nhân");
+//            txtMaVe.requestFocus();
 
         } else
-//            if (thoiGianDi.isBefore(thoiGianHienTai)){
-//            main_Controller.showMessagesDialog("Chuyến tàu của vé đã khởi hành!");
-//            txtMaVe.requestFocus();
-//        }else
+            if (thoiGianDi.isBefore(thoiGianHienTai)){
+            main_Controller.showMessagesDialog("Chuyến tàu của vé đã khởi hành!");
+            txtMaVe.requestFocus();
+        }else
         {
             gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
             gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
 
-            chuyenTauKH = ChuyenTau_DAO.timChuyenTauTheoMa(veKhachHang.getChuyenTau().getMaChuyenTau());
-            ctVe = ChiTietVe_DAO.getCTVeTheoMaVe(veKhachHang.getMaVe());
+            chuyenTauKH = chuyenTauBus.timChuyenTauTheoMaVe(veKhachHang.getMaVe());
+            ctVe = ctVeBus.getCTVeTheoMaVe(veKhachHang.getMaVe());
 
             lblToaTau_Cu.setText(ctVe.getCho().getToaTau().getMaToaTau());
             lblCho_Cu.setText(String.format("%d", ctVe.getCho().getSoCho()));
@@ -313,11 +319,12 @@ public class DoiVe_GUI_Controller implements Initializable {
             main_Controller.showMessagesDialog("Vui lòng nhập mã vé!");
             txtMaVe.requestFocus();
             return false;
-        } else if (!maTim.matches("^V\\d{12}$")) {
-            main_Controller.showMessagesDialog("Vé không hợp lệ. Định dạng đúng là 'VXXXXXXXXXXXX' với X là chữ số.");
-            txtMaVe.requestFocus();
-            return false;
         }
+//        else if (!maTim.matches("^VE\\d{16}$")) {
+//            main_Controller.showMessagesDialog("Vé không hợp lệ. Định dạng đúng là 'VEXXXXXXXXXXXXXXXX' với X là chữ số.");
+//            txtMaVe.requestFocus();
+//            return false;
+//        }
         return  true;
     }
 
@@ -475,7 +482,13 @@ public class DoiVe_GUI_Controller implements Initializable {
             if (choKH.getTrangThaiCho()==TrangThaiCho.CONTRONG) {
                 controller.chuyenMauDangChon();
             }
-            if (choKH.getTrangThaiCho()==TrangThaiCho.DADATHOACBAN) {
+            if (choKH.getTrangThaiCho()==TrangThaiCho.DABAN) {
+                controller.chuyenMauDangChon();
+            }
+            if (choKH.getTrangThaiCho()==TrangThaiCho.DANHCHOCHANGDAIHON) {
+                controller.chuyenMauDangChon();
+            }
+            if (choKH.getTrangThaiCho()==TrangThaiCho.DADAT) {
                 controller.chuyenMauDangChon();
             }
             controller.capNhatTrangThai();

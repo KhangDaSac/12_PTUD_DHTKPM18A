@@ -2,6 +2,7 @@ package DTO;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class VeDat {
@@ -11,9 +12,10 @@ public class VeDat {
 	private ChiTietChuyenTau thongTinGaTauDen;
 	private TrangThaiVeDat trangThaiVeDat;
 	private LoaiVe loaiVe;
-	private double tienVe;
 	private double phanTramGiamGiaVeTapThe;
-	private double tienDatCoc;
+	private double phanTramDatCoc;
+
+	private ArrayList<ChiTietVeDat> danhSachChiTietVeDat;
 
 	private final double PHANTRAMDATCOC = 0.2;
 	private final double PHANTRAMGIAMGIAVETAPTHE = 0.1;
@@ -66,13 +68,6 @@ public class VeDat {
 		this.loaiVe = loaiVe;
 	}
 
-	public double getTienVe() {
-		return tienVe;
-	}
-
-	public void setTienVe(double tienVe) {
-		this.tienVe = tienVe;
-	}
 
 	public double getPhanTramGiamGiaVeTapThe() {
 		return phanTramGiamGiaVeTapThe;
@@ -82,12 +77,20 @@ public class VeDat {
 		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
 	}
 
-	public double getTienDatCoc() {
-		return tienDatCoc;
+	public double getPhanTramDatCoc() {
+		return phanTramDatCoc;
 	}
 
-	public void setTienDatCoc(double tienDatCoc) {
-		this.tienDatCoc = tienDatCoc;
+	public void setPhanTramDatCoc(double phanTramDatCoc) {
+		this.phanTramDatCoc = phanTramDatCoc;
+	}
+
+	public ArrayList<ChiTietVeDat> getDanhSachChiTietVeDat() {
+		return danhSachChiTietVeDat;
+	}
+
+	public void setDanhSachChiTietVeDat(ArrayList<ChiTietVeDat> danhSachChiTietVeDat) {
+		this.danhSachChiTietVeDat = danhSachChiTietVeDat;
 	}
 
 	@Override
@@ -103,15 +106,13 @@ public class VeDat {
 		return Objects.hashCode(maVeDat);
 	}
 
-	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, TrangThaiVeDat trangThaiVeDat, LoaiVe loaiVe, double tienVe, double tienDatCoc) {
+	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, TrangThaiVeDat trangThaiVeDat, LoaiVe loaiVe) {
 		this.maVeDat = maVeDat;
 		this.hoaDonDatVe = hoaDonDatVe;
 		this.thongTinGaTauDi = thongTinGaTauDi;
 		this.thongTinGaTauDen = thongTinGaTauDen;
 		this.trangThaiVeDat = trangThaiVeDat;
 		this.loaiVe = loaiVe;
-		this.tienVe = tienVe;
-		this.tienDatCoc = tienDatCoc;
 		if(loaiVe.equals(LoaiVe.VETAPTHE)){
 			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
 		}else{
@@ -120,12 +121,24 @@ public class VeDat {
 
 	}
 
+	public double tienVe(){
+		double tienVe = 0;
+		for (ChiTietVeDat chiTietVeDat : danhSachChiTietVeDat){
+			tienVe += chiTietVeDat.thanhTienChiTietVeDat();
+		}
+		return tienVe;
+	}
+
+
+	public double giamGiaVeTapThe(){
+		return tienVe() * phanTramGiamGiaVeTapThe;
+	}
+
 	public double tienVeCuoi(){
-		return tienVe * (1 - phanTramGiamGiaVeTapThe);
+		return tienVe() * (1 - phanTramGiamGiaVeTapThe);
 	}
 
 	public double tienDatCoc(){
-		tienDatCoc = tienVeCuoi() * PHANTRAMDATCOC;
-		return tienDatCoc;
+		return tienVe() * phanTramDatCoc;
 	}
 }

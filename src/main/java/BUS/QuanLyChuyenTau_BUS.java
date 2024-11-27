@@ -53,6 +53,11 @@ public class QuanLyChuyenTau_BUS {
         return  toaTau;
     }
 
+    public static ChuyenTau timChuyenTauTheoMaVe(String maVe){
+        ChuyenTau_DAO chuyenTauDao = new ChuyenTau_DAO();
+        ChuyenTau chuyenTau = chuyenTauDao.timChuyenTauTheoMaVe(maVe);
+        return chuyenTau;
+    }
 
 //    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
 //        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();

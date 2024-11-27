@@ -1,6 +1,7 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HoaDonDatVe {
@@ -8,8 +9,8 @@ public class HoaDonDatVe {
     private LocalDateTime thoiGianLap;
     private KhachHang khachHangDatVe;
     private CaLamViec caLamViec;
-    private double tongTienCuoi;
-    private double tongTienDatCoc;
+
+    private ArrayList<VeDat> danhSachVeDat;
 
     public String getMaHoaDonDatVe() {
         return maHoaDonDatVe;
@@ -43,20 +44,13 @@ public class HoaDonDatVe {
         this.caLamViec = caLamViec;
     }
 
-    public double getTongTienCuoi() {
-        return tongTienCuoi;
+
+    public ArrayList<VeDat> getDanhSachVeDat() {
+        return danhSachVeDat;
     }
 
-    public void setTongTienCuoi(double tongTienCuoi) {
-        this.tongTienCuoi = tongTienCuoi;
-    }
-
-    public double getTongTienDatCoc() {
-        return tongTienDatCoc;
-    }
-
-    public void setTongTienDatCoc(double tongTienDatCoc) {
-        this.tongTienDatCoc = tongTienDatCoc;
+    public void setDanhSachVeDat(ArrayList<VeDat> danhSachVeDat) {
+        this.danhSachVeDat = danhSachVeDat;
     }
 
     @Override
@@ -74,6 +68,22 @@ public class HoaDonDatVe {
 
     public HoaDonDatVe(String maHoaDonDatVe) {
         this.maHoaDonDatVe = maHoaDonDatVe;
+    }
+
+    public double tongTienCuoi(){
+        double tongTienCuoi = 0;
+        for (VeDat veDat : danhSachVeDat){
+            tongTienCuoi += veDat.tienVeCuoi();
+        }
+        return tongTienCuoi;
+    }
+
+    public double tongTienDatCoc(){
+        double tongTienDatCoc = 0;
+        for (VeDat veDat : danhSachVeDat){
+            tongTienDatCoc += veDat.tienDatCoc();
+        }
+        return tongTienDatCoc;
     }
 
 }

@@ -9,6 +9,10 @@ public class ChiTietVe {
 	private double giaCho;
 	private double phanTramGiamGia;
 
+	public ChiTietVe() {
+
+	}
+
 
 	public Ve getVe() {
 		return ve;
@@ -64,8 +68,13 @@ public class ChiTietVe {
 		return Objects.hash(ve, cho);
 	}
 
+	public ChiTietVe(Ve ve, Cho cho, double giaCho) {
+		this.ve = ve;
+		this.cho = cho;
+		this.giaCho = giaCho;
+	}
 
-	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho, double phanTramGiamGia) {
+	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho,double phanTramGiamGia) {
 		this.ve = ve;
 		this.cho = cho;
 		this.khachHang = khachHang;
@@ -75,6 +84,10 @@ public class ChiTietVe {
 
 	public ChiTietVe(Ve ve) {
 		this.ve = ve;
+	}
+
+	public double giamGia(){
+		return giaCho * phanTramGiamGia;
 	}
 
 	public double thanhTienChiTietVe(){

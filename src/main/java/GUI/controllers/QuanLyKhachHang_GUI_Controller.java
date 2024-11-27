@@ -194,13 +194,6 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
     }
 
     boolean batLoiKyTu(){
-        if(txtMaKH.getText().isEmpty()){
-            lblMaKH_Loi.setText("Lỗi nhập!");
-            txtMaKH.requestFocus();
-            return false;
-        }else{
-            lblMaKH_Loi.setText("");
-        }
         if(txtCCCD_KH.getText().isEmpty()){
             lblCCCD_Loi.setText("Lỗi nhập!");
             txtCCCD_KH.requestFocus();

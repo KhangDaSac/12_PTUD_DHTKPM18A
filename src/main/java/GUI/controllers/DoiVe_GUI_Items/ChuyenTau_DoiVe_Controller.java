@@ -173,7 +173,8 @@ public class ChuyenTau_DoiVe_Controller implements Initializable {
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
         lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
-        lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBanVaDat()));
+        lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaDat()));
+        //lblDaBanVe.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
         lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
     }

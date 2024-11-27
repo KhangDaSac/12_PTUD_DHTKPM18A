@@ -1,14 +1,16 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class HoaDonHuyVe {
 	private String maHoaDonHuyVe;
 	private LocalDateTime thoiGianHuyVe;
 	private KhachHang khachHangHuyVe;
-	private double tongTienVeHuy;
 	private CaLamViec caLamViec;
+
+	private ArrayList<ChiTietHoaDonHuyVe> danhSachChiTietHoaDonHuyVe;
 
 	public String getMaHoaDonHuyVe() {
 		return maHoaDonHuyVe;
@@ -34,14 +36,6 @@ public class HoaDonHuyVe {
 		this.khachHangHuyVe = khachHangHuyVe;
 	}
 
-	public double getTongTienVeHuy() {
-		return tongTienVeHuy;
-	}
-
-	public void setTongTienVeHuy(double tongTienVeHuy) {
-		this.tongTienVeHuy = tongTienVeHuy;
-	}
-
 	public CaLamViec getCaLamViec() {
 		return caLamViec;
 	}
@@ -51,6 +45,13 @@ public class HoaDonHuyVe {
 	}
 
 
+	public ArrayList<ChiTietHoaDonHuyVe> getDanhSachChiTietHoaDonHuyVe() {
+		return danhSachChiTietHoaDonHuyVe;
+	}
+
+	public void setDanhSachChiTietHoaDonHuyVe(ArrayList<ChiTietHoaDonHuyVe> danhSachChiTietHoaDonHuyVe) {
+		this.danhSachChiTietHoaDonHuyVe = danhSachChiTietHoaDonHuyVe;
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -67,5 +68,13 @@ public class HoaDonHuyVe {
 
 	public HoaDonHuyVe(String maHoaDonHuyVe) {
 		this.maHoaDonHuyVe = maHoaDonHuyVe;
+	}
+
+	public double tongTienCuoi(){
+		double tongTienCuoi = 0;
+		for(ChiTietHoaDonHuyVe chiTietHoaDonHuyVe : danhSachChiTietHoaDonHuyVe){
+			tongTienCuoi += chiTietHoaDonHuyVe.soTienHoanLai();
+		}
+		return tongTienCuoi;
 	}
 }

@@ -111,17 +111,17 @@ public class Cho_DAO {
         ArrayList<Cho> danhSachCho = new ArrayList<Cho>();
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query = "exec dbo.UDP_TimDanhSachChoTrenToaTau ?, ?, ?";
+            String query = "exec dbo.UDP_GetDanhSachChoTheo_GaDi_GaDen_MaToa ?, ?, ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maToaTau);
-            statement.setString(2, gaDi);
-            statement.setString(3, gaDen);
+            statement.setString(1, gaDi);
+            statement.setString(2, gaDen);
+            statement.setString(3, maToaTau);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String maCho = rs.getString("maCho");
                 int soCho = rs.getInt("soCho");
                 LoaiCho loaiCho = new LoaiCho(rs.getString("maLoaiCho"), rs.getString("tenLoaiCho"), rs.getDouble("heSoGiaCho"));
-                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToa"));
+                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa"), rs.getDouble("heSoGiaToaTau"));
                 ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau);
                 TrangThaiCho trangThaiCho = TrangThaiCho.values()[rs.getInt("trangThaiCho")];
                 Cho cho = new Cho(maCho, soCho, toaTau, loaiCho, trangThaiCho);

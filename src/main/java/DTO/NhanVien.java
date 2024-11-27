@@ -7,7 +7,8 @@ public class NhanVien {
 	private String CCCD;
 	private String tenNhanVien;
 	private String diaChi;
-	private String soDienThoai ;
+	private String soDienThoai;
+	private String email;
 	private LoaiNhanVien loaiNhanVien;
 	private TrangThaiNhanVien trangThaiNhanVien;
 	public NhanVien() {
@@ -69,6 +70,14 @@ public class NhanVien {
 		this.soDienThoai = soDienThoai;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public LoaiNhanVien getLoaiNhanVien() {
 		return loaiNhanVien;
 	}
@@ -98,16 +107,4 @@ public class NhanVien {
 		return Objects.hashCode(maNhanVien);
 	}
 
-	@Override
-	public String toString() {
-		return "NhanVien{" +
-				"maNhanVien='" + maNhanVien + '\'' +
-				", CCCD='" + CCCD + '\'' +
-				", tenNhanVien='" + tenNhanVien + '\'' +
-				", diaChi='" + diaChi + '\'' +
-				", soDienThoai='" + soDienThoai + '\'' +
-				", loaiNhanVien=" + loaiNhanVien +
-				", trangThaiNhanVien=" + trangThaiNhanVien +
-				'}';
-	}
 }

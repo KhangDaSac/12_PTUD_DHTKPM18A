@@ -17,28 +17,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class ChiTietVe_DAO {
-    public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
-        Connection con = ConnectDB.getInstance().getConnection();
-        String query = "insert into ChiTietVe values (?, ?, ?, ?, ?, ?)";
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-            try {
-                PreparedStatement statement = con.prepareStatement(query);
-                statement.setString(1, chiTietVe.getVe().getMaVe());
-                statement.setString(2, chiTietVe.getCho().getMaCho());
-                statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
-                statement.setDouble(4, chiTietVe.getGiaCho());
-                statement.setDouble(5, chiTietVe.getSoTienGiamGia());
-                statement.setDouble(6, chiTietVe.getThanhTien());
-
-                statement.executeUpdate();
-
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        }
-        return true;
-    }
+//    public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
+//        Connection con = ConnectDB.getInstance().getConnection();
+//        String query = "insert into ChiTietVe values (?, ?, ?, ?, ?, ?)";
+//        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+//            try {
+//                PreparedStatement statement = con.prepareStatement(query);
+//                statement.setString(1, chiTietVe.getVe().getMaVe());
+//                statement.setString(2, chiTietVe.getCho().getMaCho());
+//                statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
+//                statement.setDouble(4, chiTietVe.getGiaCho());
+//                statement.setDouble(5, chiTietVe.getSoTienGiamGia());
+//                statement.setDouble(6, chiTietVe.getThanhTien());
+//
+//                statement.executeUpdate();
+//
+//            } catch (Exception e) {
+//                System.out.println(e.getMessage());
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
         public static ChiTietVe getCTVeTheoMaVe(String maVe){
             ChiTietVe ctVe = null;
             Connection con = ConnectDB.getInstance().getConnection();
@@ -60,6 +60,7 @@ public class ChiTietVe_DAO {
                             rs.getInt("soCho"));
 
                     double giaCho = rs.getDouble("giaCho");
+                    double phanTramGiamGia = rs.getDouble("phanTramGiamGia");
                     KhachHang khachHang = new KhachHang(
                             rs.getString("maKhachHang"),
                             rs.getString("tenKhachHang"),
@@ -70,7 +71,7 @@ public class ChiTietVe_DAO {
                             ),
                             rs.getString("CCCD"));
 
-                    ctVe = new ChiTietVe(giaCho,ve,cho,khachHang);
+                    ctVe = new ChiTietVe(ve,cho,khachHang,giaCho,phanTramGiamGia);
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);

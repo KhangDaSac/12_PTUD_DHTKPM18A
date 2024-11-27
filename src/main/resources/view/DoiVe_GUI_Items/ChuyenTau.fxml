@@ -7,15 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane onMouseClicked="#anpChuyenTauOnMouseClicked" prefHeight="230.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DoiVe_GUI_Items.ChuyenTau_DoiVe_Controller">
+<AnchorPane onMouseClicked="#anpChuyenTauOnMouseClicked" prefHeight="230.0" prefWidth="214.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DoiVe_GUI_Items.ChuyenTau_DoiVe_Controller">
    <children>
-      <ImageView fx:id="imvChuyenTau" fitHeight="220.0" fitWidth="150.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <ImageView fx:id="imvChuyenTau" fitHeight="220.0" fitWidth="207.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@../../images/DoiVe_GUI/train-gray.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblMaChuyenTau" layoutX="40.0" layoutY="10.0" text="SE02181024" AnchorPane.leftAnchor="40.0">
+      <Label fx:id="lblMaChuyenTau" layoutX="56.0" layoutY="9.0" text="SE02181024" AnchorPane.leftAnchor="56.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

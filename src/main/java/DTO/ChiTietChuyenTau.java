@@ -8,8 +8,9 @@ public class ChiTietChuyenTau {
 	private GaTau gaTau;
 	private LocalDateTime thoiGianDen;
 	private LocalDateTime thoiGianDi;
+	private int thuTuGa;
 	private double soKm;
-	private int  thuTuGa;
+
 
 	public ChiTietChuyenTau(ChuyenTau chuyenTau) {
 		this.chuyenTau = chuyenTau;
@@ -20,8 +21,8 @@ public class ChiTietChuyenTau {
 		this.gaTau = gaTau;
 		this.thoiGianDen = thoiGianDen;
 		this.thoiGianDi = thoiGianDi;
-		this.soKm = soKm;
 		this.thuTuGa = thuTuGa;
+		this.soKm = soKm;
 	}
 
 

@@ -78,6 +78,15 @@ public class HoaDonDoiVe {
 		this.maLichSuDoi = maLichSuDoi;
 	}
 
+	public HoaDonDoiVe(String maLichSuDoi, LocalDateTime thoiGianDoiVe, Ve veCu, Ve veMoi, CaLamViec caLamViec) {
+		this.maLichSuDoi = maLichSuDoi;
+		this.thoiGianDoiVe = thoiGianDoiVe;
+		this.lePhi = LEPHIDOIVE;
+		this.veCu = veCu;
+		this.veMoi = veMoi;
+		this.caLamViec = caLamViec;
+	}
+
 	public double tongTienCuoi(){
 		return veMoi.tienVeCuoi() - veCu.tienVeCuoi() - lePhi;
 	}

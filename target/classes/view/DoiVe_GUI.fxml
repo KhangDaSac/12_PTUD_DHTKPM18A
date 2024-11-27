@@ -249,14 +249,14 @@
             </AnchorPane>
             <HBox layoutX="29.0" layoutY="1.0" prefHeight="73.0" prefWidth="550.0" spacing="20.0">
                <children>
-                  <AnchorPane prefHeight="60.0" prefWidth="199.0" styleClass="group" stylesheets="@../css/All.css">
+                  <AnchorPane prefHeight="82.0" prefWidth="260.0" styleClass="group" stylesheets="@../css/All.css">
                      <children>
                         <Label layoutX="14.0" layoutY="4.0" prefHeight="18.0" prefWidth="140.0" text="Mã vé" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="4.0">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="txtMaVe" layoutX="5.0" layoutY="39.0" prefHeight="32.0" prefWidth="194.0" promptText="Tìm vé" />
+                        <TextField fx:id="txtMaVe" layoutX="5.0" layoutY="39.0" prefHeight="38.0" prefWidth="250.0" promptText="Tìm vé" />
                      </children>
                   </AnchorPane>
                   <JFXButton fx:id="btnTimVe" onAction="#btnTimVeOnAction" prefHeight="81.0" prefWidth="194.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tìm Vé">

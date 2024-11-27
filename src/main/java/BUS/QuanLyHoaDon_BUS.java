@@ -37,26 +37,26 @@ public class QuanLyHoaDon_BUS {
         Ve_DAO ve_dao = new Ve_DAO();
         ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
 
-        if(hoaDon.getKhachHangMua() == null)
-            throw new Exception("Chưa nhập thông tin người mua");
+//        if(hoaDon.getKhachHangMua() == null)
+//            throw new Exception("Chưa nhập thông tin người mua");
 
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-            if(chiTietVe.getKhachHang() == null){
-                throw new Exception("Chưa nhập thông tin người người đi tàu");
-            }
-        }
-
-        if(!hoaDon_dao.themHoaDon(hoaDon)){
-            return false;
-        }
-
-        if(!ve_dao.themDanhSachVe(danhSachVe)){
-            return false;
-        }
-
-        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
-            return false;
-        }
+//        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+//            if(chiTietVe.getKhachHang() == null){
+//                throw new Exception("Chưa nhập thông tin người người đi tàu");
+//            }
+//        }
+//
+//        if(!hoaDon_dao.themHoaDon(hoaDon)){
+//            return false;
+//        }
+//
+//        if(!ve_dao.themDanhSachVe(danhSachVe)){
+//            return false;
+//        }
+//
+//        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
+//            return false;
+//        }
 
         return true;
     }
@@ -66,20 +66,20 @@ public class QuanLyHoaDon_BUS {
         ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
 
 
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-            if(chiTietVe.getKhachHang() == null){
-                throw new Exception("Chưa nhập thông tin người người đi tàu");
-            }
-        }
-
-
-        if(!ve_dao.themDanhSachVe(danhSachVe)){
-            return false;
-        }
-
-        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
-            return false;
-        }
+//        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+//            if(chiTietVe.getKhachHang() == null){
+//                throw new Exception("Chưa nhập thông tin người người đi tàu");
+//            }
+//        }
+//
+//
+//        if(!ve_dao.themDanhSachVe(danhSachVe)){
+//            return false;
+//        }
+//
+//        if(!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)){
+//            return false;
+//        }
 
         return true;
     }

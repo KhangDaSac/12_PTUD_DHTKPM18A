@@ -12,46 +12,46 @@ public class PhieuDatVe_DAO {
     public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
         ArrayList<VeDat> phieuDatVeList = new ArrayList<VeDat>();
         Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDon ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maHD);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String maPhieuDatVe = rs.getString("maPhieuDatVe");
-                HoaDonBanVe hoaDon = new HoaDonBanVe(rs.getString("maHoaDon"));
-                ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime()
-                );
-
-                ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDen"), rs.getString("tenGaDen")));
-                double giamGiaVeTapThe = rs.getDouble("giamGiaVeTapThe");
-                double tongTienVe = rs.getDouble("tongTienVe");
-                double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
-                TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
-                LoaiPhieuDatVe loaiPhieuDatVe = LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"));
-
-                VeDat phieuDatVe = new VeDat(
-                        maPhieuDatVe,
-                        hoaDon,
-                        chiTietChuyenTauDi,
-                        chiTietChuyenTauDen,
-                        giamGiaVeTapThe,
-                        tongTienVe,
-                        tongTienDatCoc,
-                        trangThaiPhieuDatVe,
-                        loaiPhieuDatVe
-                );
-
-                phieuDatVeList.add(phieuDatVe);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDon ?";
+//            PreparedStatement statement = con.prepareStatement(query);
+//            statement.setString(1, maHD);
+//            ResultSet rs = statement.executeQuery();
+//            while (rs.next()) {
+//                String maPhieuDatVe = rs.getString("maPhieuDatVe");
+//                HoaDonBanVe hoaDon = new HoaDonBanVe(rs.getString("maHoaDon"));
+//                ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
+//                        new ChuyenTau(rs.getString("maChuyenTau")),
+//                        new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
+//                        rs.getTimestamp("thoiGianDi").toLocalDateTime()
+//                );
+//
+//                ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
+//                        new ChuyenTau(rs.getString("maChuyenTau")),
+//                        new GaTau(rs.getString("maGaDen"), rs.getString("tenGaDen")));
+//                double giamGiaVeTapThe = rs.getDouble("giamGiaVeTapThe");
+//                double tongTienVe = rs.getDouble("tongTienVe");
+//                double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
+//                TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
+//                LoaiPhieuDatVe loaiPhieuDatVe = LoaiPhieuDatVe.valueOf(rs.getString("loaiPhieuDatVe"));
+//
+//                VeDat phieuDatVe = new VeDat(
+//                        maPhieuDatVe,
+//                        hoaDon,
+//                        chiTietChuyenTauDi,
+//                        chiTietChuyenTauDen,
+//                        giamGiaVeTapThe,
+//                        tongTienVe,
+//                        tongTienDatCoc,
+//                        trangThaiPhieuDatVe,
+//                        loaiPhieuDatVe
+//                );
+//
+//                phieuDatVeList.add(phieuDatVe);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return phieuDatVeList;
     }
 
