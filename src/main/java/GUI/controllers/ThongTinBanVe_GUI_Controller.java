@@ -22,8 +22,6 @@ import javafx.scene.layout.VBox;
 
 public class ThongTinBanVe_GUI_Controller implements Initializable {
     private HoaDonBanVe hoaDonBanVe;
-    private ArrayList<Ve> danhSachVe;
-    private ArrayList<ChiTietVe> danhSachChiTietVe;
     private Main_Controller main_controller;
     private KhachHang khachHang;
 
@@ -37,22 +35,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     public void setHoaDonBanVe(HoaDonBanVe hoaDonBanVe) {
         this.hoaDonBanVe = hoaDonBanVe;
-    }
-
-    public ArrayList<Ve> getDanhSachVe() {
-        return danhSachVe;
-    }
-
-    public void setDanhSachVe(ArrayList<Ve> danhSachVe) {
-        this.danhSachVe = danhSachVe;
-    }
-
-    public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
-        return danhSachChiTietVe;
-    }
-
-    public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
-        this.danhSachChiTietVe = danhSachChiTietVe;
     }
 
     public Main_Controller getMain_controller() {
@@ -132,12 +114,10 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
         hoaDonBanVe.setCaLamViec(new CaLamViec("CLV010125C"));
         try {
-            if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe, danhSachVe, danhSachChiTietVe)){
+            if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
                 hoaDonBanVe = null;
-                danhSachVe.clear();
-                danhSachChiTietVe.clear();
                 main_controller.showMessagesDialog("Bán vé thành công");
-                main_controller.quayLaiTrangBanVe(hoaDonBanVe, danhSachVe, danhSachChiTietVe);
+                main_controller.quayLaiTrangBanVe(hoaDonBanVe);
             }else{
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }
@@ -149,10 +129,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @FXML
     void btnQuayLaiOnAction(ActionEvent event) {
         hoaDonBanVe.setKhachHangMuaVe(null);
-        for (ChiTietVe chiTietVe : danhSachChiTietVe){
-            chiTietVe.setKhachHang(null);
-        }
-        main_controller.quayLaiTrangBanVe(hoaDonBanVe, danhSachVe, danhSachChiTietVe);
+        main_controller.quayLaiTrangBanVe(hoaDonBanVe);
     }
 
     @FXML
@@ -190,12 +167,12 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     public void capNhatGioVe() throws IOException {
         vboxGioVe.getChildren().clear();
         veControllerList.clear();
-        int length = danhSachVe.size();
+        int length = hoaDonBanVe.getDanhSachVe().size();
         if (length == 0){
             return;
         }
         for(int i = 0; i < length; i++){
-            Ve ve = danhSachVe.get(i);
+            Ve ve = hoaDonBanVe.getDanhSachVe().get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI_Items/Ve_ThongTinBanVe.fxml"));
             Parent anchorPane = loader.load();
             Ve_ThongTinBanVe_Controller controller = loader.getController();
@@ -291,7 +268,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     }
 
     public boolean kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(Ve ve){
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+        for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
             if(chiTietVe.getVe().equals(ve)){
                 if(chiTietVe.getKhachHang() == null)
                     return false;

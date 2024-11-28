@@ -199,7 +199,38 @@
                         </AnchorPane>
                      </children>
                   </VBox>
-                  <VBox prefWidth="440.0" />
+                  <VBox prefWidth="440.0">
+                     <children>
+                        <HBox prefHeight="60.0" style="-fx-alignment: center;">
+                           <children>
+                              <Label style="-fx-font-size: 20; -fx-alignment: center; -fx-font-weight: 700;" text="THÔNG TIN NGƯỜI MUA" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Mã khách hàng: " />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="KH2024000001" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số CCCD:" />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="087630000458" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Tên khách hàng: " />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="Nguyễn Văn A" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="110.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số điện thoại: " />
+                              <Label layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="0123456789" />
+                           </children>
+                        </HBox>
+                     </children></VBox>
                </children>
             </HBox>
          </children>

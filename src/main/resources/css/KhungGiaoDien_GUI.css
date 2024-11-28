@@ -7,6 +7,10 @@
     -fx-padding: 0;
 }
 
+.menu-list *{
+    -fx-background-color: #1D006F;
+}
+
 .menu-button{
     -fx-text-fill: #fff;
     -fx-background-radius: 0;

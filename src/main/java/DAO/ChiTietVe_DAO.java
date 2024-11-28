@@ -17,8 +17,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class ChiTietVe_DAO {
-    public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
-        Connection con = ConnectDB.getInstance().getConnection();
+    private static Connection con = ConnectDB.getInstance().getConnection();
+    public static boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
         String query = "insert into ChiTietVe values (?, ?, ?, ?, ?, ?)";
         for(ChiTietVe chiTietVe : danhSachChiTietVe){
             try {
@@ -28,7 +28,6 @@ public class ChiTietVe_DAO {
                 statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
                 statement.setDouble(4, chiTietVe.getGiaCho());
                 statement.executeUpdate();
-
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return false;

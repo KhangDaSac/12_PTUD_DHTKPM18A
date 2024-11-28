@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Ve_DAO {
-    public String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
+    private static Connection con = ConnectDB.getInstance().getConnection();
+    public static String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select max(maVe) as maVe from Ve where maVe like 'V' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
@@ -27,8 +27,7 @@ public class Ve_DAO {
         return maVeLonNhat;
     }
 
-    public boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
-        Connection con = ConnectDB.getInstance().getConnection();
+    public static boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
         String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         for(Ve ve : danhSachVe){
             try {

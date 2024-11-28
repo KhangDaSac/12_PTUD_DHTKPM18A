@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class HoaDonBanVe_DAO {
-
+        private static Connection con = ConnectDB.getInstance().getConnection();
 //    public HoaDonBanVe getHoaDonTheoMa(String ma){
 //        Connection con = ConnectDB.getInstance().getConnection();
 //        HoaDonBanVe hoaDon = new HoaDonBanVe();
@@ -88,13 +88,13 @@ public class HoaDonBanVe_DAO {
         return maHoaDonLonNhat;
     }
 
-//    public boolean themHoaDon(HoaDonBanVe hoaDon){
-//        Connection con = ConnectDB.getInstance().getConnection();
-//        try {
-//            String query = "insert into HoaDon values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//            PreparedStatement statement = con.prepareStatement(query);
-//            statement.setString(1, hoaDon.getMaHoaDon());
-//            statement.setString(2, TimeFormat.formatLocalDateTimeSQL(hoaDon.getThoiGianLap()));
+    public static boolean themHoaDonBanVe(HoaDonBanVe hoaDonBanVe){
+        //Ham nay bi sai cac thong so, chu y
+        try {
+            String query = "insert into HoaDonBanVe values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+//            statement.setString(1, hoaDonBanVe.getMaHoaDonBanVe());
+//            statement.setString(2, TimeFormat.formatLocalDateTimeSQL(hoaDonBanVe.getThoiGianLap()));
 //            statement.setDouble(3, hoaDon.getTongTien());
 //            statement.setDouble(4, hoaDon.getTongTienDaDatCoc());
 //            statement.setDouble(5, hoaDon.getTongTienKhachHangTra());
@@ -103,10 +103,10 @@ public class HoaDonBanVe_DAO {
 //            statement.setString(8, hoaDon.getCaLamViec().getMaCaLamViec());
 //            statement.setString(9, hoaDon.getKhachHangMua().getMaKhachHang());
 //            statement.execute();
-//        } catch (Exception e) {
-//            return false;
-//        }
-//        return true;
-//    }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 
 }
