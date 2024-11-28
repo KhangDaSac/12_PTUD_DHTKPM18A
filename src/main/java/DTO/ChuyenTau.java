@@ -12,8 +12,6 @@ public class ChuyenTau {
 	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
-	private ChiTietChuyenTau thongTinGaTauDi;
-	private ChiTietChuyenTau thongTinGaTauDen;
 
 	private int soLuongCho;
 	private int soLuongVe;
@@ -34,6 +32,7 @@ public class ChuyenTau {
 	public void setTuyenTau(TuyenTau tuyenTau) {
 		this.tuyenTau = tuyenTau;
 	}
+
 
 	public int getSoLuongChoDaBan() {
 		return soLuongChoDaBan;
@@ -65,22 +64,6 @@ public class ChuyenTau {
 
 	public void setSoLuongChoTrongTrong(int soLuongChoTrongTrong) {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
-	}
-
-	public ChiTietChuyenTau getThongTinGaTauDi() {
-		return thongTinGaTauDi;
-	}
-
-	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
-		this.thongTinGaTauDi = thongTinGaTauDi;
-	}
-
-	public ChiTietChuyenTau getThongTinGaTauDen() {
-		return thongTinGaTauDen;
-	}
-
-	public void setThongTinGaTauDen(ChiTietChuyenTau thongTinGaTauDen) {
-		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
 	public int getSoLuongCho() {
@@ -137,15 +120,6 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
-	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
-		this.maChuyenTau = maChuyenTau;
-		this.soLuongChoDaBan = soLuongChoDaBan;
-		this.soLuongChoDaDat = soLuongChoDaDat;
-		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
-		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
-		this.thongTinGaTauDi = thongTinGaTauDi;
-		this.thongTinGaTauDen = thongTinGaTauDen;
-	}
 
 	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, int soLuongVe, int soLuongVeDat) {
 		this.maChuyenTau = maChuyenTau;
@@ -159,20 +133,4 @@ public class ChuyenTau {
 		this.maChuyenTau = maChuyenTau;
 	}
 
-	@Override
-	public String toString() {
-		return "ChuyenTau{" +
-				"maChuyenTau='" + maChuyenTau + '\'' +
-				", tuyenTau=" + tuyenTau +
-				", soLuongChoDaBan=" + soLuongChoDaBan +
-				", soLuongChoDaDat=" + soLuongChoDaDat +
-				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
-				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
-				", thongTinGaTauDi=" + thongTinGaTauDi +
-				", thongTinGaTauDen=" + thongTinGaTauDen +
-				", soLuongCho=" + soLuongCho +
-				", soLuongVe=" + soLuongVe +
-				", soLuongVeDat=" + soLuongVeDat +
-				'}';
-	}
 }

@@ -29,32 +29,13 @@ public class ChuyenTau_DAO {
                 int soLuongChoDaBan = rs.getInt("daDat");
                 int soLuongChoDanhChoChanDaiHon = rs.getInt("danhChoChangDaiHon");
                 int soLuongChoTrong = rs.getInt("conTrong");
-                ChiTietChuyenTau thongTinGaTauDi = new ChiTietChuyenTau(
-                        new ChuyenTau(maChuyenTau),
-                        new GaTau(rs.getString("maGaDi")),
-                        null,
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime(),
-                        rs.getInt("thuTuGaDi"),
-                        rs.getDouble("soKmGaDi")
-                );
-
-                ChiTietChuyenTau thongTinGaTauDen = new ChiTietChuyenTau(
-                        new ChuyenTau(maChuyenTau),
-                        new GaTau(rs.getString("maGaDen")),
-                        rs.getTimestamp("thoiGianDen").toLocalDateTime(),
-                        null,
-                        rs.getInt("thuTuGaDen"),
-                        rs.getDouble("soKmGaDen")
-                );
 
                 ChuyenTau chuyenTau = new ChuyenTau(
                         maChuyenTau,
                         soLuongChoDaBan,
                         soLuongChoDaDat,
                         soLuongChoDanhChoChanDaiHon,
-                        soLuongChoTrong,
-                        thongTinGaTauDi,
-                        thongTinGaTauDen
+                        soLuongChoTrong
                 );
                 dsChuyenTau.add(chuyenTau);
             }

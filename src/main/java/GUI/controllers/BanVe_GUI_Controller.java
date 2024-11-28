@@ -235,18 +235,21 @@ public class BanVe_GUI_Controller implements Initializable {
         if(chuyenTauList.isEmpty()){
             //main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
             System.out.println("Khong tim thay");
-
             return;
         }
         chuyenTauControllerList.clear();
         int length = chuyenTauList.size();
         for (int i = 0; i < length; i++){
             ChuyenTau chuyenTau = chuyenTauList.get(i);
+            ChiTietChuyenTau chiTietChuyenTauDi = QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi);
+            ChiTietChuyenTau chiTietChuyenTauDen = QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau_BanVe.fxml"));
             Parent anchorPane = loader.load();
             ChuyenTau_BanVe_Controller controller = loader.getController();
             chuyenTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
+            controller.setChiTietChuyenTauDi(chiTietChuyenTauDi);
+            controller.setChiTietChuyenTauDen(chiTietChuyenTauDen);
             controller.setChuyenTau(chuyenTau);
             controller.khoiTao();
 
@@ -258,8 +261,6 @@ public class BanVe_GUI_Controller implements Initializable {
         }
         chuyenTauControllerList.getFirst().chonChuyenTau();
     }
-
-
 
     public void hienThiDanhSachToa(ArrayList<ToaTau> toaTauList) throws IOException {
         hboxDanhSachToaTau.getChildren().clear();
@@ -347,7 +348,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
         choControllerList.clear();
         ChuyenTau_BanVe_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon);
-        double doDaiChang = controller.getChuyenTau().getThongTinGaTauDen().getSoKm() - controller.getChuyenTau().getThongTinGaTauDi().getSoKm();
+        double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho_BanVe.fxml"));
@@ -506,8 +507,8 @@ public class BanVe_GUI_Controller implements Initializable {
     public boolean kiemTraTrungChangTrongGioVe(Cho cho){
         if(hoaDonBanVe.getDanhSachVe().isEmpty())
             return false;
-        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDi().getThuTuGa();
-        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChuyenTau().getThongTinGaTauDen().getThuTuGa();
+        int thuTuGaDi = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDi().getThuTuGa();
+        int thuTuGaDen = chuyenTauControllerList.get(chuyenTauDangChon).getChiTietChuyenTauDen().getThuTuGa();
 
         for (Ve ve : hoaDonBanVe.getDanhSachVe()) {
             for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
@@ -534,8 +535,8 @@ public class BanVe_GUI_Controller implements Initializable {
             for(Cho cho : choChonList){
 
                 ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
-                ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDi();
-                ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDen();
+                ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
+                ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
                 chiTietChuyenTauDi.setGaTau(gaDi);
                 chiTietChuyenTauDen.setGaTau(gaDen);
 
@@ -571,8 +572,8 @@ public class BanVe_GUI_Controller implements Initializable {
                 return;
             }
             ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
-            ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDi();
-            ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChuyenTau().getThongTinGaTauDen();
+            ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
+            ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
 
             String maVeMoi = hoaDonBanVe.getDanhSachVe().isEmpty()
                     ? QuanLyVe_BUS.taoMaVeMoi()

@@ -49,6 +49,8 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
 
     private BanVe_GUI_Controller banVe_GUI_Controller;
     private ChuyenTau chuyenTau;
+    private ChiTietChuyenTau chiTietChuyenTauDi;
+    private ChiTietChuyenTau chiTietChuyenTauDen;
     private int soThuTu;
 
     public ChuyenTau getChuyenTau() {
@@ -57,7 +59,6 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
 
     public void setChuyenTau(ChuyenTau chuyenTau) {
         this.chuyenTau = chuyenTau;
-
     }
 
     public int getSoThuTu() {
@@ -66,6 +67,22 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
 
     public void setSoThuTu(int soThuTu) {
         this.soThuTu = soThuTu;
+    }
+
+    public ChiTietChuyenTau getChiTietChuyenTauDen() {
+        return chiTietChuyenTauDen;
+    }
+
+    public void setChiTietChuyenTauDen(ChiTietChuyenTau chiTietChuyenTauDen) {
+        this.chiTietChuyenTauDen = chiTietChuyenTauDen;
+    }
+
+    public ChiTietChuyenTau getChiTietChuyenTauDi() {
+        return chiTietChuyenTauDi;
+    }
+
+    public void setChiTietChuyenTauDi(ChiTietChuyenTau chiTietChuyenTauDi) {
+        this.chiTietChuyenTauDi = chiTietChuyenTauDi;
     }
 
     @FXML
@@ -94,8 +111,8 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
             imvChuyenTau.setImage(new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-red.png")));
         }
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
-        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThongTinGaTauDi().getThoiGianDi()));
-        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chuyenTau.getThongTinGaTauDen().getThoiGianDen()));
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
+        lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
         lblDaBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
         lblDaDat.setText(String.valueOf(chuyenTau.getSoLuongChoDaDat()));
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
