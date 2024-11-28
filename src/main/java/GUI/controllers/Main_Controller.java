@@ -188,12 +188,12 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnQuanLyVeDatEntered(MouseEvent event) {
-        vboxQuanLyVeDat.setVisible(false);
+        vboxQuanLyVeDat.setVisible(true);
     }
 
     @FXML
     void btnQuanLyVeDatExited(MouseEvent event) {
-        vboxQuanLyVeDat.setVisible(true);
+        vboxQuanLyVeDat.setVisible(false);
     }
 
     @FXML

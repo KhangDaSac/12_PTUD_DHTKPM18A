@@ -239,7 +239,7 @@
                         <Button fx:id="btnTimPhieuVeDat" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnTimPhieuVeDatOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Tìm vé đặt" />
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxQuanLyBaoCaoVaThongKe" onMouseEntered="#vboxQuanLyBaoCaoVaThongKeMouseEntered" onMouseExited="#vboxQuanLyBaoCaoVaThongKeMouseExited" prefHeight="108.0" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="530.0">
+                  <VBox fx:id="vboxQuanLyBaoCaoVaThongKe" onMouseEntered="#vboxQuanLyBaoCaoVaThongKeMouseEntered" onMouseExited="#vboxQuanLyBaoCaoVaThongKeMouseExited" prefHeight="108.0" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="525.0">
                      <children>
                         <Button fx:id="btnBaoCao" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnBaoCaoOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Báo cáo" />
                         <Button fx:id="btnThongKe" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnThongKeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Thống kê" />
@@ -260,4 +260,3 @@
       </AnchorPane>
    </children>
 </StackPane>
-
