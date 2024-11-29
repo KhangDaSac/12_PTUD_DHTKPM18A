@@ -1,21 +1,24 @@
-package GUI.controllers.BanVe_GUI_Items;
+package GUI.controllers.ThongTinBanVe_GUI_Items;
 
 import DTO.ChiTietVe;
 import DTO.KhachHang;
+import GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
-
+import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChiTietVe_BanVe_Controller implements Initializable {
-
+public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     @FXML
     private AnchorPane anpChiTietVe;
+
+    @FXML
+    private ImageView imvDaCoKhachHang;
 
     @FXML
     private Label lblCCCD;

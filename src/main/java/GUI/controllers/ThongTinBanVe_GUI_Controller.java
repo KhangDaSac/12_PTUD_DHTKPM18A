@@ -16,18 +16,18 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CurrencyFormat;
 
 public class ThongTinBanVe_GUI_Controller implements Initializable {
     private HoaDonBanVe hoaDonBanVe;
     private Main_Controller main_controller;
     private KhachHang khachHang;
 
-
-    private ArrayList<Ve_ThongTinBanVe_Controller> veControllerList = new ArrayList<Ve_ThongTinBanVe_Controller>();
-
+    private ArrayList<Ve_ThongTinBanVe_Controller> ve_thongTinBanVe_controller_list = new ArrayList<Ve_ThongTinBanVe_Controller>();
 
     public HoaDonBanVe getHoaDonBanVe() {
         return hoaDonBanVe;
@@ -49,10 +49,13 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     private JFXButton btnBanVe;
 
     @FXML
-    private JFXButton btnQuayLai;
+    private JFXButton btnBoChonTatCaCho;
 
     @FXML
-    private JFXButton btnThemKhachHang;
+    private JFXButton btnChonTatCaCho;
+
+    @FXML
+    private JFXButton btnQuayLai;
 
     @FXML
     private JFXButton btnThemNguoiDiTau;
@@ -67,37 +70,35 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     private TextField txtCCCD;
 
     @FXML
-    private TextField txtCCCDKhachHangMuaVe;
-
-    @FXML
     private TextField txtLoaiKhachHang;
 
     @FXML
     private TextField txtMaKhachHang;
 
     @FXML
-    private TextField txtMaKhachHangMuaVe;
-
-    @FXML
     private TextField txtSoDienThoai;
-
-    @FXML
-    private TextField txtSoDienThoaiKhachHangMuaVe;
 
     @FXML
     private TextField txtTenKhachHang;
 
     @FXML
-    private TextField txtTenKhachHangMuaVe;
-
-    @FXML
     private TextField txtTongTien;
 
     @FXML
-    private VBox vboxChiTietVe;
+    private VBox vboxGioVe;
 
     @FXML
-    private VBox vboxGioVe;
+    private Label lblCCCDKhachHangMua;
+
+    @FXML
+    private Label lblMaKhachHangMua;
+
+    @FXML
+    private Label lblSoDienThoaiKhachHangMua;
+
+    @FXML
+    private Label lblTenKhachHangMua;
+
 
     private int veDangChon;
 
@@ -151,7 +152,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
-            tinhTongTienHoaDon();
+            hienThiTongTien();
         });
     }
 
@@ -166,7 +167,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     public void capNhatGioVe() throws IOException {
         vboxGioVe.getChildren().clear();
-        veControllerList.clear();
+        ve_thongTinBanVe_controller_list.clear();
         int length = hoaDonBanVe.getDanhSachVe().size();
         if (length == 0){
             return;
@@ -176,10 +177,10 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI_Items/Ve_ThongTinBanVe.fxml"));
             Parent anchorPane = loader.load();
             Ve_ThongTinBanVe_Controller controller = loader.getController();
-            veControllerList.add(controller);
+            ve_thongTinBanVe_controller_list.add(controller);
             controller.setThongTinBanVe_gui_controller(this);
 
-            controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
+            //controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
 
             controller.setVe(ve);
             controller.setSoThuTu(i);
@@ -187,11 +188,8 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
             vboxGioVe.getChildren().add(anchorPane);
         }
-        veControllerList.get(veDangChon).chonVe();
+        ve_thongTinBanVe_controller_list.get(veDangChon).chonVe();
     }
-
-
-
 
     public void timKhachHang(){
         String cccd = txtCCCD.getText();
@@ -222,11 +220,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnThemKhachHang(ActionEvent event) {
-
-    }
-
-    @FXML
     void txtCCCDOnMouseClicked(MouseEvent event) {
         if (event.getClickCount() == 2) {
             txtCCCD.setEditable(true);
@@ -239,10 +232,10 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         if(khachHang == null)
             return;
         hoaDonBanVe.setKhachHangMuaVe(khachHang);
-        txtCCCDKhachHangMuaVe.setText(hoaDonBanVe.getKhachHangMuaVe().getCCCD());
-        txtTenKhachHangMuaVe.setText(hoaDonBanVe.getKhachHangMuaVe().getTenKhachHang());
-        txtSoDienThoaiKhachHangMuaVe.setText(hoaDonBanVe.getKhachHangMuaVe().getSoDienThoai());
-        txtMaKhachHangMuaVe.setText(hoaDonBanVe.getKhachHangMuaVe().getMaKhachHang());
+        lblCCCDKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getCCCD());
+        lblTenKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getTenKhachHang());
+        lblSoDienThoaiKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getSoDienThoai());
+        lblMaKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getMaKhachHang());
     }
 
     public void themThongTinNguoiDiTau(){
@@ -252,19 +245,14 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         //hoaDonBanVe.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
         try {
             capNhatGioVe();
-            tinhTongTienHoaDon();
+            hienThiTongTien();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public double tinhTongTienHoaDon(){
-        double tongTienhoaDonBanVe = 0;
-//        for (Ve ve: danhSachVe){
-//            tongTienhoaDonBanVe += ve.tinhTongTienVeCuoi();
-//        }
-//        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTienHoaDon));
-        return tongTienhoaDonBanVe;
+    public void hienThiTongTien(){
+        txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonBanVe.tongTienCuoi()));
     }
 
     public boolean kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(Ve ve){
@@ -276,6 +264,17 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         }
         return true;
     }
+
+    @FXML
+    void btnBoChonTatCaChoOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnChonTatCaChoOnAction(ActionEvent event) {
+
+    }
+
 
 
 }

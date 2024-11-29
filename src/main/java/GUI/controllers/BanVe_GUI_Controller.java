@@ -192,7 +192,7 @@ public class BanVe_GUI_Controller implements Initializable {
             main_Controller.showMessagesDialog("Trong giỏ không có vé");
             return;
         }
-        //main_Controller.chuyenTrangThongTinBanVe(hoaDonBanVe, danhSachVe, danhSachChiTietVe);
+        main_Controller.chuyenTrangThongTinBanVe(hoaDonBanVe);
     }
 
     public void timDanhSachChuyenTau(){
@@ -600,7 +600,6 @@ public class BanVe_GUI_Controller implements Initializable {
         }
         hienThiTongTienHoaDonBanVe();
         choChonList.clear();
-
         capNhatGioVe();
         capNhatCacChoDaChon();
     }
@@ -619,6 +618,7 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setVe(ve);
             controller.setSoThuTu(i);
             controller.khoiTao();
+
 
             vboxGioVe.getChildren().add(anchorPane);
             i++;

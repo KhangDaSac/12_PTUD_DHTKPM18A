@@ -119,7 +119,7 @@ public class Ve_BanVe_Controller implements Initializable {
     }
 
     @FXML
-    void anpXoaVeOnMouseCliced(MouseEvent event) {
+    void anpXoaVeOnMouseClicked(MouseEvent event) {
         if(banVe_GUI_Controller != null){
             banVe_GUI_Controller.xoaVe(ve);
         }
@@ -150,6 +150,8 @@ public class Ve_BanVe_Controller implements Initializable {
             controller.khoiTao();
             vboxDanhDachChoVeTapThe.getChildren().add(anchorPane);
         }
+
+        chiTietVe_banVe_controller_list.getLast().chiTietVeCuoi();
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThongTin.setMinHeight(330);
