@@ -3,6 +3,7 @@ package GUI.controllers.ThongTinBanVe_GUI_Items;
 import DTO.ChiTietVe;
 import DTO.KhachHang;
 import GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller;
+import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,6 +18,9 @@ import java.util.ResourceBundle;
 public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     @FXML
     private AnchorPane anpChiTietVe;
+
+    @FXML
+    private AnchorPane anpChonChiTietVe;
 
     @FXML
     private ImageView imvDaCoKhachHang;
@@ -46,14 +50,14 @@ public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     private VBox vboxDanhDachChoVeTapThe;
 
     private ChiTietVe chiTietVe;
-    private Ve_BanVe_Controller ve_banVe_controller;
+    private ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller;
 
-    public Ve_BanVe_Controller getVe_banVe_controller() {
-        return ve_banVe_controller;
+    public ThongTinBanVe_GUI_Controller getThongTinBanVe_gui_controller() {
+        return thongTinBanVe_gui_controller;
     }
 
-    public void setVe_banVe_controller(Ve_BanVe_Controller ve_banVe_controller) {
-        this.ve_banVe_controller = ve_banVe_controller;
+    public void setThongTinBanVe_gui_controller(ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller) {
+        this.thongTinBanVe_gui_controller = thongTinBanVe_gui_controller;
     }
 
     public ChiTietVe getChiTietVe() {
@@ -82,7 +86,9 @@ public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
             lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(chiTietVe.giamGia()));
         }else{
             lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(0));
+            imvDaCoKhachHang.setVisible(false);
         }
+        capNhatTrangThaiChiTietVe();
     }
 
     public void chiTietVeCuoi(){
@@ -92,10 +98,16 @@ public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
 
     @FXML
     void anpChiTietVeClicked(MouseEvent event) {
-
+        thongTinBanVe_gui_controller.chonCho(chiTietVe);
+        capNhatTrangThaiChiTietVe();
     }
 
-    public void chonChiTietVe(){
+    public void capNhatTrangThaiChiTietVe(){
+        if(thongTinBanVe_gui_controller.kiemTraChiTietVeDuocChon(chiTietVe))
+            anpChonChiTietVe.setStyle("-fx-background-color: #000;" +
+                    "-fx-opacity: 0.1;");
+        else
+            anpChonChiTietVe.setStyle("");
 
     }
 }

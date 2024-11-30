@@ -3,6 +3,7 @@ package GUI.controllers;
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
 import DTO.*;
+import GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller;
 import GUI.controllers.ThongTinBanVe_GUI_Items.Ve_ThongTinBanVe_Controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -44,6 +45,8 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     public void setMain_controller(Main_Controller main_controller) {
         this.main_controller = main_controller;
     }
+
+    private ArrayList<ChiTietVe> danhSachChiTietVeDangChon = new ArrayList<ChiTietVe>();
 
     @FXML
     private JFXButton btnBanVe;
@@ -242,7 +245,12 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         if (khachHang == null)
             return;
 
-        //hoaDonBanVe.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
+        for(ChiTietVe chiTietVe : danhSachChiTietVeDangChon){
+            chiTietVe.setKhachHang(khachHang);
+        }
+
+        danhSachChiTietVeDangChon.clear();
+
         try {
             capNhatGioVe();
             hienThiTongTien();
@@ -267,14 +275,44 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnBoChonTatCaChoOnAction(ActionEvent event) {
-
+        danhSachChiTietVeDangChon.clear();
+        try {
+            capNhatGioVe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void btnChonTatCaChoOnAction(ActionEvent event) {
-
+        danhSachChiTietVeDangChon.clear();
+        for(Ve ve : hoaDonBanVe.getDanhSachVe()){
+            for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
+                danhSachChiTietVeDangChon.add(chiTietVe);
+            }
+        }
+        try {
+            capNhatGioVe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    public void chonCho(ChiTietVe chiTietVe){
+        if(danhSachChiTietVeDangChon.contains(chiTietVe))
+            danhSachChiTietVeDangChon.remove(chiTietVe);
+        else
+            danhSachChiTietVeDangChon.add(chiTietVe);
+    }
 
+    public boolean kiemTraChiTietVeDuocChon(ChiTietVe chiTietVe){
+        return danhSachChiTietVeDangChon.contains(chiTietVe);
+    }
+
+    public void boChonTatCaVe(){
+        for(Ve_ThongTinBanVe_Controller controller : ve_thongTinBanVe_controller_list){
+            controller.khongChonVe();
+        }
+    }
 
 }

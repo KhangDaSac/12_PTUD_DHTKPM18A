@@ -126,7 +126,6 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     }
 
     public void khoiTao() throws IOException {
-
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
@@ -141,6 +140,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
             Parent anchorPane = loader.load();
             ChiTietVe_ThongTinBanVe_Controller controller = loader.getController();
             chiTietVe_thongTinBanVe_controller_list.add(controller);
+            controller.setThongTinBanVe_gui_controller(thongTinBanVe_gui_controller);
             controller.setChiTietVe(chiTietVe);
             controller.khoiTao();
             vboxDanhDachChoVeTapThe.getChildren().add(anchorPane);
@@ -162,10 +162,9 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     }
 
     public void chonVe(){
-        //thongTinBanVe_gui_controller.boChonTatCaVe();
+        thongTinBanVe_gui_controller.boChonTatCaVe();
         anpVe.getStyleClass().add("veDangChon");
         anpVe.getStyleClass().removeAll("veKhongChon");
-
     }
 
     public void khongChonVe(){

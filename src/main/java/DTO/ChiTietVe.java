@@ -9,7 +9,6 @@ public class ChiTietVe {
 	private double giaCho;
 	private double phanTramGiamGia;
 
-
 	public Ve getVe() {
 		return ve;
 	}
@@ -32,6 +31,7 @@ public class ChiTietVe {
 
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
+		this.phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
 	}
 
 	public double getGiaCho() {

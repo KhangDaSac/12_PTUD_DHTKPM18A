@@ -281,25 +281,25 @@
                         <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
                            <children>
                               <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Mã khách hàng: " />
-                              <Label fx:id="lblMaKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="KH2024000001" />
+                              <Label fx:id="lblMaKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
                            </children>
                         </HBox>
                         <HBox prefHeight="40.0">
                            <children>
                               <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số CCCD:" />
-                              <Label fx:id="lblCCCDKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="087630000458" />
+                              <Label fx:id="lblCCCDKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
                            </children>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
                            <children>
                               <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Tên khách hàng: " />
-                              <Label fx:id="lblTenKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="Nguyễn Văn A" />
+                              <Label fx:id="lblTenKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
                            </children>
                         </HBox>
                         <HBox layoutX="10.0" layoutY="110.0" prefHeight="40.0">
                            <children>
                               <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số điện thoại: " />
-                              <Label fx:id="lblSoDienThoaiKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" text="0123456789" />
+                              <Label fx:id="lblSoDienThoaiKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
                            </children>
                         </HBox>
                      </children></VBox>

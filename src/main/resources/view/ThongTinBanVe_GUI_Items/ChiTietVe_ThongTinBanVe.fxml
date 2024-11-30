@@ -10,9 +10,9 @@
 
 <AnchorPane fx:id="anpChiTietVe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#anpChiTietVeClicked" style="-fx-border-color: #000; -fx-border-width: 1 0 0 0;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller">
    <children>
-      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="anpChonChiTietVe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-61.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="imvDaCoKhachHang" fitHeight="35.0" fitWidth="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="85.0">
+            <ImageView fx:id="imvDaCoKhachHang" fitHeight="35.0" fitWidth="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="85.0">
                <image>
                   <Image url="@../../images/ThongTinBanVe_GUI/CoKhachHang.png" />
                </image>
