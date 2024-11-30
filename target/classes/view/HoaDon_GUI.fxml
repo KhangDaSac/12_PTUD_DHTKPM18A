@@ -151,7 +151,7 @@
                   <Insets top="80.0" />
                </padding>
             </VBox>
-            <TableView fx:id="tableView" prefHeight="248.0" prefWidth="1290.0" styleClass="coChu">
+            <TableView fx:id="tableView" prefHeight="466.0" prefWidth="1290.0" styleClass="coChu">
               <columns>
                 <TableColumn fx:id="colSTT" prefWidth="75.0" text="STT" />
                 <TableColumn fx:id="colMaHoaDon" prefWidth="97.60000610351562" text="Mã hóa đơn" />
