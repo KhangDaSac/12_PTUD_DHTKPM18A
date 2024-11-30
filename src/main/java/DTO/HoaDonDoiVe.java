@@ -79,6 +79,6 @@ public class HoaDonDoiVe {
 	}
 
 	public double tongTienCuoi(){
-		return veMoi.tienVeCuoi() - veCu.tienVeCuoi() - lePhi;
+		return veMoi.tienVeCuoi() - veCu.tienVeCuoi() + lePhi;
 	}
 }

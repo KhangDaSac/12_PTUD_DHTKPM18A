@@ -74,4 +74,7 @@ public class HoaDonHuyDatVe {
         return tongTienCuoi;
     }
 
+    public HoaDonHuyDatVe(String maHoaDonHuyDatVe) {
+        this.maHoaDonHuyDatVe = maHoaDonHuyDatVe;
+    }
 }

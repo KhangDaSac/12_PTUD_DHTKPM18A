@@ -15,6 +15,7 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collections;
 
 public class ChiTietVe_DAO {
     public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
@@ -36,4 +37,5 @@ public class ChiTietVe_DAO {
         }
         return true;
     }
+
 }

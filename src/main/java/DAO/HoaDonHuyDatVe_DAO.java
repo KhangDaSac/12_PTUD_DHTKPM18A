@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class LichSuHuyDatVe_DAO {
+public class HoaDonHuyDatVe_DAO {
 
     public static void themLichSuHuyDatVe(String maLichSuHuyDatVe, LocalDateTime thoiGianHuy, Double lePhi, Double soTienHoanTra, String maPhieuDatVe, String maCaLamViec){
         Connection con = ConnectDB.getInstance().getConnection();

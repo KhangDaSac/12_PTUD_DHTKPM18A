@@ -92,6 +92,9 @@ public class VeDat {
 	public void setDanhSachChiTietVeDat(ArrayList<ChiTietVeDat> danhSachChiTietVeDat) {
 		this.danhSachChiTietVeDat = danhSachChiTietVeDat;
 	}
+	public void addChiTietVeDat(ChiTietVeDat chiTietVeDat){
+		this.danhSachChiTietVeDat.add(chiTietVeDat);
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -119,6 +122,10 @@ public class VeDat {
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
 
+	}
+
+	public VeDat(String maVeDat) {
+		this.maVeDat = maVeDat;
 	}
 
 	public double tienVe(){

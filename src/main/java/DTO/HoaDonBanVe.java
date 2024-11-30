@@ -10,7 +10,7 @@ public class HoaDonBanVe {
 	private KhachHang khachHangMuaVe;
 	private CaLamViec caLamViec;
 
-	private ArrayList<Ve> danhSachVe;
+	private ArrayList<Ve> danhSachVe ;
 	public String getMaHoaDonBanVe() {
 		return maHoaDonBanVe;
 	}

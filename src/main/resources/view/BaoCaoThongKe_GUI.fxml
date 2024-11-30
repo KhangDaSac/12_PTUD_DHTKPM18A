@@ -335,7 +335,7 @@
                                                 </ImageView>
                                              </graphic>
                                           </Label>
-                                          <BarChart fx:id="chart" prefHeight="206.0" prefWidth="1079.0" styleClass="chart-bar">
+                                          <BarChart fx:id="chart" prefHeight="196.0" prefWidth="1090.0" styleClass="chart-bar">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>

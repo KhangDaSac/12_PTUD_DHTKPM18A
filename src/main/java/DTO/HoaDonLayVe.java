@@ -76,4 +76,15 @@ public class HoaDonLayVe {
         }
         return tongTienCuoi;
     }
+
+    public HoaDonLayVe(String maHoaDonLayVe, LocalDateTime thoiGianLayVe, KhachHang khachHangLayVe, CaLamViec caLamViec, ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe) {
+        this.maHoaDonLayVe = maHoaDonLayVe;
+        this.thoiGianLayVe = thoiGianLayVe;
+        this.khachHangLayVe = khachHangLayVe;
+        this.caLamViec = caLamViec;
+        this.danhSachChiTietHoaDonLayVe = new ArrayList<>();
+    }
+    public void addDanhSachChiTietHoaDonLayVe(ChiTietHoaDonLayVe chiTietHoaDonLayVe){
+        this.danhSachChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
+    }
 }

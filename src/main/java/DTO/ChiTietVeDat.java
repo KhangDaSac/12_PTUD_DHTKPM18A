@@ -61,5 +61,11 @@ public class ChiTietVeDat {
 		return giaCho * (1 - phanTramGiamGia);
 	}
 
-
+	public ChiTietVeDat(Cho cho, VeDat veDat, double giaCho, KhachHang khachHang, double phanTramGiamGia) {
+		this.cho = cho;
+		this.veDat = veDat;
+		this.giaCho = giaCho;
+		this.khachHang = khachHang;
+		this.phanTramGiamGia = phanTramGiamGia;
+	}
 }

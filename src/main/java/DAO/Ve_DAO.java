@@ -52,4 +52,35 @@ public class Ve_DAO {
         }
         return true;
     }
+    public static ArrayList<Ve> xuatDanhSachVeTheoMaHoaDonBanVe(String maHoaDon){
+        ArrayList<Ve> danhSachVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query= "select * from ChiTietVe as ctv join Ve as v on ctv.maVe=v.maVe join HoaDonBanVe as hdbv on v.maHoaDonBanVe= hdbv.maHoaDonBanVe where hdbv.maHoaDonBanVe = ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")));
+                ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")));
+                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
+                Ve ve = null;
+                for(Ve v: danhSachVe){
+                    if(v.getMaVe().equals(rs.getString("maVe"))){
+                        ve=v;
+                    }
+                }
+                    if(ve==null){
+                        ve = new Ve(rs.getString("maVe"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi, thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                        danhSachVe.add(ve);
+                    }
+                ve.addChiTietVe(chiTietVe);
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return danhSachVe;
+    }
+   
+
 }
