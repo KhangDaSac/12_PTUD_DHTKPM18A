@@ -116,7 +116,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @FXML
     void btnBanVeOnAction(ActionEvent event) {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
-        hoaDonBanVe.setCaLamViec(new CaLamViec("CLV010125C"));
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
                 hoaDonBanVe = null;
@@ -126,6 +125,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             main_controller.showMessagesDialog(e.getMessage());
         }
     }

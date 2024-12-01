@@ -75,4 +75,15 @@ public class HoaDonBanVe {
 		}
 		return tongTienCuoi;
 	}
+
+	@Override
+	public String toString() {
+		return "HoaDonBanVe{" +
+				"maHoaDonBanVe='" + maHoaDonBanVe + '\'' +
+				", thoiGianLap=" + thoiGianLap +
+				", khachHangMuaVe=" + khachHangMuaVe +
+				", caLamViec=" + caLamViec +
+				", danhSachVe=" + danhSachVe +
+				'}';
+	}
 }

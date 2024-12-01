@@ -100,11 +100,6 @@ public class KhachHang {
 		KhachHang other = (KhachHang) obj;
 		return Objects.equals(maKhachHang, other.maKhachHang);
 	}
-	@Override
-	public String toString() {
-		return "KhachHang [maKhachHang=" + maKhachHang + ", CCCD=" + CCCD + ", tenKhachHang=" + tenKhachHang
-				+ ", soDienThoai=" + soDienThoai + ", loaiKhachHang=" + loaiKhachHang + "]";
-	}
 
 	public KhachHang(String maKhachHang, String CCCD, String tenKhachHang, String soDienThoai, LocalDate ngaySinh, LoaiKhachHang loaiKhachHang) {
 		this.maKhachHang = maKhachHang;
@@ -118,5 +113,17 @@ public class KhachHang {
 	public KhachHang(String maKhachHang, String tenKhachHang) {
 		this.maKhachHang = maKhachHang;
 		this.tenKhachHang = tenKhachHang;
+	}
+
+	@Override
+	public String toString() {
+		return "KhachHang{" +
+				"maKhachHang='" + maKhachHang + '\'' +
+				", CCCD='" + CCCD + '\'' +
+				", tenKhachHang='" + tenKhachHang + '\'' +
+				", soDienThoai='" + soDienThoai + '\'' +
+				", ngaySinh=" + ngaySinh +
+				", loaiKhachHang=" + loaiKhachHang +
+				'}';
 	}
 }

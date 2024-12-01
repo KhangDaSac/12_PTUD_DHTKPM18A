@@ -81,4 +81,14 @@ public class ChiTietVe {
 	public double thanhTienChiTietVe(){
 		return giaCho * (1 - phanTramGiamGia);
 	}
+
+	@Override
+	public String toString() {
+		return "ChiTietVe{" +
+				", cho=" + cho +
+				", khachHang=" + khachHang +
+				", giaCho=" + giaCho +
+				", phanTramGiamGia=" + phanTramGiamGia +
+				'}';
+	}
 }

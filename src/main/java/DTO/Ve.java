@@ -102,21 +102,6 @@ public class Ve {
 		return Objects.hashCode(maVe);
 	}
 
-	@Override
-	public String toString() {
-		return "Ve{" +
-				"maVe='" + maVe + '\'' +
-				", hoaDonBanVe=" + hoaDonBanVe +
-				", thongTinGaTauDi=" + thongTinGaTauDi +
-				", thongTinGaTauDen=" + thongTinGaTauDen +
-				", loaiVe=" + loaiVe +
-				", trangThaiVe=" + trangThaiVe +
-				", phanTramGiamGiaVeTapThe=" + phanTramGiamGiaVeTapThe +
-				", danhSachChiTietVe=" + danhSachChiTietVe +
-				", PHANTRAMGIAMGIAVETAPTHE=" + PHANTRAMGIAMGIAVETAPTHE +
-				'}';
-	}
-
 	public Ve() {
 	}
 
@@ -159,5 +144,19 @@ public class Ve {
 
 	public double tienVeCuoi(){
 		return tienVe() * (1 - phanTramGiamGiaVeTapThe);
+	}
+
+	@Override
+	public String toString() {
+		return "Ve{" +
+				"maVe='" + maVe + '\'' +
+				", thongTinGaTauDi=" + thongTinGaTauDi +
+				", thongTinGaTauDen=" + thongTinGaTauDen +
+				", loaiVe=" + loaiVe +
+				", trangThaiVe=" + trangThaiVe +
+				", phanTramGiamGiaVeTapThe=" + phanTramGiamGiaVeTapThe +
+				", danhSachChiTietVe=" + danhSachChiTietVe +
+				", PHANTRAMGIAMGIAVETAPTHE=" + PHANTRAMGIAMGIAVETAPTHE +
+				'}';
 	}
 }

@@ -18,6 +18,7 @@ public class TimeFormat {
         return localDate.format(formatterLocalDateSQL);
     }
 
+
     public static String formatLocalDateNumber(LocalDate localDate){
         return localDate.format(formatterLocalDateNumber);
     }

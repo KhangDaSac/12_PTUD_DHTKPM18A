@@ -133,4 +133,18 @@ public class ChuyenTau {
 		this.maChuyenTau = maChuyenTau;
 	}
 
+	@Override
+	public String toString() {
+		return "ChuyenTau{" +
+				"maChuyenTau='" + maChuyenTau + '\'' +
+				", tuyenTau=" + tuyenTau +
+				", soLuongChoDaBan=" + soLuongChoDaBan +
+				", soLuongChoDaDat=" + soLuongChoDaDat +
+				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
+				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
+				", soLuongCho=" + soLuongCho +
+				", soLuongVe=" + soLuongVe +
+				", soLuongVeDat=" + soLuongVeDat +
+				'}';
+	}
 }

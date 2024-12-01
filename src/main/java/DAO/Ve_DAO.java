@@ -28,7 +28,7 @@ public class Ve_DAO {
     }
 
     public static boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
-        String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?)";
         for(Ve ve : danhSachVe){
             try {
                 PreparedStatement statement = con.prepareStatement(query);
@@ -38,8 +38,8 @@ public class Ve_DAO {
                 statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
                 statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
                 statement.setDouble(6, ve.getPhanTramGiamGiaVeTapThe());
-                statement.setString(8, ve.getLoaiVe().toString());
-                statement.setString(9, ve.getTrangThaiVe().toString());
+                statement.setString(7, ve.getLoaiVe().toString());
+                statement.setString(8, ve.getTrangThaiVe().toString());
                 statement.execute();
 
             } catch (Exception e) {

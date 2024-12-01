@@ -125,4 +125,18 @@ public class ToaTau {
 	public ToaTau(String maToaTau) {
 		this.maToaTau = maToaTau;
 	}
+
+	@Override
+	public String toString() {
+		return "ToaTau{" +
+				"maToaTau='" + maToaTau + '\'' +
+				", thuTuToa=" + thuTuToa +
+				", loaiToaTau=" + loaiToaTau +
+				", chuyenTau=" + chuyenTau +
+				", soLuongChoDaBan=" + soLuongChoDaBan +
+				", soLuongChoDaDat=" + soLuongChoDaDat +
+				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
+				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
+				'}';
+	}
 }

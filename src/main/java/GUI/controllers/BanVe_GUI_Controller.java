@@ -378,6 +378,7 @@ public class BanVe_GUI_Controller implements Initializable {
         if(hoaDonBanVe == null){
             String maHoaDon = QuanLyHoaDon_BUS.layHoaDonTiepTheo();
             hoaDonBanVe = new HoaDonBanVe(maHoaDon);
+            hoaDonBanVe.setCaLamViec(new CaLamViec("CLV13122024C"));
             hoaDonBanVe.setDanhSachVe(new ArrayList<Ve>());
         }
 
