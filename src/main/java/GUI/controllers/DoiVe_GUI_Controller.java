@@ -4,6 +4,8 @@ import BUS.QuanLyChuyenTau_BUS;
 import BUS.QuanLyVe_BUS;
 import DAO.ChiTietVe_DAO;
 import DAO.ChuyenTau_DAO;
+import DAO.HoaDon_DAO;
+import DAO.Ve_DAO;
 import DTO.*;
 import GUI.controllers.DoiVe_GUI_Items.Cho_DoiVe_Controller;
 import GUI.controllers.DoiVe_GUI_Items.ChuyenTau_DoiVe_Controller;
@@ -23,7 +25,9 @@ import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -101,20 +105,13 @@ public class DoiVe_GUI_Controller implements Initializable {
 
     private int trangChuyenTauHienTai;
 
-    private Stage stage;
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     private GaTau gaDi;
     private GaTau gaDen;
     private Ve veKhachHang = new Ve();
     private ChiTietVe ctVe = new ChiTietVe();
+    private Ve veMoi;
+    private ChiTietVe ctVeMoi;
+    private HoaDonDoiVe hoaDonDoiVe;
     private ChuyenTau_DoiVe_Controller chuyenTauController = new ChuyenTau_DoiVe_Controller();
     private ChuyenTau chuyenTauKH = new ChuyenTau();
     private ToaTau toaTauKH = new ToaTau();
@@ -237,6 +234,41 @@ public class DoiVe_GUI_Controller implements Initializable {
         }
     }
 
+    public void doiVe(){
+        LocalDate ngayHienTai1 = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        String ngayHienTai = ngayHienTai1.format(formatter);
+        String maVeMoi,maHoaDonMoi;
+        String maVeLonNhatNgayHienTai = Ve_DAO.layMaVeCaNhanLonNhatCuaNgayHienTai(ngayHienTai);
+        String maHoaDonLonNhatNGayHienTai = HoaDon_DAO.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngayHienTai);
+        if (maVeLonNhatNgayHienTai ==null){
+            maVeMoi= "VECN"+ ngayHienTai +"00000001";
+        }else {
+            String soThuTuVeCu = maVeLonNhatNgayHienTai.substring(maVeLonNhatNgayHienTai.length()-8);
+            int soThuTuMoiVe = Integer.parseInt(soThuTuVeCu)+1;
+            maVeMoi ="VECN"+ngayHienTai+ String.format("%08d",soThuTuMoiVe);
+        }
+        if (maHoaDonLonNhatNGayHienTai==null){
+            maHoaDonMoi = "HDDO" + ngayHienTai+"000001";
+        }else {
+            String soThuTuHDCu = maHoaDonLonNhatNGayHienTai.substring(maHoaDonLonNhatNGayHienTai.length()-6);
+            int soThuTuMoiHD = Integer.parseInt(soThuTuHDCu)+1;
+            maHoaDonMoi = "HDDO"+ngayHienTai+ String.format("%06d",soThuTuMoiHD);
+        }
+
+        String maVeCu = veKhachHang.getMaVe();
+        veMoi = veKhachHang;
+        veMoi.setMaVe(maVeMoi);
+        veMoi.setTrangThaiVe(TrangThaiVe.DADOI);
+        ctVeMoi = new ChiTietVe(new Ve(maVeMoi),new Cho(choChon.getMaCho()),new KhachHang(ctVe.getKhachHang().getMaKhachHang()),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
+        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),new Ve(maVeCu),new Ve(veMoi.getMaVe()),new CaLamViec("CLV30112024C"));
+
+        Ve_DAO.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau());
+        ChiTietVe_DAO.themChiTietVeMoi(ctVeMoi);
+        HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
+        Ve_DAO.capNhatTrangThaiHuyChoVeDoi(maVeCu);
+    }
+
     public void tinhTongTien() {
         double giaChoCu = Double.parseDouble(lblGiaCu_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
         double giaChoMoi = Double.parseDouble(lblGiaMoi_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
@@ -256,13 +288,15 @@ public class DoiVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnDoiVeOnAction(ActionEvent event) {
+    void btnDoiVeOnAction(ActionEvent event) throws IOException {
         QuanLyVe_BUS quanLyVeBus = new QuanLyVe_BUS();
         if (!(choChon.getSoCho() > 0)) {
             main_Controller.showMessagesDialog("Chọn chỗ cần đổi!");
         } else {
-            quanLyVeBus.doiVe(veKhachHang.getMaVe(), ctVe.getCho().getMaCho(), choChon.getMaCho(), choChon.getGiaCho());
-            timDanhSachCho(choChon.getToaTau().getMaToaTau());
+            //quanLyVeBus.doiVe(veKhachHang.getMaVe(), ctVe.getCho().getMaCho(), choChon.getMaCho(), choChon.getGiaCho());
+            doiVe();
+            //timDanhSachCho(choChon.getToaTau().getMaToaTau());
+            hienThiChuyenTau(chuyenTauKH);
             main_Controller.showMessagesDialog("Đổi vé thành công!");
         }
         capNhatCacChoDaChon();
@@ -285,16 +319,20 @@ public class DoiVe_GUI_Controller implements Initializable {
             main_Controller.showMessagesDialog("Không tìm thấy vé với mã: " + maTim);
             txtMaVe.requestFocus();
 
-//        } else if (veKhachHang.getLoaiVe() != LoaiVe.VECANHAN) {
-//            main_Controller.showMessagesDialog("Phải là vé cá nhân");
-//            txtMaVe.requestFocus();
+        } else if (veKhachHang.getLoaiVe() != LoaiVe.VECANHAN) {
+            main_Controller.showMessagesDialog("Phải là vé cá nhân");
+            txtMaVe.requestFocus();
 
         } else
             if (thoiGianDi.isBefore(thoiGianHienTai)){
             main_Controller.showMessagesDialog("Chuyến tàu của vé đã khởi hành!");
             txtMaVe.requestFocus();
         }else
-        {
+            if (!veKhachHang.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)){
+            main_Controller.showMessagesDialog("Trạng thái vé không hợp lệ!");
+            txtMaVe.requestFocus();
+            }else
+            {
             gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
             gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
 

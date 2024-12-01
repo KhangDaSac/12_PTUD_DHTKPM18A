@@ -11,25 +11,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ChuyenTau_DAO {
-//    public ArrayList<ChuyenTau> xuatDanhSachChuyenTau(){
-//        ArrayList<ChuyenTau> dsChuyenTau= new ArrayList<ChuyenTau>();
-//        Connection con = ConnectDB.getInstance().getConnection();
-//        try {
-//            String query ="select * from ChuyenTau";
-//            Statement statement = con.createStatement();
-//            ResultSet rs = statement.executeQuery(query);
-//            while(rs.next()) {
-//                String maChuyenTau =rs.getString(1);
-//                TuyenTau tuyenTau = new TuyenTau(rs.getString(2));
-//                int soLuongCho =  rs.getInt(3);
-//             ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau, tuyenTau, soLuongCho);
-//                dsChuyenTau.add(chuyenTau);
-//            }
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return dsChuyenTau;
-//    }
+
 
     public static ChuyenTau timChuyenTauTheoMaVe(String maVe){
         Connection con = ConnectDB.getInstance().getConnection();

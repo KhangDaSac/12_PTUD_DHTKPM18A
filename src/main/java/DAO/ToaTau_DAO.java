@@ -12,27 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ToaTau_DAO {
-    public ArrayList<ToaTau> xuatDanhSachToaTau() {
-        Connection con = ConnectDB.getInstance().getConnection();
-        ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
-//        try {
-//            String query = "select * from ToaTau";
-//             Statement statement = con.createStatement();
-//             ResultSet rs = statement.executeQuery(query);
-//             while (rs.next()) {
-//                 String maToa = rs.getString(1);
-//                 int thuTuToa = rs.getInt(2);
-//                 int soLuongCho = rs.getInt(3);
-//                 LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString(4));
-//                 ChuyenTau chuyenTau = new ChuyenTau(rs.getString(5));
-//                 ToaTau toaTau = new ToaTau(maToa, thuTuToa, soLuongCho, loaiToaTau, chuyenTau);
-//                 danhSachToaTau.add(toaTau);
-//             }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return danhSachToaTau;
-    }
 
     public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
         Connection con = ConnectDB.getInstance().getConnection();
@@ -59,51 +38,6 @@ public class ToaTau_DAO {
         }
         return toaTau;
     }
-
-    public ArrayList<ToaTau> xuatDanhSachToaTauTheoChuyen(String maChuyen) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
-//        try {
-//            String query = "select * from ToaTau where maChuyenTau = ?";
-//            PreparedStatement statement = con.prepareStatement(query);
-//            statement.setString(1, maChuyen);
-//            ResultSet rs = statement.executeQuery();
-//            while (rs.next()) {
-//                String maToa = rs.getString(1);
-//                int thuTuToa = rs.getInt(2);
-//                int soLuongCho = rs.getInt(3);
-//                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString(4));
-//                ChuyenTau chuyenTau = new ChuyenTau(rs.getString(5));
-//                ToaTau toaTau = new ToaTau(maToa, thuTuToa, soLuongCho, loaiToaTau, chuyenTau);
-//                danhSachToaTau.add(toaTau);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return danhSachToaTau;
-    }
-    public ArrayList<ToaTau> xuatDanhSachToaTheoLoai(String maLoaiToa) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        ArrayList<ToaTau> danhSachToaTau = new ArrayList<ToaTau>();
-//        try {
-//            String query = "select * from ToaTau where maLoaiToa = ?";
-//            Statement statement = con.createStatement();
-//            ResultSet rs = statement.executeQuery(query);
-//            while (rs.next()) {
-//                String maToa = rs.getString(1);
-//                int thuTuToa = rs.getInt(2);
-//                int soLuongCho = rs.getInt(3);
-//                LoaiToaTau loaiToaTau = new LoaiToaTau(rs.getString(4));
-//                ChuyenTau chuyenTau = new ChuyenTau(rs.getString(5));
-//                ToaTau toaTau = new ToaTau(maToa, thuTuToa, soLuongCho, loaiToaTau, chuyenTau);
-//                danhSachToaTau.add(toaTau);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return danhSachToaTau;
-    }
-
 
     public ArrayList<ToaTau> getDanhSachToaTauTheoChuyen(String maChuyen, String maGaDi, String maGaDen) {
         Connection con = ConnectDB.getInstance().getConnection();

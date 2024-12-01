@@ -17,31 +17,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class ChiTietVe_DAO {
-//    public boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
-//        Connection con = ConnectDB.getInstance().getConnection();
-//        String query = "insert into ChiTietVe values (?, ?, ?, ?, ?, ?)";
-//        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-//            try {
-//                PreparedStatement statement = con.prepareStatement(query);
-//                statement.setString(1, chiTietVe.getVe().getMaVe());
-//                statement.setString(2, chiTietVe.getCho().getMaCho());
-//                statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
-//                statement.setDouble(4, chiTietVe.getGiaCho());
-//                statement.setDouble(5, chiTietVe.getSoTienGiamGia());
-//                statement.setDouble(6, chiTietVe.getThanhTien());
-//
-//                statement.executeUpdate();
-//
-//            } catch (Exception e) {
-//                System.out.println(e.getMessage());
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+        public static Connection con = ConnectDB.getInstance().getConnection();
         public static ChiTietVe getCTVeTheoMaVe(String maVe){
             ChiTietVe ctVe = null;
-            Connection con = ConnectDB.getInstance().getConnection();
             try{
                 String query = "select * from ChiTietVe ct \n" +
                         "join Ve v on v.maVe = ct.maVe\n" +
@@ -79,7 +57,6 @@ public class ChiTietVe_DAO {
             return ctVe;
         }
         public void doiChoTuMaVeMaGheCuMaGheMoi(String maVe,String maGheCu,String maGheMoi,double giaCho){
-            Connection con = ConnectDB.getInstance().getConnection();
             try{
                 String query = "UPDATE ChiTietVe SET maCho = ?,giaCho =? WHERE maVe =?  AND maCho = ?";
                 PreparedStatement statement = con.prepareStatement(query);
@@ -92,4 +69,20 @@ public class ChiTietVe_DAO {
                 throw new RuntimeException(e);
             }
         }
+
+    public static boolean themChiTietVeMoi(ChiTietVe chiTietVe){
+        try{
+            String query ="insert into ChiTietVe values (?, ?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,chiTietVe.getVe().getMaVe());
+            statement.setString(2,chiTietVe.getCho().getMaCho());
+            statement.setString(3,chiTietVe.getKhachHang().getMaKhachHang());
+            statement.setDouble(4,chiTietVe.getGiaCho());
+            statement.setDouble(5,chiTietVe.getPhanTramGiamGia());
+            statement.execute();
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
 }

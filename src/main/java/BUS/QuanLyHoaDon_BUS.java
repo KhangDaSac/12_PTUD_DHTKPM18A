@@ -84,18 +84,5 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static ArrayList<HoaDonBanVe> getHoaDonTheoMaKhachHangVaThoiGianLap(String maKhachHang, LocalDate thoiGianLap) {
-        return HoaDon_DAO.getHoaDonTheoMaKhachHangVaThoiGianLap(maKhachHang, thoiGianLap);
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDon(){
-        return HoaDon_DAO.getDanhSachHoaDon();
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
-        return hoaDon_dao.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
-    }
-    public static ArrayList<HoaDonBanVe> getDanhSachHoaDonDat(){
-        HoaDon_DAO hoaDon_dao = new HoaDon_DAO();
-        return hoaDon_dao.getDanhSachHoaDonDat();
-    }
+
 }

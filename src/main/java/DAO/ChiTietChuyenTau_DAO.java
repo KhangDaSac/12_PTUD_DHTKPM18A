@@ -63,22 +63,4 @@ public class ChiTietChuyenTau_DAO {
         return null;
     }
 
-//    public  static ChiTietChuyenTau getChiTietChuyenTauTheoMaVe(String maVe){
-//        Connection con = ConnectDB.getInstance().getConnection();
-//        try{
-//            String query  = "select * from ChiTietChuyenTau ct\n" +
-//                    "join Ve v on v.maChuyenTau = ct.maChuyenTau\n" +
-//                    "where v.maVe = ?";
-//            PreparedStatement statement = con.prepareStatement(query);
-//            statement.setString(1,maVe);
-//            ResultSet rs = statement.executeQuery();
-//            if(rs.next()){
-//                ChuyenTau chuyenTau= new ChuyenTau(rs.getString("maChuyenTau"));
-//            }
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return ;
-//    }
 }

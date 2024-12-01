@@ -6,12 +6,13 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Ve_DAO {
+    public static Connection con = ConnectDB.getInstance().getConnection();
     public String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select max(maVe) as maVe from Ve where maVe like 'V' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
@@ -26,33 +27,55 @@ public class Ve_DAO {
         return maVeLonNhat;
     }
 
-    public boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
-        Connection con = ConnectDB.getInstance().getConnection();
-        String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//        for(Ve ve : danhSachVe){
-//            try {
-//                PreparedStatement statement = con.prepareStatement(query);
-//                statement.setString(1, ve.getMaVe());
-//                statement.setString(2, ve.getHoaDon().getMaHoaDon());
-//                statement.setString(3, ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
-//                statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
-//                statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
-//                statement.setDouble(6, ve.getGiamGiaVeTapThe());
-//                statement.setDouble(7, ve.getTongTienVe());
-//                statement.setString(8, ve.getLoaiVe().toString());
-//                statement.setString(9, ve.getTrangThaiVe().toString());
-//                statement.execute();
-//
-//            } catch (Exception e) {
-//                return false;
-//            }
-//        }
+    public static boolean themVeMoi(Ve ve,String maCT){
+        try{
+            String query ="insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,ve.getMaVe());
+            statement.setString(2, null);
+            statement.setString(3,maCT);
+            statement.setString(4,ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
+            statement.setString(5,ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
+            statement.setDouble(6,0);
+            statement.setString(7,ve.getLoaiVe().toString());
+            statement.setString(8,ve.getTrangThaiVe().toString());
+            statement.execute();
+        }catch (Exception e){
+            return false;
+        }
         return true;
+    }
+
+    public static boolean capNhatTrangThaiHuyChoVeDoi(String maVe){
+        try{
+            String query = "UPDATE Ve SET trangThaiVe = 'DAHUY' WHERE maVe =?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maVe);
+            statement.execute();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String layMaVeCaNhanLonNhatCuaNgayHienTai(String ngayHienTai){
+        String maVeLonNhat = null;
+        try {
+            String query = "select max(maVe) as maVe from Ve where maVe like 'VECN' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, ngayHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                maVeLonNhat = rs.getString("maVe");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maVeLonNhat;
     }
 
     public static Ve getVeTheoMa(String maVe){
         Ve veTim = new Ve();
-        Connection con = ConnectDB.getInstance().getConnection();
         try{
             String query = "select*from Ve v join ChiTietChuyenTau ct on ct.maChuyenTau = v.maChuyenTau where  maVe=?";
             PreparedStatement statement = con.prepareStatement(query);
