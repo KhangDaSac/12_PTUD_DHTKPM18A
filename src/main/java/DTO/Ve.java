@@ -13,6 +13,12 @@ public class Ve {
 	private LoaiVe loaiVe ;
 	private TrangThaiVe trangThaiVe;
 	private ChuyenTau chuyenTau;
+	private double phanTramGiamGiaVeTapThe;
+
+	private ArrayList<ChiTietVe> danhSachChiTietVe;
+
+	private final double PHANTRAMGIAMGIAVETAPTHE = 0.1;
+
 	public Ve() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -117,6 +123,10 @@ public class Ve {
 		this.trangThaiVe = trangThaiVe;
 	}
 
+	public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
+		return danhSachChiTietVe;
+	}
+
 	public Ve(ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
 		this.thongTinGaTauDi = thongTinGaTauDi;
 		this.thongTinGaTauDen = thongTinGaTauDen;
@@ -168,4 +178,19 @@ public class Ve {
 		return tongTienVe - tinhGiamGiaVeTapThe();
 	}
 
+	public double tienVe(){
+		double tienVe = 0;
+		for (ChiTietVe chiTietVe : danhSachChiTietVe){
+			tienVe += chiTietVe.thanhTienChiTietVe();
+		}
+		return tienVe;
+	}
+
+	public double tienVeCuoi() {
+		return tienVe() * (1 - phanTramGiamGiaVeTapThe);
+	}
+
+	public double giamGiaVeTapThe(){
+		return tienVe() * phanTramGiamGiaVeTapThe;
+	}
 }

@@ -21,10 +21,6 @@
     -fx-background-color: transparent;
 }
 
-.editable-combo-box  *{
-    -fx-font-size: 16px;
-}
-
 .group-editable-combo-box{
     -fx-background-color: #fff;
     -fx-background-radius: 7px;
@@ -109,12 +105,12 @@
     -fx-font-weight: 700;
 }
 
-.jfx-button1{
+.jfx-button{
     -fx-background-color: #0D92F4;
     -fx-text-fill: #fff;
     -fx-font-size: 16;
     -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
-    -fx-alignment: center;
+    -fx-alignment: center; /* Căn chỉnh nội dung giữa */
 }
 
 .text-bold{
@@ -125,8 +121,6 @@
     -fx-background-radius: 50%;
     -fx-background-color: #0D92F4;
     -fx-font-weight: 700;
-    -fx-text-fill: #fff;
-    -fx-font-size: 14;
 }
 
 .cangGiuaTheoChieuNgang{
@@ -135,17 +129,6 @@
 
 .h-box {
     -fx-alignment: center;
-}
-
-.jfx-button{
-    -fx-cursor: hand;
-}
-
-.buttonOption{
-    -fx-background-color: #15B392;
-    -fx-effect: dropshadow(gaussian, #15B392, 10, 0, 2, 2);
-    -fx-font-size: 16;
-    -fx-text-fill: #fff;
 }
 
 

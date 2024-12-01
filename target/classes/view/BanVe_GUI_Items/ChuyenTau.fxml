@@ -14,9 +14,9 @@
             <Image url="@../../images/BanVe_GUI/train-gray.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblMaChuyenTau" layoutX="40.0" layoutY="10.0" text="SE02181024" AnchorPane.leftAnchor="40.0">
+      <Label fx:id="lblMaChuyenTau" layoutX="44.8" layoutY="10.0" text="SE02181024" AnchorPane.leftAnchor="44.8">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font size="13.0" />
          </font>
       </Label>
       <VBox layoutX="17.0" layoutY="39.0" prefHeight="90.0" prefWidth="125.0">

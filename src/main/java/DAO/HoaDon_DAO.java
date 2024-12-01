@@ -135,6 +135,7 @@ public class HoaDon_DAO {
         }
         return dsHoaDon;
     }
+
     public static ArrayList<HoaDon> getDanhSachHoaDon() {
         ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
         try {
@@ -216,5 +217,36 @@ public class HoaDon_DAO {
 
         }
         return hoaDonList;
+    }
+
+    public static ArrayList<HoaDon> getHoaDonTheoCCCDVaThoiGianLap(String CCCD, LocalDate thoiGianLap) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        ArrayList<HoaDon> dsHoaDon = new ArrayList<>();
+        try {
+            String query = "select kh.CCCD, kh.maKhachHang, hd.thoiGianLap, v.loaiVe, hd.tongTien\t\n" +
+                    "from HoaDon hd \n" +
+                    "join KhachHang kh on hd.maKhachhangMua = kh.maKhachHang\n" +
+                    "join Ve v on hd.maHoaDon = v.maHoaDon\n" +
+                    "where hd.maKhachhangMua = ? and hd.thoiGianLap = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, CCCD != null && !CCCD.isEmpty() ? CCCD : null);
+            statement.setDate(2, thoiGianLap != null ? Date.valueOf(thoiGianLap) : null);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon();
+                hoaDon.setMaHoaDon(rs.getString("maHoaDon"));
+                KhachHang khachHang = new KhachHang(rs.getString("maKhachHang"), KhachHang_DAO.getTenKhachHangTheoMa(rs.getString("maKhachHang")));
+                hoaDon.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
+                Ve ve = new Ve();
+                ve.setLoaiVe(LoaiVe.valueOf(rs.getString("loaiVe")));
+                hoaDon.addVe(ve);
+                hoaDon.setTongTien(rs.getDouble("tongTien"));
+                hoaDon.setKhachHangMua(khachHang);
+                dsHoaDon.add(hoaDon);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return dsHoaDon;
     }
 }

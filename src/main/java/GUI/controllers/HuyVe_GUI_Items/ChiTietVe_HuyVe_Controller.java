@@ -1,17 +1,21 @@
-package GUI.controllers.BanVe_GUI_Items;
+package GUI.controllers.HuyVe_GUI_Items;
 
 import DTO.ChiTietVe;
 import DTO.KhachHang;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChiTietVe_BanVe_Controller implements Initializable {
+public class ChiTietVe_HuyVe_Controller implements Initializable {
+
+    @FXML
+    private AnchorPane anpChiTietVe;
 
     @FXML
     private Label lblCCCD;
@@ -38,14 +42,14 @@ public class ChiTietVe_BanVe_Controller implements Initializable {
     private VBox vboxDanhDachChoVeTapThe;
 
     private ChiTietVe chiTietVe;
-    private Ve_BanVe_Controller ve_banVe_controller;
+    private Ve_HuyVe_Controller ve_huyVe_controller;
 
-    public Ve_BanVe_Controller getVe_banVe_controller() {
-        return ve_banVe_controller;
+    public Ve_HuyVe_Controller getVe_banVe_controller() {
+        return ve_huyVe_controller;
     }
 
-    public void setVe_banVe_controller(Ve_BanVe_Controller ve_banVe_controller) {
-        this.ve_banVe_controller = ve_banVe_controller;
+    public void setVe_banVe_controller(Ve_HuyVe_Controller ve_banVe_controller) {
+        this.ve_huyVe_controller = ve_banVe_controller;
     }
 
     public ChiTietVe getChiTietVe() {
@@ -75,5 +79,10 @@ public class ChiTietVe_BanVe_Controller implements Initializable {
         }else{
             lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(0));
         }
+    }
+
+    public void chiTietVeCuoi(){
+        anpChiTietVe.setStyle("-fx-border-width: 1 0 1 0;" +
+                "-fx-border-color:  #000;");
     }
 }

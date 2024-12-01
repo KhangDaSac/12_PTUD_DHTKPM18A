@@ -9,6 +9,7 @@ public class ChiTietVe {
 	private Ve ve;
 	private KhachHang khachHang;
 	private Cho cho;
+	private double phanTramGiamGia;
 	public ChiTietVe() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -123,5 +124,13 @@ public class ChiTietVe {
 			return soTienGiamGia;
 		}
 		return 0;
+	}
+
+    public double giamGia() {
+		return giaCho * phanTramGiamGia;
+    }
+
+	public double thanhTienChiTietVe(){
+		return giaCho * (1 - phanTramGiamGia);
 	}
 }

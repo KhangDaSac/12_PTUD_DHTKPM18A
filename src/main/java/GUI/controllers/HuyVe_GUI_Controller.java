@@ -1,260 +1,347 @@
 package GUI.controllers;
 
-import DAO.HoaDon_DAO;
+import BUS.QuanLyHoaDon_BUS;
 import DTO.HoaDon;
-import DTO.Ve;
-import DTO.LoaiVe;
 import DTO.KhachHang;
-import DAO.HuyVe_DAO;
+import DTO.Ve;
+import GUI.controllers.HuyVe_GUI_Items.ChiTietVe_HuyVe_Controller;
+import GUI.controllers.HuyVe_GUI_Items.Ve_HuyVe_Controller;
+import GUI.controllers.LayVe_GUI_Items.PhieuDatVe_LayVe_Controller;
 import com.jfoenix.controls.JFXButton;
-import connectDB.ConnectDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
+import javax.swing.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HuyVe_GUI_Controller implements Initializable {
 
     @FXML
-    private JFXButton btnHuyVe;
+    private Button btnChonTatCaPhieuDatVe;
 
     @FXML
-    private JFXButton btnTimKiemMaVe;
+    private JFXButton btnTimHoaDon;
 
     @FXML
-    private ComboBox<String> cmbTrangThaiVe;
+    private TableColumn<HoaDon, String> colMaHoaDon;
 
     @FXML
-    private TextField txtGaDen;
+    private TableColumn<HoaDon, KhachHang> colTenKhachHang;
 
     @FXML
-    private TextField txtGaDi;
+    private TableColumn<HoaDon, String> colNgayThanhToan;
 
     @FXML
-    private TextField txtLePhiTraVe;
+    private TableColumn<HoaDon, Ve> colLoaiVe;
 
     @FXML
-    private TextField txtLoaiKhachHang;
+    private TableColumn<HoaDon, Double> colTongTien;
 
     @FXML
-    private TextField txtLoaiVe;
+    private DatePicker dapNgayThanhToan;
 
     @FXML
-    private TextField txtMaChuyenTau;
+    private TableView<HoaDon> tableView;
 
     @FXML
-    private TextField txtMaHoaDon;
+    private TextField txtCCCD;
 
     @FXML
-    private TextField txtMaKhachHang;
+    private TextField txtTongTienTraKhach;
 
     @FXML
-    private TextField txtMaVe;
+    private VBox vBoxDanhSachChiTietVe;
 
     @FXML
-    private TextField txtMaVe_TT;
+    private VBox vboxDanhSachVe;
 
     @FXML
-    private TextField txtSoDienThoai;
+    private Main_Controller main_Controller;
 
-    @FXML
-    private TextField txtTenKhachHang;
+    private ArrayList<Ve_HuyVe_Controller> veHuyVeControllerList = new ArrayList<>();
+    private ArrayList<ChiTietVe_HuyVe_Controller> chiTietVeHuyVeControllers = new ArrayList<>();
 
-    @FXML
-    private TextField txtNgayKhoiHanh;
+    public Main_Controller getMain_Controller() {
+        return main_Controller;
+    }
 
-    @FXML
-    private TextField txtTienHoanTra;
-
-    @FXML
-    private TextField txtTongTienVe;
-
-    private ObservableList<Ve> listVe;
+    public void setMain_Controller(Main_Controller main_Controller) {
+        this.main_Controller = main_Controller;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Khởi tạo ComboBox Trạng thái vé
-        ObservableList<String> listCBBTTV = FXCollections.observableArrayList();
-        for(LoaiVe loaiVe : LoaiVe.values()){
-            listCBBTTV.add(loaiVe.toString());
+        loadDuLieuLenTable();
+//        setupTableSelectionHandler(tableView);
+    }
+
+    public ObservableList<HoaDon> getHoaDonData() {
+        ArrayList<HoaDon> hoaDonList;
+        if (dapNgayThanhToan.getValue() == null && txtCCCD.getText().isEmpty()) {
+            hoaDonList = new QuanLyHoaDon_BUS().getDanhSachHoaDonDat();
+        } else {
+            hoaDonList = new QuanLyHoaDon_BUS().getHoaDonTheoMaKhachHangVaThoiGianLap(txtCCCD.getText(), dapNgayThanhToan.getValue());
         }
-        cmbTrangThaiVe.setItems(listCBBTTV);
+        // In ra số lượng hóa đơn nhận được để kiểm tra
+        System.out.println("Số lượng hóa đơn nhận được: " + hoaDonList.size());
+        return FXCollections.observableArrayList(hoaDonList);
+    }
+
+    public void loadDuLieuLenTable() {
+        colMaHoaDon.setCellValueFactory(new PropertyValueFactory<>("maHoaDon"));
+        colTenKhachHang.setCellValueFactory(new PropertyValueFactory<>("khachHangMua"));
+        colTenKhachHang.setCellFactory(column -> new TableCell<HoaDon, KhachHang>() {
+            @Override
+            protected void updateItem(KhachHang item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getTenKhachHang());
+                }
+            }
+        });
+        colNgayThanhToan.setCellValueFactory(new PropertyValueFactory<>("thoiGianLap"));
+        colLoaiVe.setCellFactory(column -> new TableCell<HoaDon, Ve>() {
+            @Override
+            protected void updateItem(Ve item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getLoaiVe().toString());
+                }
+            }
+        });
+        colTongTien.setCellValueFactory(new PropertyValueFactory<>("tongTien"));
+        tableView.setItems(getHoaDonData());
+    }
+
+    public void btnTimHoaDonOnAction(ActionEvent actionEvent) {
+        loadDuLieuLenTable();
+    }
+
+    public static String phatSinhMaLichSuHuyVe() {
+        String prefix = "HDHV";
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyy");
+        String datePart = now.format(formatter);
+        Random random = new Random();
+        int numberPart = 100000 + random.nextInt(900000);
+        return prefix + datePart + String.format("%06d", numberPart);
     }
 
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
-        String maVe = txtMaVe.getText(); // Lấy mã vé từ TextField
-        boolean result = HuyVe_DAO.updateTicketStatus(maVe); // Gọi phương thức updateTicketStatus từ BUS
-
-        if (result) {
-            System.out.println("Hủy vé thành công.");
-        } else {
-            System.out.println("Hủy vé thất bại.");
-        }
-    }
-
-    @FXML
-    void btnTimKiemMaVeOnAction(ActionEvent event) {
-//        String maVe = txtMaVe.getText(); // Lấy mã vé từ TextField
-//        Ve ve = HuyVe_DAO.getTicketByID(maVe); // Gọi phương thức getTicketByID từ BUS
-//        HoaDon hoaDon = HoaDon_DAO.getOrderById(ve.getHoaDon().getMaHoaDon());
-//        System.out.println(ve.getHoaDon().getMaHoaDon());
-//        System.out.println(hoaDon.getKhachHang().getMaKhachHang());
-//
-//        if (ve != null && hoaDon.getKhachHang() != null) {
-//            // Cập nhật các TextField với thông tin từ đối tượng Ve
-//            txtMaKhachHang.setText(hoaDon.getKhachHang().getMaKhachHang());
-//            txtTenKhachHang.setText(hoaDon.getKhachHang().getTenKhachHang());
-//            txtSoDienThoai.setText(hoaDon.getKhachHang().getSoDienThoai());
-//            txtLoaiKhachHang.setText(String.valueOf(hoaDon.getKhachHang().getLoaiKhachHang()));
-//
-//            txtMaChuyenTau.setText(ve.getChuyenTau().getMaChuyenTau());
-//            txtGaDi.setText(String.valueOf(ve.getGaTauDi()));
-//            txtGaDen.setText(String.valueOf(ve.getGaTauDen()));
-//            txtNgayKhoiHanh.setText(String.valueOf(ve.getChuyenTau().getNgayKhoiHanh()));
-//
-//            txtMaVe_TT.setText(ve.getMaVe()); // Hiển thị trạng thái vé
-//            txtMaHoaDon.setText(ve.getHoaDon().getMaHoaDon());
-//            txtLoaiVe.setText(ve.getLoaiVe().name()); // Hiển thị loại vé
-//
-//            try (Connection connection = ConnectDB.getInstance().getConnection()) {
-//                // Giả sử bạn đã có biến connection từ lớp DAO để truyền vào
-//                double[] ketQua = tinhGiaVaLePhiTraVe(ve.getMaVe(), String.valueOf(ve.getHoaDon().getKhachHang().getLoaiKhachHang()), connection);
-//                double giaVe = ketQua[0];
-//                double lePhiTraVe = ketQua[1];
-//
-//                // Cập nhật giá và lệ phí vào các TextField
-//                txtTongTienVe.setText(String.format("%.2f", giaVe)); // Cập nhật giá vé
-//                txtLePhiTraVe.setText(String.format("%.2f", lePhiTraVe)); // Hiển thị lệ phí trả vé
-//
-//                // Tính tiền hoàn trả
-//                double tienHoanTra = giaVe - lePhiTraVe;
-//                txtTienHoanTra.setText(String.format("%.2f", tienHoanTra)); // Hiển thị tiền hoàn trả
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//                System.out.println("Có lỗi khi tính toán giá vé và lệ phí.");
-//            }
-//        } else {
-//            // Xử lý trường hợp không tìm thấy vé
-//            System.out.println("Không tìm thấy vé với mã: " + maVe);
+//        double tongTienTraKhach = tinhTongTienHuyDatVe();
+//        if (tongTienTraKhach <= 0) {
+//            JOptionPane.showMessageDialog(null, "Không có vé nào được chọn");
+//            return;
 //        }
+//
+//        int dialogButton = JOptionPane.YES_NO_OPTION;
+//        int dialogResult = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn hủy vé?", "Warning", dialogButton);
+//        if (dialogResult != JOptionPane.YES_OPTION) {
+//            return;
+//        }
+//
+//        chonLayVeTatPhieuDatVe();
+//        for (Ve_HuyVe_Controller controller : veHuyVeControllerList) {
+//            if (!controller.isChonLayVe()) {
+//                continue;
+//            }
+//            Ve ve = controller.getVe();
+//            if (phieuDatVe.getTongTienDatCoc() > 0) {
+//                LocalDateTime thoiGianDi = phieuDatVe.getChiTietChuyenTauDi().getThoiGianDi();
+//                long gioCanHuy = phieuDatVe.getLoaiPhieuDatVe().equals("PHIEUDATCANHAN") ? 48 : 72;
+//
+//                if (thoiGianDi.minusHours(gioCanHuy).isAfter(LocalDateTime.now())) {
+//                    QuanLyPhieuDatVe_BUS.huyPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
+//                    if (phieuDatVe.getLoaiPhieuDatVe().equals("PHIEUDATCANHAN")) {
+//                        LichSuHuyDatVe_DAO.themLichSuHuyDatVe(
+//                                phatSinhMaLichSuHuyDatVe(),
+//                                LocalDateTime.now(),
+//                                phieuDatVe.getTongTienDatCoc() - tongTienTraKhach,
+//                                tongTienTraKhach,
+//                                phieuDatVe.getMaPhieuDatVe(),
+//                                CaLamViec_DAO.timCaLamViec(LocalDate.now()).getMaCaLamViec()
+//                        );
+//                    }
+//                    JOptionPane.showMessageDialog(null, "Hủy đặt vé thành công");
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Hủy đặt vé không thành công");
+//                }
+//            } else {
+//                QuanLyPhieuDatVe_BUS.huyPhieuDatVe(phieuDatVe.getMaPhieuDatVe());
+//            }
+//        }
+        loadDuLieuLenTable();
     }
-
-    public static double[] tinhGiaVaLePhiTraVe(String maVe, String loaiKhachHang, Connection connection) throws SQLException {
-        double giaCoBan = 0; // Giá cơ bản sẽ dựa vào số km
-        double heSoGiaToa = 1.0;
-        double heSoGiaCho = 1.0;
-        double giaVe = 0;
-        double lePhi = 0;
-        double soKm = 0;
-        double giamGia = 0;
-        String loaiVe = "";
-        String loaiToa = "";
-        String maLoaiCho = "";
-        LocalDateTime thoiGianDi = null;
-
-        // Truy vấn thông tin cần thiết từ bảng
-        String sql = "SELECT Ve.loaiVe, Ve.giamGiaVeTapThe, ChiTietChuyenTau.soKm, ChiTietChuyenTau.thoiGianDi, "
-                + "ChiTietChuyenTau.maLoaiCho, ChiTietChuyenTau.loaiToa "
-                + "FROM Ve JOIN ChiTietChuyenTau ON Ve.maChuyenTau = ChiTietChuyenTau.maChuyenTau "
-                + "WHERE Ve.maVe = ?";
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, maVe);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                loaiVe = rs.getString("loaiVe");
-                soKm = rs.getDouble("soKm");
-                thoiGianDi = rs.getTimestamp("thoiGianDi").toLocalDateTime();
-                maLoaiCho = rs.getString("maLoaiCho");
-                loaiToa = rs.getString("loaiToa");
-            }
-        }
-
-        // Xác định giá cơ bản dựa trên số km
-        giaCoBan = soKm * 1000; // Ví dụ: 1000 VNĐ mỗi km
-
-        // Xác định hệ số giá toa dựa vào loại toa
-        switch (loaiToa) {
-            case "VIP":
-                heSoGiaToa = 1.5;
-                break;
-            case "STANDARD":
-                heSoGiaToa = 1.0;
-                break;
-            case "ECONOMY":
-                heSoGiaToa = 0.8;
-                break;
-            default:
-                heSoGiaToa = 1.0;
-                break;
-        }
-
-        // Xác định hệ số giá chỗ dựa vào mã loại chỗ
-        if ("CS".equals(maLoaiCho)) {
-            heSoGiaCho = 1.2; // Chỗ gần cửa sổ
-        } else {
-            heSoGiaCho = 1.0; // Chỗ bình thường
-        }
-
-        // Tính giá chỗ (giá vé ban đầu)
-        giaVe = giaCoBan * heSoGiaToa * heSoGiaCho;
-
-        // Tính phần trăm giảm giá dựa trên loại khách hàng
-        switch (loaiKhachHang) {
-            case "TRE_EM_6_10":
-                giamGia = giaVe * 0.25;
-                break;
-            case "CAO_TUOI":
-                giamGia = giaVe * 0.15;
-                break;
-            case "HOC_SINH":
-                giamGia = giaVe * 0.10;
-                break;
-            case "THUONG_BINH":
-                giamGia = giaVe * 0.30;
-                break;
-            default:
-                giamGia = 0;
-                break;
-        }
-
-        // Tính giá vé sau giảm giá
-        giaVe -= giamGia;
-
-        // Tính lệ phí trả vé dựa trên loại vé và thời gian
-        long hoursToDeparture = LocalDateTime.now().until(thoiGianDi, ChronoUnit.HOURS);
-
-        if ("CA_NHAN".equals(loaiVe)) {
-            if (hoursToDeparture >= 48) {
-                lePhi = giaVe * 0.10;
-            } else if (hoursToDeparture >= 4) {
-                lePhi = giaVe * 0.20;
-            } else {
-                lePhi = 0; // Không hoàn vé khi dưới 4 giờ
-            }
-        } else if ("TAP_THE".equals(loaiVe)) {
-            if (hoursToDeparture >= 72) {
-                lePhi = giaVe * 0.20;
-            } else if (hoursToDeparture >= 24) {
-                lePhi = giaVe * 0.30;
-            } else {
-                lePhi = 0; // Không hoàn vé khi dưới 24 giờ
-            }
-        }
-
-        return new double[] { giaVe, lePhi };
+//
+//    private void setupTableSelectionHandler(TableView<HoaDon> tableView) {
+//        tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HoaDon>() {
+//            @Override
+//            public void changed(ObservableValue<? extends HoaDon> observable, HoaDon oldSelection, HoaDon newSelection) {
+//                if (newSelection != null) {
+//                    getDanhSachPhieuDatVeTheoHoaDon();
+//                    hienThiDanhSachPhieu();
+//                }
+//            }
+//        });
+//    }
+//
+//    public void getDanhSachVeTheoHoaDon() {
+//        danhSachVe = QuanLyPhieuDatVe_BUS.getDanhSachPhieuDatVeTheoMaHoaDon(tableView.getSelectionModel().getSelectedItem().getMaHoaDon());
+//    }
+//
+//    public void hienThiDanhSachVe() {
+//        vboxDanhSachVe.getChildren().clear();
+//        if (tableView.getSelectionModel().getSelectedItem() == null)
+//            return;
+//        int length = hienThiDanhSachVe.size();
+//        for (int i = 0; i < length; i++) {
+//            Ve ve = danhSachPhieuDatVe.get(i);
+//            try {
+//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_Items/Ve_HuyVe.fxml.fxml"));
+//                Parent anchorPane = loader.load();
+//                PhieuDatVe_LayVe_Controller controller = loader.getController();
+//                phieuDatVeLayVeControllerList.add(controller);
+//                controller.setHuyDatVe_gui_controller(this);
+//                controller.setSoThuTu(i);
+//                controller.setPhieuDatVe(phieuDatVe);
+//                controller.khoiTao();
+//
+//                vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
+//
+//    public void hienThiDanhSachChiTietPhieuDatVe(PhieuDatVe phieuDatVe) {
+//        vBoxDanhSachChiTietPhieuDatVe.getChildren().clear();
+//        chiTietPhieuDatVeLayVeControllerList.clear();
+//        if (phieuDatVe == null)
+//            return;
+//        for (ChiTietPhieuDatVe chiTietPhieuDatVe : chiTietPhieuDatVeList) {
+//            if (chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)) {
+//                try {
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
+//                    Parent anchorPane = loader.load();
+//                    ChiTietPhieuDatVe_LayVe_Controller controller = loader.getController();
+//                    chiTietPhieuDatVeLayVeControllerList.add(controller);
+//                    controller.setHuyDatVe_gui_controller(this);
+//
+//                    controller.setChiTietPhieuDatVe(chiTietPhieuDatVe);
+//                    controller.khoiTao();
+//
+//                    vBoxDanhSachChiTietPhieuDatVe.getChildren().add(anchorPane);
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }
+//    }
+//
+//    public void getDanhSachChiTietPhieuDatVeTheoPhieuDatVe(String PDV) {
+//        chiTietPhieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachChiTietPhieuDatVeTheoMaPhieuDatVe(PDV);
+//    }
+//
+//    public void chonLayVeTatPhieuDatVe(){
+//        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            controller.chonLayVe();
+//        }
+//    }
+//
+    @FXML
+    void btnChonTatCaOnAction(ActionEvent event) {
+//        chonLayVeTatPhieuDatVe();
     }
+//
+//    public double tinhTongTienHuyDatVe(){
+//        double tongTienCoc = 0;
+//        double lePhiHuy = 0;
+//        boChonTatCaPhieuDatVe();
+//        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            if(controller.isChonLayVe()){
+//                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
+//                if (controller.getPhieuDatVe().getTongTienDatCoc() > 0) {
+//                    if (controller.getPhieuDatVe().getLoaiPhieuDatVe().equals("PHIEUDATCANHAN")) {
+//                        if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(48).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.1;
+//                        } else if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(4).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.2;
+//                        }
+//                    } else {
+//                        if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(72).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.2;
+//                        } else if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(24).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.3;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println("Da tinh tien");
+//        txtTongTienTraKhach.setText(CurrencyFormat.currencyFormat(tongTienCoc-lePhiHuy));
+//        return tongTienCoc-lePhiHuy;
+//    }
+//
+//    public void boChonTatCaPhieuDatVe() {
+//        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            controller.boChonPhieuDatVe();
+//        }
+//    }
+//
+//    public double tinhTongTienHuyDatVe(){
+//        double tongTienCoc = 0;
+//        double lePhiHuy = 0;
+//        boChonTatCaPhieuDatVe();
+//        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            if(controller.isChonLayVe()){
+//                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
+//                if (controller.getPhieuDatVe().getTongTienDatCoc() > 0) {
+//                    if (controller.getPhieuDatVe().getLoaiPhieuDatVe().equals("PHIEUDATCANHAN")) {
+//                        if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(48).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.1;
+//                        } else if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(4).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.2;
+//                        }
+//                    } else {
+//                        if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(72).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.2;
+//                        } else if(controller.getPhieuDatVe().getChiTietChuyenTauDi().getThoiGianDi().minusHours(24).isAfter(LocalDateTime.now())){
+//                            lePhiHuy += controller.getPhieuDatVe().getTongTienVe() * 0.3;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println("Da tinh tien");
+//        txtTongTienTraKhach.setText(CurrencyFormat.currencyFormat(tongTienCoc-lePhiHuy));
+//        return tongTienCoc-lePhiHuy;
+//    }
+//
+//    public void boChonTatCaPhieuDatVe() {
+//        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            controller.boChonPhieuDatVe();
+//        }
+//    }
+
+
+
 }

@@ -92,8 +92,8 @@ public class Cho_Controller implements Initializable {
             if (cho.getTrangThaiCho()== TrangThaiCho.CONTRONG){
                 if(!doiVe_gui_controller.getChoChon().equals(cho)){
 
-                    doiVe_gui_controller.setChoChon(cho);
-                    doiVe_gui_controller.capNhatCacChoDaChon();
+                        doiVe_gui_controller.setChoChon(cho);
+                        doiVe_gui_controller.capNhatCacChoDaChon();
 
                 }
 
@@ -181,9 +181,9 @@ public class Cho_Controller implements Initializable {
 
         tooltip.setStyle(
                 "-fx-font-size: 16px; " +
-                        "-fx-background-color: white; " +
-                        "-fx-font-weight: normal; " +
-                        "-fx-text-fill: black; "
+                "-fx-background-color: white; " +
+                "-fx-font-weight: normal; " +
+                "-fx-text-fill: black; "
         );
 
         tooltip.setText(cho.getLoaiCho().getTenLoaiCho() + "\n" + trangThaiCho + "\n" + giaCho);

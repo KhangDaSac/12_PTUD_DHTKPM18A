@@ -153,7 +153,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         cmbTrangThai.setItems(listCBBTT);
 
         scene.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE) { // Hoặc phím bạn muốn
+            if (event.getCode() == KeyCode.ESCAPE) { // Tùy chọn phím
                 tblNV.getSelectionModel().clearSelection(); // Bỏ chọn hàng
                 clearTextFields(); // Làm trống các TextField
             }
@@ -418,49 +418,50 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         isFieldClicked = true;
     }
 
-    @FXML
-    void txtCCCD_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtCCCD_NV.getText().isEmpty()) {
-            lblCCCD_Loi.setText("Lỗi nhập!");
-            txtCCCD_NV.requestFocus();
-        } else {
-            lblCCCD_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtTen_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtTen_NV.getText().isEmpty()) {
-            lblTenNV_Loi.setText("Lỗi nhập!");
-            txtTen_NV.requestFocus();
-        } else {
-            lblTenNV_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtDiaChi_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtDiaChi_NV.getText().isEmpty()) {
-            lblDiaChi_Loi.setText("Lỗi nhập!");
-            txtDiaChi_NV.requestFocus();
-        } else {
-            lblDiaChi_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtSDT_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtSDT_NV.getText().isEmpty()) {
-            lblSDT_Loi.setText("Lỗi nhập!");
-            txtSDT_NV.requestFocus();
-        } else {
-            lblSDT_Loi.setText("");
-        }
-    }
+//    @FXML
+//    void txtCCCD_OnMouseExited(MouseEvent event) {
+//        if (isFieldClicked && txtCCCD_NV.getText().isEmpty()) {
+//            lblCCCD_Loi.setText("Lỗi nhập!");
+//            txtCCCD_NV.requestFocus();
+//        }
+//    }
+//
+//    @FXML
+//    void txtTen_NV_OnMouseExited(MouseEvent event) {
+//        if (isFieldClicked && txtTen_NV.getText().isEmpty()) {
+//            lblTenNV_Loi.setText("Lỗi nhập!");
+//            txtTen_NV.requestFocus();
+//        } else {
+//            lblTenNV_Loi.setText("");
+//        }
+//    }
+//
+//    @FXML
+//    void txtDiaChi_NV_OnMouseExited(MouseEvent event) {
+//        if (isFieldClicked && txtDiaChi_NV.getText().isEmpty()) {
+//            lblDiaChi_Loi.setText("Lỗi nhập!");
+//            txtDiaChi_NV.requestFocus();
+//        } else {
+//            lblDiaChi_Loi.setText("");
+//        }
+//    }
+//
+//    @FXML
+//    void txtSDT_NV_OnMouseExited(MouseEvent event) {
+//        if (isFieldClicked && txtSDT_NV.getText().isEmpty()) {
+//            lblSDT_Loi.setText("Lỗi nhập!");
+//            txtSDT_NV.requestFocus();
+//        } else {
+//            lblSDT_Loi.setText("");
+//        }
+//    }
 
     @FXML
     void txtCCCD_OnKeyReleased() {
-        if (!txtCCCD_NV.getText().isEmpty()) {
+        if (!txtCCCD_NV.getText().trim().matches("^0\\d{11}")) {
+            lblCCCD_Loi.setText("Phai co 12 so!");
+        }
+        else {
             lblCCCD_Loi.setText("");
         }
     }
