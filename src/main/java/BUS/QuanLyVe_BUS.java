@@ -2,10 +2,13 @@ package BUS;
 
 import DAO.ChiTietVe_DAO;
 import DAO.Ve_DAO;
+import DTO.HoaDon;
 import DTO.Ve;
 import utils.TimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuanLyVe_BUS {
     public static String taoMaVeMoi(){
