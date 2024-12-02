@@ -151,37 +151,35 @@
             <artifactId>itextpdf</artifactId>
             <version>5.5.13.2</version> <!-- Hoặc phiên bản phù hợp -->
         </dependency>
-        <!-- Dependency for Batik SVG DOM -->
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>batik-svg-dom</artifactId>
-            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
-        </dependency>
 
-        <!-- Dependency for Batik Swing -->
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>batik-swing</artifactId>
-            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
-        </dependency>
-
-        <!-- Dependency for Batik Anim -->
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>batik-anim</artifactId>
-            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
-        </dependency>
-
-        <!-- Dependency for Batik XML -->
-        <dependency>
-            <groupId>org.apache.xmlgraphics</groupId>
-            <artifactId>batik-xml</artifactId>
-            <version>1.14</version> <!-- Hoặc phiên bản mới hơn -->
-        </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>5.2.3</version> <!-- Kiểm tra và dùng phiên bản mới nhất -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>3.0.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-core</artifactId>
+            <version>9.1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf-itext5</artifactId>
+            <version>9.1.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
         </dependency>
 
 

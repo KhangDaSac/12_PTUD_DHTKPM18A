@@ -6,18 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpToaTau" onMouseClicked="#anpToaTauOnMousrClicked" prefHeight="65.0" prefWidth="66.0" stylesheets="@../../css/BanVe_GUI_Items/ToaTau_BanVe.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ToaTau_BanVe_Controller">
+<AnchorPane fx:id="anpToaTau" onMouseClicked="#anpToaTauOnMousrClicked" prefHeight="55.0" prefWidth="66.0" stylesheets="@../../css/BanVe_GUI_Items/ToaTau_BanVe.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ToaTau_BanVe_Controller">
    <children>
-      <ImageView fx:id="imvToaTau" fitHeight="55.0" fitWidth="120.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <ImageView fx:id="imvToaTau" fitHeight="45.0" fitWidth="120.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@../../images/BanVe_GUI/train-car-gray.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblThuTuTau" layoutX="12.0" layoutY="14.800000000000004" prefHeight="26.0" prefWidth="34.0" style="-fx-alignment: center; -fx-font-weight: 700; -fx-font-size: 16;" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="23.799999999999997" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="84.0">
+      <Label fx:id="lblThuTuTau" layoutX="12.0" layoutY="14.800000000000004" prefHeight="26.0" prefWidth="34.0" style="-fx-alignment: center; -fx-font-weight: 700; -fx-font-size: 16;" text="1" textAlignment="CENTER" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="6.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblLoaiToaTau" layoutX="70.0" layoutY="9.0" prefWidth="50.0" style="-fx-alignment: center; -fx-font-weight: 700; -fx-font-size: 16; -fx-text-fill: #fff; -fx-background-radius: 5;" text="GN6" />
+      <Label fx:id="lblLoaiToaTau" layoutX="70.0" layoutY="9.0" prefWidth="50.0" style="-fx-alignment: center; -fx-font-weight: 700; -fx-font-size: 14; -fx-text-fill: #fff; -fx-background-radius: 5;" text="GN6" />
    </children>
 </AnchorPane>

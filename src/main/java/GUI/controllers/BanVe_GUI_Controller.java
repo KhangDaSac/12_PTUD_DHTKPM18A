@@ -385,6 +385,7 @@ public class BanVe_GUI_Controller implements Initializable {
         scpDanhSachChuyenTau.setOnScroll(event -> {
             double deltaX = event.getDeltaY();
             scpDanhSachChuyenTau.setHvalue(scpDanhSachChuyenTau.getHvalue() - deltaX * 10 / scpDanhSachChuyenTau.getContent().getBoundsInLocal().getWidth());
+
             event.consume();
         });
 

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#anpChuyenTauOnMouseClicked" prefHeight="230.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ChuyenTau_BanVe_Controller">
+<AnchorPane onMouseClicked="#anpChuyenTauOnMouseClicked" prefHeight="180.0" prefWidth="160.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Items.ChuyenTau_BanVe_Controller">
    <children>
-      <ImageView fx:id="imvChuyenTau" fitHeight="220.0" fitWidth="150.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <ImageView fx:id="imvChuyenTau" fitHeight="170.0" fitWidth="150.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <image>
             <Image url="@../../images/BanVe_GUI/train-gray.png" />
          </image>
