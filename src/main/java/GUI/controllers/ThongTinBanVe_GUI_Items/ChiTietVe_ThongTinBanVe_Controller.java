@@ -1,19 +1,29 @@
 package GUI.controllers.ThongTinBanVe_GUI_Items;
 
 import DTO.ChiTietVe;
-import DTO.LoaiVe;
-import GUI.controllers.BanVe_GUI_Controller;
+import DTO.KhachHang;
+import GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller;
 import GUI.controllers.ThongTinBanVe_GUI_Controller;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
+import javafx.scene.layout.AnchorPane;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ChiTietVe_ThongTinBanVe_Controller {
-
+public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     @FXML
     private AnchorPane anpChiTietVe;
+
+    @FXML
+    private AnchorPane anpChonChiTietVe;
+
+    @FXML
+    private ImageView imvDaCoKhachHang;
 
     @FXML
     private Label lblCCCD;
@@ -25,7 +35,7 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     private Label lblGiaCho;
 
     @FXML
-    private Label lblGiamGia;
+    private Label lblGiamGiaLoaiKhachHang;
 
     @FXML
     private Label lblLoaiKhachHang;
@@ -34,25 +44,12 @@ public class ChiTietVe_ThongTinBanVe_Controller {
     private Label lblTenKhachHang;
 
     @FXML
-    private Label lblThanhTien;
-
-    @FXML
     private Label lblToa;
 
     @FXML
-    private AnchorPane anpLoaiVe;
+    private VBox vboxDanhDachChoVeTapThe;
 
     private ChiTietVe chiTietVe;
-    private boolean dangChon;
-
-    public boolean isDangChon() {
-        return dangChon;
-    }
-
-    public void setDangChon(boolean dangChon) {
-        this.dangChon = dangChon;
-    }
-
     private ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller;
 
     public ThongTinBanVe_GUI_Controller getThongTinBanVe_gui_controller() {
@@ -71,53 +68,46 @@ public class ChiTietVe_ThongTinBanVe_Controller {
         this.chiTietVe = chiTietVe;
     }
 
-    @FXML
-    void anpChiTietVeOnMouseClicked(MouseEvent event) {
-        chonChiTietVe();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     public void khoiTao(){
         lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
         lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
-        anpChiTietVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/ChiTietVe.css").toExternalForm());
-
-        if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VECANHAN){
-            anpLoaiVe.getStyleClass().add("ve-left-veCaNhan");
-        }else if(chiTietVe.getVe().getLoaiVe() == LoaiVe.VETAPTHE){
-            anpLoaiVe.getStyleClass().add("ve-left-veTapThe");
-        }
-
-
-        capNhatLaiThongTinKhachHang();
-        lblGiamGia.setText(CurrencyFormat.currencyFormat(chiTietVe.getSoTienGiamGia()));
-        lblThanhTien.setText(CurrencyFormat.currencyFormat(chiTietVe.getThanhTien()));
         lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
+        KhachHang khachHang = chiTietVe.getKhachHang();
+        if(khachHang != null){
+            lblCCCD.setText(khachHang.getCCCD());
+            lblTenKhachHang.setText(khachHang.getTenKhachHang());
+            lblLoaiKhachHang.setText(khachHang.getLoaiKhachHang().getTenLoaiKhachHang());
+            lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(chiTietVe.giamGia()));
+        }else{
+            lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(0));
+            imvDaCoKhachHang.setVisible(false);
+        }
+        capNhatTrangThaiChiTietVe();
     }
 
-    public void chonChiTietVe(){
-        thongTinBanVe_gui_controller.boChonTatCaChiTietVe();
-        anpChiTietVe.getStyleClass().removeAll("chiTietVeKhongChon");
-        anpChiTietVe.getStyleClass().add("chiTietVeDangChon");
-        dangChon = true;
+    public void chiTietVeCuoi(){
+        anpChiTietVe.setStyle("-fx-border-width: 1 0 1 0;" +
+                "-fx-border-color:  #000;");
     }
 
-
-    public void khongChonChiTietVe(){
-        dangChon = false;
-        anpChiTietVe.getStyleClass().removeAll("chiTietVeDangChon");
-        anpChiTietVe.getStyleClass().add("chiTietVeKhongChon");
+    @FXML
+    void anpChiTietVeClicked(MouseEvent event) {
+        thongTinBanVe_gui_controller.chonCho(chiTietVe);
+        capNhatTrangThaiChiTietVe();
     }
 
-    public void capNhatLaiThongTinKhachHang(){
-        if(chiTietVe.getKhachHang() == null)
-            return;
-        lblLoaiKhachHang.setText(chiTietVe.getKhachHang().getLoaiKhachHang().getTenLoaiKhachHang());
-        lblTenKhachHang.setText(chiTietVe.getKhachHang().getTenKhachHang());
-        lblCCCD.setText(chiTietVe.getKhachHang().getCCCD());
-        chiTietVe.setSoTienGiamGia(chiTietVe.tinhTienGiamGia());
-        chiTietVe.setThanhTien(chiTietVe.tinhThanhTien());
+    public void capNhatTrangThaiChiTietVe(){
+        if(thongTinBanVe_gui_controller.kiemTraChiTietVeDuocChon(chiTietVe))
+            anpChonChiTietVe.setStyle("-fx-background-color: #000;" +
+                    "-fx-opacity: 0.1;");
+        else
+            anpChonChiTietVe.setStyle("");
+
     }
-
-
-
 }

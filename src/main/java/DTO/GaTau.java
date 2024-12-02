@@ -23,7 +23,6 @@ public class GaTau {
 		// TODO Auto-generated constructor stub
 	}
 	public GaTau(String maGaTau) {
-		super();
 		this.maGaTau = maGaTau;
 	}
 	public String getMaGaTau() {

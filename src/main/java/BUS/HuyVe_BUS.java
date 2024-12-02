@@ -14,7 +14,7 @@ public class HuyVe_BUS {
     public Ve getTicketByID(String maVe) {
         return huyVeDao.getTicketByID(maVe);
     }
-// mo pj nay trong netbeans di
+
     // Phương thức để cập nhật trạng thái vé
     public boolean updateTicketStatus(String maVe) {
         return huyVeDao.updateTicketStatus(maVe);

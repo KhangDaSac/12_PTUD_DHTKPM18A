@@ -1,5 +1,6 @@
 package DTO;
 
 public enum LoaiVe {
-    VECANHAN,VETAPTHE;
+    VECANHAN,
+    VETAPTHE;
 }

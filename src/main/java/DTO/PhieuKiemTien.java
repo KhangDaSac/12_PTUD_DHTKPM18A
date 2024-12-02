@@ -9,25 +9,6 @@ public class PhieuKiemTien {
     private LocalDateTime thoiGianKiemTien;
     private NhanVien nhanVienQuanSat;
     private NhanVien nhanVienKiemTien;
-    private LoaiPhieuKiemTien loaiPhieuKiemTien;
-    private PhieuKetToan phieuKetToan;
-
-    public PhieuKiemTien() {
-    }
-
-    public PhieuKiemTien(String maPhieuKiemTien) {
-        this.maPhieuKiemTien = maPhieuKiemTien;
-    }
-
-    public PhieuKiemTien(String maPhieuKiemTien, double tongTien, LocalDateTime thoiGianKiemTien, NhanVien nhanVienQuanSat, NhanVien nhanVienKiemTien, LoaiPhieuKiemTien loaiPhieuKiemTien, PhieuKetToan phieuKetToan) {
-        this.maPhieuKiemTien = maPhieuKiemTien;
-        this.tongTien = tongTien;
-        this.thoiGianKiemTien = thoiGianKiemTien;
-        this.nhanVienQuanSat = nhanVienQuanSat;
-        this.nhanVienKiemTien = nhanVienKiemTien;
-        this.loaiPhieuKiemTien = loaiPhieuKiemTien;
-        this.phieuKetToan = phieuKetToan;
-    }
 
     public String getMaPhieuKiemTien() {
         return maPhieuKiemTien;
@@ -69,21 +50,6 @@ public class PhieuKiemTien {
         this.nhanVienKiemTien = nhanVienKiemTien;
     }
 
-    public LoaiPhieuKiemTien getLoaiPhieuKiemTien() {
-        return loaiPhieuKiemTien;
-    }
-
-    public void setLoaiPhieuKiemTien(LoaiPhieuKiemTien loaiPhieuKiemTien) {
-        this.loaiPhieuKiemTien = loaiPhieuKiemTien;
-    }
-
-    public PhieuKetToan getPhieuKetToan() {
-        return phieuKetToan;
-    }
-
-    public void setPhieuKetToan(PhieuKetToan phieuKetToan) {
-        this.phieuKetToan = phieuKetToan;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -96,18 +62,5 @@ public class PhieuKiemTien {
     @Override
     public int hashCode() {
         return Objects.hashCode(maPhieuKiemTien);
-    }
-
-    @Override
-    public String toString() {
-        return "PhieuKiemTien{" +
-                "maPhieuKiemTien='" + maPhieuKiemTien + '\'' +
-                ", tongTien=" + tongTien +
-                ", thoiGianKiemTien=" + thoiGianKiemTien +
-                ", nhanVienQuanSat=" + nhanVienQuanSat +
-                ", nhanVienKiemTien=" + nhanVienKiemTien +
-                ", loaiPhieuKiemTien=" + loaiPhieuKiemTien +
-                ", phieuKetToan=" + phieuKetToan +
-                '}';
     }
 }

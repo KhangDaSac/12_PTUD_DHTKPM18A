@@ -42,7 +42,7 @@ public class HuyVe_DAO {
                 TrangThaiVe trangThaiVe = TrangThaiVe.valueOf(trangThaiVeString.toUpperCase()); // Chuyển đổi trạng thái vé sang chữ hoa
 
                 // Khởi tạo các đối tượng liên quan
-                HoaDon hoaDon = new HoaDon(maHoaDon);
+                HoaDonBanVe hoaDon = new HoaDonBanVe(maHoaDon);
                 ChuyenTau chuyenTau = new ChuyenTau(maChuyenTau);
                 GaTau gaTauDi = new GaTau(maGaDi);
                 GaTau gaTauDen = new GaTau(maGaDen);

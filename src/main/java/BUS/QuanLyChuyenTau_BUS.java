@@ -18,14 +18,11 @@ public class QuanLyChuyenTau_BUS {
             System.out.println(ngayDi);
             throw new Exception("Ngày đi không hợp lệ");
         }
-        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();
-        ArrayList<ChuyenTau> chuyenTauList = chuyenTau_DAO.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
-        return chuyenTauList;
+        return ChuyenTau_DAO.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
     }
 
     public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){
-        ToaTau_DAO toaTau_DAO = new ToaTau_DAO();
-        ArrayList<ToaTau> toaTauList = toaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
+        ArrayList<ToaTau> toaTauList = ToaTau_DAO.getDanhSachToaTauTheoChuyen(maChuyenTau, maGaDi, maGaDen);
         return toaTauList;
     }
 
@@ -37,9 +34,7 @@ public class QuanLyChuyenTau_BUS {
     }
 
     public static ArrayList<Cho> getDanhSachChoTheoMaToaTau(String maToaTau, String maGaDi, String maGaDen){
-        Cho_DAO cho_DAO = new Cho_DAO();
-        ArrayList<Cho> choList = cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
-        return choList;
+        return Cho_DAO.getDanhSachChoTheoMaToaTau(maToaTau, maGaDi, maGaDen);
     }
 
     public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(ChuyenTau chuyenTau, GaTau gaTau){
@@ -53,9 +48,21 @@ public class QuanLyChuyenTau_BUS {
         return  toaTau;
     }
 
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh) throws Exception {
 
-//    public static LocalDateTime getThoiGianDi(String maChuyenTau, String maGaDi){
-//        ChuyenTau_DAO chuyenTau_DAO = new ChuyenTau_DAO();
-//        LocalDateTime thoiGianDi
-//    }
+        if((maChuyenTau == null || maChuyenTau.isEmpty())
+            && maTuyenTau == null || maTuyenTau.isEmpty()
+            && ngayKhoiHanh == null)
+            throw new Exception("Vui lòng nhập thông tin tìm kiếm");
+
+        maChuyenTau = maChuyenTau == null ? "" : maChuyenTau;
+        maTuyenTau = maTuyenTau == null ? "" : maTuyenTau;
+
+
+        return ChuyenTau_DAO.getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(maChuyenTau, maTuyenTau, ngayKhoiHanh);
+    }
+
+    public static ArrayList<ChiTietChuyenTau> getLichTrinhTheoMaChuyenTau(String maChuyenTau){
+        return ChiTietChuyenTau_DAO.getLichTrinhTheoMaChuyenTau(maChuyenTau);
+    }
 }

@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import static connectDB.ConnectDB.con;
 
 public class KhachHang_DAO {
-    public KhachHang getKhachHangTheoCCCD(String cccd){
-        Connection con = ConnectDB.getInstance().getConnection();
+    private static Connection con = ConnectDB.getInstance().getConnection();
+    public static KhachHang getKhachHangTheoCCCD(String cccd){
         try {
             String query = "select maKhachHang, CCCD, tenKhachHang, soDienThoai, lkh.maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia" +
                     " from KhachHang kh" +

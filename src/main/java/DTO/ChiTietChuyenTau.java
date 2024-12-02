@@ -8,22 +8,21 @@ public class ChiTietChuyenTau {
 	private GaTau gaTau;
 	private LocalDateTime thoiGianDen;
 	private LocalDateTime thoiGianDi;
+	private int thuTuGa;
 	private double soKm;
-	private int  thuTuGa;
+
 
 	public ChiTietChuyenTau(ChuyenTau chuyenTau) {
 		this.chuyenTau = chuyenTau;
 	}
-
-
 
 	public ChiTietChuyenTau(ChuyenTau chuyenTau, GaTau gaTau, LocalDateTime thoiGianDen, LocalDateTime thoiGianDi, int thuTuGa, double soKm) {
 		this.chuyenTau = chuyenTau;
 		this.gaTau = gaTau;
 		this.thoiGianDen = thoiGianDen;
 		this.thoiGianDi = thoiGianDi;
-		this.soKm = soKm;
 		this.thuTuGa = thuTuGa;
+		this.soKm = soKm;
 	}
 
 

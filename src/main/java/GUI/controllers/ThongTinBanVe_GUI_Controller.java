@@ -17,44 +17,25 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
 
 public class ThongTinBanVe_GUI_Controller implements Initializable {
-    private HoaDon hoaDon;
-    private ArrayList<Ve> danhSachVe;
-    private ArrayList<ChiTietVe> danhSachChiTietVe;
+    private HoaDonBanVe hoaDonBanVe;
     private Main_Controller main_controller;
     private KhachHang khachHang;
 
+    private ArrayList<Ve_ThongTinBanVe_Controller> ve_thongTinBanVe_controller_list = new ArrayList<Ve_ThongTinBanVe_Controller>();
 
-    private ArrayList<Ve_ThongTinBanVe_Controller> veControllerList = new ArrayList<Ve_ThongTinBanVe_Controller>();
-    private ArrayList<ChiTietVe_ThongTinBanVe_Controller> chiTietVeControllerList = new ArrayList<ChiTietVe_ThongTinBanVe_Controller>();
-
-    public HoaDon getHoaDon() {
-        return hoaDon;
+    public HoaDonBanVe getHoaDonBanVe() {
+        return hoaDonBanVe;
     }
 
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
-    public ArrayList<Ve> getDanhSachVe() {
-        return danhSachVe;
-    }
-
-    public void setDanhSachVe(ArrayList<Ve> danhSachVe) {
-        this.danhSachVe = danhSachVe;
-    }
-
-    public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
-        return danhSachChiTietVe;
-    }
-
-    public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
-        this.danhSachChiTietVe = danhSachChiTietVe;
+    public void setHoaDonBanVe(HoaDonBanVe hoaDonBanVe) {
+        this.hoaDonBanVe = hoaDonBanVe;
     }
 
     public Main_Controller getMain_controller() {
@@ -65,14 +46,19 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         this.main_controller = main_controller;
     }
 
+    private ArrayList<ChiTietVe> danhSachChiTietVeDangChon = new ArrayList<ChiTietVe>();
+
     @FXML
     private JFXButton btnBanVe;
 
     @FXML
-    private JFXButton btnQuayLai;
+    private JFXButton btnBoChonTatCaCho;
 
     @FXML
-    private JFXButton btnThemKhachHang;
+    private JFXButton btnChonTatCaCho;
+
+    @FXML
+    private JFXButton btnQuayLai;
 
     @FXML
     private JFXButton btnThemNguoiDiTau;
@@ -87,37 +73,35 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     private TextField txtCCCD;
 
     @FXML
-    private TextField txtCCCDKhachHangMuaVe;
-
-    @FXML
     private TextField txtLoaiKhachHang;
 
     @FXML
     private TextField txtMaKhachHang;
 
     @FXML
-    private TextField txtMaKhachHangMuaVe;
-
-    @FXML
     private TextField txtSoDienThoai;
-
-    @FXML
-    private TextField txtSoDienThoaiKhachHangMuaVe;
 
     @FXML
     private TextField txtTenKhachHang;
 
     @FXML
-    private TextField txtTenKhachHangMuaVe;
-
-    @FXML
     private TextField txtTongTien;
 
     @FXML
-    private VBox vboxChiTietVe;
+    private VBox vboxGioVe;
 
     @FXML
-    private VBox vboxGioVe;
+    private Label lblCCCDKhachHangMua;
+
+    @FXML
+    private Label lblMaKhachHangMua;
+
+    @FXML
+    private Label lblSoDienThoaiKhachHangMua;
+
+    @FXML
+    private Label lblTenKhachHangMua;
+
 
     private int veDangChon;
 
@@ -131,34 +115,25 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnBanVeOnAction(ActionEvent event) {
-        hoaDon.setThoiGianLap(LocalDateTime.now());
-        hoaDon.setLoaiHoaDon(LoaiHoaDon.HOADONBAN);
-        hoaDon.setTrangThaiHoaDon(TrangThaiHoaDon.DALAYTOANBO);
-        hoaDon.setCaLamViec(new CaLamViec("CLV010125C"));
-        hoaDon.setTongTienDaDatCoc(0);
-        hoaDon.setTongTienKhachHangTra(hoaDon.getTongTien());
+        hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
         try {
-            if(QuanLyHoaDon_BUS.themHoaDon(hoaDon, danhSachVe, danhSachChiTietVe)){
-                hoaDon = null;
-                danhSachVe.clear();
-                danhSachChiTietVe.clear();
+            if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
+                hoaDonBanVe = null;
                 main_controller.showMessagesDialog("Bán vé thành công");
-                main_controller.quayLaiTrangBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
+                main_controller.quayLaiTrangBanVe(hoaDonBanVe);
             }else{
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             main_controller.showMessagesDialog(e.getMessage());
         }
     }
 
     @FXML
     void btnQuayLaiOnAction(ActionEvent event) {
-        hoaDon.setKhachHangMua(null);
-        for (ChiTietVe chiTietVe : danhSachChiTietVe){
-            chiTietVe.setKhachHang(null);
-        }
-        main_controller.quayLaiTrangBanVe(hoaDon, danhSachVe, danhSachChiTietVe);
+        hoaDonBanVe.setKhachHangMuaVe(null);
+        main_controller.quayLaiTrangBanVe(hoaDonBanVe);
     }
 
     @FXML
@@ -180,13 +155,13 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
-            tinhTongTienHoaDon();
+            hienThiTongTien();
         });
     }
 
     public void khoiTao(){
         try {
-            hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
+
             capNhatGioVe();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -195,20 +170,20 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
     public void capNhatGioVe() throws IOException {
         vboxGioVe.getChildren().clear();
-        veControllerList.clear();
-        int length = danhSachVe.size();
+        ve_thongTinBanVe_controller_list.clear();
+        int length = hoaDonBanVe.getDanhSachVe().size();
         if (length == 0){
             return;
         }
         for(int i = 0; i < length; i++){
-            Ve ve = danhSachVe.get(i);
+            Ve ve = hoaDonBanVe.getDanhSachVe().get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI_Items/Ve_ThongTinBanVe.fxml"));
             Parent anchorPane = loader.load();
             Ve_ThongTinBanVe_Controller controller = loader.getController();
-            veControllerList.add(controller);
+            ve_thongTinBanVe_controller_list.add(controller);
             controller.setThongTinBanVe_gui_controller(this);
 
-            controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
+            //controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
 
             controller.setVe(ve);
             controller.setSoThuTu(i);
@@ -216,44 +191,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
 
             vboxGioVe.getChildren().add(anchorPane);
         }
-        veControllerList.get(veDangChon).chonVe();
-    }
-
-
-    public void capNhatChiTietVe(Ve ve) throws IOException {
-        vboxChiTietVe.getChildren().clear();
-        chiTietVeControllerList.clear();
-        if(ve == null)
-            return;
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-            if(chiTietVe.getVe().equals(ve)){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI_Items/ChiTietVe_ThongTinBanVe.fxml"));
-                Parent anchorPane = loader.load();
-                ChiTietVe_ThongTinBanVe_Controller controller = loader.getController();
-                chiTietVeControllerList.add(controller);
-                controller.setThongTinBanVe_gui_controller(this);
-
-
-
-                controller.setChiTietVe(chiTietVe);
-                controller.khoiTao();
-
-                vboxChiTietVe.getChildren().add(anchorPane);
-            }
-        }
-        chiTietVeControllerList.getFirst().chonChiTietVe();
-    }
-
-    public void boChonTatCaVe(){
-        for(Ve_ThongTinBanVe_Controller ve_controller : veControllerList){
-            ve_controller.khongChonVe();
-        }
-    }
-
-    public void boChonTatCaChiTietVe(){
-        for(ChiTietVe_ThongTinBanVe_Controller chiTietVe_controller : chiTietVeControllerList){
-            chiTietVe_controller.khongChonChiTietVe();
-        }
+        ve_thongTinBanVe_controller_list.get(veDangChon).chonVe();
     }
 
     public void timKhachHang(){
@@ -285,11 +223,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnThemKhachHang(ActionEvent event) {
-
-    }
-
-    @FXML
     void txtCCCDOnMouseClicked(MouseEvent event) {
         if (event.getClickCount() == 2) {
             txtCCCD.setEditable(true);
@@ -301,41 +234,37 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     public void themThongTinNguoiMua(){
         if(khachHang == null)
             return;
-        hoaDon.setKhachHangMua(khachHang);
-        txtCCCDKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getCCCD());
-        txtTenKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getTenKhachHang());
-        txtSoDienThoaiKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getSoDienThoai());
-        txtMaKhachHangMuaVe.setText(hoaDon.getKhachHangMua().getMaKhachHang());
+        hoaDonBanVe.setKhachHangMuaVe(khachHang);
+        lblCCCDKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getCCCD());
+        lblTenKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getTenKhachHang());
+        lblSoDienThoaiKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getSoDienThoai());
+        lblMaKhachHangMua.setText(hoaDonBanVe.getKhachHangMuaVe().getMaKhachHang());
     }
 
     public void themThongTinNguoiDiTau(){
         if (khachHang == null)
             return;
-        for(ChiTietVe_ThongTinBanVe_Controller controller : chiTietVeControllerList){
-            if(controller.isDangChon()){
-                controller.getChiTietVe().setKhachHang(khachHang);
-            }
+
+        for(ChiTietVe chiTietVe : danhSachChiTietVeDangChon){
+            chiTietVe.setKhachHang(khachHang);
         }
-        hoaDon.tinhTienHoaDon(danhSachVe, danhSachChiTietVe);
+
+        danhSachChiTietVeDangChon.clear();
+
         try {
             capNhatGioVe();
-            tinhTongTienHoaDon();
+            hienThiTongTien();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public double tinhTongTienHoaDon(){
-        double tongTienHoaDon = 0;
-        for (Ve ve: danhSachVe){
-            tongTienHoaDon += ve.tinhTongTienVeCuoi();
-        }
-        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTienHoaDon));
-        return tongTienHoaDon;
+    public void hienThiTongTien(){
+        txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonBanVe.tongTienCuoi()));
     }
 
     public boolean kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(Ve ve){
-        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+        for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
             if(chiTietVe.getVe().equals(ve)){
                 if(chiTietVe.getKhachHang() == null)
                     return false;
@@ -344,5 +273,46 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         return true;
     }
 
+    @FXML
+    void btnBoChonTatCaChoOnAction(ActionEvent event) {
+        danhSachChiTietVeDangChon.clear();
+        try {
+            capNhatGioVe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void btnChonTatCaChoOnAction(ActionEvent event) {
+        danhSachChiTietVeDangChon.clear();
+        for(Ve ve : hoaDonBanVe.getDanhSachVe()){
+            for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
+                danhSachChiTietVeDangChon.add(chiTietVe);
+            }
+        }
+        try {
+            capNhatGioVe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void chonCho(ChiTietVe chiTietVe){
+        if(danhSachChiTietVeDangChon.contains(chiTietVe))
+            danhSachChiTietVeDangChon.remove(chiTietVe);
+        else
+            danhSachChiTietVeDangChon.add(chiTietVe);
+    }
+
+    public boolean kiemTraChiTietVeDuocChon(ChiTietVe chiTietVe){
+        return danhSachChiTietVeDangChon.contains(chiTietVe);
+    }
+
+    public void boChonTatCaVe(){
+        for(Ve_ThongTinBanVe_Controller controller : ve_thongTinBanVe_controller_list){
+            controller.khongChonVe();
+        }
+    }
 
 }

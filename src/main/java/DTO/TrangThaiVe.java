@@ -1,6 +1,8 @@
 package DTO;
 
 public enum TrangThaiVe {
-    DANGSUDUNG,DAHUY,DADOI;
-
+    DANGSUDUNG,
+    DAHUY,
+    DADOI,
+    TAUDAKHOIHANH;
 }

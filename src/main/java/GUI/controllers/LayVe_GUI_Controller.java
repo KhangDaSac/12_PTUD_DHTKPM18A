@@ -2,13 +2,11 @@ package GUI.controllers;
 
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
-import BUS.QuanLyPhieuDatVe_BUS;
+import BUS.QuanLyVeDat_BUS;
 import BUS.QuanLyVe_BUS;
 import DTO.*;
-import GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller;
-import GUI.controllers.LayVe_GUI_Items.HoaDon_LayVe_Controller;
-import GUI.controllers.LayVe_GUI_Items.PhieuDatVe_LayVe_Controller;
-import GUI.controllers.ThongTinBanVe_GUI_Items.ChiTietVe_ThongTinBanVe_Controller;
+import GUI.controllers.LayVe_GUI_Items.HoaDonDatVe_LayVe_Controller;
+import GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import utils.CurrencyFormat;
-import utils.ShowMessagesDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,14 +78,13 @@ public class LayVe_GUI_Controller {
         this.main_controller = main_controller;
     }
 
-    private ArrayList<HoaDon_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDon_LayVe_Controller>();
-    private ArrayList<PhieuDatVe_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<PhieuDatVe_LayVe_Controller>();
-    private ArrayList<ChiTietPhieuDatVe_LayVe_Controller> chiTietPhieuDatVeLayVeControllerList = new ArrayList<ChiTietPhieuDatVe_LayVe_Controller>();
+    private ArrayList<HoaDonDatVe_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDonDatVe_LayVe_Controller>();
+    private ArrayList<VeDat_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<VeDat_LayVe_Controller>();
 
-    private ArrayList<HoaDon> hoaDonList;
-    private ArrayList<PhieuDatVe> phieuDatVeList;
-    private ArrayList<ChiTietPhieuDatVe> chiTietPhieuDatVeList;
-    private ArrayList<PhieuDatVe> phieuDatVeDangChon = new ArrayList<PhieuDatVe>();
+    private ArrayList<HoaDonBanVe> hoaDonList;
+    private ArrayList<VeDat> phieuDatVeList;
+    private ArrayList<ChiTietVeDat> chiTietPhieuDatVeList;
+    private ArrayList<VeDat> phieuDatVeDangChon = new ArrayList<VeDat>();
 
 
     @FXML
@@ -103,7 +99,7 @@ public class LayVe_GUI_Controller {
 
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
-        layVe();
+        //layVe();
     }
 
     @FXML
@@ -156,7 +152,7 @@ public class LayVe_GUI_Controller {
     }
 
     public void layDanhSachHoaDonDatTheoKhachHang(){
-        hoaDonList = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
+        //hoaDonList = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
     }
 
@@ -166,15 +162,14 @@ public class LayVe_GUI_Controller {
             return;
         int length = hoaDonList.size();
         for(int i = 0; i < length; i++){
-            HoaDon hoaDon = hoaDonList.get(i);
+            HoaDonBanVe hoaDon = hoaDonList.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/HoaDon_LayVe.fxml"));
                 Parent anchorPane = loader.load();
-                HoaDon_LayVe_Controller controller = loader.getController();
+                HoaDonDatVe_LayVe_Controller controller = loader.getController();
                 hoaDon_layVe_controllerList.add(controller);
                 controller.setLayVe_gui_controller(this);
                 controller.setSoThuTu(i);
-                controller.setHoaDon(hoaDon);
                 controller.khoiTao();
 
                 vboxDanhSachHoaDonDat.getChildren().add(anchorPane);
@@ -188,17 +183,15 @@ public class LayVe_GUI_Controller {
     }
 
     public void boChonTatCaHoaDon(){
-        for (HoaDon_LayVe_Controller controller : hoaDon_layVe_controllerList){
+        for (HoaDonDatVe_LayVe_Controller controller : hoaDon_layVe_controllerList){
             controller.boChonHoaDon();
         }
     }
 
-    public void getDanhSachPhieuDatVeTheoMaHoaDon(String maHoaDon){
-        phieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachPhieuDatVeTheoMaHoaDon(maHoaDon);
-    }
+
 
     public void getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maPhieuDatVe){
-        chiTietPhieuDatVeList = QuanLyPhieuDatVe_BUS.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(maPhieuDatVe);
+
     }
 
     public void capNhatDanhSachPhieuDatVe(){
@@ -208,15 +201,15 @@ public class LayVe_GUI_Controller {
             return;
         int length = phieuDatVeList.size();
         for(int i = 0; i < length; i++){
-            PhieuDatVe phieuDatVe = phieuDatVeList.get(i);
+            VeDat phieuDatVe = phieuDatVeList.get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/PhieuDatVe_LayVe.fxml"));
                 Parent anchorPane = loader.load();
-                PhieuDatVe_LayVe_Controller controller = loader.getController();
+                VeDat_LayVe_Controller controller = loader.getController();
                 phieuDatVeLayVeControllerList.add(controller);
                 controller.setLayVe_gui_controller(this);
                 controller.setSoThuTu(i);
-                controller.setPhieuDatVe(phieuDatVe);
+                controller.setVeDat(phieuDatVe);
                 controller.khoiTao();
 
                 vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
@@ -226,22 +219,16 @@ public class LayVe_GUI_Controller {
         }
     }
 
-    public void hienThiDanhSachChiTietPhieuDatVe(PhieuDatVe phieuDatVe){
+    public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe){
         vboxChiTietPhieuDatVe.getChildren().clear();
-        chiTietPhieuDatVeLayVeControllerList.clear();
         if(phieuDatVe == null)
             return;
-        for(ChiTietPhieuDatVe chiTietPhieuDatVe : chiTietPhieuDatVeList){
-            if(chiTietPhieuDatVe.getPhieuDatVe().equals(phieuDatVe)){
+        for(ChiTietVeDat chiTietVeDat : chiTietPhieuDatVeList){
+            if(chiTietVeDat.getVeDat().equals(phieuDatVe)){
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
                     Parent anchorPane = loader.load();
-                    ChiTietPhieuDatVe_LayVe_Controller controller = loader.getController();
-                    chiTietPhieuDatVeLayVeControllerList.add(controller);
-                    controller.setLayVe_gui_controller(this);
 
-                    controller.setChiTietPhieuDatVe(chiTietPhieuDatVe);
-                    controller.khoiTao();
 
                     vboxChiTietPhieuDatVe.getChildren().add(anchorPane);
                 }catch (IOException e){
@@ -249,125 +236,122 @@ public class LayVe_GUI_Controller {
                 }
             }
         }
-        chiTietPhieuDatVeLayVeControllerList.getFirst();
+
     }
 
 
-    public void boChonTatCaChiTietPhieuDatVe() {
-        for(ChiTietPhieuDatVe_LayVe_Controller controller : chiTietPhieuDatVeLayVeControllerList){
-            controller.khongChonChiTietPhieuDatVe();
-        }
-    }
+
 
     public void boChonTatCaPhieuDatVe() {
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
             controller.boChonPhieuDatVe();
         }
     }
 
 
     public void chonLayVeTatPhieuDatVe(){
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
             controller.chonLayVe();
         }
     }
 
     public void boChonLayVeTatPhieuDatVe(){
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
             controller.boChonLayVe();
         }
     }
 
-    public void layVe(){
-        int sl = 0;
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
-            if(controller.isChonLayVe()){
-                sl++;
-            }
-        }
-        if(sl == 0){
-            main_controller.showMessagesDialog("Chưa chọn vé");
-            return;
-        }
-        ArrayList<Ve> veList = new ArrayList<Ve>();
-        ArrayList<ChiTietVe> chiTietVeList = new ArrayList<ChiTietVe>();
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
-            if (controller.isChonLayVe()){
-                String maVeMoi = "";
-                if(veList.isEmpty()){
-                    maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
-                }else{
-                    maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(veList.getLast());
-                }
-
-                PhieuDatVe phieuDatVe = controller.getPhieuDatVe();
-
-                LoaiVe loaiVe = phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATCANHAN) ? LoaiVe.VECANHAN :
-                                phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATTAPTHE) ? LoaiVe.VETAPTHE : null;
-
-                Ve ve = new Ve(
-                        maVeMoi,
-                        phieuDatVe.getHoaDon(),
-                        phieuDatVe.getChiTietChuyenTauDi(),
-                        phieuDatVe.getChiTietChuyenTauDen(),
-                        phieuDatVe.getTongTienVe(),
-                        phieuDatVe.getGiamGiaVeTapThe(),
-                        loaiVe,
-                        TrangThaiVe.DANGSUDUNG
-                );
-                veList.add(ve);
-
-                for(ChiTietPhieuDatVe_LayVe_Controller controller2 : chiTietPhieuDatVeLayVeControllerList){
-                    if(controller.getPhieuDatVe().equals(controller2.getChiTietPhieuDatVe().getPhieuDatVe())){
-                        ChiTietPhieuDatVe chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
-                        ChiTietVe chiTietVe = new ChiTietVe(
-                                chiTietPhieuDatVe.getGiaCho(),
-                                chiTietPhieuDatVe.getSoTienGiamGia(),
-                                chiTietPhieuDatVe.getThanhTien(),
-                                ve,
-                                chiTietPhieuDatVe.getKhachHang(),
-                                chiTietPhieuDatVe.getCho()
-                        );
-                        System.out.println(chiTietVe);
-                        chiTietVeList.add(chiTietVe);
-                    }
-                }
-            }
-        }
-
-        try {
-            if(QuanLyHoaDon_BUS.layVe(veList, chiTietVeList)){
-                if(QuanLyPhieuDatVe_BUS.capNhatTrangThaiPhieuDatVe(phieuDatVeList, "DALAYVE")){
-                    main_controller.showMessagesDialog("Lấy vé thành công");
-                    phieuDatVeList.clear();
-                    chiTietPhieuDatVeList.clear();
-                    chiTietPhieuDatVeLayVeControllerList.clear();
-                    phieuDatVeList.clear();
-                    capNhatDanhSachPhieuDatVe();
-                    hienThiDanhSachChiTietPhieuDatVe(null);
-                    hienThiDanhSachHoaDonDat();
-                    tinhTongTienLayVe();
-                }
-            }else{
-                main_controller.showMessagesDialog("Lấy vé thất bại");
-            }
-        } catch (Exception e) {
-            main_controller.showMessagesDialog(e.getMessage());
-        }
-    }
+//    public void layVe(){
+//        int sl = 0;
+//        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            if(controller.isChonLayVe()){
+//                sl++;
+//            }
+//        }
+//        if(sl == 0){
+//            main_controller.showMessagesDialog("Chưa chọn vé");
+//            return;
+//        }
+//        ArrayList<Ve> veList = new ArrayList<Ve>();
+//        ArrayList<ChiTietVe> chiTietVeList = new ArrayList<ChiTietVe>();
+//        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            if (controller.isChonLayVe()){
+//                String maVeMoi = "";
+//                if(veList.isEmpty()){
+//                    maVeMoi = QuanLyVe_BUS.taoMaVeMoi();
+//                }else{
+//                    maVeMoi = QuanLyVe_BUS.taoMaVeTiepTheo(veList.getLast());
+//                }
+//
+//                VeDat phieuDatVe = controller.getVeDat();
+//
+//                LoaiVe loaiVe = phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATCANHAN) ? LoaiVe.VECANHAN :
+//                                phieuDatVe.getLoaiPhieuDatVe().equals(LoaiPhieuDatVe.PHIEUDATTAPTHE) ? LoaiVe.VETAPTHE : null;
+//
+//                Ve ve = new Ve(
+//                        maVeMoi,
+//                        phieuDatVe.getHoaDon(),
+//                        phieuDatVe.getChiTietChuyenTauDi(),
+//                        phieuDatVe.getChiTietChuyenTauDen(),
+//                        phieuDatVe.getTongTienVe(),
+//                        phieuDatVe.getGiamGiaVeTapThe(),
+//                        loaiVe,
+//                        TrangThaiVe.DANGSUDUNG
+//                );
+//                veList.add(ve);
+//
+//                for(ChiTietPhieuDatVe_LayVe_Controller controller2 : chiTietPhieuDatVeLayVeControllerList){
+//                    if(controller.getPhieuDatVe().equals(controller2.getChiTietPhieuDatVe().getPhieuDatVe())){
+//                        ChiTietVeDat chiTietPhieuDatVe = controller2.getChiTietPhieuDatVe();
+//                        ChiTietVe chiTietVe = new ChiTietVe(
+//                                chiTietPhieuDatVe.getGiaCho(),
+//                                chiTietPhieuDatVe.getSoTienGiamGia(),
+//                                chiTietPhieuDatVe.getThanhTien(),
+//                                ve,
+//                                chiTietPhieuDatVe.getKhachHang(),
+//                                chiTietPhieuDatVe.getCho()
+//                        );
+//                        System.out.println(chiTietVe);
+//                        chiTietVeList.add(chiTietVe);
+//                    }
+//                }
+//            }
+//        }
+//
+//        try {
+//            if(QuanLyHoaDon_BUS.layVe(veList, chiTietVeList)){
+//                if(QuanLyVeDat_BUS.capNhatTrangThaiPhieuDatVe(phieuDatVeList, "DALAYVE")){
+//                    main_controller.showMessagesDialog("Lấy vé thành công");
+//                    phieuDatVeList.clear();
+//                    chiTietPhieuDatVeList.clear();
+//                    chiTietPhieuDatVeLayVeControllerList.clear();
+//                    phieuDatVeList.clear();
+//                    capNhatDanhSachPhieuDatVe();
+//                    hienThiDanhSachChiTietPhieuDatVe(null);
+//                    hienThiDanhSachHoaDonDat();
+//                    tinhTongTienLayVe();
+//                }
+//            }else{
+//                main_controller.showMessagesDialog("Lấy vé thất bại");
+//            }
+//        } catch (Exception e) {
+//            main_controller.showMessagesDialog(e.getMessage());
+//        }
+//    }
 
     public double tinhTongTienLayVe(){
-        double tongTien = 0;
-        double tongTienCoc = 0;
-        for(PhieuDatVe_LayVe_Controller controller : phieuDatVeLayVeControllerList){
-            if(controller.isChonLayVe()){
-                tongTien += controller.getPhieuDatVe().getTongTienVe();
-                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
-            }
-        }
-
-        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien - tongTienCoc));
-        return tongTien - tongTienCoc;
+//        double tongTien = 0;
+//        double tongTienCoc = 0;
+//        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+//            if(controller.isChonLayVe()){
+//                tongTien += controller.getPhieuDatVe().getTongTienVe();
+//                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
+//            }
+//        }
+//
+//        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien - tongTienCoc));
+//        return tongTien - tongTienCoc;
+        return 0;
     }
 
 
