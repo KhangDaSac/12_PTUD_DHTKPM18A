@@ -20,45 +20,8 @@
 
 <AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
    <children>
-      <AnchorPane layoutX="41.0" layoutY="79.0">
-         <children>
-            <JFXButton prefHeight="40.0" prefWidth="40.0" styleClass="butonChuThich" stylesheets="@../css/All.css" text="?">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="379.0" layoutY="73.0" prefHeight="60.0" prefWidth="450.0" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="65.0">
-         <children>
-            <AnchorPane layoutX="-6.0" layoutY="-5.0" prefHeight="60.0" prefWidth="150.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <AnchorPane prefHeight="4.0" prefWidth="300.0" style="-fx-background-color: #999999;" styleClass="duongNoiTienTrinh" AnchorPane.topAnchor="13.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="60.0" prefWidth="150.0" styleClass="group-nutTienTrinh">
-               <children>
-                  <Label layoutX="-1.0" layoutY="43.0" prefHeight="30.0" prefWidth="150.0" text="Chọn vé" AnchorPane.bottomAnchor="0.0" />
-                  <AnchorPane layoutX="53.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" styleClass="nutTienTrinh" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="30.0" text="1" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="150.0" styleClass="group-nutTienTrinh" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="-1.0" layoutY="43.0" prefHeight="30.0" prefWidth="150.0" text="Thông tin bán vé" AnchorPane.bottomAnchor="0.0" />
-                  <AnchorPane layoutX="53.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #999999;" styleClass="nutTienTrinh" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="30.0" text="2" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutY="128.0" prefHeight="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <AnchorPane layoutX="27.0" layoutY="14.0" AnchorPane.topAnchor="10.0" />
+      <AnchorPane layoutY="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <HBox prefHeight="80.0" prefWidth="770.0" styleClass="h-box" AnchorPane.topAnchor="0.0">
                <children>
@@ -124,7 +87,7 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.0" layoutY="322.0" prefHeight="65.0" prefWidth="740.0" AnchorPane.topAnchor="322.0">
+            <AnchorPane layoutX="14.0" layoutY="322.0" prefHeight="65.0" prefWidth="740.0" AnchorPane.topAnchor="280.0">
                <children>
                   <ScrollPane fx:id="scpDanhSachToaTau" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
@@ -133,28 +96,32 @@
                   </ScrollPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="14.4" maxWidth="770.0" prefHeight="180.0" prefWidth="728.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="390.0">
+            <AnchorPane layoutX="14.4" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="350.0">
                <children>
-                  <HBox prefHeight="180.0" prefWidth="740.0" style="-fx-alignment: center;">
-                     <children>
-                        <VBox style="-fx-alignment: center;">
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <HBox prefHeight="280.0" style="-fx-alignment: center;">
                            <children>
-                              <AnchorPane fx:id="anpDanhSachCho" styleClass="danhSachCho" stylesheets="@../css/BanVe_GUI.css">
+                              <VBox style="-fx-alignment: center;">
                                  <children>
-                                    <GridPane fx:id="grpDanhSachCho">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                    </GridPane>
+                                    <AnchorPane fx:id="anpDanhSachCho">
+                                       <children>
+                                          <GridPane fx:id="grpDanhSachCho">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
                                  </children>
-                              </AnchorPane>
+                              </VBox>
                            </children>
-                        </VBox>
-                     </children>
-                  </HBox>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
             <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="25.0">
@@ -216,7 +183,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="802.0" layoutY="130.0" prefHeight="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="802.0" layoutY="130.0" prefHeight="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
          <children>
             <AnchorPane prefHeight="550.0" prefWidth="500.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -276,6 +243,11 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <JFXButton layoutX="786.0" layoutY="52.0" prefHeight="40.0" prefWidth="40.0" styleClass="butonChuThich" stylesheets="@../css/All.css" text="?" AnchorPane.topAnchor="45.0">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </JFXButton>
    </children>
    <stylesheets>
       <URL value="@../css/BanVe_GUI_Items/Cho_BanVe.css" />
