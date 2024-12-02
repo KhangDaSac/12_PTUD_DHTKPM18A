@@ -479,6 +479,24 @@ public class Main_Controller implements Initializable {
         AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
+    public void quayLaiTrangBanVe(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
+        banVe_gui_controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
     public void showMessagesDialog(String messages){
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }

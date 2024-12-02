@@ -102,17 +102,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
     @FXML
     private Label lblTenKhachHangMua;
 
-
-    private int veDangChon;
-
-    public int getVeDangChon() {
-        return veDangChon;
-    }
-
-    public void setVeDangChon(int veDangChon) {
-        this.veDangChon = veDangChon;
-    }
-
     @FXML
     void btnBanVeOnAction(ActionEvent event) {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
@@ -120,7 +109,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
                 hoaDonBanVe = null;
                 main_controller.showMessagesDialog("Bán vé thành công");
-                main_controller.quayLaiTrangBanVe(hoaDonBanVe);
+                main_controller.quayLaiTrangBanVe();
             }else{
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }
@@ -183,15 +172,12 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
             ve_thongTinBanVe_controller_list.add(controller);
             controller.setThongTinBanVe_gui_controller(this);
 
-            //controller.setDuThongTinNguoiDiTau(kiemTraDaThemDayDuThongTinNguoiDiTauCuaVe(ve));
-
             controller.setVe(ve);
             controller.setSoThuTu(i);
             controller.khoiTao();
 
             vboxGioVe.getChildren().add(anchorPane);
         }
-        ve_thongTinBanVe_controller_list.get(veDangChon).chonVe();
     }
 
     public void timKhachHang(){

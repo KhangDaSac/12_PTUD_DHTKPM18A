@@ -19,8 +19,8 @@ public class QuanLyVe_BUS {
             return "VE" + ngayHienTaiString + "00000001";
         }
 
-        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
-        String phanSau = maVeCu.substring(maVeCu.length() - 6);
+        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 8);
+        String phanSau = maVeCu.substring(maVeCu.length() - 8);
 
         maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
 
@@ -28,8 +28,8 @@ public class QuanLyVe_BUS {
     }
 
     public static String taoMaVeTiepTheo(String maVeCu){
-        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
-        String phanSau = maVeCu.substring(maVeCu.length() - 6);
+        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 8);
+        String phanSau = maVeCu.substring(maVeCu.length() - 8);
         String maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
         return maVeMoi;
     }

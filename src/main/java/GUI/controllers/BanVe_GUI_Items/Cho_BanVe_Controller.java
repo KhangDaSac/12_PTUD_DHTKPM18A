@@ -159,7 +159,7 @@ public class Cho_BanVe_Controller implements Initializable {
                     trangThaiCho = "Đã đặt";
                 }
                 case TrangThaiCho.DANHCHOCHANGDAIHON -> {
-                    trangThaiCho = "Dành cho chặng dài hơn";
+                    trangThaiCho = "Chặng dài hơn";
                 }
             }
         }

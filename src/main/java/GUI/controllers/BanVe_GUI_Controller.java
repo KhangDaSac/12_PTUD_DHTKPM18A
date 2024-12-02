@@ -592,6 +592,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
             Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
             ve.setLoaiVe(LoaiVe.VETAPTHE);
+            ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
 
             ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
             for(Cho cho : choChonList){

@@ -14,7 +14,7 @@ public class Ve_DAO {
     public static String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
         try {
-            String query = "select max(maVe) as maVe from Ve where maVe like 'V' + ? + '%'";
+            String query = "select max(maVe) as maVe from Ve where maVe like 'VE' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
@@ -43,6 +43,7 @@ public class Ve_DAO {
                 statement.execute();
 
             } catch (Exception e) {
+                System.out.println(e.getMessage());
                 return false;
             }
         }
