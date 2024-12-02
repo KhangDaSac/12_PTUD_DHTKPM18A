@@ -248,6 +248,7 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
+      <JFXButton layoutX="1006.0" layoutY="52.0" prefWidth="40.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="200.0" />
    </children>
    <stylesheets>
       <URL value="@../css/BanVe_GUI_Items/Cho_BanVe.css" />

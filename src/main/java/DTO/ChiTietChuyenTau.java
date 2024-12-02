@@ -38,6 +38,8 @@ public class ChiTietChuyenTau {
 		this.thoiGianDi = thoiGianDi;
 	}
 
+
+
 	public ChiTietChuyenTau() {
 
 	}

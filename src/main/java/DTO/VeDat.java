@@ -118,7 +118,17 @@ public class VeDat {
 		}else{
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
+	}
 
+	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, TrangThaiVeDat trangThaiVeDat, LoaiVe loaiVe, double phanTramGiamGiaVeTapThe, double phanTramDatCoc) {
+		this.maVeDat = maVeDat;
+		this.hoaDonDatVe = hoaDonDatVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.trangThaiVeDat = trangThaiVeDat;
+		this.loaiVe = loaiVe;
+		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
+		this.phanTramDatCoc = phanTramDatCoc;
 	}
 
 	public double tienVe(){

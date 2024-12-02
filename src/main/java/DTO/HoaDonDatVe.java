@@ -70,6 +70,12 @@ public class HoaDonDatVe {
         this.maHoaDonDatVe = maHoaDonDatVe;
     }
 
+    public HoaDonDatVe(String maHoaDonDatVe, LocalDateTime thoiGianLap, CaLamViec caLamViec) {
+        this.maHoaDonDatVe = maHoaDonDatVe;
+        this.thoiGianLap = thoiGianLap;
+        this.caLamViec = caLamViec;
+    }
+
     public double tongTienCuoi(){
         double tongTienCuoi = 0;
         for (VeDat veDat : danhSachVeDat){

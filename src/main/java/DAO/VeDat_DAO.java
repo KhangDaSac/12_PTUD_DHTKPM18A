@@ -9,75 +9,44 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class VeDat_DAO {
-    public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
-        ArrayList<VeDat> phieuDatVeList = new ArrayList<VeDat>();
-        Connection con = ConnectDB.getInstance().getConnection();
+    private static Connection con = ConnectDB.getInstance().getConnection();
+    public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDonDatVe(String maHoaDonDatVe) {
+        ArrayList<VeDat> veDat_list = new ArrayList<VeDat>();
+
         try {
-            String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDon ?";
+            String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDonDatVe ?";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maHD);
+            statement.setString(1, maHoaDonDatVe);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                String maPhieuDatVe = rs.getString("maPhieuDatVe");
-                HoaDonBanVe hoaDonBanVe = new HoaDonBanVe(rs.getString("maHoaDon"));
-                ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime()
+                VeDat veDat = new VeDat(
+                        rs.getString("maVeDat"),
+                        new HoaDonDatVe(rs.getString("maHoaDonDatVe")),
+                        new ChiTietChuyenTau(
+                                new ChuyenTau(rs.getString("maChuyenTau")),
+                                new GaTau(
+                                        rs.getString("maGaTauDi"),
+                                        rs.getString("tenGaTauDi")
+                                ),
+                                rs.getTimestamp("thoiGianDi").toLocalDateTime()
+                        ),
+                        new ChiTietChuyenTau(
+                                new ChuyenTau(rs.getString("maChuyenTau")),
+                                new GaTau(
+                                        rs.getString("maGaTauDi"),
+                                        rs.getString("tenGaTauDen")
+                                )
+                        ),
+                        TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")),
+                        LoaiVe.valueOf(rs.getString("loaiVe")),
+                        rs.getDouble("phanTramGiamGiaVeTapThe"),
+                        rs.getDouble("phanTramDatCoc")
                 );
-
-                ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDen"), rs.getString("tenGaDen")));
-                double phanTramGiamGiaVeTapThe = rs.getDouble("phanTramGiamGiaVeTapThe");
-                double tongTienVe = rs.getDouble("tongTienVe");
-                double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
-                TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
-                LoaiVe loaiPhieuDatVe = LoaiVe.valueOf(rs.getString("loaiPhieuDatVe"));
-
-//                VeDat phieuDatVe = new VeDat(
-//                        maPhieuDatVe,
-//                        hoaDonBanVe,
-//                        chiTietChuyenTauDi,
-//                        chiTietChuyenTauDen,
-//                        phanTramGiamGiaVeTapThe,
-//                        tongTienVe,
-//                        tongTienDatCoc,
-//                        trangThaiPhieuDatVe,
-//                        loaiPhieuDatVe
-//                );
-
-                //phieuDatVeList.add(phieuDatVe);
+                veDat_list.add(veDat);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return phieuDatVeList;
-    }
-
-    public static boolean capNhatTrangThaiPhieuDatVe(String maPhieuDatVe, String trangThai){
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "UPDATE PhieuDatVe SET trangThaiPhieuDatVe = ? WHERE maPhieuDatVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, trangThai);
-            statement.setString(2, maPhieuDatVe);
-            statement.execute();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void huyPhieuDatVe(String maPhieuDatVe) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "update PhieuDatVe set trangThaiPhieuDatVe = 'DAHUY' where maPhieuDatVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maPhieuDatVe);
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        return veDat_list;
     }
 }

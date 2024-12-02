@@ -2,8 +2,6 @@ package GUI.controllers;
 
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyKhachHang_BUS;
-import BUS.QuanLyVeDat_BUS;
-import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.LayVe_GUI_Items.HoaDonDatVe_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller;
@@ -15,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +26,9 @@ public class LayVe_GUI_Controller {
     private JFXButton btnChonTatCa;
 
     @FXML
+    private JFXButton btnChonVeLay;
+
+    @FXML
     private JFXButton btnLayVe;
 
     @FXML
@@ -36,9 +36,6 @@ public class LayVe_GUI_Controller {
 
     @FXML
     private TextField txtCCCD;
-
-    @FXML
-    private TextField txtMaKhachHang;
 
     @FXML
     private TextField txtSoDienThoai;
@@ -50,13 +47,13 @@ public class LayVe_GUI_Controller {
     private TextField txtTongTien;
 
     @FXML
-    private VBox vboxChiTietPhieuDatVe;
-
-    @FXML
     private VBox vboxDanhSachHoaDonDat;
 
     @FXML
-    private VBox vboxDanhSachPhieuDatVe;
+    private VBox vboxDanhSachVeDat;
+
+    @FXML
+    private VBox vboxDanhSachVeLay;
 
     private Main_Controller main_controller;
 
@@ -81,7 +78,7 @@ public class LayVe_GUI_Controller {
     private ArrayList<HoaDonDatVe_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDonDatVe_LayVe_Controller>();
     private ArrayList<VeDat_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<VeDat_LayVe_Controller>();
 
-    private ArrayList<HoaDonBanVe> hoaDonList;
+    private ArrayList<HoaDonDatVe> hoaDonDatVe_list;
     private ArrayList<VeDat> phieuDatVeList;
     private ArrayList<ChiTietVeDat> chiTietPhieuDatVeList;
     private ArrayList<VeDat> phieuDatVeDangChon = new ArrayList<VeDat>();
@@ -123,7 +120,6 @@ public class LayVe_GUI_Controller {
     }
 
     public void hienThiThongTinKhachHang(){
-        txtMaKhachHang.setText(khachHang.getMaKhachHang());
         txtTenKhachHang.setText(khachHang.getTenKhachHang());
         txtSoDienThoai.setText(khachHang.getSoDienThoai());
     }
@@ -134,7 +130,7 @@ public class LayVe_GUI_Controller {
             txtCCCD.setEditable(true);
             txtCCCD.selectAll();
             xoaThongTinKhachHang();
-            hoaDonList.clear();
+            hoaDonDatVe_list.clear();
 
             phieuDatVeList.clear();
             chiTietPhieuDatVeList.clear();
@@ -145,26 +141,25 @@ public class LayVe_GUI_Controller {
     }
 
     public void xoaThongTinKhachHang(){
-        txtMaKhachHang.setText("");
         txtTenKhachHang.setText("");
         txtSoDienThoai.setText("");
         khachHang = null;
     }
 
     public void layDanhSachHoaDonDatTheoKhachHang(){
-        //hoaDonList = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
+        hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
     }
 
     public void hienThiDanhSachHoaDonDat(){
         vboxDanhSachHoaDonDat.getChildren().clear();
-        if(hoaDonList.isEmpty())
+        if(hoaDonDatVe_list.isEmpty())
             return;
-        int length = hoaDonList.size();
+        int length = hoaDonDatVe_list.size();
         for(int i = 0; i < length; i++){
-            HoaDonBanVe hoaDon = hoaDonList.get(i);
+            //HoaDonBanVe hoaDon = hoaDonList.get(i);
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/HoaDon_LayVe.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/HoaDonDatVe_LayVe.fxml"));
                 Parent anchorPane = loader.load();
                 HoaDonDatVe_LayVe_Controller controller = loader.getController();
                 hoaDon_layVe_controllerList.add(controller);
@@ -195,7 +190,7 @@ public class LayVe_GUI_Controller {
     }
 
     public void capNhatDanhSachPhieuDatVe(){
-        vboxDanhSachPhieuDatVe.getChildren().clear();
+        //vboxDanhSachPhieuDatVe.getChildren().clear();
         phieuDatVeLayVeControllerList.clear();
         if(phieuDatVeList.isEmpty())
             return;
@@ -212,7 +207,7 @@ public class LayVe_GUI_Controller {
                 controller.setVeDat(phieuDatVe);
                 controller.khoiTao();
 
-                vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
+               // vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -220,7 +215,7 @@ public class LayVe_GUI_Controller {
     }
 
     public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe){
-        vboxChiTietPhieuDatVe.getChildren().clear();
+        //vboxChiTietPhieuDatVe.getChildren().clear();
         if(phieuDatVe == null)
             return;
         for(ChiTietVeDat chiTietVeDat : chiTietPhieuDatVeList){
@@ -230,7 +225,7 @@ public class LayVe_GUI_Controller {
                     Parent anchorPane = loader.load();
 
 
-                    vboxChiTietPhieuDatVe.getChildren().add(anchorPane);
+                    //vboxChiTietPhieuDatVe.getChildren().add(anchorPane);
                 }catch (IOException e){
 
                 }
@@ -355,6 +350,10 @@ public class LayVe_GUI_Controller {
     }
 
 
+    @FXML
+    void btnChonVeLayOnAction(ActionEvent event) {
+
+    }
 
 
 }

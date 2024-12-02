@@ -2,9 +2,11 @@ package BUS;
 
 import DAO.ChiTietVe_DAO;
 import DAO.HoaDonBanVe_DAO;
+import DAO.HoaDonDatVe_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
+import DTO.HoaDonDatVe;
 import DTO.Ve;
 import utils.TimeFormat;
 
@@ -85,6 +87,9 @@ public class QuanLyHoaDon_BUS {
 //        return true;
 //    }
 
+    public static ArrayList<HoaDonDatVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
+        return HoaDonDatVe_DAO.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
+    }
 
 
 }
