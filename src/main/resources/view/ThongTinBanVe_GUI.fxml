@@ -15,35 +15,6 @@
 
 <AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/All.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinBanVe_GUI_Controller">
    <children>
-      <AnchorPane layoutX="389.0" layoutY="83.0" prefHeight="60.0" prefWidth="450.0" stylesheets="@../css/ThongTinBanVe_GUI.css">
-         <children>
-            <AnchorPane layoutX="-6.0" layoutY="-5.0" prefHeight="60.0" prefWidth="150.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <AnchorPane prefHeight="4.0" prefWidth="300.0" styleClass="duongNoiTienTrinh" AnchorPane.topAnchor="13.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="60.0" prefWidth="150.0" styleClass="group-nutTienTrinh">
-               <children>
-                  <Label layoutX="-1.0" layoutY="43.0" prefHeight="30.0" prefWidth="150.0" text="Chọn vé" AnchorPane.bottomAnchor="0.0" />
-                  <AnchorPane layoutX="53.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" styleClass="nutTienTrinh" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="30.0" text="1" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="150.0" styleClass="group-nutTienTrinh" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="-1.0" layoutY="43.0" prefHeight="30.0" prefWidth="150.0" text="Thông tin bán vé" AnchorPane.bottomAnchor="0.0" />
-                  <AnchorPane layoutX="53.0" layoutY="6.0" prefHeight="30.0" prefWidth="30.0" styleClass="nutTienTrinh" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="30.0" text="2" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
       <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane layoutX="1000.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
@@ -120,7 +91,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+      <AnchorPane AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
          <children>
             <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -252,7 +223,7 @@
                   </VBox>
                   <VBox prefWidth="500.0">
                      <children>
-                        <AnchorPane prefHeight="480.0">
+                        <AnchorPane prefHeight="540.0">
                            <children>
                               <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                                  <content>
