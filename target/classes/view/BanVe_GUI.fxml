@@ -21,7 +21,7 @@
 <AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
    <children>
       <AnchorPane layoutX="27.0" layoutY="14.0" AnchorPane.topAnchor="10.0" />
-      <AnchorPane layoutY="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane layoutY="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.0">
          <children>
             <HBox prefHeight="80.0" prefWidth="770.0" styleClass="h-box" AnchorPane.topAnchor="0.0">
                <children>
@@ -98,7 +98,7 @@
             </AnchorPane>
             <AnchorPane layoutX="14.4" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="350.0">
                <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane fx:id="scpDanhSachCho" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
                         <HBox prefHeight="280.0" style="-fx-alignment: center;">
                            <children>
@@ -185,7 +185,7 @@
       </AnchorPane>
       <AnchorPane layoutX="802.0" layoutY="130.0" prefHeight="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
          <children>
-            <AnchorPane prefHeight="550.0" prefWidth="500.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane prefHeight="550.0" prefWidth="500.0" AnchorPane.bottomAnchor="81.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <content>

@@ -73,6 +73,8 @@ public class BanVe_GUI_Controller implements Initializable {
     @FXML
     private ScrollPane scpDanhSachToaTau;
 
+    @FXML
+    private ScrollPane scpDanhSachCho;
 
     @FXML
     private TextField txtTongTien;
@@ -394,6 +396,13 @@ public class BanVe_GUI_Controller implements Initializable {
             scpDanhSachToaTau.setHvalue(scpDanhSachToaTau.getHvalue() - deltaX * 10 / scpDanhSachToaTau.getContent().getBoundsInLocal().getWidth());
             event.consume();
         });
+
+        scpDanhSachCho.setOnScroll(event -> {
+            double deltaX = event.getDeltaY();
+            scpDanhSachCho.setHvalue(scpDanhSachCho.getHvalue() - deltaX * 10 / scpDanhSachCho.getContent().getBoundsInLocal().getWidth());
+            event.consume();
+        });
+
 
 
         gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();

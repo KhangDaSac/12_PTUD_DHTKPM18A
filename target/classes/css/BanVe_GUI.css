@@ -49,12 +49,6 @@
     -fx-background-color: #e8e8e8;
 }
 
-.danhSachCho{
-    -fx-border-color: #000;
-    -fx-border-radius: 5px;
-    -fx-border-width: 0.5px;
-
-}
 
 .buttonOption{
     -fx-background-color: #15B392;

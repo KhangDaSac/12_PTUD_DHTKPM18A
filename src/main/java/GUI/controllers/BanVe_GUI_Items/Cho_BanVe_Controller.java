@@ -7,7 +7,9 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import utils.CurrencyFormat;
 
@@ -16,7 +18,22 @@ import java.util.ResourceBundle;
 
 public class Cho_BanVe_Controller implements Initializable {
     @FXML
+    private AnchorPane anpTrangThaiCho;
+
+    @FXML
     private JFXButton btnCho;
+
+    @FXML
+    private Label lblGiaCho;
+
+    @FXML
+    private Label lblLoaiCho;
+
+    @FXML
+    private Label lblSoCho;
+
+    @FXML
+    private Label lblTrangThaiCho;
 
     private Cho cho;
     private BanVe_GUI_Controller banVe_GUI_controller;
@@ -31,8 +48,6 @@ public class Cho_BanVe_Controller implements Initializable {
         this.dangChon = dangChon;
     }
 
-    private Tooltip tooltip;
-    private String giaCho;
 
     public boolean isDaThemVaoGio() {
         return daThemVaoGio;
@@ -82,57 +97,54 @@ public class Cho_BanVe_Controller implements Initializable {
     }
 
     public void khoiTao(double doDaiChang){
-        btnCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho_BanVe.css").toExternalForm());
-        btnCho.setText(String.valueOf(cho.getSoCho()));
+        anpTrangThaiCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho_BanVe.css").toExternalForm());
+        lblSoCho.setText(String.valueOf(cho.getSoCho()));
         chuyenMauMacDinh();
-        tooltip = new Tooltip();
         cho.setGiaCho(cho.tinhGiaCho(doDaiChang));
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(cho.getGiaCho()));
+        lblLoaiCho.setText(cho.getLoaiCho().getTenLoaiCho());
         capNhatTrangThai();
-        btnCho.setTooltip(tooltip);
-        tooltip.setShowDelay(Duration.millis(0)); // Hiển thị ngay lập tức khi hover
-        tooltip.setHideDelay(Duration.millis(0));
     }
 
     public void chuyenMauMacDinh(){
         switch (cho.getTrangThaiCho()){
             case DABAN -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDaBan");
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDaBan");
             }
             case DADAT -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDaDat");
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDaDat");
             }
             case DANHCHOCHANGDAIHON -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choDanhChoChanDaiHon");
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDanhChoChanDaiHon");
             }
             case CONTRONG -> {
-                btnCho.getStyleClass().clear();
-                btnCho.getStyleClass().add("choTrong");
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choTrong");
             }
         }
     }
 
     public void chuyenMauDangChon(){
-        btnCho.getStyleClass().clear();
-        btnCho.getStyleClass().add("choDangChon");
+        anpTrangThaiCho.getStyleClass().clear();
+        anpTrangThaiCho.getStyleClass().add("choDangChon");
         dangChon = true;
         capNhatTrangThai();
     }
 
     public void chuyenMauDaThemVaoGioVe(){
-        btnCho.getStyleClass().clear();
-        btnCho.getStyleClass().add("choDaThemVaoGioVe");
+        anpTrangThaiCho.getStyleClass().clear();
+        anpTrangThaiCho.getStyleClass().add("choDaThemVaoGioVe");
         daThemVaoGio = true;
         capNhatTrangThai();
     }
 
     public void capNhatTrangThai(){
         String trangThaiCho = "";
-        giaCho = CurrencyFormat.currencyFormat(cho.getGiaCho());
         if(daThemVaoGio){
-            trangThaiCho = "Đã thêm vào giỏ vé";
+            trangThaiCho = "Đã thêm vào giỏ";
         }else if(dangChon){
             trangThaiCho = "Đang chọn";
         }else{
@@ -151,14 +163,6 @@ public class Cho_BanVe_Controller implements Initializable {
                 }
             }
         }
-
-        tooltip.setStyle(
-                "-fx-font-size: 16px; " +
-                "-fx-background-color: white; " +
-                "-fx-font-weight: normal; " +
-                "-fx-text-fill: black; "
-        );
-
-        tooltip.setText(cho.getLoaiCho().getTenLoaiCho() + "\n" + trangThaiCho + "\n" + giaCho);
+        lblTrangThaiCho.setText(trangThaiCho);
     }
 }
