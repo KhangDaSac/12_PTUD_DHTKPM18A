@@ -98,15 +98,14 @@ public class VeDat_LayVe_Controller implements Initializable {
 
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
-        if (layVe_gui_controller != null) {
-            //layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(veDat.getHoaDonDatVe().getMaHoaDonDatVe());
-            //layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(veDat);
-            chonPhieuDatVe();
-            if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
-
+        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
+            if(layVe_gui_controller.getVeDatChon_list().contains(veDat)){
+                layVe_gui_controller.getVeDatChon_list().remove(veDat);
+            }else{
+                layVe_gui_controller.getVeDatChon_list().add(veDat);
             }
-
         }
+        layVe_gui_controller.hienThiDanhSachVeDat(layVe_gui_controller.getHoaDonDatVeDangChon());
     }
 
     @Override
@@ -167,34 +166,35 @@ public class VeDat_LayVe_Controller implements Initializable {
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
         }
 
+        if(layVe_gui_controller.getVeDatChon_list().contains(veDat)){
+            chonVeDat();
+        }else{
+            boChonVeDat();
+        }
+
         imvVeDatLay.setVisible(false);
     }
 
-    public void chonPhieuDatVe() {
-        layVe_gui_controller.boChonTatCaPhieuDatVe();
-
-        anpVeDat.getStyleClass().removeAll("phieuDatVeKhongChon");
-        anpVeDat.getStyleClass().add("phieuDatVeDangChon");
+    public void chonVeDat() {
+        anpVeDat.getStyleClass().removeAll("veDatKhongChon");
+        anpVeDat.getStyleClass().add("veDatDangChon");
     }
 
-    public void boChonPhieuDatVe() {
-        anpVeDat.getStyleClass().removeAll("phieuDatVeDangChon");
-        anpVeDat.getStyleClass().add("phieuDatVeKhongChon");
+    public void boChonVeDat() {
+        anpVeDat.getStyleClass().removeAll("veDatDangChon");
+        anpVeDat.getStyleClass().add("veDatKhongChon");
     }
 
     public void chonLayVe() {
         if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
             imvVeDatLay.setVisible(true);
-            if (layVe_gui_controller != null) {
-                layVe_gui_controller.tinhTongTienLayVe();
-            }
         }
     }
 
     public void boChonLayVe() {
         imvVeDatLay.setVisible(false);
         if (layVe_gui_controller != null) {
-            layVe_gui_controller.tinhTongTienLayVe();
+            //layVe_gui_controller.tinhTongTienLayVe();
         }
     }
 }

@@ -94,7 +94,6 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     private ArrayList<ChiTietVe_ThongTinBanVe_Controller> chiTietVe_thongTinBanVe_controller_list= new ArrayList<ChiTietVe_ThongTinBanVe_Controller>();
 
 
-
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
         chonVe();

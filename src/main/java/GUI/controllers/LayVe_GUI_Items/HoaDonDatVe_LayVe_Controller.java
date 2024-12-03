@@ -66,13 +66,19 @@ public class HoaDonDatVe_LayVe_Controller {
         lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
         lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienDatCoc()));
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());
+
+        if(layVe_gui_controller.getHoaDonDatVeDangChon() != null && layVe_gui_controller.getHoaDonDatVeDangChon().equals(hoaDonDatVe)){
+            chonHoaDon();
+        }else{
+            boChonHoaDon();
+        }
     }
 
     @FXML
     void anpHoaDonOnMouseClicked(MouseEvent event) {
-        layVe_gui_controller.boChonTatCaHoaDon();
         layVe_gui_controller.hienThiDanhSachVeDat(hoaDonDatVe);
-        chonHoaDon();
+        layVe_gui_controller.setHoaDonDatVeDangChon(hoaDonDatVe);
+        layVe_gui_controller.hienThiDanhSachHoaDonDat();
     }
 
     public void chonHoaDon(){

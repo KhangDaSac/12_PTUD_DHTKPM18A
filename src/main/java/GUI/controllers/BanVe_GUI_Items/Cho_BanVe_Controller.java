@@ -1,7 +1,9 @@
 package GUI.controllers.BanVe_GUI_Items;
 
+import DTO.ChiTietVe;
 import DTO.Cho;
 import DTO.TrangThaiCho;
+import DTO.Ve;
 import GUI.controllers.BanVe_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -37,25 +39,6 @@ public class Cho_BanVe_Controller implements Initializable {
 
     private Cho cho;
     private BanVe_GUI_Controller banVe_GUI_controller;
-    private boolean daThemVaoGio;
-    private boolean dangChon;
-
-    public boolean isDangChon() {
-        return dangChon;
-    }
-
-    public void setDangChon(boolean dangChon) {
-        this.dangChon = dangChon;
-    }
-
-
-    public boolean isDaThemVaoGio() {
-        return daThemVaoGio;
-    }
-
-    public void setDaThemVaoGio(boolean daThemVaoGio) {
-        this.daThemVaoGio = daThemVaoGio;
-    }
 
     public Cho getCho() {
         return cho;
@@ -76,14 +59,12 @@ public class Cho_BanVe_Controller implements Initializable {
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
-        if(!daThemVaoGio){
+        if(!kiemTraVeTrongGio()){
             if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
-                if(!banVe_GUI_controller.getChoChonList().contains(cho)){
+                if(!kiemTraChoDangChon()){
                     banVe_GUI_controller.getChoChonList().add(cho);
-                    dangChon = true;
                 }else{
                     banVe_GUI_controller.getChoChonList().remove(cho);
-                    dangChon = false;
                 }
                 capNhatTrangThai();
                 banVe_GUI_controller.capNhatCacChoDaChon();
@@ -99,70 +80,91 @@ public class Cho_BanVe_Controller implements Initializable {
     public void khoiTao(double doDaiChang){
         anpTrangThaiCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho_BanVe.css").toExternalForm());
         lblSoCho.setText(String.valueOf(cho.getSoCho()));
-        chuyenMauMacDinh();
         cho.setGiaCho(cho.tinhGiaCho(doDaiChang));
         lblGiaCho.setText(CurrencyFormat.currencyFormat(cho.getGiaCho()));
         lblLoaiCho.setText(cho.getLoaiCho().getTenLoaiCho());
         capNhatTrangThai();
     }
 
-    public void chuyenMauMacDinh(){
-        switch (cho.getTrangThaiCho()){
-            case DABAN -> {
-                anpTrangThaiCho.getStyleClass().clear();
-                anpTrangThaiCho.getStyleClass().add("choDaBan");
-            }
-            case DADAT -> {
-                anpTrangThaiCho.getStyleClass().clear();
-                anpTrangThaiCho.getStyleClass().add("choDaDat");
-            }
-            case DANHCHOCHANGDAIHON -> {
-                anpTrangThaiCho.getStyleClass().clear();
-                anpTrangThaiCho.getStyleClass().add("choDanhChoChanDaiHon");
-            }
-            case CONTRONG -> {
-                anpTrangThaiCho.getStyleClass().clear();
-                anpTrangThaiCho.getStyleClass().add("choTrong");
-            }
-        }
-    }
-
     public void chuyenMauDangChon(){
         anpTrangThaiCho.getStyleClass().clear();
         anpTrangThaiCho.getStyleClass().add("choDangChon");
-        dangChon = true;
-        capNhatTrangThai();
     }
 
     public void chuyenMauDaThemVaoGioVe(){
         anpTrangThaiCho.getStyleClass().clear();
         anpTrangThaiCho.getStyleClass().add("choDaThemVaoGioVe");
-        daThemVaoGio = true;
-        capNhatTrangThai();
+    }
+
+    public boolean kiemTraVeTrongGio(){
+        int thuTuGaDi = banVe_GUI_controller.getChuyenTauControllerList()
+                .get(banVe_GUI_controller.getChuyenTauDangChon()).getChiTietChuyenTauDi().getThuTuGa();
+        int thuTuGaDen = banVe_GUI_controller.getChuyenTauControllerList()
+                .get(banVe_GUI_controller.getChuyenTauDangChon()).getChiTietChuyenTauDen().getThuTuGa();
+
+        for(Ve ve : banVe_GUI_controller.getHoaDonBanVe().getDanhSachVe()){
+            int thuTuGaDiCuaVe = ve.getThongTinGaTauDi().getThuTuGa();
+            int thuTuGaDenCuaVe = ve.getThongTinGaTauDen().getThuTuGa();
+
+
+            for (ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
+                if(chiTietVe.getCho().equals(cho))
+                    if(!(thuTuGaDen <= thuTuGaDiCuaVe || thuTuGaDi >= thuTuGaDenCuaVe)){
+                        return true;
+                    }
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public boolean kiemTraChoDangChon(){
+        return banVe_GUI_controller.getChoChonList()
+                .stream()
+                .anyMatch(c -> c.equals(cho));
+    }
+
+    public String trangThai(){
+
+        if(kiemTraVeTrongGio()){
+            chuyenMauDaThemVaoGioVe();
+            return  "Đã thêm vào giỏ";
+        }
+
+        if(kiemTraChoDangChon()){
+            chuyenMauDangChon();
+            return "Đang chọn";
+        }
+
+        switch (cho.getTrangThaiCho()){
+            case TrangThaiCho.CONTRONG -> {
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choTrong");
+                return  "Còn trống";
+            }
+            case TrangThaiCho.DABAN -> {
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDaBan");
+                return "Đã bán";
+            }
+            case DADAT -> {
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDaDat");
+                return "Đã đặt";
+            }
+            case TrangThaiCho.DANHCHOCHANGDAIHON -> {
+                anpTrangThaiCho.getStyleClass().clear();
+                anpTrangThaiCho.getStyleClass().add("choDanhChoChanDaiHon");
+                return "Chặng dài hơn";
+            }
+        }
+
+        return null;
     }
 
     public void capNhatTrangThai(){
-        String trangThaiCho = "";
-        if(daThemVaoGio){
-            trangThaiCho = "Đã thêm vào giỏ";
-        }else if(dangChon){
-            trangThaiCho = "Đang chọn";
-        }else{
-            switch (cho.getTrangThaiCho()){
-                case TrangThaiCho.CONTRONG -> {
-                    trangThaiCho = "Còn trống";
-                }
-                case TrangThaiCho.DABAN -> {
-                    trangThaiCho = "Đã bán";
-                }
-                case DADAT -> {
-                    trangThaiCho = "Đã đặt";
-                }
-                case TrangThaiCho.DANHCHOCHANGDAIHON -> {
-                    trangThaiCho = "Chặng dài hơn";
-                }
-            }
-        }
-        lblTrangThaiCho.setText(trangThaiCho);
+        lblTrangThaiCho.setText(trangThai());
     }
 }

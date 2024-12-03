@@ -9,15 +9,18 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class LayVe_GUI_Controller {
+public class LayVe_GUI_Controller implements Initializable {
 
     @FXML
     private JFXButton btnBoChonTatCa;
@@ -81,16 +84,36 @@ public class LayVe_GUI_Controller {
     private ArrayList<HoaDonDatVe> hoaDonDatVe_list;
     private ArrayList<VeDat> veDatChon_list = new ArrayList<VeDat>();
 
+    public ArrayList<VeDat> getVeDatChon_list() {
+        return veDatChon_list;
+    }
+
+    public void setVeDatChon_list(ArrayList<VeDat> veDatChon_list) {
+        this.veDatChon_list = veDatChon_list;
+    }
+
     private HoaDonDatVe hoaDonDatVeDangChon;
+    private HoaDonLayVe hoaDonLayVe;
+
+    public HoaDonDatVe getHoaDonDatVeDangChon() {
+        return hoaDonDatVeDangChon;
+    }
+
+    public void setHoaDonDatVeDangChon(HoaDonDatVe hoaDonDatVeDangChon) {
+        this.hoaDonDatVeDangChon = hoaDonDatVeDangChon;
+    }
 
     @FXML
     void btnBoChonTatCaOnAction(ActionEvent event) {
-        boChonLayVeTatPhieuDatVe();
+        veDatChon_list.clear();
+        hienThiDanhSachVeDat(hoaDonDatVeDangChon);
     }
 
     @FXML
     void btnChonTatCaOnAction(ActionEvent event) {
-        chonLayVeTatPhieuDatVe();
+        veDatChon_list.clear();
+        veDatChon_list.addAll(hoaDonDatVeDangChon.getDanhSachVeDat());
+        hienThiDanhSachVeDat(hoaDonDatVeDangChon);
     }
 
     @FXML
@@ -130,8 +153,6 @@ public class LayVe_GUI_Controller {
             txtCCCD.selectAll();
             xoaThongTinKhachHang();
             hoaDonDatVe_list.clear();
-            //capNhatDanhSachPhieuDatVe();
-            //hienThiDanhSachChiTietPhieuDatVe(null);
             hienThiDanhSachHoaDonDat();
         }
     }
@@ -145,7 +166,6 @@ public class LayVe_GUI_Controller {
     public void layDanhSachHoaDonDatTheoKhachHang(){
         hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
-        //hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
     }
 
     public void hienThiDanhSachHoaDonDat(){
@@ -171,19 +191,12 @@ public class LayVe_GUI_Controller {
             }
 
         }
-
-
-    }
-
-    public void boChonTatCaHoaDon(){
-        for (HoaDonDatVe_LayVe_Controller controller : hoaDon_layVe_controller_list){
-            controller.boChonHoaDon();
-        }
     }
 
     public void hienThiDanhSachVeDat(HoaDonDatVe hoaDonDatVe){
+        veDat_layVe_controller_list.clear();
+        vboxDanhSachVeDat.getChildren().clear();
         if(hoaDonDatVe.getDanhSachVeDat().isEmpty()){
-            veDat_layVe_controller_list.clear();
             return;
         }
 
@@ -227,14 +240,6 @@ public class LayVe_GUI_Controller {
 //
 //    }
 
-
-
-
-    public void boChonTatCaPhieuDatVe() {
-        for(VeDat_LayVe_Controller controller : veDat_layVe_controller_list){
-            controller.boChonPhieuDatVe();
-        }
-    }
 
 
     public void chonLayVeTatPhieuDatVe(){
@@ -327,26 +332,14 @@ public class LayVe_GUI_Controller {
 //        }
 //    }
 
-    public double tinhTongTienLayVe(){
-//        double tongTien = 0;
-//        double tongTienCoc = 0;
-//        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
-//            if(controller.isChonLayVe()){
-//                tongTien += controller.getPhieuDatVe().getTongTienVe();
-//                tongTienCoc += controller.getPhieuDatVe().getTongTienDatCoc();
-//            }
-//        }
-//
-//        txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien - tongTienCoc));
-//        return tongTien - tongTienCoc;
-        return 0;
-    }
-
 
     @FXML
     void btnChonVeLayOnAction(ActionEvent event) {
 
     }
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        hoaDonLayVe = new HoaDonLayVe();
+    }
 }
