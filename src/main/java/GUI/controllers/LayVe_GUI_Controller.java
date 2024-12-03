@@ -218,7 +218,7 @@ public class LayVe_GUI_Controller {
 //        for(ChiTietVeDat chiTietVeDat : ho){
 //            if(chiTietVeDat.getVeDat().equals(phieuDatVe)){
 //                try {
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/.fxml"));
 //                    Parent anchorPane = loader.load();
 //
 //

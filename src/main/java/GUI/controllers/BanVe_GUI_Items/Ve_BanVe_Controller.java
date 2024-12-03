@@ -29,31 +29,13 @@ public class Ve_BanVe_Controller implements Initializable {
     private AnchorPane anpXoaVe;
 
     @FXML
-    private HBox hboxGiaVeCuoi;
-
-    @FXML
     private HBox hboxGiamGiaVeTapThe;
-
-    @FXML
-    private Label lblCCCD;
-
-    @FXML
-    private Label lblCho;
-
-    @FXML
-    private Label lblGiaCho;
 
     @FXML
     private Label lblGiaVeCuoi;
 
     @FXML
-    private Label lblGiamGiaLoaiKhachHang;
-
-    @FXML
     private Label lblGiamGiaVeTapThe;
-
-    @FXML
-    private Label lblLoaiKhachHang;
 
     @FXML
     private Label lblMaChuyenTau;
@@ -68,19 +50,14 @@ public class Ve_BanVe_Controller implements Initializable {
     private Label lblTenGaDi;
 
     @FXML
-    private Label lblTenKhachHang;
-
-    @FXML
     private Label lblThoiGianDi;
-
-    @FXML
-    private Label lblToa;
 
     @FXML
     private VBox vboxDanhDachChoVeTapThe;
 
     @FXML
     private VBox vboxDanhSachThongTin;
+
     private Ve ve;
 
     private int soThuTu;

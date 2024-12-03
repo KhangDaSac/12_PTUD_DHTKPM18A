@@ -9,22 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpPhieuDatVe" minHeight="160.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="400.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller">
+<AnchorPane fx:id="anpVeDat" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
+            <AnchorPane fx:id="anpVeDatLay" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefWidth="50.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox style="-fx-alignment: center;">
+                           <children>
+                              <ImageView fx:id="imvVeDatLay" fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../images/LayVe_GUI/VeDatLay.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
             <AnchorPane styleClass="ve-right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox fx:id="vboxDanhSachThongTin" prefWidth="100.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                  <VBox fx:id="vboxDanhSachThongTin" prefWidth="430.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <children>
                         <HBox prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" text="Chuyến tàu:">
+                              <Label prefHeight="30.0" prefWidth="100.0" text="Chuyến tàu:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="110.0" text="SE02181024">
+                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="130.0" text="SE0218102024">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -34,7 +51,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="35.0">
+                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="58.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -67,103 +84,65 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="120.0" stylesheets="@../../css/All.css" text="Thời gian đi:">
+                              <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Thời gian đi:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblThoiGianDi" prefHeight="30.0" prefWidth="180.0" text="18/10/2024 23:25">
+                              <Label fx:id="lblThoiGianDi" prefHeight="30.0" prefWidth="210.0" text="18/10/2024 23:25">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="71.0" prefHeight="30.0">
+                        <VBox fx:id="vboxDanhDachChoVeTapThe" />
+                        <HBox fx:id="hboxGiamGiaVeTapThe" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giá vé:">
+                              <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giảm giá VTT:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiaVe" prefHeight="30.0" prefWidth="180.0" text="871,000 VNĐ">
+                              <Label fx:id="lblGiamGiaVeTapThe" prefHeight="30.0" prefWidth="210.0" text="871,000 VNĐ">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox fx:id="hboxGiamGiaVeTapThe" layoutX="10.0" layoutY="101.0" prefHeight="30.0">
+                        <HBox layoutX="10.0" layoutY="132.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giảm giá:">
+                              <Label prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #FA4032;" stylesheets="@../../css/All.css" text="Giá vé cuối:">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiamGiaVeTapThe" prefHeight="30.0" prefWidth="180.0" text="871,000 VNĐ">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox fx:id="hboxGiaVeCuoi" layoutX="10.0" layoutY="132.0" prefHeight="30.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Giá vé cuối:">
+                              <Label fx:id="lblGiaVeCuoi" prefHeight="30.0" prefWidth="210.0" style="-fx-text-fill: #FA4032;" text="871,000 VNĐ">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblGiaVeCuoi" prefHeight="30.0" prefWidth="180.0" text="871,000 VNĐ">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </HBox>
-                        <HBox layoutX="10.0" layoutY="162.0" prefHeight="30.0">
+                        <HBox layoutX="10.0" layoutY="132.0" prefHeight="30.0">
                            <children>
-                              <Label prefHeight="30.0" prefWidth="90.0" stylesheets="@../../css/All.css" text="Tiền cọc:">
+                              <Label prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #FA4032;" stylesheets="@../../css/All.css" text="Tiền đã cọc: ">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTienCoc" prefHeight="30.0" prefWidth="180.0" text="871,000 VNĐ">
+                              <Label fx:id="lblTienDaCoc" prefHeight="30.0" prefWidth="210.0" style="-fx-text-fill: #FA4032;" text="871,000 VNĐ">
                                  <font>
-                                    <Font size="16.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="192.0" prefHeight="50.0">
-                           <children>
-                              <ImageView fx:id="imvTrangThai" fitHeight="50.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="anpChonPhieuDatVe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <VBox prefWidth="50.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <HBox style="-fx-alignment: center;">
-                           <children>
-                              <ImageView fx:id="imvChonPhieuDatVe" fitHeight="30.0" fitWidth="30.0">
-                                 <image>
-                                    <Image url="@../../images/LayVe_GUI/ChonPhieuDatVe.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

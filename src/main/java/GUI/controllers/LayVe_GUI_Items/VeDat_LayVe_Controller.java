@@ -20,24 +20,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class VeDat_LayVe_Controller implements Initializable {
+    @FXML
+    private ImageView imvVeDatLay;
 
     @FXML
-    private AnchorPane anpChonPhieuDatVe;
+    private AnchorPane anpVeDat;
 
     @FXML
-    private AnchorPane anpPhieuDatVe;
-
-    @FXML
-    private HBox hboxGiaVeCuoi;
+    private AnchorPane anpVeDatLay;
 
     @FXML
     private HBox hboxGiamGiaVeTapThe;
-
-    @FXML
-    private ImageView imvChonPhieuDatVe;
-
-    @FXML
-    private Label lblGiaVe;
 
     @FXML
     private Label lblGiaVeCuoi;
@@ -61,13 +54,14 @@ public class VeDat_LayVe_Controller implements Initializable {
     private Label lblThoiGianDi;
 
     @FXML
-    private Label lblTienCoc;
+    private Label lblTienDaCoc;
+
+    @FXML
+    private VBox vboxDanhDachChoVeTapThe;
 
     @FXML
     private VBox vboxDanhSachThongTin;
 
-    @FXML
-    private ImageView imvTrangThai;
 
     private LayVe_GUI_Controller layVe_gui_controller;
 
@@ -146,49 +140,46 @@ public class VeDat_LayVe_Controller implements Initializable {
         lblTenGaDi.setText(veDat.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(veDat.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVe.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
-        lblTienCoc.setText(CurrencyFormat.currencyFormat(veDat.tienDatCoc()));
-        anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
-        anpChonPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
+        //anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
+        anpVeDatLay.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
 
         if (veDat.getLoaiVe().equals(LoaiVe.VECANHAN)) {
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
-            vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
-            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-caNhan");
+            anpVeDatLay.getStyleClass().add("phieuDatVe-left-caNhan");
         } else if (veDat.getLoaiVe().equals(LoaiVe.VETAPTHE)) {
 
-            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-tapThe");
+            anpVeDatLay.getStyleClass().add("phieuDatVe-left-tapThe");
         }
 
-        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
-        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DALAYVE)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
-        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DAHUY)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
-        }
+//        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
+//            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
+//        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DALAYVE)) {
+//            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
+//        } else if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.DAHUY)) {
+//            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
+//        }
 
-        imvChonPhieuDatVe.setVisible(false);
+        imvVeDatLay.setVisible(false);
     }
 
     public void chonPhieuDatVe() {
         layVe_gui_controller.boChonTatCaPhieuDatVe();
 
         dangChon = true;
-        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeKhongChon");
-        anpPhieuDatVe.getStyleClass().add("phieuDatVeDangChon");
+        anpVeDat.getStyleClass().removeAll("phieuDatVeKhongChon");
+        anpVeDat.getStyleClass().add("phieuDatVeDangChon");
     }
 
     public void boChonPhieuDatVe() {
         dangChon = false;
-        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeDangChon");
-        anpPhieuDatVe.getStyleClass().add("phieuDatVeKhongChon");
+        anpVeDat.getStyleClass().removeAll("phieuDatVeDangChon");
+        anpVeDat.getStyleClass().add("phieuDatVeKhongChon");
     }
 
     public void chonLayVe() {
         if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
             chonLayVe = true;
-            imvChonPhieuDatVe.setVisible(true);
+            imvVeDatLay.setVisible(true);
             if (layVe_gui_controller != null) {
                 layVe_gui_controller.tinhTongTienLayVe();
             }
@@ -197,7 +188,7 @@ public class VeDat_LayVe_Controller implements Initializable {
 
     public void boChonLayVe() {
         chonLayVe = false;
-        imvChonPhieuDatVe.setVisible(false);
+        imvVeDatLay.setVisible(false);
         if (layVe_gui_controller != null) {
             layVe_gui_controller.tinhTongTienLayVe();
         }

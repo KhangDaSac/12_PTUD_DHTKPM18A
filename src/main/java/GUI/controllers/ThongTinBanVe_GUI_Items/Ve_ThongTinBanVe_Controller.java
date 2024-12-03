@@ -36,25 +36,10 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     private HBox hboxGiamGiaVeTapThe;
 
     @FXML
-    private Label lblCCCD;
-
-    @FXML
-    private Label lblCho;
-
-    @FXML
-    private Label lblGiaCho;
-
-    @FXML
     private Label lblGiaVeCuoi;
 
     @FXML
-    private Label lblGiamGiaLoaiKhachHang;
-
-    @FXML
     private Label lblGiamGiaVeTapThe;
-
-    @FXML
-    private Label lblLoaiKhachHang;
 
     @FXML
     private Label lblMaChuyenTau;
@@ -69,13 +54,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     private Label lblTenGaDi;
 
     @FXML
-    private Label lblTenKhachHang;
-
-    @FXML
     private Label lblThoiGianDi;
-
-    @FXML
-    private Label lblToa;
 
     @FXML
     private VBox vboxDanhDachChoVeTapThe;
