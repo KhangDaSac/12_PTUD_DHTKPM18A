@@ -149,12 +149,12 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
         chiTietVe_thongTinBanVe_controller_list.getLast().chiTietVeCuoi();
 
         if(ve.getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThongTin.setMinHeight(330);
+            vboxDanhSachThongTin.setMinHeight(390);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
 
         }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
-            vboxDanhSachThongTin.setMinHeight(180 + ve.getDanhSachChiTietVe().size() * 200);
+            vboxDanhSachThongTin.setMinHeight(180 + ve.getDanhSachChiTietVe().size() * 260);
             anpXoaVe.getStyleClass().add("ve-left-veTapThe");
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));

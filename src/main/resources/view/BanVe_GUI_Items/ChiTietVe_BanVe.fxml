@@ -34,9 +34,37 @@
                   </Label>
                </children>
             </HBox>
+            <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="80.0" stylesheets="@../../css/All.css" text="Loại toa: ">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblLoaiToa" prefHeight="30.0" prefWidth="210.0" text="Giường nằm khoang 6">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="40.0" prefHeight="30.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="80.0" stylesheets="@../../css/All.css" text="Loại chỗ:">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblLoaiCho" prefHeight="30.0" prefWidth="210.0" text="Cạnh cửa sổ">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox prefHeight="30.0">
                <children>
-                  <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giá chỗ:">
+                  <Label prefHeight="30.0" prefWidth="80.0" stylesheets="@../../css/All.css" text="Giá chỗ:">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

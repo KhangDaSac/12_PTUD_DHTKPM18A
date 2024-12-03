@@ -47,6 +47,12 @@ public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     private Label lblToa;
 
     @FXML
+    private Label lblLoaiToa;
+
+    @FXML
+    private Label lblLoaiCho;
+
+    @FXML
     private VBox vboxDanhDachChoVeTapThe;
 
     private ChiTietVe chiTietVe;
@@ -77,6 +83,8 @@ public class ChiTietVe_ThongTinBanVe_Controller implements Initializable {
     public void khoiTao(){
         lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
         lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
+        lblLoaiToa.setText(chiTietVe.getCho().getToaTau().getLoaiToaTau().getTenLoaiToa());
+        lblLoaiCho.setText(chiTietVe.getCho().getLoaiCho().getTenLoaiCho());
         lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
         KhachHang khachHang = chiTietVe.getKhachHang();
         if(khachHang != null){
