@@ -71,6 +71,7 @@ public class HoaDonDatVe_LayVe_Controller {
     @FXML
     void anpHoaDonOnMouseClicked(MouseEvent event) {
         layVe_gui_controller.boChonTatCaHoaDon();
+        layVe_gui_controller.hienThiDanhSachVeDat(hoaDonDatVe);
         chonHoaDon();
     }
 

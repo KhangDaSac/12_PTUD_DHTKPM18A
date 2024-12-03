@@ -158,6 +158,8 @@ public class BanVe_GUI_Controller implements Initializable {
     void btnBoChonTatCaOnAction(ActionEvent event) {
         for(Cho_BanVe_Controller controller : choControllerList){
             choChonList.remove(controller.getCho());
+            controller.setDangChon(false);
+            controller.capNhatTrangThai();
         }
         capNhatCacChoDaChon();
     }

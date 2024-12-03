@@ -145,7 +145,7 @@ public class LayVe_GUI_Controller {
     public void layDanhSachHoaDonDatTheoKhachHang(){
         hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
-        hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
+        //hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
     }
 
     public void hienThiDanhSachHoaDonDat(){
