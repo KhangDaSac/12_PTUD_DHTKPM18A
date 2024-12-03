@@ -53,6 +53,14 @@ public class ChiTietVeDat {
 		// TODO Auto-generated constructor stub
 	}
 
+	public ChiTietVeDat(VeDat veDat, Cho cho, KhachHang khachHang, double giaCho, double phanTramGiamGia) {
+		this.veDat = veDat;
+		this.cho = cho;
+		this.khachHang = khachHang;
+		this.giaCho = giaCho;
+		this.phanTramGiamGia = phanTramGiamGia;
+	}
+
 	public double giamGia(){
 		return giaCho * phanTramGiamGia;
 	}

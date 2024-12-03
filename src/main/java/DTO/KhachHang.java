@@ -115,6 +115,8 @@ public class KhachHang {
 		this.tenKhachHang = tenKhachHang;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "KhachHang{" +

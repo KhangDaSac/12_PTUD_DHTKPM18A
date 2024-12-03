@@ -26,7 +26,7 @@ public class HoaDonDatVe_DAO {
                         rs.getTimestamp("thoiGianLap").toLocalDateTime(),
                         new CaLamViec(rs.getString("maCaLamViec"))
                 );
-
+                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachPhieuDatVeTheoMaHoaDonDatVe(hoaDonDatVe.getMaHoaDonDatVe()));
                 danhSachHoaDonDat.add(hoaDonDatVe);
             }
         } catch (Exception e) {

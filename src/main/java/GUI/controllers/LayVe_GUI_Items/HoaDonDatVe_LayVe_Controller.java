@@ -17,9 +17,6 @@ public class HoaDonDatVe_LayVe_Controller {
     private AnchorPane anpHoaDon;
 
     @FXML
-    private Label lblSoThuTu;
-
-    @FXML
     private Label lblMaCaLam;
 
     @FXML
@@ -34,21 +31,9 @@ public class HoaDonDatVe_LayVe_Controller {
     @FXML
     private Label lblTongTien;
 
-    @FXML
-    private Label lblTrangThai;
-
     private HoaDonDatVe hoaDonDatVe;
     private LayVe_GUI_Controller layVe_gui_controller;
     private int soThuTu;
-    private boolean dangChon;
-
-    public boolean isDangChon() {
-        return dangChon;
-    }
-
-    public void setDangChon(boolean dangChon) {
-        this.dangChon = dangChon;
-    }
 
     public int getSoThuTu() {
         return soThuTu;
@@ -66,6 +51,13 @@ public class HoaDonDatVe_LayVe_Controller {
         this.layVe_gui_controller = layVe_gui_controller;
     }
 
+    public HoaDonDatVe getHoaDonDatVe() {
+        return hoaDonDatVe;
+    }
+
+    public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
+        this.hoaDonDatVe = hoaDonDatVe;
+    }
 
     public void khoiTao(){
         lblMaHoaDon.setText(hoaDonDatVe.getMaHoaDonDatVe());
@@ -73,28 +65,21 @@ public class HoaDonDatVe_LayVe_Controller {
         lblMaCaLam.setText(hoaDonDatVe.getCaLamViec().getMaCaLamViec());
         lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
         lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienDatCoc()));
-        lblSoThuTu.setText(String.valueOf(soThuTu + 1));
-        dangChon = false;
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());
     }
-
 
     @FXML
     void anpHoaDonOnMouseClicked(MouseEvent event) {
         layVe_gui_controller.boChonTatCaHoaDon();
         chonHoaDon();
-
-
     }
 
     public void chonHoaDon(){
-        dangChon = true;
         anpHoaDon.getStyleClass().removeAll("hoaDonKhongChon");
         anpHoaDon.getStyleClass().add("hoaDonChon");
     }
 
     public void boChonHoaDon(){
-        dangChon = false;
         anpHoaDon.getStyleClass().removeAll("hoaDonChon");
         anpHoaDon.getStyleClass().add("hoaDonKhongChon");
     }

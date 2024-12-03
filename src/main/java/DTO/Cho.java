@@ -140,6 +140,13 @@ public class Cho {
         this.loaiCho = loaiCho;
     }
 
+    public Cho(String maCho, int soCho, ToaTau toaTau, LoaiCho loaiCho) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.toaTau = toaTau;
+        this.loaiCho = loaiCho;
+    }
+
     @Override
     public String toString() {
         return "Cho{" +

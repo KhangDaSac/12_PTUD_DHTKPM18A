@@ -42,6 +42,7 @@ public class VeDat_DAO {
                         rs.getDouble("phanTramGiamGiaVeTapThe"),
                         rs.getDouble("phanTramDatCoc")
                 );
+                veDat.setDanhSachChiTietVeDat(ChiTietVeDat_DAO.getDanhSachPhieuDatVeTheoMaHoaDonDatVe(veDat.getMaVeDat()));
                 veDat_list.add(veDat);
             }
         } catch (Exception e) {

@@ -122,7 +122,7 @@ public class VeDat_LayVe_Controller implements Initializable {
     void anpVeOnMouseClicked(MouseEvent event) {
         if (layVe_gui_controller != null) {
             layVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(veDat.getHoaDonDatVe().getMaHoaDonDatVe());
-            layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(veDat);
+            //layVe_gui_controller.hienThiDanhSachChiTietPhieuDatVe(veDat);
             chonPhieuDatVe();
             if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
                 if (chonLayVe) {

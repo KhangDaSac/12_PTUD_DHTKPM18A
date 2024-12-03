@@ -38,7 +38,12 @@ public class LoaiCho {
 	public void setHeSoGiaCho(double heSoGiaCho) {
 		this.heSoGiaCho = heSoGiaCho;
 	}
-	
+
+	public LoaiCho(String maLoaiCho, String tenLoaiCho) {
+		this.maLoaiCho = maLoaiCho;
+		this.tenLoaiCho = tenLoaiCho;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(maLoaiCho);

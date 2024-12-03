@@ -131,6 +131,10 @@ public class VeDat {
 		this.phanTramDatCoc = phanTramDatCoc;
 	}
 
+	public VeDat(String maVeDat) {
+		this.maVeDat = maVeDat;
+	}
+
 	public double tienVe(){
 		double tienVe = 0;
 		for (ChiTietVeDat chiTietVeDat : danhSachChiTietVeDat){
