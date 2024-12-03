@@ -53,7 +53,7 @@ public class Ve_BanVe_Controller implements Initializable {
     private Label lblThoiGianDi;
 
     @FXML
-    private VBox vboxDanhDachChoVeTapThe;
+    private VBox vboxDanhSachChoVeTapThe;
 
     @FXML
     private VBox vboxDanhSachThongTin;
@@ -108,7 +108,6 @@ public class Ve_BanVe_Controller implements Initializable {
     }
 
     public void khoiTao() throws IOException {
-
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
@@ -117,7 +116,7 @@ public class Ve_BanVe_Controller implements Initializable {
         lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
 
-        vboxDanhDachChoVeTapThe.getChildren().clear();
+        vboxDanhSachChoVeTapThe.getChildren().clear();
         for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe_BanVe.fxml"));
             Parent anchorPane = loader.load();
@@ -125,7 +124,7 @@ public class Ve_BanVe_Controller implements Initializable {
             chiTietVe_banVe_controller_list.add(controller);
             controller.setChiTietVe(chiTietVe);
             controller.khoiTao();
-            vboxDanhDachChoVeTapThe.getChildren().add(anchorPane);
+            vboxDanhSachChoVeTapThe.getChildren().add(anchorPane);
         }
 
         chiTietVe_banVe_controller_list.getLast().chiTietVeCuoi();

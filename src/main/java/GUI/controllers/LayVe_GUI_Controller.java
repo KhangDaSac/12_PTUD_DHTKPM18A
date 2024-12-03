@@ -75,8 +75,8 @@ public class LayVe_GUI_Controller {
         this.main_controller = main_controller;
     }
 
-    private ArrayList<HoaDonDatVe_LayVe_Controller> hoaDon_layVe_controllerList = new ArrayList<HoaDonDatVe_LayVe_Controller>();
-    private ArrayList<VeDat_LayVe_Controller> phieuDatVeLayVeControllerList = new ArrayList<VeDat_LayVe_Controller>();
+    private ArrayList<HoaDonDatVe_LayVe_Controller> hoaDon_layVe_controller_list = new ArrayList<HoaDonDatVe_LayVe_Controller>();
+    private ArrayList<VeDat_LayVe_Controller> veDat_layVe_controller_list = new ArrayList<VeDat_LayVe_Controller>();
 
     private ArrayList<HoaDonDatVe> hoaDonDatVe_list;
     private ArrayList<VeDat> veDatChon_list = new ArrayList<VeDat>();
@@ -145,6 +145,7 @@ public class LayVe_GUI_Controller {
     public void layDanhSachHoaDonDatTheoKhachHang(){
         hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
+        hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
     }
 
     public void hienThiDanhSachHoaDonDat(){
@@ -158,7 +159,7 @@ public class LayVe_GUI_Controller {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/HoaDonDatVe_LayVe.fxml"));
                 Parent anchorPane = loader.load();
                 HoaDonDatVe_LayVe_Controller controller = loader.getController();
-                hoaDon_layVe_controllerList.add(controller);
+                hoaDon_layVe_controller_list.add(controller);
                 controller.setLayVe_gui_controller(this);
                 controller.setSoThuTu(i);
                 controller.setHoaDonDatVe(hoaDonDatVe);
@@ -175,41 +176,36 @@ public class LayVe_GUI_Controller {
     }
 
     public void boChonTatCaHoaDon(){
-        for (HoaDonDatVe_LayVe_Controller controller : hoaDon_layVe_controllerList){
+        for (HoaDonDatVe_LayVe_Controller controller : hoaDon_layVe_controller_list){
             controller.boChonHoaDon();
         }
     }
 
+    public void hienThiDanhSachVeDat(HoaDonDatVe hoaDonDatVe){
+        if(hoaDonDatVe.getDanhSachVeDat().isEmpty()){
+            veDat_layVe_controller_list.clear();
+            return;
+        }
 
+        int length = hoaDonDatVe.getDanhSachVeDat().size();
+        for(int i = 0; i < length; i++){
+            VeDat veDat = hoaDonDatVe.getDanhSachVeDat().get(i);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/VeDat_LayVe.fxml"));
+                Parent anchorPane = loader.load();
+                VeDat_LayVe_Controller controller = loader.getController();
+                veDat_layVe_controller_list.add(controller);
+                controller.setLayVe_gui_controller(this);
+                controller.setSoThuTu(i);
+                controller.setVeDat(veDat);
+                controller.khoiTao();
 
-    public void getDanhSachChiTietPhieuDatVeTheoMaHoaDon(String maPhieuDatVe){
-
+               vboxDanhSachVeDat.getChildren().add(anchorPane);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
-
-//    public void capNhatDanhSachPhieuDatVe(){
-//        //vboxDanhSachPhieuDatVe.getChildren().clear();
-//        phieuDatVeLayVeControllerList.clear();
-//        if(phieuDatVeList.isEmpty())
-//            return;
-//        int length = phieuDatVeList.size();
-//        for(int i = 0; i < length; i++){
-//            VeDat phieuDatVe = phieuDatVeList.get(i);
-//            try {
-//                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/PhieuDatVe_LayVe.fxml"));
-//                Parent anchorPane = loader.load();
-//                VeDat_LayVe_Controller controller = loader.getController();
-//                phieuDatVeLayVeControllerList.add(controller);
-//                controller.setLayVe_gui_controller(this);
-//                controller.setSoThuTu(i);
-//                controller.setVeDat(phieuDatVe);
-//                controller.khoiTao();
-//
-//               // vboxDanhSachPhieuDatVe.getChildren().add(anchorPane);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
 
 //    public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe){
 //        //vboxChiTietPhieuDatVe.getChildren().clear();
@@ -235,20 +231,20 @@ public class LayVe_GUI_Controller {
 
 
     public void boChonTatCaPhieuDatVe() {
-        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : veDat_layVe_controller_list){
             controller.boChonPhieuDatVe();
         }
     }
 
 
     public void chonLayVeTatPhieuDatVe(){
-        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : veDat_layVe_controller_list){
             controller.chonLayVe();
         }
     }
 
     public void boChonLayVeTatPhieuDatVe(){
-        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){
+        for(VeDat_LayVe_Controller controller : veDat_layVe_controller_list){
             controller.boChonLayVe();
         }
     }

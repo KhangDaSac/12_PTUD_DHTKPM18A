@@ -38,8 +38,8 @@ public class ChiTietVeDat_DAO {
                     ),
                     new KhachHang(
                             rs.getString("maKhachHang"),
-                            rs.getString("tenKhachHang"),
                             rs.getString("CCCD"),
+                            rs.getString("tenKhachHang"),
                             new LoaiKhachHang(
                                     rs.getString("maLoaiKhachHang"),
                                     rs.getString("tenLoaiKhachHang")

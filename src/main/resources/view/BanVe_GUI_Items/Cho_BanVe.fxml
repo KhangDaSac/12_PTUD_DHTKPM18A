@@ -13,7 +13,7 @@
          <children>
             <AnchorPane fx:id="anpTrangThaiCho" prefWidth="50.0" style="-fx-background-radius: 5 0 0 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblSoCho" prefHeight="68.0" prefWidth="50.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-alignment: center; -fx-text-fill: #fff;" text="0" />
+                  <Label fx:id="lblSoCho" prefHeight="68.0" prefWidth="50.0" style="-fx-font-size: 20; -fx-font-weight: 700; -fx-alignment: center; -fx-text-fill: #fff;" text="64" />
                </children></AnchorPane>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

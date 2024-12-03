@@ -78,7 +78,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <VBox fx:id="vboxDanhDachChoVeTapThe" />
+                        <VBox fx:id="vboxDanhSachChoVeTapThe" />
                         <HBox fx:id="hboxGiamGiaVeTapThe" prefHeight="30.0">
                            <children>
                               <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giảm giá VTT:">
@@ -93,7 +93,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox fx:id="hboxGiaVeCuoi" layoutX="10.0" layoutY="132.0" prefHeight="30.0">
+                        <HBox layoutX="10.0" layoutY="132.0" prefHeight="30.0">
                            <children>
                               <Label prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #FA4032;" stylesheets="@../../css/All.css" text="Giá vé cuối:">
                                  <font>

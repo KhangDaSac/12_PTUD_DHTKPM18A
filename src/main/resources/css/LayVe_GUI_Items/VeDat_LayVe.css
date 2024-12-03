@@ -1,17 +1,26 @@
-.phieuDatVeDangChon{
+.veDangChon{
     -fx-background-color: #999999;
 }
 
-.phieuDatVeKhongChon{
+.veKhongChon{
     -fx-background-color: transparent;
 }
 
-.phieuDatVe-left-caNhan{
+.ve-left-veCaNhan{
     -fx-background-color: #4379F2;
     -fx-background-radius: 10 0 0 10;
 }
 
-.phieuDatVe-left-tapThe{
+.ve-left-veTapThe{
     -fx-background-color: #851DE0;
     -fx-background-radius: 10 0 0 10;
+}
+
+.tieuDe{
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+}
+
+.noiDung{
+    -fx-font-size: 16;
 }

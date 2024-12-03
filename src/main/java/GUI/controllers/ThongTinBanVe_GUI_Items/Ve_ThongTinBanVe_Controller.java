@@ -57,7 +57,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     private Label lblThoiGianDi;
 
     @FXML
-    private VBox vboxDanhDachChoVeTapThe;
+    private VBox vboxDanhSachChoVeTapThe;
 
     @FXML
     private VBox vboxDanhSachThongTin;
@@ -105,7 +105,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     }
 
     public void khoiTao() throws IOException {
-        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
+        anpVe.getStylesheets().add(getClass().getResource("/css/ThongTinBanVe_GUI_Items/Ve_ThongTinBanVe.css").toExternalForm());
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
@@ -113,7 +113,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
         lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
 
-        vboxDanhDachChoVeTapThe.getChildren().clear();
+        vboxDanhSachChoVeTapThe.getChildren().clear();
         for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI_Items/ChiTietVe_ThongTinBanVe.fxml"));
             Parent anchorPane = loader.load();
@@ -122,7 +122,7 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
             controller.setThongTinBanVe_gui_controller(thongTinBanVe_gui_controller);
             controller.setChiTietVe(chiTietVe);
             controller.khoiTao();
-            vboxDanhDachChoVeTapThe.getChildren().add(anchorPane);
+            vboxDanhSachChoVeTapThe.getChildren().add(anchorPane);
         }
 
         chiTietVe_thongTinBanVe_controller_list.getLast().chiTietVeCuoi();

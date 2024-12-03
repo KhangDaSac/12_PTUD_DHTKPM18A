@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVeDat" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller">
+<AnchorPane fx:id="anpVeDat" onMouseClicked="#anpVeOnMouseClicked" prefWidth="410.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -65,7 +65,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
+                              <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="95.0" text="Sài Gòn">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -75,7 +75,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTenGaDen" layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Hà Nội">
+                              <Label fx:id="lblTenGaDen" layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="95.0" text="Hà Nội">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -96,7 +96,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <VBox fx:id="vboxDanhDachChoVeTapThe" />
+                        <VBox fx:id="vboxDanhSachChoVeTapThe" />
                         <HBox fx:id="hboxGiamGiaVeTapThe" prefHeight="30.0">
                            <children>
                               <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giảm giá VTT:">
