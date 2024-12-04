@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CreatePDF;
 import utils.CurrencyFormat;
 
 public class ThongTinBanVe_GUI_Controller implements Initializable {
@@ -107,6 +108,7 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
+                CreatePDF.taoHoaDonBanVe(hoaDonBanVe);
                 hoaDonBanVe = null;
                 main_controller.showMessagesDialog("Bán vé thành công");
                 main_controller.quayLaiTrangBanVe();

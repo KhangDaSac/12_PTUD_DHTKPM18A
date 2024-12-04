@@ -11,6 +11,8 @@ public class Cho {
     private LoaiCho loaiCho;
     private TrangThaiCho trangThaiCho;
 
+    private final double THUEGIATRIGIATANG = 0.08;
+
     public Cho() {
         super();
         // TODO Auto-generated constructor stub
@@ -161,22 +163,25 @@ public class Cho {
     public double tinhGiaCho(double doDaiChang){
         double gia = 0;
         if(doDaiChang <= 100){
-            gia += doDaiChang * 1200;
+            gia += doDaiChang * 1100;
             return  gia;
         }
 
         gia += 100 * 1000;
 
         if(doDaiChang <= 500){
-            gia += (doDaiChang - 100) * 900;
+            gia += (doDaiChang - 100) * 800;
             return gia;
         }
 
         gia += (500 - 100) * 600;
 
-        gia += (doDaiChang - 500) * 400;
+        gia += (doDaiChang - 500) * 350;
 
         gia = gia * toaTau.getLoaiToaTau().getHeSoGia() * loaiCho.getHeSoGiaCho();
+
+        gia *= (1 + THUEGIATRIGIATANG);
+
         return gia;
     }
 }
