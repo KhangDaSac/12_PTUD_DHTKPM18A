@@ -109,6 +109,9 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
                 CreatePDF.taoHoaDonBanVe(hoaDonBanVe);
+                for (Ve ve : hoaDonBanVe.getDanhSachVe()){
+                    CreatePDF.taoVe(ve);
+                }
                 hoaDonBanVe = null;
                 main_controller.showMessagesDialog("Bán vé thành công");
                 main_controller.quayLaiTrangBanVe();

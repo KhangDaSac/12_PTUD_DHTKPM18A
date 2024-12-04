@@ -23,8 +23,8 @@ module GUI.applications {
     requires javafx.controls;
     requires itextpdf;
     requires org.apache.poi.ooxml;
-    requires thymeleaf;
-    requires flying.saucer.pdf.itext5;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
     exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
     exports GUI.controllers.QuanLyChuyenTau_GUI_Items;
     opens GUI.controllers.QuanLyChuyenTau_GUI_Items to javafx.fxml;
