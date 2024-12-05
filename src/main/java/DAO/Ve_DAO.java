@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class Ve_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
-    public static String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
+    public static String layDuoiMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
         try {
-            String query = "select max(maVe) as maVe from Ve where maVe like 'VE' + ? + '%'";
+            String query = "select max(SUBSTRING(maVe, LEN(maVe) - 7, 8)) as duoiMaVe from Ve where maVe like 'VE[A-Z][A-Z]' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                maVeLonNhat = rs.getString("maVe");
+                maVeLonNhat = rs.getString("duoiMaVe");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,6 +30,7 @@ public class Ve_DAO {
     public static boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
         String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?)";
         for(Ve ve : danhSachVe){
+            System.out.println(ve);
             try {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, ve.getMaVe());

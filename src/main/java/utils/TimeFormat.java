@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeFormat {
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private static DateTimeFormatter formatterLocalDateSQL = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static DateTimeFormatter formatterLocalDateTimeSQL = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
     private static DateTimeFormatter formatterLocalDateNumber = DateTimeFormatter.ofPattern("ddMMyyyy");

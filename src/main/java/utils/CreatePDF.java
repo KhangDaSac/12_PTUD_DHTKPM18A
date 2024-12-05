@@ -1,5 +1,6 @@
 package utils;
 
+import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
 import DTO.LoaiVe;
 import DTO.Ve;
@@ -7,10 +8,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.*;
 
 import java.awt.*;
 import java.io.File;
@@ -100,7 +98,7 @@ public class CreatePDF {
             PdfPTable table = new PdfPTable(4);
             table.setWidthPercentage(100);
 
-            float[] columnWidths = {1f, 4f, 6f, 4f};
+            float[] columnWidths = {1f, 5f, 6f, 4f};
             table.setWidths(columnWidths);
 
             String[] headers = {"STT", "Mã vé", "Tên vé", "Tiền vé"};
@@ -141,6 +139,8 @@ public class CreatePDF {
                 cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell4.setPadding(5);
                 table.addCell(cell4);
+
+                i++;
             }
 
             PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", boldFont));
@@ -184,114 +184,125 @@ public class CreatePDF {
     public static void taoVe(Ve ve) {
         String filePath = "documents/Ve/" + ve.getMaVe() + ".pdf";
         String qrCodePath = "documents/Ve/QRCode/QRCode_" + ve.getMaVe() + ".png";
+        try {
+            CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
+            Rectangle pageSize = new Rectangle(300, 150 * ve.getDanhSachChiTietVe().size() + 500); // Hoặc kích thước tùy chỉnh
+            Document document = new Document(pageSize);
+            document.setMargins(20, 20, 20, 20);
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));// Thiết lập lề
 
-        if(ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
-            try {
-                CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
-                Rectangle pageSize = new Rectangle(300, 600); // Hoặc kích thước tùy chỉnh
-                Document document = new Document(pageSize);
-                document.setMargins(10, 10, 10, 10); // Thiết lập lề
+            document.open();
 
-                PdfWriter.getInstance(document, new FileOutputStream(filePath));
-                document.open();
+            String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
+            BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
-                String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
-                BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(baseFont, 12);
+            Font font18 = new Font(baseFont, 18);
+            Font fontChuThich = new Font(baseFont, 12, Font.ITALIC);
+            Font boldFont = new Font(baseFont, 12, Font.BOLD);
+            Font boldFont16 = new Font(baseFont, 16, Font.BOLD);
 
-                Font font = new Font(baseFont, 12);
-                Font font18 = new Font(baseFont, 18);
-                Font fontChuThich = new Font(baseFont, 12, Font.ITALIC);
-                Font boldFont = new Font(baseFont, 12, Font.BOLD);
-                Font boldFont16 = new Font(baseFont, 16, Font.BOLD);
+            // Logo công ty (nếu có)
+            Paragraph company = new Paragraph("TỔNG CÔNG TY ĐƯỜNG SẮT NATRI", boldFont);
+            company.setAlignment(Element.ALIGN_CENTER);
+            document.add(company);
 
-                // Logo công ty (nếu có)
-                Paragraph company = new Paragraph("TỔNG CÔNG TY ĐƯỜNG SẮT NATRI", boldFont);
-                company.setAlignment(Element.ALIGN_CENTER);
-                document.add(company);
+            Paragraph title = new Paragraph("VÉ TÀU HỎA", new Font(baseFont, 16, Font.BOLD));
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
 
-                Paragraph title = new Paragraph("VÉ TÀU HỎA", new Font(baseFont, 16, Font.BOLD));
-                title.setAlignment(Element.ALIGN_CENTER);
-                document.add(title);
+            Paragraph titleEnglish = new Paragraph("TRAIN TICKET", boldFont);
+            titleEnglish.setAlignment(Element.ALIGN_CENTER);
+            document.add(titleEnglish);
 
-                Paragraph titleEnglish = new Paragraph("BOARDING PASS", boldFont);
-                titleEnglish.setAlignment(Element.ALIGN_CENTER);
-                document.add(titleEnglish);
 
-                Image qrCode = Image.getInstance(qrCodePath);
-                qrCode.setAlignment(Element.ALIGN_CENTER);
-                document.add(qrCode);
+            Image qrCode = Image.getInstance(qrCodePath);
+            qrCode.setAlignment(Element.ALIGN_CENTER);
+            document.add(qrCode);
 
-                Paragraph loaiVe = new Paragraph();
-                loaiVe.setAlignment(Element.ALIGN_CENTER);
-                loaiVe.add(new Chunk("VÉ CÁ NHÂN", boldFont16));
-                document.add(loaiVe);
-                document.add(Chunk.NEWLINE);
+            Paragraph loaiVe = new Paragraph();
+            loaiVe.setAlignment(Element.ALIGN_CENTER);
+            loaiVe.add(new Chunk(ve.getLoaiVe().equals(LoaiVe.VECANHAN) ? "VÉ CÁ NHÂN" : "VÉ TẬP THỂ", boldFont16));
+            document.add(loaiVe);
+            document.add(Chunk.NEWLINE);
 
-                Paragraph maVe = new Paragraph();
-                maVe.setAlignment(Element.ALIGN_CENTER);
-                maVe.add(new Chunk("Mã vé: ", boldFont));
-                maVe.add(new Chunk(ve.getMaVe(), font));
-                document.add(maVe);
+            Paragraph maVe = new Paragraph();
+            maVe.setAlignment(Element.ALIGN_CENTER);
+            maVe.add(new Chunk("Mã vé: ", boldFont));
+            maVe.add(new Chunk(ve.getMaVe(), font));
+            document.add(maVe);
 
-                PdfPTable tableGaTau = new PdfPTable(2);
-                tableGaTau.setWidthPercentage(100);
-                tableGaTau.setSpacingBefore(10);
+            PdfPTable tableGaTau = new PdfPTable(2);
+            tableGaTau.setWidthPercentage(100);
+            tableGaTau.setSpacingBefore(10);
 
-                String[] headers = {"Ga đi", "Ga đến"};
-                for (String header : headers) {
-                    PdfPCell headerCell = new PdfPCell(new Phrase(header, boldFont));
-                    headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                    headerCell.setBorder(Rectangle.NO_BORDER);
-                    headerCell.setPadding(5);
-                    tableGaTau.addCell(headerCell);
-                }
+            String[] headers = {"Ga đi", "Ga đến"};
+            for (String header : headers) {
+                PdfPCell headerCell = new PdfPCell(new Phrase(header, boldFont));
+                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                headerCell.setBorder(Rectangle.NO_BORDER);
+                headerCell.setPadding(5);
+                tableGaTau.addCell(headerCell);
+            }
 
-                PdfPCell cell1 = new PdfPCell(new Phrase(ve.getThongTinGaTauDi().getGaTau().getTenGaTau(), font18));
-                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell1.setBorder(Rectangle.NO_BORDER);
-                tableGaTau.addCell(cell1);
+            PdfPCell cell1 = new PdfPCell(new Phrase(ve.getThongTinGaTauDi().getGaTau().getTenGaTau(), font18));
+            cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell1.setBorder(Rectangle.NO_BORDER);
+            tableGaTau.addCell(cell1);
 
-                PdfPCell cell2 = new PdfPCell(new Phrase(ve.getThongTinGaTauDen().getGaTau().getTenGaTau(), font18));
-                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell2.setBorder(Rectangle.NO_BORDER);
-                tableGaTau.addCell(cell2);
-                document.add(tableGaTau);
-                document.add(Chunk.NEWLINE);
+            PdfPCell cell2 = new PdfPCell(new Phrase(ve.getThongTinGaTauDen().getGaTau().getTenGaTau(), font18));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBorder(Rectangle.NO_BORDER);
+            tableGaTau.addCell(cell2);
+            document.add(tableGaTau);
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable tableThongTinChuyenTau = new PdfPTable(2);
+            tableThongTinChuyenTau.setWidthPercentage(100);
+            tableThongTinChuyenTau.setSpacingBefore(10);
+
+            addRowToTable(tableThongTinChuyenTau, "Tàu", ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4), boldFont, font);
+            addRowToTable(tableThongTinChuyenTau, "Thời gian đi", TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()), boldFont, font);
+            document.add(tableThongTinChuyenTau);
+
+            for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
 
                 PdfPTable table = new PdfPTable(2);
-                tableGaTau.setWidthPercentage(100);
-                tableGaTau.setSpacingBefore(10);
+                table.setWidthPercentage(100);
+                table.setSpacingBefore(10);
 
-                addRowToTable(table, "Tàu", ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4), boldFont, font);
-                addRowToTable(table, "Thời gian đi", TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()), boldFont, font);
-                addRowToTable(table, "Toa", String.valueOf(ve.getDanhSachChiTietVe().getFirst().getCho().getToaTau().getThuTuToa()), boldFont, font);
-                addRowToTable(table, "Chỗ", String.valueOf(ve.getDanhSachChiTietVe().getFirst().getCho().getSoCho()), boldFont, font);
-                addRowToTable(table, "Loại toa", ve.getDanhSachChiTietVe().getFirst().getCho().getToaTau().getLoaiToaTau().getTenLoaiToa(), boldFont, font);
-                addRowToTable(table, "Loại chỗ", ve.getDanhSachChiTietVe().getFirst().getCho().getLoaiCho().getTenLoaiCho(), boldFont, font);
-                addRowToTable(table, "Họ tên", ve.getDanhSachChiTietVe().getFirst().getKhachHang().getMaKhachHang(), boldFont, font);
-                addRowToTable(table, "CCCD", ve.getDanhSachChiTietVe().getFirst().getKhachHang().getCCCD(), boldFont, font);
-                addRowToTable(table, "Giá chỗ", CurrencyFormat.currencyFormat(ve.getDanhSachChiTietVe().getFirst().getGiaCho()), boldFont, font);
+                addRowToTable(table, "Toa", String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()), boldFont, font);
+                addRowToTable(table, "Chỗ", String.valueOf(chiTietVe.getCho().getSoCho()), boldFont, font);
+                addRowToTable(table, "Loại toa", chiTietVe.getCho().getToaTau().getLoaiToaTau().getTenLoaiToa(), boldFont, font);
+                addRowToTable(table, "Loại chỗ", chiTietVe.getCho().getLoaiCho().getTenLoaiCho(), boldFont, font);
+                addRowToTable(table, "Họ tên", chiTietVe.getKhachHang().getTenKhachHang(), boldFont, font);
+                addRowToTable(table, "CCCD", chiTietVe.getKhachHang().getCCCD(), boldFont, font);
+                addRowToTable(table, "Giá chỗ", CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()), boldFont, font);
 
+                //document.add(Chunk.NEWLINE);
                 document.add(table);
 
-                // Ghi chú
-                Paragraph note = new Paragraph("Vé hỏa không phải là hóa đơn.", fontChuThich);
-                note.setAlignment(Element.ALIGN_CENTER);
-                note.setSpacingBefore(10);
-                document.add(note);
-
-                document.close();
-                System.out.println("Vé tàu đã được tạo tại: " + filePath);
-
-                // Mở tệp PDF
-                File file = new File(filePath);
-                if (file.exists()) {
-                    Desktop.getDesktop().open(file);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+
+
+            // Ghi chú
+            Paragraph note = new Paragraph("Vé hỏa không phải là hóa đơn.", fontChuThich);
+            note.setAlignment(Element.ALIGN_CENTER);
+            note.setSpacingBefore(10);
+            document.add(note);
+
+            document.close();
+            System.out.println("Vé tàu đã được tạo tại: " + filePath);
+
+            // Mở tệp PDF
+            File file = new File(filePath);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
 
     }

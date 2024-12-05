@@ -522,8 +522,8 @@ public class BanVe_GUI_Controller implements Initializable {
                 chiTietChuyenTauDen.setGaTau(gaDen);
 
                 String maVeMoi = hoaDonBanVe.getDanhSachVe().isEmpty()
-                        ? QuanLyVe_BUS.taoMaVeMoi()
-                        : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast().getMaVe());
+                        ? QuanLyVe_BUS.taoMaVeMoi(LoaiVe.VECANHAN)
+                        : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast(), LoaiVe.VECANHAN);
 
                 Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
@@ -556,8 +556,8 @@ public class BanVe_GUI_Controller implements Initializable {
             ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
 
             String maVeMoi = hoaDonBanVe.getDanhSachVe().isEmpty()
-                    ? QuanLyVe_BUS.taoMaVeMoi()
-                    : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast().getMaVe());
+                    ? QuanLyVe_BUS.taoMaVeMoi(LoaiVe.VETAPTHE)
+                    : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast(), LoaiVe.VETAPTHE);
 
             Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
             ve.setLoaiVe(LoaiVe.VETAPTHE);
