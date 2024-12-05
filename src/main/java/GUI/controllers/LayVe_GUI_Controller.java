@@ -154,6 +154,7 @@ public class LayVe_GUI_Controller implements Initializable {
             xoaThongTinKhachHang();
             hoaDonDatVe_list.clear();
             hienThiDanhSachHoaDonDat();
+            hienThiDanhSachVeDat(null);
         }
     }
 
@@ -189,14 +190,14 @@ public class LayVe_GUI_Controller implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
+            hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
         }
     }
 
     public void hienThiDanhSachVeDat(HoaDonDatVe hoaDonDatVe){
         veDat_layVe_controller_list.clear();
         vboxDanhSachVeDat.getChildren().clear();
-        if(hoaDonDatVe.getDanhSachVeDat().isEmpty()){
+        if(hoaDonDatVe == null || hoaDonDatVe.getDanhSachVeDat().isEmpty()){
             return;
         }
 
@@ -219,26 +220,6 @@ public class LayVe_GUI_Controller implements Initializable {
             }
         }
     }
-
-//    public void hienThiDanhSachChiTietPhieuDatVe(VeDat phieuDatVe){
-//        //vboxChiTietPhieuDatVe.getChildren().clear();
-//        if(phieuDatVe == null)
-//            return;
-//        for(ChiTietVeDat chiTietVeDat : ho){
-//            if(chiTietVeDat.getVeDat().equals(phieuDatVe)){
-//                try {
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/.fxml"));
-//                    Parent anchorPane = loader.load();
-//
-//
-//                    //vboxChiTietPhieuDatVe.getChildren().add(anchorPane);
-//                }catch (IOException e){
-//
-//                }
-//            }
-//        }
-//
-//    }
 
 
 
@@ -331,6 +312,16 @@ public class LayVe_GUI_Controller implements Initializable {
 //            main_controller.showMessagesDialog(e.getMessage());
 //        }
 //    }
+    private void chonVeLay(){
+        for(VeDat veDat : veDatChon_list){
+            if(!hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()
+                    .stream()
+                    .anyMatch(chiTietHoaDonLayVe -> chiTietHoaDonLayVe.getVeDat().equals(veDat))
+            ){
+                hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().add(new ChiTietHoaDonLayVe());
+            }
+        }
+    }
 
 
     @FXML
@@ -341,5 +332,6 @@ public class LayVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hoaDonLayVe = new HoaDonLayVe();
+        hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
     }
 }
