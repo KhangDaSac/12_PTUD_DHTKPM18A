@@ -286,7 +286,7 @@ public class CreatePDF {
 
 
             // Ghi chú
-            Paragraph note = new Paragraph("Vé hỏa không phải là hóa đơn.", fontChuThich);
+            Paragraph note = new Paragraph("Vé tàu hỏa không phải là hóa đơn.", fontChuThich);
             note.setAlignment(Element.ALIGN_CENTER);
             note.setSpacingBefore(10);
             document.add(note);
