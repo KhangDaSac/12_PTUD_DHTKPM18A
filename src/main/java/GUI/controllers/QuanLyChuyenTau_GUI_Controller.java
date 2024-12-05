@@ -81,6 +81,14 @@ public class QuanLyChuyenTau_GUI_Controller implements Initializable {
 
     private Main_Controller main_controller;
 
+    public Main_Controller getMain_controller() {
+        return main_controller;
+    }
+
+    public void setMain_controller(Main_Controller main_controller) {
+        this.main_controller = main_controller;
+    }
+
     public QuanLyChuyenTau_GUI_Controller(Main_Controller main_controller) {
         this.main_controller = main_controller;
     }

@@ -35,6 +35,9 @@ public class Ve_LayVe_Controller implements Initializable {
     private HBox hboxGiamGiaVeTapThe;
 
     @FXML
+    private Label lblDaCoc;
+
+    @FXML
     private Label lblGiaVeCuoi;
 
     @FXML
@@ -54,6 +57,9 @@ public class Ve_LayVe_Controller implements Initializable {
 
     @FXML
     private Label lblThoiGianDi;
+
+    @FXML
+    private Label lblTienConLai;
 
     @FXML
     private VBox vboxDanhSachChoVeTapThe;
@@ -107,6 +113,7 @@ public class Ve_LayVe_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 
     public void khoiTao() throws IOException {
@@ -116,6 +123,8 @@ public class Ve_LayVe_Controller implements Initializable {
         lblTenGaDen.setText(chiTietHoaDonLayVe.getVe().getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietHoaDonLayVe.getVe().getThongTinGaTauDi().getThoiGianDi()));
         lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVe().tienVeCuoi()));
+        lblDaCoc.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVeDat().tienDatCoc()));
+        lblTienConLai.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.thanhTien()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
 
         vboxDanhSachChoVeTapThe.getChildren().clear();
