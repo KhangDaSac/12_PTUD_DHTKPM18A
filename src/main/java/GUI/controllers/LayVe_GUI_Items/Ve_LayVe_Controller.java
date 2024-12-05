@@ -107,7 +107,12 @@ public class Ve_LayVe_Controller implements Initializable {
 
     @FXML
     void anpXoaVeOnMouseClicked(MouseEvent event) {
-
+        layVe_gui_controller.getHoaDonLayVe().getDanhSachChiTietHoaDonLayVe().removeIf(
+                cthdlv -> cthdlv.equals(chiTietHoaDonLayVe)
+        );
+        layVe_gui_controller.hienThiDanhSachVeLay();
+        layVe_gui_controller.hienThiDanhSachVeDat(layVe_gui_controller.getHoaDonDatVeDangChon());
+        layVe_gui_controller.hienThiTongTien();
     }
 
 
@@ -141,12 +146,12 @@ public class Ve_LayVe_Controller implements Initializable {
         chiTietVe_layVe_controller_list.getLast().chiTietVeCuoi();
 
         if(chiTietHoaDonLayVe.getVe().getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThongTin.setMinHeight(390);
+            vboxDanhSachThongTin.setMinHeight(450);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
 
         }else if(chiTietHoaDonLayVe.getVe().getLoaiVe() == LoaiVe.VETAPTHE){
-            vboxDanhSachThongTin.setMinHeight(180 + chiTietHoaDonLayVe.getVe().getDanhSachChiTietVe().size() * 260);
+            vboxDanhSachThongTin.setMinHeight(240 + chiTietHoaDonLayVe.getVe().getDanhSachChiTietVe().size() * 260);
             anpXoaVe.getStyleClass().add("ve-left-veTapThe");
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVe().giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVe().tienVeCuoi()));
@@ -164,5 +169,7 @@ public class Ve_LayVe_Controller implements Initializable {
         anpVe.getStyleClass().removeAll("veDangChon");
         anpVe.getStyleClass().add("veKhongChon");
     }
+
+
 
 }

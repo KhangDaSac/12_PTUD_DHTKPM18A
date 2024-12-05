@@ -22,6 +22,8 @@ public class Ve {
 		return maVe;
 	}
 
+
+
 	public void setMaVe(String maVe) {
 		this.maVe = maVe;
 	}
@@ -117,6 +119,16 @@ public class Ve {
 		}else{
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
+	}
+
+	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double phanTramGiamGiaVeTapThe) {
+		this.maVe = maVe;
+		this.hoaDonBanVe = hoaDonBanVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.loaiVe = loaiVe;
+		this.trangThaiVe = trangThaiVe;
+		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
 	}
 
 	public Ve(String maVe) {

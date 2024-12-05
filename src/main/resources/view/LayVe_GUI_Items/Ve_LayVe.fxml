@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.Ve_LayVe_Controller">
+<AnchorPane fx:id="anpVe" onMouseClicked="#anpVeOnMouseClicked" prefWidth="410.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.Ve_LayVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -51,7 +51,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="58.0">
+                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="30.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

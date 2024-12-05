@@ -83,7 +83,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTenKhachHang" prefHeight="30.0" prefWidth="210.0">
+                  <Label fx:id="lblTenKhachHang" prefHeight="30.0" prefWidth="160.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -97,7 +97,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="210.0">
+                  <Label fx:id="lblCCCD" prefHeight="30.0" prefWidth="160.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -111,7 +111,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblLoaiKhachHang" prefHeight="30.0" prefWidth="210.0">
+                  <Label fx:id="lblLoaiKhachHang" prefHeight="30.0" prefWidth="160.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -120,12 +120,12 @@
             </HBox>
             <HBox prefHeight="30.0">
                <children>
-                  <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giảm giá loại KH:">
+                  <Label prefHeight="30.0" prefWidth="150.0" stylesheets="@../../css/All.css" text="Giảm giá LKH:">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblGiamGiaLoaiKhachHang" prefHeight="30.0" prefWidth="210.0">
+                  <Label fx:id="lblGiamGiaLoaiKhachHang" prefHeight="30.0" prefWidth="160.0">
                      <font>
                         <Font size="16.0" />
                      </font>

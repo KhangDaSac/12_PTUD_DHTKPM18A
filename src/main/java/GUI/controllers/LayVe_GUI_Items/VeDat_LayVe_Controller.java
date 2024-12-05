@@ -172,7 +172,10 @@ public class VeDat_LayVe_Controller implements Initializable {
             boChonVeDat();
         }
 
-        imvVeDatLay.setVisible(false);
+        if(layVe_gui_controller.getHoaDonLayVe().getDanhSachChiTietHoaDonLayVe().stream().anyMatch(cthdlv -> cthdlv.getVeDat().equals(veDat)))
+            imvVeDatLay.setVisible(true);
+        else
+            imvVeDatLay.setVisible(false);
     }
 
     public void chonVeDat() {

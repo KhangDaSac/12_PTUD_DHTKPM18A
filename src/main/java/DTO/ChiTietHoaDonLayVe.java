@@ -29,6 +29,12 @@ public class ChiTietHoaDonLayVe {
         this.hoaDonLayVe = hoaDonLayVe;
     }
 
+    public ChiTietHoaDonLayVe(Ve ve, VeDat veDat, HoaDonLayVe hoaDonLayVe) {
+        this.ve = ve;
+        this.veDat = veDat;
+        this.hoaDonLayVe = hoaDonLayVe;
+    }
+
     public double thanhTien(){
         return veDat.tienVeCuoi() - veDat.tienDatCoc();
     }
