@@ -24,14 +24,14 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefWidth="45.0" style="-fx-font-weight: 700;" text="TG đi:" />
-                  <Label fx:id="lblThoiGianDi" text="18/10/24 23:25" />
+                  <Label prefWidth="28.0" style="-fx-font-weight: 700;" text="Đi:" />
+                  <Label fx:id="lblThoiGianDi" text="18/10/2024 23:25" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefWidth="45.0" style="-fx-font-weight: 700;" text="TG đến:" />
-                  <Label fx:id="lblThoiGianDen" text="18/10/24 23:25" />
+                  <Label prefWidth="28.0" style="-fx-font-weight: 700;" text="Đến:" />
+                  <Label fx:id="lblThoiGianDen" text="18/10/2024 23:25" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">

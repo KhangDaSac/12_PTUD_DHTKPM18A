@@ -186,10 +186,10 @@ public class CreatePDF {
         String qrCodePath = "documents/Ve/QRCode/QRCode_" + ve.getMaVe() + ".png";
         try {
             CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
-            Rectangle pageSize = new Rectangle(300, 150 * ve.getDanhSachChiTietVe().size() + 500); // Hoặc kích thước tùy chỉnh
+            Rectangle pageSize = new Rectangle(300, 120 * ve.getDanhSachChiTietVe().size() + 500);
             Document document = new Document(pageSize);
             document.setMargins(20, 20, 20, 20);
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));// Thiết lập lề
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
 
             document.open();
 
