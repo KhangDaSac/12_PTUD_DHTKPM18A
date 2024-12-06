@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import static connectDB.ConnectDB.con;
 
 public class KhachHang_DAO {
+    public static Connection con = ConnectDB.getInstance().getConnection();
     public KhachHang getKhachHangTheoCCCD(String cccd){
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select maKhachHang, CCCD, tenKhachHang, soDienThoai, lkh.maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia" +
                     " from KhachHang kh" +
@@ -48,7 +48,6 @@ public class KhachHang_DAO {
 
 
     public ArrayList<KhachHang> xuatDanhSachKhachHang (){
-        Connection con = ConnectDB.getInstance().getConnection();
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
         try {
             String query = "select * from KhachHang kh join LoaiKhachHang lkh on lkh.maLoaiKhachHang= kh.maLoaiKhachHang ";
@@ -96,7 +95,6 @@ public class KhachHang_DAO {
         try {
             String query = "insert into KhachHang values(?,?,?,?,?,?)";
             PreparedStatement statement = con.prepareStatement(query);
-            System.out.println(kh.getLoaiKhachHang()+"thêm");
             statement.setString(1,kh.getMaKhachHang());
             statement.setString(2,kh.getCCCD());
             statement.setString(3,kh.getTenKhachHang());
@@ -110,7 +108,6 @@ public class KhachHang_DAO {
     }
 
     public static String getTenKhachHangTheoMa(String maKhachHang){
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select tenKhachHang from KhachHang where maKhachHang = ?";
             PreparedStatement statement = con.prepareStatement(query);
@@ -123,6 +120,22 @@ public class KhachHang_DAO {
 
         }
         return null;
+    }
+
+    public static int laySoMaKhachHangLonNhatNamHienTai(String namHienTai){
+        int tong =1;
+        try {
+            String query = "SELECT Count(maKhachHang) as tong FROM KhachHang WHERE maKhachHang LIKE 'KH' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, namHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                tong = rs.getInt("tong");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tong;
     }
 
 }

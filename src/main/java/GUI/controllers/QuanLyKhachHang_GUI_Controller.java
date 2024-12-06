@@ -142,10 +142,9 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
             }
         }
         cmbLoaiKhachHang.setItems(listCBB);
-
         timKiemKhachHang();
     }
-    void upDataTbl(){
+    public void upDataTbl(){
         listKH =FXCollections.observableArrayList(kH_DAO.xuatDanhSachKhachHang());
         colSTT_KH.setCellFactory(column -> new TableCell<KhachHang, Integer>() {
             @Override
@@ -193,43 +192,42 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
         cmbLoaiKhachHang.setValue(loai);
     }
 
-    boolean batLoiKyTu(){
-        if(txtCCCD_KH.getText().isEmpty()){
-            lblCCCD_Loi.setText("Lỗi nhập!");
+    public boolean batLoiKyTu(){
+
+        if(txtCCCD_KH.getText().isEmpty()) {
+            main_Controller.showMessagesDialog("Nhập CCCD!");
             txtCCCD_KH.requestFocus();
             return false;
-        }else{
-            lblCCCD_Loi.setText("");
-        }
-        if(txtTenKH.getText().isEmpty()){
-            lblTenKH_Loi.setText("Lỗi nhập!");
+        }else if (!txtCCCD_KH.getText().matches("\\d{12}")){
+            main_Controller.showMessagesDialog("CCCD là 12 số!");
+            txtCCCD_KH.requestFocus();
+            return false;
+        }else if(txtTenKH.getText().isEmpty()){
+            main_Controller.showMessagesDialog("Nhập tên khách hàng!");
             txtTenKH.requestFocus();
             return false;
-        }else{
-            lblTenKH_Loi.setText("");
-        }
-        if(datePickerNgaySinh_KH.getValue()==null){
-            lblNgay_Loi.setText("Lỗi nhập!");
+        }else if(datePickerNgaySinh_KH.getValue()==null) {
+            main_Controller.showMessagesDialog("Chọn ngày sinh!");
             datePickerNgaySinh_KH.requestFocus();
             return false;
-        }else{
-            lblNgay_Loi.setText("");
-        }
-        if(txtSDT_KH.getText().isEmpty()){
-            lblSDT_Loi.setText("Lỗi nhập!");
+        }else if (datePickerNgaySinh_KH.getValue().isAfter(LocalDate.now())){
+            main_Controller.showMessagesDialog("Ngày sinh phải trước ngày hiện tại !");
+            datePickerNgaySinh_KH.requestFocus();
+            return false;
+        }else if(txtSDT_KH.getText().isEmpty()) {
+            main_Controller.showMessagesDialog("Nhập số điện thoại!");
             txtSDT_KH.requestFocus();
             return false;
-        }else{
-            lblSDT_Loi.setText("");
-        }
-        if(cmbLoaiKhachHang.getValue()==null){
-            lblLoaiKH_Loi.setText("Chọn loại!");
+        }else if (!txtSDT_KH.getText().matches("^0\\d{9}")){
+            main_Controller.showMessagesDialog("Số điện thoại là 10 số!");
+            txtSDT_KH.requestFocus();
+            return false;
+        }else if(cmbLoaiKhachHang.getValue()==null){
+            main_Controller.showMessagesDialog("Chọn loại khách hàng!");
             cmbLoaiKhachHang.requestFocus();
             return false;
-        }else{
+        }else if(txtCCCD_KH.getText().isEmpty()){
             lblLoaiKH_Loi.setText("");
-        }
-        if(txtCCCD_KH.getText().isEmpty()){
             lblCCCD_Loi.setText("Lỗi nhập!");
             txtCCCD_KH.requestFocus();
             return false;
@@ -259,16 +257,7 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
             maLoai = "TE";
             giamGia= 0.25;
         }
-
-        String kHcuoi = listKH.getLast().getMaKhachHang();
-        if (kHcuoi == null || !kHcuoi.startsWith("KH2000")) {
-            kHcuoi= "KH20000001";
-        }
-        String numberPart = kHcuoi.substring(6);
-        int number = Integer.parseInt(numberPart);
-        number++;
-        System.out.println("KH2000"+number);
-        kh.setMaKhachHang(String.format("KH2000%04d",number));
+        kh.setMaKhachHang(txtMaKH.getText());
         kh.setCCCD(txtCCCD_KH.getText());
         kh.setTenKhachHang(txtTenKH.getText());
         kh.setSoDienThoai(txtSDT_KH.getText());
@@ -278,22 +267,29 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
     }
     @FXML
     void btnThemKhachHangOnAction(ActionEvent event) {
-        //batLoiKyTu();
+        Integer nam = LocalDate.now().getYear();
+        int soMaLonNhatHienTai = KhachHang_DAO.laySoMaKhachHangLonNhatNamHienTai(nam.toString())+1;
+        String maKHMoi = "KH" + String.format(nam.toString())+ String.format("%06d",soMaLonNhatHienTai);
+        txtMaKH.setText(maKHMoi);
         KhachHang kh =new KhachHang();
-        getKHtuTXT(kh);
-        boolean isDuplicate = false;
-        for (KhachHang kh1 : listKH) {
-            if (kh1.getMaKhachHang().equals(kh.getMaKhachHang())) {
-                isDuplicate = true;
-                main_Controller.showMessagesDialog("Trùng mã khách hàng");
-                txtMaKH.requestFocus();
-                break;
+        if (batLoiKyTu()==false){
+            main_Controller.showMessagesDialog("Vui lòng nhập dữ liệu!");
+        }else {
+            getKHtuTXT(kh);
+            boolean isDuplicate = false;
+            for (KhachHang kh1 : listKH) {
+                if (kh1.getMaKhachHang().equals(kh.getMaKhachHang())) {
+                    isDuplicate = true;
+                    main_Controller.showMessagesDialog("Trùng mã khách hàng");
+                    txtMaKH.requestFocus();
+                    break;
+                }
             }
-        }
-        if (!isDuplicate) {
-            listKH.add(kh);
-            kH_DAO.addKhachHang(kh);
-            main_Controller.showMessagesDialog("Thêm khách hàng thành công!");
+            if (!isDuplicate) {
+                listKH.add(kh);
+                kH_DAO.addKhachHang(kh);
+                main_Controller.showMessagesDialog("Thêm khách hàng thành công!");
+            }
         }
     }
 
@@ -378,64 +374,5 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
         tblKH.setItems(dataDaSort);
     }
 
-    @FXML
-    void txtCCCD_OnMouseExit(MouseEvent event) {
-        if(txtCCCD_KH.getText().isEmpty()){
-            lblCCCD_Loi.setText("Lỗi nhập!");
-            txtCCCD_KH.requestFocus();
-        }else{
-            lblCCCD_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtLoaiKH_OnMouseExit(MouseEvent event) {
-        if(cmbLoaiKhachHang.getValue()==null){
-            lblLoaiKH_Loi.setText("Chọn loại!");
-            cmbLoaiKhachHang.requestFocus();
-        }else{
-            lblLoaiKH_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtMaKH_MouseExit(MouseEvent event) {
-        if(txtMaKH.getText().isEmpty()){
-            lblMaKH_Loi.setText("Lỗi nhập!");
-            txtMaKH.requestFocus();
-        }else{
-            lblMaKH_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtNgay_OnMouseExit(MouseEvent event) {
-        if(datePickerNgaySinh_KH.getValue()==null){
-            lblNgay_Loi.setText("Lỗi nhập!");
-            datePickerNgaySinh_KH.requestFocus();
-        }else{
-            lblNgay_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtSDT_OnMouseExit(MouseEvent event) {
-        if(txtSDT_KH.getText().isEmpty()){
-            lblSDT_Loi.setText("Lỗi nhập!");
-            txtSDT_KH.requestFocus();
-        }else{
-            lblSDT_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtTenKH_OnMouseExit(MouseEvent event) {
-        if(txtTenKH.getText().isEmpty()){
-            lblTenKH_Loi.setText("Lỗi nhập!");
-            txtTenKH.requestFocus();
-        }else{
-            lblTenKH_Loi.setText("");
-        }
-    }
 
 }
