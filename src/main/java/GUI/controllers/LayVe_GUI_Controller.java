@@ -173,6 +173,8 @@ public class LayVe_GUI_Controller implements Initializable {
             hienThiDanhSachHoaDonDat();
             hienThiDanhSachVeDat(null);
             hoaDonLayVe.setKhachHangLayVe(null);
+            hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().clear();
+            hienThiDanhSachVeLay();
         }
     }
 
@@ -208,6 +210,7 @@ public class LayVe_GUI_Controller implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            hoaDonDatVeDangChon = hoaDonDatVe_list.getFirst();
             hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
         }
     }
@@ -319,6 +322,11 @@ public class LayVe_GUI_Controller implements Initializable {
         hoaDonLayVe.setThoiGianLayVe(LocalDateTime.now());
         if(QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe)){
             main_controller.showMessagesDialog("Lấy vé thành công");
+            String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
+            hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
+            hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
+            hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+            layDanhSachHoaDonDatTheoKhachHang();
         }else{
             main_controller.showMessagesDialog("Lấy vé thất bại");
         }
