@@ -20,6 +20,7 @@ import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -133,7 +134,7 @@ public class LayVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
-        //layVe();
+        layVe();
     }
 
     @FXML
@@ -315,7 +316,13 @@ public class LayVe_GUI_Controller implements Initializable {
         if(hoaDonLayVe == null || hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().isEmpty()){
             return;
         }
-        QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe);
+        hoaDonLayVe.setThoiGianLayVe(LocalDateTime.now());
+        if(QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe)){
+            main_controller.showMessagesDialog("Lấy vé thành công");
+        }else{
+            main_controller.showMessagesDialog("Lấy vé thất bại");
+        }
+
     }
 
     @FXML
@@ -342,5 +349,6 @@ public class LayVe_GUI_Controller implements Initializable {
         hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
         hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
         hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+
     }
 }

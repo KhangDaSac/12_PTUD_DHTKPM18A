@@ -12,7 +12,7 @@ public class ChiTietHoaDonLayVe_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
     public static boolean themDanhSachChiTietHoaDonLayVe(ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe){
         try {
-            String query = "insert into HoaDonLayVe values (?, ?, ?)";
+            String query = "insert into ChiTietHoaDonLayVe values (?, ?, ?)";
             for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : danhSachChiTietHoaDonLayVe){
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, chiTietHoaDonLayVe.getVeDat().getMaVeDat());

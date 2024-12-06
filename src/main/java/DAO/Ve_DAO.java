@@ -7,6 +7,7 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 
 public class Ve_DAO {
@@ -34,7 +35,10 @@ public class Ve_DAO {
             try {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, ve.getMaVe());
-                statement.setString(2, ve.getHoaDonBanVe().getMaHoaDonBanVe());
+                if(ve.getHoaDonBanVe() != null)
+                    statement.setString(2, ve.getHoaDonBanVe().getMaHoaDonBanVe());
+                else
+                    statement.setNull(2, Types.VARCHAR);
                 statement.setString(3, ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
                 statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
                 statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
