@@ -299,7 +299,7 @@ public class Main_Controller implements Initializable {
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         anpNoiDungTrang.getChildren().clear();

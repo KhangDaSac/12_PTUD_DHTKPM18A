@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CreatePDF;
 import utils.CurrencyFormat;
 
 import java.io.IOException;
@@ -322,6 +323,12 @@ public class LayVe_GUI_Controller implements Initializable {
         hoaDonLayVe.setThoiGianLayVe(LocalDateTime.now());
         if(QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe)){
             main_controller.showMessagesDialog("Lấy vé thành công");
+
+            CreatePDF.taoHoaDonLayVe(hoaDonLayVe);
+            for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
+                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe());
+            }
+
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
