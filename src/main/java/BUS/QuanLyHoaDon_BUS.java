@@ -1,10 +1,7 @@
 package BUS;
 
 import DAO.*;
-import DTO.ChiTietVe;
-import DTO.HoaDonBanVe;
-import DTO.HoaDonDatVe;
-import DTO.Ve;
+import DTO.*;
 import utils.TimeFormat;
 
 import java.time.LocalDate;
@@ -80,7 +77,33 @@ public class QuanLyHoaDon_BUS {
         String maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
 
         return maHoaDonMoi;
+    }
 
+    public static boolean themHoaDonLayVe(HoaDonLayVe hoaDonLayVe){
+        ArrayList<Ve> danhSachVe = new ArrayList<Ve>();
+        ArrayList<VeDat> danhSachVeDat = new ArrayList<VeDat>();
+        for (ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
+            danhSachVe.add(chiTietHoaDonLayVe.getVe());
+            danhSachVeDat.add(chiTietHoaDonLayVe.getVeDat());
+        }
+
+        if(!HoaDonLayVe_DAO.themHoaDonLayVe(hoaDonLayVe)){
+            return false;
+        }
+
+        if(!Ve_DAO.themDanhSachVe(danhSachVe)){
+            return false;
+        }
+
+        if(!ChiTietHoaDonLayVe_DAO.themDanhSachChiTietHoaDonLayVe(hoaDonLayVe.getDanhSachChiTietHoaDonLayVe())){
+            return false;
+        }
+
+        if(!VeDat_DAO.capNhatTrangThaiVeDat(danhSachVeDat)){
+            return false;
+        }
+
+        return true;
     }
 
 

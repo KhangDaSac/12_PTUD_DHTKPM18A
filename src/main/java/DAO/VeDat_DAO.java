@@ -50,4 +50,22 @@ public class VeDat_DAO {
         }
         return veDat_list;
     }
+
+    public static boolean capNhatTrangThaiVeDat(ArrayList<VeDat> danhSachVeDat){
+        try {
+            int length = danhSachVeDat.size();
+            String query = "update VeDat set trangThaiVeDat = 'DALAYVE' where maVeDat in ( " + "?, ".repeat(length - 1) +  "?)";
+            PreparedStatement statement = con.prepareStatement(query);
+
+            for(int i = 0; i < length; i++){
+                VeDat veDat = danhSachVeDat.get(i);
+                statement.setString(i + 1, veDat.getMaVeDat());
+            }
+            statement.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
 }

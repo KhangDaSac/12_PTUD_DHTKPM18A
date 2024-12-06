@@ -151,6 +151,7 @@ public class LayVe_GUI_Controller implements Initializable {
                 txtCCCD.setEditable(false);
             }
             hienThiThongTinKhachHang();
+            hoaDonLayVe.setKhachHangLayVe(khachHang);
         } catch (Exception e) {
             main_controller.showMessagesDialog(e.getMessage());
         }
@@ -170,6 +171,7 @@ public class LayVe_GUI_Controller implements Initializable {
             hoaDonDatVe_list.clear();
             hienThiDanhSachHoaDonDat();
             hienThiDanhSachVeDat(null);
+            hoaDonLayVe.setKhachHangLayVe(null);
         }
     }
 
@@ -309,7 +311,12 @@ public class LayVe_GUI_Controller implements Initializable {
         txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonLayVe.tongTienCuoi()));
     }
 
-
+    private void layVe(){
+        if(hoaDonLayVe == null || hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().isEmpty()){
+            return;
+        }
+        QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe);
+    }
 
     @FXML
     void btnChonVeLayOnAction(ActionEvent event) {
@@ -334,5 +341,6 @@ public class LayVe_GUI_Controller implements Initializable {
         String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
         hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
         hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
+        hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
     }
 }
