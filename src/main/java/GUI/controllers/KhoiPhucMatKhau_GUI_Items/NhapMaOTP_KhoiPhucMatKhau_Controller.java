@@ -1,6 +1,5 @@
 package GUI.controllers.KhoiPhucMatKhau_GUI_Items;
 
-import GUI.controllers.DangNhap_GUI_Controller;
 import GUI.controllers.KhoiPhucMatKhau_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;

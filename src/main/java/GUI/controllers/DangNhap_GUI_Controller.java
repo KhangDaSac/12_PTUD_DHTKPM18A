@@ -76,9 +76,9 @@ public class DangNhap_GUI_Controller {
     }
     public void chuyenTrangKhoiPhucMatKhau(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
             Scene sceneKhungGiaoDien = new Scene(fxmlLoader.load());
-            KhoiPhucMatKhau_GUI_Controller controller = fxmlLoader.load();
+            Main_Controller controller = fxmlLoader.load();
             controller.setStage(stage);
             stage.setScene(sceneKhungGiaoDien);
         } catch (Exception e) {

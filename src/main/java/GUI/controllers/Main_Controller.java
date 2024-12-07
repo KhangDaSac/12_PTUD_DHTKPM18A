@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Main_Controller implements Initializable {
+public class Main_Controller {
 
     @FXML
     private AnchorPane anpNoiDungTrang;
@@ -520,14 +520,11 @@ public class Main_Controller implements Initializable {
         return ShowMessagesDialog.showDialogWithLoading(stpKhung, "Loanding", "Loading");
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->{
-            if(nhanVien != null){
-                lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
-                lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
-            }
-        });
+    public void khoiTao(){
+        if(nhanVien != null){
+            lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
+            lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
+        }
     }
 
 
