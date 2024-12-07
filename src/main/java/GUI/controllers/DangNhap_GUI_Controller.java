@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -76,11 +77,15 @@ public class DangNhap_GUI_Controller {
     }
     public void chuyenTrangKhoiPhucMatKhau(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
-            Scene sceneKhungGiaoDien = new Scene(fxmlLoader.load());
-            Main_Controller controller = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene sceneKhungGiaoDien = new Scene(root);
+
+            KhoiPhucMatKhau_GUI_Controller controller = fxmlLoader.getController();
             controller.setStage(stage);
+
             stage.setScene(sceneKhungGiaoDien);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
