@@ -72,8 +72,20 @@ public class DangNhap_GUI_Controller {
 
     @FXML
     void lblQuenMatKhauOnMouseClicked(MouseEvent event) {
-
+        chuyenTrangKhoiPhucMatKhau();
     }
+    public void chuyenTrangKhoiPhucMatKhau(){
+        try {
+            FXMLLoader fxmlLoaderKhungGiaoDien = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
+            Scene sceneKhungGiaoDien = new Scene(fxmlLoaderKhungGiaoDien.load());
+            KhoiPhucMatKhau_GUI_Controller controller = fxmlLoaderKhungGiaoDien.load();
+            controller.setStage(stage);
+            stage.setScene(sceneKhungGiaoDien);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public NhanVien dangNhap() throws Exception {
         String tenDangNhap = txtTenDangNhap.getText();
@@ -84,5 +96,4 @@ public class DangNhap_GUI_Controller {
         else
             throw new Exception("Tài khoản hoặc mật khẩu không chính xác");
     }
-
 }

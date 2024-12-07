@@ -2,6 +2,7 @@ package GUI.controllers.KhoiPhucMatKhau_GUI_Items;
 
 import BUS.QuanLyNhanVien_BUS;
 import DTO.NhanVien;
+import GUI.controllers.DangNhap_GUI_Controller;
 import GUI.controllers.KhoiPhucMatKhau_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -23,6 +24,10 @@ public class NhapNhanVien_KhoiPhucMatKhau_Controller implements Initializable {
 
     @FXML
     private TextField txtMaNhanVien;
+
+    @FXML
+    private JFXButton btnQuayLai;
+
 
     private KhoiPhucMatKhau_GUI_Controller khoiPhucMatKhau_gui_controller;
 
@@ -56,4 +61,10 @@ public class NhapNhanVien_KhoiPhucMatKhau_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    @FXML
+    void btnQuayLaiOnAction(ActionEvent event) {
+        khoiPhucMatKhau_gui_controller.chuyenTrangDangNhap();
+    }
+
 }

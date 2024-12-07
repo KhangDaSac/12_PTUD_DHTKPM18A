@@ -8,8 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class TaiKhoan_DAO {
+    private static Connection con = ConnectDB.getInstance().getConnection();
     public static NhanVien dangNhap(String taiKhoan, String maKhauBam){
-        Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select nv.maNhanVien, tenNhanVien, CCCD, soDienThoai, diaChi, trangThaiNhanVien, loaiNhanVien" +
                     " from TaiKhoan tk " +
@@ -33,5 +33,20 @@ public class TaiKhoan_DAO {
 
         }
         return null;
+    }
+
+    public static boolean doiMatKhau(String maNhanVien, String matKhauMoi){
+        try {
+            String query = "update TaiKhoan set matKhau = ? where maNhanVien = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, matKhauMoi);
+            statement.setString(2, maNhanVien);
+            statement.execute();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 }

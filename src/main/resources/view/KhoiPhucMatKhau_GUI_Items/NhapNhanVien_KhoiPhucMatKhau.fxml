@@ -15,6 +15,14 @@
    <children>
       <VBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
+            <AnchorPane>
+               <children>
+                  <JFXButton fx:id="btnQuayLai" onAction="#btnQuayLaiOnAction" prefHeight="40.0" prefWidth="200.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Quay lại" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </AnchorPane>
             <AnchorPane prefHeight="70.0" styleClass="group" stylesheets="@../../css/All.css">
                <children>
                   <Label prefHeight="30.0" prefWidth="140.0" text="Mã nhân viên: " AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
@@ -22,7 +30,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtMaNhanVien" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../../css/All.css" text="NV2024000001" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TextField fx:id="txtMaNhanVien" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
