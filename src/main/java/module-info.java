@@ -25,11 +25,15 @@ module GUI.applications {
     requires org.apache.poi.ooxml;
     requires com.google.zxing;
     requires com.google.zxing.javase;
+    requires java.mail;
     exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
+    opens GUI.controllers.LayVe_GUI_Items to javafx.fxml;
     exports GUI.controllers.QuanLyChuyenTau_GUI_Items;
     opens GUI.controllers.QuanLyChuyenTau_GUI_Items to javafx.fxml;
 
-    // Other exports and opens statements
-    opens GUI.controllers.LayVe_GUI_Items to javafx.fxml;
+    exports GUI.controllers.KhoiPhucMatKhau_GUI_Items;
+    opens GUI.controllers.KhoiPhucMatKhau_GUI_Items to javafx.fxml;
+    exports utils;
+    opens utils to javafx.fxml;
 
 }

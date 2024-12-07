@@ -107,4 +107,12 @@ public class NhanVien {
 		return Objects.hashCode(maNhanVien);
 	}
 
+	public NhanVien(String maNhanVien, String CCCD, String tenNhanVien, String soDienThoai, String email, LoaiNhanVien loaiNhanVien) {
+		this.maNhanVien = maNhanVien;
+		this.CCCD = CCCD;
+		this.tenNhanVien = tenNhanVien;
+		this.soDienThoai = soDienThoai;
+		this.email = email;
+		this.loaiNhanVien = loaiNhanVien;
+	}
 }

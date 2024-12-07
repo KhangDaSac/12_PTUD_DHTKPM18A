@@ -23,12 +23,20 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <AnchorPane prefHeight="50.0" />
-            <AnchorPane layoutX="20.0" layoutY="292.0">
+            <AnchorPane>
                <children>
                   <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label fx:id="lblThongBaoGmailGui" style="-fx-alignment: center; -fx-font-size: 16; -fx-text-fill: red;" />
+                        <Label fx:id="lblThoiGianConLai" style="-fx-font-size: 16;" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="20.0" layoutY="292.0" prefHeight="50.0">
+               <children>
+                  <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="lblThongBaoGmailGui" prefHeight="50.0" style="-fx-alignment: center; -fx-font-size: 14; -fx-text-fill: red;" />
                      </children>
                   </HBox>
                </children>
