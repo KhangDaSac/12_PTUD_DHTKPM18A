@@ -120,7 +120,7 @@ public class ChuyenTau_BanVe_Controller implements Initializable {
     }
 
     public void chonChuyenTau(){
-        banVe_GUI_Controller.setChuyenTauDangChon(soThuTu);
+        banVe_GUI_Controller.setThuTuChuyenTauDangChon(soThuTu);
         banVe_GUI_Controller.timDanhSachToaTau(lblMaChuyenTau.getText());
         banVe_GUI_Controller.boChonTatCaChuyenTau();
         Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-green.png"));

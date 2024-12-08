@@ -98,9 +98,9 @@ public class Cho_BanVe_Controller implements Initializable {
 
     public boolean kiemTraVeTrongGio(){
         int thuTuGaDi = banVe_GUI_controller.getChuyenTauControllerList()
-                .get(banVe_GUI_controller.getChuyenTauDangChon()).getChiTietChuyenTauDi().getThuTuGa();
+                .get(banVe_GUI_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDi().getThuTuGa();
         int thuTuGaDen = banVe_GUI_controller.getChuyenTauControllerList()
-                .get(banVe_GUI_controller.getChuyenTauDangChon()).getChiTietChuyenTauDen().getThuTuGa();
+                .get(banVe_GUI_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDen().getThuTuGa();
 
         for(Ve ve : banVe_GUI_controller.getHoaDonBanVe().getDanhSachVe()){
             int thuTuGaDiCuaVe = ve.getThongTinGaTauDi().getThuTuGa();

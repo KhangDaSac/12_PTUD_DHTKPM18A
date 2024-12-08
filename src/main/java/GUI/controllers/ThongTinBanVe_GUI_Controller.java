@@ -112,7 +112,6 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 for (Ve ve : hoaDonBanVe.getDanhSachVe()){
                     CreatePDF.taoVe(ve);
                 }
-                hoaDonBanVe = null;
                 main_controller.showMessagesDialog("Bán vé thành công");
                 main_controller.quayLaiTrangBanVe();
             }else{

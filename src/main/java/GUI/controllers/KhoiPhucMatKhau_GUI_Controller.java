@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,16 +32,6 @@ public class KhoiPhucMatKhau_GUI_Controller implements Initializable {
         this.nhanVien = nhanVien;
     }
 
-    private Stage stage;
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chuyenTrangNhapNhanVien();
@@ -48,12 +39,12 @@ public class KhoiPhucMatKhau_GUI_Controller implements Initializable {
 
     public void chuyenTrangDangNhap(){
         try {
+            Window window = anpNoiDung.getScene().getWindow();
+            Stage stage = (Stage) window;
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
             Parent root = fxmlLoader.load();
-            Scene sceneKhungGiaoDien = new Scene(root);
-            DangNhap_GUI_Controller controller = fxmlLoader.getController();
-            controller.setStage(stage);
-            stage.setScene(sceneKhungGiaoDien);
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.centerOnScreen();
         } catch (Exception e) {
         }
@@ -61,12 +52,13 @@ public class KhoiPhucMatKhau_GUI_Controller implements Initializable {
 
     public void chuyenTrangDangNhap(String thongBao){
         try {
+            Window window = anpNoiDung.getScene().getWindow();
+            Stage stage = (Stage) window;
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
             Parent root = fxmlLoader.load();
-            Scene sceneKhungGiaoDien = new Scene(root);
+            Scene scene = new Scene(root);
             DangNhap_GUI_Controller controller = fxmlLoader.getController();
-            controller.setStage(stage);
-            stage.setScene(sceneKhungGiaoDien);
+            stage.setScene(scene);
             stage.centerOnScreen();
             controller.showMessagesDialog(thongBao);
         } catch (Exception e) {

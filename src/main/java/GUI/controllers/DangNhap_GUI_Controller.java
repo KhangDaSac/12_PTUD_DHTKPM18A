@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import utils.ShowMessagesDialog;
 
 public class DangNhap_GUI_Controller {
@@ -45,30 +46,18 @@ public class DangNhap_GUI_Controller {
     @FXML
     private Label lblThongBao;
 
-    private Stage stage;
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
     @FXML
     void btnDangNhapOnAction(ActionEvent event) {
         NhanVien nhanVien = null;
         try {
             nhanVien = dangNhap();
             if(nhanVien != null){
-                FXMLLoader fxmlLoaderKhungGiaoDien = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
-                Scene sceneKhungGiaoDien = new Scene(fxmlLoaderKhungGiaoDien.load());
-                Main_Controller main_controller = fxmlLoaderKhungGiaoDien.getController();
-                main_controller.setStage(stage);
-                main_controller.setNhanVien(nhanVien);
-                stage.setResizable(true);
-                stage.setMaximized(true);
-                stage.setScene(sceneKhungGiaoDien);
+                Window window = stpDangNhap.getScene().getWindow();
+                Stage stage = (Stage) window;
+                FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
+                Scene scene = new Scene(fxmlLoaderDangNhap.load());
+                stage.setScene(scene);
+                stage.centerOnScreen();
             }
         } catch (Exception e) {
             lblThongBao.setText(e.getMessage());
@@ -87,15 +76,13 @@ public class DangNhap_GUI_Controller {
     }
     public void chuyenTrangKhoiPhucMatKhau(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene sceneKhungGiaoDien = new Scene(root);
-
-            KhoiPhucMatKhau_GUI_Controller controller = fxmlLoader.getController();
-            controller.setStage(stage);
-            stage.setScene(sceneKhungGiaoDien);
+            Window window = stpDangNhap.getScene().getWindow();
+            Stage stage = (Stage) window;
+            FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
+            Scene scene = new Scene(fxmlLoaderDangNhap.load());
+            stage.setScene(scene);
             stage.centerOnScreen();
-            stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

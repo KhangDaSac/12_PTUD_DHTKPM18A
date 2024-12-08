@@ -7,6 +7,7 @@ import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.*;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -117,8 +118,24 @@ public class BanVe_GUI_Controller implements Initializable {
 
     private HoaDonBanVe hoaDonBanVe;
 
-    private int chuyenTauDangChon;
-    private int toaTauDangChon;
+    private int thuTuChuyenTauDangChon;
+    private int thuTuToaTauDangChon;
+
+    public int getThuTuToaTauDangChon() {
+        return thuTuToaTauDangChon;
+    }
+
+    public void setThuTuToaTauDangChon(int thuTuToaTauDangChon) {
+        this.thuTuToaTauDangChon = thuTuToaTauDangChon;
+    }
+
+    public int getThuTuChuyenTauDangChon() {
+        return thuTuChuyenTauDangChon;
+    }
+
+    public void setThuTuChuyenTauDangChon(int thuTuChuyenTauDangChon) {
+        this.thuTuChuyenTauDangChon = thuTuChuyenTauDangChon;
+    }
 
     private ArrayList<Cho> choChonList = new ArrayList<Cho>();
 
@@ -130,14 +147,6 @@ public class BanVe_GUI_Controller implements Initializable {
         this.choChonList = choChonList;
     }
 
-    public int getToaTauDangChon() {
-        return toaTauDangChon;
-    }
-
-    public void setToaTauDangChon(int toaTauDangChon) {
-        this.toaTauDangChon = toaTauDangChon;
-    }
-
     public HoaDonBanVe getHoaDonBanVe() {
         return hoaDonBanVe;
     }
@@ -146,13 +155,6 @@ public class BanVe_GUI_Controller implements Initializable {
         this.hoaDonBanVe = hoaDonBanVe;
     }
 
-    public int getChuyenTauDangChon() {
-        return chuyenTauDangChon;
-    }
-
-    public void setChuyenTauDangChon(int chuyenTauDangChon) {
-        this.chuyenTauDangChon = chuyenTauDangChon;
-    }
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
@@ -214,14 +216,23 @@ public class BanVe_GUI_Controller implements Initializable {
         GaTau gaTauDen = cmbGaTauDen.getValue();
 
         LocalDate ngayDi = dapNgayKhoiHanh.getValue();
-        try {
-            gaDi = gaTauDi;
-            gaDen = gaTauDen;
-            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
-            hienThiDanhSachChuyenTau(chuyenTauList);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                    gaDi = gaTauDi;
+                    gaDen = gaTauDen;
+                    chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
+                    hienThiDanhSachChuyenTau(chuyenTauList);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return null;
+            }
+        };
+
+        main_Controller.startLongTask(task);
+
     }
 
     public void timDanhSachToaTau(String maChuyenTau){
@@ -286,7 +297,7 @@ public class BanVe_GUI_Controller implements Initializable {
             controller.setSoThuTu(i);
             hboxDanhSachToaTau.getChildren().add(anchorPane);
         }
-        toaTauDangChon = 0;
+        thuTuToaTauDangChon = 0;
         toaTauControllerList.getFirst().chonToaTau();
     }
 
@@ -353,7 +364,7 @@ public class BanVe_GUI_Controller implements Initializable {
         }
 
         choControllerList.clear();
-        ChuyenTau_BanVe_Controller controller = chuyenTauControllerList.get(chuyenTauDangChon);
+        ChuyenTau_BanVe_Controller controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
         double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
@@ -515,7 +526,7 @@ public class BanVe_GUI_Controller implements Initializable {
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
 
-                ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
+                ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuToaTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
                 chiTietChuyenTauDi.setGaTau(gaDi);
@@ -527,7 +538,7 @@ public class BanVe_GUI_Controller implements Initializable {
 
                 Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
                 ve.setLoaiVe(LoaiVe.VECANHAN);
-                cho.setToaTau(toaTauList.get(toaTauDangChon));
+                cho.setToaTau(toaTauList.get(thuTuToaTauDangChon));
                 ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho, cho.getGiaCho());
 
@@ -547,11 +558,11 @@ public class BanVe_GUI_Controller implements Initializable {
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
             if(choChonList.size() < 5){
-                //main_Controller.showMessagesDialog("Vé tập thể phải từ 5 người trở lên");
+                main_Controller.showMessagesDialog("Vé tập thể phải từ 5 người trở lên");
                 System.out.println("Vé tập thể phải từ 5 người trở lên");
                 return;
             }
-            ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(chuyenTauDangChon);
+            ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
             ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
             ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
 

@@ -4,7 +4,9 @@ import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
 import DTO.NhanVien;
 import DTO.Ve;
+import GUI.applications.LoadingUtil;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 public class Main_Controller {
 
@@ -114,10 +117,8 @@ public class Main_Controller {
     private VBox vboxQuanLyVeDat;
 
 
-
-
-
-    private Stage stage;
+    @FXML
+    private StackPane stpLoading;
 
     private NhanVien nhanVien;
 
@@ -127,14 +128,6 @@ public class Main_Controller {
 
     public void setNhanVien(NhanVien nhanVien) {
         this.nhanVien = nhanVien;
-    }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 
     //Thong ke va bao cao
@@ -516,10 +509,6 @@ public class Main_Controller {
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
-    public boolean showLoadingDialog(){
-        return ShowMessagesDialog.showDialogWithLoading(stpKhung, "Loanding", "Loading");
-    }
-
     public void khoiTao(){
         if(nhanVien != null){
             lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
@@ -531,5 +520,12 @@ public class Main_Controller {
     @FXML
     void btnTimVeOnAction(ActionEvent event) {
 
+    }
+
+    public void startLongTask(Task<Void> task) {
+        LoadingUtil.runWithLoading(
+                stpLoading,
+                task
+        );
     }
 }
