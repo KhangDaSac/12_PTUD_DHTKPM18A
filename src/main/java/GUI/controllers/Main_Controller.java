@@ -1,9 +1,7 @@
 package GUI.controllers;
 
-import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
 import DTO.NhanVien;
-import DTO.Ve;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +19,6 @@ import utils.ShowMessagesDialog;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Main_Controller implements Initializable {
@@ -333,7 +330,7 @@ public class Main_Controller implements Initializable {
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("HỦY VÉ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_Test.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();

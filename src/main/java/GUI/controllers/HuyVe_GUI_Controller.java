@@ -10,17 +10,20 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class HuyVe_GUI_Controller {
+public class HuyVe_GUI_Controller implements Initializable {
 
     @FXML
     private JFXButton btnBoChonTatCa;
@@ -47,7 +50,7 @@ public class HuyVe_GUI_Controller {
     private TextField txtTenKhachHang;
 
     @FXML
-    private TextField txtTongTien;
+    private TextField txtTongTienHoan;
 
     @FXML
     private VBox vboxChiTietVe;
@@ -83,11 +86,28 @@ public class HuyVe_GUI_Controller {
 
     private ArrayList<HoaDonBanVe> hoaDonList;
     private ArrayList<Ve> veList;
-    private ArrayList<ChiTietVeDat> chiTietPhieuDatVeList;
+    private ArrayList<ChiTietVe> chiTietVeList;
 
     private HoaDonHuyVe hoaDonHuyVe;
     private Ve veKhachHang;
     private CaLamViec caLamViec;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txtCCCD.setEditable(true);
+        txtMaKhachHang.setEditable(false);
+        txtTenKhachHang.setEditable(false);
+        txtSoDienThoai.setEditable(false);
+        txtTongTienHoan.setEditable(false);
+
+        // Khởi tạo các dữ liệu nếu cần thiết
+        hoaDonList = new ArrayList<>();
+        veList = new ArrayList<>();
+        chiTietVeList = new ArrayList<>();
+
+        // Thực hiện việc cập nhật danh sách vé nếu có sẵn
+        capNhatDanhSachVe();
+    }
 
     @FXML
     void btnBoChonTatCaOnAction(ActionEvent event) {
@@ -137,9 +157,8 @@ public class HuyVe_GUI_Controller {
             txtCCCD.selectAll();
             xoaThongTinKhachHang();
             hoaDonList.clear();
-
             veList.clear();
-            chiTietPhieuDatVeList.clear();
+            chiTietVeList.clear();
             capNhatDanhSachVe();
             hienThiDanhSachChiTietVe(null);
             hienThiDanhSachHoaDon();
@@ -221,31 +240,28 @@ public class HuyVe_GUI_Controller {
         vboxChiTietVe.getChildren().clear();
         if(phieuDatVe == null)
             return;
-        for(ChiTietVeDat chiTietVeDat : chiTietPhieuDatVeList){
-            if(chiTietVeDat.getVeDat().equals(phieuDatVe)){
+        for(ChiTietVe chiTietVe : chiTietVeList){
+            if(chiTietVe.getVe().equals(veKhachHang)){
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI_Items/ChiTietPhieuDatVe_LayVe.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_Items/ChiTietVe_HuyVe.fxml"));
                     Parent anchorPane = loader.load();
-
-
                     vboxChiTietVe.getChildren().add(anchorPane);
                 }catch (IOException e){
-
+                    return ;
                 }
             }
         }
-
     }
 
     public void boChonTatCaPhieuDatVe() {
         for(Ve_HuyVe_Controller controller : veHuyVeControllerList){
-            controller.boChonPhieuDatVe();
+            controller.boChonVe();
         }
     }
 
     public void chonTatCaVe(){
         for(Ve_HuyVe_Controller controller : veHuyVeControllerList){
-            controller.chonLayVe();
+            controller.chonHuyVe();
         }
     }
 
@@ -300,10 +316,5 @@ public class HuyVe_GUI_Controller {
 //        return tongTien - tongTienCoc;
         return 0;
     }
-
-
-
-
-
 
 }

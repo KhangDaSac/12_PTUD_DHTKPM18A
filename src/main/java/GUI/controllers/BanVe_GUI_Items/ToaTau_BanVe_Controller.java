@@ -109,8 +109,8 @@ public class ToaTau_BanVe_Controller {
         tooltip.setHideDelay(Duration.millis(0));
         tooltip.setStyle(
                 "-fx-font-size: 16px; " +
-                "-fx-background-color: white; " +
-                "-fx-text-fill: black; "
+                        "-fx-background-color: white; " +
+                        "-fx-text-fill: black; "
         );
         Tooltip.install(anpToaTau, tooltip);
     }
@@ -124,8 +124,8 @@ public class ToaTau_BanVe_Controller {
     }
 
     public void chonToaTau(){
+        banVe_GUI_Controller.setThuTuToaTauDangChon(soThuTu);
         banVe_GUI_Controller.timDanhSachCho(toaTau.getMaToaTau());
-        banVe_GUI_Controller.setToaTauDangChon(soThuTu);
         banVe_GUI_Controller.boChonTatCaToaTau();
         Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
         imvToaTau.setImage(image);

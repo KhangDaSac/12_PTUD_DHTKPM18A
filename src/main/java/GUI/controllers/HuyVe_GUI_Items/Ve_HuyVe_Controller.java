@@ -22,10 +22,10 @@ import java.util.ResourceBundle;
 public class Ve_HuyVe_Controller implements Initializable {
 
     @FXML
-    private AnchorPane anpChonPhieuDatVe;
+    private AnchorPane anpChonVe;
 
     @FXML
-    private AnchorPane anpPhieuDatVe;
+    private AnchorPane anpVe;
 
     @FXML
     private HBox hboxGiaVeCuoi;
@@ -92,8 +92,6 @@ public class Ve_HuyVe_Controller implements Initializable {
         this.huyVe_gui_controller = huyVe_gui_controller;
     }
 
-
-
     public boolean isDangChon() {
         return dangChon;
     }
@@ -123,12 +121,12 @@ public class Ve_HuyVe_Controller implements Initializable {
         if (huyVe_gui_controller != null) {
             huyVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(ve.getHoaDonBanVe().getMaHoaDonBanVe());
             huyVe_gui_controller.hienThiDanhSachChiTietVe(ve);
-            chonPhieuDatVe();
+            chonVe();
             if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
                 if (chonHuyVe) {
                     boChonHuyVe();
                 } else {
-                    chonLayVe();
+                    chonHuyVe();
                 }
             }
 
@@ -147,44 +145,43 @@ public class Ve_HuyVe_Controller implements Initializable {
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
         lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
-        anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
-        anpChonPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
+        anpVe.getStylesheets().add(getClass().getResource("/css/HuyVe_GUI_Items/Ve_HuyVe.css").toExternalForm());
+        anpChonVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
 
         if (ve.getLoaiVe().equals(LoaiVe.VECANHAN)) {
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
-            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-caNhan");
+            anpChonVe.getStyleClass().add("ve-left-caNhan");
         } else if (ve.getLoaiVe().equals(LoaiVe.VETAPTHE)) {
 
-            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-tapThe");
+            anpChonVe.getStyleClass().add("ve-left-tapThe");
         }
 
         if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/Da.png")));
         } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DADOI)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/DaLayVe.png")));
         } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DAHUY)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/DaHuy.png")));
         }
 
         imvChonPhieuDatVe.setVisible(false);
     }
 
-    public void chonPhieuDatVe() {
+    public void chonVe() {
         huyVe_gui_controller.boChonTatCaPhieuDatVe();
-
         dangChon = true;
-        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeKhongChon");
-        anpPhieuDatVe.getStyleClass().add("phieuDatVeDangChon");
+        anpVe.getStyleClass().removeAll("veKhongChon");
+        anpVe.getStyleClass().add("veDangChon");
     }
 
-    public void boChonPhieuDatVe() {
+    public void boChonVe() {
         dangChon = false;
-        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeDangChon");
-        anpPhieuDatVe.getStyleClass().add("phieuDatVeKhongChon");
+        anpVe.getStyleClass().removeAll("veDangChon");
+        anpVe.getStyleClass().add("veKhongChon");
     }
 
-    public void chonLayVe() {
+    public void chonHuyVe() {
         if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
             chonHuyVe = true;
             imvChonPhieuDatVe.setVisible(true);

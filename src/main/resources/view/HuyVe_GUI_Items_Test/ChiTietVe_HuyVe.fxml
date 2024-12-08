@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpChiTietPhieuDatVe" minHeight="210.0" onMouseClicked="#anpChiTietPhieuDatVeOnMouseClicked" prefHeight="210.0" prefWidth="440.0" styleClass="ve" stylesheets="@../../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller">
+<AnchorPane fx:id="anpChiTietVe" minHeight="210.0" onMouseClicked="#anpChiTietVeOnMouseClicked" prefHeight="210.0" prefWidth="440.0" styleClass="ve" stylesheets="@../../css/BanVe_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.ChiTietPhieuDatVe_LayVe_Controller">
     <children>
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <children>

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpPhieuDatVe" minHeight="160.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="400.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller">
+<AnchorPane fx:id="anpVe" minHeight="160.0" onMouseClicked="#anpVeOnMouseClicked" prefWidth="400.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.HuyVe_GUI_Items.Ve_HuyVe_Controller">
     <children>
         <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <children>
@@ -156,7 +156,7 @@
                                     <children>
                                         <ImageView fx:id="imvChonPhieuDatVe" fitHeight="30.0" fitWidth="30.0">
                                             <image>
-                                                <Image url="@../../images/LayVe_GUI/ChonPhieuDatVe.png" />
+                                                <Image url="@../../images/HuyVe_GUI/DangSuDung.png" />
                                             </image>
                                         </ImageView>
                                     </children>
