@@ -81,6 +81,31 @@ public class Ve_DAO {
         }
         return danhSachVe;
     }
+    public static ArrayList<Ve> getDanhSachVeTheoMaHoaDonDoi(String maHoaDon){
+        ArrayList<Ve> dsVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "EXEC timVeCuVeMoiTheoMaHoaDonDoiVe ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")));
+                ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")));
+                ChiTietVe chiTietVeMoi = new ChiTietVe(new Ve(rs.getString("maVeMoi")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
+                ChiTietVe chiTietVeCu = new ChiTietVe(new Ve(rs.getString("maVeCu")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
+                Ve veMoi = new Ve(rs.getString("maVeMoi"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                Ve veCu = new Ve(rs.getString("maVeCu"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                veMoi.addChiTietVe(chiTietVeMoi);
+                veCu.addChiTietVe(chiTietVeCu);
+                dsVe.add(veMoi);
+                dsVe.add(veCu);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return dsVe;
+    }
    
 
 }

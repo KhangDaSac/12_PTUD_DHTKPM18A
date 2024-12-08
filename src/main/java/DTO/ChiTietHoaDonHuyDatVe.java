@@ -74,4 +74,10 @@ public class ChiTietHoaDonHuyDatVe {
     public double soTienHoanLai(){
         return veDat.tienDatCoc() * (1 - phanTramLePhi);
     }
+
+    public ChiTietHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe, VeDat veDat, double phanTramLePhi) {
+        this.hoaDonHuyDatVe = hoaDonHuyDatVe;
+        this.veDat = veDat;
+        this.phanTramLePhi = phanTramLePhi;
+    }
 }

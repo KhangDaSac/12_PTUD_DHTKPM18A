@@ -9,75 +9,37 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class VeDat_DAO {
-    public static ArrayList<VeDat> getDanhSachPhieuDatVeTheoMaHoaDon(String maHD) {
-        ArrayList<VeDat> phieuDatVeList = new ArrayList<VeDat>();
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "exec UDP_TimDanhSachPhieuDatVeTheoMaHoaDon ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maHD);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String maPhieuDatVe = rs.getString("maPhieuDatVe");
-                HoaDonBanVe hoaDonBanVe = new HoaDonBanVe(rs.getString("maHoaDon"));
-                ChiTietChuyenTau chiTietChuyenTauDi = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDi"), rs.getString("tenGaDi")),
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime()
-                );
+  public static ArrayList<VeDat> getDanhSachVeDatTheoMaHoaDonDat(String maHoaDon){
+      ArrayList<VeDat> dsVeDat = new ArrayList<>();
+      Connection con = ConnectDB.getInstance().getConnection();
+      String query = "EXEC timDanhSachVeDatTheoMaHoaDonDat ?";
+      try{
+          PreparedStatement statement = con.prepareStatement(query);
+          statement.setString(1,maHoaDon);
+          ResultSet rs = statement.executeQuery();
+          while(rs.next()){
+              ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")),rs.getTimestamp("thoiGianDi").toLocalDateTime());
+              ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")),rs.getTimestamp("thoiGianDen").toLocalDateTime());
+              LoaiCho loaiCho = LoaiCho_DAO.getLoaiChoTheoMa(rs.getString("maLoaiCho"));
+              ChiTietVeDat chiTietVeDat = new ChiTietVeDat(new Cho(rs.getString("maCho"),rs.getInt("soCho"),loaiCho ) ,new VeDat(rs.getString("maVeDat")),rs.getDouble("giaCho"),new KhachHang(rs.getString("maKhachHang")),rs.getDouble("phanTramGiamGia"));
+              VeDat veDat = null;
+              for(VeDat vd: dsVeDat){
+                  if(vd.getMaVeDat().equals(rs.getString("maVeDat"))){
+                      veDat=vd;
+                  }
+              }
+              if(veDat==null){
+                  veDat = new VeDat(rs.getString("maVeDat"),new HoaDonDatVe(rs.getString("maHoaDonDatVe")),thongTinGaDi,thongTinGaDen,TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")),LoaiVe.valueOf(rs.getString("loaiVe")));
+                  dsVeDat.add(veDat);
+              }
+              veDat.addChiTietVeDat(chiTietVeDat);
+              System.out.println("-----------------------"+ veDat.getDanhSachChiTietVeDat().getFirst().getCho().getMaCho());
+          }
 
-                ChiTietChuyenTau chiTietChuyenTauDen = new ChiTietChuyenTau(
-                        new ChuyenTau(rs.getString("maChuyenTau")),
-                        new GaTau(rs.getString("maGaDen"), rs.getString("tenGaDen")));
-                double phanTramGiamGiaVeTapThe = rs.getDouble("phanTramGiamGiaVeTapThe");
-                double tongTienVe = rs.getDouble("tongTienVe");
-                double tongTienDatCoc = rs.getDouble("tongTienDatCoc");
-                TrangThaiVeDat trangThaiPhieuDatVe = TrangThaiVeDat.valueOf(rs.getString("trangThaiPhieuDatVe"));
-                LoaiVe loaiPhieuDatVe = LoaiVe.valueOf(rs.getString("loaiPhieuDatVe"));
+      } catch (Exception e) {
+          throw new RuntimeException(e);
+      }
+      return  dsVeDat;
+  }
 
-//                VeDat phieuDatVe = new VeDat(
-//                        maPhieuDatVe,
-//                        hoaDonBanVe,
-//                        chiTietChuyenTauDi,
-//                        chiTietChuyenTauDen,
-//                        phanTramGiamGiaVeTapThe,
-//                        tongTienVe,
-//                        tongTienDatCoc,
-//                        trangThaiPhieuDatVe,
-//                        loaiPhieuDatVe
-//                );
-
-                //phieuDatVeList.add(phieuDatVe);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return phieuDatVeList;
-    }
-
-    public static boolean capNhatTrangThaiPhieuDatVe(String maPhieuDatVe, String trangThai){
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "UPDATE PhieuDatVe SET trangThaiPhieuDatVe = ? WHERE maPhieuDatVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, trangThai);
-            statement.setString(2, maPhieuDatVe);
-            statement.execute();
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void huyPhieuDatVe(String maPhieuDatVe) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        try {
-            String query = "update PhieuDatVe set trangThaiPhieuDatVe = 'DAHUY' where maPhieuDatVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maPhieuDatVe);
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

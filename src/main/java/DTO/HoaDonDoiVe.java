@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class HoaDonDoiVe {
-	private String maLichSuDoi;
+	private String maHoaDonDoiVe;
 	private LocalDateTime thoiGianDoiVe;
 	private double lePhi;
 	private Ve veCu;
@@ -13,12 +13,12 @@ public class HoaDonDoiVe {
 
 	private final double LEPHIDOIVE = 20000;
 
-	public String getMaLichSuDoi() {
-		return maLichSuDoi;
+	public String getMaHoaDonDoiVe() {
+		return maHoaDonDoiVe;
 	}
 
-	public void setMaLichSuDoi(String maLichSuDoi) {
-		this.maLichSuDoi = maLichSuDoi;
+	public void setMaHoaDonDoiVe(String maHoaDonDoiVe) {
+		this.maHoaDonDoiVe = maHoaDonDoiVe;
 	}
 
 	public LocalDateTime getThoiGianDoiVe() {
@@ -66,16 +66,16 @@ public class HoaDonDoiVe {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		HoaDonDoiVe that = (HoaDonDoiVe) o;
-		return Objects.equals(maLichSuDoi, that.maLichSuDoi);
+		return Objects.equals(maHoaDonDoiVe, that.maHoaDonDoiVe);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(maLichSuDoi);
+		return Objects.hashCode(maHoaDonDoiVe);
 	}
 
 	public HoaDonDoiVe(String maLichSuDoi) {
-		this.maLichSuDoi = maLichSuDoi;
+		this.maHoaDonDoiVe = maLichSuDoi;
 	}
 
 	public double tongTienCuoi(){

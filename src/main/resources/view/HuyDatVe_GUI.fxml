@@ -6,8 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -73,86 +71,80 @@
                                       </JFXButton>
                                   </children>
                               </HBox>
-                              <TableView fx:id="tableView" prefHeight="568.0" prefWidth="743.0" styleClass="chuTrongTable">
-                                  <columns>
-                                      <TableColumn fx:id="colMaHoaDon" prefWidth="148.79999387264252" text="Mã hóa đơn" />
-                                      <TableColumn fx:id="colTenKhachHang" prefWidth="147.20001220703125" text="Tên khách hàng" />
-                                      <TableColumn fx:id="colNgayThanhToan" prefWidth="160.0" text="Ngày thanh toán" />
-                                      <TableColumn fx:id="colTongTienCoc" prefWidth="142.39999389648438" text="Tổng tiền cọc" />
-                                      <TableColumn fx:id="colTongTien" prefWidth="143.199951171875" text="Tổng tiền" />
-
-                                  </columns>
-                                  <VBox.margin>
-                                      <Insets top="30.0" />
-                                  </VBox.margin>
-                              </TableView>
+                        <AnchorPane prefHeight="608.0" prefWidth="726.0">
+                           <children>
+                              <ScrollPane layoutX="3.0" layoutY="51.0" prefHeight="554.0" prefWidth="715.0">
+                                 <content>
+                                    <VBox fx:id="vboxDanhSachHoaDonDatVe" prefHeight="558.0" prefWidth="695.0" />
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="214.0" layoutY="14.0" prefHeight="30.0" prefWidth="262.0" text="Danh sách hóa đơn đặt vé">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                           </children>
                       </VBox>
                   <VBox>
                      <children>
                         <HBox>
                            <children>
-                                <Label text="Danh sách phiếu đặt vé">
-                                    <font>
-                                        <Font size="16.0" />
-                                    </font>
-                                 <HBox.margin>
-                                    <Insets top="40.0" />
-                                 </HBox.margin>
-                                </Label>
-                                <Button fx:id="btnChonTatCaPhieuDatVe" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-tim-kiem" text="Chọn tất cả các phiếu">
+                                <Button fx:id="btnChonTatCaPhieuDatVe" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Bỏ chọn tất cả các vé">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
                                     <graphic>
                                         <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/BanVe_GUI/ChonTatCa.png" />
+                                                <Image url="@../images/LayVe_GUI/BoChonTatCa.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                  <HBox.margin>
-                                    <Insets left="80.0" top="20.0" />
+                                    <Insets left="5.0" right="70.0" />
                                  </HBox.margin>
                                 </Button>
+                              <Button fx:id="btnBoChonTatCaPhieuDatVe1" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Chọn tất cả các vé">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="31.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/BanVe_GUI/ChonTatCa.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
                            </children>
                         </HBox>
-                          <AnchorPane prefHeight="248.0" prefWidth="482.0">
+                          <AnchorPane prefHeight="444.0" prefWidth="526.0">
                               <children>
-                                  <ScrollPane layoutX="6.0" layoutY="7.0" prefHeight="248.0" prefWidth="518.0">
+                                  <ScrollPane layoutX="6.0" layoutY="58.0" prefHeight="439.0" prefWidth="518.0">
                                  <content>
-                                    <VBox fx:id="vboxDanhSachPhieuDatVe" prefHeight="246.0" prefWidth="502.0" />
+                                    <VBox fx:id="vboxDanhSachVeDat" prefHeight="438.0" prefWidth="502.0" />
                                  </content>
                                   </ScrollPane>
+                              <Label layoutX="14.0" layoutY="14.0" text="Danh sách vé đặt">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
                               </children>
                           </AnchorPane>
-                          <Label text="Chi tiết phiếu đặt vé">
-                              <font>
-                                  <Font name="System Bold" size="16.0" />
-                              </font>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                          </Label>
-                          <AnchorPane prefHeight="170.0" prefWidth="476.0">
-                           <children>
-                                  <ScrollPane layoutX="7.0" layoutY="2.0" prefHeight="192.0" prefWidth="518.0">
-                                 <content>
-                                    <VBox fx:id="vBoxDanhSachChiTietPhieuDatVe" prefHeight="200.0" prefWidth="503.0" />
-                                 </content>
-                                  </ScrollPane>
-                           </children>
-                          </AnchorPane>
-                          <HBox prefHeight="101.0" prefWidth="526.0">
+                          <AnchorPane prefHeight="170.0" prefWidth="476.0" />
+                          <HBox>
                               <children>
-                              <VBox>
+                              <VBox prefHeight="244.0" prefWidth="199.0">
                                  <children>
                                     <Label text="Tổng tiền trả khách">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="txtTongTienTraKhach" prefHeight="58.0" prefWidth="199.0" styleClass="box-thong-tin">
+                                    <TextField fx:id="txtTongTienTraKhach" prefHeight="54.0" prefWidth="199.0" styleClass="box-thong-tin">
                                        <font>
                                           <Font size="16.0" />
                                        </font></TextField>

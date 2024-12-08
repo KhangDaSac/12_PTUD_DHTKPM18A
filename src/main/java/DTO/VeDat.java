@@ -121,11 +121,13 @@ public class VeDat {
 		}else{
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
-
+		this.phanTramDatCoc = PHANTRAMDATCOC;
+		this.danhSachChiTietVeDat = new ArrayList<>();
 	}
 
 	public VeDat(String maVeDat) {
 		this.maVeDat = maVeDat;
+		this.danhSachChiTietVeDat = new ArrayList<>();
 	}
 
 	public double tienVe(){

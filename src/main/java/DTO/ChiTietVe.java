@@ -70,7 +70,7 @@ public class ChiTietVe {
 		this.giaCho = giaCho;
 	}
 
-	public ChiTietVe(Ve ve) {
+	public ChiTietVe(Ve ve, Cho maCho, KhachHang maKhachHang, double giaCho, double phanTramGiamGia) {
 		this.ve = ve;
 	}
 

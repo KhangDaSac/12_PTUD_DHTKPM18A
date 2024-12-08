@@ -6,14 +6,13 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ChiTietHoaDonLayVe_DAO {
-    public static ArrayList<ChiTietHoaDonLayVe> getDanhSachChiTietHoaDonLayVeTheoMaHoaDonLayVe(String maHoaDon){
-        ArrayList<ChiTietHoaDonLayVe> dsChiTietHoaDonLayVe = new ArrayList<>();
+public class ChiTietHoaDonHuyDatVe_DAO {
+    public static ArrayList<ChiTietHoaDonHuyDatVe> getDanhSachChiTietHoaDonHuyDatVeTheoMaHoaDonHuyDatVe(String maHoaDon){
+        ArrayList<ChiTietHoaDonHuyDatVe> dsChiTietHoaDonHuyDatVe = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        String query = "EXEC timDanhSachChiTietHoaDonLayVeTheoMaHoaDon ?";
+        String query = "EXEC timDanhSachChiTietHoaDonHuyDatVeTheoMaHoaDonHuyDatVe ?";
         try{
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
@@ -24,21 +23,21 @@ public class ChiTietHoaDonLayVe_DAO {
                 ChiTietChuyenTau thongTinGaTauDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")), rs.getTimestamp("thoiGianDen").toLocalDateTime());
                 VeDat veDat = new VeDat(rs.getString("maVeDat"),hoaDonDatVe,thongTinGaTauDi,thongTinGaTauDen,TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")),LoaiVe.valueOf(rs.getString("loaiVe")));
                 ChiTietVeDat chiTietVeDat = new ChiTietVeDat(new Cho(rs.getString("maCho")),veDat,rs.getDouble("giaCho"),new KhachHang(rs.getString("maKhachHang")),rs.getDouble("phanTramGiamGia"));
-                ChiTietHoaDonLayVe chiTietHoaDonLayVe = null;
-                for(ChiTietHoaDonLayVe cthd:dsChiTietHoaDonLayVe) {
-                    if (cthd.getHoaDonLayVe().getMaHoaDonLayVe().equals(rs.getString("maHoaDonLayVe"))) {
-                        chiTietHoaDonLayVe = cthd;
+                ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = null;
+                for(ChiTietHoaDonHuyDatVe cthd:dsChiTietHoaDonHuyDatVe) {
+                    if (cthd.getHoaDonHuyDatVe().getMaHoaDonHuyDatVe().equals(rs.getString("maHoaDonHuyDatVe"))) {
+                        chiTietHoaDonHuyDatVe = cthd;
                     }
                 }
-                    if(chiTietHoaDonLayVe== null){
-                        chiTietHoaDonLayVe = new ChiTietHoaDonLayVe(veDat,new Ve(rs.getString("maVe")),new HoaDonLayVe(rs.getString("maHoaDonLayVe")));
-                        dsChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
-                    }
-                    chiTietHoaDonLayVe.getVeDat().addChiTietVeDat(chiTietVeDat);
+                if(chiTietHoaDonHuyDatVe== null){
+                    chiTietHoaDonHuyDatVe = new ChiTietHoaDonHuyDatVe(new HoaDonHuyDatVe(rs.getString("maHoaDonHuyDatVe")),veDat,rs.getDouble("phanTramLePhi"));
+                    dsChiTietHoaDonHuyDatVe.add(chiTietHoaDonHuyDatVe);
                 }
+                chiTietHoaDonHuyDatVe.getVeDat().addChiTietVeDat(chiTietVeDat);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return dsChiTietHoaDonLayVe;
+        return dsChiTietHoaDonHuyDatVe;
     }
 }
