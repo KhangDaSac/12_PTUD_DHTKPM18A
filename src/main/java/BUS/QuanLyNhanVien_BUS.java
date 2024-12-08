@@ -28,8 +28,24 @@ public class QuanLyNhanVien_BUS {
     }
 
     public static boolean doiMatKhau(String maNhanVien, String matKhauMoi, String matKhauMoiNhapLai) throws Exception {
-        if(!matKhauMoi.equals(matKhauMoiNhapLai)){
+        if (!matKhauMoi.equals(matKhauMoiNhapLai)) {
             throw new Exception("Mật khẩu nhập lại không trùng khớp");
+        }
+
+        if (matKhauMoi.length() < 8) {
+            throw new Exception("Mật khẩu mới phải dài từ 8 ký tự");
+        }
+
+        if (!matKhauMoi.matches(".*[A-Z].*")) {
+            throw new Exception("Mật khẩu phải chứa ít nhất một ký tự in hoa");
+        }
+
+        if (!matKhauMoi.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*")) {
+            throw new Exception("Mật khẩu phải chứa ít nhất một ký tự đặc biệt");
+        }
+
+        if (!matKhauMoi.matches(".*\\d.*")) {
+            throw new Exception("Mật khẩu phải chứa ít nhất một ký tự số");
         }
 
         String maKhauMoiBam = HashPassword.hashPassword(matKhauMoi);
