@@ -69,7 +69,7 @@ public class HoaDon_DAO {
         try{
             String query ="insert into HoaDonDoiVe values (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,hoaDonDoiVe.getMaLichSuDoi());
+            statement.setString(1,hoaDonDoiVe.getMaHoaDonDoiVe());
             statement.setTimestamp(2,Timestamp.valueOf(hoaDonDoiVe.getThoiGianDoiVe()));
             statement.setDouble(3,hoaDonDoiVe.getLePhi());
             statement.setString(4,hoaDonDoiVe.getVeCu().getMaVe());

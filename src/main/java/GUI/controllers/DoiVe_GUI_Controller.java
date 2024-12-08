@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import utils.CreatePDF;
 import utils.CurrencyFormat;
 
 import java.io.IOException;
@@ -255,18 +256,19 @@ public class DoiVe_GUI_Controller implements Initializable {
             int soThuTuMoiHD = Integer.parseInt(soThuTuHDCu)+1;
             maHoaDonMoi = "HDDO"+ngayHienTai+ String.format("%06d",soThuTuMoiHD);
         }
+        veMoi = new Ve(maVeMoi,veKhachHang.getHoaDonBanVe(),veKhachHang.getThongTinGaTauDi(),veKhachHang.getThongTinGaTauDen(),LoaiVe.VECANHAN,TrangThaiVe.DADOI);
+        ctVeMoi = new ChiTietVe(veMoi,new Cho(choChon.getMaCho()),ctVe.getKhachHang(),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
+        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV30112024C"));
 
-        String maVeCu = veKhachHang.getMaVe();
-        veMoi = veKhachHang;
-        veMoi.setMaVe(maVeMoi);
-        veMoi.setTrangThaiVe(TrangThaiVe.DADOI);
-        ctVeMoi = new ChiTietVe(new Ve(maVeMoi),new Cho(choChon.getMaCho()),new KhachHang(ctVe.getKhachHang().getMaKhachHang()),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
-        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),new Ve(maVeCu),new Ve(veMoi.getMaVe()),new CaLamViec("CLV30112024C"));
+        
 
-        Ve_DAO.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau());
-        ChiTietVe_DAO.themChiTietVeMoi(ctVeMoi);
-        HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
-        Ve_DAO.capNhatTrangThaiHuyChoVeDoi(maVeCu);
+        if(Ve_DAO.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau())){
+            ChiTietVe_DAO.themChiTietVeMoi(ctVeMoi);
+            HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
+            Ve_DAO.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
+//            CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
+        }
+
     }
 
     public void tinhTongTien() {
@@ -297,7 +299,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             doiVe();
             //timDanhSachCho(choChon.getToaTau().getMaToaTau());
             hienThiChuyenTau(chuyenTauKH);
-            main_Controller.showMessagesDialog("Đổi vé thành công!");
+            //main_Controller.showMessagesDialog("Đổi vé thành công!");
         }
         capNhatCacChoDaChon();
     }

@@ -23,6 +23,9 @@ module GUI.applications {
     requires javafx.controls;
     requires itextpdf;
     requires org.apache.poi.ooxml;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires java.mail;
 
 
     // Other exports and opens statements

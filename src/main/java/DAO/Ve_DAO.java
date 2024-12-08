@@ -77,7 +77,7 @@ public class Ve_DAO {
     public static Ve getVeTheoMa(String maVe){
         Ve veTim = new Ve();
         try{
-            String query = "select*from Ve v join ChiTietChuyenTau ct on ct.maChuyenTau = v.maChuyenTau where  maVe=?";
+            String query = "select*from Ve v join ChiTietChuyenTau ct on ct.maChuyenTau = v.maChuyenTau join GaTau gt  on gt.maGaTau = ct.maGaTau where  maVe=?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maVe);
             ResultSet rs = statement.executeQuery();
@@ -85,8 +85,8 @@ public class Ve_DAO {
                 String ma = rs.getString("maVe");
                 HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe")) ;
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
-                GaTau gaDi = new GaTau(rs.getString("maGaDi"));
-                GaTau gaDen= new GaTau(rs.getString("maGaDen"));
+                GaTau gaDi = new GaTau(rs.getString("maGaDi"),rs.getString("tenGaTau"));
+                GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaTau"));
                 ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),
                         gaDi,
                         rs.getTimestamp("thoiGianDi").toLocalDateTime());
