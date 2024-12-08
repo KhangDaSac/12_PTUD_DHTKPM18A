@@ -197,7 +197,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="btnXoaTatCaVeTrongGio" maxWidth="1.7976931348623157E308" onAction="#btnXoaTatCaVeTrongGioOnAction" prefHeight="30.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Xóa tất cả vé" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-40.0">
+                  <JFXButton fx:id="btnXoaTatCaVeTrongGio" maxWidth="1.7976931348623157E308" onAction="#btnXoaTatCaVeTrongGioOnAction" prefHeight="30.0" prefWidth="180.0" styleClass="buttonOption" stylesheets="@../css/All.css" text="Xóa tất cả vé" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-40.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="19.0">
                            <image>
@@ -248,7 +248,6 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="1006.0" layoutY="52.0" prefWidth="40.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="200.0" />
    </children>
    <stylesheets>
       <URL value="@../css/BanVe_GUI_Items/Cho_BanVe.css" />

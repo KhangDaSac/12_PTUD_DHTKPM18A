@@ -4,7 +4,14 @@ import BUS.QuanLyChuyenTau_BUS;
 import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyVe_BUS;
 import DTO.*;
-import GUI.controllers.BanVe_GUI_Items.*;
+import GUI.controllers.BanVe_GUI_Items.Cho_BanVe_Controller;
+import GUI.controllers.BanVe_GUI_Items.ChuyenTau_BanVe_Controller;
+import GUI.controllers.BanVe_GUI_Items.ToaTau_BanVe_Controller;
+import GUI.controllers.BanVe_GUI_Items.Ve_BanVe_Controller;
+import GUI.controllers.DatVe_GUI_Items.Cho_DatVe_Controller;
+import GUI.controllers.DatVe_GUI_Items.ChuyenTau_DatVe_Controller;
+import GUI.controllers.DatVe_GUI_Items.ToaTau_DatVe_Controller;
+import GUI.controllers.DatVe_GUI_Items.VeDat_DatVe_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -19,12 +26,12 @@ import utils.CurrencyFormat;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.Normalizer;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class BanVe_GUI_Controller implements Initializable {
+public class DatVe_GUI_Controller implements Initializable {
+
     @FXML
     private AnchorPane anpDanhSachCho;
 
@@ -35,7 +42,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private JFXButton btnChonCaToa;
 
     @FXML
-    private JFXButton btnThemVe;
+    private JFXButton btnThemVeDat;
 
     @FXML
     private JFXButton btnTiepTuc;
@@ -44,7 +51,7 @@ public class BanVe_GUI_Controller implements Initializable {
     private JFXButton btnTimChuyenTau;
 
     @FXML
-    private JFXButton btnXoaTatCaVeTrongGio;
+    private JFXButton btnXoaTatCaVeDatTrongGio;
 
     @FXML
     private ComboBox<GaTau> cmbGaTauDen;
@@ -68,19 +75,19 @@ public class BanVe_GUI_Controller implements Initializable {
     private HBox hboxDanhSachToaTau;
 
     @FXML
+    private ScrollPane scpDanhSachCho;
+
+    @FXML
     private ScrollPane scpDanhSachChuyenTau;
 
     @FXML
     private ScrollPane scpDanhSachToaTau;
 
     @FXML
-    private ScrollPane scpDanhSachCho;
-
-    @FXML
     private TextField txtTongTien;
 
     @FXML
-    private VBox vboxGioVe;
+    private VBox vboxGioVeDat;
 
 
     private Main_Controller main_Controller;
@@ -102,20 +109,28 @@ public class BanVe_GUI_Controller implements Initializable {
     private ArrayList<ToaTau> toaTauList;
     private ArrayList<Cho> choList;
 
-    private ArrayList<ChuyenTau_BanVe_Controller> chuyenTauControllerList = new ArrayList<ChuyenTau_BanVe_Controller>();
-    private ArrayList<ToaTau_BanVe_Controller> toaTauControllerList = new ArrayList<ToaTau_BanVe_Controller>();
-    private ArrayList<Cho_BanVe_Controller> choControllerList = new ArrayList<Cho_BanVe_Controller>();
-    private ArrayList<Ve_BanVe_Controller> veControllerList = new ArrayList<Ve_BanVe_Controller>();
+    private ArrayList<ChuyenTau_DatVe_Controller> chuyenTauControllerList = new ArrayList<ChuyenTau_DatVe_Controller>();
+    private ArrayList<ToaTau_DatVe_Controller> toaTauControllerList = new ArrayList<ToaTau_DatVe_Controller>();
+    private ArrayList<Cho_DatVe_Controller> choControllerList = new ArrayList<Cho_DatVe_Controller>();
+    private ArrayList<VeDat_DatVe_Controller> veDatControllerList = new ArrayList<VeDat_DatVe_Controller>();
 
-    public ArrayList<ChuyenTau_BanVe_Controller> getChuyenTauControllerList() {
+    public ArrayList<ChuyenTau_DatVe_Controller> getChuyenTauControllerList() {
         return chuyenTauControllerList;
     }
 
-    public void setChuyenTauControllerList(ArrayList<ChuyenTau_BanVe_Controller> chuyenTauControllerList) {
+    public void setChuyenTauControllerList(ArrayList<ChuyenTau_DatVe_Controller> chuyenTauControllerList) {
         this.chuyenTauControllerList = chuyenTauControllerList;
     }
 
-    private HoaDonBanVe hoaDonBanVe;
+    private HoaDonDatVe hoaDonDatVe;
+
+    public HoaDonDatVe getHoaDonDatVe() {
+        return hoaDonDatVe;
+    }
+
+    public void setHoaDonDatVe(HoaDonDatVe hoaDonDatVe) {
+        this.hoaDonDatVe = hoaDonDatVe;
+    }
 
     private int thuTuChuyenTauDangChon;
     private int thuTuToaTauDangChon;
@@ -146,14 +161,6 @@ public class BanVe_GUI_Controller implements Initializable {
         this.choChonList = choChonList;
     }
 
-    public HoaDonBanVe getHoaDonBanVe() {
-        return hoaDonBanVe;
-    }
-
-    public void setHoaDonBanVe(HoaDonBanVe hoaDonBanVe) {
-        this.hoaDonBanVe = hoaDonBanVe;
-    }
-
 
     @FXML
     void btnTimChuyenTauOnAction(ActionEvent event) {
@@ -174,7 +181,7 @@ public class BanVe_GUI_Controller implements Initializable {
                         controller.getCho().getTrangThaiCho() == TrangThaiCho.CONTRONG &&
                                 !controller.kiemTraVeTrongGio()
                 )
-                .map(Cho_BanVe_Controller::getCho)
+                .map(Cho_DatVe_Controller::getCho)
                 .forEach(choChonList::add);
         capNhatCacChoDaChon();
     }
@@ -195,11 +202,11 @@ public class BanVe_GUI_Controller implements Initializable {
 
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
-        if(hoaDonBanVe.getDanhSachVe().isEmpty()){
+        if(hoaDonDatVe.getDanhSachVeDat().isEmpty()){
             main_Controller.showMessagesDialog("Trong giỏ không có vé");
             return;
         }
-        main_Controller.chuyenTrangThongTinBanVe(hoaDonBanVe);
+        //main_Controller.chuyenTrangThongTinBanVe(hoaDonBanVe);
     }
 
     public void timDanhSachChuyenTau(){
@@ -252,11 +259,11 @@ public class BanVe_GUI_Controller implements Initializable {
             ChuyenTau chuyenTau = chuyenTauList.get(i);
             ChiTietChuyenTau chiTietChuyenTauDi = QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi);
             ChiTietChuyenTau chiTietChuyenTauDen = QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChuyenTau_BanVe.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI_Items/ChuyenTau_DatVe.fxml"));
             Parent anchorPane = loader.load();
-            ChuyenTau_BanVe_Controller controller = loader.getController();
+            ChuyenTau_DatVe_Controller controller = loader.getController();
             chuyenTauControllerList.add(controller);
-            controller.setBanVe_GUI_Controller(this);
+            controller.setDatVe_gui_controller(this);
             controller.setChiTietChuyenTauDi(chiTietChuyenTauDi);
             controller.setChiTietChuyenTauDen(chiTietChuyenTauDen);
             controller.setChuyenTau(chuyenTau);
@@ -281,7 +288,7 @@ public class BanVe_GUI_Controller implements Initializable {
             ToaTau toaTau = toaTauList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ToaTau_BanVe.fxml"));
             Parent anchorPane = loader.load();
-            ToaTau_BanVe_Controller controller = loader.getController();
+            ToaTau_DatVe_Controller controller = loader.getController();
             toaTauControllerList.add(controller);
             controller.setBanVe_GUI_Controller(this);
             controller.setToaTau(toaTau);

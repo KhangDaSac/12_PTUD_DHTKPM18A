@@ -74,7 +74,7 @@ public class ChuyenTau_DAO {
                 ));
             }
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
         return danhSachChuyenTau;

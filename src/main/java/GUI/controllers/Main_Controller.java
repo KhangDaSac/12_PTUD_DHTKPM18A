@@ -87,12 +87,6 @@ public class Main_Controller {
     private Button btnThongTinUngDung;
 
     @FXML
-    private Button btnTimPhieuVeDat;
-
-    @FXML
-    private Button btnTimVe;
-
-    @FXML
     private Button btnTrangChu;
 
     @FXML

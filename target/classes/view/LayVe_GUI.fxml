@@ -163,7 +163,7 @@
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="30.0">
                                        <image>
-                                          <Image url="@../images/LayVe_GUI/ChonTatCa.png" />
+                                          <Image url="@../images/LayVe_GUI/ChonLayVe.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

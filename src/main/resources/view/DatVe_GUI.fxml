@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BanVe_GUI_Controller">
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DatVe_GUI_Controller">
    <children>
       <AnchorPane layoutX="27.0" layoutY="14.0" AnchorPane.topAnchor="10.0" />
       <AnchorPane layoutY="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="45.0">
@@ -165,7 +165,7 @@
                               </ImageView>
                            </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="btnThemVe" layoutX="336.0" layoutY="10.0" onAction="#btnThemVeOnAction" prefHeight="80.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Thêm vé">
+                        <JFXButton fx:id="btnThemVeDat" layoutX="336.0" layoutY="10.0" onAction="#btnThemVeDatOnAction" prefHeight="80.0" prefWidth="169.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Thêm vé đặt">
                            <HBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </HBox.margin>
@@ -189,15 +189,15 @@
                <children>
                   <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <content>
-                        <VBox fx:id="vboxGioVe" prefHeight="400.0" prefWidth="460.0" styleClass="danhSachVe" />
+                        <VBox fx:id="vboxGioVeDat" prefHeight="400.0" prefWidth="460.0" styleClass="danhSachVe" />
                      </content>
                   </ScrollPane>
-                  <Label text="Giỏ vé" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-14.0">
+                  <Label text="Giỏ vé đặt" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-14.0">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="btnXoaTatCaVeTrongGio" maxWidth="1.7976931348623157E308" onAction="#btnXoaTatCaVeTrongGioOnAction" prefHeight="30.0" prefWidth="180.0" styleClass="buttonOption" stylesheets="@../css/All.css" text="Xóa tất cả vé" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-40.0">
+                  <JFXButton fx:id="btnXoaTatCaVeDatTrongGio" maxWidth="1.7976931348623157E308" onAction="#btnXoaTatCaVeDatTrongGioOnAction" prefHeight="30.0" prefWidth="180.0" styleClass="buttonOption" stylesheets="@../css/All.css" text="Xóa tất cả vé đặt" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-40.0">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="19.0">
                            <image>

@@ -223,20 +223,18 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxQuanLyVe" onMouseEntered="#vboxQuanLyVeEntered" onMouseExited="#vboxQuanLyVeExited" prefHeight="220.0" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="195.0">
+                  <VBox fx:id="vboxQuanLyVe" onMouseEntered="#vboxQuanLyVeEntered" onMouseExited="#vboxQuanLyVeExited" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="195.0">
                      <children>
                         <Button fx:id="btnBanVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnBanVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Bán vé" />
                         <Button fx:id="btnDoiVe" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnDoiVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Đổi vé" />
                         <Button fx:id="btnHuyVe" graphicTextGap="10.0" layoutX="10.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnHuyVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Hủy vé" />
-                        <Button fx:id="btnTimVe" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnTimVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Tìm vé" />
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxQuanLyVeDat" onMouseEntered="#vboxQuanLyVeDatEntered" onMouseExited="#vboxQuanLyVeDatExtied" prefHeight="220.0" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="250.0">
+                  <VBox fx:id="vboxQuanLyVeDat" onMouseEntered="#vboxQuanLyVeDatEntered" onMouseExited="#vboxQuanLyVeDatExtied" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="250.0">
                      <children>
                         <Button fx:id="btnDatVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDatVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Đặt vé" />
                         <Button fx:id="btnLayVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLayVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Lấy vé" />
                         <Button fx:id="btnHuyDatVe" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnHuyDatVeOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Hủy đặt vé" />
-                        <Button fx:id="btnTimPhieuVeDat" graphicTextGap="10.0" layoutX="10.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnTimPhieuVeDatOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Tìm vé đặt" />
                      </children>
                   </VBox>
                   <VBox fx:id="vboxQuanLyBaoCaoVaThongKe" onMouseEntered="#vboxQuanLyBaoCaoVaThongKeMouseEntered" onMouseExited="#vboxQuanLyBaoCaoVaThongKeMouseExited" prefHeight="108.0" prefWidth="250.0" visible="false" AnchorPane.rightAnchor="-250.0" AnchorPane.topAnchor="525.0">
