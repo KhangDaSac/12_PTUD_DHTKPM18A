@@ -64,7 +64,7 @@
                                         </JFXButton>
                                     </children>
                                 </HBox>
-                                <TableView fx:id="tableView" prefHeight="568.0" prefWidth="743.0" styleClass="chuTrongTable">
+                                <TableView fx:id="tableHoaDon" prefHeight="568.0" prefWidth="743.0" styleClass="chuTrongTable">
                                     <columns>
                                         <TableColumn fx:id="colMaHoaDon" prefWidth="148.79999387264252" text="Mã hóa đơn" />
                                         <TableColumn fx:id="colTenKhachHang" prefWidth="147.20001220703125" text="Tên khách hàng" />

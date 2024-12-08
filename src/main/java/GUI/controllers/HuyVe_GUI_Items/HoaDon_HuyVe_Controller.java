@@ -1,8 +1,7 @@
-package GUI.controllers.LayVe_GUI_Items;
+package GUI.controllers.HuyVe_GUI_Items;
 
 import DTO.HoaDonDatVe;
 import GUI.controllers.HuyVe_GUI_Controller;
-import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -10,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
-public class HoaDonDatVe_LayVe_Controller {
+public class HoaDon_HuyVe_Controller {
 
     @FXML
     private AnchorPane anpHoaDon;
@@ -37,7 +36,7 @@ public class HoaDonDatVe_LayVe_Controller {
     private Label lblTrangThai;
 
     private HoaDonDatVe hoaDonDatVe;
-    private LayVe_GUI_Controller layVe_gui_controller;
+    private HuyVe_GUI_Controller layVe_gui_controller;
     private int soThuTu;
     private boolean dangChon;
 
@@ -57,12 +56,12 @@ public class HoaDonDatVe_LayVe_Controller {
         this.soThuTu = soThuTu;
     }
 
-    public LayVe_GUI_Controller getLayVe_gui_controller() {
+    public HuyVe_GUI_Controller getLayVe_gui_controller() {
         return layVe_gui_controller;
     }
 
     public void setLayVe_gui_controller(HuyVe_GUI_Controller layVe_gui_controller) {
-//        this.layVe_gui_controller = layVe_gui_controller;
+        this.layVe_gui_controller = layVe_gui_controller;
     }
 
 
@@ -71,7 +70,6 @@ public class HoaDonDatVe_LayVe_Controller {
         lblThoiGianLap.setText(TimeFormat.formatLocalDateTime(hoaDonDatVe.getThoiGianLap()));
         lblMaCaLam.setText(hoaDonDatVe.getCaLamViec().getMaCaLamViec());
         lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
-        lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienDatCoc()));
         lblSoThuTu.setText(String.valueOf(soThuTu + 1));
         dangChon = false;
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());

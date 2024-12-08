@@ -2,9 +2,11 @@ package BUS;
 
 import DAO.ChiTietVe_DAO;
 import DAO.HoaDonBanVe_DAO;
+import DAO.HoaDonHuyVe_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
+import DTO.HoaDonHuyVe;
 import DTO.Ve;
 import utils.TimeFormat;
 
@@ -12,7 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class QuanLyHoaDon_BUS {
-    public static String layHoaDonTiepTheo(){
+    public static String layHoaDonBanVeTiepTheo(){
         String maHoaDonMoi = null;
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
@@ -62,29 +64,14 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-//    public static boolean layVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
-//        Ve_DAO ve_dao = new Ve_DAO();
-//        ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
-//
-//
-//        for(ChiTietVe chiTietVe : danhSachChiTietVe){
-//            if(chiTietVe.getKhachHang() == null){
-//                throw new Exception("Chưa nhập thông tin người người đi tàu");
-//            }
-//        }
-//
-//
-//        if(!ve_dao.themDanhSachVe(danhSachVe)){
-//            return false;
-//        }
-//
-//        if(!ChiTietVe_DAO.themDanhSachChiTietVe(danhSachChiTietVe)){
-//            return false;
-//        }
-//
-//        return true;
-//    }
+    public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
+        HoaDonHuyVe_DAO.themHoaDonHuyVe(hoaDonHuyVe);
+        return true;
+    }
 
+    public static String layMaHoaDonHuyLonNhatCuaNgayHienTai(String ngay){
+        return HoaDonHuyVe_DAO.layMaHoaDonHuyLonNhatCuaNgayHienTai(ngay);
+    }
 
 
 }

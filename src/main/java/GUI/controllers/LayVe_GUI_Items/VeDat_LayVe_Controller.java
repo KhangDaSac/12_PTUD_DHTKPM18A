@@ -3,6 +3,7 @@ package GUI.controllers.LayVe_GUI_Items;
 import DTO.LoaiVe;
 import DTO.VeDat;
 import DTO.TrangThaiVeDat;
+import GUI.controllers.HuyVe_GUI_Controller;
 import GUI.controllers.LayVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -88,8 +89,8 @@ public class VeDat_LayVe_Controller implements Initializable {
         return layVe_gui_controller;
     }
 
-    public void setLayVe_gui_controller(LayVe_GUI_Controller layVe_gui_controller) {
-        this.layVe_gui_controller = layVe_gui_controller;
+    public void setLayVe_gui_controller(HuyVe_GUI_Controller layVe_gui_controller) {
+//        this.layVe_gui_controller = layVe_gui_controller;
     }
 
 

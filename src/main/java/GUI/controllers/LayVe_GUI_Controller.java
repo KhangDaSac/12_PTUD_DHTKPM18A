@@ -168,7 +168,7 @@ public class LayVe_GUI_Controller {
                 Parent anchorPane = loader.load();
                 HoaDonDatVe_LayVe_Controller controller = loader.getController();
                 hoaDon_layVe_controllerList.add(controller);
-                controller.setLayVe_gui_controller(this);
+//                controller.setLayVe_gui_controller(this);
                 controller.setSoThuTu(i);
                 controller.khoiTao();
 
@@ -207,7 +207,7 @@ public class LayVe_GUI_Controller {
                 Parent anchorPane = loader.load();
                 VeDat_LayVe_Controller controller = loader.getController();
                 phieuDatVeLayVeControllerList.add(controller);
-                controller.setLayVe_gui_controller(this);
+//                controller.setLayVe_gui_controller(this);
                 controller.setSoThuTu(i);
                 controller.setVeDat(phieuDatVe);
                 controller.khoiTao();

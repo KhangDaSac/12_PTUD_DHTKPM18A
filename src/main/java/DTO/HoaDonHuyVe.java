@@ -12,6 +12,13 @@ public class HoaDonHuyVe {
 
 	private ArrayList<ChiTietHoaDonHuyVe> danhSachChiTietHoaDonHuyVe;
 
+	public HoaDonHuyVe(String maHoaDonHuyMoi, String ngayHienTai, String tenKhachHang, String maCaLamViec) {
+		this.maHoaDonHuyVe = maHoaDonHuyMoi;
+		this.thoiGianHuyVe = LocalDateTime.parse(ngayHienTai);
+		this.khachHangHuyVe = new KhachHang(tenKhachHang);
+		this.caLamViec = new CaLamViec(maCaLamViec);
+	}
+
 	public String getMaHoaDonHuyVe() {
 		return maHoaDonHuyVe;
 	}

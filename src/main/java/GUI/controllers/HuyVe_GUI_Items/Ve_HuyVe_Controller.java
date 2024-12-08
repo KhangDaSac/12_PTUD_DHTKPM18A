@@ -1,32 +1,31 @@
 package GUI.controllers.HuyVe_GUI_Items;
 
-import DTO.*;
-import GUI.controllers.BanVe_GUI_Controller;
+import DTO.LoaiVe;
+import DTO.TrangThaiVe;
+import DTO.Ve;
+import GUI.controllers.HuyVe_GUI_Controller;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Ve_HuyVe_Controller implements Initializable {
-    @FXML
-    private AnchorPane anpVe;
 
     @FXML
-    private AnchorPane anpXoaVe;
+    private AnchorPane anpChonPhieuDatVe;
+
+    @FXML
+    private AnchorPane anpPhieuDatVe;
 
     @FXML
     private HBox hboxGiaVeCuoi;
@@ -35,25 +34,16 @@ public class Ve_HuyVe_Controller implements Initializable {
     private HBox hboxGiamGiaVeTapThe;
 
     @FXML
-    private Label lblCCCD;
+    private ImageView imvChonPhieuDatVe;
 
     @FXML
-    private Label lblCho;
-
-    @FXML
-    private Label lblGiaCho;
+    private Label lblGiaVe;
 
     @FXML
     private Label lblGiaVeCuoi;
 
     @FXML
-    private Label lblGiamGiaLoaiKhachHang;
-
-    @FXML
     private Label lblGiamGiaVeTapThe;
-
-    @FXML
-    private Label lblLoaiKhachHang;
 
     @FXML
     private Label lblMaChuyenTau;
@@ -68,22 +58,49 @@ public class Ve_HuyVe_Controller implements Initializable {
     private Label lblTenGaDi;
 
     @FXML
-    private Label lblTenKhachHang;
-
-    @FXML
     private Label lblThoiGianDi;
 
     @FXML
-    private Label lblToa;
-
-    @FXML
-    private VBox vboxDanhDachChoVeTapThe;
+    private Label lblTienCoc;
 
     @FXML
     private VBox vboxDanhSachThongTin;
-    private Ve ve;
 
+    @FXML
+    private ImageView imvTrangThai;
+
+    private HuyVe_GUI_Controller huyVe_gui_controller;
+
+    private Ve ve;
     private int soThuTu;
+    private boolean dangChon;
+    private boolean chonHuyVe;
+
+    public boolean isChonHuyVe() {
+        return chonHuyVe;
+    }
+
+    public void setChonLayVe(boolean chonHuyVe) {
+        this.chonHuyVe = chonHuyVe;
+    }
+
+    public HuyVe_GUI_Controller getHuyVe_gui_controller() {
+        return huyVe_gui_controller;
+    }
+
+    public void setHuyVe_gui_controller(HuyVe_GUI_Controller huyVe_gui_controller) {
+        this.huyVe_gui_controller = huyVe_gui_controller;
+    }
+
+
+
+    public boolean isDangChon() {
+        return dangChon;
+    }
+
+    public void setDangChon(boolean dangChon) {
+        this.dangChon = dangChon;
+    }
 
     public int getSoThuTu() {
         return soThuTu;
@@ -93,8 +110,6 @@ public class Ve_HuyVe_Controller implements Initializable {
         this.soThuTu = soThuTu;
     }
 
-    private BanVe_GUI_Controller banVe_GUI_Controller;
-
     public Ve getVe() {
         return ve;
     }
@@ -103,82 +118,87 @@ public class Ve_HuyVe_Controller implements Initializable {
         this.ve = ve;
     }
 
-    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
-        return banVe_GUI_Controller;
-    }
-
-    private ArrayList<ChiTietVe_HuyVe_Controller> chiTietVe_banVe_controller_list = new ArrayList<ChiTietVe_HuyVe_Controller>();
-
-    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
-        this.banVe_GUI_Controller = banVe_GUI_Controller;
-    }
-
     @FXML
     void anpVeOnMouseClicked(MouseEvent event) {
-        chonVe();
-    }
+        if (huyVe_gui_controller != null) {
+            huyVe_gui_controller.getDanhSachChiTietPhieuDatVeTheoMaHoaDon(ve.getHoaDonBanVe().getMaHoaDonBanVe());
+            huyVe_gui_controller.hienThiDanhSachChiTietVe(ve);
+            chonPhieuDatVe();
+            if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
+                if (chonHuyVe) {
+                    boChonHuyVe();
+                } else {
+                    chonLayVe();
+                }
+            }
 
-    @FXML
-    void anpXoaVeOnMouseClicked(MouseEvent event) {
-        if(banVe_GUI_Controller != null){
-            banVe_GUI_Controller.xoaVe(ve);
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Initialization logic if needed
     }
 
-    public void khoiTao() throws IOException {
-
-        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
+    public void khoiTao() {
+        lblSTT.setText(String.valueOf(soThuTu + 1));
         lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
-        lblSTT.setText(String.valueOf(soThuTu + 1));
+        lblGiaVe.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+        anpPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
+        anpChonPhieuDatVe.getStylesheets().add(getClass().getResource("/css/LayVe_GUI_Items/PhieuDatVe_LayVe.css").toExternalForm());
 
-        vboxDanhDachChoVeTapThe.getChildren().clear();
-        for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe_BanVe.fxml"));
-            Parent anchorPane = loader.load();
-            ChiTietVe_HuyVe_Controller controller = loader.getController();
-            chiTietVe_banVe_controller_list.add(controller);
-            controller.setChiTietVe(chiTietVe);
-            controller.khoiTao();
-            vboxDanhDachChoVeTapThe.getChildren().add(anchorPane);
-        }
-
-        chiTietVe_banVe_controller_list.getLast().chiTietVeCuoi();
-
-        if(ve.getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThongTin.setMinHeight(330);
+        if (ve.getLoaiVe().equals(LoaiVe.VECANHAN)) {
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
-            anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+            vboxDanhSachThongTin.getChildren().remove(hboxGiaVeCuoi);
+            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-caNhan");
+        } else if (ve.getLoaiVe().equals(LoaiVe.VETAPTHE)) {
 
-        }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
-            vboxDanhSachThongTin.setMinHeight(180 + ve.getDanhSachChiTietVe().size() * 200);
-            anpXoaVe.getStyleClass().add("ve-left-veTapThe");
-            lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.giamGiaVeTapThe()));
-            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+            anpChonPhieuDatVe.getStyleClass().add("phieuDatVe-left-tapThe");
+        }
+
+        if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/ChoLayVe.png")));
+        } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DADOI)) {
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/LayVe_GUI/TrangThaiPhieuDatVe/DaLayVe.png")));
+        } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DAHUY)) {
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/TrangThaiPhieuDatVe/DaHuy.png")));
+        }
+
+        imvChonPhieuDatVe.setVisible(false);
+    }
+
+    public void chonPhieuDatVe() {
+        huyVe_gui_controller.boChonTatCaPhieuDatVe();
+
+        dangChon = true;
+        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeKhongChon");
+        anpPhieuDatVe.getStyleClass().add("phieuDatVeDangChon");
+    }
+
+    public void boChonPhieuDatVe() {
+        dangChon = false;
+        anpPhieuDatVe.getStyleClass().removeAll("phieuDatVeDangChon");
+        anpPhieuDatVe.getStyleClass().add("phieuDatVeKhongChon");
+    }
+
+    public void chonLayVe() {
+        if (ve.getTrangThaiVe().equals(TrangThaiVe.DANGSUDUNG)) {
+            chonHuyVe = true;
+            imvChonPhieuDatVe.setVisible(true);
+            if (huyVe_gui_controller != null) {
+                huyVe_gui_controller.tinhTongTienLayVe();
+            }
         }
     }
 
-    public void chonVe(){
-        banVe_GUI_Controller.boChonTatCaVe();
-        anpVe.getStyleClass().add("veDangChon");
-        anpVe.getStyleClass().removeAll("veKhongChon");
-
-    }
-
-    public void khongChonVe(){
-        anpVe.getStyleClass().removeAll("veDangChon");
-        anpVe.getStyleClass().add("veKhongChon");
-    }
-
-    public boolean isChonLayVe() {
-        return false;
+    public void boChonHuyVe() {
+        chonHuyVe = false;
+        imvChonPhieuDatVe.setVisible(false);
+        if (huyVe_gui_controller != null) {
+            huyVe_gui_controller.tinhTongTienLayVe();
+        }
     }
 }

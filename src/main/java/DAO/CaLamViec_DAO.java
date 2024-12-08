@@ -31,6 +31,7 @@ public class CaLamViec_DAO {
         }
         return dsCaLamViec;
     }
+
     public static CaLamViec timCaLamViec(LocalDate thoiGian) {
         Connection con = ConnectDB.getInstance().getConnection();
         String query = "select * from CaLamViec where ThoiGianBatDau = ?";
@@ -52,4 +53,4 @@ public class CaLamViec_DAO {
             throw new RuntimeException(e);
         }
     }
-    }
+}

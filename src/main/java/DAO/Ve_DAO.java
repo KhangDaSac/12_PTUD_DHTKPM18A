@@ -7,19 +7,20 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Ve_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
-    public static String layMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
+    public static String layDuoiMaVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
         try {
-            String query = "select max(maVe) as maVe from Ve where maVe like 'V' + ? + '%'";
+            String query = "select max(SUBSTRING(maVe, LEN(maVe) - 7, 8)) as duoiMaVe from Ve where maVe like 'VE[A-Z][A-Z]' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                maVeLonNhat = rs.getString("maVe");
+                maVeLonNhat = rs.getString("duoiMaVe");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,5 +48,20 @@ public class Ve_DAO {
             }
         }
         return true;
+    }
+
+    public static boolean capNhatTrangThaiVe(String maVe, TrangThaiVe trangThai) {
+        String sql = "UPDATE Ve SET TrangThaiVe = ? WHERE MaVe = ?";
+        try (Connection con = ConnectDB.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, trangThai.name()); // Sử dụng tên enum làm giá trị
+            ps.setString(2, maVe);
+
+            return ps.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu xảy ra lỗi
+        }
     }
 }
