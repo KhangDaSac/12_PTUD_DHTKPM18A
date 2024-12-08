@@ -1,9 +1,8 @@
 package GUI.controllers.DatVe_GUI_Items;
 
-import DTO.ChiTietVe;
-import DTO.LoaiVe;
-import DTO.Ve;
+import DTO.*;
 import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.DatVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -58,7 +57,7 @@ public class VeDat_DatVe_Controller implements Initializable {
     @FXML
     private VBox vboxDanhSachThongTin;
 
-    private Ve ve;
+    private VeDat veDat;
 
     private int soThuTu;
 
@@ -70,24 +69,24 @@ public class VeDat_DatVe_Controller implements Initializable {
         this.soThuTu = soThuTu;
     }
 
-    private BanVe_GUI_Controller banVe_GUI_Controller;
-
-    public Ve getVe() {
-        return ve;
-    }
-
-    public void setVe(Ve ve) {
-        this.ve = ve;
-    }
-
-    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
-        return banVe_GUI_Controller;
-    }
+    private DatVe_GUI_Controller datVe_gui_controller;
 
     private ArrayList<ChiTietVeDat_DatVe_Controller> chiTietVe_banVe_controller_list = new ArrayList<ChiTietVeDat_DatVe_Controller>();
 
-    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
-        this.banVe_GUI_Controller = banVe_GUI_Controller;
+    public DatVe_GUI_Controller getDatVe_gui_controller() {
+        return datVe_gui_controller;
+    }
+
+    public void setDatVe_gui_controller(DatVe_GUI_Controller datVe_gui_controller) {
+        this.datVe_gui_controller = datVe_gui_controller;
+    }
+
+    public VeDat getVeDat() {
+        return veDat;
+    }
+
+    public void setVeDat(VeDat veDat) {
+        this.veDat = veDat;
     }
 
     @FXML
@@ -97,8 +96,8 @@ public class VeDat_DatVe_Controller implements Initializable {
 
     @FXML
     void anpXoaVeOnMouseClicked(MouseEvent event) {
-        if(banVe_GUI_Controller != null){
-            banVe_GUI_Controller.xoaVe(ve);
+        if(datVe_gui_controller != null){
+            datVe_gui_controller.xoaVeDat(veDat);
         }
     }
 
@@ -109,41 +108,41 @@ public class VeDat_DatVe_Controller implements Initializable {
 
     public void khoiTao() throws IOException {
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
-        lblMaChuyenTau.setText(ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
-        lblTenGaDi.setText(ve.getThongTinGaTauDi().getGaTau().getTenGaTau());
-        lblTenGaDen.setText(ve.getThongTinGaTauDen().getGaTau().getTenGaTau());
-        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
-        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+        lblMaChuyenTau.setText(veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+        lblTenGaDi.setText(veDat.getThongTinGaTauDi().getGaTau().getTenGaTau());
+        lblTenGaDen.setText(veDat.getThongTinGaTauDen().getGaTau().getTenGaTau());
+        lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi()));
+        lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
 
         vboxDanhSachChoVeTapThe.getChildren().clear();
-        for(ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
+        for(ChiTietVeDat chiTietVeDat : veDat.getDanhSachChiTietVeDat()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe_BanVe.fxml"));
             Parent anchorPane = loader.load();
             ChiTietVeDat_DatVe_Controller controller = loader.getController();
             chiTietVe_banVe_controller_list.add(controller);
-            controller.setChiTietVe(chiTietVe);
+            controller.setChiTietVeDat(chiTietVeDat);
             controller.khoiTao();
             vboxDanhSachChoVeTapThe.getChildren().add(anchorPane);
         }
 
         chiTietVe_banVe_controller_list.getLast().chiTietVeCuoi();
 
-        if(ve.getLoaiVe() == LoaiVe.VECANHAN){
+        if(veDat.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThongTin.setMinHeight(390);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
 
-        }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
-            vboxDanhSachThongTin.setMinHeight(180 + ve.getDanhSachChiTietVe().size() * 260);
+        }else if(veDat.getLoaiVe() == LoaiVe.VETAPTHE){
+            vboxDanhSachThongTin.setMinHeight(180 + veDat.getDanhSachChiTietVeDat().size() * 260);
             anpXoaVe.getStyleClass().add("ve-left-veTapThe");
-            lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.giamGiaVeTapThe()));
-            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
+            lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(veDat.giamGiaVeTapThe()));
+            lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
         }
     }
 
     public void chonVe(){
-            banVe_GUI_Controller.boChonTatCaVe();
+        datVe_gui_controller.boChonTatCaVe();
             anpVe.getStyleClass().add("veDangChon");
             anpVe.getStyleClass().removeAll("veKhongChon");
 

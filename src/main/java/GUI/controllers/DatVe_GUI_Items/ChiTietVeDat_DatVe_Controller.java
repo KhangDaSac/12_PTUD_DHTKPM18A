@@ -1,7 +1,9 @@
 package GUI.controllers.DatVe_GUI_Items;
 
 import DTO.ChiTietVe;
+import DTO.ChiTietVeDat;
 import DTO.KhachHang;
+import GUI.controllers.DatVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -47,25 +49,24 @@ public class ChiTietVeDat_DatVe_Controller implements Initializable {
     @FXML
     private VBox vboxDanhDachChoVeTapThe;
 
-    private ChiTietVe chiTietVe;
-    private VeDat_DatVe_Controller ve_banVe_controller;
+    private ChiTietVeDat chiTietVeDat;
+    private DatVe_GUI_Controller datVe_gui_controller;
 
-    public VeDat_DatVe_Controller getVe_banVe_controller() {
-        return ve_banVe_controller;
+    public DatVe_GUI_Controller getDatVe_gui_controller() {
+        return datVe_gui_controller;
     }
 
-    public void setVe_banVe_controller(VeDat_DatVe_Controller ve_banVe_controller) {
-        this.ve_banVe_controller = ve_banVe_controller;
+    public void setDatVe_gui_controller(DatVe_GUI_Controller datVe_gui_controller) {
+        this.datVe_gui_controller = datVe_gui_controller;
     }
 
-    public ChiTietVe getChiTietVe() {
-        return chiTietVe;
+    public ChiTietVeDat getChiTietVeDat() {
+        return chiTietVeDat;
     }
 
-    public void setChiTietVe(ChiTietVe chiTietVe) {
-        this.chiTietVe = chiTietVe;
+    public void setChiTietVeDat(ChiTietVeDat chiTietVeDat) {
+        this.chiTietVeDat = chiTietVeDat;
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,17 +74,17 @@ public class ChiTietVeDat_DatVe_Controller implements Initializable {
     }
 
     public void khoiTao(){
-        lblCho.setText(String.valueOf(chiTietVe.getCho().getSoCho()));
-        lblToa.setText(String.valueOf(chiTietVe.getCho().getToaTau().getThuTuToa()));
-        lblLoaiToa.setText(chiTietVe.getCho().getToaTau().getLoaiToaTau().getTenLoaiToa());
-        lblLoaiCho.setText(chiTietVe.getCho().getLoaiCho().getTenLoaiCho());
-        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVe.getGiaCho()));
-        KhachHang khachHang = chiTietVe.getKhachHang();
+        lblCho.setText(String.valueOf(chiTietVeDat.getCho().getSoCho()));
+        lblToa.setText(String.valueOf(chiTietVeDat.getCho().getToaTau().getThuTuToa()));
+        lblLoaiToa.setText(chiTietVeDat.getCho().getToaTau().getLoaiToaTau().getTenLoaiToa());
+        lblLoaiCho.setText(chiTietVeDat.getCho().getLoaiCho().getTenLoaiCho());
+        lblGiaCho.setText(CurrencyFormat.currencyFormat(chiTietVeDat.getGiaCho()));
+        KhachHang khachHang = chiTietVeDat.getKhachHang();
         if(khachHang != null){
             lblCCCD.setText(khachHang.getCCCD());
             lblTenKhachHang.setText(khachHang.getTenKhachHang());
             lblLoaiKhachHang.setText(khachHang.getLoaiKhachHang().getTenLoaiKhachHang());
-            lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(chiTietVe.giamGia()));
+            lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(chiTietVeDat.giamGia()));
         }else{
             lblGiamGiaLoaiKhachHang.setText(CurrencyFormat.currencyFormat(0));
         }

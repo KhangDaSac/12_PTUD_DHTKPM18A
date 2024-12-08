@@ -61,6 +61,12 @@ public class ChiTietVeDat {
 		this.phanTramGiamGia = phanTramGiamGia;
 	}
 
+	public ChiTietVeDat(VeDat veDat, Cho cho, double giaCho) {
+		this.veDat = veDat;
+		this.cho = cho;
+		this.giaCho = giaCho;
+	}
+
 	public double giamGia(){
 		return giaCho * phanTramGiamGia;
 	}

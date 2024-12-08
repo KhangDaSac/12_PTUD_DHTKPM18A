@@ -24,7 +24,6 @@ public class QuanLyHoaDon_BUS {
         maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
 
         return maHoaDonMoi;
-
     }
 
     public static boolean themHoaDon(HoaDonBanVe hoaDonBanVe) throws Exception {
@@ -104,6 +103,25 @@ public class QuanLyHoaDon_BUS {
         }
 
         return true;
+    }
+
+    public static String layMaHoaDonDatVeTiepTheo(){
+        String maHoaDonMoi = null;
+        LocalDate ngayHienTai = LocalDate.now();
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
+
+        String maHoaDonCu = null;
+                //HoaDonBanVe_DAO.layMaHoaDonBanVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        if(maHoaDonCu == null){
+            return "HDDV" + ngayHienTaiString + "000001";
+        }
+
+        String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
+        String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
+
+        maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
+
+        return maHoaDonMoi;
     }
 
 

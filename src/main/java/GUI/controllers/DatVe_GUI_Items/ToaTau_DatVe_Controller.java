@@ -2,6 +2,7 @@ package GUI.controllers.DatVe_GUI_Items;
 
 import DTO.ToaTau;
 import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.DatVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -54,9 +55,8 @@ public class ToaTau_DatVe_Controller {
         this.toaTau = toaTau;
     }
 
-    private BanVe_GUI_Controller banVe_GUI_Controller;
+    private DatVe_GUI_Controller datVe_gui_controller;
     private int soThuTu;
-
 
     public int getSoThuTu() {
         return soThuTu;
@@ -66,12 +66,12 @@ public class ToaTau_DatVe_Controller {
         this.soThuTu = soThuTu;
     }
 
-    public BanVe_GUI_Controller getBanVe_GUI_Controller() {
-        return banVe_GUI_Controller;
+    public DatVe_GUI_Controller getDatVe_gui_controller() {
+        return datVe_gui_controller;
     }
 
-    public void setBanVe_GUI_Controller(BanVe_GUI_Controller banVe_GUI_Controller) {
-        this.banVe_GUI_Controller = banVe_GUI_Controller;
+    public void setDatVe_gui_controller(DatVe_GUI_Controller datVe_gui_controller) {
+        this.datVe_gui_controller = datVe_gui_controller;
     }
 
     @FXML
@@ -124,9 +124,9 @@ public class ToaTau_DatVe_Controller {
     }
 
     public void chonToaTau(){
-        banVe_GUI_Controller.setThuTuToaTauDangChon(soThuTu);
-        banVe_GUI_Controller.timDanhSachCho(toaTau.getMaToaTau());
-        banVe_GUI_Controller.boChonTatCaToaTau();
+        datVe_gui_controller.setThuTuToaTauDangChon(soThuTu);
+        datVe_gui_controller.timDanhSachCho(toaTau.getMaToaTau());
+        datVe_gui_controller.boChonTatCaToaTau();
         Image image = new Image(getClass().getResourceAsStream("/images/BanVe_GUI/train-car-green.png"));
         imvToaTau.setImage(image);
     }

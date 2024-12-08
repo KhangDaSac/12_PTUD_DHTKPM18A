@@ -1,10 +1,8 @@
 package GUI.controllers.DatVe_GUI_Items;
 
-import DTO.ChiTietVe;
-import DTO.Cho;
-import DTO.TrangThaiCho;
-import DTO.Ve;
+import DTO.*;
 import GUI.controllers.BanVe_GUI_Controller;
+import GUI.controllers.DatVe_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +34,6 @@ public class Cho_DatVe_Controller implements Initializable {
     private Label lblTrangThaiCho;
 
     private Cho cho;
-    private BanVe_GUI_Controller banVe_GUI_controller;
 
     public Cho getCho() {
         return cho;
@@ -46,26 +43,27 @@ public class Cho_DatVe_Controller implements Initializable {
         this.cho = cho;
     }
 
-    public BanVe_GUI_Controller getBanVe_GUI_controller() {
-        return banVe_GUI_controller;
+    private DatVe_GUI_Controller datVe_gui_controller;
+
+    public DatVe_GUI_Controller getDatVe_gui_controller() {
+        return datVe_gui_controller;
     }
 
-    public void setBanVe_GUI_controller(BanVe_GUI_Controller banVe_GUI_controller) {
-        this.banVe_GUI_controller = banVe_GUI_controller;
+    public void setDatVe_gui_controller(DatVe_GUI_Controller datVe_gui_controller) {
+        this.datVe_gui_controller = datVe_gui_controller;
     }
-
 
     @FXML
     void btnChoOnAction(ActionEvent event) {
         if(!kiemTraVeTrongGio()){
             if(cho.getTrangThaiCho() == TrangThaiCho.CONTRONG){
                 if(!kiemTraChoDangChon()){
-                    banVe_GUI_controller.getChoChonList().add(cho);
+                    datVe_gui_controller.getChoChonList().add(cho);
                 }else{
-                    banVe_GUI_controller.getChoChonList().remove(cho);
+                    datVe_gui_controller.getChoChonList().remove(cho);
                 }
                 capNhatTrangThai();
-                banVe_GUI_controller.capNhatCacChoDaChon();
+                datVe_gui_controller.capNhatCacChoDaChon();
             }
         }
     }
@@ -95,18 +93,18 @@ public class Cho_DatVe_Controller implements Initializable {
     }
 
     public boolean kiemTraVeTrongGio(){
-        int thuTuGaDi = banVe_GUI_controller.getChuyenTauControllerList()
-                .get(banVe_GUI_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDi().getThuTuGa();
-        int thuTuGaDen = banVe_GUI_controller.getChuyenTauControllerList()
-                .get(banVe_GUI_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDen().getThuTuGa();
+        int thuTuGaDi = datVe_gui_controller.getChuyenTauControllerList()
+                .get(datVe_gui_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDi().getThuTuGa();
+        int thuTuGaDen = datVe_gui_controller.getChuyenTauControllerList()
+                .get(datVe_gui_controller.getThuTuChuyenTauDangChon()).getChiTietChuyenTauDen().getThuTuGa();
 
-        for(Ve ve : banVe_GUI_controller.getHoaDonBanVe().getDanhSachVe()){
-            int thuTuGaDiCuaVe = ve.getThongTinGaTauDi().getThuTuGa();
-            int thuTuGaDenCuaVe = ve.getThongTinGaTauDen().getThuTuGa();
+        for(VeDat veDat : datVe_gui_controller.getHoaDonDatVe().getDanhSachVeDat()){
+            int thuTuGaDiCuaVe = veDat.getThongTinGaTauDi().getThuTuGa();
+            int thuTuGaDenCuaVe = veDat.getThongTinGaTauDen().getThuTuGa();
 
 
-            for (ChiTietVe chiTietVe : ve.getDanhSachChiTietVe()){
-                if(chiTietVe.getCho().equals(cho))
+            for (ChiTietVeDat chiTietVeDat : veDat.getDanhSachChiTietVeDat()){
+                if(chiTietVeDat.getCho().equals(cho))
                     if(!(thuTuGaDen <= thuTuGaDiCuaVe || thuTuGaDi >= thuTuGaDenCuaVe)){
                         return true;
                     }
@@ -119,7 +117,7 @@ public class Cho_DatVe_Controller implements Initializable {
 
 
     public boolean kiemTraChoDangChon(){
-        return banVe_GUI_controller.getChoChonList()
+        return datVe_gui_controller.getChoChonList()
                 .stream()
                 .anyMatch(c -> c.equals(cho));
     }

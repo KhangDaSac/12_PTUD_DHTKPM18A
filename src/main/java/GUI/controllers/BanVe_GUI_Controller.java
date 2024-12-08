@@ -534,14 +534,6 @@ public class BanVe_GUI_Controller implements Initializable {
                 ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho, cho.getGiaCho());
 
-
-                for(Cho_BanVe_Controller controller : choControllerList){
-                    if(controller.getCho().equals(cho)){
-                        controller.capNhatTrangThai();
-                        break;
-                    }
-                }
-
                 ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
                 danhSachChiTietVe.add(chiTietVe);
                 ve.setDanhSachChiTietVe(danhSachChiTietVe);
@@ -570,13 +562,6 @@ public class BanVe_GUI_Controller implements Initializable {
             for(Cho cho : choChonList){
                 ChiTietVe chiTietVe = new ChiTietVe(ve, cho, cho.getGiaCho());
                 danhSachChiTietVe.add(chiTietVe);
-
-                for(Cho_BanVe_Controller controller : choControllerList){
-                    if(controller.getCho().equals(cho)){
-                        controller.capNhatTrangThai();
-                        break;
-                    }
-                }
             }
             ve.setDanhSachChiTietVe(danhSachChiTietVe);
             hoaDonBanVe.getDanhSachVe().add(ve);

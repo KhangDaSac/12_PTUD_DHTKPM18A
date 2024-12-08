@@ -2,6 +2,7 @@ package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
 import BUS.QuanLyHoaDon_BUS;
+import BUS.QuanLyVeDat_BUS;
 import BUS.QuanLyVe_BUS;
 import DTO.*;
 import GUI.controllers.BanVe_GUI_Items.Cho_BanVe_Controller;
@@ -290,7 +291,7 @@ public class DatVe_GUI_Controller implements Initializable {
             Parent anchorPane = loader.load();
             ToaTau_DatVe_Controller controller = loader.getController();
             toaTauControllerList.add(controller);
-            controller.setBanVe_GUI_Controller(this);
+            controller.setDatVe_gui_controller(this);
             controller.setToaTau(toaTau);
             controller.khoiTao();
             controller.setSoThuTu(i);
@@ -363,14 +364,14 @@ public class DatVe_GUI_Controller implements Initializable {
         }
 
         choControllerList.clear();
-        ChuyenTau_BanVe_Controller controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
+        ChuyenTau_DatVe_Controller controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
         double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho_BanVe.fxml"));
             Parent anchorPane = loader.load();
-            Cho_BanVe_Controller cho_controller = loader.getController();
-            cho_controller.setBanVe_GUI_controller(this);
+            Cho_DatVe_Controller cho_controller = loader.getController();
+            cho_controller.setDatVe_gui_controller(this);
             choControllerList.add(cho_controller);
             cho_controller.setCho(cho);
 
@@ -391,11 +392,11 @@ public class DatVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if(hoaDonBanVe == null){
-            String maHoaDon = QuanLyHoaDon_BUS.layHoaDonBanVeTiepTheo();
-            hoaDonBanVe = new HoaDonBanVe(maHoaDon);
-            hoaDonBanVe.setCaLamViec(new CaLamViec("CLV13122024C"));
-            hoaDonBanVe.setDanhSachVe(new ArrayList<Ve>());
+        if(hoaDonDatVe == null){
+            String maHoaDon = QuanLyHoaDon_BUS.layMaHoaDonDatVeTiepTheo();
+            hoaDonDatVe = new HoaDonDatVe(maHoaDon);
+            hoaDonDatVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+            hoaDonDatVe.setDanhSachVeDat(new ArrayList<VeDat>());
         }
 
         scpDanhSachChuyenTau.setOnScroll(event -> {
@@ -442,7 +443,7 @@ public class DatVe_GUI_Controller implements Initializable {
         hboxDanhSachToaTau.getChildren().clear();
         hboxDanhSachChuyenTau.getChildren().clear();
 
-        vboxGioVe.getChildren().clear();
+        vboxGioVeDat.getChildren().clear();
 
         txtTongTien.setText(CurrencyFormat.currencyFormat(0));
 
@@ -483,7 +484,7 @@ public class DatVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
-                if(hoaDonBanVe != null)
+                if(hoaDonDatVe != null)
                     capNhatGioVe();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -492,26 +493,26 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     public void boChonTatCaChuyenTau(){
-        for (ChuyenTau_BanVe_Controller chuyenTau_Controller : chuyenTauControllerList){
+        for (ChuyenTau_DatVe_Controller chuyenTau_Controller : chuyenTauControllerList){
             chuyenTau_Controller.chinhMauKhongChon();
         }
     }
 
     public void boChonTatCaToaTau(){
-        for(ToaTau_BanVe_Controller toaTau_Controller : toaTauControllerList){
+        for(ToaTau_DatVe_Controller toaTau_Controller : toaTauControllerList){
             toaTau_Controller.chinhMauKhongChon();
         }
     }
 
     public void boChonTatCaVe(){
-        for(Ve_BanVe_Controller ve_controller : veControllerList){
+        for(VeDat_DatVe_Controller ve_controller : veDatControllerList){
             ve_controller.khongChonVe();
         }
     }
 
 
     public void capNhatCacChoDaChon(){
-        for (Cho_BanVe_Controller controller : choControllerList) {
+        for (Cho_DatVe_Controller controller : choControllerList) {
             controller.capNhatTrangThai();
         }
     }
@@ -525,34 +526,28 @@ public class DatVe_GUI_Controller implements Initializable {
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
 
-                ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuToaTauDangChon);
+                ChuyenTau_DatVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuToaTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
                 chiTietChuyenTauDi.setGaTau(gaDi);
                 chiTietChuyenTauDen.setGaTau(gaDen);
 
-                String maVeMoi = hoaDonBanVe.getDanhSachVe().isEmpty()
-                        ? QuanLyVe_BUS.taoMaVeMoi(LoaiVe.VECANHAN)
-                        : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast(), LoaiVe.VECANHAN);
+                String maVeDatMoi = hoaDonDatVe.getMaHoaDonDatVe().isEmpty()
+                        ? QuanLyVeDat_BUS.taoMaVeDatMoi(LoaiVe.VECANHAN)
+                        : QuanLyVeDat_BUS.taoMaVeDatTiepTheo(hoaDonDatVe.getDanhSachVeDat().getLast(), LoaiVe.VECANHAN);
 
-                Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
-                ve.setLoaiVe(LoaiVe.VECANHAN);
+                VeDat veDat = new VeDat(maVeDatMoi, hoaDonDatVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
+                veDat.setLoaiVe(LoaiVe.VECANHAN);
                 cho.setToaTau(toaTauList.get(thuTuToaTauDangChon));
-                ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
-                ChiTietVe chiTietVe = new ChiTietVe(ve, cho, cho.getGiaCho());
+                veDat.setTrangThaiVeDat(TrangThaiVeDat.CHOLAYVE);
+                ChiTietVeDat chiTietVeDat = new ChiTietVeDat(veDat, cho, cho.getGiaCho());
 
 
-                for(Cho_BanVe_Controller controller : choControllerList){
-                    if(controller.getCho().equals(cho)){
-                        controller.capNhatTrangThai();
-                        break;
-                    }
-                }
 
-                ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
-                danhSachChiTietVe.add(chiTietVe);
-                ve.setDanhSachChiTietVe(danhSachChiTietVe);
-                hoaDonBanVe.getDanhSachVe().add(ve);
+                ArrayList<ChiTietVeDat> danhSachChiTietVeDat = new ArrayList<ChiTietVeDat>();
+                danhSachChiTietVeDat.add(chiTietVeDat);
+                veDat.setDanhSachChiTietVeDat(danhSachChiTietVeDat);
+                hoaDonDatVe.getDanhSachVeDat().add(veDat);
 
             }
         }else if(loaiVe == LoaiVe.VETAPTHE){
@@ -561,32 +556,25 @@ public class DatVe_GUI_Controller implements Initializable {
                 System.out.println("Vé tập thể phải từ 5 người trở lên");
                 return;
             }
-            ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
+            ChuyenTau_DatVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
             ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
             ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
 
-            String maVeMoi = hoaDonBanVe.getDanhSachVe().isEmpty()
-                    ? QuanLyVe_BUS.taoMaVeMoi(LoaiVe.VETAPTHE)
-                    : QuanLyVe_BUS.taoMaVeTiepTheo(hoaDonBanVe.getDanhSachVe().getLast(), LoaiVe.VETAPTHE);
+            String maVeDatMoi = hoaDonDatVe.getMaHoaDonDatVe().isEmpty()
+                    ? QuanLyVeDat_BUS.taoMaVeDatMoi(LoaiVe.VETAPTHE)
+                    : QuanLyVeDat_BUS.taoMaVeDatTiepTheo(hoaDonDatVe.getDanhSachVeDat().getLast(), LoaiVe.VETAPTHE);
 
-            Ve ve = new Ve(maVeMoi, hoaDonBanVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
-            ve.setLoaiVe(LoaiVe.VETAPTHE);
-            ve.setTrangThaiVe(TrangThaiVe.DANGSUDUNG);
+            VeDat veDat = new VeDat(maVeDatMoi, hoaDonDatVe, chiTietChuyenTauDi, chiTietChuyenTauDen);
+            veDat.setLoaiVe(LoaiVe.VETAPTHE);
+            veDat.setTrangThaiVeDat(TrangThaiVeDat.CHOLAYVE);
 
-            ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<ChiTietVe>();
+            ArrayList<ChiTietVeDat> danhSachChiTietVeDat = new ArrayList<ChiTietVeDat>();
             for(Cho cho : choChonList){
-                ChiTietVe chiTietVe = new ChiTietVe(ve, cho, cho.getGiaCho());
-                danhSachChiTietVe.add(chiTietVe);
-
-                for(Cho_BanVe_Controller controller : choControllerList){
-                    if(controller.getCho().equals(cho)){
-                        controller.capNhatTrangThai();
-                        break;
-                    }
-                }
+                ChiTietVeDat chiTietVeDat = new ChiTietVeDat(veDat, cho, cho.getGiaCho());
+                danhSachChiTietVeDat.add(chiTietVeDat);
             }
-            ve.setDanhSachChiTietVe(danhSachChiTietVe);
-            hoaDonBanVe.getDanhSachVe().add(ve);
+            veDat.setDanhSachChiTietVeDat(danhSachChiTietVeDat);
+            hoaDonDatVe.getDanhSachVeDat().add(veDat);
         }
         hienThiTongTienHoaDonBanVe();
         choChonList.clear();
@@ -595,32 +583,32 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     public void capNhatGioVe() throws IOException {
-        vboxGioVe.getChildren().clear();
-        veControllerList.clear();
+        vboxGioVeDat.getChildren().clear();
+        veDatControllerList.clear();
         int i = 0;
-        for (Ve ve : hoaDonBanVe.getDanhSachVe()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Ve_BanVe.fxml"));
+        for (VeDat veDat : hoaDonDatVe.getDanhSachVeDat()) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI_Items/VeDat_DatVe.fxml"));
             Parent anchorPane = loader.load();
-            Ve_BanVe_Controller controller = loader.getController();
-            veControllerList.add(controller);
-            controller.setBanVe_GUI_Controller(this);
+            VeDat_DatVe_Controller controller = loader.getController();
+            veDatControllerList.add(controller);
+            controller.setDatVe_gui_controller(this);
 
-            controller.setVe(ve);
+            controller.setVeDat(veDat);
             controller.setSoThuTu(i);
             controller.khoiTao();
 
 
-            vboxGioVe.getChildren().add(anchorPane);
+            vboxGioVeDat.getChildren().add(anchorPane);
             i++;
         }
 
-        if(!veControllerList.isEmpty())
-            veControllerList.getFirst().chonVe();
+        if(!veDatControllerList.isEmpty())
+            veDatControllerList.getFirst().chonVe();
     }
 
 
-    public void xoaVe(Ve veXoa){
-        hoaDonBanVe.getDanhSachVe().remove(veXoa);
+    public void xoaVeDat(VeDat veDatXoa){
+        hoaDonDatVe.getDanhSachVeDat().remove(veDatXoa);
         try {
             capNhatGioVe();
             capNhatCacChoDaChon();
@@ -631,7 +619,7 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     public void xoaTatCaVe(){
-        hoaDonBanVe.getDanhSachVe().clear();
+        hoaDonDatVe.getDanhSachVeDat().clear();
         try {
             capNhatGioVe();
             capNhatCacChoDaChon();
@@ -642,6 +630,6 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     public void hienThiTongTienHoaDonBanVe(){
-        txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonBanVe.tongTienCuoi()));
+        txtTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
     }
 }

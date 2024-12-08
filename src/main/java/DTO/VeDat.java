@@ -131,6 +131,13 @@ public class VeDat {
 		this.phanTramDatCoc = phanTramDatCoc;
 	}
 
+	public VeDat(String maVeDat, HoaDonDatVe hoaDonDatVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
+		this.maVeDat = maVeDat;
+		this.hoaDonDatVe = hoaDonDatVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+	}
+
 	public VeDat(String maVeDat) {
 		this.maVeDat = maVeDat;
 	}
