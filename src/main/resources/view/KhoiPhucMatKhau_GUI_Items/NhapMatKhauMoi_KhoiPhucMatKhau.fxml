@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,30 +19,54 @@
          <children>
             <AnchorPane layoutX="20.0" layoutY="224.0">
                <children>
-                  <JFXButton fx:id="btnQuayLai" onAction="#btnQuayLaiOnAction" prefHeight="40.0" prefWidth="200.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Quay lại" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <JFXButton fx:id="btnQuayLai" onAction="#btnQuayLaiOnAction" prefHeight="40.0" prefWidth="200.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Quay lại" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../../images/KhoiPhucMatKhau_GUI/QuayLai.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></JFXButton>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <AnchorPane prefHeight="50.0" />
-            <AnchorPane layoutX="20.0" layoutY="292.0">
+            <AnchorPane prefHeight="70.0" styleClass="group" stylesheets="@../../css/All.css">
                <children>
-                  <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Label fx:id="lblThongBaoGmailGui" style="-fx-alignment: center; -fx-font-size: 16; -fx-text-fill: red;" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="70.0" prefWidth="288.0" styleClass="group" stylesheets="@../../css/All.css">
-               <children>
-                  <Label prefHeight="30.0" prefWidth="140.0" text="Nhập mật khẩu mới: " AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                  <Label prefHeight="30.0" prefWidth="200.0" text="Mật khẩu mới" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtMatKhauMoi" layoutX="12.0" layoutY="38.0" prefHeight="26.0" prefWidth="176.0" stylesheets="@../../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <PasswordField fx:id="txtMatKhauMoi" onKeyTyped="#txtMatKhauMoiOnKeyType" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TextField fx:id="txtMatKhauMoiHienThi" onKeyTyped="#txtMatKhauMoiHienThiOnKeyType" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="321.0" prefHeight="70.0" styleClass="group" stylesheets="@../../css/All.css">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="200.0" text="Nhập lại mật khẩu mới" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtNhapLaiMatKhauMoi" onKeyTyped="#txtNhapLaiMatKhauMoiOnKeyType" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <TextField fx:id="txtNhapLaiMatKhauMoiHienThi" onKeyTyped="#txtNhapLaiMatKhauMoiHienThiOnKeyType" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane prefHeight="19.0" prefWidth="346.0" stylesheets="@../../css/DangNhap_GUI.css">
+               <children>
+                  <CheckBox fx:id="chkHienThiMatKhau" mnemonicParsing="false" onAction="#chkHienThiMatKhauOnAction" text="Hiển thị mật khẩu">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </CheckBox>
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

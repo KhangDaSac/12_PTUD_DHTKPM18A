@@ -48,9 +48,27 @@ public class KhoiPhucMatKhau_GUI_Controller implements Initializable {
 
     public void chuyenTrangDangNhap(){
         try {
-            FXMLLoader fxmlLoaderKhungGiaoDien = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
-            Scene sceneKhungGiaoDien = new Scene(fxmlLoaderKhungGiaoDien.load());
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene sceneKhungGiaoDien = new Scene(root);
+            DangNhap_GUI_Controller controller = fxmlLoader.getController();
+            controller.setStage(stage);
             stage.setScene(sceneKhungGiaoDien);
+            stage.centerOnScreen();
+        } catch (Exception e) {
+        }
+    }
+
+    public void chuyenTrangDangNhap(String thongBao){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene sceneKhungGiaoDien = new Scene(root);
+            DangNhap_GUI_Controller controller = fxmlLoader.getController();
+            controller.setStage(stage);
+            stage.setScene(sceneKhungGiaoDien);
+            stage.centerOnScreen();
+            controller.showMessagesDialog(thongBao);
         } catch (Exception e) {
         }
     }

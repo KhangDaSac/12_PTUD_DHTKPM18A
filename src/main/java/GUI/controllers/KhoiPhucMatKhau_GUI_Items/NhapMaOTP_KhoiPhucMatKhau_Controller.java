@@ -60,12 +60,11 @@ public class NhapMaOTP_KhoiPhucMatKhau_Controller implements Initializable {
         if(conHieuLuc){
             if(txtMaOTP.getText().equals(maOTP)){
                 khoiPhucMatKhau_gui_controller.chuyenTrangNhapMatKhauMoi();
-                System.out.println("ma otp dung");
             }else{
-                System.out.println("ma sai");
+                lblThongBao.setText("Mã OTP sai");
             }
         }else{
-            System.out.println("het hieu luc");
+            System.out.println("Mã OTP đã hết hiệu lực");
         }
 
     }

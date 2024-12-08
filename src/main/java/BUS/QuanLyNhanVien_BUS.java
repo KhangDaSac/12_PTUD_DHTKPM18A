@@ -27,7 +27,12 @@ public class QuanLyNhanVien_BUS {
         return NhanVien_DAO.getNhanVienTheoMaNhanVien(maNhanVien);
     }
 
-    public static boolean doiMatKhau(String maNhanVien, String matKhauMoi){
-        return TaiKhoan_DAO.doiMatKhau(maNhanVien, matKhauMoi);
+    public static boolean doiMatKhau(String maNhanVien, String matKhauMoi, String matKhauMoiNhapLai) throws Exception {
+        if(!matKhauMoi.equals(matKhauMoiNhapLai)){
+            throw new Exception("Mật khẩu nhập lại không trùng khớp");
+        }
+
+        String maKhauMoiBam = HashPassword.hashPassword(matKhauMoi);
+        return TaiKhoan_DAO.doiMatKhau(maNhanVien, maKhauMoiBam);
     }
 }

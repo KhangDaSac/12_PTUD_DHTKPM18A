@@ -13,10 +13,16 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import utils.ShowMessagesDialog;
 
 public class DangNhap_GUI_Controller {
+
+    @FXML
+    private StackPane stpDangNhap;
 
     @FXML
     private JFXButton btnDangNhap;
@@ -29,6 +35,9 @@ public class DangNhap_GUI_Controller {
 
     @FXML
     private PasswordField txtMatKhau;
+
+    @FXML
+    private TextField txtMatKhauHienThi;
 
     @FXML
     private TextField txtTenDangNhap;
@@ -68,7 +77,8 @@ public class DangNhap_GUI_Controller {
 
     @FXML
     void chkHienThiMatKhauOnAction(ActionEvent event) {
-
+        txtMatKhauHienThi.setVisible(chkHienThiMatKhau.isSelected());
+        txtMatKhau.setVisible(!chkHienThiMatKhau.isSelected());
     }
 
     @FXML
@@ -83,8 +93,8 @@ public class DangNhap_GUI_Controller {
 
             KhoiPhucMatKhau_GUI_Controller controller = fxmlLoader.getController();
             controller.setStage(stage);
-
             stage.setScene(sceneKhungGiaoDien);
+            stage.centerOnScreen();
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,5 +110,19 @@ public class DangNhap_GUI_Controller {
             return nhanVien;
         else
             throw new Exception("Tài khoản hoặc mật khẩu không chính xác");
+    }
+
+    public void showMessagesDialog(String messages){
+        ShowMessagesDialog.showDialog(stpDangNhap, "Thông báo", messages, "OK");
+    }
+
+    @FXML
+    void txtMatKhauHienThiOnKeyType(KeyEvent event) {
+        txtMatKhau.setText(txtMatKhauHienThi.getText());
+    }
+
+    @FXML
+    void txtMatKhauOnKeyType(KeyEvent event) {
+        txtMatKhauHienThi.setText(txtMatKhau.getText());
     }
 }
