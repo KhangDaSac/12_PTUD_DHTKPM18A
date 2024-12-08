@@ -1,6 +1,7 @@
 package GUI.controllers;
 
 import BUS.QuanLyChuyenTau_BUS;
+import BUS.QuanLyHoaDon_BUS;
 import BUS.QuanLyVe_BUS;
 import DAO.ChiTietVe_DAO;
 import DAO.ChuyenTau_DAO;
@@ -240,8 +241,8 @@ public class DoiVe_GUI_Controller implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
         String ngayHienTai = ngayHienTai1.format(formatter);
         String maVeMoi,maHoaDonMoi;
-        String maVeLonNhatNgayHienTai = Ve_DAO.layMaVeCaNhanLonNhatCuaNgayHienTai(ngayHienTai);
-        String maHoaDonLonNhatNGayHienTai = HoaDon_DAO.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngayHienTai);
+        String maVeLonNhatNgayHienTai = QuanLyVe_BUS.layMaVeCaNhanLonNhatCuaNgayHienTai(ngayHienTai);
+        String maHoaDonLonNhatNGayHienTai = QuanLyHoaDon_BUS.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngayHienTai);
         if (maVeLonNhatNgayHienTai ==null){
             maVeMoi= "VECN"+ ngayHienTai +"00000001";
         }else {
@@ -260,12 +261,11 @@ public class DoiVe_GUI_Controller implements Initializable {
         ctVeMoi = new ChiTietVe(veMoi,new Cho(choChon.getMaCho()),ctVe.getKhachHang(),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
         hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV30112024C"));
 
-        
-
-        if(Ve_DAO.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau())){
-            ChiTietVe_DAO.themChiTietVeMoi(ctVeMoi);
-            HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
-            Ve_DAO.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
+        if(QuanLyVe_BUS.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau())){
+            QuanLyVe_BUS.themChiTietVeMoi(ctVeMoi);
+            QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
+            QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
+            main_Controller.showMessagesDialog("Đổi vé thành công!");
 //            CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
         }
 
@@ -296,10 +296,9 @@ public class DoiVe_GUI_Controller implements Initializable {
             main_Controller.showMessagesDialog("Chọn chỗ cần đổi!");
         } else {
             //quanLyVeBus.doiVe(veKhachHang.getMaVe(), ctVe.getCho().getMaCho(), choChon.getMaCho(), choChon.getGiaCho());
-            doiVe();
             //timDanhSachCho(choChon.getToaTau().getMaToaTau());
+            doiVe();
             hienThiChuyenTau(chuyenTauKH);
-            //main_Controller.showMessagesDialog("Đổi vé thành công!");
         }
         capNhatCacChoDaChon();
     }

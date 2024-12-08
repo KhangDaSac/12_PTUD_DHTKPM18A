@@ -3,6 +3,7 @@ package BUS;
 import DAO.ChiTietVe_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
+import DTO.ChuyenTau;
 import DTO.Ve;
 import utils.TimeFormat;
 
@@ -51,6 +52,30 @@ public class QuanLyVe_BUS {
         ChiTietVe_DAO chiTietVeDao= new ChiTietVe_DAO();
         ChiTietVe chiTietVe = chiTietVeDao.getCTVeTheoMaVe(maVe);
         return  chiTietVe;
+    }
+
+    public static String layMaVeCaNhanLonNhatCuaNgayHienTai(String ngay){
+        return Ve_DAO.layMaVeCaNhanLonNhatCuaNgayHienTai(ngay);
+    }
+
+    public static boolean themVeMoi(Ve ve,String maChuyenTau){
+        if (Ve_DAO.themVeMoi(ve,maChuyenTau)){
+            System.out.printf("thêm thành công!");
+        }else {
+            System.out.printf("thêm vé không thành công");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean themChiTietVeMoi(ChiTietVe ctVe){
+        ChiTietVe_DAO.themChiTietVeMoi(ctVe);
+        return true;
+    }
+
+    public static boolean capNhatTrangThaiHuyChoVeDoi(String maVe){
+        Ve_DAO.capNhatTrangThaiHuyChoVeDoi(maVe);
+        return true;
     }
 
 }

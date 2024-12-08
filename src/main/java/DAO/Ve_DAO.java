@@ -83,7 +83,7 @@ public class Ve_DAO {
             ResultSet rs = statement.executeQuery();
             while( rs.next()){
                 String ma = rs.getString("maVe");
-                HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe")) ;
+                HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe"));
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 GaTau gaDi = new GaTau(rs.getString("maGaDi"),rs.getString("tenGaTau"));
                 GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaTau"));
