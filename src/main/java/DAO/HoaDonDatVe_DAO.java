@@ -34,6 +34,23 @@ public class HoaDonDatVe_DAO {
         return danhSachHoaDonDat;
     }
 
+    public static String layMaHoaDonDatVeLonNhatCuaNgayHienTai(String ngayHienTai){
+        String maHoaDonLonNhat = null;
+        try {
+            String query = "select max(maHoaDonDatVe) as maHoaDonDatVe from HoaDonDatVe where maHoaDonDatVe like 'HDDV' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, ngayHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                maHoaDonLonNhat = rs.getString("maHoaDonDatVe");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maHoaDonLonNhat;
+    }
+
+
     public static boolean themHoaDonDatVe(HoaDonDatVe hoaDonDatVe){
         try {
             String query = "insert into HoaDonDatVe values (?, ?, ?, ?)";

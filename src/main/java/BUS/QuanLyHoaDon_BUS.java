@@ -108,8 +108,7 @@ public class QuanLyHoaDon_BUS {
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
-        String maHoaDonCu = null;
-                //HoaDonBanVe_DAO.layMaHoaDonBanVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        String maHoaDonCu = HoaDonDatVe_DAO.layMaHoaDonDatVeLonNhatCuaNgayHienTai(ngayHienTaiString);
         if(maHoaDonCu == null){
             return "HDDV" + ngayHienTaiString + "000001";
         }
