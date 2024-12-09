@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class CaLamViec {
     private String maCaLamViec;
-    private LocalDateTime thoiGianBatDat;
+    private LocalDateTime thoiGianBatDau;
     private LocalDateTime thoiGianKetThuc;
     private NhanVien nhanVien;
 
@@ -18,7 +18,7 @@ public class CaLamViec {
 
     public CaLamViec(String maCaLamViec, LocalDateTime thoiGianBatDat, LocalDateTime thoiGianKetThuc, NhanVien nhanVien) {
         this.maCaLamViec = maCaLamViec;
-        this.thoiGianBatDat = thoiGianBatDat;
+        this.thoiGianBatDau = thoiGianBatDat;
         this.thoiGianKetThuc = thoiGianKetThuc;
         this.nhanVien = nhanVien;
     }
@@ -31,12 +31,12 @@ public class CaLamViec {
         this.maCaLamViec = maCaLamViec;
     }
 
-    public LocalDateTime getThoiGianBatDat() {
-        return thoiGianBatDat;
+    public LocalDateTime getThoiGianBatDau() {
+        return thoiGianBatDau;
     }
 
-    public void setThoiGianBatDat(LocalDateTime thoiGianBatDat) {
-        this.thoiGianBatDat = thoiGianBatDat;
+    public void setThoiGianBatDau(LocalDateTime thoiGianBatDat) {
+        this.thoiGianBatDau = thoiGianBatDat;
     }
 
     public LocalDateTime getThoiGianKetThuc() {
@@ -72,7 +72,7 @@ public class CaLamViec {
     public String toString() {
         return "CaLamViec{" +
                 "maCaLamViec='" + maCaLamViec + '\'' +
-                ", thoiGianBatDat=" + thoiGianBatDat +
+                ", thoiGianBatDat=" + thoiGianBatDau +
                 ", thoiGianKetThuc=" + thoiGianKetThuc +
                 ", nhanVien=" + nhanVien +
                 '}';

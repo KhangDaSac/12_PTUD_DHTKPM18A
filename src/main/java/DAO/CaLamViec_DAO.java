@@ -3,6 +3,7 @@ package DAO;
 import DTO.CaLamViec;
 import DTO.NhanVien;
 import connectDB.ConnectDB;
+import utils.TimeFormat;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -10,46 +11,40 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class CaLamViec_DAO {
-    public ArrayList<CaLamViec> xuatDanhSachCaLamViec (){
-        ArrayList<CaLamViec> dsCaLamViec = new ArrayList<>();
-        Connection con = ConnectDB.getInstance().getConnection();
-        try{
-            String query = "select * from CaLamViec";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while(rs.next()){
-                String maCaLamViec = rs.getString(1);
-                LocalDateTime thoiGianBatDau = rs.getTimestamp(2).toLocalDateTime();
-                LocalDateTime thoiGianKetThuc =rs.getTimestamp(3).toLocalDateTime();
-                NhanVien nhanVien = new NhanVien(rs.getString(4));
-                CaLamViec caLamViec = new CaLamViec(maCaLamViec,thoiGianBatDau,thoiGianKetThuc,nhanVien);
-                dsCaLamViec.add(caLamViec);
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return dsCaLamViec;
-    }
-    public static CaLamViec timCaLamViec(LocalDate thoiGian) {
-        Connection con = ConnectDB.getInstance().getConnection();
-        String query = "select * from CaLamViec where ThoiGianBatDau = ?";
+    public static Connection con = ConnectDB.getInstance().getConnection();
+    public static String layDuoiMaCaLamViecLonNhatCuaNgayHienTai(String ngayHienTai){
+        String maVeLonNhat = null;
         try {
+            String query = "select max(SUBSTRING(maCaLamViec, LEN(maCaLamViec) - 1, 2)) as duoiMaCaLamViec from CaLamViec where maCaLamViec like 'CLV' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
-            statement.setDate(1, Date.valueOf(thoiGian));
+            statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                String maCaLamViec = rs.getString(1);
-                LocalDateTime thoiGianBatDau = rs.getTimestamp(2).toLocalDateTime();
-                LocalDateTime thoiGianKetThuc = rs.getTimestamp(3).toLocalDateTime();
-                NhanVien nhanVien = new NhanVien(rs.getString(4));
-                CaLamViec caLamViec = new CaLamViec(maCaLamViec, thoiGianBatDau, thoiGianKetThuc, nhanVien);
-                return caLamViec;
+            if(rs.next()){
+                maVeLonNhat = rs.getString("duoiMaCaLamViec");
             }
-            return null;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return maVeLonNhat;
     }
+
+    public static boolean themCaLamViec(CaLamViec caLamViec){
+        try {
+            String query = "insert into CaLamViec values (?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, caLamViec.getMaCaLamViec());
+            statement.setString(2, TimeFormat.formatLocalDateTimeSQL(caLamViec.getThoiGianBatDau()));
+            if(caLamViec.getThoiGianKetThuc() != null){
+                statement.setString(3, TimeFormat.formatLocalDateTimeSQL(caLamViec.getThoiGianKetThuc()));
+            }else{
+                statement.setNull(3, Types.DATE);
+            }
+            statement.setString(4, caLamViec.getNhanVien().getMaNhanVien());
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
+}

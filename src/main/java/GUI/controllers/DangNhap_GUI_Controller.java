@@ -1,6 +1,8 @@
 package GUI.controllers;
 
+import BUS.QuanLyCaLamViec_BUS;
 import BUS.QuanLyNhanVien_BUS;
+import DTO.CaLamViec;
 import DTO.NhanVien;
 import GUI.applications.Run;
 import com.jfoenix.controls.JFXButton;
@@ -19,6 +21,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import utils.ShowMessagesDialog;
+
+import java.time.LocalDateTime;
 
 public class DangNhap_GUI_Controller {
 
@@ -52,10 +56,19 @@ public class DangNhap_GUI_Controller {
         try {
             nhanVien = dangNhap();
             if(nhanVien != null){
+                String maCaLamViec = QuanLyCaLamViec_BUS.taoMaCaLamViecMoi();
+                CaLamViec caLamViec = new CaLamViec(maCaLamViec, LocalDateTime.now(), null, nhanVien);
+                System.out.println(caLamViec.getMaCaLamViec());
+                if(!QuanLyCaLamViec_BUS.themCaLamViec(caLamViec))
+                    return;
+
                 Window window = stpDangNhap.getScene().getWindow();
                 Stage stage = (Stage) window;
-                FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
-                Scene scene = new Scene(fxmlLoaderDangNhap.load());
+                FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                Main_Controller main_controller = fxmlLoader.getController();
+                main_controller.setCaLamViec(caLamViec);
+                main_controller.khoiTao();
                 stage.setScene(scene);
                 stage.centerOnScreen();
             }
@@ -92,11 +105,7 @@ public class DangNhap_GUI_Controller {
     public NhanVien dangNhap() throws Exception {
         String tenDangNhap = txtTenDangNhap.getText();
         String matKhau = txtMatKhau.getText();
-        NhanVien nhanVien = QuanLyNhanVien_BUS.dangNhap(tenDangNhap, matKhau);
-        if(nhanVien != null)
-            return nhanVien;
-        else
-            throw new Exception("Tài khoản hoặc mật khẩu không chính xác");
+        return QuanLyNhanVien_BUS.dangNhap(tenDangNhap, matKhau);
     }
 
     public void showMessagesDialog(String messages){

@@ -8,6 +8,7 @@ import GUI.controllers.LayVe_GUI_Items.HoaDonDatVe_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.VeDat_LayVe_Controller;
 import GUI.controllers.LayVe_GUI_Items.Ve_LayVe_Controller;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -333,7 +334,7 @@ public class LayVe_GUI_Controller implements Initializable {
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
-            hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+            hoaDonLayVe.setCaLamViec(main_controller.getCaLamViec());
             hoaDonLayVe.setKhachHangLayVe(khachHang);
             layDanhSachHoaDonDatTheoKhachHang();
             hienThiDanhSachVeLay();
@@ -364,10 +365,11 @@ public class LayVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
-        hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
-        hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
-        hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
-
+        Platform.runLater(()->{
+            String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
+            hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
+            hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
+            hoaDonLayVe.setCaLamViec(main_controller.getCaLamViec());
+        });
     }
 }

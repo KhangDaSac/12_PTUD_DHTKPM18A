@@ -390,14 +390,6 @@ public class DatVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        if(hoaDonDatVe == null){
-            String maHoaDon = QuanLyHoaDon_BUS.layMaHoaDonDatVeTiepTheo();
-            hoaDonDatVe = new HoaDonDatVe(maHoaDon);
-            hoaDonDatVe.setCaLamViec(new CaLamViec("CLV13122024C"));
-            hoaDonDatVe.setDanhSachVeDat(new ArrayList<VeDat>());
-        }
-
         scpDanhSachChuyenTau.setOnScroll(event -> {
             double deltaX = event.getDeltaY();
             scpDanhSachChuyenTau.setHvalue(scpDanhSachChuyenTau.getHvalue() - deltaX * 10 / scpDanhSachChuyenTau.getContent().getBoundsInLocal().getWidth());
@@ -416,8 +408,6 @@ public class DatVe_GUI_Controller implements Initializable {
             scpDanhSachCho.setHvalue(scpDanhSachCho.getHvalue() - deltaX * 10 / scpDanhSachCho.getContent().getBoundsInLocal().getWidth());
             event.consume();
         });
-
-
 
         gaTauList = QuanLyChuyenTau_BUS.getDanhSachGaTau();
         cmbGaTauDen.getItems().clear();
@@ -483,8 +473,15 @@ public class DatVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
-                if(hoaDonDatVe != null)
+                if(hoaDonDatVe == null){
+                    String maHoaDon = QuanLyHoaDon_BUS.layMaHoaDonDatVeTiepTheo();
+                    hoaDonDatVe = new HoaDonDatVe(maHoaDon);
+                    hoaDonDatVe.setCaLamViec(main_Controller.getCaLamViec());
+                    hoaDonDatVe.setDanhSachVeDat(new ArrayList<VeDat>());
+                }else{
                     capNhatGioVe();
+
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

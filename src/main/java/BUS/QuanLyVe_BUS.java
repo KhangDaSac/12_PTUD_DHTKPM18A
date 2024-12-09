@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 public class QuanLyVe_BUS {
     public static String taoMaVeMoi(LoaiVe loaiVe){
-        String maVeMoi = null;
         String loaiVeString = loaiVe.equals(LoaiVe.VECANHAN) ? "CN" : "TT";
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
@@ -22,7 +21,7 @@ public class QuanLyVe_BUS {
 
         String phanTruoc = "VE" + loaiVeString + ngayHienTaiString;
 
-        maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
+        String maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
 
         return maVeMoi;
     }

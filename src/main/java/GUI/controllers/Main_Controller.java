@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import DTO.CaLamViec;
 import DTO.HoaDonBanVe;
 import DTO.HoaDonDatVe;
 import DTO.NhanVien;
@@ -104,14 +105,14 @@ public class Main_Controller {
     @FXML
     private VBox vboxQuanLyVeDat;
 
-    private NhanVien nhanVien;
+    private CaLamViec caLamViec;
 
-    public NhanVien getNhanVien() {
-        return nhanVien;
+    public CaLamViec getCaLamViec() {
+        return caLamViec;
     }
 
-    public void setNhanVien(NhanVien nhanVien) {
-        this.nhanVien = nhanVien;
+    public void setCaLamViec(CaLamViec caLamViec) {
+        this.caLamViec = caLamViec;
     }
 
     //Thong ke va bao cao
@@ -572,15 +573,9 @@ public class Main_Controller {
     }
 
     public void khoiTao(){
-        if(nhanVien != null){
-            lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
-            lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
+        if(caLamViec != null){
+            lblMaNhanVienDangNhap.setText(caLamViec.getNhanVien().getMaNhanVien());
+            lblTenNhanVienDanNhap.setText(caLamViec.getNhanVien().getTenNhanVien());
         }
-    }
-
-
-    @FXML
-    void btnTimVeOnAction(ActionEvent event) {
-
     }
 }

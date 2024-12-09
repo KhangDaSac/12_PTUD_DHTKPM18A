@@ -384,13 +384,6 @@ public class BanVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if(hoaDonBanVe == null){
-            String maHoaDon = QuanLyHoaDon_BUS.layHoaDonBanVeTiepTheo();
-            hoaDonBanVe = new HoaDonBanVe(maHoaDon);
-            hoaDonBanVe.setCaLamViec(new CaLamViec("CLV13122024C"));
-            hoaDonBanVe.setDanhSachVe(new ArrayList<Ve>());
-        }
-
         scpDanhSachChuyenTau.setOnScroll(event -> {
             double deltaX = event.getDeltaY();
             scpDanhSachChuyenTau.setHvalue(scpDanhSachChuyenTau.getHvalue() - deltaX * 10 / scpDanhSachChuyenTau.getContent().getBoundsInLocal().getWidth());
@@ -476,8 +469,14 @@ public class BanVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
-                if(hoaDonBanVe != null)
+                if(hoaDonBanVe == null){
+                    String maHoaDon = QuanLyHoaDon_BUS.layHoaDonBanVeTiepTheo();
+                    hoaDonBanVe = new HoaDonBanVe(maHoaDon);
+                    hoaDonBanVe.setCaLamViec(main_Controller.getCaLamViec());
+                    hoaDonBanVe.setDanhSachVe(new ArrayList<Ve>());
+                }else{
                     capNhatGioVe();
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

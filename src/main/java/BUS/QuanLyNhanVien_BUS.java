@@ -17,7 +17,13 @@ public class QuanLyNhanVien_BUS {
 
         String maKhauBam = HashPassword.hashPassword(maKhau);
 
-        return TaiKhoan_DAO.dangNhap(tenDangNhap, maKhauBam);
+        NhanVien nhanVien = TaiKhoan_DAO.dangNhap(tenDangNhap, maKhauBam);
+
+        if(nhanVien == null){
+            throw new Exception("Tài khoản hoặc mật khẩu không chính xác");
+        }
+
+        return nhanVien;
     }
 
     public static NhanVien getNhanVienTheoMaNhanVien(String maNhanVien) throws Exception {
