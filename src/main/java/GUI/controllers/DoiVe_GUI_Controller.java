@@ -222,19 +222,12 @@ public class DoiVe_GUI_Controller implements Initializable {
         veMoi = new Ve(maVeMoi,veKhachHang.getHoaDonBanVe(),veKhachHang.getThongTinGaTauDi(),veKhachHang.getThongTinGaTauDen(),LoaiVe.VECANHAN,TrangThaiVe.DADOI);
         ctVeMoi = new ChiTietVe(veMoi,new Cho(choChon.getMaCho()),ctVe.getKhachHang(),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
         hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV30112024C"));
-
             QuanLyVe_BUS.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau());
-
-
             QuanLyVe_BUS.themChiTietVeMoi(ctVeMoi);
-
             QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
-
             QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
-
             main_Controller.showMessagesDialog("Đổi vé thành công!");
             CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
-
     }
 
     public void tinhTongTien() {
@@ -314,7 +307,6 @@ public class DoiVe_GUI_Controller implements Initializable {
             lblCCCD.setText(ctVe.getKhachHang().getCCCD());
             lblLoaiKH.setText(ctVe.getKhachHang().getLoaiKhachHang().getTenLoaiKhachHang());
             lblGiaCu_ChiTietVeDoi.setText(CurrencyFormat.currencyFormat(ctVe.getGiaCho()));
-            trangChuyenTauHienTai = 1;
             add1ChuyenTau.setVisible(true);
             hienThiChuyenTau(chuyenTauKH);
         }

@@ -61,15 +61,16 @@ public class Ve_DAO {
             String query ="insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,ve.getMaVe());
-            statement.setString(2, null);
+            statement.setNull(2, java.sql.Types.VARCHAR );
             statement.setString(3,maCT);
             statement.setString(4,ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
             statement.setString(5,ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
             statement.setDouble(6,0);
-            statement.setString(7,ve.getLoaiVe().toString());
+            statement.setString(7,ve.getLoaiVe().toStringSQL());
             statement.setString(8,ve.getTrangThaiVe().toString());
             statement.execute();
         }catch (Exception e){
+            e.printStackTrace();
             return false;
         }
         return true;

@@ -41,13 +41,15 @@ public class ChiTietVe_DAO {
                     double phanTramGiamGia = rs.getDouble("phanTramGiamGia");
                     KhachHang khachHang = new KhachHang(
                             rs.getString("maKhachHang"),
+                            rs.getString("CCCD"),
                             rs.getString("tenKhachHang"),
+                            rs.getString("soDienThoai"),
                             new LoaiKhachHang(
                                     rs.getString("maLoaiKhachHang"),
                                     rs.getString("tenLoaiKhachHang"),
                                     rs.getDouble("phanTramGiamGia")
-                            ),
-                            rs.getString("CCCD"));
+                            )
+                            );
 
                     ctVe = new ChiTietVe(ve,cho,khachHang,giaCho,phanTramGiamGia);
                 }
