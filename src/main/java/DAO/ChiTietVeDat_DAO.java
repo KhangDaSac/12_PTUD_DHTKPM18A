@@ -57,6 +57,23 @@ public class ChiTietVeDat_DAO {
     }
 
     public static boolean themDanhSachChiTietVeDat(ArrayList<ChiTietVeDat> danhSachChiTietVeDat){
+        try {
+            String query = "insert into ChiTietVeDat values (?, ?, ?, ?, ?)";
+            for(ChiTietVeDat chiTietVeDat : danhSachChiTietVeDat){
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1, chiTietVeDat.getVeDat().getMaVeDat());
+                statement.setString(2, chiTietVeDat.getCho().getMaCho());
+                statement.setString(3, chiTietVeDat.getKhachHang().getMaKhachHang());
+                statement.setDouble(4, chiTietVeDat.getGiaCho());
+                statement.setDouble(5, chiTietVeDat.getPhanTramGiamGia());
+                statement.execute();
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
         return true;
     }
 }

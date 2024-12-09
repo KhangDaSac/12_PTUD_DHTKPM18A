@@ -3,6 +3,8 @@ package DAO;
 import DTO.CaLamViec;
 import DTO.HoaDonDatVe;
 import connectDB.ConnectDB;
+import utils.TimeFormat;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +35,18 @@ public class HoaDonDatVe_DAO {
     }
 
     public static boolean themHoaDonDatVe(HoaDonDatVe hoaDonDatVe){
+        try {
+            String query = "insert into HoaDonDatVe values (?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, hoaDonDatVe.getMaHoaDonDatVe());
+            statement.setString(2, TimeFormat.formatLocalDateTimeSQL(hoaDonDatVe.getThoiGianLap()));
+            statement.setString(3, hoaDonDatVe.getCaLamViec().getMaCaLamViec());
+            statement.setString(4, hoaDonDatVe.getKhachHangDatVe().getMaKhachHang());
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 

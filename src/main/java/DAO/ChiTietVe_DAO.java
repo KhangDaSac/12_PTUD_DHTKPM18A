@@ -28,7 +28,7 @@ public class ChiTietVe_DAO {
                 statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
                 statement.setDouble(4, chiTietVe.getGiaCho());
                 statement.setDouble(5, chiTietVe.getPhanTramGiamGia());
-                statement.executeUpdate();
+                statement.execute();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return false;

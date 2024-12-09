@@ -86,6 +86,25 @@ public class VeDat_DAO {
     }
 
     public static boolean themDanhSachVeDat(ArrayList<VeDat> danhSachVeDat){
+        try {
+            String query = "insert into VeDat values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            for(VeDat veDat : danhSachVeDat){
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1, veDat.getMaVeDat());
+                statement.setString(2, veDat.getHoaDonDatVe().getMaHoaDonDatVe());
+                statement.setString(3, veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+                statement.setString(4, veDat.getThongTinGaTauDi().getGaTau().getMaGaTau());
+                statement.setString(5, veDat.getThongTinGaTauDen().getGaTau().getMaGaTau());
+                statement.setDouble(6, veDat.getPhanTramGiamGiaVeTapThe());
+                statement.setDouble(7, veDat.getPhanTramDatCoc());
+                statement.setString(8, veDat.getLoaiVe().toStringSQL());
+                statement.setString(9, veDat.getTrangThaiVeDat().toString());
+                statement.execute();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return true;
     }
 }
