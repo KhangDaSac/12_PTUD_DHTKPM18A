@@ -1,8 +1,6 @@
 package GUI.controllers.HuyDatVe_GUI_Items;
 
-import DTO.ChiTietVeDat;
-import DTO.LoaiVe;
-import DTO.VeDat;
+import DTO.*;
 import GUI.controllers.HuyDatVe_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -97,7 +95,7 @@ public class VeDat_HuyDatVe_Controller {
 
         vboxDanhSachChoVeTapThe.getChildren().clear();
         for (ChiTietVeDat chiTietVeDat : veDat.getDanhSachChiTietVeDat()) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyDatVe_GUI_Items/ChiTietVeDat_HuyDatVe.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyDatVe_GUI_Items/ChiTietVeDat_HuyVeDat.fxml"));
             Parent anchorPane = loader.load();
             ChiTietVeDat_HuyDatVe_Controller controller = loader.getController();
             chiTietVeDat_huyDatVe_controllers_list.add(controller);
@@ -124,6 +122,10 @@ public class VeDat_HuyDatVe_Controller {
         } else {
             boChonVeDat();
         }
+        if(huyDatVe_gui_controller.getHoaDonHuyDatVe().getDanhSachChiTietHoaDonHuyDatVe().stream().anyMatch(cthdhd -> cthdhd.getVeDat().equals(veDat)))
+            imvVeDatLay.setVisible(true);
+        else
+            imvVeDatLay.setVisible(false);
     }
 
     public void chonVeDat() {
@@ -137,6 +139,27 @@ public class VeDat_HuyDatVe_Controller {
     }
 
     public void anpVeOnMouseClicked(MouseEvent mouseEvent) {
-        // Handle mouse click event
+        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)){
+            if(huyDatVe_gui_controller.getVeDatChon_list().contains(veDat)){
+                huyDatVe_gui_controller.getVeDatChon_list().remove(veDat);
+                boChonVeDat();
+            } else {
+                huyDatVe_gui_controller.getVeDatChon_list().add(veDat);
+            }
+        }
+        huyDatVe_gui_controller.hienThiDanhSachVeDat(huyDatVe_gui_controller.getHoaDonDatVeDangChon());
+
+    }
+    public void chonLayVe() {
+        if (veDat.getTrangThaiVeDat().equals(TrangThaiVeDat.CHOLAYVE)) {
+            imvVeDatLay.setVisible(true);
+        }
+    }
+
+    public void boChonLayVe() {
+        imvVeDatLay.setVisible(false);
+        if (huyDatVe_gui_controller != null) {
+            //layVe_gui_controller.tinhTongTienLayVe();
+        }
     }
 }

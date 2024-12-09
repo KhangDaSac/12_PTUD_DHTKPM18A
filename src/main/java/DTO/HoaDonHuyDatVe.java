@@ -77,4 +77,9 @@ public class HoaDonHuyDatVe {
     public HoaDonHuyDatVe(String maHoaDonHuyDatVe) {
         this.maHoaDonHuyDatVe = maHoaDonHuyDatVe;
     }
+
+    public void addChiTietHoaDonHuyDatVe(ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe) {
+        this.danhSachChiTietHoaDonHuyDatVe.add(chiTietHoaDonHuyDatVe);
+    }
+
 }

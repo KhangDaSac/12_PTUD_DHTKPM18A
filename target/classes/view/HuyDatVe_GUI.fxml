@@ -73,9 +73,9 @@
                               </HBox>
                         <AnchorPane prefHeight="608.0" prefWidth="726.0">
                            <children>
-                              <ScrollPane layoutX="3.0" layoutY="51.0" prefHeight="554.0" prefWidth="715.0">
+                              <ScrollPane layoutX="49.0" layoutY="51.0" prefHeight="554.0" prefWidth="639.0">
                                  <content>
-                                    <VBox fx:id="vboxDanhSachHoaDonDatVe" prefHeight="558.0" prefWidth="695.0" />
+                                    <VBox fx:id="vboxDanhSachHoaDonDatVe" prefHeight="558.0" prefWidth="624.0" />
                                  </content>
                               </ScrollPane>
                               <Label layoutX="214.0" layoutY="14.0" prefHeight="30.0" prefWidth="262.0" text="Danh sách hóa đơn đặt vé">
@@ -91,7 +91,7 @@
                      <children>
                         <HBox>
                            <children>
-                                <Button fx:id="btnChonTatCaPhieuDatVe" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Bỏ chọn tất cả các vé">
+                                <Button fx:id="btnBoChonTatCaPhieuDatVe" mnemonicParsing="false" onAction="#btnBoChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Bỏ chọn tất cả các vé">
                                     <font>
                                         <Font size="16.0" />
                                     </font>
@@ -106,7 +106,7 @@
                                     <Insets left="5.0" right="70.0" />
                                  </HBox.margin>
                                 </Button>
-                              <Button fx:id="btnBoChonTatCaPhieuDatVe1" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Chọn tất cả các vé">
+                              <Button fx:id="btnChonTatCaPhieuDatVe1" mnemonicParsing="false" onAction="#btnChonTatCaOnAction" prefHeight="46.0" prefWidth="223.0" styleClass="button-chon" text="Chọn tất cả các vé">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -122,9 +122,9 @@
                         </HBox>
                           <AnchorPane prefHeight="444.0" prefWidth="526.0">
                               <children>
-                                  <ScrollPane layoutX="6.0" layoutY="58.0" prefHeight="439.0" prefWidth="518.0">
+                                  <ScrollPane layoutX="29.0" layoutY="58.0" prefHeight="439.0" prefWidth="467.0">
                                  <content>
-                                    <VBox fx:id="vboxDanhSachVeDat" prefHeight="438.0" prefWidth="502.0" />
+                                    <VBox fx:id="vboxDanhSachVeDat" prefHeight="438.0" prefWidth="450.0" />
                                  </content>
                                   </ScrollPane>
                               <Label layoutX="14.0" layoutY="14.0" text="Danh sách vé đặt">
@@ -146,28 +146,33 @@
                                     </Label>
                                     <TextField fx:id="txtTongTienTraKhach" prefHeight="54.0" prefWidth="199.0" styleClass="box-thong-tin">
                                        <font>
-                                          <Font size="16.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font></TextField>
                                  </children>
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin>
                               </VBox>
-                                  <Button mnemonicParsing="false" onAction="#btnHuyPhieuDatOnAction" prefHeight="59.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
+                              <Button mnemonicParsing="false" onAction="#btnTinhTienOnAction" prefHeight="54.0" prefWidth="130.0" styleClass="button-chon" text="Tính tiền">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="15.0" right="50.0" top="35.0" />
+                                 </HBox.margin>
+                              </Button>
+                                  <Button fx:id="btnHuyVeDat" mnemonicParsing="false" onAction="#btnHuyVeDatOnAction" prefHeight="59.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
                                       <font>
                                           <Font size="16.0" />
                                       </font>
                                       <HBox.margin>
-                                          <Insets left="100.0" top="30.0" />
+                                          <Insets top="30.0" />
                                       </HBox.margin>
                                   </Button>
                               </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <padding>
-                              <Insets left="70.0" />
-                           </padding>
                           </HBox>
                      </children>
                      <padding>

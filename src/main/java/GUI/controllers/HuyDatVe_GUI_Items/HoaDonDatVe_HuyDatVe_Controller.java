@@ -30,6 +30,8 @@ public class HoaDonDatVe_HuyDatVe_Controller {
     @FXML
     private Label lblTenKhachHang;
     public void anpHoaDonOnMouseClicked(MouseEvent mouseEvent) {
+        huyDatVe_gui_controller.getVeDatChon_list().clear();
+        huyDatVe_gui_controller.xoaTienTraKhach();
         huyDatVe_gui_controller.hienThiDanhSachVeDat(hoaDonDatVe);
         huyDatVe_gui_controller.setHoaDonDatVeDangChon(hoaDonDatVe);
         huyDatVe_gui_controller.hienThiDanhSachHoaDonDat();

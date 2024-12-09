@@ -80,4 +80,9 @@ public class ChiTietHoaDonHuyDatVe {
         this.veDat = veDat;
         this.phanTramLePhi = phanTramLePhi;
     }
+
+    public ChiTietHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe, VeDat veDat) {
+        this.hoaDonHuyDatVe = hoaDonHuyDatVe;
+        this.veDat = veDat;
+    }
 }

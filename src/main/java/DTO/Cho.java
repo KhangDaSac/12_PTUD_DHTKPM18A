@@ -11,9 +11,12 @@ public class Cho {
     private LoaiCho loaiCho;
     private TrangThaiCho trangThaiCho;
 
-    public Cho() {
-        super();
-        // TODO Auto-generated constructor stub
+
+    public Cho(String maCho, int soCho, LoaiCho loaiCho, ToaTau toaTau) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.loaiCho = loaiCho;
+        this.toaTau = toaTau;
     }
 
     public Cho(String maCho, int soCho, LoaiCho loaiCho) {
