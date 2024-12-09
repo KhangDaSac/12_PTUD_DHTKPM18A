@@ -188,6 +188,8 @@ public class LayVe_GUI_Controller implements Initializable {
     public void layDanhSachHoaDonDatTheoKhachHang(){
         hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
+        hoaDonDatVeDangChon = hoaDonDatVe_list.getFirst();
+        hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
     }
 
     public void hienThiDanhSachHoaDonDat(){
@@ -211,8 +213,7 @@ public class LayVe_GUI_Controller implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            hoaDonDatVeDangChon = hoaDonDatVe_list.getFirst();
-            hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
+
         }
     }
 
@@ -333,7 +334,10 @@ public class LayVe_GUI_Controller implements Initializable {
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
             hoaDonLayVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+            hoaDonLayVe.setKhachHangLayVe(khachHang);
             layDanhSachHoaDonDatTheoKhachHang();
+            hienThiDanhSachVeLay();
+            hienThiDanhSachVeDat(null);
         }else{
             main_controller.showMessagesDialog("Lấy vé thất bại");
         }

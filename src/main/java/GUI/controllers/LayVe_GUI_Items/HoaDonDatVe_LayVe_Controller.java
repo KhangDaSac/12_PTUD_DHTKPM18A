@@ -66,7 +66,6 @@ public class HoaDonDatVe_LayVe_Controller {
         lblTongTien.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()));
         lblTienCoc.setText(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienDatCoc()));
         anpHoaDon.getStylesheets().add(getClass().getResource("/css/LayVe_GUI.css").toExternalForm());
-
         if(layVe_gui_controller.getHoaDonDatVeDangChon() != null && layVe_gui_controller.getHoaDonDatVeDangChon().equals(hoaDonDatVe)){
             chonHoaDon();
         }else{

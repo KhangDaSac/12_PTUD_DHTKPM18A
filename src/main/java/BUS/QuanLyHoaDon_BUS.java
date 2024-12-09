@@ -92,6 +92,12 @@ public class QuanLyHoaDon_BUS {
             return false;
         }
 
+        for(Ve ve : danhSachVe){
+            if(!ChiTietVe_DAO.themDanhSachChiTietVe(ve.getDanhSachChiTietVe())){
+                return false;
+            }
+        }
+
         if(!ChiTietHoaDonLayVe_DAO.themDanhSachChiTietHoaDonLayVe(hoaDonLayVe.getDanhSachChiTietHoaDonLayVe())){
             return false;
         }

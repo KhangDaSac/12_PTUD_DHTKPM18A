@@ -33,7 +33,7 @@ public class VeDat_DAO {
                         new ChiTietChuyenTau(
                                 new ChuyenTau(rs.getString("maChuyenTau")),
                                 new GaTau(
-                                        rs.getString("maGaTauDi"),
+                                        rs.getString("maGaTauDen"),
                                         rs.getString("tenGaTauDen")
                                 )
                         ),
