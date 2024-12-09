@@ -43,7 +43,7 @@ public class Ve_DAO {
                 statement.setString(4, ve.getThongTinGaTauDi().getGaTau().getMaGaTau());
                 statement.setString(5, ve.getThongTinGaTauDen().getGaTau().getMaGaTau());
                 statement.setDouble(6, ve.getPhanTramGiamGiaVeTapThe());
-                statement.setString(7, ve.getLoaiVe().toString());
+                statement.setString(7, ve.getLoaiVe().toStringSQL());
                 statement.setString(8, ve.getTrangThaiVe().toString());
                 statement.execute();
 

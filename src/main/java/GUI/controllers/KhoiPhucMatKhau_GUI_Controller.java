@@ -47,6 +47,7 @@ public class KhoiPhucMatKhau_GUI_Controller implements Initializable {
             stage.setScene(scene);
             stage.centerOnScreen();
         } catch (Exception e) {
+
         }
     }
 

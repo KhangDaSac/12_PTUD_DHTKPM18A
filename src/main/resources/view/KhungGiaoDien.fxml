@@ -15,11 +15,11 @@
    <children>
       <AnchorPane prefHeight="790.0" prefWidth="1540.0" stylesheets="@../css/KhungGiaoDien_GUI.css">
          <children>
-            <AnchorPane fx:id="anpNoiDungTrang" layoutX="250.0" prefHeight="790.0" prefWidth="1290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="anpNoiDungTrang" layoutX="250.0" prefHeight="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ImageView fitHeight="790.0" fitWidth="1290.0" layoutX="-1.0" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../images/TrangChu_GUI/Background.jpg" />
+                        <Image url="@../images/TrangChu_GUI/Background.png" />
                      </image>
                   </ImageView>
                </children>
@@ -59,7 +59,7 @@
                         <Image url="@../images/Logo.png" />
                      </image>
                   </ImageView>
-                  <VBox layoutY="156.0" prefHeight="620.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+                  <VBox layoutY="156.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
                      <children>
                         <HBox prefHeight="55.0" prefWidth="250.0">
                            <children>
@@ -254,7 +254,6 @@
                   </Label>
                </children>
             </AnchorPane>
-            <StackPane fx:id="stpLoading" prefHeight="100.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>

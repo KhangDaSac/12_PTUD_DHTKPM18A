@@ -188,7 +188,7 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnThemVeOnAction(ActionEvent event) {
+    void btnThemVeDatOnAction(ActionEvent event) {
         try {
             themVeVaoGio();
         } catch (IOException e) {
@@ -197,7 +197,7 @@ public class DatVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnXoaTatCaVeTrongGioOnAction(ActionEvent event) {
+    void btnXoaTatCaVeDatTrongGioOnAction(ActionEvent event) {
         xoaTatCaVe();
     }
 

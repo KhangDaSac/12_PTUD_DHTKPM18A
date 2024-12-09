@@ -14,4 +14,8 @@ public enum LoaiVe {
         }
         return super.toString();
     }
+
+    public String toStringSQL(){
+        return super.toString();
+    }
 }

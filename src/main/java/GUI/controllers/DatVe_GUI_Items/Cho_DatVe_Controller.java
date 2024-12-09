@@ -74,7 +74,7 @@ public class Cho_DatVe_Controller implements Initializable {
     }
 
     public void khoiTao(double doDaiChang){
-        anpTrangThaiCho.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Cho_BanVe.css").toExternalForm());
+        anpTrangThaiCho.getStylesheets().add(getClass().getResource("/css/DatVe_GUI_Items/Cho_DatVe.css").toExternalForm());
         lblSoCho.setText(String.valueOf(cho.getSoCho()));
         cho.setGiaCho(cho.tinhGiaCho(doDaiChang));
         lblGiaCho.setText(CurrencyFormat.currencyFormat(cho.getGiaCho()));

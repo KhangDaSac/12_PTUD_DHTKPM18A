@@ -22,10 +22,10 @@ import java.util.ResourceBundle;
 
 public class VeDat_DatVe_Controller implements Initializable {
     @FXML
-    private AnchorPane anpVe;
+    private AnchorPane anpVeDat;
 
     @FXML
-    private AnchorPane anpXoaVe;
+    private AnchorPane anpXoaVeDat;
 
     @FXML
     private HBox hboxGiamGiaVeTapThe;
@@ -50,6 +50,9 @@ public class VeDat_DatVe_Controller implements Initializable {
 
     @FXML
     private Label lblThoiGianDi;
+
+    @FXML
+    private Label lblTienDatCoc;
 
     @FXML
     private VBox vboxDanhSachChoVeTapThe;
@@ -107,17 +110,18 @@ public class VeDat_DatVe_Controller implements Initializable {
     }
 
     public void khoiTao() throws IOException {
-        anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
+        anpVeDat.getStylesheets().add(getClass().getResource("/css/DatVe_GUI_Items/VeDat_DatVe.css").toExternalForm());
         lblMaChuyenTau.setText(veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
         lblTenGaDi.setText(veDat.getThongTinGaTauDi().getGaTau().getTenGaTau());
         lblTenGaDen.setText(veDat.getThongTinGaTauDen().getGaTau().getTenGaTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi()));
         lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
+        lblTienDatCoc.setText(CurrencyFormat.currencyFormat(veDat.tienDatCoc()));
         lblSTT.setText(String.valueOf(soThuTu + 1));
 
         vboxDanhSachChoVeTapThe.getChildren().clear();
         for(ChiTietVeDat chiTietVeDat : veDat.getDanhSachChiTietVeDat()){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ChiTietVe_BanVe.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI_Items/ChiTietVeDat_DatVe.fxml"));
             Parent anchorPane = loader.load();
             ChiTietVeDat_DatVe_Controller controller = loader.getController();
             chiTietVe_banVe_controller_list.add(controller);
@@ -131,11 +135,11 @@ public class VeDat_DatVe_Controller implements Initializable {
         if(veDat.getLoaiVe() == LoaiVe.VECANHAN){
             vboxDanhSachThongTin.setMinHeight(390);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
-            anpXoaVe.getStyleClass().add("ve-left-veCaNhan");
+            anpXoaVeDat.getStyleClass().add("veDat-left-veCaNhan");
 
         }else if(veDat.getLoaiVe() == LoaiVe.VETAPTHE){
             vboxDanhSachThongTin.setMinHeight(180 + veDat.getDanhSachChiTietVeDat().size() * 260);
-            anpXoaVe.getStyleClass().add("ve-left-veTapThe");
+            anpXoaVeDat.getStyleClass().add("veDat-left-veTapThe");
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(veDat.giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));
         }
@@ -143,14 +147,14 @@ public class VeDat_DatVe_Controller implements Initializable {
 
     public void chonVe(){
         datVe_gui_controller.boChonTatCaVe();
-            anpVe.getStyleClass().add("veDangChon");
-            anpVe.getStyleClass().removeAll("veKhongChon");
+        anpVeDat.getStyleClass().add("veDatDangChon");
+        anpVeDat.getStyleClass().removeAll("veDatKhongChon");
 
     }
 
     public void khongChonVe(){
-        anpVe.getStyleClass().removeAll("veDangChon");
-        anpVe.getStyleClass().add("veKhongChon");
+        anpVeDat.getStyleClass().removeAll("veDatDangChon");
+        anpVeDat.getStyleClass().add("veDatKhongChon");
     }
 
 }

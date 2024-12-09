@@ -1,17 +1,14 @@
 package GUI.controllers;
 
-import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
 import DTO.NhanVien;
-import DTO.Ve;
-import GUI.applications.LoadingUtil;
-import javafx.application.Platform;
+import GUI.applications.Run;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -19,13 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import utils.ShowMessagesDialog;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 public class Main_Controller {
 
@@ -109,10 +103,6 @@ public class Main_Controller {
 
     @FXML
     private VBox vboxQuanLyVeDat;
-
-
-    @FXML
-    private StackPane stpLoading;
 
     private NhanVien nhanVien;
 
@@ -270,17 +260,41 @@ public class Main_Controller {
 
     @FXML
     void btnDangXuatOnAction(ActionEvent event) {
+        try {
+            Window window = anpNoiDungTrang.getScene().getWindow();
+            Stage stage = (Stage) window;
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+        } catch (Exception e) {
 
+        }
     }
 
     @FXML
     void btnDatVeOnAction(ActionEvent event) {
-
+        lblTieuDeTrang.setText("ĐẶT VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        DatVe_GUI_Controller controller = loader.getController();
+        controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
     void btnDoiVeOnAction(ActionEvent event) {
-
         lblTieuDeTrang.setText("ĐỔI VÉ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI.fxml"));
         Parent trangMoi = null;
@@ -514,12 +528,5 @@ public class Main_Controller {
     @FXML
     void btnTimVeOnAction(ActionEvent event) {
 
-    }
-
-    public void startLongTask(Task<Void> task) {
-        LoadingUtil.runWithLoading(
-                stpLoading,
-                task
-        );
     }
 }
