@@ -38,8 +38,6 @@ public class QuanLyHoaDon_BUS {
             }
         }
 
-        System.out.println(hoaDonBanVe.toString());
-
         if (!HoaDonBanVe_DAO.themHoaDonBanVe(hoaDonBanVe)) {
             return false;
         }
@@ -124,5 +122,33 @@ public class QuanLyHoaDon_BUS {
         return maHoaDonMoi;
     }
 
+    public static boolean themHoaDon(HoaDonDatVe hoaDonDatVe) throws Exception {
+        if (hoaDonDatVe.getKhachHangDatVe() == null)
+            throw new Exception("Chưa nhập thông tin người đặt vé");
+
+        for (VeDat veDat : hoaDonDatVe.getDanhSachVeDat()) {
+            for (ChiTietVeDat chiTietVeDat : veDat.getDanhSachChiTietVeDat()) {
+                if (chiTietVeDat.getKhachHang() == null) {
+                    throw new Exception("Chưa nhập thông tin người người đi tàu");
+                }
+            }
+        }
+
+        if (!HoaDonDatVe_DAO.themHoaDonDatVe(hoaDonDatVe)) {
+            return false;
+        }
+
+        if (!VeDat_DAO.themDanhSachVeDat(hoaDonDatVe.getDanhSachVeDat())) {
+            return false;
+        }
+
+        for (VeDat veDat : hoaDonDatVe.getDanhSachVeDat()) {
+            if (!ChiTietVeDat_DAO.themDanhSachChiTietVeDat(veDat.getDanhSachChiTietVeDat())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 }

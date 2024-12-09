@@ -1,11 +1,8 @@
 package DAO;
 
 import DTO.CaLamViec;
-import DTO.HoaDonBanVe;
 import DTO.HoaDonDatVe;
 import connectDB.ConnectDB;
-import utils.TimeFormat;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +30,10 @@ public class HoaDonDatVe_DAO {
             e.printStackTrace();
         }
         return danhSachHoaDonDat;
+    }
+
+    public static boolean themHoaDonDatVe(HoaDonDatVe hoaDonDatVe){
+        return true;
     }
 
 }

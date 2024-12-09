@@ -204,10 +204,10 @@ public class DatVe_GUI_Controller implements Initializable {
     @FXML
     void btnTiepTucOnAction(ActionEvent event) {
         if(hoaDonDatVe.getDanhSachVeDat().isEmpty()){
-            main_Controller.showMessagesDialog("Trong giỏ không có vé");
+            main_Controller.showMessagesDialog("Trong giỏ không có vé đặt");
             return;
         }
-        //main_Controller.chuyenTrangThongTinBanVe(hoaDonBanVe);
+        main_Controller.chuyenTrangThongTinDatVe(hoaDonDatVe);
     }
 
     public void timDanhSachChuyenTau(){

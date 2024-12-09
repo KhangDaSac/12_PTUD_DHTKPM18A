@@ -34,6 +34,9 @@ module GUI.applications {
     opens GUI.controllers.KhoiPhucMatKhau_GUI_Items to javafx.fxml;
     exports GUI.controllers.DatVe_GUI_Items;
     opens GUI.controllers.DatVe_GUI_Items to javafx.fxml;
+    exports GUI.controllers.ThongTinDatVe_GUI_Items;
+    opens GUI.controllers.ThongTinDatVe_GUI_Items to javafx.fxml;
+
     exports utils;
     opens utils to javafx.fxml;
 

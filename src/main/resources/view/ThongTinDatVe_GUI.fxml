@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/All.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinDatVe_GUI_Controller">
+   <children>
+      <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="1000.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="btnQuayLai" onAction="#btnQuayLaiOnAction" prefHeight="70.0" prefWidth="320.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Quay lại" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../images/BanVe_GUI/QuayLai.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="391.0" layoutY="7.0" prefWidth="488.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="350.0">
+               <children>
+                  <HBox styleClass="h-box" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <JFXButton fx:id="btnChonTatCaCho" onAction="#btnChonTatCaChoOnAction" prefHeight="70.0" prefWidth="220.0" styleClass="buttonOption" text="Chọn tất cả chỗ">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../css/All.css" />
+                              <URL value="@../css/ThongTinBanVe_GUI.css" />
+                           </stylesheets>
+                        </JFXButton>
+                        <JFXButton fx:id="btnBoChonTatCaCho" layoutX="555.0" layoutY="15.0" onAction="#btnBoChonTatCaChoOnAction" prefHeight="70.0" prefWidth="220.0" styleClass="buttonOption" text="Bỏ chọn tất cả chỗ">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <stylesheets>
+                              <URL value="@../css/All.css" />
+                              <URL value="@../css/ThongTinBanVe_GUI.css" />
+                           </stylesheets>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <AnchorPane prefHeight="70.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="140.0" text="Tổng tiền" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtTongTien" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="70.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="140.0" text="Tổng tiền cọc" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtTongTienCoc" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <JFXButton fx:id="btnBanVe" onAction="#btnDatVeOnAction" prefHeight="70.0" prefWidth="420.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đặt vé">
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../images/BanVe_GUI/Mua.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox prefWidth="340.0">
+                     <children>
+                        <HBox prefHeight="80.0" styleClass="h-box" stylesheets="@../css/All.css">
+                           <children>
+                              <AnchorPane prefHeight="100.0" styleClass="group" stylesheets="@../css/All.css">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="140.0" text="CCCD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtCCCD" layoutX="12.0" layoutY="38.0" onMouseClicked="#txtCCCDOnMouseClicked" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                              <JFXButton fx:id="btnTimKiemKhachHang" onAction="#btnTimKiemKhachHangOnAction" prefHeight="70.0" prefWidth="120.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Tìm">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0">
+                                       <image>
+                                          <Image url="@../images/BanVe_GUI/TimChuyenTau.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="90.0" prefHeight="80.0" prefWidth="200.0" styleClass="h-box">
+                           <children>
+                              <AnchorPane prefHeight="70.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="140.0" text="Mã khách hàng" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtMaKhachHang" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="80.0" prefWidth="200.0" styleClass="h-box">
+                           <children>
+                              <AnchorPane prefHeight="70.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="140.0" text="Tên khách hàng" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtTenKhachHang" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="80.0" prefWidth="200.0" styleClass="h-box">
+                           <children>
+                              <AnchorPane prefHeight="100.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="140.0" text="Số điện thoại" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtSoDienThoai" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="80.0" prefWidth="200.0" styleClass="h-box">
+                           <children>
+                              <AnchorPane prefHeight="100.0" prefWidth="420.0" styleClass="group" stylesheets="@../css/All.css">
+                                 <children>
+                                    <Label prefHeight="30.0" prefWidth="140.0" text="Loại khách hàng" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="txtLoaiKhachHang" editable="false" layoutX="12.0" layoutY="38.0" prefHeight="26.0" stylesheets="@../css/All.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="80.0" prefWidth="418.0" styleClass="h-box" stylesheets="@../css/All.css">
+                           <children>
+                              <JFXButton fx:id="btnThemNguoiDiTau" onAction="#btnThemNguoiDiTauOnAction" prefHeight="70.0" prefWidth="190.0" styleClass="buttonOption" text="Thêm người đi tàu">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/All.css" />
+                                    <URL value="@../css/ThongTinBanVe_GUI.css" />
+                                 </stylesheets>
+                              </JFXButton>
+                              <JFXButton fx:id="btnThemNguoiDat" layoutX="555.0" layoutY="15.0" onAction="#btnThemNguoiDatOnAction" prefHeight="70.0" prefWidth="190.0" styleClass="buttonOption" text="Thêm người đặt">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                                 <stylesheets>
+                                    <URL value="@../css/All.css" />
+                                    <URL value="@../css/ThongTinBanVe_GUI.css" />
+                                 </stylesheets>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="500.0">
+                     <children>
+                        <AnchorPane prefHeight="620.0">
+                           <children>
+                              <ScrollPane hbarPolicy="NEVER" layoutX="25.6" styleClass="danhSachVe" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                                 <content>
+                                    <VBox fx:id="vboxGioVeDat" prefHeight="400.0" prefWidth="460.0" styleClass="danhSachVe" />
+                                 </content>
+                              </ScrollPane>
+                              <Label text="Giỏ vé đặt" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="-14.0">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <VBox prefWidth="430.0">
+                     <children>
+                        <HBox prefHeight="60.0" style="-fx-alignment: center;">
+                           <children>
+                              <Label style="-fx-font-size: 20; -fx-alignment: center; -fx-font-weight: 700;" text="THÔNG TIN NGƯỜI ĐẶT VÉ" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Mã khách hàng: " />
+                              <Label fx:id="lblMaKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số CCCD:" />
+                              <Label fx:id="lblCCCDKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="70.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Tên khách hàng: " />
+                              <Label fx:id="lblTenKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="110.0" prefHeight="40.0">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Số điện thoại: " />
+                              <Label fx:id="lblSoDienThoaiKhachHangMua" layoutX="10.0" layoutY="10.0" prefHeight="40.0" style="-fx-font-size: 16;" />
+                           </children>
+                        </HBox>
+                     </children></VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

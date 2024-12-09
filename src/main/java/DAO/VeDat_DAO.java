@@ -84,4 +84,8 @@ public class VeDat_DAO {
         }
         return duoiMaVeDatLonNhat;
     }
+
+    public static boolean themDanhSachVeDat(ArrayList<VeDat> danhSachVeDat){
+        return true;
+    }
 }

@@ -65,6 +65,9 @@ public class VeDat {
 	}
 
 	public void setLoaiVe(LoaiVe loaiVe) {
+		if(loaiVe.equals(LoaiVe.VETAPTHE)){
+			this.phanTramGiamGiaVeTapThe = PHANTRAMGIAMGIAVETAPTHE;
+		}
 		this.loaiVe = loaiVe;
 	}
 

@@ -38,6 +38,7 @@ public class ChiTietVeDat {
 
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
+		this.phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
 	}
 
 	public double getPhanTramGiamGia() {

@@ -55,4 +55,8 @@ public class ChiTietVeDat_DAO {
         }
         return chiTietVeDat_list;
     }
+
+    public static boolean themDanhSachChiTietVeDat(ArrayList<ChiTietVeDat> danhSachChiTietVeDat){
+        return true;
+    }
 }

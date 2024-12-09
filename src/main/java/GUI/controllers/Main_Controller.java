@@ -1,9 +1,9 @@
 package GUI.controllers;
 
 import DTO.HoaDonBanVe;
+import DTO.HoaDonDatVe;
 import DTO.NhanVien;
 import GUI.applications.Run;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -207,10 +207,7 @@ public class Main_Controller {
         AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
-
-
-
-    public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDon){
+    public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDonBanVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -220,7 +217,27 @@ public class Main_Controller {
         }
         ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
         thongTinBanVe_gui_controller.setMain_controller(this);
-        thongTinBanVe_gui_controller.setHoaDonBanVe(hoaDon);
+        thongTinBanVe_gui_controller.setHoaDonBanVe(hoaDonBanVe);
+        thongTinBanVe_gui_controller.khoiTao();
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    public void chuyenTrangThongTinDatVe(HoaDonDatVe hoaDonDatVe){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinDatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        ThongTinDatVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
+        thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setHoaDonDatVe(hoaDonDatVe);
         thongTinBanVe_gui_controller.khoiTao();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
@@ -505,6 +522,43 @@ public class Main_Controller {
         }
         BanVe_GUI_Controller banVe_gui_controller = loader.getController();
         banVe_gui_controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    public void quayLaiTrangDatVe(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        DatVe_GUI_Controller datVe_gui_controller = loader.getController();
+        datVe_gui_controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    public void quayLaiTrangDatVe(HoaDonDatVe hoaDonDatVe){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        DatVe_GUI_Controller datVe_gui_controller = loader.getController();
+        datVe_gui_controller.setMain_Controller(this);
+        datVe_gui_controller.setHoaDonDatVe(hoaDonDatVe);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

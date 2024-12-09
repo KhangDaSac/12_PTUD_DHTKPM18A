@@ -30,9 +30,6 @@ public class Ve_ThongTinBanVe_Controller implements Initializable {
     private AnchorPane anpXoaVe;
 
     @FXML
-    private HBox hboxGiaVeCuoi;
-
-    @FXML
     private HBox hboxGiamGiaVeTapThe;
 
     @FXML
