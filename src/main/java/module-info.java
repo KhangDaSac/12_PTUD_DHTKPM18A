@@ -30,9 +30,10 @@ module GUI.applications {
     opens GUI.controllers.LayVe_GUI_Items to javafx.fxml;
     exports GUI.controllers.QuanLyChuyenTau_GUI_Items;
     opens GUI.controllers.QuanLyChuyenTau_GUI_Items to javafx.fxml;
-
     exports GUI.controllers.KhoiPhucMatKhau_GUI_Items;
     opens GUI.controllers.KhoiPhucMatKhau_GUI_Items to javafx.fxml;
+    exports GUI.controllers.DatVe_GUI_Items;
+    opens GUI.controllers.DatVe_GUI_Items to javafx.fxml;
     exports utils;
     opens utils to javafx.fxml;
 

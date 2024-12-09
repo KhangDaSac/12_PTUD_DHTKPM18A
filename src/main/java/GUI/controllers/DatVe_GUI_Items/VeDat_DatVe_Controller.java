@@ -133,12 +133,12 @@ public class VeDat_DatVe_Controller implements Initializable {
         chiTietVe_banVe_controller_list.getLast().chiTietVeCuoi();
 
         if(veDat.getLoaiVe() == LoaiVe.VECANHAN){
-            vboxDanhSachThongTin.setMinHeight(390);
+            vboxDanhSachThongTin.setMinHeight(420);
             vboxDanhSachThongTin.getChildren().remove(hboxGiamGiaVeTapThe);
             anpXoaVeDat.getStyleClass().add("veDat-left-veCaNhan");
 
         }else if(veDat.getLoaiVe() == LoaiVe.VETAPTHE){
-            vboxDanhSachThongTin.setMinHeight(180 + veDat.getDanhSachChiTietVeDat().size() * 260);
+            vboxDanhSachThongTin.setMinHeight(210 + veDat.getDanhSachChiTietVeDat().size() * 260);
             anpXoaVeDat.getStyleClass().add("veDat-left-veTapThe");
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(veDat.giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()));

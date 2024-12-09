@@ -68,4 +68,20 @@ public class VeDat_DAO {
         }
         return true;
     }
+
+    public static String layDuoiMaVeDatLonNhatCuaNgayHienTai(String ngayHienTai){
+        String duoiMaVeDatLonNhat = null;
+        try {
+            String query = "select max(SUBSTRING(maVeDat, LEN(maVeDat) - 7, 8)) as duoiMaVeDat from VeDat where maVeDat like 'VD[A-Z][A-Z]' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, ngayHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                duoiMaVeDatLonNhat = rs.getString("duoiMaVeDat");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return duoiMaVeDatLonNhat;
+    }
 }

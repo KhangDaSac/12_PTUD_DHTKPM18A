@@ -242,7 +242,7 @@ public class BanVe_GUI_Controller implements Initializable {
         anpDanhSachCho.setVisible(false);
         grpDanhSachCho.setVisible(false);
         if(chuyenTauList.isEmpty()){
-            //main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
+            main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
             System.out.println("Khong tim thay");
             return;
         }

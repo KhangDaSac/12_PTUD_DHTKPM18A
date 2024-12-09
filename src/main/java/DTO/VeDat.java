@@ -136,6 +136,7 @@ public class VeDat {
 		this.hoaDonDatVe = hoaDonDatVe;
 		this.thongTinGaTauDi = thongTinGaTauDi;
 		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.phanTramDatCoc = PHANTRAMDATCOC;
 	}
 
 	public VeDat(String maVeDat) {

@@ -230,7 +230,7 @@ public class DatVe_GUI_Controller implements Initializable {
             chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
             hienThiDanhSachChuyenTau(chuyenTauList);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
@@ -250,8 +250,7 @@ public class DatVe_GUI_Controller implements Initializable {
         anpDanhSachCho.setVisible(false);
         grpDanhSachCho.setVisible(false);
         if(chuyenTauList.isEmpty()){
-            //main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
-            System.out.println("Khong tim thay");
+            main_Controller.showMessagesDialog("Không tìm thấy chuyến tàu");
             return;
         }
         chuyenTauControllerList.clear();
@@ -287,7 +286,7 @@ public class DatVe_GUI_Controller implements Initializable {
         int length = toaTauList.size();
         for(int i = 0; i < length; i++){
             ToaTau toaTau = toaTauList.get(i);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/ToaTau_BanVe.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI_Items/ToaTau_DatVe.fxml"));
             Parent anchorPane = loader.load();
             ToaTau_DatVe_Controller controller = loader.getController();
             toaTauControllerList.add(controller);
@@ -368,7 +367,7 @@ public class DatVe_GUI_Controller implements Initializable {
         double doDaiChang = controller.getChiTietChuyenTauDen().getSoKm() - controller.getChiTietChuyenTauDi().getSoKm();
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI_Items/Cho_BanVe.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI_Items/Cho_DatVe.fxml"));
             Parent anchorPane = loader.load();
             Cho_DatVe_Controller cho_controller = loader.getController();
             cho_controller.setDatVe_gui_controller(this);
@@ -532,7 +531,7 @@ public class DatVe_GUI_Controller implements Initializable {
                 chiTietChuyenTauDi.setGaTau(gaDi);
                 chiTietChuyenTauDen.setGaTau(gaDen);
 
-                String maVeDatMoi = hoaDonDatVe.getMaHoaDonDatVe().isEmpty()
+                String maVeDatMoi = hoaDonDatVe.getDanhSachVeDat().isEmpty()
                         ? QuanLyVeDat_BUS.taoMaVeDatMoi(LoaiVe.VECANHAN)
                         : QuanLyVeDat_BUS.taoMaVeDatTiepTheo(hoaDonDatVe.getDanhSachVeDat().getLast(), LoaiVe.VECANHAN);
 
@@ -560,7 +559,7 @@ public class DatVe_GUI_Controller implements Initializable {
             ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
             ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
 
-            String maVeDatMoi = hoaDonDatVe.getMaHoaDonDatVe().isEmpty()
+            String maVeDatMoi = hoaDonDatVe.getDanhSachVeDat().isEmpty()
                     ? QuanLyVeDat_BUS.taoMaVeDatMoi(LoaiVe.VETAPTHE)
                     : QuanLyVeDat_BUS.taoMaVeDatTiepTheo(hoaDonDatVe.getDanhSachVeDat().getLast(), LoaiVe.VETAPTHE);
 
