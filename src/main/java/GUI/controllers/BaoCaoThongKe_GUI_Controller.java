@@ -286,6 +286,6 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
         }
     }
 
-    public void setMain_Controller(Main_Controller mainController) {
-    }
+//    public void setMain_Controller(Main_Controller mainController) {
+//    }
 }

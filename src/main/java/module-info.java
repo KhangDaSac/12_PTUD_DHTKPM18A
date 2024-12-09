@@ -15,20 +15,15 @@ module GUI.applications {
     opens GUI.applications to javafx.fxml;
     exports GUI.controllers;
     opens GUI.controllers to javafx.fxml;
-    exports GUI.controllers.BanVe_GUI_Items;
-    opens GUI.controllers.BanVe_GUI_Items to javafx.fxml;
     opens DTO to javafx.base;
-    exports GUI.controllers.ThongTinBanVe_GUI_Items;
-    opens GUI.controllers.ThongTinBanVe_GUI_Items to javafx.fxml;
+
     requires javafx.controls;
     requires itextpdf;
     requires org.apache.poi.ooxml;
     requires com.google.zxing;
     requires com.google.zxing.javase;
-    exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
 
     opens GUI.controllers.HuyDatVe_GUI_Items to javafx.fxml;
 
     exports GUI.controllers.HuyDatVe_GUI_Items;
-    opens GUI.controllers.LayVe_GUI_Items to javafx.fxml;
 }

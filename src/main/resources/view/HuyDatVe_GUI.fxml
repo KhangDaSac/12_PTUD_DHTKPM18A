@@ -161,7 +161,7 @@
                                     <Insets left="15.0" right="50.0" top="35.0" />
                                  </HBox.margin>
                               </Button>
-                                  <Button fx:id="btnHuyVeDat" mnemonicParsing="false" onAction="#btnHuyVeDatOnAction" prefHeight="59.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
+                                  <Button mnemonicParsing="false" onAction="#btnHuyPhieuDatOnAction" prefHeight="59.0" prefWidth="130.0" styleClass="button-tim-kiem" text="Hủy phiếu đặt">
                                       <font>
                                           <Font size="16.0" />
                                       </font>

@@ -1,6 +1,5 @@
 package GUI.applications;
 
-import GUI.controllers.DangNhap_GUI_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
