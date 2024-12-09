@@ -226,6 +226,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             QuanLyVe_BUS.themChiTietVeMoi(ctVeMoi);
             QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
             QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
+            hoaDonDoiVe.getDanhSachVeDoi().add(veMoi);
             main_Controller.showMessagesDialog("Đổi vé thành công!");
             CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
     }
