@@ -34,7 +34,7 @@ public class ChiTietChuyenTau_DAO {
         return  dsChiTietChuyenTau;
     }
 
-    public ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(String maChuyenTau, String maGaTau){
+    public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(String maChuyenTau, String maGaTau){
         Connection con = ConnectDB.getInstance().getConnection();
         try {
             String query = "select maChuyenTau, gt.maGaTau, tenGaTau, thoiGianDi, thoiGianDen, thuTuGa, soKm" +

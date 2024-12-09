@@ -23,12 +23,13 @@ public class CaLamViec {
         this.nhanVien = nhanVien;
     }
 
-    public String getMaCaLamViec() {
-        return maCaLamViec;
-    }
 
     public void setMaCaLamViec(String maCaLamViec) {
         this.maCaLamViec = maCaLamViec;
+    }
+
+    public String getMaCaLamViec() {
+        return maCaLamViec;
     }
 
     public LocalDateTime getThoiGianBatDat() {

@@ -25,3 +25,11 @@
     -fx-font-size: 16;
     -fx-text-fill: #000;
 }
+.khungDanhSach{
+    -fx-background-color: #fff;
+    -fx-background-radius: 7px;
+    -fx-border-color: #000;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    }

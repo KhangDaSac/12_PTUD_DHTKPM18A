@@ -18,27 +18,34 @@ public class VeDat_DAO {
             statement.setString(1, maHoaDon);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")), new GaTau(rs.getString("maGaDi")), rs.getTimestamp("thoiGianDi").toLocalDateTime());
-                ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")), new GaTau(rs.getString("maGaDen")), rs.getTimestamp("thoiGianDen").toLocalDateTime());
-                LoaiCho loaiCho = LoaiCho_DAO.getLoaiChoTheoMa(rs.getString("maLoaiCho"));
-                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), new LoaiToaTau(rs.getString("maLoaiToa"), rs.getString("tenLoaiToa")));
-                Cho cho = new Cho(rs.getString("maCho"), rs.getInt("soCho"), loaiCho, toaTau);
-                LoaiKhachHang loaiKhachHang = LoaiKhachHang_DAO.getLoaiKhachHangTheoMaKhachHang(rs.getString("maKhachHang"));
-                ChiTietVeDat chiTietVeDat = new ChiTietVeDat(cho, new VeDat(rs.getString("maVeDat")), rs.getDouble("giaCho"), new KhachHang(rs.getString("maKhachHang"),rs.getString("CCCD"),rs.getString("tenKhachHang"),loaiKhachHang), rs.getDouble("phanTramGiamGia"));
-                VeDat veDat = null;
-                for (VeDat vd : dsVeDat) {
-                    if (vd.getMaVeDat().equals(rs.getString("maVeDat"))) {
-                        veDat = vd;
-                    }
-                }
-                if (veDat == null) {
-                    veDat = new VeDat(rs.getString("maVeDat"), new HoaDonDatVe(rs.getString("maHoaDonDatVe")), thongTinGaDi, thongTinGaDen, TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")), LoaiVe.valueOf(rs.getString("loaiVe")));
-                    dsVeDat.add(veDat);
-                }
-                veDat.addChiTietVeDat(chiTietVeDat);
-                    System.out.println("thu tu toa------" + cho.getMaCho());
-//
-                System.out.println("-----------------------" + veDat.getDanhSachChiTietVeDat().getFirst().getCho().getMaCho());
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDen"));
+                ArrayList<ChiTietVeDat> dsChiTietVeDat = ChiTietVeDat_DAO.getDanhSachChiTietVeDatTheoMaVeDat(rs.getString("maVeDat"));
+                VeDat veDat = new VeDat(rs.getString("maVeDat"), new HoaDonDatVe(rs.getString("maHoaDonDatVe")), thongTinGaDi, thongTinGaDen, TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")), LoaiVe.valueOf(rs.getString("loaiVe")));
+                veDat.setDanhSachChiTietVeDat(dsChiTietVeDat);
+                dsVeDat.add(veDat);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return dsVeDat;
+    }
+
+    public static ArrayList<VeDat> getDanhSachVeDatOTrangThaiChoLayVeTheoMaHoaDonDat(String maHoaDon) {
+        ArrayList<VeDat> dsVeDat = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "EXEC timDanhSachVeDatCoTrangThaiChoLayVeTheoMaHoaDonDat ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDen"));
+                ArrayList<ChiTietVeDat> dsChiTietVeDat = ChiTietVeDat_DAO.getDanhSachChiTietVeDatTheoMaVeDat(rs.getString("maVeDat"));
+               VeDat veDat = new VeDat(rs.getString("maVeDat"), new HoaDonDatVe(rs.getString("maHoaDonDatVe")), thongTinGaDi, thongTinGaDen, TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")), LoaiVe.valueOf(rs.getString("loaiVe")));
+               veDat.setDanhSachChiTietVeDat(dsChiTietVeDat);
+                dsVeDat.add(veDat);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

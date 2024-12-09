@@ -17,7 +17,11 @@ public class HoaDonDatVe_DAO {
         try {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, CCCD);
-            statement.setDate(2, Date.valueOf(thoigianLap));
+            if (thoigianLap != null) {
+                statement.setDate(2, Date.valueOf(thoigianLap));
+            } else {
+                statement.setNull(2, Types.DATE);
+            }
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 HoaDonDatVe hoaDonDatVe = new HoaDonDatVe();
@@ -36,7 +40,7 @@ public class HoaDonDatVe_DAO {
     public static ArrayList<HoaDonDatVe> get10HoaDonDatGanNhat(){
         ArrayList<HoaDonDatVe> dsHoaDonDatVe = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        String query = "select top 10 HDDV.maHoaDonDatVe, KH.maKhachHang,KH.tenKhachHang,HDDV.thoiGianLap,maCaLamViec FROM HoaDonDatVe as HDDV join KhachHang as KH on HDDV.maKhachHangDatVe = KH.maKhachHang  order by thoiGianLap DESC";
+        String query = "exec top10HoaDonDatVeCoVeOTrangThaiChoLayVe";
         try {
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -46,7 +50,7 @@ public class HoaDonDatVe_DAO {
                 hoaDonDatVe.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
                 hoaDonDatVe.setKhachHangDatVe(new KhachHang(rs.getString("maKhachHang"),rs.getString("tenKhachHang")));
                 hoaDonDatVe.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
+                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatOTrangThaiChoLayVeTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
                 dsHoaDonDatVe.add(hoaDonDatVe);
             }
         } catch (Exception e) {

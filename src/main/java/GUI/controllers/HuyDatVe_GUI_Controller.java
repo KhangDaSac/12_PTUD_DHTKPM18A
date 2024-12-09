@@ -140,7 +140,10 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     }
 
     public void btnTimHoaDonOnAction(ActionEvent actionEvent) {
-
+        String CCCD = txtCCCD.getText();
+        LocalDate ngayThanhToan = dapNgayThanhToan.getValue();
+        danhSachHoaDonDatVe = HoaDonDatVe_DAO.getDanhSachHoaDonDatVeTheoCCCD(CCCD, ngayThanhToan);
+        hienThiDanhSachHoaDonDat();
     }
 
 
@@ -173,16 +176,19 @@ public class HuyDatVe_GUI_Controller implements Initializable {
             return;
         }
         hoaDonHuyDatVe.setThoiGianHuy(LocalDateTime.now());
+        hoaDonHuyDatVe.setCaLamViec(hoaDonDatVeDangChon.getCaLamViec());
+        hoaDonHuyDatVe.setKhachHangHuyDatVe(hoaDonDatVeDangChon.getKhachHangDatVe());
         if (QuanLyHoaDon_BUS.themHoaDonHuyDatVe(hoaDonHuyDatVe)) {
 //            main_Controller.showMessagesDialog("Hủy đặt vé thành công");
             System.out.println("huy dat ve thanh cong");
 
-            CreatePDF.taoHoaDonHuyDatVe(hoaDonHuyDatVe);
+
             String maHoaDonHuyDatVe = QuanLyHoaDon_BUS.layHoaDonHuyDatVeTiepTheo();
             hoaDonHuyDatVe = new HoaDonHuyDatVe(maHoaDonHuyDatVe);
             hoaDonHuyDatVe.setDanhSachChiTietHoaDonHuyDatVe(new ArrayList<ChiTietHoaDonHuyDatVe>());
             hoaDonHuyDatVe.setCaLamViec(new CaLamViec("CLV13122024C"));
-            hoaDonHuyDatVe.setKhachHangHuyDatVe(khachHang);
+            hoaDonHuyDatVe.setKhachHangHuyDatVe(hoaDonDatVeDangChon.getKhachHangDatVe());
+            CreatePDF.taoHoaDonHuyDatVe(hoaDonHuyDatVe);
 
             hienThiDanhSachVeDat(null);
         }else {
@@ -229,9 +235,8 @@ public class HuyDatVe_GUI_Controller implements Initializable {
                     .anyMatch(chiTietHoaDonHuyDatVe -> chiTietHoaDonHuyDatVe.getVeDat().equals(veDat))
             ) {
                 hoaDonHuyDatVe.setThoiGianHuy(LocalDateTime.now());
-
                 System.out.println("------------ hoa don huyy dat ve"+hoaDonHuyDatVe.getThoiGianHuy());
-                ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = new ChiTietHoaDonHuyDatVe(hoaDonHuyDatVe,veDat);
+                ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = new ChiTietHoaDonHuyDatVe( hoaDonHuyDatVe, veDat);
                 hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe().add(chiTietHoaDonHuyDatVe);
             }
         }
@@ -252,5 +257,11 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     public void btnHuyPhieuDatOnAction(ActionEvent actionEvent) {
         chonVeHuy();
         huyVeDat();
+        danhSachDatVe.remove(veDatChon_list);
+        if(danhSachDatVe.isEmpty()){
+            hoaDonDatVe_list.remove(hoaDonDatVeDangChon);
+        }
+        hienThiDanhSachHoaDonDat();
+        hienThiDanhSachVeDat(hoaDonDatVeDangChon);
     }
 }

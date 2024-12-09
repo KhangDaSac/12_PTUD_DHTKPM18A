@@ -515,7 +515,7 @@ public class CreatePDF {
     public static void taoHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe) {
         String filePath = "documents/HoaDonHuyDatVe/" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".pdf";
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonLayVe/QRCode/QRCode_" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".png";
+        String qrCodePath = "documents/HoaDonHuyDatVe/QRCode/QRCode_" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".png";
         try {
 
             Document document = new Document();
