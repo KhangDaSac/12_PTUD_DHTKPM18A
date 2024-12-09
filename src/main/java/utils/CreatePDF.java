@@ -622,36 +622,38 @@ public class CreatePDF {
 
             int i = 1;
 
-            for (Ve ve : hoaDonDoiVe.getDanhSachVeDoi()) {
+            //for (Ve ve : hoaDonDoiVe.getDanhSachVeDoi()) {
 
                 PdfPCell cell1 = new PdfPCell(new Phrase(String.valueOf(i), font));
                 cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell1.setPadding(5);
                 table.addCell(cell1);
 
-                PdfPCell cell2 = new PdfPCell(new Phrase(ve.getMaVe(), font));
+                PdfPCell cell2 = new PdfPCell(new Phrase(hoaDonDoiVe.getVeMoi().getMaVe(), font));
                 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell2.setPadding(5);
                 table.addCell(cell2);
 
-                String tenVe = "Chuyến tàu " + ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
-                        + " – " + TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi())
-                        + " – " + ve.getThongTinGaTauDi().getGaTau().getTenGaTau()
-                        + " – " + ve.getThongTinGaTauDen().getGaTau().getTenGaTau()
-                        + " – " + (ve.getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
+                String tenVe = "Chuyến tàu " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
+                        + " – " + TimeFormat.formatLocalDateTime(hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getThoiGianDi())
+                        + " – " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getGaTau()
+                        + " – " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDen().getGaTau()
+                        + " – " + (hoaDonDoiVe.getVeMoi().getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
 
                 PdfPCell cell3 = new PdfPCell(new Phrase(tenVe, font));
                 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell3.setPadding(5);
                 table.addCell(cell3);
 
-                PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(ve.tienVeCuoi()), font));
+
+
+                PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonDoiVe.tongTienCuoi()), font));
                 cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell4.setPadding(5);
                 table.addCell(cell4);
 
                 i++;
-            }
+           // }
 
             PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", boldFont));
             totalLabelCell.setColspan(3);

@@ -26,16 +26,20 @@ public class ChiTietVe_DAO {
                         "join Cho c on c.maCho = ct.maCho\n" +
                         "JOIN KhachHang kh ON kh.maKhachHang = ct.maKhachHang\n " +
                         "join LoaiKhachHang l on l.maLoaiKhachHang = kh.maLoaiKhachHang \n"+
+                        "join ToaTau tt on tt.maToaTau =c.maToaTau\n"+
+                        "join LoaiToaTau ltt on ltt.maLoaiToa = tt.maLoaiToa\n"+
+                        "join LoaiCho lc on lc.maLoaiCho = c.maLoaiCho\n"+
                         "where v.maVe = ? ";
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, maVe);
                 ResultSet rs = statement.executeQuery();
                 while( rs.next()){
                     Ve ve = new Ve(rs.getString("maVe"));
-                    Cho cho = new Cho(new ToaTau(
-                            rs.getString("maToaTau")),
+                    Cho cho = new Cho(new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"),
+                                            new LoaiToaTau(rs.getString("maLoaiToa"),rs.getString("tenLoaiToa"))),
                             rs.getString("maCho"),
-                            rs.getInt("soCho"));
+                            rs.getInt("soCho"),
+                            new LoaiCho(rs.getString("maLoaiCho"),rs.getString("tenLoaiCho")));
 
                     double giaCho = rs.getDouble("giaCho");
                     double phanTramGiamGia = rs.getDouble("phanTramGiamGia");

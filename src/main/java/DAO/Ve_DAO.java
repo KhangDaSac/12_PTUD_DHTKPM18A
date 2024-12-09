@@ -107,7 +107,21 @@ public class Ve_DAO {
     public static Ve getVeTheoMa(String maVe){
         Ve veTim = new Ve();
         try{
-            String query = "select*from Ve v join ChiTietChuyenTau ct on ct.maChuyenTau = v.maChuyenTau join GaTau gt  on gt.maGaTau = ct.maGaTau where  maVe=?";
+            String query =
+            "select v.maVe,v.maHoaDonBanVe,gaDi.maGaTau as maGaDi,gaDen.maGaTau as maGaDen, \n" +
+                    "gaDi.tenGaTau AS tenGaDi, \n" +
+                    "gaDen.tenGaTau AS tenGaDen, \n" +
+                    "v.loaiVe,v.trangThaiVe,v.maChuyenTau, \n" +
+                    "ctDen.maChuyenTau as maChuyenTauDen, ctDi.thoiGianDi as thoiGianDi_Den,ctDen.thoiGianDen as thoiGianDen_Den, \n" +
+                    "ctDen.thuTuGa as thuTuGa_Den,ctDen.soKm as soKm_Den, \n" +
+                    "ctDi.maChuyenTau as maChuyenTauDi, ctDi.thoiGianDi as thoiGianDi_Di,ctDen.thoiGianDen as thoiGianDen_Di, \n" +
+                    "ctDi.thuTuGa as thuTuGa_Di,ctDi.soKm as soKm_Di \n" +
+                    "from Ve v \n" +
+                    "join GaTau gaDi ON v.maGaDi = gaDi.maGaTau \n" +
+                    "join GaTau gaDen ON v.maGaDen = gaDen.maGaTau \n" +
+                    "join ChiTietChuyenTau ctDi on ctDi.maGaTau = gaDi.maGaTau and ctDi.maChuyenTau = v.maChuyenTau \n" +
+                    "join ChiTietChuyenTau ctDen on ctDen.maGaTau=gaDen.maGaTau and ctDen.maChuyenTau = v.maChuyenTau \n" +
+                    "where v.maVe = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maVe);
             ResultSet rs = statement.executeQuery();
@@ -115,18 +129,18 @@ public class Ve_DAO {
                 String ma = rs.getString("maVe");
                 HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe"));
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
-                GaTau gaDi = new GaTau(rs.getString("maGaDi"),rs.getString("tenGaTau"));
-                GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaTau"));
+                GaTau gaDi = new GaTau(rs.getString("maGaDi"),rs.getString("tenGaDi"));
+                GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaDen"));
                 ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),
                         gaDi,
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime(),
-                        rs.getTimestamp("thoiGianDen").toLocalDateTime(),
-                        rs.getInt("thuTuGa"),rs.getDouble("soKm"));
+                        rs.getTimestamp("thoiGianDi_Di").toLocalDateTime(),
+                        rs.getTimestamp("thoiGianDen_Di").toLocalDateTime(),
+                        rs.getInt("thuTuGa_Di"),rs.getDouble("soKm_Di"));
                 ChiTietChuyenTau thongTinDen= new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),
                         gaDen,
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime(),
-                        rs.getTimestamp("thoiGianDen").toLocalDateTime(),
-                        rs.getInt("thuTuGa"),rs.getDouble("soKm"));
+                        rs.getTimestamp("thoiGianDi_Den").toLocalDateTime(),
+                        rs.getTimestamp("thoiGianDen_Den").toLocalDateTime(),
+                        rs.getInt("thuTuGa_Den"),rs.getDouble("soKm_Den"));
                 LoaiVe loai = LoaiVe.valueOf(rs.getString("loaiVe"));
                 TrangThaiVe trangThai = TrangThaiVe.valueOf(rs.getString("trangThaiVe"));
                 veTim = new Ve(ma,maHoaHon,thongTinDi,thongTinDen,loai,trangThai);

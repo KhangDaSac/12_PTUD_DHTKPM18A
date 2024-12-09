@@ -117,6 +117,7 @@ public class DoiVe_GUI_Controller implements Initializable {
 
     private ArrayList<ToaTau_DoiVe_Controller> toaTauControllerList = new ArrayList<ToaTau_DoiVe_Controller>();
     private ArrayList<Cho_DoiVe_Controller> choControllerList = new ArrayList<Cho_DoiVe_Controller>();
+    private ArrayList<ChiTietVe> listCTVE = new ArrayList<ChiTietVe>();
 
     private int toaTauDangChon;
     private int trangToaTauHienTai;
@@ -203,8 +204,6 @@ public class DoiVe_GUI_Controller implements Initializable {
         String maVeMoi,maHoaDonMoi;
         String maVeLonNhatNgayHienTai = QuanLyVe_BUS.layMaVeCaNhanLonNhatCuaNgayHienTai(ngayHienTai);
         String maHoaDonLonNhatNGayHienTai = QuanLyHoaDon_BUS.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngayHienTai);
-
-
         if (maVeLonNhatNgayHienTai ==null){
             maVeMoi= "VECN"+ ngayHienTai +"00000001";
         }else {
@@ -220,27 +219,43 @@ public class DoiVe_GUI_Controller implements Initializable {
             maHoaDonMoi = "HDDO"+ngayHienTai+ String.format("%06d",soThuTuMoiHD);
         }
         veMoi = new Ve(maVeMoi,veKhachHang.getHoaDonBanVe(),veKhachHang.getThongTinGaTauDi(),veKhachHang.getThongTinGaTauDen(),LoaiVe.VECANHAN,TrangThaiVe.DADOI);
-        ctVeMoi = new ChiTietVe(veMoi,new Cho(choChon.getMaCho()),ctVe.getKhachHang(),choChon.getGiaCho(),ctVe.getPhanTramGiamGia());
+        ctVeMoi = new ChiTietVe(veMoi,
+                new Cho(new ToaTau(choChon.getToaTau().getMaToaTau(),choChon.getToaTau().getThuTuToa(),new LoaiToaTau(choChon.getToaTau().getMaToaTau(),choChon.getToaTau().getLoaiToaTau().getTenLoaiToa())),
+                choChon.getMaCho(),
+                choChon.getSoCho(),
+                new LoaiCho(choChon.getLoaiCho().getMaLoaiCho(),choChon.getLoaiCho().getTenLoaiCho())),
+                ctVe.getKhachHang(),
+                choChon.getGiaCho(),
+                ctVe.getPhanTramGiamGia());
+
         hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV30112024C"));
-            QuanLyVe_BUS.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau());
-            QuanLyVe_BUS.themChiTietVeMoi(ctVeMoi);
-            QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
-            QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
-            hoaDonDoiVe.getDanhSachVeDoi().add(veMoi);
-            main_Controller.showMessagesDialog("Đổi vé thành công!");
-            CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
+
+        veKhachHang.setDanhSachChiTietVe(new ArrayList<>());
+        veKhachHang.getDanhSachChiTietVe().add(ctVe);
+        veMoi.setDanhSachChiTietVe(new ArrayList<>());
+        veMoi.getDanhSachChiTietVe().add(ctVeMoi);
+        hoaDonDoiVe.setDanhSachVeDoi(new ArrayList<>());
+        hoaDonDoiVe.getDanhSachVeDoi().add(veMoi);
+
+        QuanLyVe_BUS.themVeMoi(veMoi,chuyenTauKH.getMaChuyenTau());
+        QuanLyVe_BUS.themChiTietVeMoi(ctVeMoi);
+        QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
+        QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
+        main_Controller.showMessagesDialog("Đổi vé thành công!");
+        CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
+        CreatePDF.taoVe(veMoi);
     }
 
     public void tinhTongTien() {
-        double giaChoCu = Double.parseDouble(lblGiaCu_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
-        double giaChoMoi = Double.parseDouble(lblGiaMoi_ChiTietVeDoi.getText().replaceAll("[^\\d.]", ""));
+        double giaChoCu = ctVe.getGiaCho();
+        double giaChoMoi = choChon.getGiaCho();
         double tongTien = 0;
         if (giaChoMoi > (giaChoCu + 20000)) {
-            tongTien = Math.abs(giaChoCu - giaChoMoi - 20000);
+            tongTien = Math.abs(giaChoCu * (1-ctVe.getPhanTramGiamGia()) - giaChoMoi * (1-ctVe.getPhanTramGiamGia()) - 20000);
             txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien));
             lblTongTien.setText("Thu thêm:");
         } else if (giaChoMoi < (giaChoCu + 20000)) {
-            tongTien = Math.abs(giaChoMoi + 20000 - giaChoCu);
+            tongTien = Math.abs(giaChoMoi * (1-ctVe.getPhanTramGiamGia()) + 20000 - giaChoCu * (1-ctVe.getPhanTramGiamGia()) );
             txtTongTien.setText(CurrencyFormat.currencyFormat(tongTien));
             lblTongTien.setText("Trả lại khách:");
         } else {
@@ -381,9 +396,14 @@ public class DoiVe_GUI_Controller implements Initializable {
             controller.khoiTao();
             controller.setSoThuTu(i);
             hboxDanhSachToaTau.getChildren().add(anchorPane);
+            if (toaTau.getMaToaTau().equals(ctVe.getCho().getToaTau().getMaToaTau())){
+                lblToaTau_Moi.setText(ctVe.getCho().getToaTau().getMaToaTau());
+                toaTauDangChon = i;
+                controller.chonToaTau_DoiVe();
+            }
         }
-        toaTauDangChon = 0;
-        toaTauControllerList.getFirst().chonToaTau_DoiVe();
+        //toaTauDangChon = 0;
+        //toaTauControllerList.getFirst().chonToaTau_DoiVe();
     }
 
     public void boChonTatCaToaTau(){
