@@ -304,7 +304,7 @@ public class DoiVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnTimVeOnAction(ActionEvent event) throws IOException {
+    void btnTimVeOnAction(ActionEvent event) throws Exception {
         String maTim = txtMaVe.getText();
         QuanLyChuyenTau_BUS chuyenTauBus= new QuanLyChuyenTau_BUS();
         QuanLyVe_BUS ctVeBus = new QuanLyVe_BUS();
@@ -337,8 +337,9 @@ public class DoiVe_GUI_Controller implements Initializable {
             gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
             gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
 
-            chuyenTauKH = chuyenTauBus.timChuyenTauTheoMaVe(veKhachHang.getMaVe());
+//            chuyenTauKH = chuyenTauBus.timChuyenTauTheoMaVe(veKhachHang.getMaVe());
             ctVe = ctVeBus.getCTVeTheoMaVe(veKhachHang.getMaVe());
+            chuyenTauKH =getChuyenTau();
 
             lblToaTau_Cu.setText(ctVe.getCho().getToaTau().getMaToaTau());
             lblCho_Cu.setText(String.format("%d", ctVe.getCho().getSoCho()));
@@ -351,6 +352,19 @@ public class DoiVe_GUI_Controller implements Initializable {
             add1ChuyenTau.setVisible(true);
             hienThiChuyenTau(chuyenTauKH);
         }
+    }
+    public ChuyenTau getChuyenTau() throws Exception {
+        ChuyenTau ctTim = new ChuyenTau();
+        ArrayList<ChuyenTau> listCT;
+        listCT = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(),
+                veKhachHang.getThongTinGaTauDi().getThoiGianDi().toLocalDate());
+
+        for (ChuyenTau ct: listCT){
+                ctTim = ct;
+                break;
+        }
+
+        return ctTim;
     }
 
     public boolean ktMaVeNhap( String maTim) {
@@ -374,8 +388,8 @@ public class DoiVe_GUI_Controller implements Initializable {
         chuyenTauController = loader.getController();
         chuyenTauController.setDoiVe_gui_controller(this);
         chuyenTauController.setChuyenTau(chuyenTau);
-        chuyenTauController.setChiTietChuyenTauDi(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDi));
-        chuyenTauController.setChiTietChuyenTauDen(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau, gaDen));
+        chuyenTauController.setChiTietChuyenTauDi(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau,gaDi));
+        chuyenTauController.setChiTietChuyenTauDen(QuanLyChuyenTau_BUS.getChiTietTuyenTauTheoChuyenTauVaGaTau(chuyenTau,gaDen));
         chuyenTauController.khoiTao();
         chuyenTauController.chon1ChuyenTau();
         add1ChuyenTau.getChildren().add(anchorPane);
@@ -491,7 +505,6 @@ public class DoiVe_GUI_Controller implements Initializable {
         choControllerList.clear();
 
         double doDaiChang = chuyenTauController.getChiTietChuyenTauDen().getSoKm() - chuyenTauController.getChiTietChuyenTauDi().getSoKm();
-
         for(int i = 0; i < length; i++){
             Cho cho = choList.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI_Items/Cho.fxml"));

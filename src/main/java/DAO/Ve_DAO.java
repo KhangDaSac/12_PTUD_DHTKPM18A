@@ -89,10 +89,14 @@ public class Ve_DAO {
                 GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaTau"));
                 ChiTietChuyenTau thongTinDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),
                         gaDi,
-                        rs.getTimestamp("thoiGianDi").toLocalDateTime());
+                        rs.getTimestamp("thoiGianDi").toLocalDateTime(),
+                        rs.getTimestamp("thoiGianDen").toLocalDateTime(),
+                        rs.getInt("thuTuGa"),rs.getDouble("soKm"));
                 ChiTietChuyenTau thongTinDen= new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),
                         gaDen,
-                        rs.getTimestamp("thoiGianDen").toLocalDateTime());
+                        rs.getTimestamp("thoiGianDi").toLocalDateTime(),
+                        rs.getTimestamp("thoiGianDen").toLocalDateTime(),
+                        rs.getInt("thuTuGa"),rs.getDouble("soKm"));
                 LoaiVe loai = LoaiVe.valueOf(rs.getString("loaiVe"));
                 TrangThaiVe trangThai = TrangThaiVe.valueOf(rs.getString("trangThaiVe"));
                 veTim = new Ve(ma,maHoaHon,thongTinDi,thongTinDen,loai,trangThai);
