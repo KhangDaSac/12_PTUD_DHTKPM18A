@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox minHeight="150.0" prefHeight="175.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyChuyenTau_GUI_Items.ChiTietChuyenTau_QuanLyChuyenTau_Controller">
+   <children>
+      <AnchorPane prefWidth="80.0">
+         <children>
+            <AnchorPane fx:id="anpTiepTuc" prefHeight="175.0" prefWidth="5.0" style="-fx-background-color: #4335A7;" AnchorPane.bottomAnchor="-87.5" AnchorPane.leftAnchor="37.5" />
+            <AnchorPane prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #4335A7; -fx-background-radius: 25;" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="62.5">
+               <children>
+                  <AnchorPane prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #fff; -fx-background-radius: 25;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Label fx:id="lblThuTuGa" layoutX="10.0" layoutY="7.0" prefHeight="30.0" prefWidth="30.0" style="-fx-alignment: center;" text="01" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="200.0" prefWidth="440.0">
+         <children>
+            <HBox prefWidth="400.0">
+               <children>
+                  <Label fx:id="lblTenGa" style="-fx-text-fill: #B03052;" text="Sài Gòn">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="36.0" prefWidth="400.0">
+               <children>
+                  <Label prefWidth="60.0" style="-fx-font-weight: 700; -fx-font-size: 16;" text="Địa chỉ:">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblDiaChiGa" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="380.0" text="Số 1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="10.0" prefWidth="400.0">
+               <children>
+                  <Label prefWidth="120.0" text="Thời gian đến:">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblThoiGianDen" text="23/11/2024 23:44">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="91.0" prefWidth="400.0">
+               <children>
+                  <Label prefWidth="120.0" text="Thời gian đi:">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblThoiGianDi" text="23/11/2024 23:44">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="116.0" prefWidth="400.0">
+               <children>
+                  <Label prefWidth="120.0" text="Số Km:">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSoKm" text="+0 Km">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <HBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>

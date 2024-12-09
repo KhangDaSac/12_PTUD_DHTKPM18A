@@ -132,7 +132,8 @@ public class QuanLyHoaDon_BUS {
     }
 
     public static boolean themHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe){
-        HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);return true;
+        HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
+        return true;
     }
     public static String layMaHoaDonDoiLonNhatCuaNgayHienTai(String ngay){
         return HoaDon_DAO.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngay);

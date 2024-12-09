@@ -98,6 +98,12 @@ public class ChuyenTau_DoiVe_Controller implements Initializable {
     private Label lblMaChuyenTau;
 
     @FXML
+    private Label lblDaBan;
+
+    @FXML
+    private Label lblDaDat;
+
+    @FXML
     private Label lblThoiGianDen;
 
     @FXML
@@ -173,8 +179,8 @@ public class ChuyenTau_DoiVe_Controller implements Initializable {
         lblMaChuyenTau.setText(chuyenTau.getMaChuyenTau());
         lblThoiGianDi.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDi.getThoiGianDi()));
         lblThoiGianDen.setText(TimeFormat.formatLocalDateTime(chiTietChuyenTauDen.getThoiGianDen()));
-        lblDaDatVeBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaDat()));
-        //lblDaBanVe.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
+        lblDaBan.setText(String.valueOf(chuyenTau.getSoLuongChoDaBan()));
+        lblDaDat.setText(String.valueOf(chuyenTau.getSoLuongChoDaDat()));
         lblChangDaiHon.setText(String.valueOf(chuyenTau.getSoLuongChoChangDaiHon()));
         lblConTrong.setText(String.valueOf(chuyenTau.getSoLuongChoTrongTrong()));
     }

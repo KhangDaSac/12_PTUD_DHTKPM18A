@@ -19,6 +19,8 @@ public class ToaTau_DoiVe_Controller {
     @FXML
     private Label lblThuTuTau;
 
+    @FXML
+    private Label lblLoaiToaTau;
 
     @FXML
     private AnchorPane anpToaTau;
@@ -54,7 +56,6 @@ public class ToaTau_DoiVe_Controller {
 
     private DoiVe_GUI_Controller doiVe_gui_controller;
     private int soThuTu;
-    private static String trang;
 
     public int getSoThuTu() {
         return soThuTu;
@@ -64,14 +65,10 @@ public class ToaTau_DoiVe_Controller {
         this.soThuTu = soThuTu;
     }
 
-
     public DoiVe_GUI_Controller getDoiVe_gui_controller() {return doiVe_gui_controller;}
 
     public void setDoiVe_gui_controller(DoiVe_GUI_Controller doiVe_gui_controller) {
         this.doiVe_gui_controller = doiVe_gui_controller;
-    }
-    public static void loaiTrang(String link){
-        trang = link;
     }
 
     @FXML
@@ -84,6 +81,23 @@ public class ToaTau_DoiVe_Controller {
 
     public void khoiTao(){
         lblThuTuTau.setText(String.valueOf(toaTau.getThuTuToa()));
+        lblLoaiToaTau.setText(toaTau.getLoaiToaTau().getMaLoaiToa());
+
+        switch (toaTau.getLoaiToaTau().getMaLoaiToa()){
+            case "MEM" -> {
+                lblLoaiToaTau.getStyleClass().add("toaNgoiMem");
+            }
+            case "GN6"  -> {
+                lblLoaiToaTau.getStyleClass().add("toaGiuongNamKhoang6");
+            }
+            case "GN4"  -> {
+                lblLoaiToaTau.getStyleClass().add("toaGiuongNamKhoang4");
+            }
+            case "GN2"  -> {
+                lblLoaiToaTau.getStyleClass().add("toaGiuongNamKhoang2");
+            }
+        }
+
         if(toaTau.getSoLuongChoTrongTrong() >= 0){
             imvToaTau.setImage(new Image(getClass().getResourceAsStream("/images/DoiVe_GUI/train-car-gray.png")));
         }else{

@@ -20,7 +20,7 @@ import static connectDB.ConnectDB.con;
 
 public class KhachHang_DAO {
     public static Connection con = ConnectDB.getInstance().getConnection();
-    public KhachHang getKhachHangTheoCCCD(String cccd){
+    public static KhachHang getKhachHangTheoCCCD(String cccd){
         try {
             String query = "select maKhachHang, CCCD, tenKhachHang, soDienThoai, lkh.maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia" +
                     " from KhachHang kh" +

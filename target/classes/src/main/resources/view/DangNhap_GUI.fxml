@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="stpDangNhap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DangNhap_GUI_Controller">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="800.0">
+         <children>
+            <AnchorPane prefHeight="500.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="500.0" fitWidth="400.0">
+                     <image>
+                        <Image url="@../images/DangNhap_GUI/BackgroundLogin.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="402.0" layoutY="3.0" prefHeight="500.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutX="13.0" layoutY="44.0" prefHeight="446.0" prefWidth="367.0">
+                     <children>
+                        <AnchorPane layoutX="20.0" layoutY="182.0" prefHeight="40.0" prefWidth="367.0" stylesheets="@../css/DangNhap_GUI.css">
+                           <children>
+                              <Label prefHeight="40.0" prefWidth="346.0" styleClass="header-label" text="ĐĂNG NHẬP" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="70.0" prefWidth="288.0" styleClass="group" stylesheets="@../css/All.css">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="140.0" text="Tên đăng nhập" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtTenDangNhap" layoutX="12.0" layoutY="38.0" stylesheets="@../css/All.css" text="NV2024000030" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="81.0" prefHeight="70.0" styleClass="group" stylesheets="@../css/All.css">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="140.0" text="Mật khẩu" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="txtMatKhau" onKeyTyped="#txtMatKhauOnKeyType" text="NhanVien@123456" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                              <TextField fx:id="txtMatKhauHienThi" onKeyTyped="#txtMatKhauHienThiOnKeyType" text="NhanVien@123456" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="81.0" prefHeight="19.0" prefWidth="346.0" stylesheets="@../css/DangNhap_GUI.css">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <CheckBox fx:id="chkHienThiMatKhau" mnemonicParsing="false" onAction="#chkHienThiMatKhauOnAction" text="Hiển thị mật khẩu">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="364.0" prefHeight="20.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="lblQuenMatKhau" onMouseClicked="#lblQuenMatKhauOnMouseClicked" styleClass="quenMatKhau" stylesheets="@../css/DangNhap.css" text="Quên mật khẩu?">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="60.0" prefWidth="200.0">
+                           <children>
+                              <JFXButton fx:id="btnDangNhap" onAction="#btnDangNhapOnAction" prefHeight="60.0" prefWidth="342.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Đăng nhập">
+                                 <graphic>
+                                    <ImageView fitHeight="35.0" fitWidth="30.0">
+                                       <image>
+                                          <Image url="@../images/DangNhap_GUI/DangNhap.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="20.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="lblThongBao" onMouseClicked="#lblQuenMatKhauOnMouseClicked" styleClass="thongBao" stylesheets="@../css/DangNhap.css">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
