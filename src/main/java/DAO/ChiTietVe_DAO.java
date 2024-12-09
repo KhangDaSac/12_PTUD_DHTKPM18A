@@ -85,4 +85,22 @@ public class ChiTietVe_DAO {
         }
         return true;
     }
+    public static boolean themDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe){
+        String query = "insert into ChiTietVe values (?, ?, ?, ?, ?)";
+        for(ChiTietVe chiTietVe : danhSachChiTietVe){
+            try {
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1, chiTietVe.getVe().getMaVe());
+                statement.setString(2, chiTietVe.getCho().getMaCho());
+                statement.setString(3, chiTietVe.getKhachHang().getMaKhachHang());
+                statement.setDouble(4, chiTietVe.getGiaCho());
+                statement.setDouble(5, chiTietVe.getPhanTramGiamGia());
+                statement.executeUpdate();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return false;
+            }
+        }
+        return true;
+    }
 }

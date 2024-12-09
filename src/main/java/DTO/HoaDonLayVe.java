@@ -12,6 +12,10 @@ public class HoaDonLayVe {
 
     private ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe;
 
+    public HoaDonLayVe() {
+
+    }
+
     public String getMaHoaDonLayVe() {
         return maHoaDonLayVe;
     }

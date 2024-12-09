@@ -3,7 +3,7 @@ package DTO;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class LoaiKhachHang  extends KhachHang{
+public class LoaiKhachHang {
 	private String maLoaiKhachHang;
 	private String tenLoaiKhachHang;
 	private double phanTramGiamGia;
@@ -12,7 +12,10 @@ public class LoaiKhachHang  extends KhachHang{
 		// TODO Auto-generated constructor stub
 	}
 
-
+	public LoaiKhachHang(String maLoaiKhachHang, String tenLoaiKhachHang) {
+		this.maLoaiKhachHang = maLoaiKhachHang;
+		this.tenLoaiKhachHang = tenLoaiKhachHang;
+	}
 
 	public LoaiKhachHang(String maLoaiKhachHang, String tenLoaiKhachHang, double phanTramGiamGia) {
 		super();
@@ -62,5 +65,7 @@ public class LoaiKhachHang  extends KhachHang{
 		return "LoaiKhachHang [maLoaiKhachHang=" + maLoaiKhachHang + ", tenLoaiKhachHang=" + tenLoaiKhachHang
 				+ ", phanTramGiamGia=" + phanTramGiamGia + "]";
 	}
+
+
 	
 }

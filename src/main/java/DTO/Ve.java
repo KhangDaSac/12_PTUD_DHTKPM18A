@@ -22,6 +22,8 @@ public class Ve {
 		return maVe;
 	}
 
+
+
 	public void setMaVe(String maVe) {
 		this.maVe = maVe;
 	}
@@ -58,6 +60,11 @@ public class Ve {
 
 	public void setLoaiVe(LoaiVe loaiVe) {
 		this.loaiVe = loaiVe;
+		if(loaiVe.equals(LoaiVe.VETAPTHE)){
+			this.phanTramGiamGiaVeTapThe = 0.1;
+		}else if(loaiVe.equals(LoaiVe.VECANHAN)){
+			this.phanTramGiamGiaVeTapThe = 0;
+		}
 	}
 
 	public TrangThaiVe getTrangThaiVe() {
@@ -78,6 +85,10 @@ public class Ve {
 
 	public ArrayList<ChiTietVe> getDanhSachChiTietVe() {
 		return danhSachChiTietVe;
+	}
+
+	public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
+		this.danhSachChiTietVe = danhSachChiTietVe;
 	}
 
 	@Override
@@ -110,6 +121,16 @@ public class Ve {
 		}
 	}
 
+	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double phanTramGiamGiaVeTapThe) {
+		this.maVe = maVe;
+		this.hoaDonBanVe = hoaDonBanVe;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
+		this.loaiVe = loaiVe;
+		this.trangThaiVe = trangThaiVe;
+		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
+	}
+
 	public Ve(String maVe) {
 		this.maVe = maVe;
 	}
@@ -135,5 +156,19 @@ public class Ve {
 
 	public double tienVeCuoi(){
 		return tienVe() * (1 - phanTramGiamGiaVeTapThe);
+	}
+
+	@Override
+	public String toString() {
+		return "Ve{" +
+				"maVe='" + maVe + '\'' +
+				", thongTinGaTauDi=" + thongTinGaTauDi +
+				", thongTinGaTauDen=" + thongTinGaTauDen +
+				", loaiVe=" + loaiVe +
+				", trangThaiVe=" + trangThaiVe +
+				", phanTramGiamGiaVeTapThe=" + phanTramGiamGiaVeTapThe +
+				", danhSachChiTietVe=" + danhSachChiTietVe +
+				", PHANTRAMGIAMGIAVETAPTHE=" + PHANTRAMGIAMGIAVETAPTHE +
+				'}';
 	}
 }

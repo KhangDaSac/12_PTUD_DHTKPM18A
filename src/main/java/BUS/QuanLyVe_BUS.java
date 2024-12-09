@@ -4,36 +4,39 @@ import DAO.ChiTietVe_DAO;
 import DAO.Ve_DAO;
 import DTO.ChiTietVe;
 import DTO.ChuyenTau;
+import DTO.LoaiVe;
 import DTO.Ve;
 import utils.TimeFormat;
 
 import java.time.LocalDate;
 
 public class QuanLyVe_BUS {
-    public static String taoMaVeMoi(){
-        Ve_DAO ve_DAO = new Ve_DAO();
+    public static String taoMaVeMoi(LoaiVe loaiVe){
         String maVeMoi = null;
+        String loaiVeString = loaiVe.equals(LoaiVe.VECANHAN) ? "CN" : "TT";
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
-        String maVeCu = ve_DAO.layMaVeLonNhatCuaNgayHienTai(ngayHienTaiString);
-        if(maVeCu == null){
-            return "V" + ngayHienTaiString + "000001";
+        String phanSau = Ve_DAO.layDuoiMaVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        if(phanSau == null){
+            return "VE" + loaiVeString + ngayHienTaiString + "00000001";
         }
 
-        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
-        String phanSau = maVeCu.substring(maVeCu.length() - 6);
+        String phanTruoc = "VE" + loaiVeString + ngayHienTaiString;
 
-        maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+        maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
 
         return maVeMoi;
     }
 
-    public static String taoMaVeTiepTheo(Ve ve){
-        String maVeCu = ve.getMaVe();
-        String phanTruoc = maVeCu.substring(0, maVeCu.length() - 6);
-        String phanSau = maVeCu.substring(maVeCu.length() - 6);
-        String maVeMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+    public static String taoMaVeTiepTheo(Ve veCu, LoaiVe loaiVe){
+        String maVeCu = veCu.getMaVe();
+        LocalDate ngayHienTai = LocalDate.now();
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
+        String loaiVeString = loaiVe.equals(LoaiVe.VECANHAN) ? "CN" : "TT";
+        String phanTruoc = "VE" + loaiVeString + ngayHienTaiString;
+        String phanSau = maVeCu.substring(maVeCu.length() - 8);
+        String maVeMoi = phanTruoc + String.format("%08d", Integer.parseInt(phanSau) + 1);
         return maVeMoi;
     }
 

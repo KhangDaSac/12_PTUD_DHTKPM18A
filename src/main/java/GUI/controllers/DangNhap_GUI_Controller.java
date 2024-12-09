@@ -7,15 +7,23 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import utils.ShowMessagesDialog;
 
 public class DangNhap_GUI_Controller {
+
+    @FXML
+    private StackPane stpDangNhap;
 
     @FXML
     private JFXButton btnDangNhap;
@@ -30,20 +38,13 @@ public class DangNhap_GUI_Controller {
     private PasswordField txtMatKhau;
 
     @FXML
+    private TextField txtMatKhauHienThi;
+
+    @FXML
     private TextField txtTenDangNhap;
 
     @FXML
     private Label lblThongBao;
-
-    private Stage stage;
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
 
     @FXML
     void btnDangNhapOnAction(ActionEvent event) {
@@ -51,14 +52,12 @@ public class DangNhap_GUI_Controller {
         try {
             nhanVien = dangNhap();
             if(nhanVien != null){
-                FXMLLoader fxmlLoaderKhungGiaoDien = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
-                Scene sceneKhungGiaoDien = new Scene(fxmlLoaderKhungGiaoDien.load());
-                Main_Controller main_controller = fxmlLoaderKhungGiaoDien.getController();
-                main_controller.setStage(stage);
-                main_controller.setNhanVien(nhanVien);
-                stage.setResizable(true);
-                stage.setMaximized(true);
-                stage.setScene(sceneKhungGiaoDien);
+                Window window = stpDangNhap.getScene().getWindow();
+                Stage stage = (Stage) window;
+                FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
+                Scene scene = new Scene(fxmlLoaderDangNhap.load());
+                stage.setScene(scene);
+                stage.centerOnScreen();
             }
         } catch (Exception e) {
             lblThongBao.setText(e.getMessage());
@@ -67,13 +66,28 @@ public class DangNhap_GUI_Controller {
 
     @FXML
     void chkHienThiMatKhauOnAction(ActionEvent event) {
-
+        txtMatKhauHienThi.setVisible(chkHienThiMatKhau.isSelected());
+        txtMatKhau.setVisible(!chkHienThiMatKhau.isSelected());
     }
 
     @FXML
     void lblQuenMatKhauOnMouseClicked(MouseEvent event) {
-
+        chuyenTrangKhoiPhucMatKhau();
     }
+    public void chuyenTrangKhoiPhucMatKhau(){
+        try {
+            Window window = stpDangNhap.getScene().getWindow();
+            Stage stage = (Stage) window;
+            FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/KhoiPhucMatKhau_GUI.fxml"));
+            Scene scene = new Scene(fxmlLoaderDangNhap.load());
+            stage.setScene(scene);
+            stage.centerOnScreen();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public NhanVien dangNhap() throws Exception {
         String tenDangNhap = txtTenDangNhap.getText();
@@ -85,4 +99,17 @@ public class DangNhap_GUI_Controller {
             throw new Exception("Tài khoản hoặc mật khẩu không chính xác");
     }
 
+    public void showMessagesDialog(String messages){
+        ShowMessagesDialog.showDialog(stpDangNhap, "Thông báo", messages, "OK");
+    }
+
+    @FXML
+    void txtMatKhauHienThiOnKeyType(KeyEvent event) {
+        txtMatKhau.setText(txtMatKhauHienThi.getText());
+    }
+
+    @FXML
+    void txtMatKhauOnKeyType(KeyEvent event) {
+        txtMatKhauHienThi.setText(txtMatKhau.getText());
+    }
 }

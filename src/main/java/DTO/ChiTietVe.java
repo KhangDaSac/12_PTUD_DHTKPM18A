@@ -36,6 +36,7 @@ public class ChiTietVe {
 
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
+		this.phanTramGiamGia = khachHang.getLoaiKhachHang().getPhanTramGiamGia();
 	}
 
 	public double getGiaCho() {
@@ -92,5 +93,15 @@ public class ChiTietVe {
 
 	public double thanhTienChiTietVe(){
 		return giaCho * (1 - phanTramGiamGia);
+	}
+
+	@Override
+	public String toString() {
+		return "ChiTietVe{" +
+				", cho=" + cho +
+				", khachHang=" + khachHang +
+				", giaCho=" + giaCho +
+				", phanTramGiamGia=" + phanTramGiamGia +
+				'}';
 	}
 }

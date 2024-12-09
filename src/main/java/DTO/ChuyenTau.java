@@ -1,11 +1,13 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class ChuyenTau {
 	private String maChuyenTau;
 	private TuyenTau tuyenTau;
+
 	private int soLuongChoDaBan;
 	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
@@ -16,6 +18,10 @@ public class ChuyenTau {
 	public ChuyenTau() {
 
 	}
+
+	private int soLuongCho;
+	private int soLuongVe;
+	private int soLuongVeDat;
 
 	public String getMaChuyenTau() {
 		return maChuyenTau;
@@ -32,6 +38,7 @@ public class ChuyenTau {
 	public void setTuyenTau(TuyenTau tuyenTau) {
 		this.tuyenTau = tuyenTau;
 	}
+
 
 	public int getSoLuongChoDaBan() {
 		return soLuongChoDaBan;
@@ -65,20 +72,28 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
-	public ChiTietChuyenTau getThongTinGaTauDi() {
-		return thongTinGaTauDi;
+	public int getSoLuongCho() {
+		return soLuongCho;
 	}
 
-	public void setThongTinGaTauDi(ChiTietChuyenTau thongTinGaTauDi) {
-		this.thongTinGaTauDi = thongTinGaTauDi;
+	public void setSoLuongCho(int soLuongCho) {
+		this.soLuongCho = soLuongCho;
 	}
 
-	public ChiTietChuyenTau getThongTinGaTauDen() {
-		return thongTinGaTauDen;
+	public int getSoLuongVe() {
+		return soLuongVe;
 	}
 
-	public void setThongTinGaTauDen(ChiTietChuyenTau thongTinGaTauDen) {
-		this.thongTinGaTauDen = thongTinGaTauDen;
+	public void setSoLuongVe(int soLuongVe) {
+		this.soLuongVe = soLuongVe;
+	}
+
+	public int getSoLuongVeDat() {
+		return soLuongVeDat;
+	}
+
+	public void setSoLuongVeDat(int soLuongVeDat) {
+		this.soLuongVeDat = soLuongVeDat;
 	}
 
 	@Override
@@ -103,6 +118,15 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, int soLuongVe, int soLuongVeDat) {
+		this.maChuyenTau = maChuyenTau;
+		this.tuyenTau = tuyenTau;
+		this.soLuongCho = soLuongCho;
+		this.soLuongVe = soLuongVe;
+		this.soLuongVeDat = soLuongVeDat;
+	}
+
 	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
 		this.maChuyenTau = maChuyenTau;
 		this.soLuongChoDaBan = soLuongChoDaBan;
@@ -123,5 +147,20 @@ public class ChuyenTau {
 
 	public ChuyenTau(String maChuyenTau) {
 		this.maChuyenTau = maChuyenTau;
+	}
+
+	@Override
+	public String toString() {
+		return "ChuyenTau{" +
+				"maChuyenTau='" + maChuyenTau + '\'' +
+				", tuyenTau=" + tuyenTau +
+				", soLuongChoDaBan=" + soLuongChoDaBan +
+				", soLuongChoDaDat=" + soLuongChoDaDat +
+				", soLuongChoChangDaiHon=" + soLuongChoChangDaiHon +
+				", soLuongChoTrongTrong=" + soLuongChoTrongTrong +
+				", soLuongCho=" + soLuongCho +
+				", soLuongVe=" + soLuongVe +
+				", soLuongVeDat=" + soLuongVeDat +
+				'}';
 	}
 }

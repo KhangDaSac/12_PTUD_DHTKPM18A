@@ -1,15 +1,14 @@
 package GUI.controllers;
 
-import DTO.ChiTietVe;
 import DTO.HoaDonBanVe;
 import DTO.NhanVien;
-import DTO.Ve;
-import javafx.application.Platform;
+import GUI.applications.Run;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -17,14 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import utils.ShowMessagesDialog;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
-public class Main_Controller implements Initializable {
+public class Main_Controller {
+
     @FXML
     private AnchorPane anpNoiDungTrang;
 
@@ -65,16 +63,13 @@ public class Main_Controller implements Initializable {
     private Button btnQuanLyKhachHang;
 
     @FXML
-    private Button btnQuanLyLichSu;
-
-    @FXML
     private Button btnQuanLyNhanVien;
 
     @FXML
-    private Button btnQuanLyPhieuDatVe;
+    private Button btnQuanLyVe;
 
     @FXML
-    private Button btnQuanLyVe;
+    private Button btnQuanLyVeDat;
 
     @FXML
     private Button btnThongKe;
@@ -89,12 +84,6 @@ public class Main_Controller implements Initializable {
     private Button btnTrangChu;
 
     @FXML
-    private Button btnTimPhieuDatVe;
-
-    @FXML
-    private Button btnTimVe;
-
-    @FXML
     private Label lblMaNhanVienDangNhap;
 
     @FXML
@@ -107,15 +96,13 @@ public class Main_Controller implements Initializable {
     private StackPane stpKhung;
 
     @FXML
-    private VBox vboxLuaChonQuanLyVe;
+    private VBox vboxQuanLyVe;
 
     @FXML
     private VBox vboxQuanLyBaoCaoVaThongKe;
 
     @FXML
-    private VBox vboxQuanLyPhieuDatVe;
-
-    private Stage stage;
+    private VBox vboxQuanLyVeDat;
 
     private NhanVien nhanVien;
 
@@ -127,16 +114,84 @@ public class Main_Controller implements Initializable {
         this.nhanVien = nhanVien;
     }
 
-    public Stage getStage() {
-        return stage;
-    }
+    //Thong ke va bao cao
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @FXML
+    void vboxQuanLyBaoCaoVaThongKeMouseEntered(MouseEvent event) {
+        vboxQuanLyBaoCaoVaThongKe.setVisible(true);
     }
 
     @FXML
-    void chuyenTrangChu(ActionEvent event) {
+    void vboxQuanLyBaoCaoVaThongKeMouseExited(MouseEvent event) {
+        vboxQuanLyBaoCaoVaThongKe.setVisible(false);
+
+    }
+
+    @FXML
+    void btnBaoCaoVaThongKeMouseEnterd(MouseEvent event) {
+        vboxQuanLyBaoCaoVaThongKe.setVisible(true);
+
+    }
+
+    @FXML
+    void btnBaoCaoVaThongKeOnActionExieted(MouseEvent event) {
+        vboxQuanLyBaoCaoVaThongKe.setVisible(false);
+
+    }
+
+    //QL Ve
+    @FXML
+    void btnQuanLyVeEnterd(MouseEvent event) {
+        vboxQuanLyVe.setVisible(true);
+    }
+
+    @FXML
+    void btnQuanLyVeExited(MouseEvent event) {
+        vboxQuanLyVe.setVisible(false);
+    }
+
+
+    @FXML
+    void vboxQuanLyVeEntered(MouseEvent event) {
+        vboxQuanLyVe.setVisible(true);
+    }
+
+    @FXML
+    void vboxQuanLyVeExited(MouseEvent event) {
+        vboxQuanLyVe.setVisible(false);
+    }
+
+    //QL Ve Dat
+
+    @FXML
+    void btnQuanLyVeDatEntered(MouseEvent event) {
+        vboxQuanLyVeDat.setVisible(true);
+    }
+
+    @FXML
+    void btnQuanLyVeDatExited(MouseEvent event) {
+        vboxQuanLyVeDat.setVisible(false);
+    }
+
+    @FXML
+    void vboxQuanLyVeDatEntered(MouseEvent event) {
+        vboxQuanLyVeDat.setVisible(true);
+    }
+
+    @FXML
+    void vboxQuanLyVeDatExtied(MouseEvent event) {
+        vboxQuanLyVeDat.setVisible(false);
+    }
+
+
+    @FXML
+    void btnTimPhieuVeDatOnAction(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void btnTrangChuOnAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/TrangChu_GUI.fxml"));
         Parent trangMoi = null;
         try {
@@ -155,98 +210,40 @@ public class Main_Controller implements Initializable {
 
 
 
-    public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
-//        thongTinBanVe_gui_controller.setMain_controller(this);
-//        thongTinBanVe_gui_controller.setHoaDon(hoaDon);
-//        thongTinBanVe_gui_controller.setDanhSachVe(danhSachVe);
-//        thongTinBanVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
-//        thongTinBanVe_gui_controller.khoiTao();
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
-    }
-
-
-
-    @FXML
-    void btnQuanLyVeMouseEnterd(MouseEvent event) {
-        vboxLuaChonQuanLyVe.setVisible(true);
-    }
-
-    @FXML
-    void btnQuanLyVeMouseExited(MouseEvent event) {
-        vboxLuaChonQuanLyVe.setVisible(false);
-    }
-
-
-    @FXML
-    void vboxLuaChonQuanLyVeMouseEntered(MouseEvent event) {
-        vboxLuaChonQuanLyVe.setVisible(true);
-    }
-
-    @FXML
-    void vboxLuaChonQuanLyVeMouseExited(MouseEvent event) {
-        vboxLuaChonQuanLyVe.setVisible(false);
-    }
-
-    @FXML
-    void btnBanVeOnAction(ActionEvent event) {
-//        lblTieuDeTrang.setText("BÁN VÉ");
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        BanVe_GUI_Controller controller = loader.getController();
-//        controller.setMain_Controller(this);
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
-    }
-
-    @FXML
-    void btnBaoCaoOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDangXuatOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDatVeOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnDoiVeOnAction(ActionEvent event) {
-
-        lblTieuDeTrang.setText("ĐỔI VÉ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI.fxml"));
+    public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDon){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ThongTinBanVe_GUI.fxml"));
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        DoiVe_GUI_Controller controller = loader.getController();
+        ThongTinBanVe_GUI_Controller thongTinBanVe_gui_controller = loader.getController();
+        thongTinBanVe_gui_controller.setMain_controller(this);
+        thongTinBanVe_gui_controller.setHoaDonBanVe(hoaDon);
+        thongTinBanVe_gui_controller.khoiTao();
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+
+
+
+    @FXML
+    void btnBanVeOnAction(ActionEvent event) {
+        lblTieuDeTrang.setText("BÁN VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller controller = loader.getController();
         controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
@@ -257,23 +254,81 @@ public class Main_Controller implements Initializable {
     }
 
     @FXML
+    void btnBaoCaoOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnDangXuatOnAction(ActionEvent event) {
+        try {
+            Window window = anpNoiDungTrang.getScene().getWindow();
+            Stage stage = (Stage) window;
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/DangNhap_GUI.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.centerOnScreen();
+        } catch (Exception e) {
+
+        }
+    }
+
+    @FXML
+    void btnDatVeOnAction(ActionEvent event) {
+        lblTieuDeTrang.setText("ĐẶT VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        DatVe_GUI_Controller controller = loader.getController();
+        controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    @FXML
+    void btnDoiVeOnAction(ActionEvent event) {
+        lblTieuDeTrang.setText("ĐỔI VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    @FXML
     void btnHuyDatVeOnAction(ActionEvent event) {
-//        lblTieuDeTrang.setText("HỦY DẶT VÉ");
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyDatVe_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        lblTieuDeTrang.setText("HỦY DẶT VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyDatVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 //        HuyDatVe_GUI_Controller controller = loader.getController();
 //        controller.setMain_Controller(this);
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
@@ -285,7 +340,7 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        HuyVe_GUI_Controller controller = loader.getController();
+//        HuyVe_GUI_Controller controller = loader.getController();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -296,48 +351,63 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnLayVeOnAction(ActionEvent event) {
-//        lblTieuDeTrang.setText("LẤY VÉ");
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        LayVe_GUI_Controller controller = loader.getController();
-//        controller.setMain_controller(this);
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
+        lblTieuDeTrang.setText("LẤY VÉ");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LayVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        LayVe_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
     void btnQuanLyChuyenTauOnAction(ActionEvent event) {
-
+        lblTieuDeTrang.setText("QUẢN LÝ CHUYẾN TÀU");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyChuyenTau_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        QuanLyChuyenTau_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
     void btnQuanLyHoaDonOnAction(ActionEvent event) {
-//        lblTieuDeTrang.setText("Quản lý hóa đơn");
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
+        lblTieuDeTrang.setText("Quản lý hóa đơn");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 //        QuanLyHoaDon_GUI_Controller controller = loader.getController();
 //        controller.setMain_Controller(this);
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
@@ -350,24 +420,14 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        QuanLyKhachHang_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        QuanLyKhachHang_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
-    }
-
-    @FXML
-    void btnQuanLyLichSuOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnQuanLyPhieuDatVeOnAction(ActionEvent event) {
-
     }
 
     @FXML
@@ -381,8 +441,8 @@ public class Main_Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-        BaoCaoThongKe_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        BaoCaoThongKe_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -393,28 +453,6 @@ public class Main_Controller implements Initializable {
 
 
     @FXML
-    void vboxQuanLyBaoCaoVaThongKeMouseEntered(MouseEvent event) {
-        vboxQuanLyBaoCaoVaThongKe.setVisible(true);
-    }
-
-    @FXML
-    void vboxQuanLyBaoCaoVaThongKeMouseExited(MouseEvent event) {
-        vboxQuanLyBaoCaoVaThongKe.setVisible(false);
-
-    }
-
-    @FXML
-    void btnThongTinUngDungMouseEnterd(MouseEvent event) {
-        vboxQuanLyBaoCaoVaThongKe.setVisible(true);
-    }
-
-    @FXML
-    void btnThongTinUngDungOnActionExieted(MouseEvent event) {
-        vboxQuanLyBaoCaoVaThongKe.setVisible(false);
-
-    }
-
-    @FXML
     void btnQuanLyNhanVienOnAction(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyNhanVien_GUI.fxml"));
         Parent trangMoi = null;
@@ -423,8 +461,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        QuanLyNhanVien_GUI_Controller controller = loader.getController();
-        controller.setMain_controller(this);
+//        QuanLyNhanVien_GUI_Controller controller = loader.getController();
+//        controller.setMain_controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -438,71 +476,54 @@ public class Main_Controller implements Initializable {
 
     }
 
-    public void quayLaiTrangBanVe(HoaDonBanVe hoaDon, ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe){
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
-//        Parent trangMoi = null;
-//        try {
-//            trangMoi = loader.load();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
-//        banVe_gui_controller.setMain_Controller(this);
-//        banVe_gui_controller.setHoaDon(hoaDon);
-//        banVe_gui_controller.setDanhSachVe(danhSachVe);
-//        banVe_gui_controller.setDanhSachChiTietVe(danhSachChiTietVe);
-//        anpNoiDungTrang.getChildren().clear();
-//        anpNoiDungTrang.getChildren().add(trangMoi);
-//        AnchorPane.setTopAnchor(trangMoi, 0.0);
-//        AnchorPane.setBottomAnchor(trangMoi, 0.0);
-//        AnchorPane.setLeftAnchor(trangMoi, 0.0);
-//        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    public void quayLaiTrangBanVe(HoaDonBanVe hoaDonBanVe){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
+        banVe_gui_controller.setMain_Controller(this);
+        banVe_gui_controller.setHoaDonBanVe(hoaDonBanVe);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
+    }
+
+    public void quayLaiTrangBanVe(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BanVe_GUI_Controller banVe_gui_controller = loader.getController();
+        banVe_gui_controller.setMain_Controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     public void showMessagesDialog(String messages){
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
-    public boolean showLoadingDialog(){
-        return ShowMessagesDialog.showDialogWithLoading(stpKhung, "Loanding", "Loading");
+    public void khoiTao(){
+        if(nhanVien != null){
+            lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
+            lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
+        }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(()->{
-            if(nhanVien != null){
-                lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
-                lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
-            }
-        });
-    }
-
-
-    @FXML
-    void btnQuanLyPhieuDatVeEntered(MouseEvent event) {
-        vboxQuanLyPhieuDatVe.setVisible(true);
-    }
-
-    @FXML
-    void btnQuanLyPhieuDatVeExited(MouseEvent event) {
-        vboxQuanLyPhieuDatVe.setVisible(false);
-    }
-
-
-    @FXML
-    void vboxQuanLyPhieuDatVeEntered(MouseEvent event) {
-        vboxQuanLyPhieuDatVe.setVisible(true);
-    }
-
-    @FXML
-    void vboxQuanLyPhieuDatVeExtied(MouseEvent event) {
-        vboxQuanLyPhieuDatVe.setVisible(false);
-    }
-
-    @FXML
-    void btnTimPhieuDatVeOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void btnTimVeOnAction(ActionEvent event) {
