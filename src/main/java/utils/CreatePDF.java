@@ -18,7 +18,8 @@ public class CreatePDF {
         String qrCodePath = "documents/HoaDonBanVe/QRCode/QRCode_" + hoaDonBanVe.getMaHoaDonBanVe() + ".png";
         try {
 
-            Document document = new Document();
+            Rectangle pageSize = new Rectangle(600, 65 * hoaDonBanVe.getDanhSachVe().size() + 600);
+            Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
@@ -332,7 +333,8 @@ public class CreatePDF {
         String qrCodePath = "documents/HoaDonLayVe/QRCode/QRCode_" + hoaDonLayVe.getMaHoaDonLayVe() + ".png";
         try {
 
-            Document document = new Document();
+            Rectangle pageSize = new Rectangle(600, 70 * hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().size() + 600);
+            Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
@@ -517,8 +519,8 @@ public class CreatePDF {
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonDatVe/QRCode/QRCode_" + hoaDonDatVe.getMaHoaDonDatVe() + ".png";
         try {
-
-            Document document = new Document();
+            Rectangle pageSize = new Rectangle(600, 70 * hoaDonDatVe.getDanhSachVeDat().size() + 600);
+            Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
@@ -607,7 +609,7 @@ public class CreatePDF {
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
 
-            float[] columnWidths = {1f, 5f, 6f, 4f, 4f};
+            float[] columnWidths = {1f, 5f, 4f, 3f, 3f};
             table.setWidths(columnWidths);
 
             String[] headers = {"STT", "Mã vé đặt", "Tên vé đặt", "Tiền vé", "Đặt cọc"};

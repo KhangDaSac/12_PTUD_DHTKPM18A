@@ -518,7 +518,7 @@ public class BanVe_GUI_Controller implements Initializable {
         if(loaiVe == LoaiVe.VECANHAN){
             for(Cho cho : choChonList){
 
-                ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuToaTauDangChon);
+                ChuyenTau_BanVe_Controller chuyenTau_Controller = chuyenTauControllerList.get(thuTuChuyenTauDangChon);
                 ChiTietChuyenTau chiTietChuyenTauDi = chuyenTau_Controller.getChiTietChuyenTauDi();
                 ChiTietChuyenTau chiTietChuyenTauDen = chuyenTau_Controller.getChiTietChuyenTauDen();
                 chiTietChuyenTauDi.setGaTau(gaDi);
