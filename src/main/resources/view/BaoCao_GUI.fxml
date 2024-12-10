@@ -158,7 +158,7 @@
                <children>
                   <HBox style="-fx-alignment: center;">
                      <children>
-                        <AnchorPane prefWidth="350.0" style="-fx-background-color: #0A5EB0; -fx-background-radius: 5;">
+                        <AnchorPane prefWidth="350.0" styleClass="hoaDonBanVe" stylesheets="@../css/BaoCao_GUI.css">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -181,7 +181,7 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="476.0" layoutY="20.0" prefWidth="350.0" style="-fx-background-color: #FF8000; -fx-background-radius: 5;">
+                        <AnchorPane layoutX="476.0" layoutY="20.0" prefWidth="350.0" styleClass="hoaDonDatVe" stylesheets="@../css/BaoCao_GUI.css">
                            <children>
                               <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                  <children>
@@ -204,7 +204,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <AnchorPane layoutX="646.0" layoutY="10.0" prefWidth="350.0" style="-fx-background-color: #7E1891; -fx-background-radius: 5;">
+                        <AnchorPane layoutX="646.0" layoutY="10.0" prefWidth="350.0" styleClass="hoaDonLayVe" stylesheets="@../css/BaoCao_GUI.css">
                            <children>
                               <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                  <children>
@@ -231,7 +231,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" style="-fx-alignment: center;">
                      <children>
-                        <AnchorPane prefWidth="350.0" style="-fx-background-color: #FF2929; -fx-background-radius: 5;">
+                        <AnchorPane prefWidth="350.0" styleClass="hoaDonHuyVe" stylesheets="@../css/BaoCao_GUI.css">
                            <HBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
@@ -254,7 +254,7 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="476.0" layoutY="20.0" prefWidth="350.0" style="-fx-background-color: #FF77B7; -fx-background-radius: 5;">
+                        <AnchorPane layoutX="476.0" layoutY="20.0" prefWidth="350.0" styleClass="hoaDonHuyDatVe" stylesheets="@../css/BaoCao_GUI.css">
                            <children>
                               <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                  <children>
@@ -277,7 +277,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <AnchorPane layoutX="646.0" layoutY="10.0" prefWidth="350.0" style="-fx-background-color: #72BF78; -fx-background-radius: 5;">
+                        <AnchorPane layoutX="646.0" layoutY="10.0" prefWidth="350.0" styleClass="hoaDonDoiVe" stylesheets="@../css/BaoCao_GUI.css">
                            <children>
                               <VBox AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                                  <children>

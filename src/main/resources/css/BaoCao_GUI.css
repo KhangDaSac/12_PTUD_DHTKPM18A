@@ -1,3 +1,29 @@
+.hoaDonBanVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #0A5EB0, #77CDFF);
+    -fx-background-radius: 5;
+}
 
+.hoaDonDatVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FF8000, #FFBF61);
+    -fx-background-radius: 5;
+}
 
-.
+.hoaDonLayVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #7E1891, #7E60BF);
+    -fx-background-radius: 5;
+}
+
+.hoaDonHuyVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #B8001F, #FF4545);
+    -fx-background-radius: 5;
+}
+
+.hoaDonHuyDatVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #FF4E88, #FF77B7);
+    -fx-background-radius: 5;
+}
+
+.hoaDonDoiVe{
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #355F2E, #72BF78);
+    -fx-background-radius: 5;
+}

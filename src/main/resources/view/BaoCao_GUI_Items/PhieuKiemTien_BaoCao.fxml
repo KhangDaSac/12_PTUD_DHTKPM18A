@@ -310,7 +310,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="40.0" layoutY="585.0" prefHeight="60.0" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-border-width: 1;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="300.0">
+      <AnchorPane layoutX="40.0" layoutY="585.0" prefHeight="60.0" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-border-width: 1;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0">
          <children>
             <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -326,15 +326,34 @@
       </AnchorPane>
       <AnchorPane layoutX="50.0" layoutY="640.0" prefHeight="60.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0">
          <children>
-            <JFXButton fx:id="btnHoanThanh" onAction="#btnHoanThanhOnAction" prefHeight="60.0" prefWidth="200.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Hoàn thành">
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0">
-                     <image>
-                        <Image url="@../../images/BanVe_GUI/ThemVe.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </JFXButton>
+            <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton fx:id="btnHoanThanh" onAction="#btnHoanThanhOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Thoát">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../../images/BanVe_GUI/ThemVe.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="btnHoanThanh1" onAction="#btnHoanThanhOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Hoàn thành">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                           <image>
+                              <Image url="@../../images/BanVe_GUI/ThemVe.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>
