@@ -273,7 +273,22 @@ public class Main_Controller {
 
     @FXML
     void btnBaoCaoOnAction(ActionEvent event) {
-
+        lblTieuDeTrang.setText("BÁO CÁO");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BaoCao_GUI.fxml"));
+        Parent trangMoi = null;
+        try {
+            trangMoi = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        BaoCao_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
+        anpNoiDungTrang.getChildren().clear();
+        anpNoiDungTrang.getChildren().add(trangMoi);
+        AnchorPane.setTopAnchor(trangMoi, 0.0);
+        AnchorPane.setBottomAnchor(trangMoi, 0.0);
+        AnchorPane.setLeftAnchor(trangMoi, 0.0);
+        AnchorPane.setRightAnchor(trangMoi, 0.0);
     }
 
     @FXML
