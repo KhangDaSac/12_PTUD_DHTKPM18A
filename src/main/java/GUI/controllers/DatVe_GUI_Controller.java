@@ -227,7 +227,7 @@ public class DatVe_GUI_Controller implements Initializable {
         try {
             gaDi = gaTauDi;
             gaDen = gaTauDen;
-            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
+            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTauDatVe(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
             hienThiDanhSachChuyenTau(chuyenTauList);
         } catch (Exception e) {
             e.printStackTrace();

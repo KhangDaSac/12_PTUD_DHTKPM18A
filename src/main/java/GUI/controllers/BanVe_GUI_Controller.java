@@ -219,7 +219,7 @@ public class BanVe_GUI_Controller implements Initializable {
         try {
             gaDi = gaTauDi;
             gaDen = gaTauDen;
-            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
+            chuyenTauList = QuanLyChuyenTau_BUS.getDanhSachChuyenTauBanVe(gaDi.getMaGaTau(), gaDen.getMaGaTau(), ngayDi);
             hienThiDanhSachChuyenTau(chuyenTauList);
         } catch (Exception e) {
             System.out.println(e.getMessage());

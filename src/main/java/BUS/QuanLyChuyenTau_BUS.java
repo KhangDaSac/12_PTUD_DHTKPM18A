@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuanLyChuyenTau_BUS {
-    public static ArrayList<ChuyenTau> getDanhSachChuyenTau(String maGaDi, String maGaDen, LocalDate ngayDi) throws Exception {
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauBanVe(String maGaDi, String maGaDen, LocalDate ngayDi) throws Exception {
         if(!maGaDi.matches("[A-Z]{3}")){
             throw new Exception("Mã ga đi không hợp lệ");
         }else if(!maGaDi.matches("[A-Z]{3}")){
@@ -18,7 +18,19 @@ public class QuanLyChuyenTau_BUS {
             System.out.println(ngayDi);
             throw new Exception("Ngày đi không hợp lệ");
         }
-        return ChuyenTau_DAO.getDanhSachChuyenTau(maGaDi, maGaDen, ngayDi);
+        return ChuyenTau_DAO.getDanhSachChuyenTauBanVe(maGaDi, maGaDen, ngayDi);
+    }
+
+    public static ArrayList<ChuyenTau> getDanhSachChuyenTauDatVe(String maGaDi, String maGaDen, LocalDate ngayDi) throws Exception {
+        if(!maGaDi.matches("[A-Z]{3}")){
+            throw new Exception("Mã ga đi không hợp lệ");
+        }else if(!maGaDi.matches("[A-Z]{3}")){
+            throw new Exception("Mã ga đến không hợp lệ");
+        }if(ngayDi.isBefore(LocalDate.now())){
+            System.out.println(ngayDi);
+            throw new Exception("Ngày đi không hợp lệ");
+        }
+        return ChuyenTau_DAO.getDanhSachChuyenTauDatVe(maGaDi, maGaDen, ngayDi);
     }
 
     public static ArrayList<ToaTau> getDanhSachToaTau(String maChuyenTau, String maGaDi, String maGaDen){
