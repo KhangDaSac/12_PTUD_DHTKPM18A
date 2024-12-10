@@ -162,6 +162,10 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         taoPhieuKiemTien(maCaLamViec);
         if(!QuanLyCaLamViec_BUS.taoCaLamViecMoi(phieuKetToan))
             return;
+
+        baoCao_gui_controller.setPhieuKetToan(phieuKetToan);
+        btnThoat.fire();
+        baoCao_gui_controller.getMain_controller().showMessagesDialog("Tạo phiếu kiểm tiền đầu ca thành công");
     }
 
     private void taoPhieuKiemTien(String maCaLamViec){

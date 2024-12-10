@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class BaoCao_GUI_Controller {
 
@@ -122,10 +123,11 @@ public class BaoCao_GUI_Controller {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
-            JFXButton closeButton = (JFXButton)anchorPane.lookup("#btnThoat");
+            JFXButton button = (JFXButton)anchorPane.lookup("#btnThoat");
+            JFXButton button2 = (JFXButton)anchorPane.lookup("#btnHoanThanh");
             PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
             controller.setBaoCao_gui_controller(this);
-            main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền", closeButton);
+            main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền", button);
         }catch (Exception e){
             e.printStackTrace();
         }
