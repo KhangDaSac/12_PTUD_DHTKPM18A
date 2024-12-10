@@ -312,9 +312,9 @@ public class DoiVe_GUI_Controller implements Initializable {
             gaDi = veKhachHang.getThongTinGaTauDi().getGaTau();
             gaDen = veKhachHang.getThongTinGaTauDen().getGaTau();
 
-            chuyenTauKH = chuyenTauBus.timChuyenTauTheoMaVe(veKhachHang.getMaVe());
+            //chuyenTauKH = chuyenTauBus.timChuyenTauTheoMaVe(gaDi.getMaGaTau(),gaDen.getMaGaTau(),veKhachHang.getMaVe());
             ctVe = ctVeBus.getCTVeTheoMaVe(veKhachHang.getMaVe());
-            //chuyenTauKH =getChuyenTau();
+            chuyenTauKH =getChuyenTau();
 
             lblToaTau_Cu.setText(ctVe.getCho().getToaTau().getMaToaTau());
             lblCho_Cu.setText(String.format("%d", ctVe.getCho().getSoCho()));
@@ -333,12 +333,14 @@ public class DoiVe_GUI_Controller implements Initializable {
         ArrayList<ChuyenTau> listCT;
         listCT = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(),
                 veKhachHang.getThongTinGaTauDi().getThoiGianDi().toLocalDate());
-
         for (ChuyenTau ct: listCT){
-                ctTim = ct;
-                break;
+        if (veKhachHang.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().equals(ct.getMaChuyenTau())){
+            ctTim = ct;
+            return ct;
+            }else {
+            System.out.printf("không tìm thấy chuyến tàu vó mã:"+veKhachHang.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau());
+            }
         }
-
         return ctTim;
     }
 

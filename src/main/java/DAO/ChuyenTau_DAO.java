@@ -45,29 +45,6 @@ public class ChuyenTau_DAO {
         return dsChuyenTau;
     }
 
-    public static ChuyenTau timChuyenTauTheoMaVe(String maVe){
-        ChuyenTau chuyenTau = null;
-        try {
-            String query = "select * from ChuyenTau ct\n" +
-                    "join Ve v on v.maChuyenTau = ct.maChuyenTau\n" +
-                    "where v.maVe = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maVe);
-            ResultSet rs = statement.executeQuery();
-
-            while (rs.next()) {
-                String maChuyenTau = rs.getString("maChuyenTau");
-                TuyenTau tuyenTau = new TuyenTau(rs.getString("maTuyenTau"));
-                //int soLuongCho = rs.getInt("soLuongCho");
-                chuyenTau = new ChuyenTau(maChuyenTau);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return chuyenTau;
-    }
-
     public void suaThoiGianKhoiHanh (LocalDateTime thoiGianKhoiHanh, String maChuyen){
         try{
             String query = "update ChuyenTau set ngayKhoiHanh = ? where maChuyenTau = ?";

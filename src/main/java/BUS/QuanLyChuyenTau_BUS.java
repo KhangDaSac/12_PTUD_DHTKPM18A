@@ -60,12 +60,6 @@ public class QuanLyChuyenTau_BUS {
         return ChuyenTau_DAO.getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(maChuyenTau, maTuyenTau, ngayKhoiHanh);
     }
 
-    public static ChuyenTau timChuyenTauTheoMaVe(String maVe){
-        ChuyenTau_DAO chuyenTauDao = new ChuyenTau_DAO();
-        ChuyenTau chuyenTau = chuyenTauDao.timChuyenTauTheoMaVe(maVe);
-        return chuyenTau;
-    }
-
     public static ArrayList<ChiTietChuyenTau> getLichTrinhTheoMaChuyenTau(String maChuyenTau){
         return ChiTietChuyenTau_DAO.getLichTrinhTheoMaChuyenTau(maChuyenTau);
     }
