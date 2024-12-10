@@ -469,6 +469,11 @@ public class BanVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
+                if(main_Controller.getCaLamViec() == null){
+                    main_Controller.thongBaoKhongHoatDong("Chưa tạo ca làm việc, vui lòng tạo phiếu kiểm tiền đầu ca để tạo ca làm việc");
+                    return;
+                }
+
                 if(hoaDonBanVe == null){
                     String maHoaDon = QuanLyHoaDon_BUS.layHoaDonBanVeTiepTheo();
                     hoaDonBanVe = new HoaDonBanVe(maHoaDon);

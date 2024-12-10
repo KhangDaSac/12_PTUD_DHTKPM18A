@@ -56,19 +56,12 @@ public class DangNhap_GUI_Controller {
         try {
             nhanVien = dangNhap();
             if(nhanVien != null){
-                String maCaLamViec = QuanLyCaLamViec_BUS.taoMaCaLamViecMoi();
-                CaLamViec caLamViec = new CaLamViec(maCaLamViec, LocalDateTime.now(), null, nhanVien);
-                System.out.println(caLamViec.getMaCaLamViec());
-                if(!QuanLyCaLamViec_BUS.themCaLamViec(caLamViec))
-                    return;
-
                 Window window = stpDangNhap.getScene().getWindow();
                 Stage stage = (Stage) window;
                 FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/KhungGiaoDien.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
                 Main_Controller main_controller = fxmlLoader.getController();
-                main_controller.setCaLamViec(caLamViec);
-                main_controller.khoiTao();
+                main_controller.setNhanVien(nhanVien);
                 stage.setScene(scene);
                 stage.centerOnScreen();
             }

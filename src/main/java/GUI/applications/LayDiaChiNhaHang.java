@@ -162,7 +162,7 @@ public class LayDiaChiNhaHang {
             int ran2 = random.nextInt(40);
 
             for(int k = 1; k < 4; k++ ){
-                String maCaLamViec = "CLV" + time.format(formatter2) + "C" + String.format("%02d", k);
+                String maCaLamViec = "CLV" + time.format(formatter2) + "C" + String.format("%03d", k);
                 String thoiGianBatDau = time.format(formatter3);
                 time = time.plusHours(8);
                 String thoiGianKetThuc = time.format(formatter3);

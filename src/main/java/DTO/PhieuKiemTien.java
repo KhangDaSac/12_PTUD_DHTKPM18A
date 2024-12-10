@@ -1,14 +1,16 @@
 package DTO;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PhieuKiemTien {
     private String maPhieuKiemTien;
-    private double tongTien;
     private LocalDateTime thoiGianKiemTien;
     private NhanVien nhanVienQuanSat;
     private NhanVien nhanVienKiemTien;
+
+    private ArrayList<ChiTietPhieuKiemTien> danhSachChiTietPhieuKiemTien;
 
     public String getMaPhieuKiemTien() {
         return maPhieuKiemTien;
@@ -16,14 +18,6 @@ public class PhieuKiemTien {
 
     public void setMaPhieuKiemTien(String maPhieuKiemTien) {
         this.maPhieuKiemTien = maPhieuKiemTien;
-    }
-
-    public double getTongTien() {
-        return tongTien;
-    }
-
-    public void setTongTien(double tongTien) {
-        this.tongTien = tongTien;
     }
 
     public LocalDateTime getThoiGianKiemTien() {
@@ -50,6 +44,13 @@ public class PhieuKiemTien {
         this.nhanVienKiemTien = nhanVienKiemTien;
     }
 
+    public ArrayList<ChiTietPhieuKiemTien> getDanhSachChiTietPhieuKiemTien() {
+        return danhSachChiTietPhieuKiemTien;
+    }
+
+    public void setDanhSachChiTietPhieuKiemTien(ArrayList<ChiTietPhieuKiemTien> danhSachChiTietPhieuKiemTien) {
+        this.danhSachChiTietPhieuKiemTien = danhSachChiTietPhieuKiemTien;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -62,5 +63,13 @@ public class PhieuKiemTien {
     @Override
     public int hashCode() {
         return Objects.hashCode(maPhieuKiemTien);
+    }
+
+    public double tongTien(){
+        double tongTien = 0;
+        for(ChiTietPhieuKiemTien chiTietPhieuKiemTien : danhSachChiTietPhieuKiemTien){
+            tongTien += chiTietPhieuKiemTien.thanhTien();
+        }
+        return tongTien;
     }
 }

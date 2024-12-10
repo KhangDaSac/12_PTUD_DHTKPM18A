@@ -19,7 +19,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700;" text="CA LÀM VIỆC" />
+                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="CA LÀM VIỆC" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
@@ -27,12 +27,12 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="15.0">
                            <children>
-                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Mã ca làm việc:">
+                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã ca làm việc:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblMaCaLamViec" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16;" text="CLV10122024C01">
+                              <Label fx:id="lblMaCaLamViec" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="CLV10122024C01">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -44,12 +44,12 @@
                         </HBox>
                         <HBox layoutX="20.0" layoutY="60.0">
                            <children>
-                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Thời gian bắt đầu:">
+                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Thời gian bắt đầu:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblThoiGianBatDau" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16;" text="13/12/2024 09:34">
+                              <Label fx:id="lblThoiGianBatDau" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="13/12/2024 09:34">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -61,12 +61,12 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="106.0">
                            <children>
-                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Thời gian kết thúc:">
+                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Thời gian kết thúc:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblThoiGianKetThuc" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16;" text="13/12/2024 09:34">
+                              <Label fx:id="lblThoiGianKetThuc" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="13/12/2024 09:34">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -82,7 +82,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700;" text="NHÂN VIÊN ĐẢM NHẬN CA" />
+                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN ĐẢM NHẬN CA" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
@@ -90,12 +90,12 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Mã nhân viên:">
+                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã nhân viên:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblMaNhanVien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16;" text="NV2024000001">
+                              <Label fx:id="lblMaNhanVien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="NV2024000001">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -107,12 +107,12 @@
                         </HBox>
                         <HBox>
                            <children>
-                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700;" text="Tên nhân viên:">
+                              <Label prefWidth="150.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Tên nhân viên:">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblTenNhanVien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16;" text="13/12/2024 09:34">
+                              <Label fx:id="lblTenNhanVien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="13/12/2024 09:34">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>

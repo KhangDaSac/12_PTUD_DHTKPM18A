@@ -15,7 +15,6 @@ public class Run extends Application {
         FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/Splash_GUI.fxml"));
         Scene scene = new Scene(fxmlLoaderDangNhap.load());
 
-
         stage.getIcons().add(new Image(Run.class.getResourceAsStream("/images/app_icon.png")));
         stage.setTitle("Ứng dụng bán vé tàu - Natri Railway Company");
         stage.setResizable(false);

@@ -5,9 +5,12 @@ import DTO.HoaDonBanVe;
 import DTO.HoaDonDatVe;
 import DTO.NhanVien;
 import GUI.applications.Run;
+import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,8 +24,10 @@ import javafx.stage.Window;
 import utils.ShowMessagesDialog;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Main_Controller {
+public class Main_Controller implements Initializable {
 
     @FXML
     private AnchorPane anpNoiDungTrang;
@@ -97,6 +102,9 @@ public class Main_Controller {
     private StackPane stpKhung;
 
     @FXML
+    private StackPane stpThongBaoKhongHoatDong;
+
+    @FXML
     private VBox vboxQuanLyVe;
 
     @FXML
@@ -106,6 +114,7 @@ public class Main_Controller {
     private VBox vboxQuanLyVeDat;
 
     private CaLamViec caLamViec;
+    private NhanVien nhanVien;
 
     public CaLamViec getCaLamViec() {
         return caLamViec;
@@ -113,6 +122,14 @@ public class Main_Controller {
 
     public void setCaLamViec(CaLamViec caLamViec) {
         this.caLamViec = caLamViec;
+    }
+
+    public NhanVien getNhanVien() {
+        return nhanVien;
+    }
+
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
     }
 
     //Thong ke va bao cao
@@ -587,10 +604,25 @@ public class Main_Controller {
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
+    public void showWindowDialog(AnchorPane anchorPane, String title, JFXButton closeButton){
+        ShowMessagesDialog.showDialog(stpKhung, title, anchorPane, closeButton);
+    }
+
+    public void thongBaoKhongHoatDong(String messages){
+        ShowMessagesDialog.showDialog(stpThongBaoKhongHoatDong, "Thông báo", messages);
+    }
+
     public void khoiTao(){
-        if(caLamViec != null){
-            lblMaNhanVienDangNhap.setText(caLamViec.getNhanVien().getMaNhanVien());
-            lblTenNhanVienDanNhap.setText(caLamViec.getNhanVien().getTenNhanVien());
-        }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{
+            if(caLamViec != null){
+                lblMaNhanVienDangNhap.setText(caLamViec.getNhanVien().getMaNhanVien());
+                lblTenNhanVienDanNhap.setText(caLamViec.getNhanVien().getTenNhanVien());
+            }
+        });
     }
 }

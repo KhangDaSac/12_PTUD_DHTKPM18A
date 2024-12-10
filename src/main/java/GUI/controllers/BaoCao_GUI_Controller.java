@@ -1,10 +1,13 @@
 package GUI.controllers;
 
 import DTO.PhieuKetToan;
+import GUI.applications.Run;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class BaoCao_GUI_Controller {
 
@@ -106,11 +109,23 @@ public class BaoCao_GUI_Controller {
 
     @FXML
     void btnLapPhieuKiemTienDauCaOnAction(ActionEvent event) {
-
+        hienThiPhieuKiemTienMoi();
     }
 
     @FXML
     void btnXuatFileVaKetCaOnAction(ActionEvent event) {
+
+    }
+
+    public void hienThiPhieuKiemTienMoi(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            JFXButton closeButton = (JFXButton)anchorPane.lookup("#btnThoat");
+            main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền", closeButton);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

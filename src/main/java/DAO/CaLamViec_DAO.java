@@ -15,7 +15,7 @@ public class CaLamViec_DAO {
     public static String layDuoiMaCaLamViecLonNhatCuaNgayHienTai(String ngayHienTai){
         String maVeLonNhat = null;
         try {
-            String query = "select max(SUBSTRING(maCaLamViec, LEN(maCaLamViec) - 1, 2)) as duoiMaCaLamViec from CaLamViec where maCaLamViec like 'CLV' + ? + '%'";
+            String query = "select max(SUBSTRING(maCaLamViec, LEN(maCaLamViec) - 2, 3)) as duoiMaCaLamViec from CaLamViec where maCaLamViec like 'CLV' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();

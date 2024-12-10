@@ -67,12 +67,18 @@ public class PhieuKetToan {
         return Objects.equals(maPhieuKetToan, that.maPhieuKetToan);
     }
 
+    public PhieuKetToan(String maPhieuKetToan, CaLamViec caLamViec, LocalDateTime thoiGianLap) {
+        this.maPhieuKetToan = maPhieuKetToan;
+        this.caLamViec = caLamViec;
+        this.thoiGianLap = thoiGianLap;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(maPhieuKetToan);
     }
 
     public double doanhThuThucTe(){
-        return phieuKiemTienCuoiCa.getTongTien() - phieuKiemTienDauCa.getTongTien();
+        return phieuKiemTienCuoiCa.tongTien() - phieuKiemTienDauCa.tongTien();
     }
 }

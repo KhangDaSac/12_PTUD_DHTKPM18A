@@ -15,15 +15,19 @@
    <children>
       <AnchorPane prefHeight="790.0" prefWidth="1540.0" stylesheets="@../css/KhungGiaoDien_GUI.css">
          <children>
-            <AnchorPane fx:id="anpNoiDungTrang" layoutX="250.0" prefHeight="790.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <StackPane fx:id="stpThongBaoKhongHoatDong" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="790.0" fitWidth="1290.0" layoutX="-1.0" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../images/TrangChu_GUI/Background.png" />
-                     </image>
-                  </ImageView>
+                  <AnchorPane fx:id="anpNoiDungTrang" prefHeight="790.0">
+                     <children>
+                        <ImageView fitHeight="790.0" fitWidth="1290.0" layoutX="-1.0" layoutY="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../images/TrangChu_GUI/Background.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
+            </StackPane>
             <AnchorPane prefHeight="60.0" prefWidth="300.0" styleClass="informationLogin" stylesheets="@../css/KhungGiaoDien_GUI.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="lblMaNhanVienDangNhap" layoutX="65.0" layoutY="9.0" text="Mã nhân viên">
