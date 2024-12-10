@@ -82,4 +82,6 @@ public class HoaDonHuyDatVe {
         this.danhSachChiTietHoaDonHuyDatVe.add(chiTietHoaDonHuyDatVe);
     }
 
+    public HoaDonHuyDatVe() {
+    }
 }

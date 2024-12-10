@@ -77,4 +77,7 @@ public class HoaDonHuyVe {
 		}
 		return tongTienCuoi;
 	}
+
+	public HoaDonHuyVe() {
+	}
 }

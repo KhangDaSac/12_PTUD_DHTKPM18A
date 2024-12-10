@@ -157,4 +157,5 @@ public class NhanVien_DAO {
         return new NhanVien(maNhanVien, cccd, tenNhanVien, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
     }
 
+
 }

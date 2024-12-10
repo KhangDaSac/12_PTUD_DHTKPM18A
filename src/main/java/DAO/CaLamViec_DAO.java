@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class CaLamViec_DAO {
-    public ArrayList<CaLamViec> xuatDanhSachCaLamViec (){
+    public ArrayList<CaLamViec> xuatDanhSachCaLamViec() {
         ArrayList<CaLamViec> dsCaLamViec = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        try{
+        try {
             String query = "select * from CaLamViec";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()){
+            while (rs.next()) {
                 String maCaLamViec = rs.getString(1);
                 LocalDateTime thoiGianBatDau = rs.getTimestamp(2).toLocalDateTime();
-                LocalDateTime thoiGianKetThuc =rs.getTimestamp(3).toLocalDateTime();
+                LocalDateTime thoiGianKetThuc = rs.getTimestamp(3).toLocalDateTime();
                 NhanVien nhanVien = new NhanVien(rs.getString(4));
-                CaLamViec caLamViec = new CaLamViec(maCaLamViec,thoiGianBatDau,thoiGianKetThuc,nhanVien);
+                CaLamViec caLamViec = new CaLamViec(maCaLamViec, thoiGianBatDau, thoiGianKetThuc, nhanVien);
                 dsCaLamViec.add(caLamViec);
 
             }
@@ -31,6 +31,7 @@ public class CaLamViec_DAO {
         }
         return dsCaLamViec;
     }
+
     public static CaLamViec timCaLamViec(LocalDate thoiGian) {
         Connection con = ConnectDB.getInstance().getConnection();
         String query = "select * from CaLamViec where ThoiGianBatDau = ?";
@@ -52,4 +53,25 @@ public class CaLamViec_DAO {
             throw new RuntimeException(e);
         }
     }
+
+    public static CaLamViec getCaLamViecTheoMa(String maCaLamViec) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from CaLamViec where maCaLamViec = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maCaLamViec);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                LocalDateTime thoiGianBatDau = rs.getTimestamp("thoiGianBatDau").toLocalDateTime();
+                LocalDateTime thoiGianKetThuc = rs.getTimestamp("thoiGianKetThuc").toLocalDateTime();
+                NhanVien nhanVien = new NhanVien(rs.getString("maNhanVien"));
+                CaLamViec caLamViec = new CaLamViec(maCaLamViec, thoiGianBatDau, thoiGianKetThuc, nhanVien);
+                return caLamViec;
+            }
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+}

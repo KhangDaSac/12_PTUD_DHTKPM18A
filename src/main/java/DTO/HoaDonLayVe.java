@@ -87,4 +87,7 @@ public class HoaDonLayVe {
     public void addDanhSachChiTietHoaDonLayVe(ChiTietHoaDonLayVe chiTietHoaDonLayVe){
         this.danhSachChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
     }
+
+    public HoaDonLayVe() {
+    }
 }

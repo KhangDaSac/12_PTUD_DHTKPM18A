@@ -7,7 +7,6 @@ public class ChiTietHoaDonHuyDatVe {
     private HoaDonHuyDatVe hoaDonHuyDatVe;
     private VeDat veDat;
     private double phanTramLePhi;
-
     public HoaDonHuyDatVe getHoaDonHuyDatVe() {
         return hoaDonHuyDatVe;
     }

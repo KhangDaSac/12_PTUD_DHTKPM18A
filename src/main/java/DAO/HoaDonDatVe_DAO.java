@@ -29,7 +29,7 @@ public class HoaDonDatVe_DAO {
                 hoaDonDatVe.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
                 hoaDonDatVe.setKhachHangDatVe(new KhachHang(rs.getString("maKhachHang"),rs.getString("tenKhachHang")));
                 hoaDonDatVe.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
-                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
+                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatOTrangThaiChoLayVeTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
                 dsHoaDonDatVe.add(hoaDonDatVe);
             }
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class HoaDonDatVe_DAO {
                 HoaDonDatVe hoaDonDatVe = new HoaDonDatVe();
                 hoaDonDatVe.setMaHoaDonDatVe(rs.getString("maHoaDonDatVe"));
                 hoaDonDatVe.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
-                hoaDonDatVe.setKhachHangDatVe(new KhachHang(rs.getString("maKhachHang"),rs.getString("tenKhachHang")));
+                hoaDonDatVe.setKhachHangDatVe(new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHang")));
                 hoaDonDatVe.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
                 hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatOTrangThaiChoLayVeTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
                 dsHoaDonDatVe.add(hoaDonDatVe);
@@ -57,5 +57,25 @@ public class HoaDonDatVe_DAO {
             throw new RuntimeException(e);
         }
         return dsHoaDonDatVe;
+    }
+    public static HoaDonDatVe getHoaDonDatVeTheoMa(String maHoaDon){
+        HoaDonDatVe hoaDonDatVe = new HoaDonDatVe();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = " select * from HoaDonDatVe where maHoaDonDatVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                hoaDonDatVe.setMaHoaDonDatVe(rs.getString("maHoaDonDatVe"));
+                hoaDonDatVe.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
+                hoaDonDatVe.setKhachHangDatVe(KhachHang_DAO.getKhachHangTheoMaKhachHang(rs.getString("maKhachHangDatVe")));
+                hoaDonDatVe.setCaLamViec(CaLamViec_DAO.getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                hoaDonDatVe.setDanhSachVeDat(VeDat_DAO.getDanhSachVeDatTheoMaHoaDonDat(rs.getString("maHoaDonDatVe")));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return hoaDonDatVe;
     }
 }

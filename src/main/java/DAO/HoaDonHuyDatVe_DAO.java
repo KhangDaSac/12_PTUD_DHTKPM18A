@@ -42,5 +42,25 @@ public class HoaDonHuyDatVe_DAO {
         }
         return true;
     }
+    public static HoaDonHuyDatVe getHoaDonHuyDatVeTheoMa(String maHoaDon){
+        String query = "select * from HoaDonHuyDatVe where maHoaDonHuyDatVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                HoaDonHuyDatVe hoaDonHuyDatVe = new HoaDonHuyDatVe();
+                hoaDonHuyDatVe.setMaHoaDonHuyDatVe(rs.getString("maHoaDonHuyDatVe"));
+                hoaDonHuyDatVe.setThoiGianHuy(rs.getTimestamp("thoiGianHuy").toLocalDateTime());
+                hoaDonHuyDatVe.setCaLamViec(new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                hoaDonHuyDatVe.setKhachHangHuyDatVe(new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangHuyDatVe")));
+                hoaDonHuyDatVe.setDanhSachChiTietHoaDonHuyDatVe(ChiTietHoaDonHuyDatVe_DAO.getDanhSachChiTietHoaDonHuyDatVeTheoMaHoaDonHuyDatVe(hoaDonHuyDatVe.getMaHoaDonHuyDatVe()));
+                return hoaDonHuyDatVe;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
 }

@@ -137,7 +137,7 @@ public class KhachHang_DAO {
             while (rs.next()) {
                 String maKhachHang1 = rs.getString("maKhachHang");
                 String tenKhachHang = rs.getString("tenKhachHang");
-                String cccdKH = rs.getString("cccd");
+                String cccdKH = rs.getString("CCCD");
                 String soDienThoai = rs.getString("soDienThoai");
                 String maLoaiKhachHang = rs.getString("maLoaiKhachHang");
                 String tenLoaiKhachHang = rs.getString("tenLoaiKhachHang");

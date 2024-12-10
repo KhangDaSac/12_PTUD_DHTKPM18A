@@ -42,4 +42,23 @@ public class HoaDonLayVe_DAO {
         }
         return true;
     }
+    public static HoaDonLayVe getHoaDonLayVeTheoMa(String maHoaDon){
+        String query = "select * from HoaDonLayVe where maHoaDonLayVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                HoaDonLayVe hoaDonLayVe = new HoaDonLayVe();
+                hoaDonLayVe.setMaHoaDonLayVe(rs.getString("maHoaDonLayVe"));
+                hoaDonLayVe.setThoiGianLayVe(rs.getTimestamp("thoiGianLayVe").toLocalDateTime());
+                hoaDonLayVe.setCaLamViec(new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                hoaDonLayVe.setKhachHangLayVe(new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangLayVe")));
+                return hoaDonLayVe;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

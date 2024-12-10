@@ -78,6 +78,9 @@ public class HoaDonDoiVe {
 		this.maHoaDonDoiVe = maLichSuDoi;
 	}
 
+	public HoaDonDoiVe() {
+	}
+
 	public double tongTienCuoi(){
 		return veMoi.tienVeCuoi() - veCu.tienVeCuoi() + lePhi;
 	}
