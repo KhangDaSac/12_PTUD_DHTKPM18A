@@ -1,0 +1,4 @@
+.centered-column {
+    -fx-alignment: center; /* Căn giữa theo cả chiều ngang và dọc */
+    text-align: center;    /* Căn giữa nội dung chữ ngang */
+}

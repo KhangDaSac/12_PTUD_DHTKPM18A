@@ -71,6 +71,9 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
     private TableColumn<NhanVien, String> colSoDienThoai_NV;
 
     @FXML
+    private TableColumn<NhanVien, String> colEmail_NV;
+
+    @FXML
     private TableColumn<NhanVien, String> colLoai_NV;
 
     @FXML
@@ -97,6 +100,9 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
     private Label lblSDT_Loi;
 
     @FXML
+    private Label lblEmail_Loi;
+
+    @FXML
     private Label lblLoaiNV_Loi;
 
     @FXML
@@ -116,6 +122,9 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
 
     @FXML
     private TextField txtSDT_NV;
+
+    @FXML
+    private TextField txtEmail_NV;
 
     @FXML
     private TextField txtTimKiem_NV;
@@ -140,11 +149,124 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         pushDataToTblFromDB();
         txtMa_NV.setDisable(true);
 
+        System.out.println("Initialize called!"); // Kiểm tra khi initialize được gọi
+
+        txtCCCD_NV.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                validateAndDisplayCCCD();
+            }
+        });
+
+        // Kiểm tra Tên
+        txtTen_NV.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                String ten = txtTen_NV.getText().trim();
+                if (ten.isEmpty()) {
+                    lblTenNV_Loi.setText("Không được để trống!");
+                } else {
+                    lblTenNV_Loi.setText("");
+                }
+            }
+        });
+
+        // Kiểm tra Địa chỉ
+        txtDiaChi_NV.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                String diaChi = txtDiaChi_NV.getText().trim();
+                if (diaChi.isEmpty()) {
+                    lblDiaChi_Loi.setText("Không được để trống!");
+                } else {
+                    lblDiaChi_Loi.setText("");
+                }
+            }
+        });
+
+        // Kiểm tra Số điện thoại
+        lblSDT_Loi.setWrapText(true);
+        txtSDT_NV.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                String sdt = txtSDT_NV.getText().trim();
+                if (sdt.isEmpty()) {
+                    lblSDT_Loi.setText("Không được để trống!");
+                } else if (!sdt.matches("0\\d{9}")) { // Bắt đầu bằng 0 và có 10 chữ số
+                    lblSDT_Loi.setText("Phải bắt đầu bằng 0 và gồm 10 chữ số!");
+                } else {
+                    lblSDT_Loi.setText("");
+                }
+            }
+        });
+
+        // Kiểm tra Email
+        txtEmail_NV.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                String email = txtEmail_NV.getText().trim();
+                if (email.isEmpty()) {
+                    lblEmail_Loi.setText("Không được để trống!");
+                } else if (!email.matches("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+                    lblEmail_Loi.setText("Email không đúng định dạng!");
+                } else {
+                    lblEmail_Loi.setText("");
+                }
+            }
+        });
+
+        // Kiểm tra Loại Nhân Viên
+        cmbLoaiNhanVien.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                if (cmbLoaiNhanVien.getValue() == null) {
+                    lblLoaiNV_Loi.setText("Không được để trống!");
+                } else {
+                    lblLoaiNV_Loi.setText("");
+                }
+            }
+        });
+
+        // Kiểm tra Trạng Thái
+        cmbTrangThai.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Khi mất tiêu điểm
+                if (cmbTrangThai.getValue() == null) {
+                    lblTrangThaiNV_Loi.setText("Không được để trống!");
+                } else {
+                    lblTrangThaiNV_Loi.setText("");
+                }
+            }
+        });
+
+        cmbLoaiNhanVien.setStyle("-fx-font-size: 16px;");
+        // Thay đổi kích thước chữ trong dropdown (cell factory)
+        cmbLoaiNhanVien.setCellFactory(param -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    setStyle("-fx-font-size: 15px;"); // Thay đổi kích thước chữ trong dropdown
+                }
+            }
+        });
+
         ObservableList<String> listCBBLNV = FXCollections.observableArrayList();
         for(LoaiNhanVien loaiNhanVien : LoaiNhanVien.values()){
             listCBBLNV.add(loaiNhanVien.toString());
         }
         cmbLoaiNhanVien.setItems(listCBBLNV);
+
+
+        cmbTrangThai.setStyle("-fx-font-size: 16px;");
+        cmbTrangThai.setCellFactory(param -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    setStyle("-fx-font-size: 15px;"); // Thay đổi kích thước chữ trong dropdown
+                }
+            }
+        });
 
         ObservableList<String> listCBBTT = FXCollections.observableArrayList();
         for(TrangThaiNhanVien trangThai : TrangThaiNhanVien.values()){
@@ -162,12 +284,14 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         timKiemNhanVien();
 
     }
+
     private void clearTextFields() {
         txtMa_NV.clear();
         txtCCCD_NV.clear();
         txtTen_NV.clear();
         txtDiaChi_NV.clear();
         txtSDT_NV.clear();
+        txtEmail_NV.clear();
         cmbLoaiNhanVien.getSelectionModel().clearSelection();
         cmbTrangThai.getSelectionModel().clearSelection();
     }
@@ -191,6 +315,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         colTen_NV.setCellValueFactory(new PropertyValueFactory<>("tenNhanVien"));
         colDiaChi_NV.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
         colSoDienThoai_NV.setCellValueFactory(new PropertyValueFactory<>("soDienThoai"));
+        colEmail_NV.setCellValueFactory(new PropertyValueFactory<>("email"));
         colLoai_NV.setCellValueFactory(param -> {
             NhanVien nhanVien = param.getValue();
             return new SimpleStringProperty(nhanVien.getLoaiNhanVien().toString());
@@ -211,6 +336,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         txtTen_NV.setText(colTen_NV.getCellData(row));
         txtDiaChi_NV.setText(colDiaChi_NV.getCellData(row));
         txtSDT_NV.setText(colSoDienThoai_NV.getCellData(row));
+        txtEmail_NV.setText(colEmail_NV.getCellData(row));
         String loai = colLoai_NV.getCellData(row);
         cmbLoaiNhanVien.setValue(loai);
         String trangthai = colTrangThai_NV.getCellData(row);
@@ -221,6 +347,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         if (!txtTen_NV.getText().isEmpty()) lblTenNV_Loi.setText("");
         if (!txtDiaChi_NV.getText().isEmpty()) lblDiaChi_Loi.setText("");
         if (!txtSDT_NV.getText().isEmpty()) lblSDT_Loi.setText("");
+        if (!txtEmail_NV.getText().isEmpty()) lblEmail_Loi.setText("");
         if (cmbLoaiNhanVien.getValue() != null) lblLoaiNV_Loi.setText("");
         if (cmbTrangThai.getValue() != null) lblTrangThaiNV_Loi.setText("");
 
@@ -244,6 +371,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         nv.setTenNhanVien(txtTen_NV.getText());
         nv.setDiaChi(txtDiaChi_NV.getText());
         nv.setSoDienThoai(txtSDT_NV.getText());
+        nv.setSoDienThoai(txtEmail_NV.getText());
 
         nv.setLoaiNhanVien(LoaiNhanVien.valueOf(cmbLoaiNhanVien.getValue()));
         nv.setTrangThaiNhanVien(TrangThaiNhanVien.valueOf(cmbTrangThai.getValue()));
@@ -305,6 +433,7 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
         nhanVien.setTenNhanVien(nv.getTenNhanVien());
         nhanVien.setDiaChi(nv.getDiaChi());
         nhanVien.setSoDienThoai(nv.getSoDienThoai());
+        nhanVien.setEmail(nv.getEmail());
         nhanVien.setLoaiNhanVien(nv.getLoaiNhanVien());
         nhanVien.setTrangThaiNhanVien(nv.getTrangThaiNhanVien());
 
@@ -373,6 +502,8 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
                     return true;
                 }else if(nhanVien.getSoDienThoai().toLowerCase().indexOf(searchKey) > -1){
                     return true;
+                }else if(nhanVien.getEmail().toLowerCase().indexOf(searchKey) > -1){
+                    return true;
                 } else if(nhanVien.getLoaiNhanVien().toString().toLowerCase().indexOf(searchKey) > -1){
                     return true;
                 }else if(nhanVien.getTrangThaiNhanVien().toString().toLowerCase().indexOf(searchKey) > -1){
@@ -409,6 +540,11 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
     }
 
     @FXML
+    void txtEmail_NV_OnMouseClicked(MouseEvent event) {
+        isFieldClicked = true;
+    }
+
+    @FXML
     void txtLoai_NV_OnMouseClicked(MouseEvent event) {
         isFieldClicked = true;
     }
@@ -419,85 +555,51 @@ public class QuanLyNhanVien_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void txtCCCD_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtCCCD_NV.getText().isEmpty()) {
-            lblCCCD_Loi.setText("Lỗi nhập!");
-            txtCCCD_NV.requestFocus();
+    void txtCCCD_OnKeyReleased(){
+        String cccd = txtCCCD_NV.getText().trim();
+        if (!cccd.matches("\\d*")) { // Ngăn nhập ký tự không phải số
+            lblCCCD_Loi.setText("Chỉ được nhập số!");
         } else {
-            lblCCCD_Loi.setText("");
+            lblCCCD_Loi.setText(""); // Xóa thông báo nếu hợp lệ trong lúc gõ
         }
     }
 
-    @FXML
-    void txtTen_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtTen_NV.getText().isEmpty()) {
-            lblTenNV_Loi.setText("Lỗi nhập!");
-            txtTen_NV.requestFocus();
+    private void validateAndDisplayCCCD() {
+        String cccd = txtCCCD_NV.getText().trim();
+
+        if (cccd.isEmpty()) { // Kiểm tra trường trống
+            lblCCCD_Loi.setText("Không được bỏ trống!");
+        } else if (!cccd.matches("\\d{12}")) { // Kiểm tra định dạng 12 chữ số
+            lblCCCD_Loi.setText("CCCD phải gồm 12 chữ số!");
+        } else if (!validateCCCD(cccd)) { // Gọi hàm kiểm tra cấu trúc CCCD
+            lblCCCD_Loi.setText("CCCD không đúng cấu trúc!");
         } else {
-            lblTenNV_Loi.setText("");
+            lblCCCD_Loi.setText(""); // CCCD hợp lệ
         }
     }
 
-    @FXML
-    void txtDiaChi_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtDiaChi_NV.getText().isEmpty()) {
-            lblDiaChi_Loi.setText("Lỗi nhập!");
-            txtDiaChi_NV.requestFocus();
-        } else {
-            lblDiaChi_Loi.setText("");
+    private boolean validateCCCD(String cccd) {
+        // Kiểm tra mã tỉnh (3 số đầu)
+        int maTinh = Integer.parseInt(cccd.substring(0, 3));
+        if (maTinh < 1 || maTinh > 96) {
+            return false; // Mã tỉnh không hợp lệ
         }
-    }
 
-    @FXML
-    void txtSDT_NV_OnMouseExited(MouseEvent event) {
-        if (isFieldClicked && txtSDT_NV.getText().isEmpty()) {
-            lblSDT_Loi.setText("Lỗi nhập!");
-            txtSDT_NV.requestFocus();
-        } else {
-            lblSDT_Loi.setText("");
+        // Kiểm tra mã thế kỷ và giới tính (số thứ 4)
+        int maGioiTinh = Character.getNumericValue(cccd.charAt(3));
+        if (maGioiTinh < 0 || maGioiTinh > 9) {
+            return false; // Mã thế kỷ và giới tính không hợp lệ
         }
-    }
 
-    @FXML
-    void txtCCCD_OnKeyReleased() {
-        if (!txtCCCD_NV.getText().isEmpty()) {
-            lblCCCD_Loi.setText("");
+        // Kiểm tra mã năm sinh (2 số tiếp theo)
+        int namSinh = Integer.parseInt(cccd.substring(4, 6));
+        int theKy = maGioiTinh / 2 + 20; // Xác định thế kỷ: 20, 21, 22, ...
+        int fullNamSinh = (theKy * 100) + namSinh; // Ghép thế kỷ và năm sinh
+        if (fullNamSinh < 1900 || fullNamSinh > 2399) {
+            return false; // Năm sinh không hợp lệ
         }
-    }
 
-    @FXML
-    void txtTen_NV_OnKeyReleased() {
-        if (!txtTen_NV.getText().isEmpty()) {
-            lblTenNV_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtDiaChi_NV_OnKeyReleased() {
-        if (!txtDiaChi_NV.getText().isEmpty()) {
-            lblDiaChi_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void txtSDT_NV_OnKeyReleased() {
-        if (!txtSDT_NV.getText().isEmpty()) {
-            lblSDT_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void cmbLoaiNhanVien_OnAction() {
-        if (cmbLoaiNhanVien.getValue() != null) {
-            lblLoaiNV_Loi.setText("");
-        }
-    }
-
-    @FXML
-    void cmbTrangThai_OnAction() {
-        if (cmbTrangThai.getValue() != null) {
-            lblTrangThaiNV_Loi.setText("");
-        }
+        return true; // CCCD hợp lệ
     }
 
 }

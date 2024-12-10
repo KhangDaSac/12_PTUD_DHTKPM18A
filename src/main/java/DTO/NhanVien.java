@@ -30,6 +30,17 @@ public class NhanVien {
 		this.trangThaiNhanVien = trangThaiNhanVien;
 	}
 
+	public NhanVien(String maNhanVien, String CCCD, String tenNhanVien, String diaChi, String soDienThoai, String email, LoaiNhanVien loaiNhanVien, TrangThaiNhanVien trangThaiNhanVien) {
+		this.maNhanVien = maNhanVien;
+		this.CCCD = CCCD;
+		this.tenNhanVien = tenNhanVien;
+		this.diaChi = diaChi;
+		this.soDienThoai = soDienThoai;
+		this.email = email;
+		this.loaiNhanVien = loaiNhanVien;
+		this.trangThaiNhanVien = trangThaiNhanVien;
+	}
+
 	public String getMaNhanVien() {
 		return maNhanVien;
 	}

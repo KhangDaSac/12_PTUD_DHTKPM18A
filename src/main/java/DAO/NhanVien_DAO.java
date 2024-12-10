@@ -25,13 +25,14 @@ public class NhanVien_DAO {
                 String maNV = rs.getString("maNhanVien");
                 String cCCD = rs.getString("CCCD");
                 String tenNV = rs.getString("tenNhanVien");
-                String soDienThoai = rs.getString("soDienThoai");
                 String diaChi = rs.getString("diaChi");
+                String soDienThoai = rs.getString("soDienThoai");
+                String email = rs.getString("email");
 
                 LoaiNhanVien loaiNhanVien = LoaiNhanVien.valueOf(rs.getString("loaiNhanVien"));
                 TrangThaiNhanVien trangThaiNhanVien = TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien"));
 
-                NhanVien nv = new NhanVien(maNV, cCCD, tenNV, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
+                NhanVien nv = new NhanVien(maNV, cCCD, tenNV, diaChi, soDienThoai, email, loaiNhanVien, trangThaiNhanVien);
                 dsNV.add(nv);
             }
         } catch (Exception e){
@@ -151,10 +152,11 @@ public class NhanVien_DAO {
         String tenNhanVien = rs.getString("tenNhanVien");
         String diaChi = rs.getString("diaChi");
         String soDienThoai = rs.getString("soDienThoai");
+        String email = rs.getString("email");
         LoaiNhanVien loaiNhanVien = LoaiNhanVien.valueOf(rs.getString("loaiNhanVien"));
         TrangThaiNhanVien trangThaiNhanVien = TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien"));
 
-        return new NhanVien(maNhanVien, cccd, tenNhanVien, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
+        return new NhanVien(maNhanVien, cccd, tenNhanVien, diaChi, soDienThoai, email, loaiNhanVien, trangThaiNhanVien);
     }
 
 }

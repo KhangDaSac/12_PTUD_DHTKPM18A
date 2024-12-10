@@ -436,6 +436,7 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnQuanLyNhanVienOnAction(ActionEvent event) {
+        lblTieuDeTrang.setText("QUẢN LÝ NHÂN VIÊN");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyNhanVien_GUI.fxml"));
         Parent trangMoi = null;
         try {
