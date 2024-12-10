@@ -20,7 +20,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN 1" />
+                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN KIỂM TIỀN" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
@@ -33,8 +33,8 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtmaNhanVien1" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
-                              <JFXButton fx:id="btnChonNhanVien1" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
+                              <TextField fx:id="txtMaNhanVienKiemTien" onMouseClicked="#txtMaNhanVienKiemTienOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
+                              <JFXButton fx:id="btnChonNhanVienKiemTien" onAction="#btnChonNhanVienKiemTienOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
@@ -58,7 +58,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblTenNhanVien1" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn A">
+                              <Label fx:id="lblTenNhanVienKiemTien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn A">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -74,7 +74,7 @@
                      <children>
                         <HBox>
                            <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN 2" />
+                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN GIÁM SÁT" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
@@ -87,8 +87,8 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <TextField fx:id="txtmaNhanVien2" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
-                              <JFXButton fx:id="btnChonNhanVien2" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
+                              <TextField fx:id="txtMaNhanVienGiamSat" onMouseClicked="#txtMaNhanVienGiamSatOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
+                              <JFXButton fx:id="btnChonNhanVienGiamSat" onAction="#btnChonNhanVienGiamSatOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
                                  <graphic>
                                     <ImageView fitHeight="20.0" fitWidth="20.0">
                                        <image>
@@ -112,7 +112,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="lblTenNhanVien2" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn B">
+                              <Label fx:id="lblTenNhanVienGiamSat" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn B">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>

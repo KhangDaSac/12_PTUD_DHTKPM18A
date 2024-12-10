@@ -7,7 +7,7 @@ import java.util.Objects;
 public class PhieuKiemTien {
     private String maPhieuKiemTien;
     private LocalDateTime thoiGianKiemTien;
-    private NhanVien nhanVienQuanSat;
+    private NhanVien nhanVienGiamSat;
     private NhanVien nhanVienKiemTien;
 
     private ArrayList<ChiTietPhieuKiemTien> danhSachChiTietPhieuKiemTien;
@@ -28,12 +28,12 @@ public class PhieuKiemTien {
         this.thoiGianKiemTien = thoiGianKiemTien;
     }
 
-    public NhanVien getNhanVienQuanSat() {
-        return nhanVienQuanSat;
+    public NhanVien getNhanVienGiamSat() {
+        return nhanVienGiamSat;
     }
 
-    public void setNhanVienQuanSat(NhanVien nhanVienQuanSat) {
-        this.nhanVienQuanSat = nhanVienQuanSat;
+    public void setNhanVienGiamSat(NhanVien nhanVienGiamSat) {
+        this.nhanVienGiamSat = nhanVienGiamSat;
     }
 
     public NhanVien getNhanVienKiemTien() {

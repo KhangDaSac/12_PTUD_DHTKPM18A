@@ -49,6 +49,20 @@ public class ChiTietPhieuKiemTien {
         return Objects.equals(phieuKiemTien, that.phieuKiemTien) && menhGia == that.menhGia;
     }
 
+
+    public ChiTietPhieuKiemTien(MenhGia menhGia, double giaTriMenhGia, int soLuong, PhieuKiemTien phieuKiemTien) {
+        this.menhGia = menhGia;
+        this.giaTriMenhGia = giaTriMenhGia;
+        this.soLuong = soLuong;
+        this.phieuKiemTien = phieuKiemTien;
+    }
+
+    public ChiTietPhieuKiemTien(MenhGia menhGia, double giaTriMenhGia, int soLuong) {
+        this.menhGia = menhGia;
+        this.giaTriMenhGia = giaTriMenhGia;
+        this.soLuong = soLuong;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(phieuKiemTien, menhGia);

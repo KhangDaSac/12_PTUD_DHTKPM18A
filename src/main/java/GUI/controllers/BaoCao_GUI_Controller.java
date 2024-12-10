@@ -2,6 +2,7 @@ package GUI.controllers;
 
 import DTO.PhieuKetToan;
 import GUI.applications.Run;
+import GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,6 +123,8 @@ public class BaoCao_GUI_Controller {
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             JFXButton closeButton = (JFXButton)anchorPane.lookup("#btnThoat");
+            PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
+            controller.setBaoCao_gui_controller(this);
             main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền", closeButton);
         }catch (Exception e){
             e.printStackTrace();

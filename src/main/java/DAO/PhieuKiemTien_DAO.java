@@ -1,6 +1,5 @@
 package DAO;
 
-import DTO.PhieuKetToan;
 import DTO.PhieuKiemTien;
 import connectDB.ConnectDB;
 import utils.TimeFormat;
@@ -13,7 +12,7 @@ public class PhieuKiemTien_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
     public static boolean themPhieuKiemTien(PhieuKiemTien phieuKiemTien){
         try {
-            String query = "insert into PhieuKiemTien values (?, ?, ?, ?, ?, ?)";
+            String query = "insert into PhieuKiemTien values (?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, phieuKiemTien.getMaPhieuKiemTien());
             statement.setString(2, TimeFormat.formatLocalDateTimeSQL(phieuKiemTien.getThoiGianKiemTien()));
@@ -22,8 +21,8 @@ public class PhieuKiemTien_DAO {
             }else{
                 statement.setNull(3, Types.VARCHAR);
             }
-            if(phieuKiemTien.getNhanVienQuanSat() != null){
-                statement.setString(4, phieuKiemTien.getNhanVienQuanSat().getMaNhanVien());
+            if(phieuKiemTien.getNhanVienGiamSat() != null){
+                statement.setString(4, phieuKiemTien.getNhanVienGiamSat().getMaNhanVien());
             }else{
                 statement.setNull(4, Types.VARCHAR);
             }
