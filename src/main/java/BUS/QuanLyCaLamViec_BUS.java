@@ -42,4 +42,18 @@ public class QuanLyCaLamViec_BUS {
 
         return true;
     }
+
+    public static boolean capNhatPhieuKetToan_CuoiCa(PhieuKetToan phieuKetToan){
+        if(!PhieuKiemTien_DAO.themPhieuKiemTien(phieuKetToan.getPhieuKiemTienCuoiCa()))
+            return false;
+
+        if(!ChiTietPhieuKiemTien_DAO.themDanhSachChiTietPhieuKiemTien(phieuKetToan.getPhieuKiemTienCuoiCa().getDanhSachChiTietPhieuKiemTien()))
+            return false;
+
+        if(!PhieuKetToan_DAO.capNhatMaPhieuKiemTienCuoiCa(phieuKetToan)){
+            return false;
+        }
+
+        return true;
+    }
 }

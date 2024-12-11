@@ -107,7 +107,13 @@ public class BaoCao_GUI_Controller implements Initializable {
 
     @FXML
     void btnLapPhieuKiemTienCuoiCaOnAction(ActionEvent event) {
-
+        if(main_controller.getPhieuKetToan() == null
+                || main_controller.getPhieuKetToan().getCaLamViec() == null
+                || main_controller.getPhieuKetToan().getPhieuKiemTienDauCa() == null){
+            main_controller.showMessagesDialog("Chưa có phiếu kiểm tiền đầu ca");
+            return;
+        }
+        hienThiPhieuKiemTienCuoiCa();
     }
 
     @FXML
@@ -137,7 +143,21 @@ public class BaoCao_GUI_Controller implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
 
+    public void hienThiPhieuKiemTienCuoiCa(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
+            controller.setBaoCao_gui_controller(this);
+            dialog = main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
+            controller.setDialog(dialog);
+            controller.setNhanVienKiemTien(main_controller.getNhanVien());
+            controller.setLoaiPhieuKiemTien("CC");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void capNhatThongTinCaLamViec(){
@@ -173,6 +193,15 @@ public class BaoCao_GUI_Controller implements Initializable {
         }
         lblTongTienBatDauCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienDauCa().tongTien()));
     }
+
+    public void capTongTienCuoiCa(){
+        if(main_controller.getPhieuKetToan() == null
+                || main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() == null) {
+            return;
+        }
+        lblTongTienKetThucCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa().tongTien()));
+    }
+
 
 
     @Override

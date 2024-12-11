@@ -28,4 +28,18 @@ public class PhieuKetToan_DAO {
         }
         return true;
     }
+    public static boolean capNhatMaPhieuKiemTienCuoiCa(PhieuKetToan phieuKetToan){
+        try {
+            String query = "update PhieuKetToan set maPhieuKienTienCuoiCa = ? where maPhieuKetToan = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, phieuKetToan.getPhieuKiemTienCuoiCa().getMaPhieuKiemTien());
+            statement.setString(2, phieuKetToan.getMaPhieuKetToan());
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }
