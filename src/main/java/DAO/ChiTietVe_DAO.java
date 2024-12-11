@@ -36,4 +36,27 @@ public class ChiTietVe_DAO {
         }
         return true;
     }
+
+    public static ArrayList<ChiTietVe> getDanhSachChiTietVeTheoMaVe_BaoCao(String maVe){
+        ArrayList<ChiTietVe> dsChiTietVe = new ArrayList<>();
+        String query = "SELECT maVe, maCho, giaCho, phanTramGiamGia FROM ChiTietVe where maVe = ?";
+            try {
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1, maVe);
+
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()){
+                    dsChiTietVe.add(new ChiTietVe(
+                            new Ve(rs.getString("maVe")),
+                            new Cho(rs.getString("maCho")),
+                            rs.getDouble("giaCho"),
+                            rs.getDouble("phanTramGiamGia")
+                    ));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        return dsChiTietVe;
+    }
 }

@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import BUS.QuanLyHoaDon_BUS;
 import DTO.CaLamViec;
 import DTO.NhanVien;
 import GUI.applications.Run;
@@ -202,6 +203,17 @@ public class BaoCao_GUI_Controller implements Initializable {
         lblTongTienKetThucCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa().tongTien()));
     }
 
+    public void hienTienTiengTrongCa(){
+        if(main_controller.getPhieuKetToan() == null
+                || main_controller.getPhieuKetToan().getCaLamViec() == null) {
+            return;
+        }
+        double[][] dsHoaDon = QuanLyHoaDon_BUS.getDanhSachHoaDonBanVeTheoMaCa(main_controller.getPhieuKetToan().getCaLamViec());
+
+        lblSoLuongHoaDonBanVe.setText(String.valueOf((int)dsHoaDon[0][0]));
+        lblTongTienHoaDonBanVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[0][1]));
+    }
+
 
 
     @Override
@@ -209,6 +221,7 @@ public class BaoCao_GUI_Controller implements Initializable {
         Platform.runLater(()->{
             capNhatThongTinCaLamViec();
             capTongTienDauCa();
+            hienTienTiengTrongCa();
         });
     }
 }

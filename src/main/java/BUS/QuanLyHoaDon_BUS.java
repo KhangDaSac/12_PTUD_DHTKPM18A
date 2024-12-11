@@ -152,8 +152,14 @@ public class QuanLyHoaDon_BUS {
                 return false;
             }
         }
-
         return true;
+    }
+
+    public static double[][] getDanhSachHoaDonBanVeTheoMaCa(CaLamViec caLamViec){
+        if(caLamViec == null){
+            return null;
+        }
+        return HoaDonBanVe_DAO.getDanhSachHoaDonBanVeTrongCa(caLamViec);
     }
 
 }

@@ -31,7 +31,6 @@ public class Ve_DAO {
     public static boolean themDanhSachVe(ArrayList<Ve> danhSachVe){
         String query = "insert into Ve values (?, ?, ?, ?, ?, ?, ?, ?)";
         for(Ve ve : danhSachVe){
-            System.out.println(ve);
             try {
                 PreparedStatement statement = con.prepareStatement(query);
                 statement.setString(1, ve.getMaVe());
@@ -48,10 +47,31 @@ public class Ve_DAO {
                 statement.execute();
 
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                e.printStackTrace();
                 return false;
             }
         }
         return true;
+    }
+
+    public static ArrayList<Ve> getDanhSachVeTheoHoaDonBanVe(String maHoaDonBanVe){
+        ArrayList<Ve> dsVe = new ArrayList<>();
+        try {
+            String query = "SELECT maVe, phanTramGiamGiaVeTapThe FROM Ve where maHoaDonBanVe = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDonBanVe);
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                dsVe.add(new Ve(
+                        rs.getString("maVe"),
+                        rs.getDouble("phanTramGiamGiaVeTapThe"),
+                        ChiTietVe_DAO.getDanhSachChiTietVeTheoMaVe_BaoCao(rs.getString("maVe"))
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dsVe;
     }
 }

@@ -68,6 +68,11 @@ public class HoaDonBanVe {
 		this.maHoaDonBanVe = maHoaDonBanVe;
 	}
 
+	public HoaDonBanVe(String maHoaDonBanVe, ArrayList<Ve> danhSachVe) {
+		this.maHoaDonBanVe = maHoaDonBanVe;
+		this.danhSachVe = danhSachVe;
+	}
+
 	public double tongTienCuoi(){
 		double tongTienCuoi = 0;
 		for (Ve ve : danhSachVe){

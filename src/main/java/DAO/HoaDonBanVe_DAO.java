@@ -45,6 +45,22 @@ public class HoaDonBanVe_DAO {
         return true;
     }
 
-
+    public static double[][] getDanhSachHoaDonBanVeTrongCa(CaLamViec caLamViec){
+        double[][] dsCacHoaDon = new double[6][2];
+        try {
+            String query = "EXEC dbo.getSoLuongVaTongTienCacLoaiHoaDonTheoMaCaLamViec ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, caLamViec.getMaCaLamViec());
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                int stt = rs.getInt("STT");
+                dsCacHoaDon[stt - 1][0] = rs.getInt("soLuong");
+                dsCacHoaDon[stt - 1][1] = rs.getDouble("tongTien");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dsCacHoaDon;
+    }
 
 }

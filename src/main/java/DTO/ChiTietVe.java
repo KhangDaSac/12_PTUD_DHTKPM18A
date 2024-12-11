@@ -64,6 +64,13 @@ public class ChiTietVe {
 		return Objects.hash(ve, cho);
 	}
 
+	public ChiTietVe(Ve ve, Cho cho, double giaCho, double phanTramGiamGia) {
+		this.ve = ve;
+		this.cho = cho;
+		this.giaCho = giaCho;
+		this.phanTramGiamGia = phanTramGiamGia;
+	}
+
 	public ChiTietVe(Ve ve, Cho cho, double giaCho) {
 		this.ve = ve;
 		this.cho = cho;

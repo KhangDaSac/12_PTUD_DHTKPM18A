@@ -107,6 +107,12 @@ public class Ve {
 	public Ve() {
 	}
 
+	public Ve(String maVe, double phanTramGiamGiaVeTapThe, ArrayList<ChiTietVe> danhSachChiTietVe) {
+		this.maVe = maVe;
+		this.phanTramGiamGiaVeTapThe = phanTramGiamGiaVeTapThe;
+		this.danhSachChiTietVe = danhSachChiTietVe;
+	}
+
 	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe) {
 		this.maVe = maVe;
 		this.hoaDonBanVe = hoaDonBanVe;
