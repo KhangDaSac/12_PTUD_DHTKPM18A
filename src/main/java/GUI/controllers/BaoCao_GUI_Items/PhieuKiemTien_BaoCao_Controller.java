@@ -168,9 +168,7 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
     @FXML
     void btnHoanThanhOnAction(ActionEvent event) {
-        if (loaiPhieuKiemTien.equals("DC")){
-            taoPhieuKiemTienDauCa();
-        }
+        taoPhieuKiemTien();
     }
     @FXML
     void btnThoatOnAction(ActionEvent event) {
@@ -193,7 +191,8 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
 
 
-    private void taoPhieuKiemTienDauCa(){
+    private void taoPhieuKiemTien(){
+        System.out.println(loaiPhieuKiemTien);
         if(phieuKiemTien.getNhanVienKiemTien() == null){
             ShowMessagesDialog.showDialog(stpThongBao, "Thông báo", "Thiếu thông tin nhân viên kiểm tiền", "OK");
             return;
@@ -225,9 +224,11 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             String maCaLamViec = phieuKetToan.getCaLamViec().getMaCaLamViec();
             phieuKiemTien.setMaPhieuKiemTien("PKTI" + maCaLamViec.substring(3) + loaiPhieuKiemTien);
             phieuKiemTien.setThoiGianKiemTien(LocalDateTime.now());
-            phieuKetToan.setPhieuKiemTienDauCa(phieuKiemTien);
+            phieuKetToan.setPhieuKiemTienCuoiCa(phieuKiemTien);
+            System.out.println("heloo1");
             if(!QuanLyCaLamViec_BUS.capNhatPhieuKetToan_CuoiCa(phieuKetToan))
                 return;
+            System.out.println("heloo2");
 
 
             baoCao_gui_controller.getMain_controller().setPhieuKetToan(phieuKetToan);

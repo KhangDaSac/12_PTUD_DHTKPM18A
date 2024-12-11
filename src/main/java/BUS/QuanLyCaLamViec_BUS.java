@@ -4,9 +4,7 @@ import DAO.CaLamViec_DAO;
 import DAO.ChiTietPhieuKiemTien_DAO;
 import DAO.PhieuKetToan_DAO;
 import DAO.PhieuKiemTien_DAO;
-import DTO.CaLamViec;
 import DTO.PhieuKetToan;
-import DTO.PhieuKiemTien;
 import utils.TimeFormat;
 
 import java.time.LocalDate;
@@ -50,7 +48,7 @@ public class QuanLyCaLamViec_BUS {
         if(!ChiTietPhieuKiemTien_DAO.themDanhSachChiTietPhieuKiemTien(phieuKetToan.getPhieuKiemTienCuoiCa().getDanhSachChiTietPhieuKiemTien()))
             return false;
 
-        if(!PhieuKetToan_DAO.capNhatMaPhieuKiemTienCuoiCa(phieuKetToan)){
+        if(!PhieuKetToan_DAO.capNhatMaPhieuKiemTienCuoiCaChoPhieuKetToan(phieuKetToan)){
             return false;
         }
 

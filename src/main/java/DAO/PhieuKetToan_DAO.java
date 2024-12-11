@@ -1,6 +1,5 @@
 package DAO;
 
-import DTO.CaLamViec;
 import DTO.PhieuKetToan;
 import connectDB.ConnectDB;
 import utils.TimeFormat;
@@ -28,9 +27,9 @@ public class PhieuKetToan_DAO {
         }
         return true;
     }
-    public static boolean capNhatMaPhieuKiemTienCuoiCa(PhieuKetToan phieuKetToan){
+    public static boolean capNhatMaPhieuKiemTienCuoiCaChoPhieuKetToan(PhieuKetToan phieuKetToan){
         try {
-            String query = "update PhieuKetToan set maPhieuKienTienCuoiCa = ? where maPhieuKetToan = ?";
+            String query = "update PhieuKetToan set maPhieuKiemTienCuoiCa = ? where maPhieuKetToan = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, phieuKetToan.getPhieuKiemTienCuoiCa().getMaPhieuKiemTien());
             statement.setString(2, phieuKetToan.getMaPhieuKetToan());
