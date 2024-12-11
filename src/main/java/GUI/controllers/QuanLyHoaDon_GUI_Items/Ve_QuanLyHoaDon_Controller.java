@@ -144,12 +144,11 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
 
         @FXML
         void anpVeOnMouseClicked(MouseEvent event) {
-                if(quanLyHoaDon_gui_controller.getVeDatChon_list().contains(ve)){
-                    quanLyHoaDon_gui_controller.getVeDatChon_list().remove(ve);
+                if(quanLyHoaDon_gui_controller.getVeChon_list().contains(ve)){
+                    quanLyHoaDon_gui_controller.getVeChon_list().remove(ve);
                     khongChonVe();
                 }else{
                     quanLyHoaDon_gui_controller.getVeChon_list().add(ve);
-                    chonVe();
                 }
                 if (quanLyHoaDon_gui_controller.getHoaDonHuyVeDangChon()!=null){
                     quanLyHoaDon_gui_controller.hienThiDanhSachVeHoaDonHuyVe(quanLyHoaDon_gui_controller.getHoaDonHuyVeDangChon());
@@ -166,10 +165,6 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
 
         }
 
-        @FXML
-        void anpXoaVeOnMouseClicked(MouseEvent event) {
-
-        }
 
 
 
@@ -208,6 +203,11 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
                 lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.giamGiaVeTapThe()));
                 lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
             }
+            if (quanLyHoaDon_gui_controller.getVeChon_list().contains(ve)) {
+                chonVe();
+            } else {
+                khongChonVe();
+            } 
         }
     public void khoiTaoVeCuaHoaDonLayVe() throws IOException {
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
@@ -244,6 +244,11 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVe().giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(chiTietHoaDonLayVe.getVe().tienVeCuoi()));
         }
+        if (quanLyHoaDon_gui_controller.getVeChon_list().contains(chiTietHoaDonLayVe.getVe())) {
+            chonVe();
+        } else {
+            khongChonVe();
+        }
     }
     public void khoiTaoVeCuaHoaDonHuyVe() throws IOException {
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
@@ -278,6 +283,11 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(chiTietHoaDonHuyVe.getVe().giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(chiTietHoaDonHuyVe.getVe().tienVeCuoi()));
         }
+        if (quanLyHoaDon_gui_controller.getVeChon_list().contains(chiTietHoaDonHuyVe.getVe())) {
+            chonVe();
+        } else {
+            khongChonVe();
+        }
     }
     public void khoiTaoVeCuaHoaDonDoi() throws IOException {
         anpVe.getStylesheets().add(getClass().getResource("/css/BanVe_GUI_Items/Ve_BanVe.css").toExternalForm());
@@ -311,6 +321,11 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
             lblGiamGiaVeTapThe.setText(CurrencyFormat.currencyFormat(ve.giamGiaVeTapThe()));
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         }
+        if (quanLyHoaDon_gui_controller.getVeChon_list().contains(ve)) {
+            chonVe();
+        } else {
+            khongChonVe();
+        }
     }
         public void chonVe(){
             anpVe.getStyleClass().add("veDangChon");
@@ -323,4 +338,6 @@ public class Ve_QuanLyHoaDon_Controller implements Initializable {
             anpVe.getStyleClass().add("veKhongChon");
         }
 
+    public void anpXoaVeOnMouseClicked(MouseEvent mouseEvent) {
     }
+}

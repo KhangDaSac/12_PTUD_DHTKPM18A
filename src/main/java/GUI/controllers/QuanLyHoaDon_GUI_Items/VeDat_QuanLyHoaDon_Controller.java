@@ -188,7 +188,7 @@ public class VeDat_QuanLyHoaDon_Controller {
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(chiTietHoaDonHuyDatVe.getVeDat().tienVeCuoi()));
         }
 
-        if (quanLyHoaDon_gui_controller.getVeDatChon_list().contains(veDat)) {
+        if (quanLyHoaDon_gui_controller.getVeDatChon_list().contains(chiTietHoaDonHuyDatVe.getVeDat())) {
             chonVeDat();
         } else {
             boChonVeDat();
@@ -205,17 +205,23 @@ public class VeDat_QuanLyHoaDon_Controller {
     }
 
     public void anpVeOnMouseClicked(MouseEvent mouseEvent) {
-        if(quanLyHoaDon_gui_controller.getVeDatChon_list().contains(veDat)){
-            quanLyHoaDon_gui_controller.getVeDatChon_list().remove(veDat);
-            boChonVeDat();
-        } else {
-            quanLyHoaDon_gui_controller.getVeDatChon_list().add(veDat);
-            chonVeDat();
-        }
+
         if (quanLyHoaDon_gui_controller.getHoaDonDatVeDangChon() != null) {
+            if(quanLyHoaDon_gui_controller.getVeDatChon_list().contains(veDat)){
+                quanLyHoaDon_gui_controller.getVeDatChon_list().remove(veDat);
+                boChonVeDat();
+            } else {
+                quanLyHoaDon_gui_controller.getVeDatChon_list().add(veDat);
+            }
             quanLyHoaDon_gui_controller.hienThiDanhSachVeDatHoaDonDatVe(quanLyHoaDon_gui_controller.getHoaDonDatVeDangChon());
         }
         if (quanLyHoaDon_gui_controller.getHoaDonHuyDatVeDangChon() != null) {
+            if(quanLyHoaDon_gui_controller.getVeDatChon_list().contains(chiTietHoaDonHuyDatVe.getVeDat())){
+                quanLyHoaDon_gui_controller.getVeDatChon_list().remove(chiTietHoaDonHuyDatVe.getVeDat());
+                boChonVeDat();
+            } else {
+                quanLyHoaDon_gui_controller.getVeDatChon_list().add(chiTietHoaDonHuyDatVe.getVeDat());
+            }
             quanLyHoaDon_gui_controller.hienThiDanhSachVeHoaDonHuyDatVe(quanLyHoaDon_gui_controller.getHoaDonHuyDatVeDangChon());
         }
     }

@@ -70,6 +70,13 @@ public class ChiTietVe {
 		this.giaCho = giaCho;
 	}
 
+	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho) {
+		this.ve = ve;
+		this.cho = cho;
+		this.khachHang = khachHang;
+		this.giaCho = giaCho;
+	}
+
 	public ChiTietVe(Ve ve, Cho maCho, KhachHang maKhachHang, double giaCho, double phanTramGiamGia) {
 		this.ve = ve;
 	}

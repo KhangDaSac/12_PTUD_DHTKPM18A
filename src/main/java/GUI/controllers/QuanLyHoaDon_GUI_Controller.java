@@ -16,13 +16,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import utils.CreatePDF;
 import utils.CurrencyFormat;
+import utils.ShowMessagesDialog;
 import utils.TimeFormat;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -79,27 +80,128 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     private VBox vboxDanhSachVe;
     @FXML
     void btnBoChonTatCaOnAction(ActionEvent event) {
+        if (selectedHoaDon instanceof HoaDonDatVe){
+            veDatChon_list.clear();
+            hienThiDanhSachVeDatHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonBanVe){
+            veChon_list.clear();
+            hienThiDanhSachVeHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonLayVe){
+            veChon_list.clear();
+            hienThiDanhSachHoaDonLayVe((HoaDonLayVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonHuyVe){
+            veChon_list.clear();
+            hienThiDanhSachVeHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonDoiVe){
+            veChon_list.clear();
+            hienThiDanhSachVeHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonHuyDatVe){
+            veDatChon_list.clear();
+            hienThiDanhSachVeHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
+        }
 
     }
 
     @FXML
     void btnChonTatCaOnACtion(ActionEvent event) {
+      if (selectedHoaDon instanceof HoaDonDatVe){
+          veDatChon_list.clear();
+          veDatChon_list.addAll(((HoaDonDatVe) selectedHoaDon).getDanhSachVeDat());
+          hienThiDanhSachVeDatHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+      }
+        if (selectedHoaDon instanceof HoaDonBanVe){
+            veChon_list.clear();
+            veChon_list.addAll(((HoaDonBanVe) selectedHoaDon).getDanhSachVe());
+            hienThiDanhSachVeHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonLayVe){
+            veChon_list.clear();
+            for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : ((HoaDonLayVe) selectedHoaDon).getDanhSachChiTietHoaDonLayVe()){
+                veChon_list.add(chiTietHoaDonLayVe.getVe());
+            }
+            hienThiDanhSachHoaDonLayVe((HoaDonLayVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonHuyVe){
+            veChon_list.clear();
+            for(ChiTietHoaDonHuyVe chiTietHoaDonHuyVe : ((HoaDonHuyVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyVe()){
+                veChon_list.add(chiTietHoaDonHuyVe.getVe());
+            }
+            hienThiDanhSachVeHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonDoiVe){
+            veChon_list.clear();
+            veChon_list.add(((HoaDonDoiVe) selectedHoaDon).getVeMoi());
+            veChon_list.add(((HoaDonDoiVe) selectedHoaDon).getVeCu());
+            hienThiDanhSachVeHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonHuyDatVe){
+            veDatChon_list.clear();
+            for(ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe : ((HoaDonHuyDatVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyDatVe()){
+                veDatChon_list.add(chiTietHoaDonHuyDatVe.getVeDat());
+            }
+            hienThiDanhSachVeHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
+        }
 
     }
 
     @FXML
     void btnInHoaDonOnAcTion(ActionEvent event) {
-
+        if (selectedHoaDon instanceof HoaDonDatVe){
+            CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonBanVe){
+            CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonHuyVe){
+            CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
+        }
+        if (selectedHoaDon instanceof HoaDonDoiVe){
+            CreatePDF.taoHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon,((HoaDonDoiVe) selectedHoaDon).getVeCu().getDanhSachChiTietVe().get(0));
+        }
+        if (selectedHoaDon instanceof HoaDonHuyDatVe){
+            CreatePDF.taoHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
+        }
+        if(selectedHoaDon != null ){
+            System.out.println("Bạn chưa chọn hóa đơn nào");
+        }
     }
 
     @FXML
     void btnInVeOnAction(ActionEvent event) {
-
+        if(veChon_list.isEmpty()&&veDatChon_list.isEmpty()){
+            System.out.println("Bạn chưa chọn vé nào");
+            return;
+        } else if (veChon_list.isEmpty()&&!veDatChon_list.isEmpty()) {
+            System.out.println("Vé đặt không được in");
+        }else {
+            for (Ve ve : veChon_list) {
+                CreatePDF.taoVe(ve);
+            }
+        }
     }
 
     @FXML
     void btnTimHoaDonOnAction(ActionEvent event) {
-
+        String maHoaDon = txtMaHoaDon.getText();
+        String loaiHoaDon = cmbLoaiHoaDon.getValue();
+        if (loaiHoaDon == null) {
+            loaiHoaDon = "";
+        }
+        String maCaLam = txtMaCaLam.getText();
+        LocalDate thoiGianLap = dapThoiGianLap.getValue();
+        String CCCD = txtCCCD.getText();
+        timHoaDonTheoCacTieuChi(maHoaDon, loaiHoaDon, maCaLam, thoiGianLap, CCCD);
+        if (dsHoaDon.isEmpty()){
+            System.out.println("khong tim thay hoa don");
+            get10HoaDonGanNhat();
+        }
+        tableView.setItems(dsHoaDon);
+        hienThiDanhSachHoaDon();
     }
     private ArrayList<VeDat> danhSachDatVe = new ArrayList<>();
     private ArrayList<HoaDonDatVe> danhSachHoaDonDatVe = new ArrayList<>();
@@ -141,12 +243,6 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     }
 
     private QuanLyHoaDon_GUI_Controller quanLyHoaDon_gui_controller;
-    private ArrayList<HoaDonDoiVe> dsHoaDonDoiVe = new ArrayList<>();
-    private ArrayList<HoaDonHuyVe> dsHoaDonHuyVe = new ArrayList<>();
-    private ArrayList<HoaDonHuyDatVe> dsHoaDonHuyDatVe = new ArrayList<>();
-    private ArrayList<HoaDonLayVe> dsHoaDonLayVe = new ArrayList<>();
-    private ArrayList<HoaDonDatVe> dsHoaDonDatVe = new ArrayList<>();
-    private ArrayList<HoaDonBanVe> dsHoaDonBanVe = new ArrayList<>();
     private HoaDonDatVe hoaDonDatVeDangChon;
 
     public HoaDonBanVe getHoaDonBanVeDangChon() {
@@ -205,17 +301,76 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initableComboBox();
-        get15HoaDonGanNhat();
+        get10HoaDonGanNhat();
         hienThiDanhSachHoaDon();
     }
     public void initableComboBox() {
         ObservableList<String> loaiHoaDon = FXCollections.observableArrayList("Hóa đơn đặt vé", "Hóa đơn bán vé", "Hóa đơn hủy vé","Hóa đơn đổi vé","Hóa đơn hủy đặt vé","Hóa đơn lấy vé");
         cmbLoaiHoaDon.setItems(loaiHoaDon);
     }
-
-    public void get15HoaDonGanNhat(){
+    public void timHoaDonTheoCacTieuChi(String maHoaDon, String loaiHoaDon, String maCaLam, LocalDate thoiGianLap, String CCCD){
+        dsHoaDon.clear();
         Connection con = ConnectDB.getInstance().getConnection();
-        String query ="exec tim15HoaDonGanNhat";
+        String query ="exec timHoaDonTheoCacTieuChi ?,?,?,?,?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maHoaDon);
+            statement.setString(2,CCCD);
+            if (thoiGianLap != null) {
+                statement.setDate(3, Date.valueOf(thoiGianLap));
+            } else {
+                statement.setNull(3, Types.DATE);
+            }
+            String loaiHD="" ;
+            if(loaiHoaDon.equals("Hóa đơn đặt vé")){
+                loaiHD = "HOADONDATVE";
+            } else if(loaiHoaDon.equals("Hóa đơn bán vé")){
+                loaiHD = "HOADONBANVE";
+            } else if(loaiHoaDon.equals("Hóa đơn hủy vé")){
+                loaiHD = "HOADONHUYVE";
+            } else if(loaiHoaDon.equals("Hóa đơn đổi vé")){
+                loaiHD = "HOADONDOIVE";
+            } else if(loaiHoaDon.equals("Hóa đơn hủy đặt vé")){
+                loaiHD = "HOADONHUYDATVE";
+            } else {
+                loaiHD = "HOADONLAYVE";
+            }
+            statement.setString(4,loaiHD);
+            statement.setString(5,maCaLam);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                if(rs.getString("loaiHoaDon").equals("HOADONDATVE")){
+                    HoaDonDatVe hoaDonDatVe = HoaDonDatVe_DAO.getHoaDonDatVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonDatVe);
+                }
+                if (rs.getString("loaiHoaDon").equals("HOADONBANVE")){
+                    HoaDonBanVe hoaDonBanVe = HoaDonBanVe_DAO.getHoaDonBanVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonBanVe);
+                }
+                if(rs.getString("loaiHoaDon").equals("HOADONHUYVE")){
+                    HoaDonHuyVe hoaDonHuyVe = HoaDonHuyVe_DAO.getHoaDonHuyVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonHuyVe);
+                }
+                if(rs.getString("loaiHoaDon").equals("HOADONDOIVE")){
+                    HoaDonDoiVe hoaDonDoiVe = HoaDonDoiVe_DAO.getHoaDonDoiVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonDoiVe);
+                }
+                if(rs.getString("loaiHoaDon").equals("HOADONHUYDATVE")){
+                    HoaDonHuyDatVe hoaDonHuyDatVe = HoaDonHuyDatVe_DAO.getHoaDonHuyDatVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonHuyDatVe);
+                }
+                if(rs.getString("loaiHoaDon").equals("HOADONLAYVE")){
+                    HoaDonLayVe hoaDonLayVe = HoaDonLayVe_DAO.getHoaDonLayVeTheoMa(rs.getString("maHoaDon"));
+                    dsHoaDon.add(hoaDonLayVe);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void get10HoaDonGanNhat(){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query ="exec tim10HoaDonGanNhat";
         try{
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(query);
@@ -376,12 +531,12 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     public void hienThiDanhSachVeHoaDonBanVe(HoaDonBanVe hoaDonBanVe) {
         ve_quanLyHoaDon_controllers_list.clear();
         vboxDanhSachVe.getChildren().clear();
-        if (selectedHoaDon == null || ((HoaDonBanVe) selectedHoaDon).getDanhSachVe().isEmpty()) {
+        if (hoaDonBanVe == null || hoaDonBanVe.getDanhSachVe().isEmpty()) {
             return;
         }
-        int length = ((HoaDonBanVe) selectedHoaDon).getDanhSachVe().size();
+        int length = hoaDonBanVe.getDanhSachVe().size();
         for (int i = 0; i < length; i++) {
-            Ve ve = ((HoaDonBanVe) selectedHoaDon).getDanhSachVe().get(i);
+            Ve ve = hoaDonBanVe.getDanhSachVe().get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI_Items/Ve_QuanLyHoaDon.fxml"));
                 Parent anchorPane = loader.load();
@@ -396,16 +551,19 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
                 throw new RuntimeException(e);
             }
         }
+        for (Ve ve : veChon_list){
+            System.out.println("thong tin ve "+ve.getMaVe());
+        }
     }
     public void hienThiDanhSachHoaDonLayVe(HoaDonLayVe hoaDonLayVe){
         ve_quanLyHoaDon_controllers_list.clear();
         vboxDanhSachVe.getChildren().clear();
-        if (selectedHoaDon == null || ((HoaDonLayVe) selectedHoaDon).getDanhSachChiTietHoaDonLayVe().isEmpty()) {
+        if (hoaDonLayVe == null || hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().isEmpty()) {
             return;
         }
-        int length = ((HoaDonLayVe) selectedHoaDon).getDanhSachChiTietHoaDonLayVe().size();
+        int length = hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().size();
         for (int i = 0; i < length; i++) {
-            ChiTietHoaDonLayVe chiTietHoaDonLayVe = ((HoaDonLayVe) selectedHoaDon).getDanhSachChiTietHoaDonLayVe().get(i);
+            ChiTietHoaDonLayVe chiTietHoaDonLayVe = hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI_Items/Ve_QuanLyHoaDon.fxml"));
                 Parent anchorPane = loader.load();
@@ -424,13 +582,13 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     public void hienThiDanhSachVeHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
         ve_quanLyHoaDon_controllers_list.clear();
         vboxDanhSachVe.getChildren().clear();
-        if (selectedHoaDon == null || ((HoaDonHuyVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyVe().isEmpty()) {
+        if (hoaDonHuyVe == null || hoaDonHuyVe.getDanhSachChiTietHoaDonHuyVe().isEmpty()) {
             return;
         }
-        int length = ((HoaDonHuyVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyVe().size();
+        int length = hoaDonHuyVe.getDanhSachChiTietHoaDonHuyVe().size();
         for (int i = 0; i < length; i++) {
 
-            ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = ((HoaDonHuyVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyVe().get(i);
+            ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = hoaDonHuyVe.getDanhSachChiTietHoaDonHuyVe().get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI_Items/Ve_QuanLyHoaDon.fxml"));
                 Parent anchorPane = loader.load();
@@ -447,14 +605,14 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
         }
     }
     public void hienThiDanhSachVeHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe){
-        ve_quanLyHoaDon_controllers_list.clear();
+        veDat_quanLyHoaDon_controllers_list.clear();
         vboxDanhSachVe.getChildren().clear();
-        if (selectedHoaDon == null || ((HoaDonHuyDatVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyDatVe().isEmpty()) {
+        if (hoaDonHuyDatVe == null || hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe().isEmpty()) {
             return;
         }
-        int length = ((HoaDonHuyDatVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyDatVe().size();
+        int length = hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe().size();
         for (int i = 0; i < length; i++) {
-            ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = ((HoaDonHuyDatVe) selectedHoaDon).getDanhSachChiTietHoaDonHuyDatVe().get(i);
+            ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe().get(i);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml"));
                 Parent anchorPane = loader.load();
@@ -473,11 +631,11 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     public void hienThiDanhSachVeHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe){
         ve_quanLyHoaDon_controllers_list.clear();
         vboxDanhSachVe.getChildren().clear();
-        if (selectedHoaDon == null || ((HoaDonDoiVe) selectedHoaDon).getVeMoi().getDanhSachChiTietVe().isEmpty()) {
+        if (hoaDonDoiVe == null ||hoaDonDoiVe.getVeMoi().getDanhSachChiTietVe().isEmpty()) {
             return;
         }
-       Ve veMoi = ((HoaDonDoiVe) selectedHoaDon).getVeMoi();
-       Ve veCu = ((HoaDonDoiVe) selectedHoaDon).getVeCu();
+       Ve veMoi = hoaDonDoiVe.getVeMoi();
+       Ve veCu = hoaDonDoiVe.getVeCu();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/QuanLyHoaDon_GUI_Items/Ve_QuanLyHoaDon.fxml"));
                 Parent anchorPane = loader.load();
@@ -508,37 +666,68 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
 
     public void xuLiSuKienClick() {
         veDatChon_list.clear();
+        veChon_list.clear();
         if (selectedHoaDon instanceof HoaDonDatVe) {
+            hoaDonHuyVeDangChon = null;
+            hoaDonHuyDatVeDangChon = null;
+            hoaDonDoiVeDangChon = null;
+            hoaDonLayVeDangChon = null;
+            hoaDonBanVeDangChon = null;
             HoaDonDatVe hoaDonDatVe = (HoaDonDatVe) selectedHoaDon;
             hoaDonDatVeDangChon = hoaDonDatVe;
             hienThiDanhSachVeDatHoaDonDatVe(hoaDonDatVeDangChon);
         }
         if (selectedHoaDon instanceof HoaDonBanVe) {
+            hoaDonDatVeDangChon = null;
+            hoaDonHuyVeDangChon = null;
+            hoaDonHuyDatVeDangChon = null;
+            hoaDonDoiVeDangChon = null;
+            hoaDonLayVeDangChon = null;
             HoaDonBanVe hoaDonBanVe = (HoaDonBanVe) selectedHoaDon;
             hoaDonBanVeDangChon = hoaDonBanVe;
             hienThiDanhSachVeHoaDonBanVe(hoaDonBanVeDangChon);
         }
         if (selectedHoaDon instanceof HoaDonLayVe) {
+            hoaDonDatVeDangChon = null;
+            hoaDonHuyVeDangChon = null;
+            hoaDonHuyDatVeDangChon = null;
+            hoaDonDoiVeDangChon = null;
+            hoaDonBanVeDangChon = null;
             HoaDonLayVe hoaDonLayVe = (HoaDonLayVe) selectedHoaDon;
             hoaDonLayVeDangChon = hoaDonLayVe;
             hienThiDanhSachHoaDonLayVe(hoaDonLayVe);
         }
         if (selectedHoaDon instanceof HoaDonHuyVe) {
+            hoaDonDatVeDangChon = null;
+            hoaDonBanVeDangChon = null;
+            hoaDonHuyDatVeDangChon = null;
+            hoaDonDoiVeDangChon = null;
+            hoaDonLayVeDangChon = null;
             HoaDonHuyVe hoaDonHuyVe = (HoaDonHuyVe) selectedHoaDon;
             hoaDonHuyVeDangChon = hoaDonHuyVe;
             hienThiDanhSachVeHoaDonHuyVe(hoaDonHuyVe);
         }
         if (selectedHoaDon instanceof HoaDonHuyDatVe) {
+            hoaDonDatVeDangChon = null;
+            hoaDonBanVeDangChon = null;
+            hoaDonHuyVeDangChon = null;
+            hoaDonDoiVeDangChon = null;
+            hoaDonLayVeDangChon = null;
             HoaDonHuyDatVe hoaDonHuyDatVe = (HoaDonHuyDatVe) selectedHoaDon;
             hoaDonHuyDatVeDangChon = hoaDonHuyDatVe;
             hienThiDanhSachVeHoaDonHuyDatVe(hoaDonHuyDatVe);
         }
         if (selectedHoaDon instanceof HoaDonDoiVe) {
+            hoaDonDatVeDangChon = null;
+            hoaDonBanVeDangChon = null;
+            hoaDonHuyVeDangChon = null;
+            hoaDonHuyDatVeDangChon = null;
+            hoaDonLayVeDangChon = null;
             HoaDonDoiVe hoaDonDoiVe = (HoaDonDoiVe) selectedHoaDon;
             hoaDonDoiVeDangChon = hoaDonDoiVe;
             hienThiDanhSachVeHoaDonDoiVe(hoaDonDoiVe);
         }
-
     }
+
 
 }

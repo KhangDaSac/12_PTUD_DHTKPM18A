@@ -63,7 +63,7 @@ public class Ve_DAO {
             while(rs.next()){
                 ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDi"));
                 ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDen"));
-                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho_DAO().getChoTheoMaCho(rs.getString("maCho")) ,rs.getDouble("giaCho"));
+                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho_DAO().getChoTheoMaCho(rs.getString("maCho")) ,new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHang")), rs.getDouble("giaCho"));
                 Ve ve = null;
                 for(Ve v: danhSachVe){
                     if(v.getMaVe().equals(rs.getString("maVe"))){
