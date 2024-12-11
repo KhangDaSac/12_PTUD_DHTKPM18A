@@ -92,7 +92,7 @@
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <TextField fx:id="txtMaNhanVienGiamSat" onMouseClicked="#txtMaNhanVienGiamSatOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
+                                          <TextField fx:id="txtMaNhanVienGiamSat" onMouseClicked="#txtMaNhanVienGiamSatOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" />
                                           <JFXButton fx:id="btnChonNhanVienGiamSat" onAction="#btnChonNhanVienGiamSatOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
                                              <graphic>
                                                 <ImageView fitHeight="20.0" fitWidth="20.0">
@@ -117,7 +117,7 @@
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label fx:id="lblTenNhanVienGiamSat" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn B">
+                                          <Label fx:id="lblTenNhanVienGiamSat" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>

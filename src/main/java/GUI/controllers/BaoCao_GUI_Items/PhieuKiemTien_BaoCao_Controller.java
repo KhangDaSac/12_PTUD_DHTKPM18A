@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import utils.CurrencyFormat;
 import utils.ShowMessagesDialog;
 
 import java.net.URL;
@@ -101,11 +102,21 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         this.baoCao_gui_controller = baoCao_gui_controller;
     }
 
+    public String getLoaiPhieuKiemTien() {
+        return loaiPhieuKiemTien;
+    }
+
+    public void setLoaiPhieuKiemTien(String loaiPhieuKiemTien) {
+        this.loaiPhieuKiemTien = loaiPhieuKiemTien;
+    }
+
+
     @FXML
     void btnChonNhanVienGiamSatOnAction(ActionEvent event) {
         try{
             String maNhanVien = txtMaNhanVienGiamSat.getText();
             NhanVien nhanVien = QuanLyNhanVien_BUS.getNhanVienTheoMaNhanVien(maNhanVien);
+            phieuKiemTien.setNhanVienGiamSat(nhanVien);
             phieuKiemTien.setNhanVienGiamSat(nhanVien);
             if(nhanVien != null){
                 lblTenNhanVienGiamSat.setText(nhanVien.getTenNhanVien());
@@ -115,7 +126,6 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             }
         } catch (Exception e) {
             lblTenNhanVienGiamSat.setText("");
-            e.printStackTrace();
         }
     }
 
@@ -127,7 +137,7 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             phieuKiemTien.setNhanVienKiemTien(nhanVien);
             if(nhanVien != null){
                 lblTenNhanVienKiemTien.setText(nhanVien.getTenNhanVien());
-                txtMaNhanVienGiamSat.setEditable(false);
+                txtMaNhanVienKiemTien.setEditable(false);
             }else{
                 lblTenNhanVienKiemTien.setText("");
             }
@@ -158,11 +168,27 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
     @FXML
     void btnHoanThanhOnAction(ActionEvent event) {
-        taoPhieuKiemTienDauCa();
+        if (loaiPhieuKiemTien.equals("DC")){
+            taoPhieuKiemTienDauCa();
+        }
     }
     @FXML
     void btnThoatOnAction(ActionEvent event) {
         if(dialog != null) dialog.close();
+    }
+
+    public void setNhanVienKiemTien(NhanVien nhanVien){
+        phieuKiemTien.setNhanVienKiemTien(nhanVien);
+        if(nhanVien != null){
+            txtMaNhanVienKiemTien.setText(nhanVien.getMaNhanVien());
+            lblTenNhanVienKiemTien.setText(nhanVien.getTenNhanVien());
+            txtMaNhanVienKiemTien.setEditable(false);
+        }else{
+            txtMaNhanVienKiemTien.setEditable(true);
+            lblTenNhanVienKiemTien.setText("");
+            txtMaNhanVienKiemTien.setText("");
+        }
+
     }
 
 
@@ -182,7 +208,8 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
         PhieuKetToan phieuKetToan = new PhieuKetToan("PKTO" + maCaLamViec.substring(3), caLamViec, LocalDateTime.now());
         phieuKetToan.setPhieuKiemTienDauCa(phieuKiemTien);
-        taoPhieuKiemTien(maCaLamViec);
+        phieuKiemTien.setMaPhieuKiemTien("PKTI" + maCaLamViec.substring(3) + loaiPhieuKiemTien);
+        phieuKiemTien.setThoiGianKiemTien(LocalDateTime.now());
         if(!QuanLyCaLamViec_BUS.taoCaLamViecMoi(phieuKetToan))
             return;
 
@@ -193,9 +220,9 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         if(dialog != null) dialog.close();
     }
 
-    private void taoPhieuKiemTien(String maCaLamViec){
-        phieuKiemTien.setMaPhieuKiemTien("PKTI" + maCaLamViec.substring(3) + "DC");
-        phieuKiemTien.setThoiGianKiemTien(LocalDateTime.now());
+
+
+    private void khoiTaoPhieuKiemTien(){
         ArrayList<ChiTietPhieuKiemTien> dsChiTietPhieuKiemTien = new ArrayList<>();
 
         ChiTietPhieuKiemTien chiTietPhieuKiemTienTo1000 = new ChiTietPhieuKiemTien(
@@ -273,6 +300,10 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         phieuKiemTien.setDanhSachChiTietPhieuKiemTien(dsChiTietPhieuKiemTien);
     }
 
+    private void hienThiTongTienPhieuKiemTien(){
+        lblTongTien.setText(CurrencyFormat.currencyFormat(phieuKiemTien.tongTien()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         phieuKiemTien = new PhieuKiemTien();
@@ -294,6 +325,15 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo1000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo1000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T1000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
         });
 
 
@@ -314,6 +354,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo2000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo2000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T2000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
         txtSoLuongTo5000.setText("0");
@@ -333,6 +383,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo5000.setText(trimmedValue);
             }
+            try{
+
+            } catch (Exception e) {
+                int soLuong = Integer.valueOf(txtSoLuongTo5000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T5000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            }
+
         });
 
 
@@ -353,6 +413,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo10000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo10000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T10000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
 
@@ -373,6 +443,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo20000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo20000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T20000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
 
@@ -393,6 +473,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo50000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo50000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T50000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
 
@@ -413,6 +503,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo100000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo100000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T100000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
 
@@ -433,6 +533,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo200000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo200000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T200000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
 
 
@@ -453,6 +563,19 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if (!newValue.equals(trimmedValue)) {
                 txtSoLuongTo500000.setText(trimmedValue);
             }
+            try{
+                int soLuong = Integer.valueOf(txtSoLuongTo500000.getText());
+                phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
+                        .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T500000VND))
+                        .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
+                hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
+            }
+
         });
+
+        khoiTaoPhieuKiemTien();
+        hienThiTongTienPhieuKiemTien();
     }
 }

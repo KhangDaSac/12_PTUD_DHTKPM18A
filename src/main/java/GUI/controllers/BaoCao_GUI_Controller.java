@@ -2,7 +2,6 @@ package GUI.controllers;
 
 import DTO.CaLamViec;
 import DTO.NhanVien;
-import DTO.PhieuKetToan;
 import GUI.applications.Run;
 import GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller;
 import com.jfoenix.controls.JFXButton;
@@ -14,7 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
@@ -118,7 +116,7 @@ public class BaoCao_GUI_Controller implements Initializable {
             main_controller.showMessagesDialog("Ca làm việc đã có phiếu kiểm tiền đầu ca");
             return;
         }
-        hienThiPhieuKiemTienMoi();
+        hienThiPhieuKiemTienDauCa();
     }
 
     @FXML
@@ -126,7 +124,7 @@ public class BaoCao_GUI_Controller implements Initializable {
 
     }
 
-    public void hienThiPhieuKiemTienMoi(){
+    public void hienThiPhieuKiemTienDauCa(){
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
@@ -134,6 +132,8 @@ public class BaoCao_GUI_Controller implements Initializable {
             controller.setBaoCao_gui_controller(this);
             dialog = main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
             controller.setDialog(dialog);
+            controller.setNhanVienKiemTien(main_controller.getNhanVien());
+            controller.setLoaiPhieuKiemTien("DC");
         }catch (Exception e){
             e.printStackTrace();
         }

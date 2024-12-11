@@ -470,7 +470,6 @@ public class DatVe_GUI_Controller implements Initializable {
 
         });
 
-
         Platform.runLater(()->{
             try {
                 if(hoaDonDatVe == null){
