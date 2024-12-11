@@ -476,7 +476,7 @@ public class DatVe_GUI_Controller implements Initializable {
                 if(hoaDonDatVe == null){
                     String maHoaDon = QuanLyHoaDon_BUS.layMaHoaDonDatVeTiepTheo();
                     hoaDonDatVe = new HoaDonDatVe(maHoaDon);
-                    hoaDonDatVe.setCaLamViec(main_Controller.getCaLamViec());
+                    hoaDonDatVe.setCaLamViec(main_Controller.getPhieuKetToan().getCaLamViec());
                     hoaDonDatVe.setDanhSachVeDat(new ArrayList<VeDat>());
                 }else{
                     capNhatGioVe();

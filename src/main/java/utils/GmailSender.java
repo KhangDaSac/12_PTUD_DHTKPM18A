@@ -24,14 +24,13 @@ public class GmailSender {
                 });
 
         try {
-            // Tạo tin nhắn email
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("natrirailwaycompany@gmail.com")); // Người gửi
+            message.setFrom(new InternetAddress("natrirailwaycompany@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(emailNhan) // Người nhận
+                    InternetAddress.parse(emailNhan)
             );
-            message.setSubject("Tin nhắn được giử từ NaTri Railway Company"); // Tiêu đề email
+            message.setSubject("Tin nhắn được giử từ NaTri Railway Company");
             message.setText(noiDung);
 
             Transport.send(message);

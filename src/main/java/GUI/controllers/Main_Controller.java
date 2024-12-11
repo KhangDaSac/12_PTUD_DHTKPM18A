@@ -1,9 +1,6 @@
 package GUI.controllers;
 
-import DTO.CaLamViec;
-import DTO.HoaDonBanVe;
-import DTO.HoaDonDatVe;
-import DTO.NhanVien;
+import DTO.*;
 import GUI.applications.Run;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
@@ -114,15 +111,15 @@ public class Main_Controller implements Initializable {
     @FXML
     private VBox vboxQuanLyVeDat;
 
-    private CaLamViec caLamViec;
+    private PhieuKetToan phieuKetToan;
     private NhanVien nhanVien;
 
-    public CaLamViec getCaLamViec() {
-        return caLamViec;
+    public PhieuKetToan getPhieuKetToan() {
+        return phieuKetToan;
     }
 
-    public void setCaLamViec(CaLamViec caLamViec) {
-        this.caLamViec = caLamViec;
+    public void setPhieuKetToan(PhieuKetToan phieuKetToan) {
+        this.phieuKetToan = phieuKetToan;
     }
 
     public NhanVien getNhanVien() {
@@ -202,12 +199,7 @@ public class Main_Controller implements Initializable {
         vboxQuanLyVeDat.setVisible(false);
     }
 
-
-    @FXML
-    void btnTimPhieuVeDatOnAction(ActionEvent event) {
-
-    }
-
+    public JFXDialog dialog;
 
     @FXML
     void btnTrangChuOnAction(ActionEvent event) {
@@ -224,6 +216,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     public void chuyenTrangThongTinBanVe(HoaDonBanVe hoaDonBanVe){
@@ -244,6 +237,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     public void chuyenTrangThongTinDatVe(HoaDonDatVe hoaDonDatVe){
@@ -264,6 +258,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
 
@@ -287,6 +282,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -307,6 +303,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -342,6 +339,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -360,6 +358,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -380,6 +379,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -398,6 +398,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -418,6 +419,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -438,6 +440,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -459,6 +462,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -479,6 +483,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
     @FXML
@@ -500,6 +505,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
     }
 
 
@@ -520,6 +526,8 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
+
     }
 
     @FXML
@@ -544,6 +552,8 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
+
     }
 
     public void quayLaiTrangBanVe(){
@@ -562,6 +572,8 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
+
     }
 
     public void quayLaiTrangDatVe(){
@@ -580,6 +592,8 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
+
     }
 
     public void quayLaiTrangDatVe(HoaDonDatVe hoaDonDatVe){
@@ -599,18 +613,20 @@ public class Main_Controller implements Initializable {
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);
         AnchorPane.setRightAnchor(trangMoi, 0.0);
+        if(dialog != null) dialog.close();
+
     }
 
     public void showMessagesDialog(String messages){
         ShowMessagesDialog.showDialog(stpKhung, "Thông báo", messages, "OK");
     }
 
-    public void showWindowDialog(AnchorPane anchorPane, String title, JFXButton closeButton){
-        ShowMessagesDialog.showDialog(stpKhung, title, anchorPane, closeButton);
+    public JFXDialog showWindowDialog(AnchorPane anchorPane, String title){
+        return ShowMessagesDialog.showDialog(stpKhung, title, anchorPane);
     }
 
     public void thongBaoKhongHoatDong(String messages){
-        ShowMessagesDialog.showDialog(stpThongBaoKhongHoatDong, "Thông báo", messages);
+        dialog = ShowMessagesDialog.showDialog(stpThongBaoKhongHoatDong, "Thông báo", messages);
     }
 
     public void khoiTao(){
@@ -620,9 +636,9 @@ public class Main_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
-            if(caLamViec != null){
-                lblMaNhanVienDangNhap.setText(caLamViec.getNhanVien().getMaNhanVien());
-                lblTenNhanVienDanNhap.setText(caLamViec.getNhanVien().getTenNhanVien());
+            if(phieuKetToan != null && phieuKetToan.getCaLamViec() != null){
+                lblMaNhanVienDangNhap.setText(phieuKetToan.getCaLamViec().getNhanVien().getMaNhanVien());
+                lblTenNhanVienDanNhap.setText(phieuKetToan.getCaLamViec().getNhanVien().getTenNhanVien());
             }
         });
     }

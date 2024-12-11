@@ -137,7 +137,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienBatDauCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
+                  <Label fx:id="lblTongTienBatDauCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
                </children>
             </HBox>
          </children>
@@ -151,7 +151,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <Label fx:id="lblTongTienTrongCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
+                  <Label fx:id="lblTongTienTrongCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
                </children>
             </HBox>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
@@ -168,13 +168,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn bán vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonBanVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonBanVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonBanVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonBanVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0 VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -188,13 +188,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn đặt vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0 VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -211,13 +211,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn lấy vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonLayVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonLayVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonLayVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonLayVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -241,13 +241,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn hủy vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonHuyVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonHuyVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonHuyVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonHuyVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0 VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -261,13 +261,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn hủy đặt vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonHuyDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonHuyDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonHuyDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonHuyDatVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0 VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -284,13 +284,13 @@
                                     <AnchorPane>
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Hóa đơn đổi vé:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblSoLuongHoaDonDoiVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblSoLuongHoaDonDoiVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0">
                                        <children>
                                           <Label style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #fff;" text="Tổng tiền:" AnchorPane.leftAnchor="0.0" />
-                                          <Label fx:id="lblTongTienHoaDonDoiVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000.000 VNĐ" AnchorPane.rightAnchor="0.0" />
+                                          <Label fx:id="lblTongTienHoaDonDoiVe" alignment="CENTER_RIGHT" style="-fx-font-size: 16; -fx-text-fill: #fff; -fx-font-weight: 700;" text="0 VNĐ" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -315,7 +315,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienKetThucCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
+                  <Label fx:id="lblTongTienKetThucCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
                </children>
             </HBox>
          </children>
@@ -329,7 +329,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienChenhLech" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
+                  <Label fx:id="lblTongTienChenhLech" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
                </children>
             </HBox>
          </children>

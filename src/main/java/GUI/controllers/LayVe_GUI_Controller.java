@@ -334,7 +334,7 @@ public class LayVe_GUI_Controller implements Initializable {
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
-            hoaDonLayVe.setCaLamViec(main_controller.getCaLamViec());
+            hoaDonLayVe.setCaLamViec(main_controller.getPhieuKetToan().getCaLamViec());
             hoaDonLayVe.setKhachHangLayVe(khachHang);
             layDanhSachHoaDonDatTheoKhachHang();
             hienThiDanhSachVeLay();
@@ -369,7 +369,7 @@ public class LayVe_GUI_Controller implements Initializable {
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
-            hoaDonLayVe.setCaLamViec(main_controller.getCaLamViec());
+            hoaDonLayVe.setCaLamViec(main_controller.getPhieuKetToan().getCaLamViec());
         });
     }
 }

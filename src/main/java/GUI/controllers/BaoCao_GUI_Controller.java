@@ -1,17 +1,27 @@
 package GUI.controllers;
 
+import DTO.CaLamViec;
+import DTO.NhanVien;
 import DTO.PhieuKetToan;
 import GUI.applications.Run;
 import GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utils.CurrencyFormat;
+import utils.TimeFormat;
 
-public class BaoCao_GUI_Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class BaoCao_GUI_Controller implements Initializable {
 
     @FXML
     private JFXButton btnLapPhieuKiemTienCuoiCa;
@@ -85,8 +95,9 @@ public class BaoCao_GUI_Controller {
     @FXML
     private Label lblTongTienTrongCa;
 
+    private JFXDialog dialog;
+
     private Main_Controller main_controller;
-    private PhieuKetToan phieuKetToan;
 
     public Main_Controller getMain_controller() {
         return main_controller;
@@ -96,14 +107,6 @@ public class BaoCao_GUI_Controller {
         this.main_controller = main_controller;
     }
 
-    public PhieuKetToan getPhieuKetToan() {
-        return phieuKetToan;
-    }
-
-    public void setPhieuKetToan(PhieuKetToan phieuKetToan) {
-        this.phieuKetToan = phieuKetToan;
-    }
-
     @FXML
     void btnLapPhieuKiemTienCuoiCaOnAction(ActionEvent event) {
 
@@ -111,6 +114,10 @@ public class BaoCao_GUI_Controller {
 
     @FXML
     void btnLapPhieuKiemTienDauCaOnAction(ActionEvent event) {
+        if(main_controller.getPhieuKetToan() != null && main_controller.getPhieuKetToan().getCaLamViec() != null){
+            main_controller.showMessagesDialog("Ca làm việc đã có phiếu kiểm tiền đầu ca");
+            return;
+        }
         hienThiPhieuKiemTienMoi();
     }
 
@@ -123,15 +130,52 @@ public class BaoCao_GUI_Controller {
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
-            JFXButton button = (JFXButton)anchorPane.lookup("#btnThoat");
-            JFXButton button2 = (JFXButton)anchorPane.lookup("#btnHoanThanh");
             PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
             controller.setBaoCao_gui_controller(this);
-            main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền", button);
+            dialog = main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
+            controller.setDialog(dialog);
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
 
+    public void capNhatThongTinCaLamViec(){
+        if(main_controller.getPhieuKetToan() != null && main_controller.getPhieuKetToan().getCaLamViec() != null){
+            CaLamViec caLamViec = main_controller.getPhieuKetToan().getCaLamViec();
+            lblMaCaLamViec.setText(caLamViec.getMaCaLamViec());
+            lblThoiGianBatDau.setText(TimeFormat.formatLocalDateTime(caLamViec.getThoiGianBatDau()));
+            lblThoiGianKetThuc.setText(caLamViec.getThoiGianKetThuc() != null
+                    ? TimeFormat.formatLocalDateTime(caLamViec.getThoiGianKetThuc())
+                    : "Chưa có");
+
+        }else{
+            lblMaCaLamViec.setText("Chưa có");
+            lblThoiGianBatDau.setText("Chưa có");
+            lblThoiGianKetThuc.setText("Chưa có");
+        }
+
+        if(main_controller.getPhieuKetToan() != null
+                && main_controller.getPhieuKetToan().getCaLamViec() != null
+                && main_controller.getPhieuKetToan().getCaLamViec().getNhanVien() != null){
+            NhanVien nhanVien = main_controller.getPhieuKetToan().getCaLamViec().getNhanVien();
+            lblMaNhanVien.setText(nhanVien.getMaNhanVien());
+            lblTenNhanVien.setText(nhanVien.getTenNhanVien());
+        }else {
+            lblMaNhanVien.setText("Chưa có");
+            lblTenNhanVien.setText("Chưa có");
+        }
+    }
+
+    public void capTongTienDauCa(){
+        lblTongTienBatDauCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienDauCa().tongTien()));
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.runLater(()->{
+            capNhatThongTinCaLamViec();
+        });
+    }
 }

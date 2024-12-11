@@ -5,12 +5,15 @@ import BUS.QuanLyNhanVien_BUS;
 import DTO.*;
 import GUI.controllers.BaoCao_GUI_Controller;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import utils.ShowMessagesDialog;
 
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -73,10 +76,22 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
     @FXML
     private TextField txtMaNhanVienGiamSat;
 
+    @FXML
+    private StackPane stpThongBao;
+
     private String loaiPhieuKiemTien;
 
     private PhieuKiemTien phieuKiemTien;
     private BaoCao_GUI_Controller baoCao_gui_controller;
+    private JFXDialog dialog;
+
+    public JFXDialog getDialog() {
+        return dialog;
+    }
+
+    public void setDialog(JFXDialog dialog) {
+        this.dialog = dialog;
+    }
 
     public BaoCao_GUI_Controller getBaoCao_gui_controller() {
         return baoCao_gui_controller;
@@ -147,12 +162,20 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
     }
     @FXML
     void btnThoatOnAction(ActionEvent event) {
-
+        if(dialog != null) dialog.close();
     }
 
 
 
     private void taoPhieuKiemTienDauCa(){
+        if(phieuKiemTien.getNhanVienKiemTien() == null){
+            ShowMessagesDialog.showDialog(stpThongBao, "Thông báo", "Thiếu thông tin nhân viên kiểm tiền", "OK");
+            return;
+        }
+        if(phieuKiemTien.getNhanVienGiamSat() == null){
+            ShowMessagesDialog.showDialog(stpThongBao, "Thông báo", "Thiếu thông tin nhân viên giám sát", "OK");
+            return;
+        }
         String maCaLamViec = QuanLyCaLamViec_BUS.taoMaCaLamViecMoi();
         CaLamViec caLamViec = new CaLamViec(maCaLamViec, LocalDateTime.now(), null, baoCao_gui_controller.getMain_controller().getNhanVien());
         System.out.println(caLamViec.getMaCaLamViec());
@@ -163,9 +186,11 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         if(!QuanLyCaLamViec_BUS.taoCaLamViecMoi(phieuKetToan))
             return;
 
-        baoCao_gui_controller.setPhieuKetToan(phieuKetToan);
-        btnThoat.fire();
+        baoCao_gui_controller.getMain_controller().setPhieuKetToan(phieuKetToan);
+        baoCao_gui_controller.capNhatThongTinCaLamViec();
+        baoCao_gui_controller.capTongTienDauCa();
         baoCao_gui_controller.getMain_controller().showMessagesDialog("Tạo phiếu kiểm tiền đầu ca thành công");
+        if(dialog != null) dialog.close();
     }
 
     private void taoPhieuKiemTien(String maCaLamViec){

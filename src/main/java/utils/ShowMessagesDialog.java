@@ -28,7 +28,7 @@ public class ShowMessagesDialog {
         dialog.show();
     }
 
-    public static void showDialog(StackPane root, String title, String content) {
+    public static JFXDialog showDialog(StackPane root, String title, String content) {
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setHeading(new Text(title));
         dialogLayout.setBody(new Text(content));
@@ -38,9 +38,10 @@ public class ShowMessagesDialog {
         dialog.setOverlayClose(false);
 
         dialog.show();
+        return dialog;
     }
 
-    public static void showDialog(StackPane root, String title, AnchorPane anchorPane, JFXButton closeButton) {
+    public static JFXDialog showDialog(StackPane root, String title, AnchorPane anchorPane) {
         JFXDialogLayout dialogLayout = new JFXDialogLayout();
         dialogLayout.setHeading(new Text(title));
         dialogLayout.setBody(anchorPane);
@@ -48,9 +49,8 @@ public class ShowMessagesDialog {
         JFXDialog dialog = new JFXDialog(root, dialogLayout, JFXDialog.DialogTransition.CENTER);
         dialog.getStyleClass().add("lbMain");
         dialog.setOverlayClose(false);
-
-        closeButton.setOnAction(event -> dialog.close());
         dialog.show();
+        return dialog;
     }
 
 }

@@ -8,344 +8,339 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="640.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller">
    <children>
-      <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="stpThongBao" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
          <children>
-            <HBox>
+            <AnchorPane prefHeight="640.0" prefWidth="800.0">
                <children>
-                  <VBox prefWidth="400.0">
+                  <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <HBox>
                            <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN KIỂM TIỀN" />
+                              <VBox prefWidth="400.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN KIỂM TIỀN" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox style="-fx-alignment: center;">
+                                       <children>
+                                          <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã nhân viên:">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="txtMaNhanVienKiemTien" onMouseClicked="#txtMaNhanVienKiemTienOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
+                                          <JFXButton fx:id="btnChonNhanVienKiemTien" onAction="#btnChonNhanVienKiemTienOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                   <image>
+                                                      <Image url="@../../images/BaoCao_GUI/ChinhSua.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Tên nhân viên:">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="lblTenNhanVienKiemTien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn A">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" prefWidth="400.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN GIÁM SÁT" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox style="-fx-alignment: center;">
+                                       <children>
+                                          <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã nhân viên:">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <TextField fx:id="txtMaNhanVienGiamSat" onMouseClicked="#txtMaNhanVienGiamSatOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
+                                          <JFXButton fx:id="btnChonNhanVienGiamSat" onAction="#btnChonNhanVienGiamSatOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
+                                             <graphic>
+                                                <ImageView fitHeight="20.0" fitWidth="20.0">
+                                                   <image>
+                                                      <Image url="@../../images/BaoCao_GUI/ChinhSua.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </JFXButton>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Tên nhân viên:">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <Label fx:id="lblTenNhanVienGiamSat" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn B">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
                         </HBox>
-                        <HBox style="-fx-alignment: center;">
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                     <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã nhân viên:">
+                              <HBox style="-fx-alignment: center;">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-1000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="1.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo1000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="310.0" layoutY="20.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-2000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="2.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo2000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="420.0" layoutY="10.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-5000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="5.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo5000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" style="-fx-alignment: center;">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-10000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="10.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo10000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="310.0" layoutY="20.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-20000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="20.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo20000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="420.0" layoutY="10.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-50000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="50.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo50000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="151.0" style="-fx-alignment: center;">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-100000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo100000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="310.0" layoutY="20.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-200000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="200.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo200000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="420.0" layoutY="10.0">
+                                       <children>
+                                          <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-500000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <children>
+                                                      <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="500.000 VNĐ" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <TextField fx:id="txtSoLuongTo500000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="40.0" layoutY="585.0" prefHeight="60.0" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-border-width: 1;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0">
+                     <children>
+                        <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="Tổng tiền:" />
+                           </children>
+                        </HBox>
+                        <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label fx:id="lblTongTien" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="50.0" layoutY="640.0" prefHeight="60.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0">
+                     <children>
+                        <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <JFXButton fx:id="btnThoat" onAction="#btnThoatOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Thoát">
                                  <HBox.margin>
-                                    <Insets right="10.0" />
+                                    <Insets left="10.0" right="10.0" />
                                  </HBox.margin>
-                              </Label>
-                              <TextField fx:id="txtMaNhanVienKiemTien" onMouseClicked="#txtMaNhanVienKiemTienOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
-                              <JFXButton fx:id="btnChonNhanVienKiemTien" onAction="#btnChonNhanVienKiemTienOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../images/BaoCao_GUI/ChinhSua.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
+                              </JFXButton>
+                              <JFXButton fx:id="btnHoanThanh" onAction="#btnHoanThanhOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Hoàn thành">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
                               </JFXButton>
                            </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Tên nhân viên:">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="lblTenNhanVienKiemTien" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn A">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
                         </HBox>
                      </children>
-                  </VBox>
-                  <VBox layoutX="10.0" layoutY="10.0" prefWidth="400.0">
-                     <children>
-                        <HBox>
-                           <children>
-                              <Label style="-fx-font-size: 20; -fx-font-weight: 700; -fx-text-fill: #000;" text="NHÂN VIÊN GIÁM SÁT" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox style="-fx-alignment: center;">
-                           <children>
-                              <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Mã nhân viên:">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="txtMaNhanVienGiamSat" onMouseClicked="#txtMaNhanVienGiamSatOnMouseClicked" prefWidth="140.0" style="-fx-background-color: #00000000; -fx-font-size: 16; -fx-border-width: 0 0 1 0; -fx-border-color: #000;" text="NV2024000001" />
-                              <JFXButton fx:id="btnChonNhanVienGiamSat" onAction="#btnChonNhanVienGiamSatOnAction" prefWidth="80.0" styleClass="button-chinhSua" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" text="Chọn">
-                                 <graphic>
-                                    <ImageView fitHeight="20.0" fitWidth="20.0">
-                                       <image>
-                                          <Image url="@../../images/BaoCao_GUI/ChinhSua.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                              </JFXButton>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label prefWidth="120.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-text-fill: #000;" text="Tên nhân viên:">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="lblTenNhanVienGiamSat" layoutX="10.0" layoutY="10.0" style="-fx-font-size: 16; -fx-text-fill: #000;" text="Nguyễn Văn B">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                     </children>
-                  </VBox>
+                  </AnchorPane>
                </children>
-            </HBox>
+            </AnchorPane>
          </children>
-      </AnchorPane>
-      <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
-         <children>
-            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox style="-fx-alignment: center;">
-                     <children>
-                        <AnchorPane>
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-1000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="1.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo1000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="310.0" layoutY="20.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-2000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="2.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo2000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="420.0" layoutY="10.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-5000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="5.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo5000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="10.0" style="-fx-alignment: center;">
-                     <children>
-                        <AnchorPane>
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-10000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="10.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo10000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="310.0" layoutY="20.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-20000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="20.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo20000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="420.0" layoutY="10.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-50000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="50.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo50000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-                  <HBox layoutX="10.0" layoutY="151.0" style="-fx-alignment: center;">
-                     <children>
-                        <AnchorPane>
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-100000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="100.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo100000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="310.0" layoutY="20.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-200000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="200.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo200000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                        <AnchorPane layoutX="420.0" layoutY="10.0">
-                           <children>
-                              <AnchorPane prefHeight="80.0" prefWidth="200.0" styleClass="toTien-500000" stylesheets="@../../css/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <children>
-                                          <Label style="-fx-font-size: 20; -fx-text-fill: #fff; -fx-font-weight: 700;" text="500.000 VNĐ" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <TextField fx:id="txtSoLuongTo500000" alignment="CENTER" prefHeight="40.0" style="-fx-background-color: #00000000; -fx-border-color: #000; -fx-border-width: 0 0 1 0; -fx-font-size: 16;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </AnchorPane>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="40.0" layoutY="585.0" prefHeight="60.0" style="-fx-border-color: #000; -fx-border-radius: 5; -fx-border-width: 1;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="400.0">
-         <children>
-            <HBox style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="Tổng tiền:" />
-               </children>
-            </HBox>
-            <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label fx:id="lblTongTien" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="100.000.000 VNĐ" />
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="50.0" layoutY="640.0" prefHeight="60.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="40.0">
-         <children>
-            <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <JFXButton fx:id="btnThoat" onAction="#btnThoatOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Thoát">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0">
-                           <image>
-                              <Image url="@../../images/BanVe_GUI/ThemVe.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="10.0" right="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-                  <JFXButton fx:id="btnHoanThanh" onAction="#btnHoanThanhOnAction" prefHeight="60.0" prefWidth="150.0" styleClass="jfx-button1" stylesheets="@../../css/All.css" text="Hoàn thành">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0">
-                           <image>
-                              <Image url="@../../images/BanVe_GUI/ThemVe.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </JFXButton>
-               </children>
-            </HBox>
-         </children>
-      </AnchorPane>
+      </StackPane>
    </children>
 </AnchorPane>
