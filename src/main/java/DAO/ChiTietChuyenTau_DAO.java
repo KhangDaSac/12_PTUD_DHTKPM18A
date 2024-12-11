@@ -37,17 +37,16 @@ public class ChiTietChuyenTau_DAO {
     public static ChiTietChuyenTau getChiTietTuyenTauTheoChuyenTauVaGaTau(String maChuyenTau, String maGaTau){
         Connection con = ConnectDB.getInstance().getConnection();
         try {
-            String query = "select maChuyenTau, gt.maGaTau, tenGaTau, thoiGianDi, thoiGianDen, thuTuGa, soKm" +
-                    " from ChiTietChuyenTau ctct" +
-                    " join GaTau gt on ctct.maGaTau = gt.maGaTau" +
-                    " where maChuyenTau = ? and gt.maGaTau = ?";
+            String query = "select * \n" +
+                    "from ChiTietChuyenTau\n" +
+                    "where maChuyenTau = ? and maGaTau = ?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maChuyenTau);
             statement.setString(2, maGaTau);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
                 ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
-                GaTau gaTau = new GaTau(rs.getString("maGaTau"), rs.getString("tenGaTau"));
+                GaTau gaTau = GaTau_DAO.getGaTauTheoMaGaTau(rs.getString("maGaTau"));
                 LocalDateTime thoiGianDen = rs.getTimestamp("thoiGianDen").toLocalDateTime();
                 LocalDateTime thoiGianDi = rs.getTimestamp("thoiGianDi").toLocalDateTime();
                 int thuTuGa = rs.getInt("thuTuGa");

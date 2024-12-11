@@ -19,6 +19,7 @@ public class Cho {
         this.toaTau = toaTau;
     }
 
+
     public Cho(String maCho, int soCho, LoaiCho loaiCho) {
         this.maCho = maCho;
         this.soCho = soCho;
@@ -32,6 +33,7 @@ public class Cho {
         this.doDaiChangToiThieu = doDaiChangToiThieu;
         this.toaTau = toaTau;
         this.loaiCho = loaiCho;
+        this.giaCho = tinhGiaCho(doDaiChangToiThieu);
     }
 
     public Cho(String maCho, int soCho, double doDaiChangToiThieu, double giaCho, ToaTau toaTau, LoaiCho loaiCho, TrangThaiCho trangThaiCho) {
@@ -175,4 +177,5 @@ public class Cho {
         gia = gia * toaTau.getLoaiToaTau().getHeSoGia() * loaiCho.getHeSoGiaCho();
         return gia;
     }
+
 }

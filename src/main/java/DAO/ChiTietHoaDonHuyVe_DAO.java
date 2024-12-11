@@ -17,23 +17,11 @@ public class ChiTietHoaDonHuyVe_DAO {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                HoaDonBanVe hoaDonBanVe = new HoaDonBanVe(rs.getString("maHoaDonBanVe"));
-                ChiTietChuyenTau thongTinGaTauDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")), rs.getTimestamp("thoiGianDi").toLocalDateTime());
-                ChiTietChuyenTau thongTinGaTauDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")), rs.getTimestamp("thoiGianDen").toLocalDateTime());
-                Ve ve = new Ve(rs.getString("maVe"),hoaDonBanVe,thongTinGaTauDi,thongTinGaTauDen,LoaiVe.valueOf("loaiVe"),TrangThaiVe.valueOf("trangThaiVe"));
-                ChiTietVe chiTietVe = new ChiTietVe(ve,new Cho(rs.getString("maCho")),new KhachHang(rs.getString("maKhachHang")),rs.getDouble("giaCho"),rs.getDouble("phanTramGiamGia"));
-                ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = null;
-                for(ChiTietHoaDonHuyVe cthd:dsChiTietHoaDonHuyVe) {
-                    if (cthd.getHoaDonHuyVe().getMaHoaDonHuyVe().equals(rs.getString("maHoaDonHuyVe"))) {
-                        chiTietHoaDonHuyVe = cthd;
-                    }
-                }
-                if(chiTietHoaDonHuyVe== null){
-                    chiTietHoaDonHuyVe = new ChiTietHoaDonHuyVe(new HoaDonHuyVe(rs.getString("maHoaDonHuyVe")),ve,rs.getDouble("phanTramLePhi"));
-                    dsChiTietHoaDonHuyVe.add(chiTietHoaDonHuyVe);
-                }
-                chiTietHoaDonHuyVe.getVe().addChiTietVe(chiTietVe);
+            while(rs.next()) {
+                HoaDonHuyVe hoaDonHuyVe = new HoaDonHuyVe(rs.getString("maHoaDonHuyVe"), rs.getTimestamp("thoiGianHuyVe").toLocalDateTime(), new CaLamViec(rs.getString("maCaLamViec")), new KhachHang(rs.getString("maKhachHangHuyVe")));
+                Ve ve = Ve_DAO.getVeTheoMa(rs.getString("maVe"));
+                ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = new ChiTietHoaDonHuyVe(hoaDonHuyVe,ve,rs.getDouble("phanTramLePhi"));
+                dsChiTietHoaDonHuyVe.add(chiTietHoaDonHuyVe);
             }
         }catch (Exception e){
             e.printStackTrace();

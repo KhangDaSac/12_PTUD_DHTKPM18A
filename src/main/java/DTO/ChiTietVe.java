@@ -81,4 +81,6 @@ public class ChiTietVe {
 	public double thanhTienChiTietVe(){
 		return giaCho * (1 - phanTramGiamGia);
 	}
+
+
 }

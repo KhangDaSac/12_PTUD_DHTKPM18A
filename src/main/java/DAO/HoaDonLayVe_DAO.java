@@ -54,6 +54,7 @@ public class HoaDonLayVe_DAO {
                 hoaDonLayVe.setThoiGianLayVe(rs.getTimestamp("thoiGianLayVe").toLocalDateTime());
                 hoaDonLayVe.setCaLamViec(new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
                 hoaDonLayVe.setKhachHangLayVe(new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangLayVe")));
+                hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(ChiTietHoaDonLayVe_DAO.getDanhSachChiTietHoaDonLayVeTheoMaHoaDonLayVe(hoaDonLayVe.getMaHoaDonLayVe()));
                 return hoaDonLayVe;
             }
         } catch (Exception e) {

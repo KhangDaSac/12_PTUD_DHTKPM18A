@@ -52,6 +52,13 @@ public class HoaDonLayVe {
         this.danhSachChiTietHoaDonLayVe = danhSachChiTietHoaDonLayVe;
     }
 
+    public HoaDonLayVe(String maHoaDonLayVe, LocalDateTime thoiGianLayVe, KhachHang khachHangLayVe, CaLamViec caLamViec) {
+        this.maHoaDonLayVe = maHoaDonLayVe;
+        this.thoiGianLayVe = thoiGianLayVe;
+        this.khachHangLayVe = khachHangLayVe;
+        this.caLamViec = caLamViec;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

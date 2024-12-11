@@ -18,12 +18,9 @@ public class ChiTietHoaDonHuyDatVe_DAO {
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                HoaDonDatVe hoaDonDatVe = new HoaDonDatVe(rs.getString("maHoaDonDatVe"));
+                HoaDonHuyDatVe hoaDonHuyDatVe = new HoaDonHuyDatVe(rs.getString("maHoaDonHuyDatVe"), rs.getTimestamp("thoiGianHuyDatVe").toLocalDateTime(), new CaLamViec(rs.getString("maCaLamViec")), new KhachHang(rs.getString("maKhachHangHuyDatVe")));
                  VeDat veDat = VeDat_DAO.getVeDatTheoMa(rs.getString("maVeDat"));
-                 ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = new ChiTietHoaDonHuyDatVe();
-                    chiTietHoaDonHuyDatVe.setHoaDonHuyDatVe(HoaDonHuyDatVe_DAO.getHoaDonHuyDatVeTheoMa(maHoaDon));
-                    chiTietHoaDonHuyDatVe.setVeDat(veDat);
-                    chiTietHoaDonHuyDatVe.setPhanTramLePhi(rs.getDouble("phanTramLePhi"));
+                 ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe = new ChiTietHoaDonHuyDatVe(hoaDonHuyDatVe,veDat);
                     dsChiTietHoaDonHuyDatVe.add(chiTietHoaDonHuyDatVe);
             }
         }catch (Exception e){

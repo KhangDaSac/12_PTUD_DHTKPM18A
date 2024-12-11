@@ -2,6 +2,7 @@ package GUI.controllers.HuyDatVe_GUI_Items;
 
 import DTO.*;
 import GUI.controllers.HuyDatVe_GUI_Controller;
+import GUI.controllers.QuanLyHoaDon_GUI_Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class VeDat_HuyDatVe_Controller {
     private HuyDatVe_GUI_Controller huyDatVe_gui_controller;
+    private QuanLyHoaDon_GUI_Controller quanLyHoaDon_gui_controller;
     private int soThuTu;
     private VeDat veDat;
     @FXML
@@ -52,6 +54,14 @@ public class VeDat_HuyDatVe_Controller {
 
     public HuyDatVe_GUI_Controller getHuyDatVe_gui_controller() {
         return huyDatVe_gui_controller;
+    }
+
+    public QuanLyHoaDon_GUI_Controller getQuanLyHoaDon_gui_controller(QuanLyHoaDon_GUI_Controller quanLyHoaDonGuiController) {
+        return quanLyHoaDon_gui_controller;
+    }
+
+    public void setQuanLyHoaDon_gui_controller(QuanLyHoaDon_GUI_Controller quanLyHoaDon_gui_controller) {
+        this.quanLyHoaDon_gui_controller = quanLyHoaDon_gui_controller;
     }
 
     public void setHuyDatVe_gui_controller(HuyDatVe_GUI_Controller huyDatVe_gui_controller) {
@@ -123,6 +133,7 @@ public class VeDat_HuyDatVe_Controller {
             boChonVeDat();
         }
     }
+
 
     public void chonVeDat() {
         anpVeDat.getStyleClass().removeAll("veDatKhongChon");

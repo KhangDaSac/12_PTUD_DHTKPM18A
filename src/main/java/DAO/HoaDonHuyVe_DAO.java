@@ -22,6 +22,7 @@ public class HoaDonHuyVe_DAO {
                 hoaDonHuyVe.setThoiGianHuyVe(rs.getTimestamp("thoiGianHuyVe ").toLocalDateTime());
                 hoaDonHuyVe.setKhachHangHuyVe(KhachHang_DAO.getKhachHangTheoMaKhachHang(rs.getString("maKhachHangHuyVe")));
                 hoaDonHuyVe.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
+                hoaDonHuyVe.setDanhSachChiTietHoaDonHuyVe(ChiTietHoaDonHuyVe_DAO.getDanhSachChiTietHoaDonHuyVeTheoMaHoaDonHuyVe(hoaDonHuyVe.getMaHoaDonHuyVe()));
                 return hoaDonHuyVe;
             }
         } catch (Exception e) {

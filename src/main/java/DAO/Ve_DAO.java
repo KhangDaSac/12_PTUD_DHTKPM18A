@@ -61,9 +61,9 @@ public class Ve_DAO {
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")));
-                ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")));
-                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDen"));
+                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho_DAO().getChoTheoMaCho(rs.getString("maCho")) ,rs.getDouble("giaCho"));
                 Ve ve = null;
                 for(Ve v: danhSachVe){
                     if(v.getMaVe().equals(rs.getString("maVe"))){
@@ -84,20 +84,18 @@ public class Ve_DAO {
     public static ArrayList<Ve> getDanhSachVeTheoMaHoaDonDoi(String maHoaDon){
         ArrayList<Ve> dsVe = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        String query = "EXEC timVeCuVeMoiTheoMaHoaDonDoiVe ?";
+        String query = "select  * from HoaDonDoiVe ?";
         try{
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                ChiTietChuyenTau thongTinGaDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")));
-                ChiTietChuyenTau thongTinGaDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")));
-                ChiTietVe chiTietVeMoi = new ChiTietVe(new Ve(rs.getString("maVeMoi")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
-                ChiTietVe chiTietVeCu = new ChiTietVe(new Ve(rs.getString("maVeCu")), new Cho(rs.getString("maCho")),rs.getDouble("giaCho"));
-                Ve veMoi = new Ve(rs.getString("maVeMoi"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
-                Ve veCu = new Ve(rs.getString("maVeCu"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
-                veMoi.addChiTietVe(chiTietVeMoi);
-                veCu.addChiTietVe(chiTietVeCu);
+                ArrayList<ChiTietVe> dschiTietVeMoi = ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(rs.getString("maVeMoi"));
+                ArrayList<ChiTietVe> dschiTietVeCu = ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(rs.getString("maVeCu"));
+                Ve veMoi = getVeTheoMa(rs.getString("maVeMoi"));
+                Ve veCu = getVeTheoMa(rs.getString("maVeCu"));
+                veMoi.setDanhSachChiTietVe(dschiTietVeMoi);
+                veCu.setDanhSachChiTietVe(dschiTietVeCu);
                 dsVe.add(veMoi);
                 dsVe.add(veCu);
             }
@@ -107,5 +105,23 @@ public class Ve_DAO {
         return dsVe;
     }
    
-
+public static Ve getVeTheoMa(String maVe){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from Ve where maVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maVe);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTauDi"),rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTauDen"),rs.getString("maGaDen"));
+                Ve ve = new Ve(rs.getString("maVe"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                ve.setDanhSachChiTietVe(ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(maVe));
+                return ve;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

@@ -18,24 +18,13 @@ public class ChiTietHoaDonLayVe_DAO {
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
-            while(rs.next()){
-                HoaDonDatVe hoaDonDatVe = new HoaDonDatVe(rs.getString("maHoaDonDatVe"));
-                ChiTietChuyenTau thongTinGaTauDi = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDi")), rs.getTimestamp("thoiGianDi").toLocalDateTime());
-                ChiTietChuyenTau thongTinGaTauDen = new ChiTietChuyenTau(new ChuyenTau(rs.getString("maChuyenTau")),new GaTau(rs.getString("maGaDen")), rs.getTimestamp("thoiGianDen").toLocalDateTime());
-                VeDat veDat = new VeDat(rs.getString("maVeDat"),hoaDonDatVe,thongTinGaTauDi,thongTinGaTauDen,TrangThaiVeDat.valueOf(rs.getString("trangThaiVeDat")),LoaiVe.valueOf(rs.getString("loaiVe")));
-                ChiTietVeDat chiTietVeDat = new ChiTietVeDat(new Cho(rs.getString("maCho")),veDat,rs.getDouble("giaCho"),new KhachHang(rs.getString("maKhachHang")),rs.getDouble("phanTramGiamGia"));
-                ChiTietHoaDonLayVe chiTietHoaDonLayVe = null;
-                for(ChiTietHoaDonLayVe cthd:dsChiTietHoaDonLayVe) {
-                    if (cthd.getHoaDonLayVe().getMaHoaDonLayVe().equals(rs.getString("maHoaDonLayVe"))) {
-                        chiTietHoaDonLayVe = cthd;
-                    }
-                }
-                    if(chiTietHoaDonLayVe== null){
-                        chiTietHoaDonLayVe = new ChiTietHoaDonLayVe(veDat,new Ve(rs.getString("maVe")),new HoaDonLayVe(rs.getString("maHoaDonLayVe")));
-                        dsChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
-                    }
-                    chiTietHoaDonLayVe.getVeDat().addChiTietVeDat(chiTietVeDat);
-                }
+            while(rs.next()) {
+                HoaDonLayVe hoaDonLayVe = new HoaDonLayVe(rs.getString("maHoaDonLayVe"),rs.getTimestamp("thoiGianLayVe").toLocalDateTime(),new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangLayVe")),new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                VeDat veDat = VeDat_DAO.getVeDatTheoMa(rs.getString("maVeDat"));
+                Ve ve = Ve_DAO.getVeTheoMa(rs.getString("maVe"));
+                ChiTietHoaDonLayVe chiTietHoaDonLayVe = new ChiTietHoaDonLayVe(veDat,ve,hoaDonLayVe);
+                dsChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
