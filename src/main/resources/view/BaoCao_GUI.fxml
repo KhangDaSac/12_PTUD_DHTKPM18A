@@ -137,7 +137,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienBatDauCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
+                  <Label fx:id="lblTongTienBatDauCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="TRỐNG" />
                </children>
             </HBox>
          </children>
@@ -315,7 +315,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienKetThucCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
+                  <Label fx:id="lblTongTienKetThucCa" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="TRỐNG" />
                </children>
             </HBox>
          </children>
@@ -329,7 +329,7 @@
             </HBox>
             <HBox layoutX="30.0" layoutY="10.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="lblTongTienChenhLech" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="0 VNĐ" />
+                  <Label fx:id="lblTongTienChenhLech" style="-fx-text-fill: #000; -fx-font-weight: 700; -fx-font-size: 20;" text="TRỐNG" />
                </children>
             </HBox>
          </children>

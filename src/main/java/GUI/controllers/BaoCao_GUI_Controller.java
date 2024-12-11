@@ -98,6 +98,8 @@ public class BaoCao_GUI_Controller implements Initializable {
 
     private Main_Controller main_controller;
 
+    private double[][] dsHoaDon;
+
     public Main_Controller getMain_controller() {
         return main_controller;
     }
@@ -112,6 +114,10 @@ public class BaoCao_GUI_Controller implements Initializable {
                 || main_controller.getPhieuKetToan().getCaLamViec() == null
                 || main_controller.getPhieuKetToan().getPhieuKiemTienDauCa() == null){
             main_controller.showMessagesDialog("Chưa có phiếu kiểm tiền đầu ca");
+            return;
+        }
+        if(main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+            main_controller.showMessagesDialog("Đã có phiếu kiểm tiền cuối ca");
             return;
         }
         hienThiPhieuKiemTienCuoiCa();
@@ -203,15 +209,55 @@ public class BaoCao_GUI_Controller implements Initializable {
         lblTongTienKetThucCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa().tongTien()));
     }
 
-    public void hienTienTiengTrongCa(){
+    public void capNhatTienTrongCa(){
         if(main_controller.getPhieuKetToan() == null
                 || main_controller.getPhieuKetToan().getCaLamViec() == null) {
             return;
         }
-        double[][] dsHoaDon = QuanLyHoaDon_BUS.getDanhSachHoaDonBanVeTheoMaCa(main_controller.getPhieuKetToan().getCaLamViec());
+        dsHoaDon = QuanLyHoaDon_BUS.getDanhSachHoaDonBanVeTheoMaCa(main_controller.getPhieuKetToan().getCaLamViec());
 
         lblSoLuongHoaDonBanVe.setText(String.valueOf((int)dsHoaDon[0][0]));
         lblTongTienHoaDonBanVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[0][1]));
+
+        lblSoLuongHoaDonDatVe.setText(String.valueOf((int)dsHoaDon[1][0]));
+        lblTongTienHoaDonDatVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[1][1]));
+
+        lblSoLuongHoaDonLayVe.setText(String.valueOf((int)dsHoaDon[2][0]));
+        lblTongTienHoaDonLayVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[2][1]));
+
+        lblSoLuongHoaDonHuyVe.setText(String.valueOf((int)dsHoaDon[3][0]));
+        lblTongTienHoaDonHuyVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[3][1]));
+
+        lblSoLuongHoaDonHuyDatVe.setText(String.valueOf((int)dsHoaDon[4][0]));
+        lblTongTienHoaDonHuyDatVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[4][1]));
+
+        lblSoLuongHoaDonDoiVe.setText(String.valueOf((int)dsHoaDon[5][0]));
+        lblTongTienHoaDonDoiVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[5][1]));
+
+        main_controller.getPhieuKetToan().setDoanhThuThongKe(tongTienTrongCa());
+    }
+
+    public double tongTienTrongCa(){
+        if(dsHoaDon == null){
+            return 0;
+        }
+        double tongTien = 0;
+        for (int i = 0; i < 6; i++){
+            tongTien += dsHoaDon[i][1];
+        }
+        lblTongTienTrongCa.setText(CurrencyFormat.currencyFormat(tongTien));
+        return tongTien;
+    }
+
+    public double capNhatTienChenhLech(){
+        if(main_controller.getPhieuKetToan() == null
+                || main_controller.getPhieuKetToan().getPhieuKiemTienDauCa() == null
+                || main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() == null) {
+            return 0;
+        }
+        double tienChenhLech = main_controller.getPhieuKetToan().doanhThuThucTe() - tongTienTrongCa();
+        lblTongTienChenhLech.setText(CurrencyFormat.currencyFormat(tienChenhLech));
+        return tienChenhLech;
     }
 
 
@@ -221,7 +267,9 @@ public class BaoCao_GUI_Controller implements Initializable {
         Platform.runLater(()->{
             capNhatThongTinCaLamViec();
             capTongTienDauCa();
-            hienTienTiengTrongCa();
+            capNhatTienTrongCa();
+            capTongTienCuoiCa();
+            capNhatTienChenhLech();
         });
     }
 }

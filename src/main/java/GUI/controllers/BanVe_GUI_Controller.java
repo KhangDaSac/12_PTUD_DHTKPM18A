@@ -475,6 +475,11 @@ public class BanVe_GUI_Controller implements Initializable {
                     return;
                 }
 
+                if(main_Controller.getPhieuKetToan() != null && main_Controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+                    main_Controller.thongBaoKhongHoatDong("Ca làm việc đã kế thúc. \nVui lòng tạo ca làm việc mới");
+                    return;
+                }
+
                 if(hoaDonBanVe == null){
                     String maHoaDon = QuanLyHoaDon_BUS.layHoaDonBanVeTiepTheo();
                     hoaDonBanVe = new HoaDonBanVe(maHoaDon);
