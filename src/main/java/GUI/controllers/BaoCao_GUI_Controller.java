@@ -168,6 +168,9 @@ public class BaoCao_GUI_Controller implements Initializable {
     }
 
     public void capTongTienDauCa(){
+        if(main_controller.getPhieuKetToan() == null){
+            return;
+        }
         lblTongTienBatDauCa.setText(CurrencyFormat.currencyFormat(main_controller.getPhieuKetToan().getPhieuKiemTienDauCa().tongTien()));
     }
 
@@ -176,6 +179,7 @@ public class BaoCao_GUI_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
             capNhatThongTinCaLamViec();
+            capTongTienDauCa();
         });
     }
 }
