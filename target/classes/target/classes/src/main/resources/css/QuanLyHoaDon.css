@@ -1,0 +1,49 @@
+.coChu{
+    -fx-font-size: 16px;
+}
+.khung{
+    -fx-border-color: #000000  #000000 #000000 transparent;
+    -fx-border-width: 1px;
+}
+.khung-duoi{
+    -fx-border-color:  transparent  #000000 #000000 transparent ;
+    -fx-border-width: 1px;
+
+}
+.button-tim-kiem{
+    -fx-background-color: #0D92F4;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16;
+    -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
+    -fx-alignment: center;
+}
+.tieuDe {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #FFDD4A;
+    -fx-background-color:#2C5F2D ;
+}
+.tieuDeDanhSachVe{
+-fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: #F9EBDE;
+    -fx-background-color:#815854 ;
+}
+.button-chon{
+    -fx-background-color: #15B392;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16;
+    -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
+    -fx-alignment: center;
+}
+.cotTongTien{
+    -fx-text-fill:red;
+}
+.noiDungTrongTable{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
