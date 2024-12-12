@@ -1,5 +1,12 @@
 package BUS;
 
+import DAO.ChiTietVe_DAO;
+import DAO.HoaDon_DAO;
+import DAO.Ve_DAO;
+import DTO.ChiTietVe;
+import DTO.HoaDonBanVe;
+import DTO.HoaDonDoiVe;
+import DTO.Ve;
 import DAO.*;
 import DTO.*;
 import utils.TimeFormat;
@@ -127,6 +134,7 @@ public class QuanLyHoaDon_BUS {
         return maHoaDonMoi;
     }
 
+<<<<<<< HEAD
     public static boolean themHoaDon(HoaDonDatVe hoaDonDatVe) throws Exception {
         if (hoaDonDatVe.getKhachHangDatVe() == null)
             throw new Exception("Chưa nhập thông tin người đặt vé");
@@ -162,4 +170,13 @@ public class QuanLyHoaDon_BUS {
         return HoaDonBanVe_DAO.getDanhSachHoaDonBanVeTrongCa(caLamViec);
     }
 
+=======
+    public static boolean themHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe){
+        HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
+        return true;
+    }
+    public static String layMaHoaDonDoiLonNhatCuaNgayHienTai(String ngay){
+        return HoaDon_DAO.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngay);
+    }
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
 }

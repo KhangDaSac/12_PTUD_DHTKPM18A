@@ -514,6 +514,7 @@ public class CreatePDF {
         }
     }
 
+<<<<<<< HEAD
     public static void taoHoaDonDatVe(HoaDonDatVe hoaDonDatVe){
         String filePath = "documents/HoaDonDatVe/"+ hoaDonDatVe.getMaHoaDonDatVe() +".pdf";
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
@@ -521,6 +522,15 @@ public class CreatePDF {
         try {
             Rectangle pageSize = new Rectangle(600, 70 * hoaDonDatVe.getDanhSachVeDat().size() + 600);
             Document document = new Document(pageSize);
+=======
+    public static void taoHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe,ChiTietVe ctVeCu){
+        String filePath = "documents/HoaDonDoiVe/"+ hoaDonDoiVe.getMaHoaDonDoiVe() +".pdf";
+        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
+        String qrCodePath = "documents/HoaDonDoiVe/QRCode/QRCode_" + hoaDonDoiVe.getMaHoaDonDoiVe() + ".png";
+        try {
+
+            Document document = new Document();
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
@@ -545,12 +555,20 @@ public class CreatePDF {
             document.add(Chunk.NEWLINE);
 
 
+<<<<<<< HEAD
             Paragraph title = new Paragraph("HÓA ĐƠN ĐẶT VÉ", titleFont);
+=======
+            Paragraph title = new Paragraph("HÓA ĐƠN ĐỔI VÉ", titleFont);
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
             // Mã hóa đơn
+<<<<<<< HEAD
             CreateQRCode.generateQRCode(hoaDonDatVe.getMaHoaDonDatVe(), qrCodePath, 80, 80);
+=======
+            CreateQRCode.generateQRCode(hoaDonDoiVe.getMaHoaDonDoiVe(), qrCodePath, 80, 80);
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
@@ -558,7 +576,11 @@ public class CreatePDF {
             Paragraph maHoaDonPar = new Paragraph();
             maHoaDonPar.setAlignment(Element.ALIGN_LEFT);
             maHoaDonPar.add(new Chunk("Mã hóa đơn: ", boldFont));
+<<<<<<< HEAD
             maHoaDonPar.add(new Chunk(hoaDonDatVe.getMaHoaDonDatVe(), font));
+=======
+            maHoaDonPar.add(new Chunk(hoaDonDoiVe.getMaHoaDonDoiVe(), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(maHoaDonPar);
 
             document.add(Chunk.NEWLINE);
@@ -584,28 +606,45 @@ public class CreatePDF {
 
             Paragraph customerInfo = new Paragraph();
             customerInfo.add(new Chunk("Tên khách hàng: ", boldFont));
+<<<<<<< HEAD
             customerInfo.add(new Chunk(hoaDonDatVe.getKhachHangDatVe().getTenKhachHang(), font));
+=======
+            customerInfo.add(new Chunk(ctVeCu.getKhachHang().getTenKhachHang(), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(customerInfo);
 
             Paragraph customerInfo2 = new Paragraph();
             customerInfo2.add(new Chunk("CCCD: ", boldFont));
+<<<<<<< HEAD
             customerInfo2.add(new Chunk(hoaDonDatVe.getKhachHangDatVe().getCCCD(), font));
+=======
+            customerInfo2.add(new Chunk(ctVeCu.getKhachHang().getCCCD(), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(customerInfo2);
 
             Paragraph customerInfo3 = new Paragraph();
             customerInfo3.add(new Chunk("Số điện thoại: ", boldFont));
+<<<<<<< HEAD
             customerInfo3.add(new Chunk(hoaDonDatVe.getKhachHangDatVe().getSoDienThoai(), font));
+=======
+            customerInfo3.add(new Chunk(ctVeCu.getKhachHang().getSoDienThoai(), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(customerInfo3);
 
 
             Paragraph date = new Paragraph();
             date.add(new Chunk("Thời gian lập hóa đơn: ", boldFont));
+<<<<<<< HEAD
             date.add(new Chunk(TimeFormat.formatLocalDateTime(hoaDonDatVe.getThoiGianLap()), font));
+=======
+            date.add(new Chunk(TimeFormat.formatLocalDateTime(hoaDonDoiVe.getThoiGianDoiVe()), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(date);
 
             document.add(Chunk.NEWLINE);
 
 
+<<<<<<< HEAD
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
 
@@ -613,6 +652,15 @@ public class CreatePDF {
             table.setWidths(columnWidths);
 
             String[] headers = {"STT", "Mã vé đặt", "Tên vé đặt", "Tiền vé", "Đặt cọc"};
+=======
+            PdfPTable table = new PdfPTable(4);
+            table.setWidthPercentage(100);
+
+            float[] columnWidths = {1f, 5f, 6f, 4f};
+            table.setWidths(columnWidths);
+
+            String[] headers = {"STT", "Mã vé", "Tên vé", "Tiền vé"};
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             for (String header : headers) {
                 PdfPCell headerCell = new PdfPCell(new Phrase(header, boldFont));
                 headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -623,34 +671,57 @@ public class CreatePDF {
 
             int i = 1;
 
+<<<<<<< HEAD
             for (VeDat veDat : hoaDonDatVe.getDanhSachVeDat()) {
+=======
+            //for (Ve ve : hoaDonDoiVe.getDanhSachVeDoi()) {
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
 
                 PdfPCell cell1 = new PdfPCell(new Phrase(String.valueOf(i), font));
                 cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell1.setPadding(5);
                 table.addCell(cell1);
 
+<<<<<<< HEAD
                 PdfPCell cell2 = new PdfPCell(new Phrase(veDat.getMaVeDat(), font));
+=======
+                PdfPCell cell2 = new PdfPCell(new Phrase(hoaDonDoiVe.getVeMoi().getMaVe(), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
                 cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell2.setPadding(5);
                 table.addCell(cell2);
 
+<<<<<<< HEAD
                 String tenVe = "Chuyến tàu " + veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
                         + " – " + TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi())
                         + " – " + veDat.getThongTinGaTauDi().getGaTau().getTenGaTau()
                         + " – " + veDat.getThongTinGaTauDen().getGaTau().getTenGaTau()
                         + " – " + (veDat.getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
+=======
+                String tenVe = "Chuyến tàu " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
+                        + " – " + TimeFormat.formatLocalDateTime(hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getThoiGianDi())
+                        + " – " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDi().getGaTau()
+                        + " – " + hoaDonDoiVe.getVeMoi().getThongTinGaTauDen().getGaTau()
+                        + " – " + (hoaDonDoiVe.getVeMoi().getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
 
                 PdfPCell cell3 = new PdfPCell(new Phrase(tenVe, font));
                 cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell3.setPadding(5);
                 table.addCell(cell3);
 
+<<<<<<< HEAD
                 PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(veDat.tienVeCuoi()), font));
+=======
+
+
+                PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonDoiVe.tongTienCuoi()), font));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
                 cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell4.setPadding(5);
                 table.addCell(cell4);
 
+<<<<<<< HEAD
                 PdfPCell cell5 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(veDat.tienDatCoc()), font));
                 cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
                 cell5.setPadding(5);
@@ -660,17 +731,28 @@ public class CreatePDF {
             }
 
             PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", font));
+=======
+                i++;
+           // }
+
+            PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", boldFont));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             totalLabelCell.setColspan(3);
             totalLabelCell.setPadding(5);
             totalLabelCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             table.addCell(totalLabelCell);
 
+<<<<<<< HEAD
             PdfPCell totalValueCell = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonDatVe.tongTienCuoi()), font));
             totalValueCell.setColspan(2);
+=======
+            PdfPCell totalValueCell = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonDoiVe.tongTienCuoi()), boldFont));
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             totalValueCell.setPadding(5);
             totalValueCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(totalValueCell);
 
+<<<<<<< HEAD
             PdfPCell tienDatCocCell = new PdfPCell(new Phrase("TỔNG TIỀN ĐẶT CỌC", boldFont));
             tienDatCocCell.setColspan(3);
             tienDatCocCell.setPadding(5);
@@ -683,6 +765,8 @@ public class CreatePDF {
             giaTriTienDatCocCell.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(giaTriTienDatCocCell);
 
+=======
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
             document.add(table);
 
 
@@ -709,6 +793,7 @@ public class CreatePDF {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
     public static void taoPhieuKetToan(PhieuKetToan phieuKetToan, double[][] dsHoaDon){
         String filePath = "documents/PhieuKetToan/"+ phieuKetToan.getMaPhieuKetToan() +".pdf";
@@ -1015,3 +1100,6 @@ public class CreatePDF {
     }
 
 }
+=======
+}
+>>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a

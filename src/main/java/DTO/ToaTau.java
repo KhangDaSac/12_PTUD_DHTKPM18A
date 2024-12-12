@@ -12,6 +12,9 @@ public class ToaTau {
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
 
+	public ToaTau() {
+
+	}
 
 
 	public String getMaToaTau() {

@@ -18,10 +18,12 @@ public class Cho {
         // TODO Auto-generated constructor stub
     }
 
-    public Cho(ToaTau toaTau, String maCho, int soCho) {
+    public Cho(ToaTau toaTau, String maCho, int soCho,LoaiCho loaiCho) {
         this.toaTau = toaTau;
         this.maCho = maCho;
         this.soCho = soCho;
+        this.loaiCho = loaiCho;
+
     }
 
     public Cho(String maCho, int soCho, double doDaiChangToiThieu, ToaTau toaTau, LoaiCho loaiCho) {
