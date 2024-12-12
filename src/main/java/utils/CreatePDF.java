@@ -1,8 +1,6 @@
 package utils;
 
 import DTO.*;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
@@ -38,8 +36,9 @@ public class CreatePDF {
             //font tieu de
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
-            InputStream is = Objects.requireNonNull(CreatePDF.class.getResourceAsStream("/images/HoaDon/logo.png"));
-            Image logo = Image.getInstance(is.readAllBytes());
+            File fileImageLogo = new File("/images/HoaDon/logo.png");
+            FileInputStream imageStream = new FileInputStream(fileImageLogo);
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -178,13 +177,13 @@ public class CreatePDF {
             System.out.println("Hóa đơn đã được tạo tại: ");
 
 
-            if (!file.exists()) {
+            if (!fileImageLogo.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(file);
+                desktop.open(fileImageLogo);
             }
         } catch (Exception e) {
             e.printStackTrace();

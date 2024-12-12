@@ -419,13 +419,13 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
                 txtSoLuongTo5000.setText(trimmedValue);
             }
             try{
-
-            } catch (Exception e) {
                 int soLuong = Integer.valueOf(txtSoLuongTo5000.getText());
                 phieuKiemTien.getDanhSachChiTietPhieuKiemTien().stream()
                         .filter(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.getMenhGia().equals(MenhGia.T5000VND))
                         .forEach(chiTietPhieuKiemTien -> chiTietPhieuKiemTien.setSoLuong(soLuong));
                 hienThiTongTienPhieuKiemTien();
+            } catch (Exception e) {
+
             }
 
         });
