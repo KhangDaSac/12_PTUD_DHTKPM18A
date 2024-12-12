@@ -38,7 +38,16 @@ public class ChiTietHoaDonLayVe_DAO {
             statement.setString(1,maHoaDon);
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
-                HoaDonLayVe hoaDonLayVe = new HoaDonLayVe(rs.getString("maHoaDonLayVe"),rs.getTimestamp("thoiGianLayVe").toLocalDateTime(),new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangLayVe")),new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                HoaDonLayVe hoaDonLayVe = new HoaDonLayVe(
+                        rs.getString("maHoaDonLayVe"),
+                        rs.getTimestamp("thoiGianLayVe").toLocalDateTime(),
+                        new KhachHang_DAO().getKhachHangTheoMaKhachHang(
+                                rs.getString("maKhachHangLayVe")
+                        ),
+                        new CaLamViec_DAO().getCaLamViecTheoMa(
+                                rs.getString("maCaLamViec")
+                        )
+                );
                 VeDat veDat = VeDat_DAO.getVeDatTheoMa(rs.getString("maVeDat"));
                 Ve ve = Ve_DAO.getVeTheoMa(rs.getString("maVe"));
                 ChiTietHoaDonLayVe chiTietHoaDonLayVe = new ChiTietHoaDonLayVe(veDat,ve,hoaDonLayVe);

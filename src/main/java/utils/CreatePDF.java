@@ -19,7 +19,11 @@ public class CreatePDF {
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonBanVe/QRCode/QRCode_" + hoaDonBanVe.getMaHoaDonBanVe() + ".png";
         try {
-
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             Rectangle pageSize = new Rectangle(600, 65 * hoaDonBanVe.getDanhSachVe().size() + 600);
             Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -197,6 +201,11 @@ public class CreatePDF {
         String filePath = "documents/Ve/" + ve.getMaVe() + ".pdf";
         String qrCodePath = "documents/Ve/QRCode/QRCode_" + ve.getMaVe() + ".png";
         try {
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
             Rectangle pageSize = new Rectangle(300, 120 * ve.getDanhSachChiTietVe().size() + 500);
             Document document = new Document(pageSize);
@@ -329,11 +338,16 @@ public class CreatePDF {
     }
 
     public static void taoHoaDonLayVe(HoaDonLayVe hoaDonLayVe){
+
         String filePath = "documents/HoaDonLayVe/"+ hoaDonLayVe.getMaHoaDonLayVe() +".pdf";
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonLayVe/QRCode/QRCode_" + hoaDonLayVe.getMaHoaDonLayVe() + ".png";
         try {
-
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             Rectangle pageSize = new Rectangle(600, 70 * hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().size() + 600);
             Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -520,6 +534,11 @@ public class CreatePDF {
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonDatVe/QRCode/QRCode_" + hoaDonDatVe.getMaHoaDonDatVe() + ".png";
         try {
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             Rectangle pageSize = new Rectangle(600, 70 * hoaDonDatVe.getDanhSachVeDat().size() + 600);
             Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -715,7 +734,11 @@ public class CreatePDF {
         String filePath = "documents/PhieuKetToan/"+ phieuKetToan.getMaPhieuKetToan() +".pdf";
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         try {
-
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             //Rectangle pageSize = new Rectangle(600, + 600);
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
@@ -1020,7 +1043,11 @@ public class CreatePDF {
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonDoiVe/QRCode/QRCode_" + hoaDonDoiVe.getMaHoaDonDoiVe() + ".png";
         try {
-
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
@@ -1199,6 +1226,11 @@ public class CreatePDF {
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
         String qrCodePath = "documents/HoaDonHuyVe/QRCode/QRCode_" + hoaDonHuyVe.getMaHoaDonHuyVe() + ".png";
         try {
+            File file2 = new File(filePath);
+            if (file2.exists()) {
+                Desktop.getDesktop().open(file2);
+                return;
+            }
             // Ensure the directory exists
             Files.createDirectories(Paths.get(filePath).getParent());
 

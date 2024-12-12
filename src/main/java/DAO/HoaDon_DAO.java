@@ -49,36 +49,5 @@ public class HoaDon_DAO {
 //        return true;
 //    }
 
-    public static String layMaHoaDonDoiLonNhatCuaNgayHienTai(String ngayHienTai){
-        String maHoaDonDoiLonNhat = null;
-        try {
-            String query = "select max(maHoaDonDoiVe) as maHoaDon from HoaDonDoiVe where maHoaDonDoiVe like 'HDDO' + ? + '%'";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, ngayHienTai);
-            ResultSet rs = statement.executeQuery();
-            if(rs.next()){
-                maHoaDonDoiLonNhat = rs.getString("maHoaDon");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return maHoaDonDoiLonNhat;
-    }
 
-    public static boolean themHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe){
-        try{
-            String query ="insert into HoaDonDoiVe values (?, ?, ?, ?, ?, ?)";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,hoaDonDoiVe.getMaHoaDonDoiVe());
-            statement.setTimestamp(2,Timestamp.valueOf(hoaDonDoiVe.getThoiGianDoiVe()));
-            statement.setDouble(3,hoaDonDoiVe.getLePhi());
-            statement.setString(4,hoaDonDoiVe.getVeCu().getMaVe());
-            statement.setString(5,hoaDonDoiVe.getVeMoi().getMaVe());
-            statement.setString(6,hoaDonDoiVe.getCaLamViec().getMaCaLamViec());
-            statement.execute();
-        }catch (Exception e){
-            return false;
-        }
-        return true;
-    }
 }

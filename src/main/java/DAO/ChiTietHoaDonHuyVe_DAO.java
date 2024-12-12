@@ -28,4 +28,20 @@ public class ChiTietHoaDonHuyVe_DAO {
         }
         return dsChiTietHoaDonHuyVe;
     }
+    public static void themDanhsachChiTietHoaDonHuyDatVe(ArrayList<ChiTietHoaDonHuyDatVe> dsChiTietHoaDonHuyDatVe){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "insert into ChiTietHoaDonHuyDatVe\n" +
+                "values( ?,?,?)";
+        try{
+            for(ChiTietHoaDonHuyDatVe cthd:dsChiTietHoaDonHuyDatVe){
+                PreparedStatement statement = con.prepareStatement(query);
+                statement.setString(1,cthd.getVeDat().getMaVeDat());
+                statement.setString(2,cthd.getHoaDonHuyDatVe().getMaHoaDonHuyDatVe());
+                statement.setDouble(3,cthd.getPhanTramLePhi());
+                statement.execute();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

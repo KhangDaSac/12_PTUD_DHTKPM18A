@@ -228,7 +228,7 @@ public class DoiVe_GUI_Controller implements Initializable {
                 choChon.getGiaCho(),
                 ctVe.getPhanTramGiamGia());
 
-        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV30112024C"));
+        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV01032024C003"));
 
         veKhachHang.setDanhSachChiTietVe(new ArrayList<>());
         veKhachHang.getDanhSachChiTietVe().add(ctVe);
@@ -274,9 +274,9 @@ public class DoiVe_GUI_Controller implements Initializable {
             //timDanhSachCho(choChon.getToaTau().getMaToaTau());
             doiVe();
             main_Controller.chuyenTrangDoiVe();
-            hienThiChuyenTau(chuyenTauKH);
+//            hienThiChuyenTau(chuyenTauKH);
         }
-        capNhatCacChoDaChon();
+//        capNhatCacChoDaChon();
     }
 
     @FXML

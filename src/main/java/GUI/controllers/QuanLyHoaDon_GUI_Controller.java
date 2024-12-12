@@ -1,6 +1,5 @@
 package GUI.controllers;
 
-
 import DAO.*;
 import DTO.*;
 import GUI.controllers.QuanLyHoaDon_GUI_Items.VeDat_QuanLyHoaDon_Controller;
@@ -161,36 +160,45 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
 
     @FXML
     void btnInHoaDonOnAcTion(ActionEvent event) {
-        if (selectedHoaDon instanceof HoaDonDatVe){
-            CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+
+        if(selectedHoaDon == null ){
+            main_controller.showMessagesDialog("Bạn chưa chọn hóa đơn nào");
         }
-        if (selectedHoaDon instanceof HoaDonBanVe){
-            CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
-        }
-        if (selectedHoaDon instanceof HoaDonHuyVe){
-            CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
-        }
-        if (selectedHoaDon instanceof HoaDonDoiVe){
-            CreatePDF.taoHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon,((HoaDonDoiVe) selectedHoaDon).getVeCu().getDanhSachChiTietVe().get(0));
-        }
-        if (selectedHoaDon instanceof HoaDonHuyDatVe){
-            CreatePDF.taoHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
-        }
-        if(selectedHoaDon != null ){
-            System.out.println("Bạn chưa chọn hóa đơn nào");
+        else {
+            if (selectedHoaDon instanceof HoaDonDatVe){
+                CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+            }
+            if (selectedHoaDon instanceof HoaDonBanVe){
+                CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
+            }
+            if (selectedHoaDon instanceof HoaDonHuyVe){
+                CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
+            }
+            if (selectedHoaDon instanceof HoaDonDoiVe){
+                CreatePDF.taoHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon,((HoaDonDoiVe) selectedHoaDon).getVeCu().getDanhSachChiTietVe().get(0));
+            }
+            if (selectedHoaDon instanceof HoaDonHuyDatVe){
+                CreatePDF.taoHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
+            }
         }
     }
 
     @FXML
     void btnInVeOnAction(ActionEvent event) {
         if(veChon_list.isEmpty()&&veDatChon_list.isEmpty()){
-            System.out.println("Bạn chưa chọn vé nào");
+            main_controller.showMessagesDialog("Bạn chưa chọn vé nào");
             return;
         } else if (veChon_list.isEmpty()&&!veDatChon_list.isEmpty()) {
-            System.out.println("Vé đặt không được in");
+            main_controller.showMessagesDialog("Vé đặt không được in");
         }else {
             for (Ve ve : veChon_list) {
-                CreatePDF.taoVe(ve);
+                if(ve.getTrangThaiVe().equals(TrangThaiVe.DAHUY)){
+                    main_controller.showMessagesDialog("Vé đã hủy không được in");
+                }
+                else {
+                    CreatePDF.taoVe(ve);
+                }
+
             }
         }
     }
@@ -207,7 +215,7 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
         String CCCD = txtCCCD.getText();
         timHoaDonTheoCacTieuChi(maHoaDon, loaiHoaDon, maCaLam, thoiGianLap, CCCD);
         if (dsHoaDon.isEmpty()){
-            System.out.println("khong tim thay hoa don");
+            main_controller.showMessagesDialog("Không tìm thấy hóa đơn");
             get10HoaDonGanNhat();
         }
         tableView.setItems(dsHoaDon);
@@ -312,7 +320,7 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initableComboBox();
         get10HoaDonGanNhat();
-        hienThiDanhSachHoaDon();
+       hienThiDanhSachHoaDon();
     }
     public void initableComboBox() {
         ObservableList<String> loaiHoaDon = FXCollections.observableArrayList("Hóa đơn đặt vé", "Hóa đơn bán vé", "Hóa đơn hủy vé","Hóa đơn đổi vé","Hóa đơn hủy đặt vé","Hóa đơn lấy vé");

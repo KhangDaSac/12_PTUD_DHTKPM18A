@@ -2,7 +2,6 @@ package GUI.controllers;
 
 import DTO.*;
 import GUI.applications.Run;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -380,8 +379,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        HuyDatVe_GUI_Controller controller = loader.getController();
-//        controller.setMain_Controller(this);
+        HuyDatVe_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -460,7 +459,7 @@ public class Main_Controller implements Initializable {
         try {
             trangMoi = loader.load();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         QuanLyHoaDon_GUI_Controller controller = loader.getController();

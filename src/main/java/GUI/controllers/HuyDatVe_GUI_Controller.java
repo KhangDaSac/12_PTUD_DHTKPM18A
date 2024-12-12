@@ -116,7 +116,7 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         String maHoaDonHuyDatVe = QuanLyHoaDon_BUS.layHoaDonHuyDatVeTiepTheo();
         hoaDonHuyDatVe = new HoaDonHuyDatVe(maHoaDonHuyDatVe);
         hoaDonHuyDatVe.setDanhSachChiTietHoaDonHuyDatVe(new ArrayList<ChiTietHoaDonHuyDatVe>());
-        hoaDonHuyDatVe.setCaLamViec(new CaLamViec("CLV13122024C"));
+        hoaDonHuyDatVe.setCaLamViec(new CaLamViec("CLV13122024P001"));
     }
 
     public void loadDanhSachHoaDonDat() {
@@ -151,6 +151,10 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         String CCCD = txtCCCD.getText();
         LocalDate ngayThanhToan = dapNgayThanhToan.getValue();
         danhSachHoaDonDatVe = HoaDonDatVe_DAO.getDanhSachHoaDonDatVeTheoCCCD(CCCD, ngayThanhToan);
+        if(danhSachHoaDonDatVe.isEmpty()){
+            main_controller.showMessagesDialog("Không tìm thấy hóa đơn");
+            loadDanhSachHoaDonDat();
+        }
         hienThiDanhSachHoaDonDat();
     }
 
@@ -259,16 +263,28 @@ public class HuyDatVe_GUI_Controller implements Initializable {
 
 
     public void btnHuyPhieuDatOnAction(ActionEvent actionEvent) {
-        chonVeHuy();
-        huyVeDat();
-        System.out.println("ten Khach hangg"+hoaDonHuyDatVe.getKhachHangHuyDatVe().getTenKhachHang());
-        System.out.println("cccc"+ hoaDonHuyDatVe.getKhachHangHuyDatVe().getCCCD());
-        System.out.println("sdt"+ hoaDonHuyDatVe.getKhachHangHuyDatVe().getSoDienThoai());
-        System.out.println("thoi gian huy"+ hoaDonHuyDatVe.getThoiGianHuy());
-        if(danhSachDatVe.isEmpty()){
-            danhSachHoaDonDatVe.remove(hoaDonDatVeDangChon);
+        if (hoaDonDatVeDangChon== null){
+            main_controller.showMessagesDialog("Chưa có hóa đơn nào được chọn");
         }
-        veDatChon_list.clear();
-        hienThiDanhSachHoaDonDat();
+        else{
+            chonVeHuy();
+            if(veDatChon_list.isEmpty()){
+                main_controller.showMessagesDialog("Không có vé nào được chọn");
+            }
+            else{
+                huyVeDat();
+                System.out.println("ten Khach hangg"+hoaDonHuyDatVe.getKhachHangHuyDatVe().getTenKhachHang());
+                System.out.println("cccc"+ hoaDonHuyDatVe.getKhachHangHuyDatVe().getCCCD());
+                System.out.println("sdt"+ hoaDonHuyDatVe.getKhachHangHuyDatVe().getSoDienThoai());
+                System.out.println("thoi gian huy"+ hoaDonHuyDatVe.getThoiGianHuy());
+                if(danhSachDatVe.isEmpty()){
+                    danhSachHoaDonDatVe.remove(hoaDonDatVeDangChon);
+                }
+                veDatChon_list.clear();
+                hienThiDanhSachHoaDonDat();
+            }
+
+        }
+
     }
 }

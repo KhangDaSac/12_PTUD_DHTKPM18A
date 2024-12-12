@@ -98,6 +98,7 @@ public class ChiTietVe_DAO {
             statement.setDouble(4,chiTietVe.getGiaCho());
             statement.setDouble(5,chiTietVe.getPhanTramGiamGia());
             statement.execute();
+            System.out.printf("dadx them ctVe moi");
         }catch (Exception e){
             return false;
         }

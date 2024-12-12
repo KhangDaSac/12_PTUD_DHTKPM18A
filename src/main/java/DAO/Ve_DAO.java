@@ -133,7 +133,13 @@ public class Ve_DAO {
             ResultSet rs = statement.executeQuery();
             while( rs.next()){
                 String ma = rs.getString("maVe");
-                HoaDonBanVe maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe"));
+                HoaDonBanVe maHoaHon ;
+                if(rs.getString("maHoaDonBanVe")==null){
+                     maHoaHon = new HoaDonBanVe();
+                }
+                else{
+                     maHoaHon = new HoaDonBanVe(rs.getString("maHoaDonBanVe"));
+                }
                 ChuyenTau maChuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
                 GaTau gaDi = new GaTau(rs.getString("maGaDi"),rs.getString("tenGaDi"));
                 GaTau gaDen= new GaTau(rs.getString("maGaDen"),rs.getString("tenGaDen"));
@@ -156,6 +162,7 @@ public class Ve_DAO {
         }
         return veTim;
     }
+
 
     public static ArrayList<Ve> xuatDanhSachVeTheoMaHoaDonBanVe(String maHoaDon){
         ArrayList<Ve> danhSachVe = new ArrayList<>();
@@ -189,7 +196,7 @@ public class Ve_DAO {
     public static ArrayList<Ve> getDanhSachVeTheoMaHoaDonDoi(String maHoaDon){
         ArrayList<Ve> dsVe = new ArrayList<>();
         Connection con = ConnectDB.getInstance().getConnection();
-        String query = "select  * from HoaDonDoiVe ?";
+        String query = "select  * from HoaDonDoiVe where maHoaDonDoiVe = ?";
         try{
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1,maHoaDon);
