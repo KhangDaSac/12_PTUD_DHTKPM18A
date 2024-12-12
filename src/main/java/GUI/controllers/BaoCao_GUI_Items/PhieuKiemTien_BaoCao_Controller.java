@@ -230,9 +230,12 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
 
             baoCao_gui_controller.getMain_controller().setPhieuKetToan(phieuKetToan);
+            baoCao_gui_controller.getMain_controller().getPhieuKetToan().getCaLamViec().setThoiGianKetThuc(LocalDateTime.now());
             baoCao_gui_controller.capNhatThongTinCaLamViec();
             baoCao_gui_controller.capTongTienCuoiCa();
             baoCao_gui_controller.capNhatTienChenhLech();
+            baoCao_gui_controller.getMain_controller().getPhieuKetToan().setDoanhThuThongKe(baoCao_gui_controller.tongTienTrongCa());
+            QuanLyCaLamViec_BUS.capNhatDoanhThuThongKe(baoCao_gui_controller.getMain_controller().getPhieuKetToan());
             baoCao_gui_controller.getMain_controller().showMessagesDialog("Tạo phiếu kiểm tiền cuối ca thành công");
         }
 

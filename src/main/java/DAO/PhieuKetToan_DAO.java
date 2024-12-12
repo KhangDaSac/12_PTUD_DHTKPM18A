@@ -41,4 +41,18 @@ public class PhieuKetToan_DAO {
         return true;
     }
 
+    public static boolean capNhatDoanhThuThongKe(PhieuKetToan phieuKetToan){
+        try {
+            String query = "update PhieuKetToan set doanhThuThongKe = ? where maPhieuKetToan = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setDouble(1, phieuKetToan.getDoanhThuThongKe());
+            statement.setString(2, phieuKetToan.getMaPhieuKetToan());
+            statement.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }

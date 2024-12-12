@@ -54,4 +54,8 @@ public class QuanLyCaLamViec_BUS {
 
         return true;
     }
+
+    public static boolean capNhatDoanhThuThongKe(PhieuKetToan phieuKetToan){
+        return PhieuKetToan_DAO.capNhatDoanhThuThongKe(phieuKetToan);
+    }
 }

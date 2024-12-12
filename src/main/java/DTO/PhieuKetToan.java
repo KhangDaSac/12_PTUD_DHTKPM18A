@@ -81,4 +81,8 @@ public class PhieuKetToan {
     public double doanhThuThucTe(){
         return phieuKiemTienCuoiCa.tongTien() - phieuKiemTienDauCa.tongTien();
     }
+
+    public double chenhLech(){
+        return doanhThuThucTe() - doanhThuThongKe;
+    }
 }

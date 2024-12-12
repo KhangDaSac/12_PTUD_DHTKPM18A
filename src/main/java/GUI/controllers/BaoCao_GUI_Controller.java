@@ -1,5 +1,6 @@
 package GUI.controllers;
 
+import BUS.QuanLyCaLamViec_BUS;
 import BUS.QuanLyHoaDon_BUS;
 import DTO.CaLamViec;
 import DTO.NhanVien;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import utils.CreatePDF;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
@@ -134,7 +136,17 @@ public class BaoCao_GUI_Controller implements Initializable {
 
     @FXML
     void btnXuatFileVaKetCaOnAction(ActionEvent event) {
-
+        if(main_controller.getPhieuKetToan() == null
+                || main_controller.getPhieuKetToan().getCaLamViec() == null
+                || main_controller.getPhieuKetToan().getPhieuKiemTienDauCa() == null){
+            main_controller.showMessagesDialog("Chưa có phiếu kiểm tiền đầu ca");
+            return;
+        }
+        if(main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() == null){
+            main_controller.showMessagesDialog("Chưa có phiếu kiểm tiền cuối ca");
+            return;
+        }
+        CreatePDF.taoPhieuKetToan(main_controller.getPhieuKetToan(), dsHoaDon);
     }
 
     public void hienThiPhieuKiemTienDauCa(){
@@ -233,8 +245,6 @@ public class BaoCao_GUI_Controller implements Initializable {
 
         lblSoLuongHoaDonDoiVe.setText(String.valueOf((int)dsHoaDon[5][0]));
         lblTongTienHoaDonDoiVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[5][1]));
-
-        main_controller.getPhieuKetToan().setDoanhThuThongKe(tongTienTrongCa());
     }
 
     public double tongTienTrongCa(){
