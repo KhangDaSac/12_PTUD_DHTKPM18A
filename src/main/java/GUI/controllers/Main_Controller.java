@@ -324,7 +324,6 @@ public class Main_Controller implements Initializable {
 
         }
     }
-
     @FXML
     void btnDatVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("ĐẶT VÉ");
