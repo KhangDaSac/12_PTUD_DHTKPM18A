@@ -4,6 +4,7 @@ import BUS.QuanLyCaLamViec_BUS;
 import BUS.QuanLyNhanVien_BUS;
 import DTO.*;
 import GUI.controllers.BaoCao_GUI_Controller;
+import GUI.controllers.Main_Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;
@@ -84,6 +85,7 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
     private PhieuKiemTien phieuKiemTien;
     private BaoCao_GUI_Controller baoCao_gui_controller;
+    private Main_Controller main_controller;
     private JFXDialog dialog;
 
     public JFXDialog getDialog() {
@@ -100,6 +102,14 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
 
     public void setBaoCao_gui_controller(BaoCao_GUI_Controller baoCao_gui_controller) {
         this.baoCao_gui_controller = baoCao_gui_controller;
+    }
+
+    public Main_Controller getMain_controller() {
+        return main_controller;
+    }
+
+    public void setMain_controller(Main_Controller main_controller) {
+        this.main_controller = main_controller;
     }
 
     public String getLoaiPhieuKiemTien() {
@@ -203,7 +213,7 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
         }
         if(loaiPhieuKiemTien.equals("DC")){
             String maCaLamViec = QuanLyCaLamViec_BUS.taoMaCaLamViecMoi();
-            CaLamViec caLamViec = new CaLamViec(maCaLamViec, LocalDateTime.now(), null, baoCao_gui_controller.getMain_controller().getNhanVien());
+            CaLamViec caLamViec = new CaLamViec(maCaLamViec, LocalDateTime.now(), null, main_controller.getNhanVien());
             System.out.println(caLamViec.getMaCaLamViec());
 
             PhieuKetToan phieuKetToan = new PhieuKetToan("PKTO" + maCaLamViec.substring(3), caLamViec, LocalDateTime.now());
@@ -213,14 +223,16 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
             if(!QuanLyCaLamViec_BUS.taoCaLamViecMoi(phieuKetToan))
                 return;
 
-            baoCao_gui_controller.getMain_controller().setPhieuKetToan(phieuKetToan);
-            baoCao_gui_controller.capNhatThongTinCaLamViec();
-            baoCao_gui_controller.capTongTienDauCa();
-            baoCao_gui_controller.getMain_controller().showMessagesDialog("Tạo phiếu kiểm tiền đầu ca thành công");
+            main_controller.setPhieuKetToan(phieuKetToan);
+            if (baoCao_gui_controller != null){
+                baoCao_gui_controller.capNhatThongTinCaLamViec();
+                baoCao_gui_controller.capTongTienDauCa();
+            }
+            main_controller.showMessagesDialog("Tạo phiếu kiểm tiền đầu ca thành công");
         }
 
         if(loaiPhieuKiemTien.equals("CC")){
-            PhieuKetToan phieuKetToan = baoCao_gui_controller.getMain_controller().getPhieuKetToan();
+            PhieuKetToan phieuKetToan = main_controller.getPhieuKetToan();
             String maCaLamViec = phieuKetToan.getCaLamViec().getMaCaLamViec();
             phieuKiemTien.setMaPhieuKiemTien("PKTI" + maCaLamViec.substring(3) + loaiPhieuKiemTien);
             phieuKiemTien.setThoiGianKiemTien(LocalDateTime.now());
@@ -229,20 +241,21 @@ public class PhieuKiemTien_BaoCao_Controller implements Initializable {
                 return;
 
 
-            baoCao_gui_controller.getMain_controller().setPhieuKetToan(phieuKetToan);
-            baoCao_gui_controller.getMain_controller().getPhieuKetToan().getCaLamViec().setThoiGianKetThuc(LocalDateTime.now());
-            baoCao_gui_controller.capNhatThongTinCaLamViec();
-            baoCao_gui_controller.capTongTienCuoiCa();
-            baoCao_gui_controller.capNhatTienChenhLech();
-            baoCao_gui_controller.getMain_controller().getPhieuKetToan().setDoanhThuThongKe(baoCao_gui_controller.tongTienTrongCa());
-            QuanLyCaLamViec_BUS.capNhatDoanhThuThongKe(baoCao_gui_controller.getMain_controller().getPhieuKetToan());
-            baoCao_gui_controller.getMain_controller().showMessagesDialog("Tạo phiếu kiểm tiền cuối ca thành công");
+            main_controller.setPhieuKetToan(phieuKetToan);
+            main_controller.getPhieuKetToan().getCaLamViec().setThoiGianKetThuc(LocalDateTime.now());
+            if(baoCao_gui_controller != null){
+                baoCao_gui_controller.capNhatThongTinCaLamViec();
+                baoCao_gui_controller.capTongTienCuoiCa();
+                baoCao_gui_controller.capNhatTienChenhLech();
+                baoCao_gui_controller.capNhatTienTrongCa();
+                main_controller.getPhieuKetToan().setDoanhThuThongKe(baoCao_gui_controller.tongTienTrongCa());
+            }
+            QuanLyCaLamViec_BUS.capNhatDoanhThuThongKe(main_controller.getPhieuKetToan());
+            main_controller.showMessagesDialog("Tạo phiếu kiểm tiền cuối ca thành công");
         }
 
         if(dialog != null) dialog.close();
     }
-
-
 
     private void khoiTaoPhieuKiemTien(){
         ArrayList<ChiTietPhieuKiemTien> dsChiTietPhieuKiemTien = new ArrayList<>();

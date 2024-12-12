@@ -158,6 +158,7 @@ public class BaoCao_GUI_Controller implements Initializable {
             controller.setBaoCao_gui_controller(this);
             dialog = main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
             controller.setDialog(dialog);
+            controller.setMain_controller(main_controller);
             controller.setNhanVienKiemTien(main_controller.getNhanVien());
             controller.setLoaiPhieuKiemTien("DC");
         }catch (Exception e){
@@ -172,6 +173,7 @@ public class BaoCao_GUI_Controller implements Initializable {
             PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
             controller.setBaoCao_gui_controller(this);
             dialog = main_controller.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
+            controller.setMain_controller(main_controller);
             controller.setDialog(dialog);
             controller.setNhanVienKiemTien(main_controller.getNhanVien());
             controller.setLoaiPhieuKiemTien("CC");

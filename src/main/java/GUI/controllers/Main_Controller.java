@@ -2,6 +2,7 @@ package GUI.controllers;
 
 import DTO.*;
 import GUI.applications.Run;
+import GUI.controllers.BaoCao_GUI_Items.PhieuKiemTien_BaoCao_Controller;
 import com.jfoenix.controls.JFXDialog;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -199,6 +200,21 @@ public class Main_Controller implements Initializable {
     }
 
     public JFXDialog dialog;
+
+    public void hienThiPhieuKiemTienDauCa(){
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            PhieuKiemTien_BaoCao_Controller controller = fxmlLoader.getController();
+            controller.setMain_controller(this);
+            dialog = this.showWindowDialog(anchorPane, "Phiếu kiểm tiền");
+            controller.setDialog(dialog);
+            controller.setNhanVienKiemTien(nhanVien);
+            controller.setLoaiPhieuKiemTien("DC");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void btnTrangChuOnAction(ActionEvent event) {

@@ -64,6 +64,7 @@ public class DangNhap_GUI_Controller {
                 main_controller.setNhanVien(nhanVien);
                 stage.setScene(scene);
                 stage.centerOnScreen();
+                main_controller.hienThiPhieuKiemTienDauCa();
             }
         } catch (Exception e) {
             lblThongBao.setText(e.getMessage());
