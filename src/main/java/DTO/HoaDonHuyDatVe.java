@@ -53,6 +53,13 @@ public class HoaDonHuyDatVe {
         this.danhSachChiTietHoaDonHuyDatVe = danhSachChiTietHoaDonHuyDatVe;
     }
 
+    public HoaDonHuyDatVe(String maHoaDonHuyDatVe,LocalDateTime thoiGianHuy,CaLamViec caLamViec, KhachHang khachHangHuyDatVe  ) {
+        this.caLamViec = caLamViec;
+        this.khachHangHuyDatVe = khachHangHuyDatVe;
+        this.thoiGianHuy = thoiGianHuy;
+        this.maHoaDonHuyDatVe = maHoaDonHuyDatVe;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,4 +81,14 @@ public class HoaDonHuyDatVe {
         return tongTienCuoi;
     }
 
+    public HoaDonHuyDatVe(String maHoaDonHuyDatVe) {
+        this.maHoaDonHuyDatVe = maHoaDonHuyDatVe;
+    }
+
+    public void addChiTietHoaDonHuyDatVe(ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe) {
+        this.danhSachChiTietHoaDonHuyDatVe.add(chiTietHoaDonHuyDatVe);
+    }
+
+    public HoaDonHuyDatVe() {
+    }
 }

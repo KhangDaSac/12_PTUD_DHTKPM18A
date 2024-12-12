@@ -103,6 +103,7 @@ public class ChiTietChuyenTau {
 		return Objects.equals(chuyenTau, that.chuyenTau) && Objects.equals(gaTau, that.gaTau);
 	}
 
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(chuyenTau, gaTau);

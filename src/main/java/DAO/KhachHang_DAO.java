@@ -121,6 +121,32 @@ public class KhachHang_DAO {
         }
         return null;
     }
+    public static KhachHang getKhachHangTheoMaKhachHang(String maKhachHang){
+        Connection con = ConnectDB.getInstance().getConnection();
+        try {
+            String query = "select maKhachHang, CCCD, tenKhachHang, soDienThoai, lkh.maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia" +
+                    " from KhachHang kh" +
+                    " join LoaiKhachHang lkh on kh.maLoaiKhachHang = lkh.maLoaiKhachHang" +
+                    " where maKhachHang = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maKhachHang);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String maKhachHang1 = rs.getString("maKhachHang");
+                String tenKhachHang = rs.getString("tenKhachHang");
+                String cccdKH = rs.getString("CCCD");
+                String soDienThoai = rs.getString("soDienThoai");
+                String maLoaiKhachHang = rs.getString("maLoaiKhachHang");
+                String tenLoaiKhachHang = rs.getString("tenLoaiKhachHang");
+                double phanTramGiamGia = rs.getDouble("phanTramGiamGia");
+                LoaiKhachHang loaiKhachHang = new LoaiKhachHang(maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia);
+                return new KhachHang(maKhachHang1, cccdKH, tenKhachHang, soDienThoai, loaiKhachHang);
+            }
+        }catch (Exception e){
+
+        }
+        return null;
+    }
 
     public static int laySoMaKhachHangLonNhatNamHienTai(String namHienTai){
         int tong =1;

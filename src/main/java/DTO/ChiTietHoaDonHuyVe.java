@@ -1,7 +1,6 @@
 package DTO;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class ChiTietHoaDonHuyVe {
@@ -51,15 +50,15 @@ public class ChiTietHoaDonHuyVe {
         return thoiGianConLai;
     }
 
-    public ChiTietHoaDonHuyVe() {
+    public ChiTietHoaDonHuyVe(HoaDonHuyVe maHoaDonHuyVe, Ve ve, double phanTramLePhi) {
         long soGioConLai = thoiGianConLai().toHours();
-        if(ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
+        if(this.ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
             if(soGioConLai >= 48){
                 this.phanTramLePhi = 0.1;
             }else if(soGioConLai >= 4){
                 this.phanTramLePhi = 0.2;
             }
-        }else if(ve.getLoaiVe().equals(LoaiVe.VETAPTHE)){
+        }else if(this.ve.getLoaiVe().equals(LoaiVe.VETAPTHE)){
             if(soGioConLai >= 72){
                 this.phanTramLePhi = 0.2;
             }else if(soGioConLai >= 24){

@@ -12,6 +12,10 @@ public class HoaDonDatVe {
 
     private ArrayList<VeDat> danhSachVeDat;
 
+    public HoaDonDatVe() {
+
+    }
+
     public String getMaHoaDonDatVe() {
         return maHoaDonDatVe;
     }

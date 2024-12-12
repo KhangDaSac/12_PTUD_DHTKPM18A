@@ -18,12 +18,18 @@ public class Cho {
         // TODO Auto-generated constructor stub
     }
 
-    public Cho(ToaTau toaTau, String maCho, int soCho,LoaiCho loaiCho) {
-        this.toaTau = toaTau;
+    public Cho(String maCho, int soCho, LoaiCho loaiCho, ToaTau toaTau) {
         this.maCho = maCho;
         this.soCho = soCho;
         this.loaiCho = loaiCho;
+        this.toaTau = toaTau;
+    }
 
+
+    public Cho(String maCho, int soCho, LoaiCho loaiCho) {
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.loaiCho = loaiCho;
     }
 
     public Cho(String maCho, int soCho, double doDaiChangToiThieu, ToaTau toaTau, LoaiCho loaiCho) {
@@ -33,6 +39,7 @@ public class Cho {
         this.doDaiChangToiThieu = doDaiChangToiThieu;
         this.toaTau = toaTau;
         this.loaiCho = loaiCho;
+        this.giaCho = tinhGiaCho(doDaiChangToiThieu);
     }
 
     public Cho(String maCho, int soCho, double doDaiChangToiThieu, double giaCho, ToaTau toaTau, LoaiCho loaiCho, TrangThaiCho trangThaiCho) {
@@ -151,6 +158,13 @@ public class Cho {
         this.loaiCho = loaiCho;
     }
 
+    public Cho(ToaTau toaTau, String maCho, int soCho, LoaiCho loaiCho) {
+        this.toaTau = toaTau;
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.loaiCho = loaiCho;
+    }
+
     @Override
     public String toString() {
         return "Cho{" +
@@ -186,4 +200,5 @@ public class Cho {
 
         return gia;
     }
+
 }

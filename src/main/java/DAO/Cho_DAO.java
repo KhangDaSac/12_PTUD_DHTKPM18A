@@ -52,5 +52,24 @@ public class Cho_DAO {
         }
         return danhSachCho;
     }
+    public static Cho getChoTheoMaCho(String maCho){
+        String query = "select * from Cho where maCho = ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maCho);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                LoaiCho loaiCho = LoaiCho_DAO.getLoaiChoTheoMa(rs.getString("maLoaiCho"));
+                ToaTau toaTau = ToaTau_DAO.getToaTauTheoMa(rs.getString("maToaTau"));
+                Cho cho = new Cho(rs.getString("maCho"), rs.getInt("soCho"),rs.getDouble("doDaiChanToiThieu"), toaTau, loaiCho);
+                System.out.println("giá chỗ "+cho.getGiaCho());
+                return cho;
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 
 }

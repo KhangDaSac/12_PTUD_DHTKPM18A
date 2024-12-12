@@ -156,4 +156,58 @@ public class Ve_DAO {
         }
         return veTim;
     }
+
+    public static ArrayList<Ve> xuatDanhSachVeTheoMaHoaDonBanVe(String maHoaDon){
+        ArrayList<Ve> danhSachVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query= "select * from ChiTietVe as ctv join Ve as v on ctv.maVe=v.maVe join HoaDonBanVe as hdbv on v.maHoaDonBanVe= hdbv.maHoaDonBanVe where hdbv.maHoaDonBanVe = ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDen"));
+                ChiTietVe chiTietVe = new ChiTietVe(new Ve(rs.getString("maVe")), new Cho_DAO().getChoTheoMaCho(rs.getString("maCho")) ,new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHang")), rs.getDouble("giaCho"));
+                Ve ve = null;
+                for(Ve v: danhSachVe){
+                    if(v.getMaVe().equals(rs.getString("maVe"))){
+                        ve=v;
+                    }
+                }
+                    if(ve==null){
+                        ve = new Ve(rs.getString("maVe"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi, thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                        danhSachVe.add(ve);
+                    }
+                ve.addChiTietVe(chiTietVe);
+            }
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return danhSachVe;
+    }
+    public static ArrayList<Ve> getDanhSachVeTheoMaHoaDonDoi(String maHoaDon){
+        ArrayList<Ve> dsVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select  * from HoaDonDoiVe ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                ArrayList<ChiTietVe> dschiTietVeMoi = ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(rs.getString("maVeMoi"));
+                ArrayList<ChiTietVe> dschiTietVeCu = ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(rs.getString("maVeCu"));
+                Ve veMoi = getVeTheoMa(rs.getString("maVeMoi"));
+                Ve veCu = getVeTheoMa(rs.getString("maVeCu"));
+                veMoi.setDanhSachChiTietVe(dschiTietVeMoi);
+                veCu.setDanhSachChiTietVe(dschiTietVeCu);
+                dsVe.add(veMoi);
+                dsVe.add(veCu);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return dsVe;
+    }
+
 }

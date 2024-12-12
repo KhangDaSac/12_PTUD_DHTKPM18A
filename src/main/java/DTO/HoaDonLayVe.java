@@ -12,10 +12,6 @@ public class HoaDonLayVe {
 
     private ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe;
 
-    public HoaDonLayVe() {
-
-    }
-
     public String getMaHoaDonLayVe() {
         return maHoaDonLayVe;
     }
@@ -56,6 +52,13 @@ public class HoaDonLayVe {
         this.danhSachChiTietHoaDonLayVe = danhSachChiTietHoaDonLayVe;
     }
 
+    public HoaDonLayVe(String maHoaDonLayVe, LocalDateTime thoiGianLayVe, KhachHang khachHangLayVe, CaLamViec caLamViec) {
+        this.maHoaDonLayVe = maHoaDonLayVe;
+        this.thoiGianLayVe = thoiGianLayVe;
+        this.khachHangLayVe = khachHangLayVe;
+        this.caLamViec = caLamViec;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,5 +82,19 @@ public class HoaDonLayVe {
             tongTienCuoi += chiTietHoaDonLayVe.thanhTien();
         }
         return tongTienCuoi;
+    }
+
+    public HoaDonLayVe(String maHoaDonLayVe, LocalDateTime thoiGianLayVe, KhachHang khachHangLayVe, CaLamViec caLamViec, ArrayList<ChiTietHoaDonLayVe> danhSachChiTietHoaDonLayVe) {
+        this.maHoaDonLayVe = maHoaDonLayVe;
+        this.thoiGianLayVe = thoiGianLayVe;
+        this.khachHangLayVe = khachHangLayVe;
+        this.caLamViec = caLamViec;
+        this.danhSachChiTietHoaDonLayVe = new ArrayList<>();
+    }
+    public void addDanhSachChiTietHoaDonLayVe(ChiTietHoaDonLayVe chiTietHoaDonLayVe){
+        this.danhSachChiTietHoaDonLayVe.add(chiTietHoaDonLayVe);
+    }
+
+    public HoaDonLayVe() {
     }
 }

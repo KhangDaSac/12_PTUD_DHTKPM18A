@@ -92,4 +92,21 @@ public class ToaTau_DAO {
         }
         return danhSachToaTau;
     }
+    public static ToaTau getToaTauTheoMa(String maToa){
+        String query = "select * from ToaTau where maToaTau = ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maToa);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                LoaiToaTau loaiToaTau = LoaiToaTau_DAO.timLoaiToaTauTheoMa(rs.getString("maLoaiToa"));
+                ChuyenTau chuyenTau = new ChuyenTau(rs.getString("maChuyenTau"));
+                ToaTau toaTau = new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"), loaiToaTau, chuyenTau);
+                return toaTau;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

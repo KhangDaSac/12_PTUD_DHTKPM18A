@@ -15,22 +15,23 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class QuanLyHoaDon_BUS {
-    public static String layHoaDonBanVeTiepTheo(){
+    public static String layHoaDonBanVeTiepTheo() {
         String maHoaDonMoi = null;
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
         String maHoaDonCu = HoaDonBanVe_DAO.layMaHoaDonBanVeLonNhatCuaNgayHienTai(ngayHienTaiString);
-        if(maHoaDonCu == null){
+        if (maHoaDonCu == null) {
             return "HDBV" + ngayHienTaiString + "000001";
         }
 
         String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
         String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
 
-        maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
+        maHoaDonMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
 
         return maHoaDonMoi;
+
     }
 
     public static boolean themHoaDon(HoaDonBanVe hoaDonBanVe) throws Exception {
@@ -62,85 +63,87 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static ArrayList<HoaDonDatVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang){
+    public static ArrayList<HoaDonDatVe> getDanhSachHoaDonDatTheoMaKhachHang(String maKhachHang) {
         return HoaDonDatVe_DAO.getDanhSachHoaDonDatTheoMaKhachHang(maKhachHang);
     }
 
-    public static String layHoaDonLayVeTiepTheo(){
+    public static String layHoaDonLayVeTiepTheo() {
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
         String maHoaDonCu = HoaDonLayVe_DAO.layMaHoaDonLayVeLonNhatCuaNgayHienTai(ngayHienTaiString);
-        if(maHoaDonCu == null){
+        if (maHoaDonCu == null) {
             return "HDLV" + ngayHienTaiString + "000001";
         }
 
         String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
         String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
 
-        String maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
+        String maHoaDonMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
 
         return maHoaDonMoi;
     }
 
-    public static boolean themHoaDonLayVe(HoaDonLayVe hoaDonLayVe){
+    public static boolean themHoaDonLayVe(HoaDonLayVe hoaDonLayVe) {
         ArrayList<Ve> danhSachVe = new ArrayList<Ve>();
         ArrayList<VeDat> danhSachVeDat = new ArrayList<VeDat>();
-        for (ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
+        for (ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()) {
             danhSachVe.add(chiTietHoaDonLayVe.getVe());
             danhSachVeDat.add(chiTietHoaDonLayVe.getVeDat());
         }
 
-        if(!HoaDonLayVe_DAO.themHoaDonLayVe(hoaDonLayVe)){
+        if (!HoaDonLayVe_DAO.themHoaDonLayVe(hoaDonLayVe)) {
             return false;
         }
 
-        if(!Ve_DAO.themDanhSachVe(danhSachVe)){
+        if (!Ve_DAO.themDanhSachVe(danhSachVe)) {
             return false;
         }
 
-        for(Ve ve : danhSachVe){
-            if(!ChiTietVe_DAO.themDanhSachChiTietVe(ve.getDanhSachChiTietVe())){
+        for (Ve ve : danhSachVe) {
+            if (!ChiTietVe_DAO.themDanhSachChiTietVe(ve.getDanhSachChiTietVe())) {
                 return false;
             }
         }
 
-        if(!ChiTietHoaDonLayVe_DAO.themDanhSachChiTietHoaDonLayVe(hoaDonLayVe.getDanhSachChiTietHoaDonLayVe())){
+        if (!ChiTietHoaDonLayVe_DAO.themDanhSachChiTietHoaDonLayVe(hoaDonLayVe.getDanhSachChiTietHoaDonLayVe())) {
             return false;
         }
 
-        if(!VeDat_DAO.capNhatTrangThaiVeDat(danhSachVeDat)){
+        if (!VeDat_DAO.capNhatTrangThaiVeDat(danhSachVeDat)) {
             return false;
         }
 
         return true;
     }
 
-    public static String layMaHoaDonDatVeTiepTheo(){
+    public static String layMaHoaDonDatVeTiepTheo() {
         String maHoaDonMoi = null;
         LocalDate ngayHienTai = LocalDate.now();
         String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
 
         String maHoaDonCu = HoaDonDatVe_DAO.layMaHoaDonDatVeLonNhatCuaNgayHienTai(ngayHienTaiString);
-        if(maHoaDonCu == null){
+        if (maHoaDonCu == null) {
             return "HDDV" + ngayHienTaiString + "000001";
         }
 
         String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
         String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
 
-        maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
+        maHoaDonMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
 
         return maHoaDonMoi;
     }
 
-    public static boolean themHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe){
+    public static boolean themHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe) {
         HoaDon_DAO.themHoaDonDoiVe(hoaDonDoiVe);
         return true;
     }
-    public static String layMaHoaDonDoiLonNhatCuaNgayHienTai(String ngay){
+
+    public static String layMaHoaDonDoiLonNhatCuaNgayHienTai(String ngay) {
         return HoaDon_DAO.layMaHoaDonDoiLonNhatCuaNgayHienTai(ngay);
     }
+
     public static boolean themHoaDon(HoaDonDatVe hoaDonDatVe) throws Exception {
         if (hoaDonDatVe.getKhachHangDatVe() == null)
             throw new Exception("Chưa nhập thông tin người đặt vé");
@@ -169,11 +172,65 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static double[][] getDanhSachHoaDonBanVeTheoMaCa(CaLamViec caLamViec){
-        if(caLamViec == null){
+    public static double[][] getDanhSachHoaDonBanVeTheoMaCa(CaLamViec caLamViec) {
+        if (caLamViec == null) {
             return null;
         }
         return HoaDonBanVe_DAO.getDanhSachHoaDonBanVeTrongCa(caLamViec);
     }
 
+    public static boolean themHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe) {
+        ArrayList<VeDat> danhSachVeDat = new ArrayList<VeDat>();
+        for (ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe : hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe()) {
+            danhSachVeDat.add(chiTietHoaDonHuyDatVe.getVeDat());
+        }
+
+        if (!HoaDonHuyDatVe_DAO.themHoaDonHuyDatVe(hoaDonHuyDatVe)) {
+            return false;
+        }
+
+        if (!VeDat_DAO.capNhatTrangThaiVeDatHuyVe(danhSachVeDat)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String layHoaDonHuyDatVeTiepTheo() {
+        LocalDate ngayHienTai = LocalDate.now();
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
+
+        String maHoaDonCu = HoaDonHuyDatVe_DAO.layMaHoaDonHuyDatVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        if (maHoaDonCu == null) {
+            return "HDHD" + ngayHienTaiString + "000001";
+        }
+
+        String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
+        String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
+
+        String maHoaDonMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+
+        return maHoaDonMoi;
+    }
+
+    public static boolean layVe(ArrayList<Ve> danhSachVe, ArrayList<ChiTietVe> danhSachChiTietVe) throws Exception {
+        Ve_DAO ve_dao = new Ve_DAO();
+        ChiTietVe_DAO chiTietVe_dao = new ChiTietVe_DAO();
+
+
+        for (ChiTietVe chiTietVe : danhSachChiTietVe) {
+            if (chiTietVe.getKhachHang() == null) {
+                throw new Exception("Chưa nhập thông tin người người đi tàu");
+            }
+        }
+
+
+        if (!ve_dao.themDanhSachVe(danhSachVe)) {
+            return false;
+        }
+
+        if (!chiTietVe_dao.themDanhSachChiTietVe(danhSachChiTietVe)) {
+            return false;
+        }
+        return true;
+    }
 }

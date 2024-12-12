@@ -90,6 +90,9 @@ public class Ve {
 	public void setDanhSachChiTietVe(ArrayList<ChiTietVe> danhSachChiTietVe) {
 		this.danhSachChiTietVe = danhSachChiTietVe;
 	}
+	public void addChiTietVe(ChiTietVe chiTietVe){
+		this.danhSachChiTietVe.add(chiTietVe);
+	}
 
 	@Override
 	public boolean equals(Object o) {
@@ -125,6 +128,7 @@ public class Ve {
 		}else{
 			this.phanTramGiamGiaVeTapThe = 0;
 		}
+		this.danhSachChiTietVe = new ArrayList<>();
 	}
 
 	public Ve(String maVe, HoaDonBanVe hoaDonBanVe, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen, LoaiVe loaiVe, TrangThaiVe trangThaiVe, double phanTramGiamGiaVeTapThe) {

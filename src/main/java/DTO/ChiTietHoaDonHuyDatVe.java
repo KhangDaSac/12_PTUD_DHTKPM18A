@@ -7,7 +7,6 @@ public class ChiTietHoaDonHuyDatVe {
     private HoaDonHuyDatVe hoaDonHuyDatVe;
     private VeDat veDat;
     private double phanTramLePhi;
-
     public HoaDonHuyDatVe getHoaDonHuyDatVe() {
         return hoaDonHuyDatVe;
     }
@@ -73,5 +72,30 @@ public class ChiTietHoaDonHuyDatVe {
 
     public double soTienHoanLai(){
         return veDat.tienDatCoc() * (1 - phanTramLePhi);
+    }
+
+    public ChiTietHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe, VeDat veDat, double phanTramLePhi) {
+        this.hoaDonHuyDatVe = hoaDonHuyDatVe;
+        this.veDat = veDat;
+        this.phanTramLePhi = phanTramLePhi;
+    }
+
+    public ChiTietHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe, VeDat veDat) {
+        this.hoaDonHuyDatVe = hoaDonHuyDatVe;
+        this.veDat = veDat;
+        long soGioConLai = thoiGianConLai().toHours();
+        if(veDat.getLoaiVe().equals(LoaiVe.VECANHAN)){
+            if(soGioConLai >= 48){
+                this.phanTramLePhi = 0.1;
+            }else if(soGioConLai >= 4){
+                this.phanTramLePhi = 0.2;
+            }
+        }else if(veDat.getLoaiVe().equals(LoaiVe.VETAPTHE)){
+            if(soGioConLai >= 72){
+                this.phanTramLePhi = 0.2;
+            }else if(soGioConLai >= 24){
+                this.phanTramLePhi = 0.3;
+            }
+        }
     }
 }

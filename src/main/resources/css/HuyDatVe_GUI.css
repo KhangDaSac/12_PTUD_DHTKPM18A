@@ -5,6 +5,13 @@
     -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
     -fx-alignment: center;
 }
+.button-chon{
+    -fx-background-color: #15B392;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16;
+    -fx-effect: dropshadow(gaussian, #0D92F4, 10, 0, 0, 0);
+    -fx-alignment: center;
+}
 .box-thong-tin{
     -fx-background-color: #fff;
     -fx-background-radius: 7px;
@@ -18,3 +25,11 @@
     -fx-font-size: 16;
     -fx-text-fill: #000;
 }
+.khungDanhSach{
+    -fx-background-color: #fff;
+    -fx-background-radius: 7px;
+    -fx-border-color: #000;
+    -fx-border-radius: 5px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    }

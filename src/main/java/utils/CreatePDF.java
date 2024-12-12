@@ -10,6 +10,8 @@ import com.itextpdf.text.pdf.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class CreatePDF {
     public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe){
@@ -312,7 +314,6 @@ public class CreatePDF {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
 
     }
@@ -1186,6 +1187,346 @@ public class CreatePDF {
             }
             Desktop desktop = Desktop.getDesktop();
 
+            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                desktop.open(wordFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void taoHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe) {
+        String filePath = "documents/HoaDonHuyVe/" + hoaDonHuyVe.getMaHoaDonHuyVe() + ".pdf";
+        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
+        String qrCodePath = "documents/HoaDonHuyVe/QRCode/QRCode_" + hoaDonHuyVe.getMaHoaDonHuyVe() + ".png";
+        try {
+            // Ensure the directory exists
+            Files.createDirectories(Paths.get(filePath).getParent());
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
+            BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(baseFont, 12);
+            Font boldFont = new Font(baseFont, 12, Font.BOLD);
+            Font titleFont = new Font(baseFont, 20, Font.BOLD);
+
+            Image logo = Image.getInstance(logoPath);
+            logo.scaleToFit(100, 50);
+            logo.setAlignment(Image.ALIGN_CENTER);
+            document.add(logo);
+
+            document.add(Chunk.NEWLINE);
+
+            Paragraph title = new Paragraph("HÓA ĐƠN HỦY ĐẶT VÉ", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Mã hóa đơn
+            CreateQRCode.generateQRCode(hoaDonHuyVe.getMaHoaDonHuyVe(), qrCodePath,110 , 110);
+            Image qrCode = Image.getInstance(qrCodePath);
+            qrCode.setAlignment(Image.ALIGN_CENTER);
+            document.add(qrCode);
+
+            Paragraph maHoaDonPar = new Paragraph();
+            maHoaDonPar.setAlignment(Element.ALIGN_LEFT);
+            maHoaDonPar.add(new Chunk("Mã hóa đơn: ", boldFont));
+            maHoaDonPar.add(new Chunk(hoaDonHuyVe.getMaHoaDonHuyVe(), font));
+            document.add(maHoaDonPar);
+
+            document.add(Chunk.NEWLINE);
+
+            // Thông tin công ty
+            Paragraph companyInfo = new Paragraph();
+            companyInfo.add(new Chunk("Công ty: ", boldFont));
+            companyInfo.add(new Chunk("Công ty đường sắt Natri - Natri railway company", font));
+            document.add(companyInfo);
+
+            Paragraph companyAddress = new Paragraph();
+            companyAddress.add(new Chunk("Địa chỉ: ", boldFont));
+            companyAddress.add(new Chunk("Nguyễn Văn Bảo, phường 4, thành phố Hồ Chí Minh", font));
+            document.add(companyAddress);
+
+            Paragraph companyInfo2 = new Paragraph();
+            companyInfo2.add(new Chunk("Điện thoại: ", boldFont));
+            companyInfo2.add(new Chunk("(+84) 375 684 002", font));
+            document.add(companyInfo2);
+
+            document.add(Chunk.NEWLINE);
+
+            Paragraph customerInfo = new Paragraph();
+            customerInfo.add(new Chunk("Tên khách hàng: ", boldFont));
+            customerInfo.add(new Chunk(hoaDonHuyVe.getKhachHangHuyVe().getTenKhachHang(), font));
+            document.add(customerInfo);
+
+            Paragraph customerInfo2 = new Paragraph();
+            customerInfo2.add(new Chunk("CCCD: ", boldFont));
+            customerInfo2.add(new Chunk(hoaDonHuyVe.getKhachHangHuyVe().getCCCD(), font));
+            document.add(customerInfo2);
+
+            Paragraph customerInfo3 = new Paragraph();
+            customerInfo3.add(new Chunk("Số điện thoại: ", boldFont));
+            customerInfo3.add(new Chunk(hoaDonHuyVe.getKhachHangHuyVe().getSoDienThoai(), font));
+            document.add(customerInfo3);
+
+            Paragraph date = new Paragraph();
+            date.add(new Chunk("Thời gian lập hóa đơn: ", boldFont));
+            date.add(new Chunk(TimeFormat.formatLocalDateTime(hoaDonHuyVe.getThoiGianHuyVe()), font));
+            document.add(date);
+
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidthPercentage(100);
+            float[] columnWidths = {1f, 3f, 4f, 3f, 3f, 3f};
+            table.setWidths(columnWidths);
+
+            String[] headers = {"STT", "Mã vé", "Tên vé", "Tiền vé", "Đã cọc", "Thành tiền"};
+            for (String header : headers) {
+                PdfPCell headerCell = new PdfPCell(new Phrase(header, boldFont));
+                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                headerCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                headerCell.setPadding(5);
+                table.addCell(headerCell);
+            }
+
+            int i = 1;
+            for (ChiTietHoaDonHuyVe chiTietHoaDonHuyVe : hoaDonHuyVe.getDanhSachChiTietHoaDonHuyVe()) {
+                Ve ve = chiTietHoaDonHuyVe.getVe();
+                PdfPCell cell1 = new PdfPCell(new Phrase(String.valueOf(i), font));
+                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell1.setPadding(5);
+                table.addCell(cell1);
+
+                PdfPCell cell2 = new PdfPCell(new Phrase(ve.getMaVe(), font));
+                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell2.setPadding(5);
+                table.addCell(cell2);
+
+                String tenVe = "Chuyến tàu " + ve.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
+                        + " – " + TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi())
+                        + " – " + ve.getThongTinGaTauDi().getGaTau().getTenGaTau()
+                        + " – " + ve.getThongTinGaTauDen().getGaTau().getTenGaTau()
+                        + " – " + (ve.getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
+
+                PdfPCell cell3 = new PdfPCell(new Phrase(tenVe, font));
+                cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell3.setPadding(5);
+                table.addCell(cell3);
+
+                PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(chiTietHoaDonHuyVe.getVe().tienVeCuoi()), font));
+                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell4.setPadding(5);
+                table.addCell(cell4);
+
+
+                PdfPCell cell6 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(chiTietHoaDonHuyVe.soTienHoanLai()), font));
+                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell6.setPadding(5);
+                table.addCell(cell6);
+
+                i++;
+            }
+
+            PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", boldFont));
+            totalLabelCell.setColspan(5);
+            totalLabelCell.setPadding(5);
+            totalLabelCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            table.addCell(totalLabelCell);
+
+            PdfPCell totalValueCell = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonHuyVe.tongTienCuoi()), boldFont));
+            totalValueCell.setPadding(5);
+            totalValueCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(totalValueCell);
+
+            document.add(table);
+
+            document.add(new Paragraph("Ghi chú:", boldFont));
+            document.add(new Paragraph(" – Hóa đơn này được tạo tự động.", font));
+            document.add(new Paragraph(" – Tiền vé đã bao gồm thuế giá trị gia tăng 8%.", font));
+            document.add(new Paragraph(" – Hóa đơn không phải là vé và không có giá trị lên tàu.", font));
+
+            document.close();
+            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+
+            File wordFile = new File(filePath);
+            if (!wordFile.exists()) {
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                desktop.open(wordFile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void taoHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe) {
+        String filePath = "documents/HoaDonHuyDatVe/" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".pdf";
+        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
+        String qrCodePath = "documents/HoaDonHuyDatVe/QRCode/QRCode_" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".png";
+        try {
+            // Ensure the directory exists
+            Files.createDirectories(Paths.get(filePath).getParent());
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
+            BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font font = new Font(baseFont, 12);
+            Font boldFont = new Font(baseFont, 12, Font.BOLD);
+            Font titleFont = new Font(baseFont, 20, Font.BOLD);
+
+            Image logo = Image.getInstance(logoPath);
+            logo.scaleToFit(100, 50);
+            logo.setAlignment(Image.ALIGN_CENTER);
+            document.add(logo);
+
+            document.add(Chunk.NEWLINE);
+
+            Paragraph title = new Paragraph("HÓA ĐƠN HỦY ĐẶT VÉ", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+
+            // Mã hóa đơn
+            CreateQRCode.generateQRCode(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), qrCodePath,110 , 110);
+            Image qrCode = Image.getInstance(qrCodePath);
+            qrCode.setAlignment(Image.ALIGN_CENTER);
+            document.add(qrCode);
+
+            Paragraph maHoaDonPar = new Paragraph();
+            maHoaDonPar.setAlignment(Element.ALIGN_LEFT);
+            maHoaDonPar.add(new Chunk("Mã hóa đơn: ", boldFont));
+            maHoaDonPar.add(new Chunk(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), font));
+            document.add(maHoaDonPar);
+
+            document.add(Chunk.NEWLINE);
+
+            // Thông tin công ty
+            Paragraph companyInfo = new Paragraph();
+            companyInfo.add(new Chunk("Công ty: ", boldFont));
+            companyInfo.add(new Chunk("Công ty đường sắt Natri - Natri railway company", font));
+            document.add(companyInfo);
+
+            Paragraph companyAddress = new Paragraph();
+            companyAddress.add(new Chunk("Địa chỉ: ", boldFont));
+            companyAddress.add(new Chunk("Nguyễn Văn Bảo, phường 4, thành phố Hồ Chí Minh", font));
+            document.add(companyAddress);
+
+            Paragraph companyInfo2 = new Paragraph();
+            companyInfo2.add(new Chunk("Điện thoại: ", boldFont));
+            companyInfo2.add(new Chunk("(+84) 375 684 002", font));
+            document.add(companyInfo2);
+
+            document.add(Chunk.NEWLINE);
+
+            Paragraph customerInfo = new Paragraph();
+            customerInfo.add(new Chunk("Tên khách hàng: ", boldFont));
+            customerInfo.add(new Chunk(hoaDonHuyDatVe.getKhachHangHuyDatVe().getTenKhachHang(), font));
+            document.add(customerInfo);
+
+            Paragraph customerInfo2 = new Paragraph();
+            customerInfo2.add(new Chunk("CCCD: ", boldFont));
+            customerInfo2.add(new Chunk(hoaDonHuyDatVe.getKhachHangHuyDatVe().getCCCD(), font));
+            document.add(customerInfo2);
+
+            Paragraph customerInfo3 = new Paragraph();
+            customerInfo3.add(new Chunk("Số điện thoại: ", boldFont));
+            customerInfo3.add(new Chunk(hoaDonHuyDatVe.getKhachHangHuyDatVe().getSoDienThoai(), font));
+            document.add(customerInfo3);
+
+            Paragraph date = new Paragraph();
+            date.add(new Chunk("Thời gian lập hóa đơn: ", boldFont));
+            date.add(new Chunk(TimeFormat.formatLocalDateTime(hoaDonHuyDatVe.getThoiGianHuy()), font));
+            document.add(date);
+
+            document.add(Chunk.NEWLINE);
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidthPercentage(100);
+            float[] columnWidths = {1f, 3f, 4f, 3f, 3f, 3f};
+            table.setWidths(columnWidths);
+
+            String[] headers = {"STT", "Mã vé", "Tên vé", "Tiền vé", "Đã cọc", "Thành tiền"};
+            for (String header : headers) {
+                PdfPCell headerCell = new PdfPCell(new Phrase(header, boldFont));
+                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                headerCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                headerCell.setPadding(5);
+                table.addCell(headerCell);
+            }
+
+            int i = 1;
+            for (ChiTietHoaDonHuyDatVe chiTietHoaDonHuyDatVe : hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe()) {
+                VeDat veDat = chiTietHoaDonHuyDatVe.getVeDat();
+                PdfPCell cell1 = new PdfPCell(new Phrase(String.valueOf(i), font));
+                cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell1.setPadding(5);
+                table.addCell(cell1);
+
+                PdfPCell cell2 = new PdfPCell(new Phrase(veDat.getMaVeDat(), font));
+                cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell2.setPadding(5);
+                table.addCell(cell2);
+
+                String tenVe = "Chuyến tàu " + veDat.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().substring(0, 4)
+                        + " – " + TimeFormat.formatLocalDateTime(veDat.getThongTinGaTauDi().getThoiGianDi())
+                        + " – " + veDat.getThongTinGaTauDi().getGaTau().getTenGaTau()
+                        + " – " + veDat.getThongTinGaTauDen().getGaTau().getTenGaTau()
+                        + " – " + (veDat.getLoaiVe().equals(LoaiVe.VECANHAN) ? "Vé cá nhân" : "Vé tập thể");
+
+                PdfPCell cell3 = new PdfPCell(new Phrase(tenVe, font));
+                cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell3.setPadding(5);
+                table.addCell(cell3);
+
+                PdfPCell cell4 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(chiTietHoaDonHuyDatVe.getVeDat().tienVeCuoi()), font));
+                cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell4.setPadding(5);
+                table.addCell(cell4);
+
+                PdfPCell cell5 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(chiTietHoaDonHuyDatVe.getVeDat().tienDatCoc()), font));
+                cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell5.setPadding(5);
+                table.addCell(cell5);
+
+                PdfPCell cell6 = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(chiTietHoaDonHuyDatVe.soTienHoanLai()), font));
+                cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell6.setPadding(5);
+                table.addCell(cell6);
+
+                i++;
+            }
+
+            PdfPCell totalLabelCell = new PdfPCell(new Phrase("TỔNG TIỀN", boldFont));
+            totalLabelCell.setColspan(5);
+            totalLabelCell.setPadding(5);
+            totalLabelCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            table.addCell(totalLabelCell);
+
+            PdfPCell totalValueCell = new PdfPCell(new Phrase(CurrencyFormat.currencyFormat(hoaDonHuyDatVe.tongTienCuoi()), boldFont));
+            totalValueCell.setPadding(5);
+            totalValueCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(totalValueCell);
+
+            document.add(table);
+
+            document.add(new Paragraph("Ghi chú:", boldFont));
+            document.add(new Paragraph(" – Hóa đơn này được tạo tự động.", font));
+            document.add(new Paragraph(" – Tiền vé đã bao gồm thuế giá trị gia tăng 8%.", font));
+            document.add(new Paragraph(" – Hóa đơn không phải là vé và không có giá trị lên tàu.", font));
+
+            document.close();
+            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+
+            File wordFile = new File(filePath);
+            if (!wordFile.exists()) {
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.OPEN)) {
                 desktop.open(wordFile);
             }

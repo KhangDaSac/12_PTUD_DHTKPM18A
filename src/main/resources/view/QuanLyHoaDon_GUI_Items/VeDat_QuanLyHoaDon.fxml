@@ -2,16 +2,52 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anpVe" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.ThongTinBanVe_GUI_Items.Ve_ThongTinBanVe_Controller">
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
+<AnchorPane fx:id="anpVeDat" onMouseClicked="#anpVeOnMouseClicked" prefWidth="460.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.DatVe_GUI_Items.VeDat_DatVe_Controller">
    <children>
       <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <AnchorPane fx:id="anpXoaVe" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="anpXoaVeDat" onMouseClicked="#anpXoaVeOnMouseClicked" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+========
+<AnchorPane fx:id="anpVeDat" onMouseClicked="#anpVeOnMouseClicked" prefWidth="410.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyHoaDon_GUI_Items.VeDat_QuanLyHoaDon_Controller">
+   <children>
+      <AnchorPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <AnchorPane fx:id="anpVeDatLay" prefWidth="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
+               <children>
+                  <VBox prefWidth="50.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox style="-fx-alignment: center;">
+                           <children>
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
+                              <ImageView fitHeight="30.0" fitWidth="25.0">
+                                 <image>
+                                    <Image url="@../../images/BanVe_GUI/ThungRac.png" />
+========
+                              <ImageView fx:id="imvVeDatLay" fitHeight="30.0" fitWidth="30.0">
+                                 <image>
+                                    <Image url="@../../images/LayVe_GUI/VeDatLay.png" />
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
+               </children></AnchorPane>
+========
+               </children>
+            </AnchorPane>
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
             <AnchorPane styleClass="ve-right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <VBox fx:id="vboxDanhSachThongTin" prefWidth="430.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
@@ -23,7 +59,11 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
                               <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="130.0" text="SE02181024">
+========
+                              <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="130.0" text="SE0218102024">
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -33,7 +73,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="58.0">
+                              <Label fx:id="lblSTT" layoutX="117.0" layoutY="10.0" prefHeight="30.0" prefWidth="30.0">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -47,7 +87,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="100.0" text="Sài Gòn">
+                              <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="95.0" text="Sài Gòn">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -57,7 +97,7 @@
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblTenGaDen" layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="Hà Nội">
+                              <Label fx:id="lblTenGaDen" layoutX="100.0" layoutY="10.0" prefHeight="30.0" prefWidth="95.0" text="Hà Nội">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -101,6 +141,28 @@
                                  </font>
                               </Label>
                               <Label fx:id="lblGiaVeCuoi" prefHeight="30.0" prefWidth="210.0" style="-fx-text-fill: #FA4032;" text="871,000 VNĐ">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="10.0" layoutY="132.0" prefHeight="30.0">
+                           <children>
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
+                              <Label prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #FA4032;" stylesheets="@../../css/All.css" text="Tiền đặt cọc:">
+========
+                              <Label prefHeight="30.0" prefWidth="150.0" style="-fx-text-fill: #FA4032;" stylesheets="@../../css/All.css" text="Tiền đã cọc: ">
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+<<<<<<<< HEAD:src/main/resources/view/DatVe_GUI_Items/VeDat_DatVe.fxml
+                              <Label fx:id="lblTienDatCoc" prefHeight="30.0" prefWidth="210.0" style="-fx-text-fill: #FA4032;" text="871,000 VNĐ">
+========
+                              <Label fx:id="lblTienDaCoc" prefHeight="30.0" prefWidth="210.0" style="-fx-text-fill: #FA4032;" text="871,000 VNĐ">
+>>>>>>>> 95b4bd1286a5ae2a9a4b9466ad7d6615553d2ac9:src/main/resources/view/QuanLyHoaDon_GUI_Items/VeDat_QuanLyHoaDon.fxml
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>

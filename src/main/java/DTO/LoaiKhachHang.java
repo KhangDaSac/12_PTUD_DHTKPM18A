@@ -18,7 +18,6 @@ public class LoaiKhachHang {
 	}
 
 	public LoaiKhachHang(String maLoaiKhachHang, String tenLoaiKhachHang, double phanTramGiamGia) {
-		super();
 		this.maLoaiKhachHang = maLoaiKhachHang;
 		this.tenLoaiKhachHang = tenLoaiKhachHang;
 		this.phanTramGiamGia = phanTramGiamGia;

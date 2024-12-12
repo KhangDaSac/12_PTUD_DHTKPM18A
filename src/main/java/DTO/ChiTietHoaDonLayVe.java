@@ -38,4 +38,10 @@ public class ChiTietHoaDonLayVe {
     public double thanhTien(){
         return veDat.tienVeCuoi() - veDat.tienDatCoc();
     }
+
+    public ChiTietHoaDonLayVe(VeDat veDat, Ve ve, HoaDonLayVe hoaDonLayVe) {
+        this.veDat = veDat;
+        this.ve = ve;
+        this.hoaDonLayVe = hoaDonLayVe;
+    }
 }

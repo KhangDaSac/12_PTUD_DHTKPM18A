@@ -53,6 +53,13 @@ public class HoaDonHuyVe {
 		this.danhSachChiTietHoaDonHuyVe = danhSachChiTietHoaDonHuyVe;
 	}
 
+	public HoaDonHuyVe(String maHoaDonHuyVe,  LocalDateTime thoiGianHuyVe,CaLamViec caLamViec, KhachHang khachHangHuyVe) {
+		this.maHoaDonHuyVe = maHoaDonHuyVe;
+		this.caLamViec = caLamViec;
+		this.khachHangHuyVe = khachHangHuyVe;
+		this.thoiGianHuyVe = thoiGianHuyVe;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -76,5 +83,8 @@ public class HoaDonHuyVe {
 			tongTienCuoi += chiTietHoaDonHuyVe.soTienHoanLai();
 		}
 		return tongTienCuoi;
+	}
+
+	public HoaDonHuyVe() {
 	}
 }

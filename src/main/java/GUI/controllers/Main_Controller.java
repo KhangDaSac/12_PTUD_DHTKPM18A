@@ -463,8 +463,8 @@ public class Main_Controller implements Initializable {
             throw new RuntimeException(e);
         }
 
-//        QuanLyHoaDon_GUI_Controller controller = loader.getController();
-//        controller.setMain_Controller(this);
+        QuanLyHoaDon_GUI_Controller controller = loader.getController();
+        controller.setMain_controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

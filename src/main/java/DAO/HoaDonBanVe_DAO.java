@@ -62,5 +62,28 @@ public class HoaDonBanVe_DAO {
         }
         return dsCacHoaDon;
     }
+public static HoaDonBanVe getHoaDonBanVeTheoMa(String maHoaDon){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from HoaDonBanVe where maHoaDonBanVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                HoaDonBanVe hoaDonBanVe = new HoaDonBanVe();
+                hoaDonBanVe.setMaHoaDonBanVe(rs.getString("maHoaDonBanVe"));
+                hoaDonBanVe.setThoiGianLap(rs.getTimestamp("thoiGianLap").toLocalDateTime());
+                hoaDonBanVe.setCaLamViec(new CaLamViec(rs.getString("maCaLamViec")));
+                hoaDonBanVe.setKhachHangMuaVe(KhachHang_DAO.getKhachHangTheoMaKhachHang(rs.getString("maKhachHangMuaVe")));
+                hoaDonBanVe.setDanhSachVe(Ve_DAO.xuatDanhSachVeTheoMaHoaDonBanVe(rs.getString("maHoaDonBanVe")));
+                return hoaDonBanVe;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+
 
 }

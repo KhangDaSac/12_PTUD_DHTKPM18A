@@ -15,6 +15,7 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Collections;
 
 public class ChiTietVe_DAO {
         public static Connection con = ConnectDB.getInstance().getConnection();
@@ -35,11 +36,22 @@ public class ChiTietVe_DAO {
                 ResultSet rs = statement.executeQuery();
                 while( rs.next()){
                     Ve ve = new Ve(rs.getString("maVe"));
-                    Cho cho = new Cho(new ToaTau(rs.getString("maToaTau"), rs.getInt("thuTuToa"),
-                                            new LoaiToaTau(rs.getString("maLoaiToa"),rs.getString("tenLoaiToa"))),
+                    Cho cho = new Cho(
+                            new ToaTau(
+                                    rs.getString("maToaTau"),
+                                    rs.getInt("thuTuToa"),
+                                            new LoaiToaTau(
+                                                    rs.getString("maLoaiToa"),
+                                                    rs.getString("tenLoaiToa")
+                                            )
+                            ),
                             rs.getString("maCho"),
                             rs.getInt("soCho"),
-                            new LoaiCho(rs.getString("maLoaiCho"),rs.getString("tenLoaiCho")));
+                            new LoaiCho(
+                                    rs.getString("maLoaiCho"),
+                                    rs.getString("tenLoaiCho")
+                            )
+                    );
 
                     double giaCho = rs.getDouble("giaCho");
                     double phanTramGiamGia = rs.getDouble("phanTramGiamGia");
@@ -55,7 +67,7 @@ public class ChiTietVe_DAO {
                             )
                             );
 
-                    ctVe = new ChiTietVe(ve,cho,khachHang,giaCho,phanTramGiamGia);
+                    ctVe = new ChiTietVe(ve, cho, khachHang, giaCho, phanTramGiamGia);
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -132,4 +144,26 @@ public class ChiTietVe_DAO {
 
         return dsChiTietVe;
     }
+    public static ArrayList<ChiTietVe> xuatDanhSachChiTietVeTheoMaVe(String maVe){
+        ArrayList<ChiTietVe> danhSachChiTietVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from ChiTietVe where maVe = ?";
+        try{
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maVe);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                Ve ve = new Ve(rs.getString("maVe"));
+                Cho cho = Cho_DAO.getChoTheoMaCho(rs.getString("maCho"));
+                KhachHang khachHang = KhachHang_DAO.getKhachHangTheoMaKhachHang(rs.getString("maKhachHang"));
+                double giaCho = rs.getDouble("giaCho");
+                ChiTietVe chiTietVe = new ChiTietVe(ve, cho, khachHang, giaCho,rs.getDouble("phanTramGiamGia"));
+                danhSachChiTietVe.add(chiTietVe);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return danhSachChiTietVe;
+    }
+
 }

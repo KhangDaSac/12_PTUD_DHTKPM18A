@@ -90,8 +90,11 @@ public class ChiTietVe {
 		this.phanTramGiamGia = phanTramGiamGia;
 	}
 
-	public ChiTietVe(Ve ve) {
+	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho) {
 		this.ve = ve;
+		this.cho = cho;
+		this.khachHang = khachHang;
+		this.giaCho = giaCho;
 	}
 
 	public double giamGia(){
@@ -101,6 +104,8 @@ public class ChiTietVe {
 	public double thanhTienChiTietVe(){
 		return giaCho * (1 - phanTramGiamGia);
 	}
+
+
 
 	@Override
 	public String toString() {

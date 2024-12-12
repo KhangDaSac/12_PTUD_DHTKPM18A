@@ -87,7 +87,8 @@ public class HoaDonDoiVe {
 	public HoaDonDoiVe(String maLichSuDoi) {
 		this.maHoaDonDoiVe = maLichSuDoi;
 	}
-
+    public HoaDonDoiVe() {
+    }
 	public HoaDonDoiVe(String maHoaDonDoiVe, LocalDateTime thoiGianDoiVe, Ve veCu, Ve veMoi, CaLamViec caLamViec) {
 		this.maHoaDonDoiVe = maHoaDonDoiVe;
 		this.thoiGianDoiVe = thoiGianDoiVe;

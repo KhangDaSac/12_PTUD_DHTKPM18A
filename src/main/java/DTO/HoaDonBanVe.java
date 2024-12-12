@@ -81,6 +81,9 @@ public class HoaDonBanVe {
 		return tongTienCuoi;
 	}
 
+	public HoaDonBanVe() {
+	}
+
 	@Override
 	public String toString() {
 		return "HoaDonBanVe{" +

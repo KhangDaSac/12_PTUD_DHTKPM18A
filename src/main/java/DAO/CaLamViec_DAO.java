@@ -46,5 +46,27 @@ public class CaLamViec_DAO {
             return false;
         }
         return true;
+
+    }
+
+    public static CaLamViec getCaLamViecTheoMa(String maCaLamViec) {
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from CaLamViec where maCaLamViec = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maCaLamViec);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                LocalDateTime thoiGianBatDau = rs.getTimestamp("thoiGianBatDau").toLocalDateTime();
+                LocalDateTime thoiGianKetThuc = rs.getTimestamp("thoiGianKetThuc").toLocalDateTime();
+                NhanVien nhanVien = new NhanVien(rs.getString("maNhanVien"));
+                CaLamViec caLamViec = new CaLamViec(maCaLamViec, thoiGianBatDau, thoiGianKetThuc, nhanVien);
+                return caLamViec;
+            }
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class HoaDonLayVe_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
-    public static String layMaHoaDonLayVeLonNhatCuaNgayHienTai(String ngayHienTai){
+    public static String layMaHoaDonLayVeLonNhatCuaNgayHienTai (String ngayHienTai){
         String maHoaDonLonNhat = null;
         try {
             String query = "select max(maHoaDonLayVe) as maHoaDonLayVe from HoaDonLayVe where maHoaDonLayVe like 'HDLV' + ? + '%'";
@@ -41,5 +41,25 @@ public class HoaDonLayVe_DAO {
             return false;
         }
         return true;
+    }
+    public static HoaDonLayVe getHoaDonLayVeTheoMa(String maHoaDon){
+        String query = "select * from HoaDonLayVe where maHoaDonLayVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                HoaDonLayVe hoaDonLayVe = new HoaDonLayVe();
+                hoaDonLayVe.setMaHoaDonLayVe(rs.getString("maHoaDonLayVe"));
+                hoaDonLayVe.setThoiGianLayVe(rs.getTimestamp("thoiGianLayVe").toLocalDateTime());
+                hoaDonLayVe.setCaLamViec(new CaLamViec_DAO().getCaLamViecTheoMa(rs.getString("maCaLamViec")));
+                hoaDonLayVe.setKhachHangLayVe(new KhachHang_DAO().getKhachHangTheoMaKhachHang(rs.getString("maKhachHangLayVe")));
+                hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(ChiTietHoaDonLayVe_DAO.getDanhSachChiTietHoaDonLayVeTheoMaHoaDonLayVe(hoaDonLayVe.getMaHoaDonLayVe()));
+                return hoaDonLayVe;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }
