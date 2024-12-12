@@ -363,7 +363,6 @@ public class Main_Controller implements Initializable {
         AnchorPane.setRightAnchor(trangMoi, 0.0);
         if(dialog != null) dialog.close();
     }
-
     @FXML
     void btnHuyDatVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("HỦY DẶT VÉ");
