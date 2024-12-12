@@ -28,4 +28,7 @@ module GUI.applications {
     exports GUI.controllers.HuyDatVe_GUI_Items;
     opens GUI.controllers.QuanLyHoaDon_GUI_Items to javafx.fxml;
     exports GUI.controllers.QuanLyHoaDon_GUI_Items;
+    opens GUI.controllers.BaoCaoThongKe_GUI_Items to javafx.fxml;
+    exports GUI.controllers.BaoCaoThongKe_GUI_Items;
+    requires org.apache.logging.log4j;
 }

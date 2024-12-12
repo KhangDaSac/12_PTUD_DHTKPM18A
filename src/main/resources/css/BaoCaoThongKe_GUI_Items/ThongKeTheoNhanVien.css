@@ -1,0 +1,10 @@
+.btnThongKe{
+    -fx-background-color:#774BC3;
+    -fx-text-fill: white;
+}
+.coChu{
+    -fx-font-size: 16px;
+}
+.khungTieuDe{
+     -fx-border-color: #774BC3 transparent transparent transparent;
+}

@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BaoCaoVaThongKe.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BaoCaoThongKe_GUI_Controller">
+<AnchorPane fx:id="achoPane" prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/BaoCaoVaThongKe.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.BaoCaoThongKe_GUI_Controller">
    <children>
       <VBox>
          <children>
@@ -44,27 +44,22 @@
                                     <HBox prefHeight="59.0" prefWidth="1290.0" styleClass="title-header">
                                        <children>
                                           <Separator prefHeight="35.0" prefWidth="50.0" />
-                                          <HBox prefHeight="38.0" prefWidth="559.0" styleClass="button-bar-dau">
+                                          <HBox styleClass="button-bar-dau">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" styleClass="btnLoaiThongKe" text="Thời gian">
+                                                <Button fx:id="btnThoiGian" mnemonicParsing="false" onAction="#btnThoiGianOnAction" prefHeight="37.0" prefWidth="100.0" styleClass="btnLoaiThongKe" text="Thời gian">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Button>
                                                 <Separator prefWidth="50.0" />
-                                              <Button mnemonicParsing="false" prefWidth="100.0" styleClass="btnLoaiThongKe" text="Theo ca">
+                                                <Separator prefWidth="50.0" />
+                                                <Button fx:id="btnChuyenTau" mnemonicParsing="false" onAction="#btnChuyenTauOnAction" prefHeight="37.0" prefWidth="142.0" styleClass="btnLoaiThongKe" text="Chuyến tàu">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
                                                 </Button>
-                                                <Separator prefWidth="50.0" />
-                                                <Button mnemonicParsing="false" styleClass="btnLoaiThongKe" text="Chuyến tàu">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Button>
-                                                <Separator prefWidth="50.0" />
-                                                <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="100.0" styleClass="btnLoaiThongKe" text="Nhân viên">
+                                                <Separator prefWidth="100.0" />
+                                                <Button fx:id="btnNhanVien" mnemonicParsing="false" onAction="#btnNhanVienOnAction" prefHeight="37.0" prefWidth="116.0" styleClass="btnLoaiThongKe" text="Nhân viên">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>
@@ -77,7 +72,7 @@
                                           <Insets bottom="10.0" top="10.0" />
                                        </padding>
                                     </HBox>
-                                    <VBox prefHeight="582.0" prefWidth="1290.0">
+                                    <VBox fx:id="vboxThongKe" prefHeight="582.0" prefWidth="1290.0">
                                        <children>
                                           <VBox prefHeight="158.0" prefWidth="1290.0" styleClass="title-header">
                                              <children>
@@ -266,7 +261,7 @@
                                           </HBox>
                                           <VBox alignment="TOP_RIGHT" styleClass="title-header">
                                              <children>
-                                                <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="37.0" prefWidth="114.0" styleClass="btnThongKe" text="In báo cáo">
+                                                <Button fx:id="btnInBaoCao" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnInBaoCao" prefHeight="37.0" prefWidth="114.0" styleClass="btnThongKe" text="In báo cáo">
                                                    <font>
                                                       <Font size="16.0" />
                                                    </font>

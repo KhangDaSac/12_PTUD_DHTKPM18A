@@ -20,7 +20,7 @@ public class HoaDonDoiVe_DAO {
             if (rs.next()) {
                 HoaDonDoiVe hoaDonDoiVe = new HoaDonDoiVe();
                 hoaDonDoiVe.setMaHoaDonDoiVe(rs.getString("maHoaDonDoiVe"));
-                hoaDonDoiVe.setThoiGianDoiVe(rs.getTimestamp("thoiGianDoiVe ").toLocalDateTime());
+                hoaDonDoiVe.setThoiGianDoiVe(rs.getTimestamp("thoiGianDoiVe").toLocalDateTime());
                 hoaDonDoiVe.setLePhi(rs.getDouble("lePhi"));
                 ArrayList<Ve>  dsVeDoi = new ArrayList<>();
                 dsVeDoi= Ve_DAO.getDanhSachVeTheoMaHoaDonDoi(rs.getString("maHoaDonDoiVe"));
