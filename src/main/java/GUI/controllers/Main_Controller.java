@@ -308,6 +308,10 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnDangXuatOnAction(ActionEvent event) {
+        dangXuat();
+    }
+
+    public void dangXuat(){
         try {
             Window window = anpNoiDungTrang.getScene().getWindow();
             Stage stage = (Stage) window;

@@ -147,6 +147,7 @@ public class BaoCao_GUI_Controller implements Initializable {
             return;
         }
         CreatePDF.taoPhieuKetToan(main_controller.getPhieuKetToan(), dsHoaDon);
+        main_controller.dangXuat();
     }
 
     public void hienThiPhieuKiemTienDauCa(){
