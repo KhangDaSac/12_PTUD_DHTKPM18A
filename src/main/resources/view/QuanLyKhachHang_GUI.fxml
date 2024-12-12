@@ -18,7 +18,7 @@
 
 <AnchorPane prefHeight="790.0" prefWidth="1290.0" stylesheets="@../css/QuanLyKhachHang_GUI.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.QuanLyKhachHang_GUI_Controller">
    <children>
-      <GridPane layoutX="42.4" layoutY="80.0" prefHeight="698.0" prefWidth="1268.0" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="80.0">
+      <GridPane layoutX="42.4" layoutY="80.0" prefHeight="698.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="637.2000122070312" minWidth="10.0" prefWidth="330.40001220703124" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1054.3999755859372" minWidth="10.0" prefWidth="938.3999877929687" />

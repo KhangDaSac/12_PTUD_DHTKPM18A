@@ -42,7 +42,7 @@ public class QuanLyVe_BUS {
 
     public static Ve getVeTheoMa(String maVe){
         Ve_DAO veDao = new Ve_DAO();
-        Ve ve =veDao.getVeTheoMa(maVe);
+        Ve ve = veDao.getVeTheoMa(maVe);
         return ve;
     }
     public static void doiVe(String maVe,String maGheCu,String maGheMoi, double giaCho){

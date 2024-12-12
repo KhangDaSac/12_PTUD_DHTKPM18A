@@ -331,7 +331,7 @@ public class DoiVe_GUI_Controller implements Initializable {
     public ChuyenTau getChuyenTau() throws Exception {
         ChuyenTau ctTim = new ChuyenTau();
         ArrayList<ChuyenTau> listCT;
-        listCT = QuanLyChuyenTau_BUS.getDanhSachChuyenTau(gaDi.getMaGaTau(), gaDen.getMaGaTau(),
+        listCT = QuanLyChuyenTau_BUS.getDanhSachChuyenTauBanVe(gaDi.getMaGaTau(), gaDen.getMaGaTau(),
                 veKhachHang.getThongTinGaTauDi().getThoiGianDi().toLocalDate());
         for (ChuyenTau ct: listCT){
         if (veKhachHang.getThongTinGaTauDi().getChuyenTau().getMaChuyenTau().equals(ct.getMaChuyenTau())){
