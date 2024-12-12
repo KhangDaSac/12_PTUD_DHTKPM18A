@@ -273,6 +273,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             //quanLyVeBus.doiVe(veKhachHang.getMaVe(), ctVe.getCho().getMaCho(), choChon.getMaCho(), choChon.getGiaCho());
             //timDanhSachCho(choChon.getToaTau().getMaToaTau());
             doiVe();
+            main_Controller.chuyenTrangDoiVe();
             hienThiChuyenTau(chuyenTauKH);
         }
         capNhatCacChoDaChon();
@@ -290,6 +291,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             return;
         }
         LocalDateTime thoiGianDi = veKhachHang.getThongTinGaTauDi().getThoiGianDi();
+
         LocalDateTime thoiGianHienTai = LocalDateTime.now();
         if (veKhachHang == null) {
             main_Controller.showMessagesDialog("Không tìm thấy vé với mã: " + maTim);
@@ -300,7 +302,7 @@ public class DoiVe_GUI_Controller implements Initializable {
             txtMaVe.requestFocus();
 
         } else
-            if (thoiGianDi.isAfter(thoiGianHienTai)){
+            if (thoiGianDi.isBefore(thoiGianHienTai)){
             main_Controller.showMessagesDialog("Chuyến tàu của vé đã khởi hành!");
             txtMaVe.requestFocus();
         }else

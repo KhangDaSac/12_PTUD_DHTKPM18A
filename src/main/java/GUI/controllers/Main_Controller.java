@@ -347,6 +347,10 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnDoiVeOnAction(ActionEvent event) {
+        chuyenTrangDoiVe();
+    }
+
+    public void chuyenTrangDoiVe(){
         lblTieuDeTrang.setText("ĐỔI VÉ");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DoiVe_GUI.fxml"));
         Parent trangMoi = null;
@@ -365,6 +369,7 @@ public class Main_Controller implements Initializable {
         AnchorPane.setRightAnchor(trangMoi, 0.0);
         if(dialog != null) dialog.close();
     }
+
     @FXML
     void btnHuyDatVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("HỦY DẶT VÉ");
