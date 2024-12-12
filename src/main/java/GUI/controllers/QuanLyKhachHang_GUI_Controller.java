@@ -45,7 +45,6 @@ public class QuanLyKhachHang_GUI_Controller implements Initializable {
     @FXML
     private JFXButton btnThemKH;
 
-
     @FXML
     private JFXButton btnXuatDSKH;
 

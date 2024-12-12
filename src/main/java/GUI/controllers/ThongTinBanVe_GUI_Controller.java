@@ -9,6 +9,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -21,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 
@@ -108,10 +111,14 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
-                CreatePDF.taoHoaDonBanVe(hoaDonBanVe);
-                for (Ve ve : hoaDonBanVe.getDanhSachVe()){
-                    CreatePDF.taoVe(ve);
-                }
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("fileThongTinKhachHang");
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+                File file = fileChooser.showSaveDialog(lblTenKhachHangMua.getScene().getWindow());
+                CreatePDF.taoHoaDonBanVe(hoaDonBanVe, file);
+//                for (Ve ve : hoaDonBanVe.getDanhSachVe()){
+//                    CreatePDF.taoVe(ve);
+//                }
                 main_controller.showMessagesDialog("Bán vé thành công");
                 main_controller.quayLaiTrangBanVe();
             }else{

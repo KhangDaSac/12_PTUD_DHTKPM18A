@@ -1,6 +1,8 @@
 package utils;
 
 import DTO.*;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
@@ -8,25 +10,26 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class CreatePDF {
-    public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe){
-        String filePath = "documents/HoaDonBanVe/"+ hoaDonBanVe.getMaHoaDonBanVe() +".pdf";
+    public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe, File file){
+        //String filePath = "D:/HOCTAP/HK5/PhatTrienUngDung/documents/HoaDonBanVe/"+ hoaDonBanVe.getMaHoaDonBanVe() +".pdf";
         String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonBanVe/QRCode/QRCode_" + hoaDonBanVe.getMaHoaDonBanVe() + ".png";
+        //String qrCodePath = "D:/HOCTAP/HK5/PhatTrienUngDung/documents/HoaDonBanVe/QRCode/QRCode_" + hoaDonBanVe.getMaHoaDonBanVe() + ".png";
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
-                return;
-            }
+//            File file2 = new File(filePath);
+//            if (file2.exists()) {
+//                Desktop.getDesktop().open(file2);
+//                return;
+//            }
             Rectangle pageSize = new Rectangle(600, 65 * hoaDonBanVe.getDanhSachVe().size() + 600);
             Document document = new Document(pageSize);
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
 
@@ -55,8 +58,13 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonBanVe.getMaHoaDonBanVe(), qrCodePath, 80, 80);
-            Image qrCode = Image.getInstance(qrCodePath);
+            BitMatrix bitMatrix = CreateQRCode.generateQRCode(hoaDonBanVe.getMaHoaDonBanVe(), 80, 80);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            MatrixToImageWriter.writeToStream(bitMatrix, "PNG", byteArrayOutputStream);
+
+            // Tạo hình ảnh QR code từ dữ liệu byte
+            byte[] qrCodeBytes = byteArrayOutputStream.toByteArray();
+            Image qrCode = Image.getInstance(qrCodeBytes);
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
@@ -180,17 +188,16 @@ public class CreatePDF {
 
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: ");
 
 
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -206,7 +213,7 @@ public class CreatePDF {
                 Desktop.getDesktop().open(file2);
                 return;
             }
-            CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
+            //CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
             Rectangle pageSize = new Rectangle(300, 120 * ve.getDanhSachChiTietVe().size() + 500);
             Document document = new Document(pageSize);
             document.setMargins(20, 20, 20, 20);
@@ -378,7 +385,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonLayVe.getMaHoaDonLayVe(), qrCodePath, 80, 80);
+            //CreateQRCode.generateQRCode(hoaDonLayVe.getMaHoaDonLayVe(), qrCodePath, 80, 80);
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
@@ -570,7 +577,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonDatVe.getMaHoaDonDatVe(), qrCodePath, 80, 80);
+            //CreateQRCode.generateQRCode(hoaDonDatVe.getMaHoaDonDatVe(), qrCodePath, 80, 80);
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
@@ -1078,7 +1085,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonDoiVe.getMaHoaDonDoiVe(), qrCodePath, 80, 80);
+            //CreateQRCode.generateQRCode(hoaDonDoiVe.getMaHoaDonDoiVe(), qrCodePath, 80, 80);
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
@@ -1256,7 +1263,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonHuyVe.getMaHoaDonHuyVe(), qrCodePath,110 , 110);
+            //CreateQRCode.generateQRCode(hoaDonHuyVe.getMaHoaDonHuyVe(), qrCodePath,110 , 110);
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Image.ALIGN_CENTER);
             document.add(qrCode);
@@ -1424,7 +1431,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            CreateQRCode.generateQRCode(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), qrCodePath,110 , 110);
+            //CreateQRCode.generateQRCode(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), qrCodePath,110 , 110);
             Image qrCode = Image.getInstance(qrCodePath);
             qrCode.setAlignment(Image.ALIGN_CENTER);
             document.add(qrCode);

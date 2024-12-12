@@ -168,9 +168,9 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
             if (selectedHoaDon instanceof HoaDonDatVe){
                 CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
             }
-            if (selectedHoaDon instanceof HoaDonBanVe){
-                CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
-            }
+//            if (selectedHoaDon instanceof HoaDonBanVe){
+//                CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
+//            }
             if (selectedHoaDon instanceof HoaDonHuyVe){
                 CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
             }
