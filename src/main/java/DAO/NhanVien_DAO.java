@@ -156,6 +156,30 @@ public class NhanVien_DAO {
 
         return new NhanVien(maNhanVien, cccd, tenNhanVien, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
     }
+    public static NhanVien getNhanvienTheoMa(String maNhanVien) {
+        Connection con = ConnectDB.getInstance().getConnection();
+       String query = "SELECT * FROM NhanVien WHERE maNhanVien = ?";
+       try {
+           PreparedStatement statement = con.prepareStatement(query);
+              statement.setString(1, maNhanVien);
+                ResultSet rs = statement.executeQuery();
+                if (rs.next()) {
+                    NhanVien nv = new NhanVien();
+                    nv.setMaNhanVien(rs.getString("maNhanVien"));
+                    nv.setCCCD(rs.getString("CCCD"));
+                    nv.setTenNhanVien(rs.getString("tenNhanVien"));
+                    nv.setDiaChi(rs.getString("diaChi"));
+                    nv.setSoDienThoai(rs.getString("soDienThoai"));
+                    nv.setLoaiNhanVien(LoaiNhanVien.valueOf(rs.getString("loaiNhanVien")));
+                    nv.setTrangThaiNhanVien(TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien")));
+                    nv.setEmail(rs.getString("email"));
+                    return nv;
+                }
+       }catch (Exception e) {
+           e.printStackTrace();
+       }
+        return null;
+    }
 
 
 }

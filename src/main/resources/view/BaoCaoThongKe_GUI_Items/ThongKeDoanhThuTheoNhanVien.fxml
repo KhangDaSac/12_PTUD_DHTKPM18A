@@ -100,12 +100,12 @@
             </Label>
          </children>
       </VBox>
-      <BarChart fx:id="barChar" layoutX="49.0" layoutY="199.0" prefHeight="382.0" prefWidth="1141.0">
+      <BarChart fx:id="barChar" layoutX="49.0" layoutY="199.0" prefHeight="382.0" prefWidth="1067.0" styleClass="chart-bar">
         <xAxis>
           <NumberAxis prefHeight="44.0" prefWidth="902.0" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <CategoryAxis prefHeight="308.0" prefWidth="204.0" side="LEFT" />
+          <CategoryAxis prefHeight="308.0" prefWidth="150.0" side="LEFT" />
         </yAxis>
       </BarChart>
    </children>
