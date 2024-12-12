@@ -18,7 +18,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefWidth="150.0" text="Loại thời gian">
+                        <Label prefWidth="150.0" text="Mã nhân viên">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -50,6 +50,46 @@
                            </font>
                         </Label>
                         <ComboBox fx:id="cmbChonNam" editable="true" prefWidth="200.0" styleClass="coChu" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <HBox>
+                     <children>
+                        <Label prefWidth="150.0" text="Loại thời gian">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbLoaiThoiGian1" editable="true" prefHeight="26.0" prefWidth="200.0" styleClass="coChu" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="80.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefWidth="150.0" text="Chọn tháng">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbChonThang1" editable="true" prefHeight="26.0" prefWidth="200.0" styleClass="coChu" />
+                     </children>
+                     <padding>
+                        <Insets right="80.0" />
+                     </padding>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label prefWidth="150.0" text="Chọn năm">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbChonNam1" editable="true" prefWidth="200.0" styleClass="coChu" />
                      </children>
                   </HBox>
                </children>
