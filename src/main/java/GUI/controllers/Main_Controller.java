@@ -128,6 +128,8 @@ public class Main_Controller implements Initializable {
 
     public void setNhanVien(NhanVien nhanVien) {
         this.nhanVien = nhanVien;
+        lblMaNhanVienDangNhap.setText(nhanVien.getMaNhanVien());
+        lblTenNhanVienDanNhap.setText(nhanVien.getTenNhanVien());
     }
 
     //Thong ke va bao cao
@@ -327,6 +329,13 @@ public class Main_Controller implements Initializable {
     }
 
     public void dangXuat(){
+        if(phieuKetToan != null
+                && phieuKetToan.getPhieuKiemTienDauCa() != null
+                && phieuKetToan.getPhieuKiemTienCuoiCa() == null)
+        {
+            this.showMessagesDialog("Vui lòng kết ca trước khi đăng xuất");
+            return;
+        }
         try {
             Window window = anpNoiDungTrang.getScene().getWindow();
             Stage stage = (Stage) window;
