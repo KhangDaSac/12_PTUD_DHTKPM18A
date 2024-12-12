@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Run extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/QuanLyHoaDon_GUI.fxml"));
+        FXMLLoader fxmlLoaderDangNhap = new FXMLLoader(Run.class.getResource("/view/BaoCaoThongKe_GUI.fxml"));
         Scene sceneDangNhap = new Scene(fxmlLoaderDangNhap.load());
 //        DangNhap_GUI_Controller dangNhapGUIController = fxmlLoaderDangNhap.getController();
 //        dangNhapGUIController.setStage(stage);

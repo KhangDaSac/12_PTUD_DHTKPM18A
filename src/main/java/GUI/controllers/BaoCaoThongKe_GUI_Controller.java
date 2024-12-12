@@ -74,19 +74,12 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
     int soVeBan = 0;
     int soVeDoi = 0;
     int soVeHuy = 0;
+    int soVeBanThang = 0;
+    int soVeDoiThang = 0;
+    int soVeHuyThang = 0;
 
 
     public void hienThiDoanhThuNgay(int nam, int thang) {
-        dsHoaDonBanVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        dsHoaDonDatVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        dsHoaDonDoiVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        dsHoaDonHuyDatVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        dsHoaDonHuyVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        dsHoaDonLayVe = new ArrayList<>(Collections.nCopies(31, 0.0));
-        doanhThuTheoNgay = new ArrayList<>(Collections.nCopies(31, 0.0));
-        soVeDoi = 0;
-        soVeBan = 0;
-        soVeHuy = 0;
         thongKeDoanhThuTheoNgay(nam,thang);
         XYChart.Series<String,Double> series_01= new XYChart.Series<>();
         for(int i= 1; i<=31;i++){
@@ -103,6 +96,16 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
     }
 
     public ArrayList<Double> thongKeDoanhThuTheoNgay(int nam, int thang) {
+        dsHoaDonBanVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        dsHoaDonDatVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        dsHoaDonDoiVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        dsHoaDonHuyDatVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        dsHoaDonHuyVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        dsHoaDonLayVe = new ArrayList<>(Collections.nCopies(31, 0.0));
+        doanhThuTheoNgay = new ArrayList<>(Collections.nCopies(31, 0.0));
+        soVeDoi = 0;
+        soVeBan = 0;
+        soVeHuy = 0;
         try {
             Connection con = ConnectDB.getInstance().getConnection();
                 String query = "EXEC thongKeDoanhThuTheoNgayTrongThang ?,?";
@@ -165,13 +168,6 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
                     HoaDonLayVe hdlv = new HoaDonLayVe(rs.getString("maHoaDon"));
                     ArrayList<ChiTietHoaDonLayVe> dsChiTietHoaDonLayVe = ChiTietHoaDonLayVe_DAO.getDanhSachChiTietHoaDonLayVeTheoMaHoaDonLayVe(hdlv.getMaHoaDonLayVe());
                     hdlv.setDanhSachChiTietHoaDonLayVe(dsChiTietHoaDonLayVe);
-                    System.out.println("---------------------------------da tim thay hoa don lv");
-                    if(dsChiTietHoaDonLayVe!=null){
-                        System.out.println("---------------------------"+dsChiTietHoaDonLayVe.size());
-                    }
-                    for(ChiTietHoaDonLayVe chiTietHoaDonLayVe: dsChiTietHoaDonLayVe){
-                        System.out.println(chiTietHoaDonLayVe.getHoaDonLayVe().getMaHoaDonLayVe());
-                    }
                     for (int i = 0; i <= 30; i++) {
                         if (rs.getInt("ngay") == i+1) {
                             dsHoaDonLayVe.set(i, dsHoaDonLayVe.get(i) + hdlv.tongTienCuoi());
@@ -198,13 +194,21 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         return doanhThuTheoNgay;
     }
 
 
     public ArrayList<Double> thongKeDoanhThuTheoThang(int nam) {
+        doanhThuTheoThang = new ArrayList<>(Collections.nCopies(12, 0.0));
+        soVeBanThang = 0;
+        soVeDoiThang = 0;
+        soVeHuyThang = 0;
        for (int i = 0; i <= 11; i++) {
-            doanhThuTheoThang.set(i, thongKeDoanhThuTheoNgay(i+1,nam).stream().mapToDouble(Double::doubleValue).sum());
+            doanhThuTheoThang.set(i, thongKeDoanhThuTheoNgay(nam,i+1).stream().mapToDouble(Double::doubleValue).sum());
+            soVeBanThang = soVeBanThang + soVeBan;
+            soVeDoiThang = soVeDoiThang + soVeDoi;
+            soVeHuyThang = soVeHuyThang + soVeHuy;
         }
         return doanhThuTheoThang;
     }
@@ -250,17 +254,20 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
                 series_01.getData().add(new XYChart.Data<>("Dec",doanhThuTheoThang.get(i-1)));
             }
         }
+        for (int i=0; i<=11 ; i++){
+            System.out.println(doanhThuTheoThang.get(i));
+        }
         txtDoanhThu.setText(CurrencyFormat.currencyFormat(doanhThuTheoThang.stream().mapToDouble(Double::doubleValue).sum()));
-        txtSoVeBan.setText(String.valueOf(soVeBan));
-        txtSoVeHuy.setText(String.valueOf(soVeHuy));
-        txtSoVeDoi.setText(String.valueOf(soVeDoi));
+        txtSoVeBan.setText(String.valueOf(soVeBanThang));
+        txtSoVeHuy.setText(String.valueOf(soVeHuyThang));
+        txtSoVeDoi.setText(String.valueOf(soVeDoiThang));
         chart.getData().clear();
         chart.setLegendVisible(false);
         chart.getData().add(series_01);
     }
 
     public void initializeComboBoxes(){
-        ObservableList<String> loaiThoiGian = FXCollections.observableArrayList("Ngày","Tháng","Năm");
+        ObservableList<String> loaiThoiGian = FXCollections.observableArrayList("Ngày","Tháng");
         cmbLoaiThoiGian.setItems(loaiThoiGian);
         ObservableList<String> thang = FXCollections.observableArrayList("Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12");
         cmbChonThang.setItems(thang);
@@ -280,9 +287,6 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
                 int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
                 int thang = cmbChonThang.getSelectionModel().getSelectedIndex() + 1;
                 hienThiDoanhThuNgay(nam,thang);
-                for(int i=0;i<30;i++){
-                    System.out.println(dsHoaDonBanVe.get(i));
-                }
         }
     }
 
