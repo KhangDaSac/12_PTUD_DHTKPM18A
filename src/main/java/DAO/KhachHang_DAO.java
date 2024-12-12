@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import static connectDB.ConnectDB.con;
 
 public class KhachHang_DAO {
-    public static Connection con = ConnectDB.getInstance().getConnection();
+    private static Connection con = ConnectDB.getInstance().getConnection();
     public static KhachHang getKhachHangTheoCCCD(String cccd){
         try {
             String query = "select maKhachHang, CCCD, tenKhachHang, soDienThoai, lkh.maLoaiKhachHang, tenLoaiKhachHang, phanTramGiamGia" +
@@ -46,96 +46,5 @@ public class KhachHang_DAO {
         return null;
     }
 
-
-    public ArrayList<KhachHang> xuatDanhSachKhachHang (){
-        ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
-        try {
-            String query = "select * from KhachHang kh join LoaiKhachHang lkh on lkh.maLoaiKhachHang= kh.maLoaiKhachHang ";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-                String maKhachHang = rs.getString("maKhachHang");
-                String cCCD = rs.getString("CCCD");
-                String tenKhachHang = rs.getString("tenKhachHang");
-                String soDienThoai = rs.getString("soDienThoai");
-                LoaiKhachHang loaiKhachHang = new LoaiKhachHang(rs.getString("maLoaiKhachHang"),rs.getString("tenLoaiKhachHang"),rs.getDouble("phanTramGiamGia"));
-                LocalDate ngaySinh = rs.getDate("ngaySinh") != null ? rs.getDate("ngaySinh").toLocalDate() : null;
-                //LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
-                KhachHang khachHang = new KhachHang(maKhachHang,cCCD, tenKhachHang,soDienThoai,ngaySinh, loaiKhachHang);
-                dsKhachHang.add(khachHang);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  dsKhachHang;
-    }
-
-    public void suaThongTinKhachHang (KhachHang kh){
-        try{
-            String query = "update KhachHang SET CCCD = ?, tenKhachHang = ?, soDienThoai = ?, maLoaiKhachHang = ?, ngaySinh = ? WHERE maKhachHang = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,kh.getCCCD());
-            statement.setString(2,kh.getTenKhachHang());
-            //statement.setDate(3,Date.valueOf(kh.getNgaySinh()));
-            statement.setString(3,kh.getSoDienThoai());
-
-            statement.setString(4,kh.getLoaiKhachHang().getMaLoaiKhachHang());
-            statement.setString(6,kh.getMaKhachHang());
-            if (kh.getNgaySinh() != null) {
-                statement.setDate(5, Date.valueOf(kh.getNgaySinh()));
-            } else {
-                statement.setNull(5, java.sql.Types.DATE);
-            }
-            statement.executeUpdate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public  void addKhachHang (KhachHang kh){
-        try {
-            String query = "insert into KhachHang values(?,?,?,?,?,?)";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1,kh.getMaKhachHang());
-            statement.setString(2,kh.getCCCD());
-            statement.setString(3,kh.getTenKhachHang());
-            statement.setDate(4,Date.valueOf(kh.getNgaySinh()));
-            statement.setString(5,kh.getSoDienThoai());
-            statement.setString(6,kh.getLoaiKhachHang().getMaLoaiKhachHang());
-            statement.execute();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static String getTenKhachHangTheoMa(String maKhachHang){
-        try {
-            String query = "select tenKhachHang from KhachHang where maKhachHang = ?";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, maKhachHang);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                return rs.getString("tenKhachHang");
-            }
-        }catch (Exception e){
-
-        }
-        return null;
-    }
-
-    public static int laySoMaKhachHangLonNhatNamHienTai(String namHienTai){
-        int tong =1;
-        try {
-            String query = "SELECT Count(maKhachHang) as tong FROM KhachHang WHERE maKhachHang LIKE 'KH' + ? + '%'";
-            PreparedStatement statement = con.prepareStatement(query);
-            statement.setString(1, namHienTai);
-            ResultSet rs = statement.executeQuery();
-            if(rs.next()){
-                tong = rs.getInt("tong");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return tong;
-    }
 
 }

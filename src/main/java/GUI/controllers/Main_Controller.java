@@ -355,8 +355,6 @@ public class Main_Controller implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        DoiVe_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -479,8 +477,8 @@ public class Main_Controller implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        QuanLyKhachHang_GUI_Controller controller = loader.getController();
-        controller.setMain_Controller(this);
+//        QuanLyKhachHang_GUI_Controller controller = loader.getController();
+//        controller.setMain_Controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

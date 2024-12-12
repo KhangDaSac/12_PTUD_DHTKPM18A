@@ -15,7 +15,7 @@ public class ConnectDB {
 
 			String url = "jdbc:sqlserver://localhost:1433;DatabaseName=QLBVT;encrypt=true;trustServerCertificate=true";
 			String user = "sa";
-			String password = "123";
+			String password = "3.141592653";
 			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
 				System.out.println("Kết nối thành công");

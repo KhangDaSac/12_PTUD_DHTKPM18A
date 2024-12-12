@@ -269,8 +269,8 @@ public class LayVe_GUI_Controller implements Initializable {
                     ChiTietVe chiTietVe = new ChiTietVe(
                             ve,
                             chiTietVeDat.getCho(),
-                            chiTietVeDat.getKhachHang(),
                             chiTietVeDat.getGiaCho(),
+                            chiTietVeDat.getKhachHang(),
                             chiTietVeDat.getPhanTramGiamGia()
                     );
                     danhSachChiTietVe.add(chiTietVe);

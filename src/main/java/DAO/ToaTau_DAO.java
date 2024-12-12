@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ToaTau_DAO {
-
     public static Connection con = ConnectDB.getInstance().getConnection();;
     public static ToaTau timToaTauTheoMaChuyenTau(String maChuyenTau) {
         ToaTau toaTau = null;

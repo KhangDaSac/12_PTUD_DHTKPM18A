@@ -2,8 +2,6 @@ package BUS;
 
 import DAO.ChiTietVe_DAO;
 import DAO.Ve_DAO;
-import DTO.ChiTietVe;
-import DTO.ChuyenTau;
 import DTO.LoaiVe;
 import DTO.Ve;
 import utils.TimeFormat;
@@ -40,44 +38,6 @@ public class QuanLyVe_BUS {
     }
 
 
-    public static Ve getVeTheoMa(String maVe){
-        Ve_DAO veDao = new Ve_DAO();
-        Ve ve =veDao.getVeTheoMa(maVe);
-        return ve;
-    }
-    public static void doiVe(String maVe,String maGheCu,String maGheMoi, double giaCho){
-        ChiTietVe_DAO chiTietVeDao= new ChiTietVe_DAO();
-        chiTietVeDao.doiChoTuMaVeMaGheCuMaGheMoi(maVe,maGheCu, maGheMoi,giaCho);
-        System.out.printf("doi ve thanh cong");
-    }
-    public static ChiTietVe getCTVeTheoMaVe(String maVe){
-        ChiTietVe_DAO chiTietVeDao= new ChiTietVe_DAO();
-        ChiTietVe chiTietVe = chiTietVeDao.getCTVeTheoMaVe(maVe);
-        return  chiTietVe;
-    }
 
-    public static String layMaVeCaNhanLonNhatCuaNgayHienTai(String ngay){
-        return Ve_DAO.layMaVeCaNhanLonNhatCuaNgayHienTai(ngay);
-    }
-
-    public static boolean themVeMoi(Ve ve,String maChuyenTau){
-        if (Ve_DAO.themVeMoi(ve,maChuyenTau)){
-            System.out.printf("thêm thành công!");
-        }else {
-            System.out.printf("thêm vé không thành công");
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean themChiTietVeMoi(ChiTietVe ctVe){
-        ChiTietVe_DAO.themChiTietVeMoi(ctVe);
-        return true;
-    }
-
-    public static boolean capNhatTrangThaiHuyChoVeDoi(String maVe){
-        Ve_DAO.capNhatTrangThaiHuyChoVeDoi(maVe);
-        return true;
-    }
 
 }

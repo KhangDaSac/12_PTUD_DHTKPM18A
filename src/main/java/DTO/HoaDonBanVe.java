@@ -68,17 +68,10 @@ public class HoaDonBanVe {
 		this.maHoaDonBanVe = maHoaDonBanVe;
 	}
 
-<<<<<<< HEAD
 	public HoaDonBanVe(String maHoaDonBanVe, ArrayList<Ve> danhSachVe) {
 		this.maHoaDonBanVe = maHoaDonBanVe;
 		this.danhSachVe = danhSachVe;
 	}
-=======
-    public HoaDonBanVe(String maHoaDonBanVe, KhachHang khachHangMuaVe) {
-        this.maHoaDonBanVe = maHoaDonBanVe;
-        this.khachHangMuaVe = khachHangMuaVe;
-    }
->>>>>>> ba8d3caccc6e91114eda0c306f97c9e16adf148a
 
 	public double tongTienCuoi(){
 		double tongTienCuoi = 0;
@@ -87,7 +80,6 @@ public class HoaDonBanVe {
 		}
 		return tongTienCuoi;
 	}
-
 
 	@Override
 	public String toString() {
@@ -99,7 +91,4 @@ public class HoaDonBanVe {
 				", danhSachVe=" + danhSachVe +
 				'}';
 	}
-
-
-
 }
