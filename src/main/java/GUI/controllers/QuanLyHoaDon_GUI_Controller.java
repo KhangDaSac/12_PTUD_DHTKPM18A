@@ -15,11 +15,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 import utils.ShowMessagesDialog;
 import utils.TimeFormat;
 
+import java.io.File;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -196,7 +198,11 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
                     main_controller.showMessagesDialog("Vé đã hủy không được in");
                 }
                 else {
-                    CreatePDF.taoVe(ve);
+                    DirectoryChooser directoryChooser = new DirectoryChooser();
+                    directoryChooser.setTitle("Chọn thư mục lưu file");
+                    File selectedDirectory = directoryChooser.showDialog(txtCCCD.getScene().getWindow());
+
+                    CreatePDF.taoVe(ve, new File(selectedDirectory.getAbsolutePath() + "\\"+ ve.getMaVe() + ".pdf"));
                 }
 
             }

@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
@@ -111,16 +112,29 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
         hoaDonBanVe.setThoiGianLap(LocalDateTime.now());
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonBanVe)){
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("fileThongTinKhachHang");
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
-                File file = fileChooser.showSaveDialog(lblTenKhachHangMua.getScene().getWindow());
-                CreatePDF.taoHoaDonBanVe(hoaDonBanVe, file);
-//                for (Ve ve : hoaDonBanVe.getDanhSachVe()){
-//                    CreatePDF.taoVe(ve);
-//                }
+                String userHome = System.getProperty("user.home");
+                File downloadDirectory = new File(userHome, "Downloads");
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setTitle("Chọn thư mục lưu file");
+                if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                    directoryChooser.setInitialDirectory(downloadDirectory);
+                }
+                File selectedDirectory = null;
+                try {
+                    selectedDirectory  = directoryChooser.showDialog(lblCCCDKhachHangMua.getScene().getWindow());
+                }catch (Exception e){
+
+                }
                 main_controller.showMessagesDialog("Bán vé thành công");
                 main_controller.quayLaiTrangBanVe();
+                if(selectedDirectory != null){
+                    File file = new File(selectedDirectory.getAbsolutePath() + "\\"+ hoaDonBanVe.getMaHoaDonBanVe() + ".pdf");
+                    CreatePDF.taoHoaDonBanVe(hoaDonBanVe, file);
+                    for (Ve ve : hoaDonBanVe.getDanhSachVe()){
+                        File fileVe = new File(selectedDirectory.getAbsolutePath() + "\\"+ ve.getMaVe() + ".pdf");
+                        CreatePDF.taoVe(ve, fileVe);
+                    }
+                }
             }else{
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }

@@ -17,9 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -242,8 +244,16 @@ public class DoiVe_GUI_Controller implements Initializable {
         QuanLyHoaDon_BUS.themHoaDonDoiVe(hoaDonDoiVe);
         QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
         main_Controller.showMessagesDialog("Đổi vé thành công!");
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Chọn thư mục lưu file");
+
+        File selectedDirectory = directoryChooser.showDialog(lblCCCD.getScene().getWindow());
+
+
         CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
-        CreatePDF.taoVe(veMoi);
+
+        CreatePDF.taoVe(veMoi, new File(selectedDirectory.getAbsolutePath() + "\\"+ veMoi.getMaVe() + ".pdf"));
     }
 
     public void tinhTongTien() {

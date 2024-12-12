@@ -10,23 +10,18 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 
 import java.awt.*;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class CreatePDF {
     public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe, File file){
-        //String filePath = "D:/HOCTAP/HK5/PhatTrienUngDung/documents/HoaDonBanVe/"+ hoaDonBanVe.getMaHoaDonBanVe() +".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        //String qrCodePath = "D:/HOCTAP/HK5/PhatTrienUngDung/documents/HoaDonBanVe/QRCode/QRCode_" + hoaDonBanVe.getMaHoaDonBanVe() + ".png";
         try {
-//            File file2 = new File(filePath);
-//            if (file2.exists()) {
-//                Desktop.getDesktop().open(file2);
-//                return;
-//            }
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+               return;
+            }
             Rectangle pageSize = new Rectangle(600, 65 * hoaDonBanVe.getDanhSachVe().size() + 600);
             Document document = new Document(pageSize);
             PdfWriter.getInstance(document, new FileOutputStream(file));
@@ -43,12 +38,11 @@ public class CreatePDF {
             //font tieu de
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
-
-            Image logo = Image.getInstance(logoPath);
+            InputStream is = Objects.requireNonNull(CreatePDF.class.getResourceAsStream("/images/HoaDon/logo.png"));
+            Image logo = Image.getInstance(is.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
-
 
             document.add(Chunk.NEWLINE);
 
@@ -58,13 +52,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            BitMatrix bitMatrix = CreateQRCode.generateQRCode(hoaDonBanVe.getMaHoaDonBanVe(), 80, 80);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            MatrixToImageWriter.writeToStream(bitMatrix, "PNG", byteArrayOutputStream);
-
-            // Tạo hình ảnh QR code từ dữ liệu byte
-            byte[] qrCodeBytes = byteArrayOutputStream.toByteArray();
-            Image qrCode = Image.getInstance(qrCodeBytes);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonBanVe.getMaHoaDonBanVe(), 80, 80));
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
@@ -75,7 +63,6 @@ public class CreatePDF {
             document.add(maHoaDonPar);
 
             document.add(Chunk.NEWLINE);
-
 
             // Thông tin công ty
             Paragraph companyInfo = new Paragraph();
@@ -204,20 +191,16 @@ public class CreatePDF {
         }
     }
 
-    public static void taoVe(Ve ve) {
-        String filePath = "documents/Ve/" + ve.getMaVe() + ".pdf";
-        String qrCodePath = "documents/Ve/QRCode/QRCode_" + ve.getMaVe() + ".png";
+    public static void taoVe(Ve ve, File file) {
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
-            //CreateQRCode.generateQRCode(ve.getMaVe(), qrCodePath, 150, 150);
             Rectangle pageSize = new Rectangle(300, 120 * ve.getDanhSachChiTietVe().size() + 500);
             Document document = new Document(pageSize);
             document.setMargins(20, 20, 20, 20);
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
 
             document.open();
 
@@ -244,7 +227,7 @@ public class CreatePDF {
             document.add(titleEnglish);
 
 
-            Image qrCode = Image.getInstance(qrCodePath);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(ve.getMaVe(), 150, 150));
             qrCode.setAlignment(Element.ALIGN_CENTER);
             document.add(qrCode);
 
@@ -320,10 +303,9 @@ public class CreatePDF {
             document.add(note);
 
             document.close();
-            System.out.println("Vé tàu đã được tạo tại: " + filePath);
+            System.out.println("Vé tàu đã được tạo tại: " + file);
 
             // Mở tệp PDF
-            File file = new File(filePath);
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
             }

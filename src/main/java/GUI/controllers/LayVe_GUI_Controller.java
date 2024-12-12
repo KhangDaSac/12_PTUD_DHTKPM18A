@@ -17,9 +17,11 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -326,9 +328,12 @@ public class LayVe_GUI_Controller implements Initializable {
         if(QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe)){
             main_controller.showMessagesDialog("Lấy vé thành công");
 
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Chọn thư mục lưu file");
+            File selectedDirectory = directoryChooser.showDialog(txtTongTien.getScene().getWindow());
             CreatePDF.taoHoaDonLayVe(hoaDonLayVe);
             for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
-                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe());
+                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe(), new File(selectedDirectory.getAbsolutePath() + "\\"+ chiTietHoaDonLayVe.getVe().getMaVe() + ".pdf"));
             }
 
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
