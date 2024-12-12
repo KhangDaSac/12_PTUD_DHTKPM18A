@@ -9,6 +9,11 @@ public class ChiTietVe {
 	private double giaCho;
 	private double phanTramGiamGia;
 
+	public ChiTietVe() {
+
+	}
+
+
 	public Ve getVe() {
 		return ve;
 	}
@@ -77,11 +82,11 @@ public class ChiTietVe {
 		this.giaCho = giaCho;
 	}
 
-	public ChiTietVe(Ve ve, Cho cho, double giaCho, KhachHang khachHang, double phanTramGiamGia) {
+	public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho,double phanTramGiamGia) {
 		this.ve = ve;
 		this.cho = cho;
-		this.giaCho = giaCho;
 		this.khachHang = khachHang;
+		this.giaCho = giaCho;
 		this.phanTramGiamGia = phanTramGiamGia;
 	}
 

@@ -12,6 +12,12 @@ public class ChuyenTau {
 	private int soLuongChoDaDat;
 	private int soLuongChoChangDaiHon;
 	private int soLuongChoTrongTrong;
+	private ChiTietChuyenTau thongTinGaTauDi;
+	private ChiTietChuyenTau thongTinGaTauDen;
+
+	public ChuyenTau() {
+
+	}
 
 	private int soLuongCho;
 	private int soLuongVe;
@@ -112,6 +118,15 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
+
+	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, int soLuongVe, int soLuongVeDat) {
+		this.maChuyenTau = maChuyenTau;
+		this.tuyenTau = tuyenTau;
+		this.soLuongCho = soLuongCho;
+		this.soLuongVe = soLuongVe;
+		this.soLuongVeDat = soLuongVeDat;
+	}
+
 	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong) {
 		this.maChuyenTau = maChuyenTau;
 		this.soLuongChoDaBan = soLuongChoDaBan;
@@ -120,13 +135,14 @@ public class ChuyenTau {
 		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
 	}
 
-
-	public ChuyenTau(String maChuyenTau, TuyenTau tuyenTau, int soLuongCho, int soLuongVe, int soLuongVeDat) {
+	public ChuyenTau(String maChuyenTau, int soLuongChoDaBan, int soLuongChoDaDat, int soLuongChoChangDaiHon, int soLuongChoTrongTrong, ChiTietChuyenTau thongTinGaTauDi, ChiTietChuyenTau thongTinGaTauDen) {
 		this.maChuyenTau = maChuyenTau;
-		this.tuyenTau = tuyenTau;
-		this.soLuongCho = soLuongCho;
-		this.soLuongVe = soLuongVe;
-		this.soLuongVeDat = soLuongVeDat;
+		this.soLuongChoDaBan = soLuongChoDaBan;
+		this.soLuongChoDaDat = soLuongChoDaDat;
+		this.soLuongChoChangDaiHon = soLuongChoChangDaiHon;
+		this.soLuongChoTrongTrong = soLuongChoTrongTrong;
+		this.thongTinGaTauDi = thongTinGaTauDi;
+		this.thongTinGaTauDen = thongTinGaTauDen;
 	}
 
 	public ChuyenTau(String maChuyenTau) {

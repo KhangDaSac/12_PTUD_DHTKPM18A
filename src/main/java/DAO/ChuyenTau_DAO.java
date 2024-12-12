@@ -76,6 +76,20 @@ public class ChuyenTau_DAO {
         return dsChuyenTau;
     }
 
+    public void suaThoiGianKhoiHanh (LocalDateTime thoiGianKhoiHanh, String maChuyen){
+        try{
+            String query = "update ChuyenTau set ngayKhoiHanh = ? where maChuyenTau = ?";
+            PreparedStatement statement = con.prepareStatement(query);
+            Timestamp thoiGian = Timestamp.valueOf(thoiGianKhoiHanh);
+            statement.setTimestamp(1,thoiGian);
+            statement.setString(2,maChuyen);
+            statement.execute();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     public static ArrayList<ChuyenTau> getDanhSachChuyenTauTheo_MaChuyen_MaTuyen_NgayDi(String maChuyenTau, String maTuyenTau, LocalDate ngayKhoiHanh){
         ArrayList<ChuyenTau> danhSachChuyenTau = new ArrayList<ChuyenTau>();
 
