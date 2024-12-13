@@ -61,11 +61,12 @@ public class NhanVien_DAO {
                 String tenNV = rs.getString("tenNhanVien");
                 String soDienThoai = rs.getString("soDienThoai");
                 String diaChi = rs.getString("diaChi");
+                String email = rs.getString("email");
 
                 LoaiNhanVien loaiNhanVien = LoaiNhanVien.valueOf(rs.getString("loaiNhanVien"));
                 TrangThaiNhanVien trangThaiNhanVien = TrangThaiNhanVien.valueOf(rs.getString("trangThaiNhanVien"));
 
-                NhanVien nv = new NhanVien(maNV, cCCD, tenNV, diaChi, soDienThoai, loaiNhanVien, trangThaiNhanVien);
+                NhanVien nv = new NhanVien(maNV, cCCD, tenNV, diaChi, soDienThoai, email, loaiNhanVien, trangThaiNhanVien);
                 dsNV.add(nv);
             }
         } catch (Exception e){
@@ -101,15 +102,16 @@ public class NhanVien_DAO {
         PreparedStatement stmt = null;
         int n = 0;
         try {
-            stmt = con.prepareStatement("update NhanVien set CCCD = ?,ten = ?, diaChi = ?, soDienThoai = ?, loaiNhanVien = ?, trangThaiNhanVien = ? where maNV = ?");
+            stmt = con.prepareStatement("update NhanVien set CCCD = ?,tenNhanVien = ?, soDienThoai = ?, diaChi = ?, email = ?, loaiNhanVien = ?, trangThaiNhanVien = ? where maNhanVien = ?");
             stmt.setString(1, nv.getCCCD());
             stmt.setString(2, nv.getTenNhanVien());
-            stmt.setString(3, nv.getDiaChi());
-            stmt.setString(4, nv.getSoDienThoai());
-            stmt.setString(5, nv.getLoaiNhanVien().toString());
-            stmt.setString(6, nv.getTrangThaiNhanVien().toString());
-            stmt.setString(7, nv.getMaNhanVien());
-            n = stmt.executeUpdate();
+            stmt.setString(3, nv.getSoDienThoai());
+            stmt.setString(4, nv.getDiaChi());
+            stmt.setString(5, nv.getEmail());
+            stmt.setString(6, nv.getLoaiNhanVien().toString());
+            stmt.setString(7, nv.getTrangThaiNhanVien().toString());
+            stmt.setString(8, nv.getMaNhanVien());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

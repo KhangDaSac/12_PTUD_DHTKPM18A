@@ -391,6 +391,17 @@ public class LayVe_GUI_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
+            if(main_controller.getPhieuKetToan() == null || main_controller.getPhieuKetToan().getCaLamViec() == null){
+                main_controller.thongBaoKhongHoatDong("Chưa tạo ca làm việc, vui lòng tạo phiếu kiểm tiền đầu ca để tạo ca làm việc\n" +
+                        "Vào mục Báo Cáo Và Thống Kê → Báo Cao → Tạo Phiếu Kiểm Tiền Dầu Ca để tạo ca");
+                return;
+            }
+
+            if(main_controller.getPhieuKetToan() != null && main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+                main_controller.thongBaoKhongHoatDong("Ca làm việc đã kế thúc. \nVui lòng tạo ca làm việc mới");
+                return;
+            }
+
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());

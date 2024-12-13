@@ -10,6 +10,7 @@ import GUI.controllers.HuyDatVe_GUI_Items.HoaDonDatVe_HuyDatVe_Controller;
 import GUI.controllers.HuyDatVe_GUI_Items.VeDat_HuyDatVe_Controller;
 import com.jfoenix.controls.JFXButton;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,6 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     private TextField txtCCCD;
     @FXML
     private DatePicker dapNgayThanhToan;
-//    private Main_Controller main_Controller;
     @FXML
     private JFXButton btnTimHoaDon;
     @FXML
@@ -105,12 +105,25 @@ public class HuyDatVe_GUI_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDanhSachHoaDonDat();
-        hienThiDanhSachHoaDonDat();
-        String maHoaDonHuyDatVe = QuanLyHoaDon_BUS.layHoaDonHuyDatVeTiepTheo();
-        hoaDonHuyDatVe = new HoaDonHuyDatVe(maHoaDonHuyDatVe);
-        hoaDonHuyDatVe.setDanhSachChiTietHoaDonHuyDatVe(new ArrayList<ChiTietHoaDonHuyDatVe>());
-        hoaDonHuyDatVe.setCaLamViec(new CaLamViec("CLV13122024P001"));
+        Platform.runLater(()->{
+            if(main_controller.getPhieuKetToan() == null || main_controller.getPhieuKetToan().getCaLamViec() == null){
+                main_controller.thongBaoKhongHoatDong("Chưa tạo ca làm việc, vui lòng tạo phiếu kiểm tiền đầu ca để tạo ca làm việc\n" +
+                        "Vào mục Báo Cáo Và Thống Kê → Báo Cao → Tạo Phiếu Kiểm Tiền Dầu Ca để tạo ca");
+                return;
+            }
+
+            if(main_controller.getPhieuKetToan() != null && main_controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+                main_controller.thongBaoKhongHoatDong("Ca làm việc đã kế thúc. \nVui lòng tạo ca làm việc mới");
+                return;
+            }
+
+            loadDanhSachHoaDonDat();
+            hienThiDanhSachHoaDonDat();
+            String maHoaDonHuyDatVe = QuanLyHoaDon_BUS.layHoaDonHuyDatVeTiepTheo();
+            hoaDonHuyDatVe = new HoaDonHuyDatVe(maHoaDonHuyDatVe);
+            hoaDonHuyDatVe.setDanhSachChiTietHoaDonHuyDatVe(new ArrayList<ChiTietHoaDonHuyDatVe>());
+            hoaDonHuyDatVe.setCaLamViec(main_controller.getPhieuKetToan().getCaLamViec());
+        });
     }
 
     public void loadDanhSachHoaDonDat() {

@@ -472,6 +472,17 @@ public class DatVe_GUI_Controller implements Initializable {
 
         Platform.runLater(()->{
             try {
+                if(main_Controller.getPhieuKetToan() == null || main_Controller.getPhieuKetToan().getCaLamViec() == null){
+                    main_Controller.thongBaoKhongHoatDong("Chưa tạo ca làm việc, vui lòng tạo phiếu kiểm tiền đầu ca để tạo ca làm việc\n" +
+                            "Vào mục Báo Cáo Và Thống Kê → Báo Cao → Tạo Phiếu Kiểm Tiền Dầu Ca để tạo ca");
+                    return;
+                }
+
+                if(main_Controller.getPhieuKetToan() != null && main_Controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+                    main_Controller.thongBaoKhongHoatDong("Ca làm việc đã kế thúc. \nVui lòng tạo ca làm việc mới");
+                    return;
+                }
+
                 if(hoaDonDatVe == null){
                     String maHoaDon = QuanLyHoaDon_BUS.layMaHoaDonDatVeTiepTheo();
                     hoaDonDatVe = new HoaDonDatVe(maHoaDon);

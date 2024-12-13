@@ -8,6 +8,7 @@ import GUI.controllers.DoiVe_GUI_Items.Cho_DoiVe_Controller;
 import GUI.controllers.DoiVe_GUI_Items.ChuyenTau_DoiVe_Controller;
 import GUI.controllers.DoiVe_GUI_Items.ToaTau_DoiVe_Controller;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -192,6 +193,21 @@ public class DoiVe_GUI_Controller implements Initializable {
             event.consume();
         });
 
+        Platform.runLater(()->{
+            if(main_Controller.getPhieuKetToan() == null || main_Controller.getPhieuKetToan().getCaLamViec() == null){
+                main_Controller.thongBaoKhongHoatDong("Chưa tạo ca làm việc, vui lòng tạo phiếu kiểm tiền đầu ca để tạo ca làm việc\n" +
+                        "Vào mục Báo Cáo Và Thống Kê → Báo Cao → Tạo Phiếu Kiểm Tiền Dầu Ca để tạo ca");
+                return;
+            }
+
+            if(main_Controller.getPhieuKetToan() != null && main_Controller.getPhieuKetToan().getPhieuKiemTienCuoiCa() != null){
+                main_Controller.thongBaoKhongHoatDong("Ca làm việc đã kế thúc. \nVui lòng tạo ca làm việc mới");
+                return;
+            }
+
+
+        });
+
     }
 
     public void setToaTauDangChon(int toaTauDangChon) {
@@ -230,7 +246,7 @@ public class DoiVe_GUI_Controller implements Initializable {
                 choChon.getGiaCho(),
                 ctVe.getPhanTramGiamGia());
 
-        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi,new CaLamViec("CLV01032024C003"));
+        hoaDonDoiVe = new HoaDonDoiVe(maHoaDonMoi,LocalDateTime.now(),veKhachHang,veMoi, main_Controller.getPhieuKetToan().getCaLamViec());
 
         veKhachHang.setDanhSachChiTietVe(new ArrayList<>());
         veKhachHang.getDanhSachChiTietVe().add(ctVe);

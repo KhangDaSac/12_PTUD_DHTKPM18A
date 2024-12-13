@@ -30,6 +30,17 @@ public class NhanVien {
 		this.trangThaiNhanVien = trangThaiNhanVien;
 	}
 
+	public NhanVien(String maNhanVien, String cCCD, String tenNV, String diaChi, String soDienThoai, String email, LoaiNhanVien loaiNhanVien, TrangThaiNhanVien trangThaiNhanVien) {
+		this.maNhanVien = maNhanVien;
+		this.CCCD = cCCD;
+		this.tenNhanVien = tenNV;
+		this.diaChi = diaChi;
+		this.soDienThoai = soDienThoai;
+		this.email = email;
+		this.loaiNhanVien = loaiNhanVien;
+		this.trangThaiNhanVien = trangThaiNhanVien;
+	}
+
 	public String getMaNhanVien() {
 		return maNhanVien;
 	}
@@ -114,5 +125,19 @@ public class NhanVien {
 		this.soDienThoai = soDienThoai;
 		this.email = email;
 		this.loaiNhanVien = loaiNhanVien;
+	}
+
+	@Override
+	public String toString() {
+		return "NhanVien{" +
+				"CCCD='" + CCCD + '\'' +
+				", maNhanVien='" + maNhanVien + '\'' +
+				", tenNhanVien='" + tenNhanVien + '\'' +
+				", diaChi='" + diaChi + '\'' +
+				", soDienThoai='" + soDienThoai + '\'' +
+				", email='" + email + '\'' +
+				", loaiNhanVien=" + loaiNhanVien +
+				", trangThaiNhanVien=" + trangThaiNhanVien +
+				'}';
 	}
 }
