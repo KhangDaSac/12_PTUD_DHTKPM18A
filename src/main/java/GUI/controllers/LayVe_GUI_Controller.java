@@ -333,7 +333,7 @@ public class LayVe_GUI_Controller implements Initializable {
             File selectedDirectory = directoryChooser.showDialog(txtTongTien.getScene().getWindow());
             CreatePDF.taoHoaDonLayVe(hoaDonLayVe);
             for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
-                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe(), new File(selectedDirectory.getAbsolutePath() + "\\"+ chiTietHoaDonLayVe.getVe().getMaVe() + ".pdf"));
+                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe(), selectedDirectory.getAbsolutePath());
             }
 
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();

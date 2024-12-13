@@ -14,8 +14,9 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public class CreatePDF {
-    public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe, File file){
+    public static void taoHoaDonBanVe(HoaDonBanVe hoaDonBanVe, String pathFolder){
         try {
+            File file = new File(pathFolder + "\\"+ hoaDonBanVe.getMaHoaDonBanVe() + ".pdf");
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
                return;
@@ -36,8 +37,7 @@ public class CreatePDF {
             //font tieu de
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
-            File fileImageLogo = new File("/images/HoaDon/logo.png");
-            FileInputStream imageStream = new FileInputStream(fileImageLogo);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
             Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
@@ -177,21 +177,17 @@ public class CreatePDF {
             System.out.println("Hóa đơn đã được tạo tại: ");
 
 
-            if (!fileImageLogo.exists()) {
-                return;
-            }
-            Desktop desktop = Desktop.getDesktop();
-
-            if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(fileImageLogo);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void taoVe(Ve ve, File file) {
+    public static void taoVe(Ve ve, String pathFolder) {
         try {
+            File file = new File(pathFolder + "\\"+ ve.getMaVe() + ".pdf");
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
                 return;

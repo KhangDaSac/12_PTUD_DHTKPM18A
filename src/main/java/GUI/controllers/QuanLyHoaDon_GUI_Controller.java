@@ -202,7 +202,7 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
                     directoryChooser.setTitle("Chọn thư mục lưu file");
                     File selectedDirectory = directoryChooser.showDialog(txtCCCD.getScene().getWindow());
 
-                    CreatePDF.taoVe(ve, new File(selectedDirectory.getAbsolutePath() + "\\"+ ve.getMaVe() + ".pdf"));
+                    CreatePDF.taoVe(ve, selectedDirectory.getAbsolutePath());
                 }
 
             }

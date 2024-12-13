@@ -125,16 +125,17 @@ public class ThongTinBanVe_GUI_Controller implements Initializable {
                 }catch (Exception e){
 
                 }
-                main_controller.showMessagesDialog("Bán vé thành công");
-                main_controller.quayLaiTrangBanVe();
                 if(selectedDirectory != null){
-                    File file = new File(selectedDirectory.getAbsolutePath() + "\\"+ hoaDonBanVe.getMaHoaDonBanVe() + ".pdf");
-                    CreatePDF.taoHoaDonBanVe(hoaDonBanVe, file);
+                    CreatePDF.taoHoaDonBanVe(
+                            hoaDonBanVe,
+                            selectedDirectory.getAbsolutePath()
+                    );
                     for (Ve ve : hoaDonBanVe.getDanhSachVe()){
-                        File fileVe = new File(selectedDirectory.getAbsolutePath() + "\\"+ ve.getMaVe() + ".pdf");
-                        CreatePDF.taoVe(ve, fileVe);
+                        CreatePDF.taoVe(ve, selectedDirectory.getAbsolutePath());
                     }
                 }
+                main_controller.showMessagesDialog("Bán vé thành công");
+                main_controller.quayLaiTrangBanVe();
             }else{
                 main_controller.showMessagesDialog("Bán vé thất bại");
             }

@@ -253,7 +253,7 @@ public class DoiVe_GUI_Controller implements Initializable {
 
         CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
 
-        CreatePDF.taoVe(veMoi, new File(selectedDirectory.getAbsolutePath() + "\\"+ veMoi.getMaVe() + ".pdf"));
+        CreatePDF.taoVe(veMoi, selectedDirectory.getAbsolutePath());
     }
 
     public void tinhTongTien() {
