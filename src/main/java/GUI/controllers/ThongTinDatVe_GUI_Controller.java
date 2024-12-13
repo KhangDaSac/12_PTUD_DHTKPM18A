@@ -15,9 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -112,7 +114,24 @@ public class ThongTinDatVe_GUI_Controller implements Initializable {
         hoaDonDatVe.setThoiGianLap(LocalDateTime.now());
         try {
             if(QuanLyHoaDon_BUS.themHoaDon(hoaDonDatVe)){
-                CreatePDF.taoHoaDonDatVe(hoaDonDatVe);
+                String userHome = System.getProperty("user.home");
+                File downloadDirectory = new File(userHome, "Downloads");
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setTitle("Chọn thư mục lưu file");
+                if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                    directoryChooser.setInitialDirectory(downloadDirectory);
+                }
+                File selectedDirectory = null;
+                try {
+                    selectedDirectory  = directoryChooser.showDialog(txtTongTienCoc.getScene().getWindow());
+                }catch (Exception e){
+
+                }
+
+                if(selectedDirectory != null){
+                    CreatePDF.taoHoaDonDatVe(hoaDonDatVe, selectedDirectory.getAbsolutePath());
+                }
+
                 main_controller.showMessagesDialog("Đặt vé thành công");
                 main_controller.quayLaiTrangDatVe();
             }else{

@@ -15,10 +15,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 import utils.TimeFormat;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -146,7 +148,25 @@ public class BaoCao_GUI_Controller implements Initializable {
             main_controller.showMessagesDialog("Chưa có phiếu kiểm tiền cuối ca");
             return;
         }
-        CreatePDF.taoPhieuKetToan(main_controller.getPhieuKetToan(), dsHoaDon);
+
+        String userHome = System.getProperty("user.home");
+        File downloadDirectory = new File(userHome, "Downloads");
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Chọn thư mục lưu file");
+        if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+            directoryChooser.setInitialDirectory(downloadDirectory);
+        }
+        File selectedDirectory = null;
+        try {
+            selectedDirectory  = directoryChooser.showDialog(lblTongTienTrongCa.getScene().getWindow());
+        }catch (Exception e){
+
+        }
+
+        if(selectedDirectory != null){
+            CreatePDF.taoPhieuKetToan(main_controller.getPhieuKetToan(), dsHoaDon, selectedDirectory.getAbsolutePath());
+        }
+
         main_controller.dangXuat();
     }
 

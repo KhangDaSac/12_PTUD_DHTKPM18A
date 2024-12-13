@@ -408,6 +408,7 @@ public class Main_Controller implements Initializable {
         controller.setMain_controller(this);
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
+        controller.setMain_controller(this);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
         AnchorPane.setBottomAnchor(trangMoi, 0.0);
         AnchorPane.setLeftAnchor(trangMoi, 0.0);

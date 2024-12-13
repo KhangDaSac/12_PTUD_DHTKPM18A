@@ -191,8 +191,12 @@ public class LayVe_GUI_Controller implements Initializable {
     public void layDanhSachHoaDonDatTheoKhachHang(){
         hoaDonDatVe_list = QuanLyHoaDon_BUS.getDanhSachHoaDonDatTheoMaKhachHang(khachHang.getMaKhachHang());
         hienThiDanhSachHoaDonDat();
-        hoaDonDatVeDangChon = hoaDonDatVe_list.getFirst();
-        hienThiDanhSachVeDat(hoaDonDatVe_list.getFirst());
+        if (hoaDonDatVe_list.isEmpty()){
+            return;
+        }
+
+        hoaDonDatVeDangChon = hoaDonDatVe_list.get(0);
+        hienThiDanhSachVeDat(hoaDonDatVe_list.get(0));
     }
 
     public void hienThiDanhSachHoaDonDat(){
@@ -326,21 +330,37 @@ public class LayVe_GUI_Controller implements Initializable {
         }
         hoaDonLayVe.setThoiGianLayVe(LocalDateTime.now());
         if(QuanLyHoaDon_BUS.themHoaDonLayVe(hoaDonLayVe)){
-            main_controller.showMessagesDialog("Lấy vé thành công");
 
+            String userHome = System.getProperty("user.home");
+            File downloadDirectory = new File(userHome, "Downloads");
             DirectoryChooser directoryChooser = new DirectoryChooser();
             directoryChooser.setTitle("Chọn thư mục lưu file");
-            File selectedDirectory = directoryChooser.showDialog(txtTongTien.getScene().getWindow());
-            CreatePDF.taoHoaDonLayVe(hoaDonLayVe);
-            for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
-                CreatePDF.taoVe(chiTietHoaDonLayVe.getVe(), selectedDirectory.getAbsolutePath());
+            if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                directoryChooser.setInitialDirectory(downloadDirectory);
             }
+            File selectedDirectory = null;
+            try {
+                selectedDirectory  = directoryChooser.showDialog(vboxDanhSachVeLay.getScene().getWindow());
+            }catch (Exception e){
+
+            }
+
+            if(selectedDirectory != null){
+                CreatePDF.taoHoaDonLayVe(hoaDonLayVe, selectedDirectory.getAbsolutePath());
+                for(ChiTietHoaDonLayVe chiTietHoaDonLayVe : hoaDonLayVe.getDanhSachChiTietHoaDonLayVe()){
+                    CreatePDF.taoVe(chiTietHoaDonLayVe.getVe(), selectedDirectory.getAbsolutePath());
+                }
+            }
+
+            main_controller.showMessagesDialog("Lấy vé thành công");
 
             String maHoaDonLayVe = QuanLyHoaDon_BUS.layHoaDonLayVeTiepTheo();
             hoaDonLayVe = new HoaDonLayVe(maHoaDonLayVe);
             hoaDonLayVe.setDanhSachChiTietHoaDonLayVe(new ArrayList<ChiTietHoaDonLayVe>());
             hoaDonLayVe.setCaLamViec(main_controller.getPhieuKetToan().getCaLamViec());
             hoaDonLayVe.setKhachHangLayVe(khachHang);
+            hoaDonDatVeDangChon = new HoaDonDatVe();
+            hoaDonDatVeDangChon.setDanhSachVeDat(new ArrayList<>());
             layDanhSachHoaDonDatTheoKhachHang();
             hienThiDanhSachVeLay();
             hienThiDanhSachVeDat(null);

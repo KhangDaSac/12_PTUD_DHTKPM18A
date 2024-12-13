@@ -17,9 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import utils.CreatePDF;
 import utils.CurrencyFormat;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -100,14 +102,6 @@ public class HuyDatVe_GUI_Controller implements Initializable {
     public void setHoaDonDatVeDangChon(HoaDonDatVe hoaDonDatVeDangChon) {
         this.hoaDonDatVeDangChon = hoaDonDatVeDangChon;
     }
-
-//    public Main_Controller getMain_Controller() {
-//        return main_Controller;
-//    }
-//
-//    public void setMain_Controller(Main_Controller main_Controller) {
-//        this.main_Controller = main_Controller;
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -193,15 +187,29 @@ public class HuyDatVe_GUI_Controller implements Initializable {
         hoaDonHuyDatVe.setKhachHangHuyDatVe(hoaDonDatVeDangChon.getKhachHangDatVe());
 
         if (QuanLyHoaDon_BUS.themHoaDonHuyDatVe(hoaDonHuyDatVe)) {
-//            main_Controller.showMessagesDialog("Hủy đặt vé thành công");
             ChiTietHoaDonHuyDatVe_DAO.themDanhsachChiTietHoaDonHuyDatVe(hoaDonHuyDatVe.getDanhSachChiTietHoaDonHuyDatVe());
-            System.out.println("huy dat ve thanh cong");
-            CreatePDF.taoHoaDonHuyDatVe(hoaDonHuyDatVe);
 
+            String userHome = System.getProperty("user.home");
+            File downloadDirectory = new File(userHome, "Downloads");
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Chọn thư mục lưu file");
+            if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                directoryChooser.setInitialDirectory(downloadDirectory);
+            }
+            File selectedDirectory = null;
+            try {
+                selectedDirectory  = directoryChooser.showDialog(vboxDanhSachHoaDonDatVe.getScene().getWindow());
+            }catch (Exception e){
+
+            }
+
+            if(selectedDirectory != null){
+                CreatePDF.taoHoaDonHuyDatVe(hoaDonHuyDatVe, selectedDirectory.getAbsolutePath());
+            }
+            main_controller.showMessagesDialog("Hủy đặt vé thành công");
             hienThiDanhSachVeDat(null);
         }else {
-//            main_Controller.showMessagesDialog("Lấy vé thất bại");
-            System.out.println("huy dat ve that bai");
+            main_controller.showMessagesDialog("Lấy vé thất bại");
         }
 
     }

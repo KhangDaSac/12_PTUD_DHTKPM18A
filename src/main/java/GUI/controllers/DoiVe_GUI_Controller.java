@@ -245,15 +245,26 @@ public class DoiVe_GUI_Controller implements Initializable {
         QuanLyVe_BUS.capNhatTrangThaiHuyChoVeDoi(veKhachHang.getMaVe());
         main_Controller.showMessagesDialog("Đổi vé thành công!");
 
+        //ctVe
+
+        String userHome = System.getProperty("user.home");
+        File downloadDirectory = new File(userHome, "Downloads");
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Chọn thư mục lưu file");
+        if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+            directoryChooser.setInitialDirectory(downloadDirectory);
+        }
+        File selectedDirectory = null;
+        try {
+            selectedDirectory  = directoryChooser.showDialog(btnDoiVe.getScene().getWindow());
+        }catch (Exception e){
 
-        File selectedDirectory = directoryChooser.showDialog(lblCCCD.getScene().getWindow());
+        }
 
-
-        CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe,ctVe);
-
-        CreatePDF.taoVe(veMoi, selectedDirectory.getAbsolutePath());
+        if(selectedDirectory != null){
+            CreatePDF.taoHoaDonDoiVe(hoaDonDoiVe, selectedDirectory.getAbsolutePath());
+            CreatePDF.taoVe(veMoi, selectedDirectory.getAbsolutePath());
+        }
     }
 
     public void tinhTongTien() {

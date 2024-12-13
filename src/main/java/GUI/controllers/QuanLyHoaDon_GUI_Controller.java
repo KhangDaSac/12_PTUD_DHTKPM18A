@@ -167,20 +167,32 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
             main_controller.showMessagesDialog("Bạn chưa chọn hóa đơn nào");
         }
         else {
-            if (selectedHoaDon instanceof HoaDonDatVe){
-                CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon);
+            String userHome = System.getProperty("user.home");
+            File downloadDirectory = new File(userHome, "Downloads");
+            DirectoryChooser directoryChooser = new DirectoryChooser();
+            directoryChooser.setTitle("Chọn thư mục lưu file");
+            if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                directoryChooser.setInitialDirectory(downloadDirectory);
             }
-//            if (selectedHoaDon instanceof HoaDonBanVe){
-//                CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon);
-//            }
-            if (selectedHoaDon instanceof HoaDonHuyVe){
-                CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon);
+            File selectedDirectory = null;
+            try {
+                selectedDirectory  = directoryChooser.showDialog(vboxDanhSachVe.getScene().getWindow());
+            }catch (Exception e){
+
             }
-            if (selectedHoaDon instanceof HoaDonDoiVe){
-                CreatePDF.taoHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon,((HoaDonDoiVe) selectedHoaDon).getVeCu().getDanhSachChiTietVe().get(0));
-            }
-            if (selectedHoaDon instanceof HoaDonHuyDatVe){
-                CreatePDF.taoHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon);
+
+            if(selectedDirectory != null){
+                if (selectedHoaDon instanceof HoaDonDatVe){
+                    CreatePDF.taoHoaDonDatVe((HoaDonDatVe) selectedHoaDon, selectedDirectory.getAbsolutePath());
+                } else if (selectedHoaDon instanceof HoaDonBanVe){
+                    CreatePDF.taoHoaDonBanVe((HoaDonBanVe) selectedHoaDon, selectedDirectory.getAbsolutePath());
+                } else if (selectedHoaDon instanceof HoaDonHuyVe){
+                    CreatePDF.taoHoaDonHuyVe((HoaDonHuyVe) selectedHoaDon, selectedDirectory.getAbsolutePath());
+                } else if (selectedHoaDon instanceof HoaDonDoiVe){
+                    CreatePDF.taoHoaDonDoiVe((HoaDonDoiVe) selectedHoaDon, selectedDirectory.getAbsolutePath());
+                } else if (selectedHoaDon instanceof HoaDonHuyDatVe){
+                    CreatePDF.taoHoaDonHuyDatVe((HoaDonHuyDatVe) selectedHoaDon, selectedDirectory.getAbsolutePath());
+                }
             }
         }
     }
@@ -198,11 +210,22 @@ public class QuanLyHoaDon_GUI_Controller implements Initializable {
                     main_controller.showMessagesDialog("Vé đã hủy không được in");
                 }
                 else {
+                    String userHome = System.getProperty("user.home");
+                    File downloadDirectory = new File(userHome, "Downloads");
                     DirectoryChooser directoryChooser = new DirectoryChooser();
                     directoryChooser.setTitle("Chọn thư mục lưu file");
-                    File selectedDirectory = directoryChooser.showDialog(txtCCCD.getScene().getWindow());
+                    if (downloadDirectory.exists() && downloadDirectory.isDirectory()) {
+                        directoryChooser.setInitialDirectory(downloadDirectory);
+                    }
+                    File selectedDirectory = null;
+                    try {
+                        selectedDirectory  = directoryChooser.showDialog(vboxDanhSachVe.getScene().getWindow());
+                    }catch (Exception e){
 
-                    CreatePDF.taoVe(ve, selectedDirectory.getAbsolutePath());
+                    }
+                    if(selectedDirectory != null){
+                        CreatePDF.taoVe(ve, selectedDirectory.getAbsolutePath());
+                    }
                 }
 
             }

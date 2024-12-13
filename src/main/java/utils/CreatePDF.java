@@ -177,8 +177,12 @@ public class CreatePDF {
             System.out.println("Hóa đơn đã được tạo tại: ");
 
 
-            if (file.exists()) {
-                Desktop.getDesktop().open(file);
+            if (!file.exists()) {
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -301,14 +305,16 @@ public class CreatePDF {
             System.out.println("Vé tàu đã được tạo tại: " + file);
 
             // Mở tệp PDF
-            if (file.exists()) {
-                Desktop.getDesktop().open(file);
+            if (!file.exists()) {
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
+            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static void addRowToTable(PdfPTable table, String label, String value, Font labelFont, Font valueFont) {
@@ -321,20 +327,16 @@ public class CreatePDF {
         table.addCell(valueCell);
     }
 
-    public static void taoHoaDonLayVe(HoaDonLayVe hoaDonLayVe){
-
-        String filePath = "documents/HoaDonLayVe/"+ hoaDonLayVe.getMaHoaDonLayVe() +".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonLayVe/QRCode/QRCode_" + hoaDonLayVe.getMaHoaDonLayVe() + ".png";
+    public static void taoHoaDonLayVe(HoaDonLayVe hoaDonLayVe, String pathFolder){
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            File file = new File(pathFolder + "\\"+ hoaDonLayVe.getMaHoaDonLayVe() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
             Rectangle pageSize = new Rectangle(600, 70 * hoaDonLayVe.getDanhSachChiTietHoaDonLayVe().size() + 600);
             Document document = new Document(pageSize);
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
 
@@ -349,7 +351,8 @@ public class CreatePDF {
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -362,8 +365,7 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            //CreateQRCode.generateQRCode(hoaDonLayVe.getMaHoaDonLayVe(), qrCodePath, 80, 80);
-            Image qrCode = Image.getInstance(qrCodePath);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonLayVe.getMaHoaDonLayVe(), 80, 80));
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
@@ -496,36 +498,31 @@ public class CreatePDF {
 
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: " + file);
 
 
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
-
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void taoHoaDonDatVe(HoaDonDatVe hoaDonDatVe){
-        String filePath = "documents/HoaDonDatVe/"+ hoaDonDatVe.getMaHoaDonDatVe() +".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonDatVe/QRCode/QRCode_" + hoaDonDatVe.getMaHoaDonDatVe() + ".png";
+    public static void taoHoaDonDatVe(HoaDonDatVe hoaDonDatVe, String pathFolder){
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            File file = new File(pathFolder + "\\"+ hoaDonDatVe.getMaHoaDonDatVe() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
             Rectangle pageSize = new Rectangle(600, 70 * hoaDonDatVe.getDanhSachVeDat().size() + 600);
             Document document = new Document(pageSize);
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
 
@@ -540,7 +537,8 @@ public class CreatePDF {
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -555,7 +553,7 @@ public class CreatePDF {
 
             // Mã hóa đơn
             //CreateQRCode.generateQRCode(hoaDonDatVe.getMaHoaDonDatVe(), qrCodePath, 80, 80);
-            Image qrCode = Image.getInstance(qrCodePath);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonDatVe.getMaHoaDonDatVe(), 80, 80));
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
@@ -697,35 +695,32 @@ public class CreatePDF {
 
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: " + file);
 
 
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void taoPhieuKetToan(PhieuKetToan phieuKetToan, double[][] dsHoaDon){
-        String filePath = "documents/PhieuKetToan/"+ phieuKetToan.getMaPhieuKetToan() +".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
+    public static void taoPhieuKetToan(PhieuKetToan phieuKetToan, double[][] dsHoaDon, String pathFolder){
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            File file = new File(pathFolder + "\\"+ phieuKetToan.getMaPhieuKetToan() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
-            //Rectangle pageSize = new Rectangle(600, + 600);
+
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
 
@@ -740,7 +735,8 @@ public class CreatePDF {
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -1005,35 +1001,30 @@ public class CreatePDF {
 
 
             document.close();
-            System.out.println("Phiếu đã được tạo tại: " + filePath);
+            System.out.println("Phiếu đã được tạo tại: " + fontPath);
 
-
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void taoHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe,ChiTietVe ctVeCu){
-        String filePath = "documents/HoaDonDoiVe/"+ hoaDonDoiVe.getMaHoaDonDoiVe() +".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonDoiVe/QRCode/QRCode_" + hoaDonDoiVe.getMaHoaDonDoiVe() + ".png";
+    public static void taoHoaDonDoiVe(HoaDonDoiVe hoaDonDoiVe, String pathFolder){
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            File file = new File(pathFolder + "\\"+ hoaDonDoiVe.getMaHoaDonDoiVe() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
 
@@ -1048,7 +1039,8 @@ public class CreatePDF {
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -1063,10 +1055,9 @@ public class CreatePDF {
 
             // Mã hóa đơn
             //CreateQRCode.generateQRCode(hoaDonDoiVe.getMaHoaDonDoiVe(), qrCodePath, 80, 80);
-            Image qrCode = Image.getInstance(qrCodePath);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonDoiVe.getMaHoaDonDoiVe(), 80, 80));
             qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
-
             Paragraph maHoaDonPar = new Paragraph();
             maHoaDonPar.setAlignment(Element.ALIGN_LEFT);
             maHoaDonPar.add(new Chunk("Mã hóa đơn: ", boldFont));
@@ -1096,17 +1087,17 @@ public class CreatePDF {
 
             Paragraph customerInfo = new Paragraph();
             customerInfo.add(new Chunk("Tên khách hàng: ", boldFont));
-            customerInfo.add(new Chunk(ctVeCu.getKhachHang().getTenKhachHang(), font));
+            customerInfo.add(new Chunk(hoaDonDoiVe.getVeCu().getDanhSachChiTietVe().getFirst().getKhachHang().getTenKhachHang(), font));
             document.add(customerInfo);
 
             Paragraph customerInfo2 = new Paragraph();
             customerInfo2.add(new Chunk("CCCD: ", boldFont));
-            customerInfo2.add(new Chunk(ctVeCu.getKhachHang().getCCCD(), font));
+            customerInfo2.add(new Chunk(hoaDonDoiVe.getVeCu().getDanhSachChiTietVe().getFirst().getKhachHang().getCCCD(), font));
             document.add(customerInfo2);
 
             Paragraph customerInfo3 = new Paragraph();
             customerInfo3.add(new Chunk("Số điện thoại: ", boldFont));
-            customerInfo3.add(new Chunk(ctVeCu.getKhachHang().getSoDienThoai(), font));
+            customerInfo3.add(new Chunk(hoaDonDoiVe.getVeCu().getDanhSachChiTietVe().getFirst().getKhachHang().getSoDienThoai(), font));
             document.add(customerInfo3);
 
 
@@ -1189,37 +1180,30 @@ public class CreatePDF {
 
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: " + file);
 
-
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
 
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void taoHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe) {
-        String filePath = "documents/HoaDonHuyVe/" + hoaDonHuyVe.getMaHoaDonHuyVe() + ".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonHuyVe/QRCode/QRCode_" + hoaDonHuyVe.getMaHoaDonHuyVe() + ".png";
+    public static void taoHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, String pathFolder) {
         try {
-            File file2 = new File(filePath);
-            if (file2.exists()) {
-                Desktop.getDesktop().open(file2);
+            File file = new File(pathFolder + "\\"+ hoaDonHuyVe.getMaHoaDonHuyVe() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
                 return;
             }
-            // Ensure the directory exists
-            Files.createDirectories(Paths.get(filePath).getParent());
 
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
             String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
@@ -1228,7 +1212,8 @@ public class CreatePDF {
             Font boldFont = new Font(baseFont, 12, Font.BOLD);
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -1240,9 +1225,8 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            //CreateQRCode.generateQRCode(hoaDonHuyVe.getMaHoaDonHuyVe(), qrCodePath,110 , 110);
-            Image qrCode = Image.getInstance(qrCodePath);
-            qrCode.setAlignment(Image.ALIGN_CENTER);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonHuyVe.getMaHoaDonHuyVe(), 80, 80));
+            qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
             Paragraph maHoaDonPar = new Paragraph();
@@ -1364,30 +1348,29 @@ public class CreatePDF {
             document.add(new Paragraph(" – Hóa đơn không phải là vé và không có giá trị lên tàu.", font));
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: " + file);
 
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void taoHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe) {
-        String filePath = "documents/HoaDonHuyDatVe/" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".pdf";
-        String logoPath = "src/main/resources/images/HoaDon/Logo.png";
-        String qrCodePath = "documents/HoaDonHuyDatVe/QRCode/QRCode_" + hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".png";
+    public static void taoHoaDonHuyDatVe(HoaDonHuyDatVe hoaDonHuyDatVe, String pathFolder) {
         try {
-            // Ensure the directory exists
-            Files.createDirectories(Paths.get(filePath).getParent());
+            File file = new File(pathFolder + "\\"+ hoaDonHuyDatVe.getMaHoaDonHuyDatVe() + ".pdf");
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+                return;
+            }
 
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
             String fontPath = "C:\\Windows\\Fonts\\arial.ttf";
@@ -1396,7 +1379,8 @@ public class CreatePDF {
             Font boldFont = new Font(baseFont, 12, Font.BOLD);
             Font titleFont = new Font(baseFont, 20, Font.BOLD);
 
-            Image logo = Image.getInstance(logoPath);
+            InputStream imageStream = CreatePDF.class.getResourceAsStream("/images/HoaDon/Logo.png");
+            Image logo = Image.getInstance(imageStream.readAllBytes());
             logo.scaleToFit(100, 50);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -1408,9 +1392,8 @@ public class CreatePDF {
             document.add(title);
 
             // Mã hóa đơn
-            //CreateQRCode.generateQRCode(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), qrCodePath,110 , 110);
-            Image qrCode = Image.getInstance(qrCodePath);
-            qrCode.setAlignment(Image.ALIGN_CENTER);
+            Image qrCode = Image.getInstance(CreateQRCode.generateQRCode(hoaDonHuyDatVe.getMaHoaDonHuyDatVe(), 80, 80));
+            qrCode.setAlignment(Element.ALIGN_LEFT);
             document.add(qrCode);
 
             Paragraph maHoaDonPar = new Paragraph();
@@ -1536,15 +1519,14 @@ public class CreatePDF {
             document.add(new Paragraph(" – Hóa đơn không phải là vé và không có giá trị lên tàu.", font));
 
             document.close();
-            System.out.println("Hóa đơn đã được tạo tại: " + filePath);
+            System.out.println("Hóa đơn đã được tạo tại: " + file);
 
-            File wordFile = new File(filePath);
-            if (!wordFile.exists()) {
+            if (!file.exists()) {
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
             if (desktop.isSupported(Desktop.Action.OPEN)) {
-                desktop.open(wordFile);
+                desktop.open(file);
             }
         } catch (Exception e) {
             e.printStackTrace();
