@@ -268,6 +268,8 @@ public class BaoCao_GUI_Controller implements Initializable {
 
         lblSoLuongHoaDonDoiVe.setText(String.valueOf((int)dsHoaDon[5][0]));
         lblTongTienHoaDonDoiVe.setText(CurrencyFormat.currencyFormat(dsHoaDon[5][1]));
+
+        tongTienTrongCa();
     }
 
     public double tongTienTrongCa(){

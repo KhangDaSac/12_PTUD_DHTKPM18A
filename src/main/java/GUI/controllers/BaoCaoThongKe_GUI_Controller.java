@@ -22,6 +22,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Font;
@@ -625,12 +626,20 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
     void btnInBaoCao(ActionEvent event) {
         if(cmbLoaiThoiGian.getValue().equals("Tháng")){
         int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
-        taoFileExcelTheoThang("documents/ThongKeDoanhThu/ThongKeDoanhThuThangTrongNam"+cmbChonNam.getSelectionModel().getSelectedItem().toString()+".xlsx",cmbChonThang.getSelectionModel().getSelectedIndex()+1,demSoVeBanThang,demSoVeDoiThang,demSoVeHuyThang,doanhThuTheoThang);
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("fileThongTinKhachHang");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+            File file = fileChooser.showSaveDialog(cmbChonNam.getScene().getWindow());
+        taoFileExcelTheoThang(file.getAbsolutePath()    ,cmbChonThang.getSelectionModel().getSelectedIndex()+1,demSoVeBanThang,demSoVeDoiThang,demSoVeHuyThang,doanhThuTheoThang);
     }
          if(cmbLoaiThoiGian.getValue().equals("Ngày")){
             int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
             int thang = cmbChonThang.getSelectionModel().getSelectedIndex() + 1;
-            exportToExcel("documents/ThongKeDoanhThu/ThongKeDoanhThuNgay"+cmbChonThang.getSelectionModel().getSelectedItem().toString()+".xlsx",thang,demSoVeHuy,demSoVeBan,demSoVeDoi, doanhThuTheoNgay);
+             FileChooser fileChooser = new FileChooser();
+             fileChooser.setTitle("fileThongTinKhachHang");
+             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+             File file = fileChooser.showSaveDialog(cmbChonThang.getScene().getWindow());
+            exportToExcel(file.getAbsolutePath(),thang,demSoVeHuy,demSoVeBan,demSoVeDoi, doanhThuTheoNgay);
         }
     }
 }
