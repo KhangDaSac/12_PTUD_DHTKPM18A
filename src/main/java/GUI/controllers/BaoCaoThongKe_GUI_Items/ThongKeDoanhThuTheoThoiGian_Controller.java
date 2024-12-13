@@ -1,9 +1,8 @@
-package GUI.controllers;
+package GUI.controllers.BaoCaoThongKe_GUI_Items;
 
 import DAO.*;
 import DTO.*;
-import GUI.controllers.BaoCaoThongKe_GUI_Items.ThongKeDoanhThuTheoThoiGian_Controller;
-import GUI.controllers.BaoCaoThongKe_GUI_Items.ThongKeTheoNhanVien_Controller;
+import GUI.controllers.BaoCaoThongKe_GUI_Controller;
 import connectDB.ConnectDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -26,22 +24,21 @@ import javafx.stage.Stage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import utils.CurrencyFormat;
-
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
-import static javafx.application.Application.launch;
-
-
-public class BaoCaoThongKe_GUI_Controller implements Initializable {
+public class ThongKeDoanhThuTheoThoiGian_Controller implements Initializable {
     @FXML
     private  BarChart<String,Double> chart;
     @FXML
@@ -77,11 +74,9 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
     private TextField txtSoVeHuy;
     @FXML
     private TextField txtSoVeDoi;
-    private Node node;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeComboBoxes();
-        node = vboxThongKe.getChildren().get(0);
     }
 
     @FXML
@@ -112,15 +107,15 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
 
     @FXML
     void btnNhanVienOnAction(ActionEvent event) {
-       try{
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BaoCaoThongKe_GUI_Items/ThongKeDoanhThuTheoNhanVien.fxml"));
-           Parent anchopane = loader.load();
-           ThongKeTheoNhanVien_Controller controller = loader.getController();
-           vboxThongKe.getChildren().clear();
-           vboxThongKe.getChildren().add(anchopane);
-       } catch (Exception e) {
-           throw new RuntimeException(e);
-       }
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BaoCaoThongKe_GUI_Items/ThongKeDoanhThuTheoNhanVien.fxml"));
+            Parent archorpane = loader.load();
+            ThongKeTheoNhanVien_Controller controller = loader.getController();
+            vboxThongKe.getChildren().clear();
+            vboxThongKe.getChildren().add(archorpane);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -191,7 +186,7 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
         soVeHuy = 0;
         try {
             Connection con = ConnectDB.getInstance().getConnection();
-                String query = "EXEC thongKeDoanhThuTheoNgayTrongThang ?,?";
+            String query = "EXEC thongKeDoanhThuTheoNgayTrongThang ?,?";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setInt(1, thang);
             statement.setInt(2, nam);
@@ -224,7 +219,7 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
                             dsHoaDonDatVe.set(i, dsHoaDonDatVe.get(i) + hddv.tongTienDatCoc());
                             demSoVeBan.set(i,demSoVeBan.get(i)+1);
                         }
-                         else dsHoaDonDatVe.set(i,dsHoaDonDatVe.get(i)+0);
+                        else dsHoaDonDatVe.set(i,dsHoaDonDatVe.get(i)+0);
                     }
                 } else if ((rs.getString("maHoaDon")).contains("HDHV")) {
                     HoaDonHuyVe hdhv = new HoaDonHuyVe(rs.getString("maHoaDon"));
@@ -236,7 +231,7 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
                             dsHoaDonHuyVe.set(i, dsHoaDonHuyVe.get(i) + hdhv.tongTienCuoi());
                             demSoVeHuy.set(i,demSoVeHuy.get(i)+1);
                         }
-                         else dsHoaDonHuyVe.set(i,dsHoaDonHuyVe.get(i)+0);
+                        else dsHoaDonHuyVe.set(i,dsHoaDonHuyVe.get(i)+0);
                     }
                 } else if ((rs.getString("maHoaDon")).contains("HDHD")) {
                     HoaDonHuyDatVe hdhd = new HoaDonHuyDatVe(rs.getString("maHoaDon"));
@@ -384,131 +379,16 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
         }
     }
 
-        public static void exportToExcel(String filePath, int month,
-                                         ArrayList<Integer> cancelledTickets,
-                                         ArrayList<Integer> soldTickets,
-                                         ArrayList<Integer> exchangedTickets,
-                                         ArrayList<Double> revenues) {
+    public static void exportToExcel(String filePath, int month,
+                                     ArrayList<Integer> cancelledTickets,
+                                     ArrayList<Integer> soldTickets,
+                                     ArrayList<Integer> exchangedTickets,
+                                     ArrayList<Double> revenues) {
 
-            // Tạo workbook và sheet
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Thống kê doanh thu");
-
-            // Tạo font và style cho tiêu đề
-            Font titleFont = workbook.createFont();
-            titleFont.setBold(true);
-            titleFont.setFontHeightInPoints((short) 16);
-            titleFont.setColor(IndexedColors.DARK_BLUE.getIndex());
-
-            CellStyle titleStyle = workbook.createCellStyle();
-            titleStyle.setFont(titleFont);
-            titleStyle.setAlignment(HorizontalAlignment.CENTER);
-
-            // Tạo style cho các header
-            Font headerFont = workbook.createFont();
-            headerFont.setBold(true);
-            headerFont.setFontHeightInPoints((short) 12);
-
-            CellStyle headerStyle = workbook.createCellStyle();
-            headerStyle.setFont(headerFont);
-            headerStyle.setAlignment(HorizontalAlignment.CENTER);
-            headerStyle.setBorderBottom(BorderStyle.THIN);
-            headerStyle.setBorderTop(BorderStyle.THIN);
-            headerStyle.setBorderRight(BorderStyle.THIN);
-            headerStyle.setBorderLeft(BorderStyle.THIN);
-
-            // Tạo style cho dữ liệu
-            CellStyle dataStyle = workbook.createCellStyle();
-            dataStyle.setAlignment(HorizontalAlignment.CENTER);
-            dataStyle.setBorderBottom(BorderStyle.THIN);
-            dataStyle.setBorderTop(BorderStyle.THIN);
-            dataStyle.setBorderRight(BorderStyle.THIN);
-            dataStyle.setBorderLeft(BorderStyle.THIN);
-
-            // Thêm tiêu đề
-            Row titleRow = sheet.createRow(0);
-            Cell titleCell = titleRow.createCell(0);
-            titleCell.setCellValue("Thống kê doanh thu tháng " + month);
-            titleCell.setCellStyle(titleStyle);
-
-            // Merge các ô tiêu đề
-            sheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(0, 0, 0, 4));
-
-            // Thêm header
-            Row headerRow = sheet.createRow(1);
-            String[] headers = {"Ngày", "Số vé hủy", "Số vé bán", "Số vé đổi", "Doanh thu"};
-            for (int i = 0; i < headers.length; i++) {
-                Cell headerCell = headerRow.createCell(i);
-                headerCell.setCellValue(headers[i]);
-                headerCell.setCellStyle(headerStyle);
-            }
-
-            // Thêm dữ liệu
-            for (int i = 0; i < 31; i++) {
-                Row dataRow = sheet.createRow(i + 2);
-
-                // Ngày
-                Cell dayCell = dataRow.createCell(0);
-                dayCell.setCellValue(i + 1);
-                dayCell.setCellStyle(dataStyle);
-
-                // Số vé hủy
-                Cell cancelledCell = dataRow.createCell(1);
-                cancelledCell.setCellValue(cancelledTickets.get(i));
-                cancelledCell.setCellStyle(dataStyle);
-
-                // Số vé bán
-                Cell soldCell = dataRow.createCell(2);
-                soldCell.setCellValue(soldTickets.get(i));
-                soldCell.setCellStyle(dataStyle);
-
-                // Số vé đổi
-                Cell exchangedCell = dataRow.createCell(3);
-                exchangedCell.setCellValue(exchangedTickets.get(i));
-                exchangedCell.setCellStyle(dataStyle);
-
-                // Doanh thu
-                Cell revenueCell = dataRow.createCell(4);
-                revenueCell.setCellValue(revenues.get(i));
-                revenueCell.setCellStyle(dataStyle);
-            }
-
-            // Tự động điều chỉnh kích thước cột
-            for (int i = 0; i < headers.length; i++) {
-                sheet.autoSizeColumn(i);
-            }
-
-            // Ghi dữ liệu ra file
-            try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
-                workbook.write(fileOut);
-                System.out.println("Xuất file Excel thành công tại: " + filePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    workbook.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            // Mở file ngay sau khi tạo
-            try {
-                File file = new File(filePath);
-                if (Desktop.isDesktopSupported() && file.exists()) {
-                    Desktop.getDesktop().open(file);
-                } else {
-                    System.out.println("Không thể mở file. Kiểm tra ứng dụng hỗ trợ mở file Excel.");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    public static void taoFileExcelTheoThang(String filePath,int nam,ArrayList<Integer> demSoVeBanThang,ArrayList<Integer> demSoVeDoiThang,ArrayList<Integer> demSoVeHuyThang ,ArrayList<Double> doanhThuTheoThang) {
         // Tạo workbook và sheet
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet("Thống kê doanh thu theo tháng trong năm"+nam);
+        Sheet sheet = workbook.createSheet("Thống kê doanh thu");
+
         // Tạo font và style cho tiêu đề
         Font titleFont = workbook.createFont();
         titleFont.setBold(true);
@@ -519,6 +399,121 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
         titleStyle.setFont(titleFont);
         titleStyle.setAlignment(HorizontalAlignment.CENTER);
 
+        // Tạo style cho các header
+        Font headerFont = workbook.createFont();
+        headerFont.setBold(true);
+        headerFont.setFontHeightInPoints((short) 12);
+
+        CellStyle headerStyle = workbook.createCellStyle();
+        headerStyle.setFont(headerFont);
+        headerStyle.setAlignment(HorizontalAlignment.CENTER);
+        headerStyle.setBorderBottom(BorderStyle.THIN);
+        headerStyle.setBorderTop(BorderStyle.THIN);
+        headerStyle.setBorderRight(BorderStyle.THIN);
+        headerStyle.setBorderLeft(BorderStyle.THIN);
+
+        // Tạo style cho dữ liệu
+        CellStyle dataStyle = workbook.createCellStyle();
+        dataStyle.setAlignment(HorizontalAlignment.CENTER);
+        dataStyle.setBorderBottom(BorderStyle.THIN);
+        dataStyle.setBorderTop(BorderStyle.THIN);
+        dataStyle.setBorderRight(BorderStyle.THIN);
+        dataStyle.setBorderLeft(BorderStyle.THIN);
+
+        // Thêm tiêu đề
+        Row titleRow = sheet.createRow(0);
+        Cell titleCell = titleRow.createCell(0);
+        titleCell.setCellValue("Thống kê doanh thu tháng " + month);
+        titleCell.setCellStyle(titleStyle);
+
+        // Merge các ô tiêu đề
+        sheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(0, 0, 0, 4));
+
+        // Thêm header
+        Row headerRow = sheet.createRow(1);
+        String[] headers = {"Ngày", "Số vé hủy", "Số vé bán", "Số vé đổi", "Doanh thu"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell headerCell = headerRow.createCell(i);
+            headerCell.setCellValue(headers[i]);
+            headerCell.setCellStyle(headerStyle);
+        }
+
+        // Thêm dữ liệu
+        for (int i = 0; i < 31; i++) {
+            Row dataRow = sheet.createRow(i + 2);
+
+            // Ngày
+            Cell dayCell = dataRow.createCell(0);
+            dayCell.setCellValue(i + 1);
+            dayCell.setCellStyle(dataStyle);
+
+            // Số vé hủy
+            Cell cancelledCell = dataRow.createCell(1);
+            cancelledCell.setCellValue(cancelledTickets.get(i));
+            cancelledCell.setCellStyle(dataStyle);
+
+            // Số vé bán
+            Cell soldCell = dataRow.createCell(2);
+            soldCell.setCellValue(soldTickets.get(i));
+            soldCell.setCellStyle(dataStyle);
+
+            // Số vé đổi
+            Cell exchangedCell = dataRow.createCell(3);
+            exchangedCell.setCellValue(exchangedTickets.get(i));
+            exchangedCell.setCellStyle(dataStyle);
+
+            // Doanh thu
+            Cell revenueCell = dataRow.createCell(4);
+            revenueCell.setCellValue(revenues.get(i));
+            revenueCell.setCellStyle(dataStyle);
+        }
+
+        // Tự động điều chỉnh kích thước cột
+        for (int i = 0; i < headers.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // Ghi dữ liệu ra file
+        try (FileOutputStream fileOut = new FileOutputStream(filePath)) {
+            workbook.write(fileOut);
+            System.out.println("Xuất file Excel thành công tại: " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                workbook.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Mở file ngay sau khi tạo
+        try {
+            File file = new File(filePath);
+            if (Desktop.isDesktopSupported() && file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                System.out.println("Không thể mở file. Kiểm tra ứng dụng hỗ trợ mở file Excel.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void taoFileExcelTheoThang(String filePath,int nam,ArrayList<Integer> demSoVeBanThang,ArrayList<Integer> demSoVeDoiThang,ArrayList<Integer> demSoVeHuyThang ,ArrayList<Double> doanhThuTheoThang) {
+        // Tạo workbook và sheet
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Thống kê doanh thu theo tháng trong năm " + nam);
+
+        // Tạo font và style cho tiêu đề
+        Font titleFont = workbook.createFont();
+        titleFont.setBold(true);
+        titleFont.setFontHeightInPoints((short) 16);
+        titleFont.setColor(IndexedColors.DARK_BLUE.getIndex());
+
+        CellStyle titleStyle = workbook.createCellStyle();
+        titleStyle.setFont(titleFont);
+        titleStyle.setAlignment(HorizontalAlignment.CENTER);
 
         // Tạo style cho các header
         Font headerFont = workbook.createFont();
@@ -587,7 +582,6 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
             Cell revenueCell1 = dataRow.createCell(4);
             revenueCell1.setCellValue(doanhThuTheoThang.get(i));
             revenueCell1.setCellStyle(dataStyle);
-
         }
         // Tự động điều chỉnh kích thước cột
         for (int i = 0; i < headers.length; i++) {
@@ -624,13 +618,13 @@ public class BaoCaoThongKe_GUI_Controller implements Initializable {
     @FXML
     void btnInBaoCao(ActionEvent event) {
         if(cmbLoaiThoiGian.getValue().equals("Tháng")){
-        int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
-        taoFileExcelTheoThang("documents/ThongKeDoanhThu/ThongKeDoanhThuThangTrongNam"+cmbChonNam.getSelectionModel().getSelectedItem().toString()+".xlsx",cmbChonThang.getSelectionModel().getSelectedIndex()+1,demSoVeBanThang,demSoVeDoiThang,demSoVeHuyThang,doanhThuTheoThang);
-    }
-         if(cmbLoaiThoiGian.getValue().equals("Ngày")){
+            int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
+            taoFileExcelTheoThang("documents/ThongKeDoanhThu/ThongKeDoanhThuThangTrongNam"+cmbChonNam.getSelectionModel().getSelectedItem().toString()+".xlsx",cmbChonThang.getSelectionModel().getSelectedIndex()+1,demSoVeBanThang,demSoVeDoiThang,demSoVeHuyThang,doanhThuTheoThang);
+        }
+        if(cmbLoaiThoiGian.getValue().equals("Ngày")){
             int nam = Integer.parseInt(cmbChonNam.getSelectionModel().getSelectedItem().toString());
             int thang = cmbChonThang.getSelectionModel().getSelectedIndex() + 1;
-            exportToExcel("documents/ThongKeDoanhThu/ThongKeDoanhThuNgay"+cmbChonThang.getSelectionModel().getSelectedItem().toString()+".xlsx",thang,demSoVeHuy,demSoVeBan,demSoVeDoi, doanhThuTheoNgay);
+            exportToExcel("documents/ThongKeDoanhThu/ThongKeDoanhThuNgayTrongThang "+cmbChonThang.getSelectionModel().getSelectedItem().toString()+".xlsx",thang,demSoVeHuy,demSoVeBan,demSoVeDoi, doanhThuTheoNgay);
         }
     }
 }

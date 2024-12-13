@@ -233,4 +233,21 @@ public class QuanLyHoaDon_BUS {
         }
         return true;
     }
+
+    public static String layHoaDonHuyVeTiepTheo() {
+        LocalDate ngayHienTai = LocalDate.now();
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
+
+        String maHoaDonCu = HoaDonHuyVe_DAO.layMaHoaDonHuyVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        if (maHoaDonCu == null) {
+            return "HDHV" + ngayHienTaiString + "000001";
+        }
+
+        String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
+        String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
+
+        String maHoaDonMoi = phanTruoc + String.format("%06d", Integer.parseInt(phanSau) + 1);
+
+        return maHoaDonMoi;
+    }
 }

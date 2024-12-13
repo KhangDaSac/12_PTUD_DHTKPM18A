@@ -204,6 +204,8 @@ public class Main_Controller implements Initializable {
     public JFXDialog dialog;
 
     public void hienThiPhieuKiemTienDauCa(){
+        if(!nhanVien.getLoaiNhanVien().equals(LoaiNhanVien.NHANVIENBANVE))
+            return;
         try{
             FXMLLoader fxmlLoader = new FXMLLoader(Run.class.getResource("/view/BaoCao_GUI_Items/PhieuKiemTien_BaoCao.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
@@ -670,10 +672,45 @@ public class Main_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(()->{
+
             if(phieuKetToan != null && phieuKetToan.getCaLamViec() != null){
                 lblMaNhanVienDangNhap.setText(phieuKetToan.getCaLamViec().getNhanVien().getMaNhanVien());
                 lblTenNhanVienDanNhap.setText(phieuKetToan.getCaLamViec().getNhanVien().getTenNhanVien());
             }
+
+
+            phanQuyen();
         });
+    }
+
+    private void phanQuyen(){
+        if(nhanVien.getLoaiNhanVien().equals(LoaiNhanVien.NHANVIENBANVE)){
+            btnThongKe.setOnAction((event -> {
+
+            }));
+            btnThongKe.getStyleClass().removeAll();
+            btnThongKe.getStyleClass().add("menu-button-an");
+            btnQuanLyNhanVien.setOnAction((event -> {
+
+            }));
+            btnQuanLyNhanVien.getStyleClass().removeAll();
+            btnQuanLyNhanVien.getStyleClass().add("menu-button-an");
+        }else if (nhanVien.getLoaiNhanVien().equals(LoaiNhanVien.QUANLY)){
+            btnBaoCao.setOnAction((event -> {
+
+            }));
+            btnBaoCao.getStyleClass().removeAll();
+            btnBaoCao.getStyleClass().add("menu-button-an");
+            btnQuanLyVeDat.setOnMouseEntered(event ->{
+
+            });
+            btnQuanLyVeDat.getStyleClass().removeAll();
+            btnQuanLyVeDat.getStyleClass().add("menu-button-an");
+            btnQuanLyVe.setOnMouseEntered(event ->{
+
+            });
+            btnQuanLyVe.getStyleClass().removeAll();
+            btnQuanLyVe.getStyleClass().add("menu-button-an");
+        }
     }
 }

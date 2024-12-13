@@ -30,4 +30,20 @@ public class HoaDonHuyVe_DAO {
         }
         return null;
     }
+
+    public static String layMaHoaDonHuyVeLonNhatCuaNgayHienTai(String ngayHienTai){
+        String maHoaDonLonNhat = null;
+        try {
+            String query = "select max(maHoaDonHuyVe) as maHoaDonHuyVe from HoaDonHuyVe where maHoaDonHuyVe like 'HDHV' + ? + '%'";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, ngayHienTai);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                maHoaDonLonNhat = rs.getString("maHoaDonHuyVe");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maHoaDonLonNhat;
+    }
 }

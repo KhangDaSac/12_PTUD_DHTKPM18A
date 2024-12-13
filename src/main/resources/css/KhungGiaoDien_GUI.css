@@ -20,6 +20,24 @@
     -fx-background-color:  #1D006F;
 }
 
+.menu-button-an{
+    -fx-text-fill: #fff;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding:  0 10 0 20;
+    -fx-font-size: 16;
+    -fx-background-color:  #0A5EB0;
+}
+
+.menu-button-an:hover{
+        -fx-text-fill: #fff;
+        -fx-background-radius: 0;
+        -fx-alignment: CENTER_LEFT;
+        -fx-padding:  0 10 0 20;
+        -fx-font-size: 16;
+        -fx-background-color:  #0A5EB0;
+}
+
 .header{
     -fx-background-radius:  0 0 15 15;
     -fx-background-color:  #1D006F;

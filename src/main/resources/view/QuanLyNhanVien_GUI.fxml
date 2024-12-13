@@ -147,17 +147,17 @@
                         </TableView>
                   <HBox prefHeight="70.0" prefWidth="938.0">
                      <children>
-                                <JFXButton fx:id="btnThemNV" onAction="#btnThemNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Thêm">
+                                <JFXButton fx:id="btnThemNV" onAction="#btnThemNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Thêm">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
                         </JFXButton>
-                                <JFXButton fx:id="btnSuaNV" onAction="#btnSuaNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Sửa">
+                                <JFXButton fx:id="btnSuaNV" onAction="#btnSuaNhanVienOnAction" prefHeight="65.0" prefWidth="170.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Sửa">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
                         </JFXButton>
-                              <JFXButton fx:id="btnXuatDSNV" onAction="#btnXuatDanhSachNhanVienOnAction" prefHeight="66.0" prefWidth="400.0" styleClass="jfx-button" stylesheets="@../css/All.css" text="Xuất danh sách nhân viên">
+                              <JFXButton fx:id="btnXuatDSNV" onAction="#btnXuatDanhSachNhanVienOnAction" prefHeight="66.0" prefWidth="400.0" styleClass="jfx-button1" stylesheets="@../css/All.css" text="Xuất danh sách nhân viên">
                            <HBox.margin>
                               <Insets left="50.0" />
                            </HBox.margin>
