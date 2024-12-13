@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import static DAO.HoaDonHuyVe_DAO.con;
 
 public class ChiTietHoaDonHuyVe_DAO {
     public static ArrayList<ChiTietHoaDonHuyVe> getDanhSachChiTietHoaDonHuyVeTheoMaHoaDonHuyVe(String maHoaDon){
@@ -51,6 +50,7 @@ public class ChiTietHoaDonHuyVe_DAO {
 
     public static boolean themDanhSachHoaDonHuyVe(ArrayList<HoaDonHuyVe> danhSachHoaDonHuyVe){
         String query = "insert into HoaDonHuyVe values (?, ?, ?, ?)";
+        Connection con = ConnectDB.getInstance().getConnection();
         for(HoaDonHuyVe hoaDonHuyVe : danhSachHoaDonHuyVe){
             try {
                 PreparedStatement statement = con.prepareStatement(query);

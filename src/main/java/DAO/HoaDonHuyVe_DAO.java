@@ -7,7 +7,7 @@ import java.sql.*;
 
 
 public class HoaDonHuyVe_DAO {
-    public static Connection con = ConnectDB.getInstance().getConnection();
+    private static Connection con = ConnectDB.getInstance().getConnection();
     public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
         try{
             String query ="insert into HoaDonDoiVe values (?, ?, ?, ?)";
@@ -22,15 +22,15 @@ public class HoaDonHuyVe_DAO {
         return true;
     }
 
-    public static String layMaHoaDonHuyLonNhatCuaNgayHienTai(String ngayHienTai){
+    public static String layMaHoaDonHuyVeLonNhatCuaNgayHienTai(String ngayHienTai){
         String maHoaDonLonNhat = null;
         try {
-            String query = "select max(maHoaDon) as maHoaDon from HoaDon where maHoaDon like 'HD' + ? + '%'";
+            String query = "select max(maHoaDonHuyVe) as maHoaDonHuyVe from HoaDonHuyVe where maHoaDonHuyVe like 'HDHV' + ? + '%'";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, ngayHienTai);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                maHoaDonLonNhat = rs.getString("maHoaDon");
+                maHoaDonLonNhat = rs.getString("maHoaDonHuyVe");
             }
         } catch (Exception e) {
             e.printStackTrace();

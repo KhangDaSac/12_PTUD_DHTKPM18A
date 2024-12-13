@@ -279,7 +279,7 @@ public class HuyVe_GUI_Controller implements Initializable {
 
         String maHoaDonHuyMoi;
 
-        String maHoaDonLonNhatNgayHienTai = QuanLyHoaDon_BUS.layMaHoaDonHuyLonNhatCuaNgayHienTai(ngayHienTai);
+        String maHoaDonLonNhatNgayHienTai = QuanLyHoaDon_BUS.layHoaDonHuyVeTiepTheo();
 
         if (maHoaDonLonNhatNgayHienTai==null){
             maHoaDonHuyMoi = "HDDO" + ngayHienTai+"000001";

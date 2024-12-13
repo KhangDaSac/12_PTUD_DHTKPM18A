@@ -30,6 +30,7 @@ public class HoaDonHuyVe_DAO_Test {
     }
 
     public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
+        Connection con = ConnectDB.getInstance().getConnection();
         try{
             String query = "insert into HoaDonHuyDatVe values (?, ?, ?, ?)";
             PreparedStatement statement = con.prepareStatement(query);
@@ -43,5 +44,7 @@ public class HoaDonHuyVe_DAO_Test {
         }
         return true;
     }
+
+
 
 }

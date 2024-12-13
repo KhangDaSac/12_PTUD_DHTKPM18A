@@ -9,7 +9,7 @@ public class ChiTietHoaDonHuyVe {
     private Ve ve;
     private double phanTramLePhi;
 
-    public ChiTietHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, Ve ve) {
+    public  ChiTietHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, Ve ve) {
         this.hoaDonHuyVe = hoaDonHuyVe;
         this.ve = ve;
         long soGioConLai = thoiGianConLai().toHours();

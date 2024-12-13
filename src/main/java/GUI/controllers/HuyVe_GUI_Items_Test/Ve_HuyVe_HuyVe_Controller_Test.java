@@ -146,11 +146,8 @@ public class Ve_HuyVe_HuyVe_Controller_Test {
             lblGiaVeCuoi.setText(CurrencyFormat.currencyFormat(ve.tienVeCuoi()));
         }
 
-        if (huyVe_gui_controller_new.getVeTim().equals(ve)) {
             chonVe();
-        } else {
-            boChonVe();
-        }
+
     }
 
     public void chonVe() {

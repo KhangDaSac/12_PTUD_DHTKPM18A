@@ -1,5 +1,9 @@
 package GUI.controllers;
 
+import BUS.QuanLyHoaDon_BUS;
+import DAO.ChiTietHoaDonHuyVe_DAO;
+import DAO.HoaDonHuyVe_DAO;
+import DAO.KhachHang_DAO;
 import DAO.Ve_DAO;
 import DTO.*;
 import GUI.controllers.HuyVe_GUI_Items_Test.Ve_TimVe_HuyVe_Controller_Test;
@@ -13,8 +17,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CurrencyFormat;
+import utils.TimeFormat;
 
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -65,6 +73,7 @@ public class HuyVe_GUI_Controller_New implements Initializable {
 
     @FXML
     private VBox vboxVeTim;
+    private ArrayList<Ve> dsVeChon= new ArrayList<>();
 
     private Ve_TimVe_HuyVe_Controller_Test ve_timVe_huyVe_controller_test;
     private Ve_HuyVe_HuyVe_Controller_Test ve_huyVe_huyVe_controller_test;
@@ -72,17 +81,10 @@ public class HuyVe_GUI_Controller_New implements Initializable {
 
 
 
-    private HoaDonHuyVe hoaDonHuyVe = new HoaDonHuyVe();
 
-    private ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = new ChiTietHoaDonHuyVe();
+    private ArrayList<ChiTietHoaDonHuyVe> dschiTietHoaDonHuyVe = new ArrayList<>();
 
-    public ChiTietHoaDonHuyVe getChiTietHoaDonHuyVe() {
-        return chiTietHoaDonHuyVe;
-    }
 
-    public void setChiTietHoaDonHuyVe(ChiTietHoaDonHuyVe chiTietHoaDonHuyVe) {
-        this.chiTietHoaDonHuyVe = chiTietHoaDonHuyVe;
-    }
 
     public Ve veTim = new Ve();
 
@@ -109,7 +111,7 @@ public class HuyVe_GUI_Controller_New implements Initializable {
         ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = new ChiTietHoaDonHuyVe();
 
     }
-
+private HoaDonHuyVe hoaDonHuyVe = new HoaDonHuyVe();
     public void timVe(String maVe){
         veTim = Ve_DAO.getVeTheoMaVe_HuyVe(maVe);
     }
@@ -151,37 +153,43 @@ public class HuyVe_GUI_Controller_New implements Initializable {
         }
     }
 
-    public void hienThiVeHuy(Ve ve) {
+    public void hienThiVeHuy(ArrayList<Ve> dsVe ) {
         ve_huyVe_controllers_list.clear();
         vboxVeHuy.getChildren().clear();
-        if (ve == null ) {
-            System.out.println("Ve rong");
+        if (dsVe.isEmpty() ) {
+            System.out.println(" ds Ve rong");
             return;
         }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_Items_Test/Ve_HuyVe.fxml"));
-            Parent anchorPane = loader.load();
-            Ve_HuyVe_HuyVe_Controller_Test controller = loader.getController();
-            ve_huyVe_controllers_list.add(controller);
-            controller.setHuyVe_gui_controller_new(this);
-            controller.setVe(ve);
-            controller.khoiTao();
-            vboxVeHuy.getChildren().add(anchorPane);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        for(Ve ve :dsVe){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_Items_Test/Ve_HuyVe.fxml"));
+                Parent anchorPane = loader.load();
+                Ve_HuyVe_HuyVe_Controller_Test controller = loader.getController();
+                ve_huyVe_controllers_list.add(controller);
+                controller.setHuyVe_gui_controller_new(this);
+                controller.setVe(ve);
+                controller.khoiTao();
+                vboxVeHuy.getChildren().add(anchorPane);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
+
     }
 
 
 
     public void hienThiLePhi(){
-        txtLePhi.setText(String.valueOf(chiTietHoaDonHuyVe.lePhi()));
+        double lephi=0;
+        for(ChiTietHoaDonHuyVe chiTietHoaDonHuyVe: hoaDonHuyVe.getDanhSachChiTietHoaDonHuyVe()){
+            lephi+= chiTietHoaDonHuyVe.lePhi();
+        }
+        txtLePhi.setText(CurrencyFormat.currencyFormat(lephi));
     }
 
     public void hienThiTienTraKhach(){
-        txtTongTienHoanTra.setText(String.valueOf(chiTietHoaDonHuyVe.soTienHoanLai()));
+        txtTongTienHoanTra.setText(CurrencyFormat.currencyFormat(hoaDonHuyVe.tongTienCuoi()));
     }
-
     public void xoaTienTraKhach(){
         txtTongTienHoanTra.setText("");
     }
@@ -194,6 +202,7 @@ public class HuyVe_GUI_Controller_New implements Initializable {
     void btnTimVeOnAction(ActionEvent event) {
         String maVe = txtMaVe.getText();
         veTim = Ve_DAO.getVeTheoMaVe_HuyVe(maVe);
+        dsVeChon.add(veTim);
         hienThiVeTim(veTim);
     }
 
@@ -203,19 +212,58 @@ public class HuyVe_GUI_Controller_New implements Initializable {
             System.out.println("Vé chưa được chọn hoặc không tồn tại!");
             return;
         }
-        hienThiVeHuy(veTim);
+        if(dsVeChon.isEmpty()){
+            dsVeChon.add(veTim);
+        }
+
+        String maHoaDonHuyVeMoi = QuanLyHoaDon_BUS.layHoaDonHuyVeTiepTheo();
+        hoaDonHuyVe.setMaHoaDonHuyVe(maHoaDonHuyVeMoi);
+        KhachHang khachHang =KhachHang_DAO.getKhachHangTheoMaKhachHang(veTim.getDanhSachChiTietVe().get(0).getKhachHang().getMaKhachHang());
+        hoaDonHuyVe.setKhachHangHuyVe(khachHang);
+        hoaDonHuyVe.setThoiGianHuyVe(LocalDateTime.now());
+        hoaDonHuyVe.setCaLamViec(new CaLamViec("CLV01012024C001"));
+        for(Ve ve : dsVeChon){
+//            if(Duration.between(hoaDonHuyVe.getThoiGianHuyVe(), ve.getThongTinGaTauDi().getThoiGianDi()).toHours()<4){
+//                System.out.println("khong huy duoc");
+//                return;
+//            }
+//            else {
+                System.out.println("ma ve -----"+ TimeFormat.formatLocalDateTime(ve.getThongTinGaTauDi().getThoiGianDi()));
+                ChiTietHoaDonHuyVe chiTietHoaDonHuyVe = new ChiTietHoaDonHuyVe(hoaDonHuyVe,ve);
+                dschiTietHoaDonHuyVe.add(chiTietHoaDonHuyVe);
+//            }
+
+        }
+
+        if (hoaDonHuyVe== null){
+            System.out.println("========= hoa don khong co");
+        }
+
+        hoaDonHuyVe.setDanhSachChiTietHoaDonHuyVe(dschiTietHoaDonHuyVe);
+        hienThiVeHuy(dsVeChon);
+
+        hienThiLePhi();
+        hienThiTienTraKhach();
     }
 
     @FXML
     void btnXoaTatCaVeOnAction(ActionEvent event) {
         vboxVeHuy.getChildren().clear();
+        dsVeChon.clear();;
     }
+    public void themChiTietHoaDonHuy(){
+        for(Ve ve :dsVeChon){
+            chuyenTrangThaiVe(ve);
+        }
 
+    ChiTietHoaDonHuyVe_DAO.themDanhsachChiTietHoaDonHuyDatVe(dschiTietHoaDonHuyVe);
+    HoaDonHuyVe_DAO.themHoaDonHuyVe(hoaDonHuyVe);
+    System.out.println("da them hoa don vo sql");
+}
     @FXML
     void btnChonVeHuyOnAction(ActionEvent event) {
 
-        hienThiLePhi();
-        hienThiTienTraKhach();
+
     }
 
 
@@ -227,12 +275,24 @@ public class HuyVe_GUI_Controller_New implements Initializable {
 
     @FXML
     void btnTimKiemKhachHangOnAction(ActionEvent event) {
+        if(txtCCCD.getText()== null){
+            System.out.println("ban chua nhap cccd");
+        }
+        else {
+            KhachHang khachHang = KhachHang_DAO.getKhachHangTheoCCCD(txtCCCD.getText());
+            txtMaKhachHang.setText(khachHang.getMaKhachHang());
+            txtTenKhachHang.setText(khachHang.getTenKhachHang());
+            txtSoDienThoai.setText(khachHang.getSoDienThoai());
+        }
 
     }
-
+public void chuyenTrangThaiVe (Ve ve ){
+        ve.setTrangThaiVe(TrangThaiVe.DAHUY);
+        Ve_DAO.capNhatTrangThaiVe(ve.getMaVe(),TrangThaiVe.DAHUY);
+}
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
-        
+        themChiTietHoaDonHuy();
     }
 
 
