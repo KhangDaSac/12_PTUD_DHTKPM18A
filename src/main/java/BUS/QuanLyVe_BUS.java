@@ -42,4 +42,9 @@ public class QuanLyVe_BUS {
     public static boolean capNhatTrangThaiVe(String maVe, TrangThaiVe trangThai){
         Ve_DAO.capNhatTrangThaiVe(maVe, trangThai);return true;
     }
+
+    public static boolean getVeTheoMaVe_HuyVe(String maVe){
+        Ve_DAO.getVeTheoMaVe_HuyVe(maVe);
+        return true;
+    }
 }

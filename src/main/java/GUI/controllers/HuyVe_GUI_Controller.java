@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import utils.CreatePDF;
 
 import java.io.IOException;
 import java.net.URL;
@@ -90,7 +91,6 @@ public class HuyVe_GUI_Controller implements Initializable {
 
     private HoaDonHuyVe hoaDonHuyVe;
     private Ve veKhachHang;
-    private CaLamViec caLamViec;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,6 +107,7 @@ public class HuyVe_GUI_Controller implements Initializable {
 
         // Thực hiện việc cập nhật danh sách vé nếu có sẵn
         capNhatDanhSachVe();
+
     }
 
     @FXML
@@ -120,7 +121,7 @@ public class HuyVe_GUI_Controller implements Initializable {
     }
 
     @FXML
-    void btnHuyVeOnAction(ActionEvent event) {
+    void btnHuyVeOnAction(ActionEvent event) throws Exception {
         huyVe();
     }
 
@@ -271,7 +272,7 @@ public class HuyVe_GUI_Controller implements Initializable {
         }
     }
 
-    public void huyVe() {
+    public void huyVe() throws Exception {
         LocalDate ngayHienTai1 = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
         String ngayHienTai = ngayHienTai1.format(formatter);
@@ -289,20 +290,20 @@ public class HuyVe_GUI_Controller implements Initializable {
             maHoaDonHuyMoi = "HDDO"+ngayHienTai+ String.format("%06d",soThuTuMoiHD);
         }
 
-        hoaDonHuyVe = new HoaDonHuyVe(maHoaDonHuyMoi, ngayHienTai, khachHang.getTenKhachHang(), caLamViec.getMaCaLamViec());
+        hoaDonHuyVe = new HoaDonHuyVe(maHoaDonHuyMoi, ngayHienTai, khachHang.getTenKhachHang(), new CaLamViec("CLV30112024C"));
 
         veKhachHang.setTrangThaiVe(TrangThaiVe.DAHUY);
 
         if (QuanLyVe_BUS.capNhatTrangThaiVe(veKhachHang.getMaVe(), TrangThaiVe.DAHUY)) {
             QuanLyHoaDon_BUS.themHoaDonHuyVe(hoaDonHuyVe);
             main_controller.showMessagesDialog("Hủy vé thành công!");
-            // CreatePDF.taoHoaDonHuyVe(hoaDonHuyVe); // Tùy chọn tạo file hóa đơn PDF
+            CreatePDF.taoHoaDonHuyVe(hoaDonHuyVe);
         } else {
             main_controller.showMessagesDialog("Hủy vé thất bại! Vui lòng thử lại.");
         }
     }
 
-    public double tinhTongTienLayVe(){
+    public double tinhTongTienTraKhach(){
 //        double tongTien = 0;
 //        double tongTienCoc = 0;
 //        for(VeDat_LayVe_Controller controller : phieuDatVeLayVeControllerList){

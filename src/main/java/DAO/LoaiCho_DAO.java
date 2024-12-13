@@ -30,14 +30,14 @@ public class LoaiCho_DAO {
         return dsLoaiCho;
     }
 
-    public LoaiCho getLoaiChoTheoMa(String maLoaiCho) {
+    public static LoaiCho getLoaiChoTheoMa(String maLoaiCho) {
         Connection con = ConnectDB.getInstance().getConnection();
         LoaiCho loaiCho = null;
         try {
             String query = "select * from LoaiCho where maLoaiCho = ? ";
             PreparedStatement statement = con.prepareStatement(query);
             statement.setString(1, maLoaiCho);
-            ResultSet rs = statement.executeQuery(query);
+            ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 String tenLoaiCho = rs.getString(2);
                 double heSoGiaCho = rs.getDouble(3);

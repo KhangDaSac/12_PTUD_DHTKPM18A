@@ -64,4 +64,60 @@ public class Ve_DAO {
             return false; // Trả về false nếu xảy ra lỗi
         }
     }
+
+    public static ArrayList<Ve> getDanhSachVeTheoMaHoaDon(String maHoaDon) {
+        ArrayList<Ve> dsVe = new ArrayList<>();
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "SELECT \n" +
+                "    v.maVe,\n" +
+                "    v.maHoaDonBanVe,\n" +
+                "    v.maChuyenTau,\n" +
+                "    v.maGaDi,\n" +
+                "    v.maGaDen,\n" +
+                "    v.loaiVe,\n" +
+                "    v.trangThaiVe\n" +
+                "FROM \n" +
+                "    Ve v\n" +
+                "JOIN \n" +
+                "    HoaDonBanVe hd ON v.maHoaDonBanVe = hd.maHoaDonBanVe\n" +
+                "WHERE\n" +
+                "    hd.maHoaDonBanVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maHoaDon);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"), rs.getString("maGaDen"));
+                ArrayList<ChiTietVe> dsChiTietVe = ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(rs.getString("maVe"));
+                Ve ve = new Ve(rs.getString("maVe"), new HoaDonBanVe(rs.getString("maHoaDonBanVe")), thongTinGaDi, thongTinGaDen, LoaiVe.valueOf(rs.getString("loaiVe")), TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                ve.setDanhSachChiTietVe(dsChiTietVe);
+                dsVe.add(ve);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return dsVe;
+    }
+
+    public static Ve getVeTheoMaVe_HuyVe(String maVe){
+        Connection con = ConnectDB.getInstance().getConnection();
+        String query = "select * from Ve where maVe = ?";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1, maVe);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                ChiTietChuyenTau thongTinGaDi = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDi"));
+                ChiTietChuyenTau thongTinGaDen = ChiTietChuyenTau_DAO.getChiTietTuyenTauTheoChuyenTauVaGaTau(rs.getString("maChuyenTau"),rs.getString("maGaDen"));
+                Ve ve = new Ve(rs.getString("maVe"),new HoaDonBanVe(rs.getString("maHoaDonBanVe")),thongTinGaDi,thongTinGaDen,LoaiVe.valueOf(rs.getString("loaiVe")),TrangThaiVe.valueOf(rs.getString("trangThaiVe")));
+                ve.setDanhSachChiTietVe(ChiTietVe_DAO.xuatDanhSachChiTietVeTheoMaVe(maVe));
+                return ve;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
 }

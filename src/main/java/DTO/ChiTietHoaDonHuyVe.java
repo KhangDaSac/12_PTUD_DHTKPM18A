@@ -9,6 +9,31 @@ public class ChiTietHoaDonHuyVe {
     private Ve ve;
     private double phanTramLePhi;
 
+    public ChiTietHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, Ve ve) {
+        this.hoaDonHuyVe = hoaDonHuyVe;
+        this.ve = ve;
+        long soGioConLai = thoiGianConLai().toHours();
+        if(ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
+            if(soGioConLai >= 48){
+                this.phanTramLePhi = 0.1;
+            }else if(soGioConLai >= 4){
+                this.phanTramLePhi = 0.2;
+            }
+        }else if(ve.getLoaiVe().equals(LoaiVe.VETAPTHE)){
+            if(soGioConLai >= 72){
+                this.phanTramLePhi = 0.2;
+            }else if(soGioConLai >= 24){
+                this.phanTramLePhi = 0.3;
+            }
+        }
+    }
+
+    public ChiTietHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, Ve ve, double phanTramLePhi) {
+        this.hoaDonHuyVe = hoaDonHuyVe;
+        this.ve = ve;
+        this.phanTramLePhi = phanTramLePhi;
+    }
+
     public HoaDonHuyVe getHoaDonHuyVe() {
         return hoaDonHuyVe;
     }
@@ -54,14 +79,16 @@ public class ChiTietHoaDonHuyVe {
     }
 
     public ChiTietHoaDonHuyVe() {
+        this.ve = this.ve != null ? this.ve : new Ve(); // Khởi tạo nếu null
+        this.hoaDonHuyVe = this.hoaDonHuyVe != null ? this.hoaDonHuyVe : new HoaDonHuyVe(); // Khởi tạo nếu null
         long soGioConLai = thoiGianConLai().toHours();
-        if(ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
+        if(ve.getLoaiVe() == LoaiVe.VECANHAN){
             if(soGioConLai >= 48){
                 this.phanTramLePhi = 0.1;
             }else if(soGioConLai >= 4){
                 this.phanTramLePhi = 0.2;
             }
-        }else if(ve.getLoaiVe().equals(LoaiVe.VETAPTHE)){
+        }else if(ve.getLoaiVe() == LoaiVe.VETAPTHE){
             if(soGioConLai >= 72){
                 this.phanTramLePhi = 0.2;
             }else if(soGioConLai >= 24){
@@ -77,4 +104,6 @@ public class ChiTietHoaDonHuyVe {
     public double soTienHoanLai(){
         return ve.tienVeCuoi() * (1 - phanTramLePhi);
     }
+
+
 }

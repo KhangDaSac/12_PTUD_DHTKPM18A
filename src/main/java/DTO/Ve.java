@@ -159,4 +159,15 @@ public class Ve {
 				", PHANTRAMGIAMGIAVETAPTHE=" + PHANTRAMGIAMGIAVETAPTHE +
 				'}';
 	}
+
+	private boolean isSelected;
+
+	// Getter và Setter cho isSelected
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean selected) {
+		isSelected = selected;
+	}
 }

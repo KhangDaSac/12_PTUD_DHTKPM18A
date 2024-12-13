@@ -9,7 +9,23 @@ public class ChiTietVe {
 	private double giaCho;
 	private double phanTramGiamGia;
 
-	public Ve getVe() {
+    public ChiTietVe(Cho cho, Ve maVe, double giaCho, KhachHang khachHang, double phanTramGiamGia) {
+		this.ve = maVe;
+		this.cho = cho;
+		this.khachHang = khachHang;
+		this.giaCho = giaCho;
+		this.phanTramGiamGia = phanTramGiamGia;
+    }
+
+    public ChiTietVe(Ve ve, Cho cho, KhachHang khachHang, double giaCho, double phanTramGiamGia) {
+		this.ve = ve;
+		this.cho = cho;
+		this.khachHang = khachHang;
+		this.giaCho = giaCho;
+		this.phanTramGiamGia = phanTramGiamGia;
+    }
+
+    public Ve getVe() {
 		return ve;
 	}
 

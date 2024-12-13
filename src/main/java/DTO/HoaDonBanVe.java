@@ -11,6 +11,11 @@ public class HoaDonBanVe {
 	private CaLamViec caLamViec;
 
 	private ArrayList<Ve> danhSachVe;
+
+	public HoaDonBanVe() {
+
+	}
+
 	public String getMaHoaDonBanVe() {
 		return maHoaDonBanVe;
 	}

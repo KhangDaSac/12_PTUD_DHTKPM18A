@@ -62,6 +62,14 @@ public class Cho {
         this.maCho = maCho;
     }
 
+    public Cho(String maCho, int soCho, LoaiCho loaiCho, ToaTau toaTau) {
+        super();
+        this.maCho = maCho;
+        this.soCho = soCho;
+        this.loaiCho = loaiCho;
+        this.toaTau = toaTau;
+    }
+
     public String getMaCho() {
         return maCho;
     }

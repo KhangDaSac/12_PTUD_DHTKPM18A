@@ -23,11 +23,17 @@ module GUI.applications {
     requires javafx.controls;
     requires itextpdf;
     requires org.apache.poi.ooxml;
-    exports GUI.controllers.LayVe_GUI_Items to javafx.fxml;
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+    requires java.mail;
+    exports GUI.controllers.LayVe_GUI_Items;
     exports GUI.controllers.QuanLyChuyenTau_GUI_Items;
     opens GUI.controllers.QuanLyChuyenTau_GUI_Items to javafx.fxml;
 
     // Other exports and opens statements
     opens GUI.controllers.LayVe_GUI_Items to javafx.fxml;
+    exports GUI.controllers.HuyVe_GUI_Items_Test;
+    opens GUI.controllers.HuyVe_GUI_Items_Test to javafx.fxml;
+
 
 }

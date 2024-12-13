@@ -12,11 +12,22 @@ public class HoaDonHuyVe {
 
 	private ArrayList<ChiTietHoaDonHuyVe> danhSachChiTietHoaDonHuyVe;
 
-	public HoaDonHuyVe(String maHoaDonHuyMoi, String ngayHienTai, String tenKhachHang, String maCaLamViec) {
+    public HoaDonHuyVe(String maHoaDonHuyMoi, String ngayHienTai, String tenKhachHang, CaLamViec caLamViec) {
 		this.maHoaDonHuyVe = maHoaDonHuyMoi;
 		this.thoiGianHuyVe = LocalDateTime.parse(ngayHienTai);
 		this.khachHangHuyVe = new KhachHang(tenKhachHang);
-		this.caLamViec = new CaLamViec(maCaLamViec);
+		this.caLamViec = caLamViec;
+	}
+
+	public HoaDonHuyVe(String maHoaDonHuyVe, LocalDateTime thoiGianHuyVe, CaLamViec maCaLamViec, KhachHang maKhachHangHuyVe) {
+		this.maHoaDonHuyVe = maHoaDonHuyVe;
+		this.thoiGianHuyVe = thoiGianHuyVe;
+		this.caLamViec = maCaLamViec;
+		this.khachHangHuyVe = maKhachHangHuyVe;
+	}
+
+	public HoaDonHuyVe() {
+
 	}
 
 	public String getMaHoaDonHuyVe() {
@@ -51,6 +62,7 @@ public class HoaDonHuyVe {
 		this.caLamViec = caLamViec;
 	}
 
+	private ArrayList<HoaDonHuyVe> danhSachHoaDonHuyVe = new ArrayList<>();
 
 	public ArrayList<ChiTietHoaDonHuyVe> getDanhSachChiTietHoaDonHuyVe() {
 		return danhSachChiTietHoaDonHuyVe;

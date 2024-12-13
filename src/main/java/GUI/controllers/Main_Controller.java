@@ -330,14 +330,14 @@ public class Main_Controller implements Initializable {
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
         lblTieuDeTrang.setText("HỦY VÉ");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_New.fxml"));
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        HuyVe_GUI_Controller_Test controller = loader.getController();
+        HuyVe_GUI_Controller_New controller = loader.getController();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);

@@ -31,7 +31,7 @@ public class LoaiToaTau_DAO {
         return dsLoaiToaTau;
     }
 
-    public LoaiToaTau timLoaiToaTauTheoMa(String maLoai) {
+    public static LoaiToaTau timLoaiToaTauTheoMa(String maLoai) {
         Connection con = ConnectDB.getInstance().getConnection();
         LoaiToaTau loaiToaTau = null;
         try {
@@ -50,4 +50,6 @@ public class LoaiToaTau_DAO {
         }
         return loaiToaTau;
     }
+
+
 }

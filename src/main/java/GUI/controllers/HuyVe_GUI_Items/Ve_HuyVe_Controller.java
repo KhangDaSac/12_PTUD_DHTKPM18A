@@ -162,7 +162,7 @@ public class Ve_HuyVe_Controller implements Initializable {
         } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DADOI)) {
             imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/DaLayVe.png")));
         } else if (ve.getTrangThaiVe().equals(TrangThaiVe.DAHUY)) {
-            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/DaHuy.png")));
+            imvTrangThai.setImage(new Image(getClass().getResourceAsStream("/images/HuyVe_GUI/TrangThaiHuyVe/DaHuy.png")));
         }
 
         imvChonPhieuDatVe.setVisible(false);
@@ -186,7 +186,7 @@ public class Ve_HuyVe_Controller implements Initializable {
             chonHuyVe = true;
             imvChonPhieuDatVe.setVisible(true);
             if (huyVe_gui_controller != null) {
-                huyVe_gui_controller.tinhTongTienLayVe();
+                huyVe_gui_controller.tinhTongTienTraKhach();
             }
         }
     }
@@ -195,7 +195,7 @@ public class Ve_HuyVe_Controller implements Initializable {
         chonHuyVe = false;
         imvChonPhieuDatVe.setVisible(false);
         if (huyVe_gui_controller != null) {
-            huyVe_gui_controller.tinhTongTienLayVe();
+            huyVe_gui_controller.tinhTongTienTraKhach();
         }
     }
 }

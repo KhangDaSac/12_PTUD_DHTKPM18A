@@ -1,13 +1,7 @@
 package BUS;
 
-import DAO.ChiTietVe_DAO;
-import DAO.HoaDonBanVe_DAO;
-import DAO.HoaDonHuyVe_DAO;
-import DAO.Ve_DAO;
-import DTO.ChiTietVe;
-import DTO.HoaDonBanVe;
-import DTO.HoaDonHuyVe;
-import DTO.Ve;
+import DAO.*;
+import DTO.*;
 import utils.TimeFormat;
 
 import java.time.LocalDate;
@@ -64,14 +58,31 @@ public class QuanLyHoaDon_BUS {
         return true;
     }
 
-    public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
+    public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe) throws Exception {
         HoaDonHuyVe_DAO.themHoaDonHuyVe(hoaDonHuyVe);
         return true;
+
     }
 
     public static String layMaHoaDonHuyLonNhatCuaNgayHienTai(String ngay){
         return HoaDonHuyVe_DAO.layMaHoaDonHuyLonNhatCuaNgayHienTai(ngay);
     }
 
+    public static String layHoaDonHuyVeTiepTheo(){
+        LocalDate ngayHienTai = LocalDate.now();
+        String ngayHienTaiString = TimeFormat.formatLocalDateNumber(ngayHienTai);
+
+        String maHoaDonCu = HoaDonHuyVe_DAO_Test.layMaHoaDonHuyVeLonNhatCuaNgayHienTai(ngayHienTaiString);
+        if(maHoaDonCu == null){
+            return "HDHV" + ngayHienTaiString + "000001";
+        }
+
+        String phanTruoc = maHoaDonCu.substring(0, maHoaDonCu.length() - 6);
+        String phanSau = maHoaDonCu.substring(maHoaDonCu.length() - 6);
+
+        String maHoaDonMoi = phanTruoc + String.format( "%06d", Integer.parseInt(phanSau) + 1);
+
+        return maHoaDonMoi;
+    }
 
 }
