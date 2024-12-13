@@ -7,6 +7,7 @@ import connectDB.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 public class HoaDonHuyVe_DAO {
     private static Connection con = ConnectDB.getInstance().getConnection();
@@ -45,5 +46,20 @@ public class HoaDonHuyVe_DAO {
             e.printStackTrace();
         }
         return maHoaDonLonNhat;
+    }
+
+    public static boolean themHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe){
+        try{
+          Connection con = ConnectDB.getInstance().getConnection();
+            String query ="insert into HoaDonDoiVe values (?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(query);
+            statement.setString(1,hoaDonHuyVe.getMaHoaDonHuyVe());
+            statement.setTimestamp(2, Timestamp.valueOf(hoaDonHuyVe.getThoiGianHuyVe()));
+            statement.setString(6,hoaDonHuyVe.getCaLamViec().getMaCaLamViec());
+            statement.execute();
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }

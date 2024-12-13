@@ -1,0 +1,126 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import java.net.URL?>-->
+<!--<?import javafx.geometry.Insets?>-->
+<!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.layout.AnchorPane?>-->
+<!--<?import javafx.scene.layout.HBox?>-->
+<!--<?import javafx.scene.layout.VBox?>-->
+<!--<?import javafx.scene.text.Font?>-->
+
+<!--<AnchorPane fx:id="anpVeTim" onMouseClicked="#anpHoaDonOnMouseClicked" prefHeight="215.0" prefWidth="500.0" styleClass="ve" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.controllers.HuyVe_GUI_Items_Test.Ve_TimVe_HuyVe_Controller_Test">-->
+<!--    <children>-->
+<!--        <AnchorPane prefHeight="224.0" prefWidth="430.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">-->
+<!--            <children>-->
+<!--                <AnchorPane layoutX="80.0" prefHeight="224.0" prefWidth="499.0" styleClass="ve-right" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">-->
+<!--                    <children>-->
+<!--                        <VBox prefWidth="120.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">-->
+<!--                            <children>-->
+<!--                                <HBox prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" text="Mã vé:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblMaVe" prefHeight="30.0" prefWidth="170.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" stylesheets="@../../css/All.css" text="Mã chuyến tàu:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblMaChuyenTau" prefHeight="30.0" prefWidth="170.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                                <HBox prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" stylesheets="@../../css/All.css" text="Ga đi:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblTenGaDi" prefHeight="30.0" prefWidth="169.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                                <HBox prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" stylesheets="@../../css/All.css" text="Ga đến:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblTenGaDen" prefHeight="30.0" prefWidth="170.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                                <HBox layoutX="10.0" layoutY="10.0" prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" stylesheets="@../../css/All.css" text="Loại vé:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblLoaiVe" prefHeight="30.0" prefWidth="170.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                                <HBox layoutX="10.0" layoutY="71.0" prefHeight="30.0">-->
+<!--                                    <children>-->
+<!--                                        <Label prefHeight="30.0" prefWidth="160.0" stylesheets="@../../css/All.css" text="Trạng thái vé:">-->
+<!--                                            <font>-->
+<!--                                                <Font name="System Bold" size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                        <Label fx:id="lblTrangThaiVe" prefHeight="30.0" prefWidth="170.0">-->
+<!--                                            <font>-->
+<!--                                                <Font size="16.0" />-->
+<!--                                            </font>-->
+<!--                                        </Label>-->
+<!--                                    </children>-->
+<!--                                </HBox>-->
+<!--                            </children>-->
+<!--                        </VBox>-->
+<!--                    </children>-->
+<!--                    <padding>-->
+<!--                        <Insets left="20.0" />-->
+<!--                    </padding>-->
+<!--                </AnchorPane>-->
+<!--                <AnchorPane prefWidth="50.0" styleClass="hoaDon-left" stylesheets="@../../css/LayVe_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">-->
+<!--                    <children>-->
+<!--                        <VBox prefWidth="80.0" style="-fx-alignment: center;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">-->
+<!--                            <children>-->
+<!--                                <HBox style="-fx-alignment: center;" />-->
+<!--                            </children>-->
+<!--                        </VBox>-->
+<!--                    </children>-->
+<!--                </AnchorPane>-->
+<!--            </children>-->
+<!--        </AnchorPane>-->
+<!--    </children>-->
+<!--    <stylesheets>-->
+<!--        <URL value="@../../css/BanVe_GUI.css" />-->
+<!--        <URL value="@../../css/BanVe_GUI_Items/Ve_BanVe.css" />-->
+<!--    </stylesheets>-->
+<!--</AnchorPane>-->

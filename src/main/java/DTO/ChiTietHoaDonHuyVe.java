@@ -8,6 +8,25 @@ public class ChiTietHoaDonHuyVe {
     private Ve ve;
     private double phanTramLePhi;
 
+    public ChiTietHoaDonHuyVe(HoaDonHuyVe hoaDonHuyVe, Ve ve) {
+        this.hoaDonHuyVe = hoaDonHuyVe;
+        this.ve = ve;
+        long soGioConLai = thoiGianConLai().toHours();
+        if(this.ve.getLoaiVe().equals(LoaiVe.VECANHAN)){
+            if(soGioConLai >= 48){
+                this.phanTramLePhi = 0.1;
+            }else if(soGioConLai >= 4){
+                this.phanTramLePhi = 0.2;
+            }
+        }else if(this.ve.getLoaiVe().equals(LoaiVe.VETAPTHE)){
+            if(soGioConLai >= 72){
+                this.phanTramLePhi = 0.2;
+            }else if(soGioConLai >= 24){
+                this.phanTramLePhi = 0.3;
+            }
+        }
+    }
+
     public HoaDonHuyVe getHoaDonHuyVe() {
         return hoaDonHuyVe;
     }
@@ -66,6 +85,7 @@ public class ChiTietHoaDonHuyVe {
             }
         }
     }
+
 
     public double lePhi(){
         return ve.tienVeCuoi() * phanTramLePhi;

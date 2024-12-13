@@ -162,7 +162,20 @@ public class Ve_DAO {
         }
         return veTim;
     }
+    public static boolean capNhatTrangThaiVe(String maVe, TrangThaiVe trangThai) {
+        String sql = "UPDATE Ve SET TrangThaiVe = ? WHERE MaVe = ?";
+        try (Connection con = ConnectDB.getInstance().getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
+            ps.setString(1, trangThai.name()); // Sử dụng tên enum làm giá trị
+            ps.setString(2, maVe);
+
+            return ps.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu xảy ra lỗi
+        }
+    }
 
     public static ArrayList<Ve> xuatDanhSachVeTheoMaHoaDonBanVe(String maHoaDon){
         ArrayList<Ve> danhSachVe = new ArrayList<>();

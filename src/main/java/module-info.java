@@ -51,4 +51,6 @@ module GUI.applications {
     exports GUI.controllers.HuyDatVe_GUI_Items;
     opens GUI.controllers.QuanLyHoaDon_GUI_Items to javafx.fxml;
     exports GUI.controllers.QuanLyHoaDon_GUI_Items;
+    opens GUI.controllers.HuyVe_GUI_Items_Test to javafx.fxml;
+    exports GUI.controllers.HuyVe_GUI_Items_Test;
 }

@@ -28,15 +28,15 @@ public class ChiTietHoaDonHuyVe_DAO {
         }
         return dsChiTietHoaDonHuyVe;
     }
-    public static void themDanhsachChiTietHoaDonHuyDatVe(ArrayList<ChiTietHoaDonHuyDatVe> dsChiTietHoaDonHuyDatVe){
+    public static void themDanhsachChiTietHoaDonHuyVe(ArrayList<ChiTietHoaDonHuyVe> dsChiTietHoaDonHuyVe){
         Connection con = ConnectDB.getInstance().getConnection();
-        String query = "insert into ChiTietHoaDonHuyDatVe\n" +
+        String query = "insert into ChiTietHoaDonHuyVe\n" +
                 "values( ?,?,?)";
         try{
-            for(ChiTietHoaDonHuyDatVe cthd:dsChiTietHoaDonHuyDatVe){
+            for(ChiTietHoaDonHuyVe cthd:dsChiTietHoaDonHuyVe){
                 PreparedStatement statement = con.prepareStatement(query);
-                statement.setString(1,cthd.getVeDat().getMaVeDat());
-                statement.setString(2,cthd.getHoaDonHuyDatVe().getMaHoaDonHuyDatVe());
+                statement.setString(1,cthd.getVe().getMaVe());
+                statement.setString(2,cthd.getHoaDonHuyVe().getMaHoaDonHuyVe());
                 statement.setDouble(3,cthd.getPhanTramLePhi());
                 statement.execute();
             }
@@ -44,4 +44,5 @@ public class ChiTietHoaDonHuyVe_DAO {
             e.printStackTrace();
         }
     }
+
 }

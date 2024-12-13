@@ -45,15 +45,6 @@
                         <Image url="@../images/Login.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnThongTinTaiKhoan" mnemonicParsing="false" stylesheets="@../css/KhungGiaoDien_GUI.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-                     <graphic>
-                        <ImageView>
-                           <image>
-                              <Image url="@../images/QuanLyTaiKhoan.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane styleClass="menu" stylesheets="@../css/KhungGiaoDien_GUI.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -195,7 +186,7 @@
                         </HBox>
                         <HBox layoutX="10.0" layoutY="341.0" prefHeight="55.0" prefWidth="250.0">
                            <children>
-                              <Button fx:id="btnThongTinUngDung" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnThongTinUngDungOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Thông tin ứng dụng">
+                              <Button fx:id="btnThongTinUngDung" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnThongTinUngDungOnAction" prefHeight="55.0" prefWidth="280.0" styleClass="menu-button" stylesheets="@../css/KhungGiaoDien_GUI.css" text="Hướng dẫn sử dụng">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="25.0">
                                        <image>

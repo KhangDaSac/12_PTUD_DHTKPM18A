@@ -19,10 +19,17 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import utils.CreatePDF;
 import utils.ShowMessagesDialog;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 
 public class Main_Controller implements Initializable {
@@ -420,14 +427,14 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnHuyVeOnAction(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/HuyVe_GUI_New.fxml"));
         Parent trangMoi = null;
         try {
             trangMoi = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        HuyVe_GUI_Controller controller = loader.getController();
+        HuyVe_GUI_Controller_New controller = loader.getController();
         anpNoiDungTrang.getChildren().clear();
         anpNoiDungTrang.getChildren().add(trangMoi);
         AnchorPane.setTopAnchor(trangMoi, 0.0);
@@ -568,8 +575,17 @@ public class Main_Controller implements Initializable {
 
     @FXML
     void btnThongTinUngDungOnAction(ActionEvent event) {
-
-    }
+        try (InputStream file = Main_Controller.class.getResourceAsStream("/documents/12_7_ApplicationDevelopment_UserManual.pdf")) {
+            if (file != null) {
+                Path tempFile = Files.createTempFile("UserManual", ".pdf");
+                Files.copy(file, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                Desktop.getDesktop().open(tempFile.toFile());
+            } else {
+                System.out.println("Không tìm thấy file!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    }
 
     public void quayLaiTrangBanVe(HoaDonBanVe hoaDonBanVe){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/BanVe_GUI.fxml"));
