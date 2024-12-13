@@ -19,7 +19,7 @@ public class CreatePDF {
             File file = new File(pathFolder + "\\"+ hoaDonBanVe.getMaHoaDonBanVe() + ".pdf");
             if (file.exists()) {
                 Desktop.getDesktop().open(file);
-               return;
+                return;
             }
             Rectangle pageSize = new Rectangle(600, 65 * hoaDonBanVe.getDanhSachVe().size() + 600);
             Document document = new Document(pageSize);
